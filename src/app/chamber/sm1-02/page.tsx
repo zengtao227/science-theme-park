@@ -58,7 +58,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
             if (difficulty === "BASIC") {
                 const val1 = Math.floor(Math.random() * 10) + 1;
                 answer = val1;
-                promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, \\; \\text{${sm1_02_t.prompts.what_is} } ${var1}?`;
+                promptLatex = `${sm1_02_t.prompts.if}: ${var1}=${val1}, ${sm1_02_t.prompts.what_is} ${var1}?`;
                 expressionLatex = var1;
                 hintLatex = [`\\text{${sm1_02_t.labels.variable} ${var1} ${sm1_02_t.labels.holds_value || 'holds value'} ${val1}.}`];
                 visualData = { variables: [{ label: var1, value: val1, color: color1 }] };
@@ -67,7 +67,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const coeff = Math.floor(Math.random() * 3) + 2; // 2 or 3
                 answer = coeff * val1;
                 const expr = coeff === 2 ? `${var1}+${var1}` : `${coeff}${var1}`;
-                promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, \\; \\text{${sm1_02_t.prompts.calculate}: } ${expr}`;
+                promptLatex = `${sm1_02_t.prompts.if}: ${var1}=${val1}, ${sm1_02_t.prompts.calculate}: ${expr}`;
                 expressionLatex = expr;
                 hintLatex = [`\\text{${sm1_02_t.prompts.evaluate || 'Evaluate expression'}}`];
                 visualData = {
@@ -78,7 +78,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const val2 = Math.floor(Math.random() * 5) + 1;
                 const sign = Math.random() > 0.5 ? '+' : '-';
                 answer = sign === '+' ? val1 + val2 : val1 - val2;
-                promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, ${var2}=${val2}, \\; \\text{${sm1_02_t.prompts.calculate}: } ${var1}${sign}${var2}`;
+                promptLatex = `${sm1_02_t.prompts.if}: ${var1}=${val1}, ${var2}=${val2}, ${sm1_02_t.prompts.calculate}: ${var1}${sign}${var2}`;
                 expressionLatex = `${var1}${sign}${var2}`;
                 hintLatex = [`\\text{${sm1_02_t.prompts.substitute_both || 'Substitute both'}}`];
                 visualData = {
@@ -94,7 +94,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 const c2 = Math.floor(Math.random() * 2) + 2;
                 const sign = Math.random() > 0.4 ? '+' : '-';
                 answer = sign === '+' ? c1 * val1 + c2 * val2 : c1 * val1 - c2 * val2;
-                promptLatex = `\\text{${sm1_02_t.prompts.if}: } ${var1}=${val1}, ${var2}=${val2}, \\; \\text{${sm1_02_t.prompts.calculate}: } ${c1}${var1}${sign}${c2}${var2}`;
+                promptLatex = `${sm1_02_t.prompts.if}: ${var1}=${val1}, ${var2}=${val2}, ${sm1_02_t.prompts.calculate}: ${c1}${var1}${sign}${c2}${var2}`;
                 expressionLatex = `${c1}${var1}${sign}${c2}${var2}`;
                 hintLatex = [`\\text{${sm1_02_t.prompts.multiply_coeffs || 'Multiply coefficients first'}}`];
                 visualData = {
@@ -193,7 +193,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\text{${sm1_02_t.prompts.simplify} } ${expr}`,
+                promptLatex: `${sm1_02_t.prompts.simplify} ${expr}`,
                 expressionLatex: expr,
                 targetLatex: answerStr,
                 visualMode: 'SORTING',
@@ -239,7 +239,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 id,
                 difficulty,
                 stage,
-                promptLatex: `\\text{${sm1_02_t.prompts.calculate} } ${expr} \\text{ ${sm1_02_t.prompts.if} } ${v1}=${val}`,
+                promptLatex: `${sm1_02_t.prompts.calculate} ${expr}, ${sm1_02_t.prompts.if} ${v1}=${val}`,
                 expressionLatex: expr,
                 targetLatex: String(answer),
                 visualMode: 'MACHINE',

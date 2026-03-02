@@ -161,7 +161,7 @@ export default function SC304Page() {
                     stage,
                     propA: c.a,
                     propB: c.b,
-                    promptLatex: `\\text{${c.q.replace('{a}', c.a).replace('{b}', c.b)}}`,
+                    promptLatex: c.q.replace('{a}', c.a).replace('{b}', c.b),
                     expressionLatex: `\\text{A: } ${c.a} \\text{ vs B: } ${c.b}`,
                     targetLatex: c.expected,
                     slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: c.expected.toLowerCase() }],

@@ -89,6 +89,7 @@
 - [x] `SM2.07 prompt wrapper cleanup`: removed `\\text{${...}}` wrappers from stage/dynamic prompt assignment; prompt rendering now uses direct i18n strings through `renderMixedText`.
 - [x] `SC2.07 placeholder i18n cleanup`: migrated hardcoded input fallback (`Enter value`) to `sc2_07.prompts.enter_value_placeholder` in EN/CN/DE.
 - [x] `SC3.01 + SC3.05 + SM1.01 + SM1.05 residue cleanup`: removed remaining hardcoded/wrapper `promptLatex` strings and legacy English fallback literals in active quest prompts/placeholders; rendering and i18n audits remain clean.
+- [x] `SM1.02 + SC3.04 wrapper cleanup`: removed residual `\\text{${t(...)}}` prompt wrappers and switched to direct i18n prompt text for `renderMixedText` path consistency.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
