@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.02 Batch B wave-7 EN semantic unification completed, full QA passed)
-**Plan Version**: 7.0 (Batch B high-frequency expansion wave-7)
+**Last Updated**: 2026-03-02 (GP3.01 Batch B wave-8 prompt refinement completed, GP3.02 audit pass, full QA passed)
+**Plan Version**: 7.1 (Batch B high-frequency expansion wave-8)
 
 ---
 
@@ -119,7 +119,8 @@
 - [x] `GP1.01 + GP1.02 Batch B (wave-5)`: migrated companion-quiz hardcoded prompt symbols in `gp1-01/page.tsx` and `gp1-02/page.tsx` to i18n-driven `gp1_01.prompts.*` / `gp1_02.prompts.*`; synchronized EN/CN/DE prompt key packs.
 - [x] `SP1.02 Batch B (wave-6 localization closure)`: localized the remaining legacy arrays in CN/DE (`FIRST_LAW` BASIC/CORE/ADVANCED/ELITE + `SECOND_LAW` ADVANCED/ELITE + `THIRD_LAW` ADVANCED/ELITE), keeping array order, key names, and answer mapping unchanged.
 - [x] `SP1.02 Batch B (wave-7 EN semantic unification)`: rewrote EN legacy arrays to scenario-task wording (`FIRST_LAW` BASIC/CORE/ADVANCED/ELITE + `SECOND_LAW` ADVANCED/ELITE + `THIRD_LAW` ADVANCED/ELITE), preserving key paths and index order.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 GP3.01/GP3.02 余量抽检与裸参数题干收口）。
+- [x] `GP3.01 + GP3.02 Batch B (wave-8)`: completed residual audit and rewrote 35 bare parameter/formula prompts in `gp3_01.prompts.*` (standing-wave / diffraction / optics cluster) across EN/CN/DE; `gp3_02` audited with no additional bare-prompt migration required in this wave.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP2.02/SP2.03 裸参数题干抽检与收口）。
 
 ---
 
@@ -573,6 +574,13 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v7.1 (2026-03-02)
+- **Batch B High-frequency Wave-8 (GP3.01/GP3.02 residual pass)**:
+  - Rewrote 35 `gp3_01.prompts.*` bare parameter/formula entries (standing-wave, double-slit, thin-film, reflection/refraction, diffraction, grating cluster) into scenario-task wording in EN/CN/DE.
+  - Preserved prompt keys, hint formulas, and quiz answer mapping; only prompt semantics changed.
+  - Completed `gp3_02` residual audit in this wave with no additional hardcoded bare prompt migration needed.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v7.0 (2026-03-02)
 - **Batch B High-frequency Wave-7 (SP1.02 EN semantic unification)**: completed English scenario-task rewrite for remaining legacy prompt arrays.
   - Rewrote `sp1_02.prompts.FIRST_LAW` (BASIC/CORE/ADVANCED/ELITE) to scenario-task wording.
@@ -778,5 +786,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 7.0 (Batch B high-frequency expansion wave-7)
+**Plan Version**: 7.1 (Batch B high-frequency expansion wave-8)
 **Next Review**: 2026-03-05
