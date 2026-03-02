@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SM3.05 Batch B wave-21 high-frequency prompt subset-2 refined, full QA passed)
-**Plan Version**: 8.4 (Batch B high-frequency expansion wave-21)
+**Last Updated**: 2026-03-02 (SM3.05 Batch B wave-22 prompt semantic closure completed, full QA passed)
+**Plan Version**: 8.5 (Batch B high-frequency expansion wave-22)
 
 ---
 
@@ -133,7 +133,8 @@
 - [x] `SM3.02 Batch B (wave-19 stage prompt cleanup)`: rewrote `unit_circle_prompt_latex` / `projections_prompt_latex` / `waves_prompt_latex` in EN/CN/DE to scenario-task wording while preserving stage keys and trig objectives.
 - [x] `SM3.05 Batch B (wave-20 high-frequency subset)`: rewrote 20 high-frequency `sm3_05.prompts.*` entries (architecture + cross-section core cluster) in EN/CN/DE from bare parameter wording to scenario-task style while preserving key names and geometric targets.
 - [x] `SM3.05 Batch B (wave-21 high-frequency subset-2)`: rewrote 22 additional `sm3_05.prompts.*` entries (cross-section advanced + architecture volume tail cluster) in EN/CN/DE to scenario-task wording while preserving key names and numeric givens.
-- [ ] Next wave target: Batch B 继续扩展 `SM3.05` 其余 prompts（curved solids / biomedical tail cluster）并完成收口。
+- [x] `SM3.05 Batch B (wave-22 closure)`: rewrote the remaining 18 `sm3_05.prompts.*` entries (curved solids / biomedical tail cluster) in EN/CN/DE, completing the module-level bare-parameter prompt rewrite scope.
+- [ ] Next wave target: Batch B 扩展到 `SM2.11 / SM2.12` 等剩余高频短提示模块并继续收口。
 
 ---
 
@@ -587,6 +588,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v8.5 (2026-03-02)
+- **Batch B High-frequency Wave-22 (SM3.05 closure pass)**:
+  - Rewrote the remaining 18 `sm3_05.prompts.*` entries (curved solids / biomedical tail cluster) in EN/CN/DE to scenario-task wording.
+  - Together with wave-20 and wave-21, `SM3.05` prompt semantic cleanup is now fully closed for current Batch B scope.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v8.4 (2026-03-02)
 - **Batch B High-frequency Wave-21 (SM3.05 partial subset-2 pass)**:
   - Rewrote 22 additional `sm3_05.prompts.*` entries (cross-section advanced + architecture volume tail cluster) in EN/CN/DE from bare parameter wording to scenario-task phrasing.
@@ -848,5 +855,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 8.4 (Batch B high-frequency expansion wave-21)
+**Plan Version**: 8.5 (Batch B high-frequency expansion wave-22)
 **Next Review**: 2026-03-05
