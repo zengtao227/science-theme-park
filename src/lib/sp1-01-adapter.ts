@@ -26,7 +26,7 @@ export function buildSP101Pool(difficulty: Difficulty, stage: Stage, t: any): an
 
         return {
             ...q,
-            promptLatex: `\\\\text{${t(`${baseKey}.prompt`) || q.content.en}}`,
+            promptLatex: t(`${baseKey}.prompt`) || q.content.en,
             scenarioTitle: t(`${baseKey}.scenario`),
             scenarioDesc: t(`${baseKey}.scenario_desc`),
             feedback: {

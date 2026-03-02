@@ -41,15 +41,15 @@ export const QUEST_DATA: SC107Quest[] = [
 
 export const generateRecyclingQuests = (t: any, difficulty: Difficulty): SC107Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "RECYCLING" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sc1_07.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex }));
 };
 
 export const generateGreenChemistryQuests = (t: any, difficulty: Difficulty): SC107Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "GREEN_CHEMISTRY" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sc1_07.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex }));
 };
 
 export const generateCircularEconomyQuests = (t: any, difficulty: Difficulty): SC107Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "CIRCULAR_ECONOMY" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sc1_07.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex }));
 };

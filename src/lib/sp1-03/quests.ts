@@ -41,15 +41,15 @@ export const QUEST_DATA: SP103Quest[] = [
 
 export const generateAtmosphereQuests = (t: any, difficulty: Difficulty): SP103Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "ATMOSPHERE" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sp1_03.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex }));
 };
 
 export const generateWeatherQuests = (t: any, difficulty: Difficulty): SP103Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "WEATHER" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sp1_03.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex }));
 };
 
 export const generateClimateQuests = (t: any, difficulty: Difficulty): SP103Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "CLIMATE" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sp1_03.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex }));
 };

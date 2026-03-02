@@ -97,7 +97,7 @@ function buildQuestFromData(
       deltaH: data.deltaH || data.targetDeltaH || 0,
       stateSymbols: []
     },
-    promptLatex: `\\\\text{${t(`sc2_07.prompts.${stage.toLowerCase()}`) || getPromptForStage(stage)}}`,
+    promptLatex: t(`sc2_07.prompts.${stage.toLowerCase()}`) || getPromptForStage(stage),
     equationLatex,
     expressionLatex,
     targetLatex,

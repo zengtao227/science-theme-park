@@ -41,15 +41,15 @@ export const QUEST_DATA: SP104Quest[] = [
 
 export const generateSolarSystemQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "SOLAR_SYSTEM" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sp1_04.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex }));
 };
 
 export const generateMoonPhasesQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "MOON_PHASES" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sp1_04.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex }));
 };
 
 export const generateSeasonsQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "SEASONS" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: `\\text{${t(`sp1_04.prompts.${q.id}`) || q.promptLatex}}` }));
+        .map(q => ({ ...q, promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex }));
 };

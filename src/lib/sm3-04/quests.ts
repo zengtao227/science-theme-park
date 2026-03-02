@@ -101,7 +101,7 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: reduction, scenarioKey: "decibel_elite",
-                promptLatex: `\\text{${t("sm3_04.stages.decibel_reduction") || "Calculate dB reduction"}}`,
+                promptLatex: t("sm3_04.stages.decibel_reduction") || "Calculate dB reduction",
                 expressionLatex: `I_1=${intensity.toExponential(0)}\\;W/m^{2},\\; I_2=${intensity2.toExponential(0)}\\;W/m^{2}`,
                 targetLatex: "\\Delta L",
                 slots: [{ id: "dB", labelLatex: "\\Delta L", placeholder: "dB reduction", expected: reduction, unit: "dB" }],
@@ -165,7 +165,7 @@ export function generateRichterQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "RICHTER",
                 amplitude, value: diff, scenarioKey: "richter_elite",
-                promptLatex: `\\text{${t("sm3_04.stages.magnitude_difference") || "Magnitude diff"}}`,
+                promptLatex: t("sm3_04.stages.magnitude_difference") || "Magnitude diff",
                 expressionLatex: `A_1=${amplitude}\\;\\mu m,\\; A_2=${amplitude2}\\;\\mu m`,
                 targetLatex: "\\Delta M",
                 slots: [{ id: "M", labelLatex: "\\Delta M", placeholder: "magnitude diff", expected: diff }],
@@ -210,4 +210,3 @@ export function generateRichterQuests(t: ReturnType<typeof useLanguage>["t"], di
     }
     return quests;
 }
-
