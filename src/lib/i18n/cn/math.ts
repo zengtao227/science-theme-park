@@ -2913,8 +2913,8 @@ export const cnMath = {    em1_01: {
             series: "级数求和"
         },
         prompts: {
-            find_nth_term: "求第n项",
-            find_sum: "求级数和"
+            find_nth_term: "数列分析任务：根据给定规律求第 n 项。",
+            find_sum: "级数分析任务：根据题设求对应级数和。"
         },
         hints: {
             arithmetic_formula: "a_n = a_1 + (n-1)d",
@@ -2961,9 +2961,9 @@ export const cnMath = {    em1_01: {
             probability: "概率应用"
         },
         prompts: {
-            calculate_permutation: "计算排列数",
-            calculate_combination: "计算组合数",
-            calculate_probability: "计算概率"
+            calculate_permutation: "计数任务：根据场景计算所需排列数。",
+            calculate_combination: "计数任务：根据场景计算所需组合数。",
+            calculate_probability: "概率任务：根据计数模型计算事件概率。"
         },
         hints: {
             permutation_formula: "P(n,r) = \\frac{n!}{(n-r)!}",

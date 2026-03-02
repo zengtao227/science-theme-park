@@ -2905,8 +2905,8 @@ export const deMath = {    em1_01: {
             series: "Reihensumme"
         },
         prompts: {
-            find_nth_term: "Finde das n-te Glied",
-            find_sum: "Finde die Summe der Reihe"
+            find_nth_term: "Folgenanalyse-Aufgabe: Bestimme das n-te Glied aus dem gegebenen Muster.",
+            find_sum: "Reihenanalyse-Aufgabe: Berechne die geforderte Reihensumme aus den Angaben."
         },
         hints: {
             arithmetic_formula: "a_n = a_1 + (n-1)d",
@@ -2953,9 +2953,9 @@ export const deMath = {    em1_01: {
             probability: "Wahrscheinlichkeitsanwendung"
         },
         prompts: {
-            calculate_permutation: "Berechne die Permutation",
-            calculate_combination: "Berechne die Kombination",
-            calculate_probability: "Berechne die Wahrscheinlichkeit"
+            calculate_permutation: "Zaehlaufgabe: Berechne die benoetigte Anzahl an Permutationen fuer das Szenario.",
+            calculate_combination: "Zaehlaufgabe: Berechne die benoetigte Anzahl an Kombinationen fuer das Szenario.",
+            calculate_probability: "Wahrscheinlichkeitsaufgabe: Berechne die Ereigniswahrscheinlichkeit aus dem Zaehlmodell."
         },
         hints: {
             permutation_formula: "P(n,r) = \\frac{n!}{(n-r)!}",

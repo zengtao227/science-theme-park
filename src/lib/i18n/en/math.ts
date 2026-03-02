@@ -2920,8 +2920,8 @@ export const enMath = {    em1_01: {
             series: "Series Sum"
         },
         prompts: {
-            find_nth_term: "Find the nth term",
-            find_sum: "Find the sum of the series"
+            find_nth_term: "Sequence analysis task: determine the nth term from the given pattern.",
+            find_sum: "Series analysis task: compute the required sum for the given sequence."
         },
         hints: {
             arithmetic_formula: "a_n = a_1 + (n-1)d",
@@ -2968,9 +2968,9 @@ export const enMath = {    em1_01: {
             probability: "Probability Application"
         },
         prompts: {
-            calculate_permutation: "Calculate the permutation",
-            calculate_combination: "Calculate the combination",
-            calculate_probability: "Calculate the probability"
+            calculate_permutation: "Counting task: compute the required permutation count for the scenario.",
+            calculate_combination: "Counting task: compute the required combination count for the scenario.",
+            calculate_probability: "Probability task: compute the event probability from the counting setup."
         },
         hints: {
             permutation_formula: "P(n,r) = \\frac{n!}{(n-r)!}",
