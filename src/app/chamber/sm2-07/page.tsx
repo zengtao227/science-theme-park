@@ -25,7 +25,7 @@ const round2 = (v: number) => Math.round(v * 100) / 100;
 // Helper: Get Localized Prompt (Now used exclusively in the render phase for dynamic questions)
 const getLocalizedPrompt = (t: any, key: string, params: any = {}) => {
   const prompt = t(`sm2_07.dynamic_prompts.${key.toLowerCase()}`, params);
-  return `\\\\text{${prompt}}`;
+  return prompt;
 };
 
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest[] {
@@ -119,7 +119,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: `\\\\text{${t.stages.distance_prompt_latex}}`,
+        promptLatex: t.stages.distance_prompt_latex,
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `d`,
         slots: [{ id: "d", labelLatex: "d", placeholder: "distance", expected: distance }],
@@ -188,7 +188,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: `\\\\text{${t.stages.midpoint_prompt_latex}}`,
+        promptLatex: t.stages.midpoint_prompt_latex,
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `M(x, y)`,
         slots: [
@@ -290,7 +290,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: `\\\\text{${t.stages.slope_prompt_latex}}`,
+        promptLatex: t.stages.slope_prompt_latex,
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `m`,
         slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: slope }],
