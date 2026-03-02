@@ -71,7 +71,7 @@ export function generatePhQuests(t: ReturnType<typeof useLanguage>["t"], difficu
         quests.push({
             id, difficulty, stage: "PH",
             concentration, value: pH, scenarioKey,
-            promptLatex: t("sm3_04.stages.ph_prompt_latex") || "\\text{Calculate pH}",
+            promptLatex: t("sm3_04.stages.ph_prompt_latex") || "Calculate pH",
             expressionLatex: `[H^+]=${concentration.toExponential(2)}\\;M`,
             targetLatex: "pH",
             slots: [{ id: "pH", labelLatex: "pH", placeholder: "pH value", expected: pH }],
@@ -133,7 +133,7 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: dB, scenarioKey,
-                promptLatex: t("sm3_04.stages.decibel_prompt_latex") || "\\text{Calculate decibel}",
+                promptLatex: t("sm3_04.stages.decibel_prompt_latex") || "Calculate decibel",
                 expressionLatex: `I=${intensity.toExponential(0)}\\;W/m^{2},\\; I_0=10^{-12}\\;W/m^{2}`,
                 targetLatex: "L",
                 slots: [{ id: "L", labelLatex: "L", placeholder: "decibels", expected: dB, unit: "dB" }],
@@ -200,7 +200,7 @@ export function generateRichterQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "RICHTER",
                 amplitude, value: magnitude, scenarioKey,
-                promptLatex: t("sm3_04.stages.richter_prompt_latex") || "\\text{Calculate magnitude}",
+                promptLatex: t("sm3_04.stages.richter_prompt_latex") || "Calculate magnitude",
                 expressionLatex: `A=${amplitude}\\;\\mu m`,
                 targetLatex: "M",
                 slots: [{ id: "M", labelLatex: "M", placeholder: "magnitude", expected: magnitude }],

@@ -75,7 +75,7 @@ export function generateFirstLawQuests(t: any, difficulty: Difficulty): SP102Que
             mass: m,
             forceX: f_applied,
             friction: f_friction,
-            promptLatex: `\\text{${prompt}}`,
+            promptLatex: prompt,
             expressionLatex: "\\vec{F}_{net} = 0 \\Rightarrow \\vec{v} = \\text{const}",
             targetLatex: "F_{net}",
             slots: [{ id: "answer", labelLatex: "F", placeholder: "val", expected }],

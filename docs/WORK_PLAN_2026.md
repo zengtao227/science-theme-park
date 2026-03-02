@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP/SC/SM cross-module prompt wrapper cleanup wave-2, full QA passed)
-**Plan Version**: 5.5 (Batch C wrapper cleanup extension)
+**Last Updated**: 2026-03-02 (SP/SM wrapper fallback cleanup wave-3, full QA passed)
+**Plan Version**: 5.6 (Batch C wrapper cleanup extension)
 
 ---
 
@@ -54,6 +54,7 @@
 - [x] `sm2-13` (all stage `promptLatex` migrated to i18n templates with EN/CN/DE symmetry; module UI hardcoded literals localized)
 - [x] `gc1-01` + `gc3-01` + `gc3-02` + `sc1-01` + `sc1-02` (removed residual `\\text{${t(...)}}` wrappers from quest `promptLatex`; prompt pipeline now direct i18n)
 - [x] `sc1-07` + `sp1-01` adapter + `sp1-03` + `sp1-04` + `sc2-07` + `sp3-02` + `sm3-04` (removed residual `promptLatex` wrapper shells and fallback `\\text{...}` prompt composition in quest builders)
+- [x] `sp1-02` + `sp1-02-quests` + `sm3-02` + `sm3-04` (removed `promptLatex` fallback `\\text{...}` wrappers and switched first-law prompt composition to direct i18n text)
 
 ### 7.4 Quality Gates (must pass before merge)
 - [x] `npm run lint` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
@@ -98,6 +99,7 @@
 - [x] `GC1.02 residue cleanup`: replaced 3 remaining hardcoded `promptLatex` values in `src/lib/gc1-02/quests.ts` with existing `gc1_02.prompts.*` i18n keys.
 - [x] `GC1.01 + GC3.01 + GC3.02 + SC1.01 + SC1.02 wrapper cleanup`: removed residual `promptLatex` wrapper shells (`\\text{${t(...)}}`) in quest builders and switched to direct i18n prompt strings.
 - [x] `SC1.07 + SP1.01 adapter + SP1.03 + SP1.04 + SC2.07 + SP3.02 + SM3.04 wrapper cleanup`: removed remaining `promptLatex` wrapper composition and direct `\\text{${t(...)}}` prompt construction in quest generators.
+- [x] `SP1.02 + SP1.02-quests + SM3.02 + SM3.04 fallback cleanup`: removed remaining `promptLatex` fallback wrappers (`\\text{...}`) and aligned prompt pipeline to direct i18n text.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
@@ -543,6 +545,11 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v5.6 (2026-03-02)
+- **Wrapper Cleanup Wave-3**: Removed remaining fallback `promptLatex` wrappers in `sp1-02`, `sp1-02-quests`, `sm3-02`, and `sm3-04` (`\\text{...}` -> direct prompt strings).
+- **Pipeline Consistency**: `promptLatex` now consistently flows as direct i18n text in touched modules, with no change to quest math logic or expected values.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after cleanup.
+
 ### v5.5 (2026-03-02)
 - **Wrapper Cleanup Wave-2**: Removed residual `promptLatex` wrapper composition in `sc1-07`, `sp1-01-adapter`, `sp1-03`, `sp1-04`, `sc2-07-quest-builder`, `sp3-02`, and `sm3-04`.
 - **Scope Control**: Only prompt text pipeline changed (`\\text{${t(...)}}` -> direct i18n prompt strings); quest formulas, slots, and expected outputs were preserved.
@@ -657,5 +664,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.5 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.6 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05

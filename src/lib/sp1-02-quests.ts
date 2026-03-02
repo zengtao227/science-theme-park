@@ -51,7 +51,7 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): S
         id: `FIRST_LAW_${difficulty}_${idx + 1}`,
         difficulty,
         stage,
-        promptLatex: `\\text{${finalPrompt}}`,
+        promptLatex: finalPrompt,
         expressionLatex: "\\text{Newton's First Law: } \\vec{F}_{net} = 0 \\Rightarrow \\vec{v} = \\text{constant}",
         targetLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
         slots: [
@@ -115,7 +115,7 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): S
         id: `SECOND_LAW_${difficulty}_${idx + 1}`,
         difficulty,
         stage,
-        promptLatex: `\\text{${finalPrompt}}`,
+        promptLatex: finalPrompt,
         expressionLatex: "F = ma",
         targetLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
         slots: [
@@ -178,7 +178,7 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): S
         id: `THIRD_LAW_${difficulty}_${idx + 1}`,
         difficulty,
         stage,
-        promptLatex: `\\text{${finalPrompt}}`,
+        promptLatex: finalPrompt,
         expressionLatex: "\\vec{F}_{AB} = -\\vec{F}_{BA}",
         targetLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
         slots: [

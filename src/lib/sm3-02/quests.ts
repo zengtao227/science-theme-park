@@ -48,7 +48,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 id,
                 stage: "UNIT_CIRCLE",
                 difficulty,
-                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "\\text{Determine the quadrant}",
+                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "Determine the quadrant",
                 expressionLatex: `${angle}^\\circ`,
                 targetLatex: "\\text{Quadrant}",
                 slots: [{ id: "q", labelLatex: "Q", placeholder: "?", expected: q }],
@@ -68,7 +68,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 id,
                 stage: "UNIT_CIRCLE",
                 difficulty,
-                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "\\text{Sign (+/-)}",
+                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "Sign (+/-)",
                 expressionLatex: `\\${func}(${angle}^\\circ)`,
                 targetLatex: "\\text{Sign } (+/-)",
                 slots: [{ id: "s", labelLatex: "+/-", placeholder: "+/-", expected: sign }],
@@ -101,7 +101,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 id,
                 stage: "UNIT_CIRCLE",
                 difficulty,
-                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "\\text{Convert to Radians}",
+                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "Convert to Radians",
                 expressionLatex: `${a.d}^\\circ`,
                 targetLatex: "\\text{Radians}",
                 slots: [{ id: "r", labelLatex: "rad", placeholder: "?", expected: a.r }],
@@ -133,7 +133,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 id,
                 stage: "UNIT_CIRCLE",
                 difficulty,
-                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "\\text{Convert to Degrees}",
+                promptLatex: t("sm3_02.stages.unit_circle_prompt_latex") || "Convert to Degrees",
                 expressionLatex: a.l,
                 targetLatex: "\\text{Degrees}",
                 slots: [{ id: "d", labelLatex: "deg", placeholder: "?", expected: a.d }],
@@ -167,7 +167,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
             const q = pick(map);
             quests.push({
                 id, stage: "PROJECTIONS", difficulty,
-                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "\\text{Calculate exact value}",
+                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "Calculate exact value",
                 expressionLatex: `\\${q.f}(${q.a}^\\circ)`,
                 targetLatex: "v",
                 slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
@@ -190,7 +190,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
             const q = pick(map);
             quests.push({
                 id, stage: "PROJECTIONS", difficulty,
-                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "\\text{Calculate exact value}",
+                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "Calculate exact value",
                 expressionLatex: `\\${q.f}(${q.a}^\\circ)`,
                 targetLatex: "v",
                 slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
@@ -221,7 +221,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
             const q = pick(map);
             quests.push({
                 id, stage: "PROJECTIONS", difficulty,
-                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "\\text{Calculate exact value}",
+                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "Calculate exact value",
                 expressionLatex: `\\${q.f}(${q.a}^\\circ)`,
                 targetLatex: "v",
                 slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
@@ -251,7 +251,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
             const q = pick(map);
             quests.push({
                 id, stage: "PROJECTIONS", difficulty,
-                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "\\text{Calculate exact value}",
+                promptLatex: t("sm3_02.stages.projections_prompt_latex") || "Calculate exact value",
                 expressionLatex: `\\tan(${q.a}^\\circ)`,
                 targetLatex: "v",
                 slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
@@ -279,7 +279,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
             
             quests.push({
                 id, stage: "WAVES", difficulty,
-                promptLatex: t("sm3_02.stages.waves_prompt_latex") || "\\text{Amplitude}",
+                promptLatex: t("sm3_02.stages.waves_prompt_latex") || "Amplitude",
                 expressionLatex: `y=${sign}${typeof A === "string" ? `\\frac{${A.split('/')[0]}}{${A.split('/')[1]}}` : A}\\${f}(x)`,
                 targetLatex: "\\text{Amplitude}",
                 slots: [{ id: "a", labelLatex: "A", placeholder: "?", expected: expectedAmp }],
@@ -303,7 +303,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
             
              quests.push({
                 id, stage: "WAVES", difficulty,
-                promptLatex: t("sm3_02.stages.waves_prompt_latex") || "\\text{Period}",
+                promptLatex: t("sm3_02.stages.waves_prompt_latex") || "Period",
                 expressionLatex: `y=\\${f}(${q.tex})`,
                 targetLatex: "\\text{Period (rad)}",
                 slots: [{ id: "p", labelLatex: "T", placeholder: "?", expected: q.ans }],
@@ -323,7 +323,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
             
             quests.push({
                 id, stage: "WAVES", difficulty,
-                promptLatex: t("sm3_02.stages.waves_prompt_latex") || (isMax ? "\\text{Max Value}" : "\\text{Min Value}"),
+                promptLatex: t("sm3_02.stages.waves_prompt_latex") || (isMax ? "Max Value" : "Min Value"),
                 expressionLatex: `y=${sign}${A}\\${f}(x)${D > 0 ? `+${D}` : D}`,
                 targetLatex: isMax ? "\\text{Max}" : "\\text{Min}",
                 slots: [{ id: "m", labelLatex: isMax ? "max" : "min", placeholder: "?", expected: isMax ? max : min }],
@@ -355,7 +355,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                 
                  quests.push({
                     id, stage: "WAVES", difficulty,
-                    promptLatex: t("sm3_02.stages.waves_prompt_latex") || "\\text{Evaluate}",
+                    promptLatex: t("sm3_02.stages.waves_prompt_latex") || "Evaluate",
                     expressionLatex: `y=\\${f}(${B === 1 ? 'x' : B + 'x'}), x=${xAngle}^\\circ`,
                     targetLatex: "y",
                     slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: ans }],
@@ -372,7 +372,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                 const q = pick(map);
                 quests.push({
                     id, stage: "WAVES", difficulty,
-                    promptLatex: t("sm3_02.stages.waves_prompt_latex") || "\\text{Derivative}",
+                    promptLatex: t("sm3_02.stages.waves_prompt_latex") || "Derivative",
                     expressionLatex: `y=${q.eq}, y'=?`,
                     targetLatex: "\\text{Derivative}",
                     slots: [{ id: "d", labelLatex: "y'", placeholder: "?", expected: q.ans }],
