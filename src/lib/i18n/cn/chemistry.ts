@@ -1539,6 +1539,7 @@ export const cnChemistry = {
             oxidation_state: "氧化态",
             agent: "氧化还原剂",
             electrons: "电子数",
+            total_electrons: "\\text{总电子数 e^-}",
             mass_g: "质量 (g)",
             cell_potential: "电池电位",
             regional_case: "区域案例研究 // 巴塞尔节点"

@@ -1532,6 +1532,7 @@ export const deChemistry = {
             oxidation_state: "Oxidationsstufe",
             agent: "Oxidations-/Reduktionsmittel",
             electrons: "Elektronen",
+            total_electrons: "\\text{Gesamt e^-}",
             mass_g: "Masse (g)",
             cell_potential: "Zellpotential",
             regional_case: "Regionale Fallstudie // Basel-Knoten"

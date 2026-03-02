@@ -231,7 +231,7 @@ export default function SC206Page() {
               promptLatex: t("sc2_06.prompts.disproportionation", { reaction: item.reaction }),
               expressionLatex: `\\text{${item.reaction}}`,
               targetLatex: `${item.electrons}e^-`,
-              slots: [{ id: "ans", labelLatex: "\\text{Total e^-}", placeholder: "n", expected: item.electrons }],
+              slots: [{ id: "ans", labelLatex: t("sc2_06.labels.total_electrons"), placeholder: "n", expected: item.electrons }],
               correctLatex: `${item.electrons}e^-`,
               reactants: [{ formula: "Reactant", oxidationState: 0 }],
               products: [{ formula: "Product", oxidationState: 0 }],

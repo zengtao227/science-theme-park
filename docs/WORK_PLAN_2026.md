@@ -85,6 +85,7 @@
 - [x] `SM2.03 Batch C`: completed audit; no hardcoded `promptLatex` remained, existing i18n path retained.
 - [x] `SC2.04 Batch C`: migrated residual hardcoded `promptLatex` in `src/lib/sc2-04/quests.ts` to i18n, added tri-language keys (`solubility_given`, `elite_rhine_sample`), and localized elite page labels.
 - [x] `SM2.04 Batch C`: completed audit; `promptLatex` pipeline already i18n-based, no structural quest changes required.
+- [x] `SC2.06 + SM2.06 hardcoded residue cleanup`: removed page-level hardcoded `READY` and migrated `Total e^-` label into tri-language `sc2_06.labels.total_electrons`.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---

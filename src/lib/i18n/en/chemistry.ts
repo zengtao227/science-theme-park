@@ -1539,6 +1539,7 @@ export const enChemistry = {
             oxidation_state: "Oxidation State",
             agent: "Agent",
             electrons: "Electrons",
+            total_electrons: "\\text{Total e^-}",
             mass_g: "Mass (g)",
             cell_potential: "Cell Potential",
             regional_case: "Regional Case Study // Basel Node"

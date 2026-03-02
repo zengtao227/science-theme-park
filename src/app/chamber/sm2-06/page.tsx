@@ -1109,7 +1109,7 @@ export default function S206Page() {
         next: t("sm2_06.next"),
         correct: t("sm2_06.correct"),
         incorrect: t("sm2_06.incorrect"),
-        ready: "READY",
+        ready: t("sm2_06.ready"),
         monitor_title: t("sm2_06.monitor_title"),
         difficulty: {
           basic: t("sm2_06.difficulty.basic"),
