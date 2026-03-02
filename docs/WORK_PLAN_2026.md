@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP2.02 Batch B wave-12 core thermodynamics prompt refinement completed, full QA passed)
-**Plan Version**: 7.5 (Batch B high-frequency expansion wave-12)
+**Last Updated**: 2026-03-02 (GP2.02 Batch B wave-13 first-law long-tail prompt refinement completed, full QA passed)
+**Plan Version**: 7.6 (Batch B high-frequency expansion wave-13)
 
 ---
 
@@ -124,7 +124,8 @@
 - [x] `GP2.01 Batch B (wave-10 partial)`: rewrote high-frequency foundational gas-law prompts (`find_p/find_v/find_n/find_t`, `relation_pt/relation_vn`, Boyle/Charles core relation keys) to scenario-task wording across EN/CN/DE; key mapping and formulas unchanged.
 - [x] `GP2.01 Batch B (wave-11 long-tail)`: rewrote Boyle/Charles long-tail prompt keys (`boyle_k_find_v` … `charles_carnot_ke`) to scenario-task wording across EN/CN/DE while preserving placeholders and formula intent.
 - [x] `GP2.02 Batch B (wave-12 core thermodynamics)`: rewrote high-frequency first-law/internal-energy/work-heat prompt keys (`fl_calc_*`, `ie_*`, `wh_*` core cluster) to scenario-task wording across EN/CN/DE while preserving key names, placeholders, and formula intent.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 GP2.02 长尾题干 + SM3 模块抽检）。
+- [x] `GP2.02 Batch B (wave-13 long-tail first-law cluster)`: rewrote `q_fl_*` prompt keys to scenario-task wording across EN/CN/DE while preserving formulas, placeholders, and answer intent.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 GP2.02 的 `q_ie_* / q_wh_*` 长尾 + SM3 模块抽检）。
 
 ---
 
