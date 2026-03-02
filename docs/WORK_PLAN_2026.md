@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP2.01 Batch B wave-10 high-frequency gas-law prompt refinement completed, full QA passed)
-**Plan Version**: 7.3 (Batch B high-frequency expansion wave-10)
+**Last Updated**: 2026-03-02 (GP2.01 Batch B wave-11 long-tail gas-law prompt refinement completed, full QA passed)
+**Plan Version**: 7.4 (Batch B high-frequency expansion wave-11)
 
 ---
 
@@ -122,7 +122,8 @@
 - [x] `GP3.01 + GP3.02 Batch B (wave-8)`: completed residual audit and rewrote 35 bare parameter/formula prompts in `gp3_01.prompts.*` (standing-wave / diffraction / optics cluster) across EN/CN/DE; `gp3_02` audited with no additional bare-prompt migration required in this wave.
 - [x] `SP2.02 + SP2.03 Batch B (wave-9 partial)`: completed residual audit and rewrote `sp2_03.prompts.e1~e5` short billing prompts into scenario-task wording across EN/CN/DE; `sp2_02` prompts audited and kept as-is in this wave.
 - [x] `GP2.01 Batch B (wave-10 partial)`: rewrote high-frequency foundational gas-law prompts (`find_p/find_v/find_n/find_t`, `relation_pt/relation_vn`, Boyle/Charles core relation keys) to scenario-task wording across EN/CN/DE; key mapping and formulas unchanged.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 GP2.01 长尾题干 + SM3 模块抽检）。
+- [x] `GP2.01 Batch B (wave-11 long-tail)`: rewrote Boyle/Charles long-tail prompt keys (`boyle_k_find_v` … `charles_carnot_ke`) to scenario-task wording across EN/CN/DE while preserving placeholders and formula intent.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SM3 模块抽检 + GP2.02 长尾题干）。
 
 ---
 
@@ -576,6 +577,14 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v7.4 (2026-03-02)
+- **Batch B High-frequency Wave-11 (GP2.01 long-tail refinement)**:
+  - Rewrote long-tail `gp2_01.prompts.*` keys in EN/CN/DE from terse parameter statements to scenario-task wording:
+    - `boyle_k_find_v` to `boyle_two_bulbs`
+    - `charles_celsius_find_v2` to `charles_carnot_ke`
+  - Preserved key names, placeholder schema, and expected answer mapping.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v7.3 (2026-03-02)
 - **Batch B High-frequency Wave-10 (GP2.01 baseline gas-law refinement)**:
   - Rewrote 14 high-frequency foundational `gp2_01.prompts.*` keys in EN/CN/DE to scenario-task wording:
@@ -805,5 +814,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 7.3 (Batch B high-frequency expansion wave-10)
+**Plan Version**: 7.4 (Batch B high-frequency expansion wave-11)
 **Next Review**: 2026-03-05
