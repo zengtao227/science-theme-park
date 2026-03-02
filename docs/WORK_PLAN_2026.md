@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SM3.02 Batch B wave-19 stage-prompt semantic refinement completed, full QA passed)
-**Plan Version**: 8.2 (Batch B high-frequency expansion wave-19)
+**Last Updated**: 2026-03-02 (SM3.05 Batch B wave-20 high-frequency prompt subset refined, full QA passed)
+**Plan Version**: 8.3 (Batch B high-frequency expansion wave-20)
 
 ---
 
@@ -131,7 +131,8 @@
 - [x] `SM3.03 Batch B (wave-17 stage semantic cleanup)`: rewrote 14 stage-level prompts (`exponential/logarithm/applications` and `exp_* / log_* / app_*`) in EN/CN/DE to scenario-task wording while preserving formulas and placeholders.
 - [x] `GM1.01-ADV Batch B (wave-18 prompt semantic cleanup)`: rewrote all `gm1_01_advanced.prompts.*` point-target prompts in EN/CN/DE from bare parameter directives to scenario-task wording while preserving prompt keys and calculus notation.
 - [x] `SM3.02 Batch B (wave-19 stage prompt cleanup)`: rewrote `unit_circle_prompt_latex` / `projections_prompt_latex` / `waves_prompt_latex` in EN/CN/DE to scenario-task wording while preserving stage keys and trig objectives.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SM3.05 prompts 抽检并修复裸参数题干）。
+- [x] `SM3.05 Batch B (wave-20 high-frequency subset)`: rewrote 20 high-frequency `sm3_05.prompts.*` entries (architecture + cross-section core cluster) in EN/CN/DE from bare parameter wording to scenario-task style while preserving key names and geometric targets.
+- [ ] Next wave target: Batch B 继续扩展 `SM3.05` 其余 prompts（curved solids / elite tail cluster）并完成收口。
 
 ---
 
@@ -585,6 +586,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v8.3 (2026-03-02)
+- **Batch B High-frequency Wave-20 (SM3.05 partial high-frequency pass)**:
+  - Rewrote 20 high-frequency `sm3_05.prompts.*` entries (architecture + cross-section core cluster) in EN/CN/DE from bare parameter statements to scenario-task wording.
+  - Kept prompt key names, numeric givens, and geometry objective mapping unchanged.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v8.2 (2026-03-02)
 - **Batch B High-frequency Wave-19 (SM3.02 stage prompt cleanup)**:
   - Rewrote `sm3_02.stages.unit_circle_prompt_latex`, `projections_prompt_latex`, and `waves_prompt_latex` in EN/CN/DE from terse directives to scenario-task wording.
@@ -834,5 +841,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 8.2 (Batch B high-frequency expansion wave-19)
+**Plan Version**: 8.3 (Batch B high-frequency expansion wave-20)
 **Next Review**: 2026-03-05
