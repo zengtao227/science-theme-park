@@ -935,24 +935,24 @@ export const dePhysics = {
                         },
                         "SECOND_LAW": {
                                 "BASIC": [
-                                        "F=10 N, m=2 kg. Find a (m/s^{2})",
-                                        "F=20 N, m=5 kg. Find a (m/s^{2})",
-                                        "F=15 N, m=3 kg. Find a (m/s^{2})",
-                                        "m=10 kg, a=2 m/s^{2}. Find F (N)",
-                                        "m=5 kg, a=4 m/s^{2}. Find F (N)",
-                                        "F=30 N, a=6 m/s^{2}. Find m (kg)",
-                                        "F=40 N, a=8 m/s^{2}. Find m (kg)"
+                                        "Beschleunigungsübung am Labortisch: Gegeben F=10 N und m=2 kg. Aufgabe: a (m/s^{2}) berechnen. Nutzen: F=ma anwenden.",
+                                        "Klassischer Krafttest: Gegeben F=20 N und m=5 kg. Aufgabe: a (m/s^{2}) bestimmen. Nutzen: a=F/m.",
+                                        "Dynamik-Einstieg: Gegeben F=15 N und m=3 kg. Aufgabe: Beschleunigung a berechnen. Nutzen: 2. Newton anwenden.",
+                                        "Rückwärtsrechnung Kraft: Gegeben m=10 kg und a=2 m/s^{2}. Aufgabe: Kraft F (N) bestimmen.",
+                                        "Antriebsdimensionierung: Gegeben m=5 kg und a=4 m/s^{2}. Aufgabe: erforderliche Kraft F (N) bestimmen.",
+                                        "Massenbestimmung: Gegeben F=30 N und a=6 m/s^{2}. Aufgabe: m (kg) berechnen. Nutzen: m=F/a.",
+                                        "System-Identifikation: Gegeben F=40 N und a=8 m/s^{2}. Aufgabe: Masse m (kg) bestimmen."
                                 ],
                                 "CORE": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Find F (N)",
-                                        "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^{2})",
-                                        "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^{2})",
-                                        "SBB train 50000 kg, brake force -10000 N. Find a (m/s^{2})",
-                                        "Tram 12000 kg needs 2 m/s^{2} acceleration. Find F (N)",
-                                        "Car 1000 kg, net force 2000 N. Find a (m/s^{2})",
-                                        "Basel bus 8000 kg accelerates at 1 m/s^{2}. Find F (N)",
-                                        "Bicycle 80 kg, force 160 N. Find a (m/s^{2})",
-                                        "Truck 5000 kg, acceleration 0.5 m/s^{2}. Find F (N)"
+                                        "Basler Tram-Anfahrfall: m=10000 kg, Ziel a=1,5 m/s^{2}. Aufgabe: Zugkraft F (N) berechnen. Nutzen: Fahrregler auslegen.",
+                                        "Fasnacht-Wagen-Test: m=2000 kg, Schubkraft 1000 N. Aufgabe: Beschleunigung a (m/s^{2}) berechnen.",
+                                        "Rheinboot-Schubanalyse: m=1500 kg, Motorschub 3000 N. Aufgabe: Beschleunigung a bestimmen.",
+                                        "SBB-Bremsanalyse: m=50000 kg, Bremskraft -10000 N. Aufgabe: Verzögerung a (m/s^{2}) berechnen.",
+                                        "Tram-Upgrade-Planung: m=12000 kg benötigt a=2 m/s^{2}. Aufgabe: notwendige Kraft F (N) bestimmen.",
+                                        "Stadtfahrzeug-Dynamik: m=1000 kg, Nettokraft 2000 N. Aufgabe: Beschleunigung a berechnen.",
+                                        "Basler Bus-Taktprüfung: m=8000 kg, a=1 m/s^{2}. Aufgabe: Kraft F (N) berechnen.",
+                                        "Sprintmodell Fahrrad: m=80 kg, Kraft 160 N. Aufgabe: Beschleunigung a (m/s^{2}) bestimmen.",
+                                        "Lkw-Lastfall: m=5000 kg, a=0,5 m/s^{2}. Aufgabe: Kraft F (N) berechnen."
                                 ],
                                 "ADVANCED": [
                                         "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^{2})",
@@ -971,22 +971,22 @@ export const dePhysics = {
                         },
                         "THIRD_LAW": {
                                 "BASIC": [
-                                        "You push wall with 50 N. Wall pushes back with how many N?",
-                                        "Rocket exerts 1000 N on gas. Gas exerts how many N on rocket?",
-                                        "Earth pulls you with 600 N. You pull Earth with how many N?",
-                                        "Hammer hits nail with 200 N. Nail hits hammer with how many N?",
-                                        "Action-reaction forces act on (same/different) objects?",
-                                        "Action force 100 N east. Reaction force direction?"
+                                        "Wandversuch: Sie drücken mit 50 N gegen die Wand. Aufgabe: Gegenkraft der Wand angeben. Nutzen: 3. Newton prüfen.",
+                                        "Raketenbeispiel: Die Rakete übt 1000 N auf das Gas aus. Aufgabe: Reaktionskraft des Gases auf die Rakete bestimmen.",
+                                        "Gravitationspaar: Die Erde zieht Sie mit 600 N. Aufgabe: Ihre Kraft auf die Erde angeben.",
+                                        "Hammer-Nagel-Fall: Der Hammer wirkt mit 200 N auf den Nagel. Aufgabe: Kraft des Nagels auf den Hammer bestimmen.",
+                                        "Konzeptfrage: Wirken Aktions- und Reaktionskraft auf dasselbe oder auf unterschiedliche Objekte?",
+                                        "Richtungsfrage: Aktionskraft 100 N nach Osten. Aufgabe: Richtung der Reaktionskraft angeben."
                                 ],
                                 "CORE": [
-                                        "Basel tram 10000 kg pushes track with 15000 N. Track pushes tram with how many N?",
-                                        "Rhine boat propeller pushes water backward with 3000 N. Water pushes boat with how many N?",
-                                        "Fasnacht float pushes ground with 20000 N. Ground pushes float with how many N?",
-                                        "SBB train wheels push track with 50000 N. Track pushes wheels with how many N?",
-                                        "Swimmer pushes water backward with 500 N. Water pushes swimmer forward with how many N?",
-                                        "Car tire pushes road with 4000 N. Road pushes tire with how many N?",
-                                        "Rocket pushes exhaust gas with 100000 N. Gas pushes rocket with how many N?",
-                                        "Person pushes wall with 200 N. Wall pushes person with how many N?"
+                                        "Basler Tram-Schiene-Interaktion: Tram drückt mit 15000 N auf die Schiene. Aufgabe: Reaktionskraft der Schiene auf die Tram bestimmen.",
+                                        "Rheinpropeller-Fall: Propeller drückt Wasser mit 3000 N nach hinten. Aufgabe: Reaktionskraft des Wassers auf das Boot angeben.",
+                                        "Fasnacht-Wagen-Bodenkontakt: Wagen drückt mit 20000 N auf den Boden. Aufgabe: Gegenkraft des Bodens bestimmen.",
+                                        "SBB Rad-Schiene-System: Räder drücken mit 50000 N auf die Schiene. Aufgabe: Gegenkraft der Schiene auf die Räder bestimmen.",
+                                        "Schwimmantrieb: Schwimmer drückt Wasser mit 500 N nach hinten. Aufgabe: Reaktionskraft des Wassers auf den Schwimmer angeben.",
+                                        "Reifen-Straße-Fall: Reifen drückt mit 4000 N auf die Straße. Aufgabe: Reaktionskraft der Straße auf den Reifen bestimmen.",
+                                        "Raketenstrahl-Analyse: Rakete drückt Abgas mit 100000 N. Aufgabe: Reaktionskraft des Abgases auf die Rakete angeben.",
+                                        "Mensch-Wand-Interaktion: Person drückt mit 200 N auf die Wand. Aufgabe: Gegenkraft der Wand auf die Person bestimmen."
                                 ],
                                 "ADVANCED": [
                                         "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Force on track?",

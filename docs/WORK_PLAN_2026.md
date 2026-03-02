@@ -1,7 +1,7 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP3.03 + GP3.01 partial Batch B prompt expansion completed, full QA passed)
+**Last Updated**: 2026-03-02 (GP3.03 + GP3.01 + SP1.02 partial Batch B prompt expansion completed, full QA passed)
 **Plan Version**: 6.6 (Batch B high-frequency expansion wave-3)
 
 ---
@@ -114,6 +114,7 @@
 - [x] `GP3.01 + GP3.02 Batch B`: audited and rewrote high-frequency bare-parameter prompts; migrated `gp3-02` page-level prompt hardcoding to tri-language `gp3_02.prompts.*` templates and upgraded sampled `gp3_01` wave-property prompts to scenario-task wording.
 - [x] `GP3.03 Batch B`: rewrote all `gp3_03.prompts.*` bare parameter/formula statements in EN/CN/DE into four-element scenario-task wording while preserving keys/placeholders and quest logic.
 - [x] `GP3.01 Batch B (wave-2 extension)`: rewrote another 15 high-frequency bare prompts (Doppler/interference/duality cluster) in EN/CN/DE with scenario-task wording; key names and formulas unchanged.
+- [x] `SP1.02 Batch B (partial)`: rewrote `SECOND_LAW` + `THIRD_LAW` BASIC/CORE prompt arrays in EN/CN/DE from bare-parameter style to scenario-task wording while preserving index order and answer mapping.
 - [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP1.02 / GP1.03 / GP1.04，按审计清单滚动推进）。
 
 ---
@@ -572,6 +573,7 @@ Modules are classified by their quest density:
 - **Batch B High-frequency Wave-3**: Completed GP3.03 prompt semantic expansion across EN/CN/DE.
   - `gp3_03.prompts.*` (39 keys) upgraded from bare parameter/formula phrasing to four-element scenario-task wording.
   - `gp3_01.prompts.*` additional 15-key cluster (Doppler/interference/duality) upgraded in EN/CN/DE.
+  - `sp1_02.prompts.SECOND_LAW/THIRD_LAW` BASIC/CORE arrays upgraded in EN/CN/DE with unchanged key/index mapping.
   - Key names, placeholders (`{flux}`, `{time}`, `{turns}`, etc.), quest pool structure, and answer expectations remained unchanged.
 - **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
 

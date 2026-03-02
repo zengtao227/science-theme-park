@@ -936,24 +936,24 @@ export const enPhysics = {
                         },
                         "SECOND_LAW": {
                                 "BASIC": [
-                                        "F=10 N, m=2 kg. Find a (m/s^{2})",
-                                        "F=20 N, m=5 kg. Find a (m/s^{2})",
-                                        "F=15 N, m=3 kg. Find a (m/s^{2})",
-                                        "m=10 kg, a=2 m/s^{2}. Find F (N)",
-                                        "m=5 kg, a=4 m/s^{2}. Find F (N)",
-                                        "F=30 N, a=6 m/s^{2}. Find m (kg)",
-                                        "F=40 N, a=8 m/s^{2}. Find m (kg)"
+                                        "Workbench acceleration drill: given F=10 N and m=2 kg. Task: compute a (m/s^{2}). Use Newton's second law F=ma.",
+                                        "Classroom force check: given F=20 N and m=5 kg. Task: find a (m/s^{2}). Use a=F/m.",
+                                        "Dynamics starter: given F=15 N and m=3 kg. Task: calculate acceleration a. Use F=ma.",
+                                        "Load-calculation practice: given m=10 kg and a=2 m/s^{2}. Task: determine force F (N). Use F=ma.",
+                                        "Actuation sizing task: given m=5 kg and a=4 m/s^{2}. Task: determine required force F (N).",
+                                        "Mass-identification drill: given F=30 N and a=6 m/s^{2}. Task: compute m (kg). Use m=F/a.",
+                                        "System-ID check: given F=40 N and a=8 m/s^{2}. Task: compute mass m (kg)."
                                 ],
                                 "CORE": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Find F (N)",
-                                        "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^{2})",
-                                        "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^{2})",
-                                        "SBB train 50000 kg, brake force -10000 N. Find a (m/s^{2})",
-                                        "Tram 12000 kg needs 2 m/s^{2} acceleration. Find F (N)",
-                                        "Car 1000 kg, net force 2000 N. Find a (m/s^{2})",
-                                        "Basel bus 8000 kg accelerates at 1 m/s^{2}. Find F (N)",
-                                        "Bicycle 80 kg, force 160 N. Find a (m/s^{2})",
-                                        "Truck 5000 kg, acceleration 0.5 m/s^{2}. Find F (N)"
+                                        "Basel tram launch case: m=10000 kg and target a=1.5 m/s^{2}. Task: compute traction force F (N). Use F=ma for controller setup.",
+                                        "Fasnacht float push test: m=2000 kg with applied force 1000 N. Task: compute acceleration a (m/s^{2}). Use a=F/m.",
+                                        "Rhine boat thrust estimate: m=1500 kg and engine thrust 3000 N. Task: compute acceleration a. Use Newton's second law.",
+                                        "SBB braking analysis: m=50000 kg with brake force -10000 N. Task: compute deceleration a (m/s^{2}).",
+                                        "Tram upgrade planning: m=12000 kg needs a=2 m/s^{2}. Task: compute required net force F (N).",
+                                        "Urban car dynamics: m=1000 kg with net force 2000 N. Task: compute acceleration a (m/s^{2}).",
+                                        "Basel bus schedule test: m=8000 kg accelerates at 1 m/s^{2}. Task: compute force F (N).",
+                                        "Cycling sprint model: m=80 kg with force 160 N. Task: compute acceleration a (m/s^{2}).",
+                                        "Freight truck sizing: m=5000 kg with a=0.5 m/s^{2}. Task: compute force F (N)."
                                 ],
                                 "ADVANCED": [
                                         "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^{2})",
@@ -972,22 +972,22 @@ export const enPhysics = {
                         },
                         "THIRD_LAW": {
                                 "BASIC": [
-                                        "You push wall with 50 N. Wall pushes back with how many N?",
-                                        "Rocket exerts 1000 N on gas. Gas exerts how many N on rocket?",
-                                        "Earth pulls you with 600 N. You pull Earth with how many N?",
-                                        "Hammer hits nail with 200 N. Nail hits hammer with how many N?",
-                                        "Action-reaction forces act on (same/different) objects?",
-                                        "Action force 100 N east. Reaction force direction?"
+                                        "Wall interaction demo: you push the wall with 50 N. Task: give the reaction-force magnitude from the wall. Use Newton's third law.",
+                                        "Rocket exhaust example: rocket pushes gas with 1000 N. Task: state gas-on-rocket reaction magnitude.",
+                                        "Gravity pair check: Earth pulls you with 600 N. Task: state your force on Earth.",
+                                        "Tool-impact case: hammer hits nail with 200 N. Task: state nail-on-hammer reaction force.",
+                                        "Concept check: action-reaction force pairs act on the same object or different objects?",
+                                        "Direction check: action force is 100 N east. Task: state reaction-force direction."
                                 ],
                                 "CORE": [
-                                        "Basel tram 10000 kg pushes track with 15000 N. Track pushes tram with how many N?",
-                                        "Rhine boat propeller pushes water backward with 3000 N. Water pushes boat with how many N?",
-                                        "Fasnacht float pushes ground with 20000 N. Ground pushes float with how many N?",
-                                        "SBB train wheels push track with 50000 N. Track pushes wheels with how many N?",
-                                        "Swimmer pushes water backward with 500 N. Water pushes swimmer forward with how many N?",
-                                        "Car tire pushes road with 4000 N. Road pushes tire with how many N?",
-                                        "Rocket pushes exhaust gas with 100000 N. Gas pushes rocket with how many N?",
-                                        "Person pushes wall with 200 N. Wall pushes person with how many N?"
+                                        "Basel tram-track interaction: tram pushes track with 15000 N. Task: compute track-on-tram reaction magnitude.",
+                                        "Rhine propeller case: propeller pushes water backward with 3000 N. Task: compute water-on-boat reaction magnitude.",
+                                        "Fasnacht float-ground contact: float pushes ground with 20000 N. Task: state ground-on-float reaction force.",
+                                        "SBB wheel-rail system: wheels push track with 50000 N. Task: state track-on-wheel reaction magnitude.",
+                                        "Swimming propulsion check: swimmer pushes water backward with 500 N. Task: give water-on-swimmer reaction force.",
+                                        "Tire-road traction case: tire pushes road with 4000 N. Task: give road-on-tire reaction magnitude.",
+                                        "Rocket plume analysis: rocket pushes exhaust gas with 100000 N. Task: give gas-on-rocket reaction force.",
+                                        "Human-wall interaction: person pushes wall with 200 N. Task: state wall-on-person reaction magnitude."
                                 ],
                                 "ADVANCED": [
                                         "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Force on track?",

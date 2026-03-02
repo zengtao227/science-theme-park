@@ -870,24 +870,24 @@ export const cnPhysics = {
             },
             "SECOND_LAW": {
                 "BASIC": [
-                    "F=10 N, m=2 kg. Find a (m/s^{2})",
-                    "F=20 N, m=5 kg. Find a (m/s^{2})",
-                    "F=15 N, m=3 kg. Find a (m/s^{2})",
-                    "m=10 kg, a=2 m/s^{2}. Find F (N)",
-                    "m=5 kg, a=4 m/s^{2}. Find F (N)",
-                    "F=30 N, a=6 m/s^{2}. Find m (kg)",
-                    "F=40 N, a=8 m/s^{2}. Find m (kg)"
+                    "实验台加速度练习：已知 F=10 N、m=2 kg。任务：求 a（m/s^{2}）。用途：应用牛顿第二定律 F=ma。",
+                    "课堂受力检查：已知 F=20 N、m=5 kg。任务：求 a（m/s^{2}）。用途：应用 a=F/m。",
+                    "动力学入门题：已知 F=15 N、m=3 kg。任务：计算加速度 a。用途：验证 F=ma。",
+                    "受力反推练习：已知 m=10 kg、a=2 m/s^{2}。任务：求力 F（N）。",
+                    "执行器选型练习：已知 m=5 kg、a=4 m/s^{2}。任务：求所需力 F（N）。",
+                    "质量识别练习：已知 F=30 N、a=6 m/s^{2}。任务：求 m（kg）。用途：应用 m=F/a。",
+                    "系统辨识练习：已知 F=40 N、a=8 m/s^{2}。任务：求质量 m（kg）。"
                 ],
                 "CORE": [
-                    "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Find F (N)",
-                    "Fasnacht float 2000 kg pushed with 1000 N. Find a (m/s^{2})",
-                    "Rhine boat 1500 kg, engine thrust 3000 N. Find a (m/s^{2})",
-                    "SBB train 50000 kg, brake force -10000 N. Find a (m/s^{2})",
-                    "Tram 12000 kg needs 2 m/s^{2} acceleration. Find F (N)",
-                    "Car 1000 kg, net force 2000 N. Find a (m/s^{2})",
-                    "Basel bus 8000 kg accelerates at 1 m/s^{2}. Find F (N)",
-                    "Bicycle 80 kg, force 160 N. Find a (m/s^{2})",
-                    "Truck 5000 kg, acceleration 0.5 m/s^{2}. Find F (N)"
+                    "巴塞尔电车起步案例：m=10000 kg，目标 a=1.5 m/s^{2}。任务：求牵引力 F（N）。用途：用于控制器参数设定。",
+                    "狂欢节花车推动测试：m=2000 kg，外力 1000 N。任务：求加速度 a（m/s^{2}）。",
+                    "莱茵河船推力估算：m=1500 kg，发动机推力 3000 N。任务：求加速度 a。",
+                    "SBB 制动分析：m=50000 kg，制动力 -10000 N。任务：求减速度 a（m/s^{2}）。",
+                    "电车升级规划：m=12000 kg，需要 a=2 m/s^{2}。任务：求所需合力 F（N）。",
+                    "城市轿车动力学：m=1000 kg，合力 2000 N。任务：求加速度 a（m/s^{2}）。",
+                    "巴塞尔公交调度测试：m=8000 kg，a=1 m/s^{2}。任务：求力 F（N）。",
+                    "自行车冲刺模型：m=80 kg，受力 160 N。任务：求加速度 a（m/s^{2}）。",
+                    "货车工况计算：m=5000 kg，a=0.5 m/s^{2}。任务：求力 F（N）。"
                 ],
                 "ADVANCED": [
                     "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^{2})",
@@ -906,22 +906,22 @@ export const cnPhysics = {
             },
             "THIRD_LAW": {
                 "BASIC": [
-                    "You push wall with 50 N. Wall pushes back with how many N?",
-                    "Rocket exerts 1000 N on gas. Gas exerts how many N on rocket?",
-                    "Earth pulls you with 600 N. You pull Earth with how many N?",
-                    "Hammer hits nail with 200 N. Nail hits hammer with how many N?",
-                    "Action-reaction forces act on (same/different) objects?",
-                    "Action force 100 N east. Reaction force direction?"
+                    "推墙演示：你以 50 N 推墙。任务：给出墙对你的反作用力大小。用途：验证牛顿第三定律。",
+                    "火箭尾喷案例：火箭对气体施加 1000 N。任务：给出气体对火箭的反作用力大小。",
+                    "引力成对检查：地球以 600 N 拉你。任务：给出你对地球的力大小。",
+                    "锤钉碰撞案例：锤子以 200 N 作用于钉子。任务：给出钉子对锤子的力。",
+                    "概念判断：作用力与反作用力作用在同一物体还是不同物体上？",
+                    "方向判断：作用力为向东 100 N。任务：给出反作用力方向。"
                 ],
                 "CORE": [
-                    "Basel tram 10000 kg pushes track with 15000 N. Track pushes tram with how many N?",
-                    "Rhine boat propeller pushes water backward with 3000 N. Water pushes boat with how many N?",
-                    "Fasnacht float pushes ground with 20000 N. Ground pushes float with how many N?",
-                    "SBB train wheels push track with 50000 N. Track pushes wheels with how many N?",
-                    "Swimmer pushes water backward with 500 N. Water pushes swimmer forward with how many N?",
-                    "Car tire pushes road with 4000 N. Road pushes tire with how many N?",
-                    "Rocket pushes exhaust gas with 100000 N. Gas pushes rocket with how many N?",
-                    "Person pushes wall with 200 N. Wall pushes person with how many N?"
+                    "巴塞尔电车-轨道相互作用：电车对轨道施加 15000 N。任务：求轨道对电车的反作用力大小。",
+                    "莱茵河螺旋桨案例：螺旋桨向后推水 3000 N。任务：求水对船的反作用力大小。",
+                    "花车-地面接触：花车对地面施加 20000 N。任务：给出地面对花车的反作用力。",
+                    "SBB 轮轨系统：车轮对轨道施加 50000 N。任务：给出轨道对车轮的反作用力大小。",
+                    "游泳推进检查：游泳者向后推水 500 N。任务：给出水对人的反作用力。",
+                    "轮胎-路面牵引：轮胎对路面施加 4000 N。任务：给出路面对轮胎的反作用力大小。",
+                    "火箭喷流分析：火箭对尾气施加 100000 N。任务：给出尾气对火箭的反作用力。",
+                    "人与墙相互作用：人对墙施加 200 N。任务：给出墙对人的反作用力大小。"
                 ],
                 "ADVANCED": [
                     "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Force on track?",
