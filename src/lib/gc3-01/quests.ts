@@ -36,7 +36,7 @@ export function generateEquilibriumQuests(t: any, difficulty: Difficulty, stage:
         quests.push({
             id: `${stage.charAt(0)}-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage,
-            promptLatex: `\\text{${t(`gc3_01.prompts.${key}`)}}`,
+            promptLatex: t(`gc3_01.prompts.${key}`),
             expressionLatex: "",
             targetLatex: "\\text{Effect}",
             slots: [{ id: "ans", labelLatex: "Result", placeholder: "...", expected }],

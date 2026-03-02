@@ -37,7 +37,7 @@ export function generateRedoxQuests(t: any, difficulty: Difficulty, stage: Stage
         quests.push({
             id: `${stage.charAt(0)}-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage,
-            promptLatex: `\\text{${t(`gc1_01.prompts.${key}`)}}`,
+            promptLatex: t(`gc1_01.prompts.${key}`),
             expressionLatex: "",
             targetLatex: "\\text{Ans}",
             slots: [{ id: "ans", labelLatex: "Ans", placeholder: "...", expected }],

@@ -37,7 +37,7 @@ export function generateCrystalQuests(t: any, difficulty: Difficulty, stage: Sta
         quests.push({
             id: `${stage}-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage,
-            promptLatex: `\\text{${t(`gc3_02.prompts.${key}`)}}`,
+            promptLatex: t(`gc3_02.prompts.${key}`),
             expressionLatex: "",
             targetLatex: "\\text{Result}",
             slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected }],

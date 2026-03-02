@@ -48,7 +48,7 @@ export function generateMolarMassQuests(t: any, difficulty: Difficulty): SC102Qu
         quests.push({
             id, difficulty, stage: "MOLAR_MASS",
             reactionLatex: item.l,
-            promptLatex: `\\text{${t("sc1_02.stages.molar_mass_prompt_latex")}}`,
+            promptLatex: t("sc1_02.stages.molar_mass_prompt_latex"),
             expressionLatex: item.l,
             targetLatex: "\\text{M}",
             slots: [{ id: "M", labelLatex: "\\text{M}", placeholder: "g/mol", expected: mass }],
@@ -70,7 +70,7 @@ export function generateStoichiometryQuests(t: any, difficulty: Difficulty): SC1
         quests.push({
             id, difficulty, stage: "STOICHIOMETRY",
             reactionLatex: "2H_2 + O_2 \\rightarrow 2H_2O",
-            promptLatex: `\\text{${t("sc1_02.stages.stoichiometry_prompt_latex")}}`,
+            promptLatex: t("sc1_02.stages.stoichiometry_prompt_latex"),
             expressionLatex: "2H_2 + O_2 \\rightarrow 2H_2O",
             targetLatex: "n(H_2O)",
             slots: [{ id: "n", labelLatex: "n", placeholder: "mol", expected: result }],
@@ -92,7 +92,7 @@ export function generateYieldQuests(t: any, difficulty: Difficulty): SC102Quest[
         quests.push({
             id, difficulty, stage: "YIELD",
             reactionLatex: "N_2 + 3H_2 \\rightarrow 2NH_3",
-            promptLatex: `\\text{${t("sc1_02.stages.yield_prompt_latex")}}`,
+            promptLatex: t("sc1_02.stages.yield_prompt_latex"),
             expressionLatex: "N_2 + 3H_2 \\rightarrow 2NH_3",
             targetLatex: "m(NH_3)",
             slots: [{ id: "m", labelLatex: "m", placeholder: "g", expected: yield_val }],
