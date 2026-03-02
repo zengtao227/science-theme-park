@@ -958,36 +958,36 @@ export const enPhysics = {
                         third_law: "Action-reaction check: object A exerts {f1} N on object B. Task: give the reaction-force magnitude on A.",
                         "FIRST_LAW": {
                                 "BASIC": [
-                                        "Object at rest, no force applied. Will it move?",
-                                        "Object moving at 5 m/s, no net force. What happens?",
-                                        "Car at rest. Driver applies no force. Does it move?",
-                                        "Ball rolling at 3 m/s on frictionless surface. Net force?",
-                                        "Book on table. Is it in equilibrium?",
-                                        "Puck sliding on ice at constant speed. Net force?",
-                                        "Object at rest stays at rest unless acted upon by?"
+                                        "Object at rest with no external force. Task: decide whether it will start moving.",
+                                        "Object moving at 5 m/s with zero net force. Task: decide whether the motion state changes.",
+                                        "Car is at rest and the driver applies no force. Task: decide whether the car starts moving.",
+                                        "Ball rolls at 3 m/s on a frictionless surface. Task: determine the net force.",
+                                        "A book rests on a table. Task: decide whether the system is in equilibrium.",
+                                        "A puck slides across ice at constant speed. Task: determine the net force.",
+                                        "Concept check: an object at rest stays at rest unless acted on by what?"
                                 ],
                                 "CORE": [
-                                        "Basel tram at 15 m/s. Brakes apply -3000 N. Mass 10000 kg. Final velocity after 5s?",
-                                        "Fasnacht float at rest. Push with 500 N. Friction 500 N. Does it move?",
-                                        "Rhine boat moving at 2 m/s. Engine off. Friction 100 N. Mass 500 kg. Time to stop?",
-                                        "Object moving at 10 m/s. Net force 0 N. Velocity after 10s?",
-                                        "Car at 20 m/s. Friction 2000 N. Mass 1000 kg. Deceleration?",
-                                        "Tram at constant 12 m/s. Applied force equals friction. Net force?",
-                                        "Puck on ice at 5 m/s. No friction. Velocity after 20s?",
-                                        "Basel bus at rest. Engine force 3000 N. Friction 3000 N. Acceleration?"
+                                        "Basel tram runs at 15 m/s with braking force -3000 N and mass 10000 kg. Task: find velocity after 5 s.",
+                                        "Fasnacht float is at rest with push 500 N and friction 500 N. Task: decide whether it moves.",
+                                        "Rhine boat moves at 2 m/s; engine is off, friction is 100 N, mass is 500 kg. Task: find time to stop.",
+                                        "Object moves at 10 m/s with net force 0 N. Task: find velocity after 10 s.",
+                                        "Car moves at 20 m/s with friction 2000 N and mass 1000 kg. Task: compute deceleration.",
+                                        "Tram moves at constant 12 m/s and applied force equals friction. Task: determine net force.",
+                                        "Puck on ice has speed 5 m/s with no friction. Task: find velocity after 20 s.",
+                                        "Basel bus is at rest with engine force 3000 N and friction 3000 N. Task: compute acceleration."
                                 ],
                                 "ADVANCED": [
-                                        "Basel SBB train 50000 kg at 25 m/s. Brakes apply -10000 N. Distance to stop?",
-                                        "Fasnacht parade float 2000 kg. Push 1000 N, friction 800 N. Acceleration?",
-                                        "Rhine boat 1000 kg at 5 m/s. Water resistance 200 N. Time to reach 3 m/s?",
-                                        "Tram 15000 kg at 20 m/s. Emergency brake -12000 N. Stopping distance?",
-                                        "Object 500 kg moving at 8 m/s. Friction 100 N. Distance traveled before stopping?",
-                                        "Car 1200 kg at 30 m/s. Brake force -4000 N. Time to stop?"
+                                        "Basel SBB train has mass 50000 kg and speed 25 m/s; brakes apply -10000 N. Task: compute stopping distance.",
+                                        "Fasnacht parade float has mass 2000 kg with push 1000 N and friction 800 N. Task: compute acceleration.",
+                                        "Rhine boat has mass 1000 kg and speed 5 m/s with water resistance 200 N. Task: find time to reach 3 m/s.",
+                                        "Tram has mass 15000 kg at 20 m/s with emergency braking -12000 N. Task: compute stopping distance.",
+                                        "Object of mass 500 kg moves at 8 m/s with friction 100 N. Task: find distance traveled before stopping.",
+                                        "Car of mass 1200 kg moves at 30 m/s with brake force -4000 N. Task: compute time to stop."
                                 ],
                                 "ELITE": [
-                                        "Basel tram system: 3 trams, masses 10000, 12000, 15000 kg, all at 15 m/s. Total momentum?",
-                                        "Fasnacht float 3000 kg at rest. Multiple pushes: 500 N, 300 N, -200 N. Net force?",
-                                        "Rhine boat 2000 kg at 4 m/s. Engine thrust 1000 N, water resistance 800 N. Final velocity after 10s?"
+                                        "Basel tram system has three trams (10000, 12000, 15000 kg), each at 15 m/s. Task: compute total momentum.",
+                                        "Fasnacht float has mass 3000 kg at rest with forces 500 N, 300 N, and -200 N. Task: compute net force.",
+                                        "Rhine boat has mass 2000 kg at 4 m/s with engine thrust 1000 N and water resistance 800 N. Task: find velocity after 10 s."
                                 ]
                         },
                         "SECOND_LAW": {
@@ -1012,18 +1012,18 @@ export const enPhysics = {
                                         "Freight truck sizing: m=5000 kg with a=0.5 m/s^{2}. Task: compute force F (N)."
                                 ],
                                 "ADVANCED": [
-                                        "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^{2})",
-                                        "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^{2})",
-                                        "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^{2})",
-                                        "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^{2})",
-                                        "Tram 15000 kg needs 1.8 m/s^{2} with friction 2000 N. Find applied force (N)",
-                                        "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^{2})",
-                                        "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^{2})"
+                                        "Basel tram: m=10000 kg, applied force 18000 N, friction 3000 N. Task: compute a (m/s^{2}).",
+                                        "Fasnacht float: m=3000 kg, push 2000 N, friction 500 N. Task: compute a (m/s^{2}).",
+                                        "Rhine boat: m=2000 kg, thrust 4000 N, water resistance 1000 N. Task: compute a (m/s^{2}).",
+                                        "SBB train: m=60000 kg, braking force -15000 N, friction -3000 N. Task: compute a (m/s^{2}).",
+                                        "Tram case: m=15000 kg needs a=1.8 m/s^{2} with friction 2000 N. Task: compute applied force (N).",
+                                        "Car case: m=1200 kg, engine force 5000 N, air resistance 800 N. Task: compute a (m/s^{2}).",
+                                        "Basel bus case: m=8000 kg, engine force 10000 N, friction 2000 N. Task: compute a (m/s^{2})."
                                 ],
                                 "ELITE": [
-                                        "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^{2}. Total force?",
-                                        "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
-                                        "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^{2})"
+                                        "Basel tram system: three trams (10000, 12000, 15000 kg) each accelerate at 1.5 m/s^{2}. Task: compute total force.",
+                                        "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Task: compute system acceleration.",
+                                        "Rhine boat: m=2500 kg, thrust 5000 N, water resistance is 20% of thrust. Task: compute a (m/s^{2})."
                                 ]
                         },
                         "THIRD_LAW": {
@@ -1046,19 +1046,19 @@ export const enPhysics = {
                                         "Human-wall interaction: person pushes wall with 200 N. Task: state wall-on-person reaction magnitude."
                                 ],
                                 "ADVANCED": [
-                                        "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Force on track?",
-                                        "Rhine boat 2000 kg accelerates at 2 m/s^{2}. Force on water?",
-                                        "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^{2}. Force on ground?",
-                                        "SBB train 50000 kg decelerates at -0.2 m/s^{2}. Force on track?",
-                                        "Rocket 5000 kg accelerates at 10 m/s^{2}. Force on exhaust gas?",
-                                        "Car 1200 kg accelerates at 3 m/s^{2}. Force on road?",
-                                        "Basel bus 8000 kg accelerates at 1 m/s^{2}. Force on road?"
+                                        "Basel tram with m=10000 kg accelerates at 1.5 m/s^{2}. Task: find force on the track.",
+                                        "Rhine boat with m=2000 kg accelerates at 2 m/s^{2}. Task: find force on the water.",
+                                        "Fasnacht float with m=3000 kg, friction 500 N, and acceleration 0.5 m/s^{2}. Task: find force on the ground.",
+                                        "SBB train with m=50000 kg decelerates at -0.2 m/s^{2}. Task: find force on the track.",
+                                        "Rocket with m=5000 kg accelerates at 10 m/s^{2}. Task: find force on the exhaust gas.",
+                                        "Car with m=1200 kg accelerates at 3 m/s^{2}. Task: find force on the road.",
+                                        "Basel bus with m=8000 kg accelerates at 1 m/s^{2}. Task: find force on the road."
                                 ],
                                 "ELITE": [
-                                        "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
-                                        "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^{2}. Water mass pushed?",
-                                        "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^{2}. Friction force?",
-                                        "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^{2}. Verify F=ma?"
+                                        "Collision case: Basel tram (10000 kg) and car (1000 kg); tram exerts 50000 N on car. Task: find car-on-tram reaction force.",
+                                        "Rhine boat case: m=2000 kg pushes water with 4000 N and accelerates at 2 m/s^{2}. Task: estimate pushed water mass.",
+                                        "Fasnacht float case: m=3000 kg, ground force 2000 N, acceleration 0.5 m/s^{2}. Task: determine friction force.",
+                                        "SBB verification case: train m=50000 kg, track force 10000 N, deceleration -0.2 m/s^{2}. Task: verify whether F=ma is satisfied."
                                 ]
                         }
                 },
