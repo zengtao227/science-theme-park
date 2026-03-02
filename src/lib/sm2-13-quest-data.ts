@@ -6,7 +6,13 @@ export interface SM213Quest extends Quest {
     stage: Stage;
 }
 
-export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELITE", stage: Stage): SM213Quest[] => {
+type TranslationFn = (key: string, params?: Record<string, string | number>) => string;
+
+export const buildStagePool = (
+    difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELITE",
+    stage: Stage,
+    t: TranslationFn
+): SM213Quest[] => {
     const pool: SM213Quest[] = [];
 
     // Generate 20 variants for each difficulty/stage combo to ensure >= 80 quests per stage
@@ -22,6 +28,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
         const angle = [90, 180, 270][Math.floor(Math.random() * 3)];
         const cx = Math.floor(Math.random() * 10) - 5;
         const cw = Math.random() > 0.5;
+        const direction = cw ? t("sm2_13.labels.cw") : t("sm2_13.labels.ccw");
 
         if (stage === "reflection") {
             if (difficulty === "BASIC") {
@@ -29,7 +36,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_ref_bas_${i}`,
                     difficulty: "BASIC",
                     stage: "reflection",
-                    promptLatex: `Reflect point $P(${x}, ${y})$ across the $${axis}$-axis. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.reflection_basic_axis", { x, y, axis }),
                     expressionLatex: `P(x, y) \\xrightarrow{${axis}\\text{-axis}} ` + (axis === "x" ? "P'(x, -y)" : "P'(-x, y)"),
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -46,7 +53,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_ref_cor_${i}`,
                     difficulty: "CORE",
                     stage: "reflection",
-                    promptLatex: `Reflect point $P(${x}, ${y})$ across the line $${line}$. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.reflection_core_line", { x, y, line }),
                     expressionLatex: `P(x, y) \\xrightarrow{${line}} ` + (line === "y = x" ? "P'(y, x)" : "P'(-y, -x)"),
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -64,7 +71,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_ref_adv_${i}`,
                     difficulty: "ADVANCED",
                     stage: "reflection",
-                    promptLatex: `Reflect point $P(${x}, ${y})$ across the line $${lineAxis} = ${offset}$. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.reflection_advanced_line_offset", { x, y, lineAxis, offset }),
                     expressionLatex: `\\text{Mirror distance is } |${lineAxis} - ${offset}|`,
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -84,11 +91,12 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                 const m_inv = -1 / m;
                 const x_int = (x * m_inv + y - b) / (m - m_inv);
                 const px = 2 * x_int - x;
+                const lineEquation = `y = ${m}x ${b >= 0 ? "+" : "-"} ${Math.abs(b)}`;
                 pool.push({
                     id: `sm2_13_ref_eli_${i}`,
                     difficulty: "ELITE",
                     stage: "reflection",
-                    promptLatex: `Reflect $P(${x}, ${y})$ across $y = ${m}x ${b >= 0 ? '+' : '-'} ${Math.abs(b)}$. Find x'. (1 decimal)`,
+                    promptLatex: t("sm2_13.prompts.reflection_elite_line", { x, y, lineEquation }),
                     expressionLatex: `\\text{Perpendicular slope is } \\frac{-1}{${m}}`,
                     targetLatex: "x'",
                     slots: [
@@ -103,7 +111,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_tra_bas_${i}`,
                     difficulty: "BASIC",
                     stage: "translation",
-                    promptLatex: `Translate $P(${x}, ${y})$ by vector $\\vec{v} = \\binom{${dx}}{${dy}}$. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.translation_basic_vector", { x, y, dx, dy }),
                     expressionLatex: `P'(x, y) = (${x}+${dx}, ${y}+${dy})`,
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -117,7 +125,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_tra_cor_${i}`,
                     difficulty: "CORE",
                     stage: "translation",
-                    promptLatex: `A point $P(x, y)$ is translated by $\\vec{v} = \\binom{${dx}}{${dy}}$ to $P'(${x}, ${y})$. Find the original $P$.`,
+                    promptLatex: t("sm2_13.prompts.translation_core_reverse", { dx, dy, x, y }),
                     expressionLatex: `P_x = P'_x - v_x, \\quad P_y = P'_y - v_y`,
                     targetLatex: "P(x, y)",
                     slots: [
@@ -130,11 +138,12 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                 const m = Math.floor(Math.random() * 4) - 2 || 1;
                 const b = Math.floor(Math.random() * 4) - 2;
                 const new_b = b + dy - m * dx;
+                const equation = `y = ${m}x ${b >= 0 ? "+" : ""}${b}`;
                 pool.push({
                     id: `sm2_13_tra_adv_${i}`,
                     difficulty: "ADVANCED",
                     stage: "translation",
-                    promptLatex: `Translate the line $y = ${m}x ${b >= 0 ? '+' : ''}${b}$ by $\\vec{v} = \\binom{${dx}}{${dy}}$. Find the new y-intercept $b'$.`,
+                    promptLatex: t("sm2_13.prompts.translation_advanced_line", { equation, dx, dy }),
                     expressionLatex: `y - ${dy} = ${m}(x - ${dx}) + ${b}`,
                     targetLatex: "b'",
                     slots: [
@@ -151,7 +160,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_tra_eli_${i}`,
                     difficulty: "ELITE",
                     stage: "translation",
-                    promptLatex: `Circle $(x - ${x})^{2} + (y - ${y})^{2} = ${r * r}$ is translated by $\\vec{v} = \\binom{${dx}}{${dy}}$. Find the distance from the new center to the origin. (1 dec)`,
+                    promptLatex: t("sm2_13.prompts.translation_elite_circle", { x, y, r2: r * r, dx, dy }),
                     expressionLatex: `C' = (${new_cx}, ${new_cy}), d = \\sqrt{${new_cx}^{2} + ${new_cy}^2}`,
                     targetLatex: "d",
                     slots: [
@@ -170,7 +179,12 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_rot_bas_${i}`,
                     difficulty: "BASIC",
                     stage: "rotation",
-                    promptLatex: `Rotate $P(${x}, ${y})$ by $${angle}^\\circ$ ${cw ? 'CW' : 'CCW'} around the origin. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.rotation_basic_origin", {
+                        x,
+                        y,
+                        angle,
+                        direction
+                    }),
                     expressionLatex: `\\text{Observe coordinate swaps & sign changes}`,
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -189,7 +203,13 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_rot_cor_${i}`,
                     difficulty: "CORE",
                     stage: "rotation",
-                    promptLatex: `Rotate $P(${x}, ${y})$ by $${angle}^\\circ$ ${cw ? 'CW' : 'CCW'} around $C(${cx}, ${cx})$. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.rotation_core_center", {
+                        x,
+                        y,
+                        angle,
+                        direction,
+                        cx
+                    }),
                     expressionLatex: `\\text{Translate } C \\rightarrow (0,0)\\text{, rotate, then translate back}`,
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -205,7 +225,11 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_rot_adv_${i}`,
                     difficulty: "ADVANCED",
                     stage: "rotation",
-                    promptLatex: `Rotate $P(${x}, ${y})$ by $30^\\circ$ ${cw ? 'CW' : 'CCW'} around the origin. Find $x'$. (1 dec)`,
+                    promptLatex: t("sm2_13.prompts.rotation_advanced_xprime", {
+                        x,
+                        y,
+                        direction
+                    }),
                     expressionLatex: `x' = x \\cos \\theta - y \\sin \\theta`,
                     targetLatex: "x'",
                     slots: [
@@ -219,11 +243,12 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                 const lineM = Math.tan(theta);
                 const b = dy; // arbitrary
                 // Equation of line un-rotated: y = 0
+                const equation = `y = ${Math.round(lineM * 10) / 10}x ${b >= 0 ? "+" : ""}${b}`;
                 pool.push({
                     id: `sm2_13_rot_eli_${i}`,
                     difficulty: "ELITE",
                     stage: "rotation",
-                    promptLatex: `Line $y = ${Math.round(lineM * 10) / 10}x ${b >= 0 ? '+' : ''}${b}$ is rotated $${thetaStr}$ around the origin. Find the new y-intercept.`,
+                    promptLatex: t("sm2_13.prompts.rotation_elite_line", { equation, thetaStr }),
                     expressionLatex: `\\text{Find intercepts, rotate the points, solve for new equation.}`,
                     targetLatex: "b'",
                     slots: [
@@ -238,7 +263,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_cmp_bas_${i}`,
                     difficulty: "BASIC",
                     stage: "composition",
-                    promptLatex: `Translate $P(${x}, ${y})$ by $\\vec{v}=\\binom{${dx}}{0}$, then reflect across the x-axis. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.composition_basic", { x, y, dx }),
                     expressionLatex: `(${x},${y}) \\rightarrow (${x + dx},${y}) \\rightarrow (${x + dx}, ${-y})`,
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -254,7 +279,11 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_cmp_cor_${i}`,
                     difficulty: "CORE",
                     stage: "composition",
-                    promptLatex: `Reflect $P(${x}, ${y})$ across $y=x$, then rotate $90^\\circ$ ${cw ? 'CW' : 'CCW'} around origin. Find $P'(x', y')$.`,
+                    promptLatex: t("sm2_13.prompts.composition_core", {
+                        x,
+                        y,
+                        direction
+                    }),
                     expressionLatex: `(${x},${y}) \\xrightarrow{y=x} (${y},${x}) \\xrightarrow{90^\\circ} (${rotX}, ${rotY})`,
                     targetLatex: "P'(x', y')",
                     slots: [
@@ -268,7 +297,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_cmp_adv_${i}`,
                     difficulty: "ADVANCED",
                     stage: "composition",
-                    promptLatex: `Point $P(${x}, ${y})$ is reflected across $x = ${dx}$, then across $x = ${dy}$. The net transformation is a translation by $\\Delta x$. Find $\\Delta x$.`,
+                    promptLatex: t("sm2_13.prompts.composition_advanced", { x, y, dx, dy }),
                     expressionLatex: `\\Delta x = 2(${dy} - ${dx})`,
                     targetLatex: "\\Delta x",
                     slots: [
@@ -281,7 +310,7 @@ export const buildStagePool = (difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELIT
                     id: `sm2_13_cmp_eli_${i}`,
                     difficulty: "ELITE",
                     stage: "composition",
-                    promptLatex: `Reflect $P(${x}, ${y})$ across $x=${dx}$, then across $y=${dy}$. The net transformation is equivalent to a rotation around $C(x_c, y_c)$. Find $x_c + y_c$.`,
+                    promptLatex: t("sm2_13.prompts.composition_elite", { x, y, dx, dy }),
                     expressionLatex: `\\text{Reflection over 2 perpendicular lines = }180^\\circ\\text{ rotation around intersection}`,
                     targetLatex: "x_c + y_c",
                     slots: [

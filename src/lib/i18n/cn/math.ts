@@ -2982,6 +2982,61 @@ export const cnMath = {    em1_01: {
             next: "下一题"
         }
     },
+    sm2_13: {
+        title: "SM2.13 // 几何变换",
+        module_code: "SM2.13",
+        back: "返回枢纽",
+        check: "验证",
+        next: "下一题",
+        correct: "正确",
+        incorrect: "错误",
+        ready: "就绪",
+        difficulty: {
+            basic: "基础",
+            core: "核心",
+            advanced: "进阶",
+            elite: "精英"
+        },
+        stages: {
+            reflection: "反射",
+            translation: "平移",
+            rotation: "旋转",
+            composition: "复合变换"
+        },
+        labels: {
+            id: "编号",
+            context: "上下文",
+            solution_input: "答案输入",
+            answer_confirmed: "答案已确认",
+            hint: "提示",
+            loading_data: "加载数据中...",
+            transformation_matrix: "变换矩阵",
+            reflection: "反射",
+            translation: "平移",
+            rotation_origin: "旋转（原点）",
+            sequence_progress: "序列进度",
+            cw: "顺时针",
+            ccw: "逆时针"
+        },
+        prompts: {
+            reflection_basic_axis: "将点 $P({x}, {y})$ 关于 ${axis}$ 轴对称。求 $P'(x', y')$。",
+            reflection_core_line: "将点 $P({x}, {y})$ 关于直线 ${line}$ 对称。求 $P'(x', y')$。",
+            reflection_advanced_line_offset: "将点 $P({x}, {y})$ 关于直线 ${lineAxis} = {offset}$ 对称。求 $P'(x', y')$。",
+            reflection_elite_line: "将点 $P({x}, {y})$ 关于 ${lineEquation}$ 对称。求 $x'$（保留 1 位小数）。",
+            translation_basic_vector: "将点 $P({x}, {y})$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求 $P'(x', y')$。",
+            translation_core_reverse: "点 $P(x,y)$ 按 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移后得到 $P'({x}, {y})$。求原始点 $P$。",
+            translation_advanced_line: "将直线 ${equation}$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新的 y 截距 $b'$。",
+            translation_elite_circle: "圆 $(x-{x})^{2}+(y-{y})^{2}={r2}$ 按向量 $\\vec{v}=\\binom{{dx}}{{dy}}$ 平移。求新圆心到原点距离（1 位小数）。",
+            rotation_basic_origin: "将点 $P({x}, {y})$ 绕原点按 ${angle}^\\circ$ {direction} 旋转。求 $P'(x', y')$。",
+            rotation_core_center: "将点 $P({x}, {y})$ 绕 $C({cx}, {cx})$ 按 ${angle}^\\circ$ {direction} 旋转。求 $P'(x', y')$。",
+            rotation_advanced_xprime: "将点 $P({x}, {y})$ 绕原点按 $30^\\circ$ {direction} 旋转。求 $x'$（1 位小数）。",
+            rotation_elite_line: "将直线 ${equation}$ 绕原点旋转 ${thetaStr}$。求新的 y 截距。",
+            composition_basic: "将点 $P({x}, {y})$ 按 $\\vec{v}=\\binom{{dx}}{0}$ 平移，再关于 x 轴对称。求 $P'(x', y')$。",
+            composition_core: "将点 $P({x}, {y})$ 先关于 $y=x$ 对称，再绕原点旋转 $90^\\circ$ {direction}。求 $P'(x', y')$。",
+            composition_advanced: "点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $x={dy}$ 对称。净变换等价于沿 $\\Delta x$ 平移。求 $\\Delta x$。",
+            composition_elite: "点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $y={dy}$ 对称。净变换等价于绕 $C(x_c,y_c)$ 旋转。求 $x_c+y_c$。"
+        }
+    },
     gp3_03: {
         labels: {
             direction_effect: "方向/效果",

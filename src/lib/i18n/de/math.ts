@@ -2974,6 +2974,61 @@ export const deMath = {    em1_01: {
             next: "NÄCHSTES PROBLEM"
         }
     },
+    sm2_13: {
+        title: "SM2.13 // GEOMETRISCHE TRANSFORMATIONEN",
+        module_code: "SM2.13",
+        back: "Zurück zum Nexus",
+        check: "Überprüfen",
+        next: "Weiter",
+        correct: "Richtig",
+        incorrect: "Falsch",
+        ready: "Bereit",
+        difficulty: {
+            basic: "BASIS",
+            core: "KERN",
+            advanced: "ERWEITERT",
+            elite: "ELITE"
+        },
+        stages: {
+            reflection: "SPIEGELUNG",
+            translation: "VERSCHIEBUNG",
+            rotation: "DREHUNG",
+            composition: "KOMPOSITION"
+        },
+        labels: {
+            id: "ID",
+            context: "KONTEXT",
+            solution_input: "EINGABE",
+            answer_confirmed: "Antwort bestätigt",
+            hint: "Hinweis",
+            loading_data: "Daten werden geladen...",
+            transformation_matrix: "TRANSFORMATIONSMATRIX",
+            reflection: "Spiegelung",
+            translation: "Verschiebung",
+            rotation_origin: "Drehung (Ursprung)",
+            sequence_progress: "Sequenzfortschritt",
+            cw: "Uhrzeigersinn",
+            ccw: "Gegen den Uhrzeigersinn"
+        },
+        prompts: {
+            reflection_basic_axis: "Spiegle den Punkt $P({x}, {y})$ an der ${axis}$-Achse. Finde $P'(x', y')$.",
+            reflection_core_line: "Spiegle den Punkt $P({x}, {y})$ an der Geraden ${line}$. Finde $P'(x', y')$.",
+            reflection_advanced_line_offset: "Spiegle den Punkt $P({x}, {y})$ an der Geraden ${lineAxis} = {offset}$. Finde $P'(x', y')$.",
+            reflection_elite_line: "Spiegle $P({x}, {y})$ an ${lineEquation}$. Finde $x'$ (1 Dezimalstelle).",
+            translation_basic_vector: "Verschiebe $P({x}, {y})$ um den Vektor $\\vec{v}=\\binom{{dx}}{{dy}}$. Finde $P'(x', y')$.",
+            translation_core_reverse: "Ein Punkt $P(x,y)$ wird mit $\\vec{v}=\\binom{{dx}}{{dy}}$ zu $P'({x}, {y})$ verschoben. Finde den ursprünglichen Punkt $P$.",
+            translation_advanced_line: "Verschiebe die Gerade ${equation}$ um $\\vec{v}=\\binom{{dx}}{{dy}}$. Finde den neuen y-Achsenabschnitt $b'$.",
+            translation_elite_circle: "Der Kreis $(x-{x})^{2}+(y-{y})^{2}={r2}$ wird um $\\vec{v}=\\binom{{dx}}{{dy}}$ verschoben. Finde den Abstand des neuen Mittelpunkts zum Ursprung (1 Dezimalstelle).",
+            rotation_basic_origin: "Drehe $P({x}, {y})$ um ${angle}^\\circ$ {direction} um den Ursprung. Finde $P'(x', y')$.",
+            rotation_core_center: "Drehe $P({x}, {y})$ um ${angle}^\\circ$ {direction} um $C({cx}, {cx})$. Finde $P'(x', y')$.",
+            rotation_advanced_xprime: "Drehe $P({x}, {y})$ um $30^\\circ$ {direction} um den Ursprung. Finde $x'$ (1 Dezimalstelle).",
+            rotation_elite_line: "Die Gerade ${equation}$ wird um ${thetaStr}$ um den Ursprung gedreht. Finde den neuen y-Achsenabschnitt.",
+            composition_basic: "Verschiebe $P({x}, {y})$ um $\\vec{v}=\\binom{{dx}}{0}$ und spiegle danach an der x-Achse. Finde $P'(x', y')$.",
+            composition_core: "Spiegle $P({x}, {y})$ an $y=x$ und drehe danach um $90^\\circ$ {direction} um den Ursprung. Finde $P'(x', y')$.",
+            composition_advanced: "Punkt $P({x}, {y})$ wird erst an $x={dx}$ und dann an $x={dy}$ gespiegelt. Die Nettotransformation ist eine Verschiebung um $\\Delta x$. Finde $\\Delta x$.",
+            composition_elite: "Spiegle $P({x}, {y})$ an $x={dx}$ und danach an $y={dy}$. Die Nettotransformation entspricht einer Rotation um $C(x_c,y_c)$. Finde $x_c+y_c$."
+        }
+    },
     gp3_03: {
         labels: {
             direction_effect: "Richtung/Effekt",

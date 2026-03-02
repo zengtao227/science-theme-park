@@ -2989,6 +2989,61 @@ export const enMath = {    em1_01: {
             next: "NEXT PROBLEM"
         }
     },
+    sm2_13: {
+        title: "SM2.13 // GEOMETRIC TRANSFORMATIONS",
+        module_code: "SM2.13",
+        back: "Back to Nexus",
+        check: "Verify",
+        next: "Next",
+        correct: "Correct",
+        incorrect: "Incorrect",
+        ready: "Ready",
+        difficulty: {
+            basic: "BASIC",
+            core: "CORE",
+            advanced: "ADVANCED",
+            elite: "ELITE"
+        },
+        stages: {
+            reflection: "REFLECTION",
+            translation: "TRANSLATION",
+            rotation: "ROTATION",
+            composition: "COMPOSITION"
+        },
+        labels: {
+            id: "ID",
+            context: "CONTEXT",
+            solution_input: "SOLUTION INPUT",
+            answer_confirmed: "Answer Confirmed",
+            hint: "Hint",
+            loading_data: "Loading Data...",
+            transformation_matrix: "TRANSFORMATION MATRIX",
+            reflection: "Reflection",
+            translation: "Translation",
+            rotation_origin: "Rotation (Origin)",
+            sequence_progress: "Sequence Progress",
+            cw: "CW",
+            ccw: "CCW"
+        },
+        prompts: {
+            reflection_basic_axis: "Reflect point $P({x}, {y})$ across the ${axis}$-axis. Find $P'(x', y')$.",
+            reflection_core_line: "Reflect point $P({x}, {y})$ across the line ${line}$. Find $P'(x', y')$.",
+            reflection_advanced_line_offset: "Reflect point $P({x}, {y})$ across the line ${lineAxis} = {offset}$. Find $P'(x', y')$.",
+            reflection_elite_line: "Reflect $P({x}, {y})$ across ${lineEquation}$. Find $x'$ (1 decimal).",
+            translation_basic_vector: "Translate $P({x}, {y})$ by vector $\\vec{v}=\\binom{{dx}}{{dy}}$. Find $P'(x', y')$.",
+            translation_core_reverse: "A point $P(x,y)$ is translated by $\\vec{v}=\\binom{{dx}}{{dy}}$ to $P'({x}, {y})$. Find the original $P$.",
+            translation_advanced_line: "Translate the line ${equation}$ by $\\vec{v}=\\binom{{dx}}{{dy}}$. Find the new y-intercept $b'$.",
+            translation_elite_circle: "Circle $(x-{x})^{2}+(y-{y})^{2}={r2}$ is translated by $\\vec{v}=\\binom{{dx}}{{dy}}$. Find the distance from the new center to the origin (1 dec).",
+            rotation_basic_origin: "Rotate $P({x}, {y})$ by ${angle}^\\circ$ {direction} around the origin. Find $P'(x', y')$.",
+            rotation_core_center: "Rotate $P({x}, {y})$ by ${angle}^\\circ$ {direction} around $C({cx}, {cx})$. Find $P'(x', y')$.",
+            rotation_advanced_xprime: "Rotate $P({x}, {y})$ by $30^\\circ$ {direction} around the origin. Find $x'$ (1 dec).",
+            rotation_elite_line: "Line ${equation}$ is rotated by ${thetaStr}$ around the origin. Find the new y-intercept.",
+            composition_basic: "Translate $P({x}, {y})$ by $\\vec{v}=\\binom{{dx}}{0}$, then reflect across the x-axis. Find $P'(x', y')$.",
+            composition_core: "Reflect $P({x}, {y})$ across $y=x$, then rotate $90^\\circ$ {direction} around the origin. Find $P'(x', y')$.",
+            composition_advanced: "Point $P({x}, {y})$ is reflected across $x={dx}$, then across $x={dy}$. The net transformation is a translation by $\\Delta x$. Find $\\Delta x$.",
+            composition_elite: "Reflect $P({x}, {y})$ across $x={dx}$, then across $y={dy}$. The net transformation equals a rotation around $C(x_c,y_c)$. Find $x_c+y_c$."
+        }
+    },
     gp3_03: {
         labels: {
             direction_effect: "Direction/Effect",

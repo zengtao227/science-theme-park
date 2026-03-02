@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SC2.04 prompt i18n closure + SM2.04 audit pass, full QA passed)
-**Plan Version**: 4.8 (Batch C wave extension: SC2.04 closure and SM2.04 compliance verification)
+**Last Updated**: 2026-03-02 (GP3.03 + SM2.13 prompt i18n closure, full QA passed)
+**Plan Version**: 5.2 (Batch C wave extension: GP3.03 + SM2.13 closure)
 
 ---
 
@@ -51,6 +51,7 @@
 - [x] `sm2-03` (audit pass: stage `promptLatex` already i18n-sourced; no migration delta required)
 - [x] `sc2-04` (hardcoded `promptLatex` removed from quest generator; EN/CN/DE `sc2_04.prompts` keys aligned)
 - [x] `sm2-04` (audit pass: stage prompts remain i18n-driven; no quest-logic migration required)
+- [x] `sm2-13` (all stage `promptLatex` migrated to i18n templates with EN/CN/DE symmetry; module UI hardcoded literals localized)
 
 ### 7.4 Quality Gates (must pass before merge)
 - [x] `npm run lint` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
@@ -91,6 +92,7 @@
 - [x] `SC3.01 + SC3.05 + SM1.01 + SM1.05 residue cleanup`: removed remaining hardcoded/wrapper `promptLatex` strings and legacy English fallback literals in active quest prompts/placeholders; rendering and i18n audits remain clean.
 - [x] `SM1.02 + SC3.04 wrapper cleanup`: removed residual `\\text{${t(...)}}` prompt wrappers and switched to direct i18n prompt text for `renderMixedText` path consistency.
 - [x] `SP3.01 prompt i18n cleanup`: replaced remaining English hardcoded prompt templates with `sp3_01.prompts.*` i18n keys; synchronized new keys (`equivalent_unit`, `round_sigfigs`, `calculate_with_sigfigs`, `percent_uncertainty`) in EN/CN/DE.
+- [x] `SM2.13 Batch C`: migrated all 16 stage prompt templates in `sm2-13-quest-data.ts` to `sm2_13.prompts.*`, localized module page UI labels/stage strings, and aligned EN/CN/DE key sets.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
@@ -522,7 +524,7 @@ Modules are classified by their quest density:
 ### March 2026
 - [x] Week 1: Phase 7.1 SP1.01 baseline completion (scenario_desc EN/CN/DE)
 - [x] Week 1-2: Phase 7.2 Batch A on top-risk modules (`sm2-08`, `sm1-04`, `sc2-05`) completed
-- [ ] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations)
+- [x] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations) — prompt i18n + module UI localization completed (2026-03-02)
 
 ### April 2026
 - [ ] Phase 6.2.3–6.2.5 (Physics/Chemistry/Biology Quest Sprint)
@@ -535,6 +537,12 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v5.2 (2026-03-02)
+- **SM2.13 Prompt i18n Closure**: Replaced all 16 hardcoded `promptLatex` templates in `sm2-13-quest-data.ts` with `t("sm2_13.prompts.*", params)` while preserving quest math/expected values.
+- **SM2.13 UI Localization**: Removed residual hardcoded stage/UI literals in `sm2-13/page.tsx` and switched to `sm2_13.*` translation keys.
+- **Tri-language Sync**: Added full `sm2_13` translation block (stages/labels/prompts) in EN/CN/DE `math.ts`, including localized direction params (`cw`, `ccw`).
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after migration.
 
 ### v5.1 (2026-03-02)
 - **GP3.03 Prompt i18n Migration**: Replaced all in-file hardcoded `prompt` strings in `gp3-03/page.tsx` with `t("gp3_03.prompts.*")` templates/keys across FARADAY/LENZ/GENERATOR stages.
@@ -629,5 +637,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.1 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.2 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05

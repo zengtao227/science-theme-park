@@ -18,25 +18,40 @@ export default function SM213Page() {
     const { t } = useLanguage();
 
     const sm2_13_t = {
-        title: t("home.sm2_13_title") || "SM2.13 // GEOMETRIC TRANSFORMATIONS",
+        title: t("sm2_13.title"),
+        moduleCode: t("sm2_13.module_code"),
         stages: {
-            reflection: "REFLECTION",
-            translation: "TRANSLATION",
-            rotation: "ROTATION",
-            composition: "COMPOSITION"
+            reflection: t("sm2_13.stages.reflection"),
+            translation: t("sm2_13.stages.translation"),
+            rotation: t("sm2_13.stages.rotation"),
+            composition: t("sm2_13.stages.composition")
         },
         translations: {
-            back: t("gp1_01.back") || "Back",
-            check: t("common.check") || "Verify",
-            next: t("common.next") || "Next",
-            correct: t("common.correct") || "Correct",
-            incorrect: t("common.incorrect") || "Incorrect",
+            back: t("sm2_13.back"),
+            check: t("sm2_13.check"),
+            next: t("sm2_13.next"),
+            correct: t("sm2_13.correct"),
+            incorrect: t("sm2_13.incorrect"),
+            ready: t("sm2_13.ready"),
             difficulty: {
-                basic: t("gp1_01.basic") || "BASIC",
-                core: t("gp1_01.core") || "CORE",
-                advanced: t("gp1_01.advanced") || "ADVANCED",
-                elite: t("gp1_01.elite") || "ELITE"
+                basic: t("sm2_13.difficulty.basic"),
+                core: t("sm2_13.difficulty.core"),
+                advanced: t("sm2_13.difficulty.advanced"),
+                elite: t("sm2_13.difficulty.elite")
             }
+        },
+        labels: {
+            context: t("sm2_13.labels.context"),
+            solution_input: t("sm2_13.labels.solution_input"),
+            answer_confirmed: t("sm2_13.labels.answer_confirmed"),
+            hint: t("sm2_13.labels.hint"),
+            loading_data: t("sm2_13.labels.loading_data"),
+            transformation_matrix: t("sm2_13.labels.transformation_matrix"),
+            reflection: t("sm2_13.labels.reflection"),
+            translation: t("sm2_13.labels.translation"),
+            rotation_origin: t("sm2_13.labels.rotation_origin"),
+            sequence_progress: t("sm2_13.labels.sequence_progress"),
+            id: t("sm2_13.labels.id")
         }
     };
 
@@ -59,7 +74,7 @@ export default function SM213Page() {
         handleStageChange,
     } = useQuestManager<SM213Quest, Stage>({
         moduleCode: "SM2.13",
-        buildPool: (diff, s) => buildStagePool(diff, s),
+        buildPool: (diff, s) => buildStagePool(diff, s, t),
         initialStage: "reflection",
         tolerance: 0.1
     });
@@ -76,7 +91,7 @@ export default function SM213Page() {
     return (
         <ChamberLayout
             title={sm2_13_t.title}
-            moduleCode="SM2.13"
+            moduleCode={sm2_13_t.moduleCode}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={[
@@ -107,11 +122,11 @@ export default function SM213Page() {
                                 >
                                     <div className="flex items-center gap-3">
                                         <div className="px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-full text-[10px] font-black tracking-widest text-amber-500 uppercase">
-                                            {stage}
+                                            {sm2_13_t.stages[stage]}
                                         </div>
                                         <div className="h-px flex-1 bg-white/10" />
                                         <div className="text-[10px] font-mono text-white/40 uppercase">
-                                            ID: {currentQuest.id}
+                                            {sm2_13_t.labels.id}: {currentQuest.id}
                                         </div>
                                     </div>
 
@@ -123,7 +138,7 @@ export default function SM213Page() {
                                         <div className="p-6 bg-white/[0.03] border border-white/10 rounded-2xl relative group overflow-hidden">
                                             <div className="absolute top-0 left-0 w-1 h-full bg-amber-500" />
                                             <div className="text-xs font-black tracking-widest text-amber-500 uppercase mb-4 opacity-50">
-                                                CONTEXT
+                                                {sm2_13_t.labels.context}
                                             </div>
                                             <div className="text-lg font-mono text-white/60">
                                                 <BlockMath math={currentQuest.expressionLatex} />
@@ -137,7 +152,7 @@ export default function SM213Page() {
                                                 <BrainCircuit className="w-4 h-4 text-white/60" />
                                             </div>
                                             <h3 className="text-xs font-black tracking-[0.2em] uppercase text-white/40">
-                                                SOLUTION INPUT
+                                                {sm2_13_t.labels.solution_input}
                                             </h3>
                                         </div>
 
@@ -179,7 +194,7 @@ export default function SM213Page() {
                                     {/* Solution / Result info if needed */}
                                     {lastCheck?.ok && (
                                         <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
-                                            <div className="text-green-400 font-bold mb-2">Answer Confirmed</div>
+                                            <div className="text-green-400 font-bold mb-2">{sm2_13_t.labels.answer_confirmed}</div>
                                             {currentQuest.correctLatex && <BlockMath math={currentQuest.correctLatex} />}
                                         </div>
                                     )}
@@ -192,7 +207,7 @@ export default function SM213Page() {
                                         >
                                             <div className="flex items-center gap-2 mb-2">
                                                 <HelpCircle className="w-4 h-4 text-amber-500" />
-                                                <span className="text-[10px] font-black uppercase tracking-widest text-amber-500">Hint</span>
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-amber-500">{sm2_13_t.labels.hint}</span>
                                             </div>
                                             <div className="text-white/70 font-mono text-sm">
                                                 <InlineMath math={hint} />
@@ -203,7 +218,7 @@ export default function SM213Page() {
                             </AnimatePresence>
                         ) : (
                             <div className="h-full flex items-center justify-center">
-                                <div className="animate-pulse text-white/40 uppercase tracking-widest text-sm">Loading Data...</div>
+                                <div className="animate-pulse text-white/40 uppercase tracking-widest text-sm">{sm2_13_t.labels.loading_data}</div>
                             </div>
                         )}
                     </div>
@@ -211,11 +226,11 @@ export default function SM213Page() {
                     {/* Right: Matrix Cheat Sheet */}
                     <div className="w-full lg:w-64 border border-amber-500/20 bg-black/60 backdrop-blur rounded-xl p-5 h-fit sticky top-6">
                         <h3 className="text-xs font-black tracking-[0.2em] text-amber-500 uppercase border-b border-amber-500/30 pb-3 mb-4">
-                            TRANSFORMATION MATRIX
+                            {sm2_13_t.labels.transformation_matrix}
                         </h3>
                         <div className="text-sm font-mono text-white/70 space-y-6">
                             <div>
-                                <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">Reflection</div>
+                                <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">{sm2_13_t.labels.reflection}</div>
                                 <div className="space-y-1">
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
                                         <InlineMath math="\\text{x-axis}" />
@@ -236,13 +251,13 @@ export default function SM213Page() {
                                 </div>
                             </div>
                             <div>
-                                <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">Translation</div>
+                                <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">{sm2_13_t.labels.translation}</div>
                                 <div className="bg-white/5 px-2 py-1 rounded">
                                     <InlineMath math="(x{+}dx, y{+}dy)" />
                                 </div>
                             </div>
                             <div>
-                                <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">Rotation (Origin)</div>
+                                <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">{sm2_13_t.labels.rotation_origin}</div>
                                 <div className="space-y-1">
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
                                         <InlineMath math="90^\\circ\\text{ CCW}" />
@@ -280,7 +295,7 @@ export default function SM213Page() {
 
                         <div className="flex-1 space-y-2">
                             <div className="flex justify-between text-[10px] font-black tracking-widest text-white/40 uppercase">
-                                <span>Sequence Progress</span>
+                                <span>{sm2_13_t.labels.sequence_progress}</span>
                                 <span>{Math.round(progress)}%</span>
                             </div>
                             <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
