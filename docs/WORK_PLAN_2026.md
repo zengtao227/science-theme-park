@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GM1.02 Batch B wave-28 prompt semantic cleanup completed, full QA passed)
-**Plan Version**: 9.1 (Batch B high-frequency expansion wave-28)
+**Last Updated**: 2026-03-02 (GM4.01 Batch B wave-29 stage-prompt semantic cleanup completed, full QA passed)
+**Plan Version**: 9.2 (Batch B high-frequency expansion wave-29)
 
 ---
 
@@ -140,6 +140,7 @@
 - [x] `SM2.02 Batch B (wave-26 prompt semantic cleanup)`: rewrote `sm2_02.prompts.*` short/bare prompt cluster in EN/CN/DE (`solve_hyp`, `solve_leg`, `check_right`, `distance_3d`, `elite_space`, `mental_*`, `sqrt_*`) into scenario-task wording while preserving placeholders.
 - [x] `EM2.01 Batch B (wave-27 prompt semantic cleanup)`: rewrote all `em2_01.prompts.*` matrix-task prompts in EN/CN/DE from short directive wording into scenario-task wording while preserving key names and placeholders.
 - [x] `GM1.02 Batch B (wave-28 prompt semantic cleanup)`: rewrote core integral prompt keys in EN/CN/DE (`find_antiderivative`, `evaluate_integral`, `find_area`) from directive style to scenario-task wording while preserving formulas/placeholders.
+- [x] `GM4.01 Batch B (wave-29 stage prompt cleanup)`: rewrote short stage-level operational prompts/targets in EN/CN/DE (`basics_prompt/target`, `operations_add/multiply/target`, `polar_prompt/target`) into scenario-task wording.
 - [ ] Next wave target: Batch B 跨模块残留抽检（优先 GM2.02 / GP3.*）并继续收口。
 
 ---

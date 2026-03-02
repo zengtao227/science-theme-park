@@ -664,13 +664,13 @@ export const deMath = {    em1_01: {
             basics: "GRUNDLAGEN",
             operations: "OPERATIONEN",
             polar: "POLARFORM",
-            basics_prompt: "Betrag berechnen",
-            basics_target: "|z| finden",
-            operations_add: "Komplexe Zahlen addieren",
-            operations_multiply: "Komplexe Zahlen multiplizieren",
-            operations_target: "Real- und Imaginärteil finden",
-            polar_prompt: "Potenz mit Polarform berechnen",
-            polar_target: "z^n in kartesischer Form finden"
+            basics_prompt: "Signalstärke-Aufgabe: Berechne den Betrag der komplexen Messgröße.",
+            basics_target: "Ziel: Bestimme |z| für die Kalibrierung.",
+            operations_add: "Überlagerungsaufgabe: Addiere komplexe Amplituden aus zwei Kanälen.",
+            operations_multiply: "Kopplungsaufgabe: Multipliziere komplexe Zustände zur Modellierung phasengekoppelten Verhaltens.",
+            operations_target: "Ziel: Gib Real- und Imaginärteil vollständig an.",
+            polar_prompt: "Resonanzaufgabe: Nutze die Polarform zur effizienten Berechnung komplexer Potenzen.",
+            polar_target: "Ziel: Wandle z^n zur Implementierung zurück in die kartesische Form."
         },
         visualization: {
             pythagorean: "SATZ DES PYTHAGORAS",

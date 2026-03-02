@@ -635,13 +635,13 @@ export const cnMath = {    em1_01: {
             basics: "基础",
             operations: "运算",
             polar: "极坐标形式",
-            basics_prompt: "计算模长",
-            basics_target: "求 |z|",
-            operations_add: "复数加法",
-            operations_multiply: "复数乘法",
-            operations_target: "求实部和虚部",
-            polar_prompt: "使用极坐标形式计算幂",
-            polar_target: "求 z^n 的直角坐标形式"
+            basics_prompt: "信号强度任务：计算该复数测量值的模长。",
+            basics_target: "目标：求出用于标定的 |z|。",
+            operations_add: "叠加任务：将两个通道的复振幅相加。",
+            operations_multiply: "耦合任务：将复状态相乘以建模相位耦合行为。",
+            operations_target: "目标：同时给出实部与虚部。",
+            polar_prompt: "谐振任务：使用极坐标形式高效计算复数幂。",
+            polar_target: "目标：将 z^n 转回直角坐标形式用于实现。"
         },
         visualization: {
             pythagorean: "勾股定理",

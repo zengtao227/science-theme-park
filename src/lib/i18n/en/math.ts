@@ -654,13 +654,13 @@ export const enMath = {    em1_01: {
             basics: "BASICS",
             operations: "OPERATIONS",
             polar: "POLAR FORM",
-            basics_prompt: "Calculate magnitude",
-            basics_target: "Find |z|",
-            operations_add: "Add complex numbers",
-            operations_multiply: "Multiply complex numbers",
-            operations_target: "Find real and imaginary parts",
-            polar_prompt: "Calculate power using polar form",
-            polar_target: "Find z^n in rectangular form"
+            basics_prompt: "Signal-strength task: compute the magnitude of the complex measurement.",
+            basics_target: "Target: determine |z| for calibration.",
+            operations_add: "Superposition task: add complex amplitudes from two channels.",
+            operations_multiply: "Interaction task: multiply complex states to model phase-coupled behavior.",
+            operations_target: "Target: report both real and imaginary components.",
+            polar_prompt: "Resonance task: use polar form to compute complex powers efficiently.",
+            polar_target: "Target: convert z^n back to rectangular form for implementation."
         },
         visualization: {
             pythagorean: "PYTHAGOREAN THEOREM",
