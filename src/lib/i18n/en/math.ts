@@ -1602,19 +1602,19 @@ export const enMath = {    em1_01: {
             chain_desc: "A transfer tunnel spans a rectangular bay and rises to a higher platform. Find the full diagonal."
         },
         prompts: {
-            explorer_mission: "Pythagorean Explorer: adjust scale and observe similarity invariance.",
-            solve_hyp: "Solve for the hypotenuse: $a={a}, \\, b={b}$",
-            solve_leg: "Solve for the missing leg: $c={c}, \\, {knownVar}={known}$",
-            check_right: "Check whether $({a}, \\, {b}, \\, {c})$ is a right triangle.",
-            distance_3d: "Compute 3D distance: $({x1}, {y1}, {z1}) \\rightarrow ({x2}, {y2}, {z2})$",
-            elite_space: "Compute the space diagonal: $a={a}, \\, b={b}, \\, c={c}$",
+            explorer_mission: "Pythagorean explorer mission: adjust scale factor and verify that similarity keeps the geometric relation invariant.",
+            solve_hyp: "Rescue ladder task: with street offset $a={a}$ and wall height $b={b}$, compute the required hypotenuse $c$.",
+            solve_leg: "Access-route task: given hypotenuse $c={c}$ and known leg ${knownVar}={known}$, compute the missing leg length.",
+            check_right: "Engineering QA task: test whether $({a}, \\, {b}, \\, {c})$ satisfies the right-triangle condition.",
+            distance_3d: "Drone routing task: compute the straight-line 3D distance from $({x1}, {y1}, {z1})$ to $({x2}, {y2}, {z2})$ for the fastest path.",
+            elite_space: "Lab-cable planning task: for a rectangular volume with edges $a={a}, \\, b={b}, \\, c={c}$, compute the space diagonal.",
             mission_pair: "{title} — {desc}",
-            mental_hyp: "$a={a}, \\, b={b}$",
-            mental_leg: "$c={c}, \\, a={a}$",
-            chain: "{chainLabel}: $a={a}, \\, b={b}, \\, c={c}$",
-            sqrt_perfect: "{label}: $\\sqrt{{n}}$",
-            sqrt_simplify: "{label}: $\\sqrt{{n}}$",
-            sqrt_estimate: "{label}: $\\sqrt{{n}} \\in [{lo}, {hi}]$ ?"
+            mental_hyp: "Mental sprint: with $a={a}, \\, b={b}$, compute the hypotenuse quickly.",
+            mental_leg: "Mental sprint: with $c={c}, \\, a={a}$, compute the missing leg quickly.",
+            chain: "Segment-chain check ({chainLabel}): use $a={a}, \\, b={b}, \\, c={c}$ to determine the required segment.",
+            sqrt_perfect: "{label} task: evaluate $\\sqrt{{n}}$ exactly.",
+            sqrt_simplify: "{label} task: simplify $\\sqrt{{n}}$ to lowest radical form.",
+            sqrt_estimate: "{label} task: decide whether $\\sqrt{{n}}$ lies in $[{lo}, {hi}]$."
         },
         mental: {
             title: "MENTAL",

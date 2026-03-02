@@ -1581,19 +1581,19 @@ export const cnMath = {    em1_01: {
             chain_desc: "转运通道跨越矩形平台并上升至高位。求完整对角线。"
         },
         prompts: {
-            explorer_mission: "勾股探索：调整缩放比例，观察相似关系不变性。",
-            solve_hyp: "求斜边长度：$a={a}, \\, b={b}$",
-            solve_leg: "求缺失直角边：$c={c}, \\, {knownVar}={known}$",
-            check_right: "判断 $({a}, \\, {b}, \\, {c})$ 是否为直角三角形。",
-            distance_3d: "计算三维距离：$({x1}, {y1}, {z1}) \\rightarrow ({x2}, {y2}, {z2})$",
-            elite_space: "计算空间对角线：$a={a}, \\, b={b}, \\, c={c}$",
+            explorer_mission: "勾股探索任务：调整缩放因子并验证相似变换下几何关系保持不变。",
+            solve_hyp: "救援梯任务：已知水平偏移 $a={a}$ 与墙面高度 $b={b}$，求所需斜边 $c$。",
+            solve_leg: "通道测算任务：已知斜边 $c={c}$ 与一条直角边 ${knownVar}={known}$，求缺失直角边长度。",
+            check_right: "工程质检任务：判断 $({a}, \\, {b}, \\, {c})$ 是否满足直角三角形条件。",
+            distance_3d: "无人机路径任务：计算从 $({x1}, {y1}, {z1})$ 到 $({x2}, {y2}, {z2})$ 的直线三维距离。",
+            elite_space: "实验室布线任务：长方体边长为 $a={a}, \\, b={b}, \\, c={c}$，求空间对角线。",
             mission_pair: "{title} — {desc}",
-            mental_hyp: "$a={a}, \\, b={b}$",
-            mental_leg: "$c={c}, \\, a={a}$",
-            chain: "{chainLabel}: $a={a}, \\, b={b}, \\, c={c}$",
-            sqrt_perfect: "{label}: $\\sqrt{{n}}$",
-            sqrt_simplify: "{label}: $\\sqrt{{n}}$",
-            sqrt_estimate: "{label}: $\\sqrt{{n}} \\in [{lo}, {hi}]$ ?"
+            mental_hyp: "心算冲刺：已知 $a={a}, \\, b={b}$，快速求斜边。",
+            mental_leg: "心算冲刺：已知 $c={c}, \\, a={a}$，快速求缺失直角边。",
+            chain: "链式分段校核（{chainLabel}）：使用 $a={a}, \\, b={b}, \\, c={c}$ 求目标线段。",
+            sqrt_perfect: "{label} 任务：精确计算 $\\sqrt{{n}}$。",
+            sqrt_simplify: "{label} 任务：将 $\\sqrt{{n}}$ 化简为最简根式。",
+            sqrt_estimate: "{label} 任务：判断 $\\sqrt{{n}}$ 是否落在区间 $[{lo}, {hi}]$ 内。"
         },
         mental: {
             title: "心算",

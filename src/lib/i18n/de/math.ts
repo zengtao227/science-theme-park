@@ -1628,19 +1628,19 @@ export const deMath = {    em1_01: {
             chain_desc: "Ein Tunnel überspannt eine rechteckige Plattform und steigt zu einer höheren Ebene auf. Bestimme die Gesamtdiagonale."
         },
         prompts: {
-            explorer_mission: "Pythagoras-Explorer: Skaliere und beobachte die Invarianz der Ähnlichkeit.",
-            solve_hyp: "Bestimme die Hypotenuse: $a={a}, \\, b={b}$",
-            solve_leg: "Bestimme die fehlende Kathete: $c={c}, \\, {knownVar}={known}$",
-            check_right: "Prüfe, ob $({a}, \\, {b}, \\, {c})$ ein rechtwinkliges Dreieck ist.",
-            distance_3d: "Berechne die 3D-Distanz: $({x1}, {y1}, {z1}) \\rightarrow ({x2}, {y2}, {z2})$",
-            elite_space: "Berechne die Raumdiagonale: $a={a}, \\, b={b}, \\, c={c}$",
+            explorer_mission: "Pythagoras-Explorer-Aufgabe: Passe den Skalierungsfaktor an und verifiziere die Invarianz der Ähnlichkeitsbeziehung.",
+            solve_hyp: "Rettungsleiter-Aufgabe: Gegeben sind horizontaler Abstand $a={a}$ und Höhe $b={b}$. Bestimme die benötigte Hypotenuse $c$.",
+            solve_leg: "Zugangsweg-Aufgabe: Gegeben sind Hypotenuse $c={c}$ und bekannte Kathete ${knownVar}={known}$. Bestimme die fehlende Kathete.",
+            check_right: "Ingenieur-Qualitätscheck: Prüfe, ob $({a}, \\, {b}, \\, {c})$ die Bedingung eines rechtwinkligen Dreiecks erfüllt.",
+            distance_3d: "Drohnenrouten-Aufgabe: Berechne die direkte 3D-Distanz von $({x1}, {y1}, {z1})$ nach $({x2}, {y2}, {z2})$.",
+            elite_space: "Laborverkabelung-Aufgabe: Für einen Quader mit Kanten $a={a}, \\, b={b}, \\, c={c}$ die Raumdiagonale bestimmen.",
             mission_pair: "{title} — {desc}",
-            mental_hyp: "$a={a}, \\, b={b}$",
-            mental_leg: "$c={c}, \\, a={a}$",
-            chain: "{chainLabel}: $a={a}, \\, b={b}, \\, c={c}$",
-            sqrt_perfect: "{label}: $\\sqrt{{n}}$",
-            sqrt_simplify: "{label}: $\\sqrt{{n}}$",
-            sqrt_estimate: "{label}: $\\sqrt{{n}} \\in [{lo}, {hi}]$ ?"
+            mental_hyp: "Kopfrechen-Sprint: Mit $a={a}, \\, b={b}$ die Hypotenuse schnell bestimmen.",
+            mental_leg: "Kopfrechen-Sprint: Mit $c={c}, \\, a={a}$ die fehlende Kathete schnell bestimmen.",
+            chain: "Segmentketten-Check ({chainLabel}): Nutze $a={a}, \\, b={b}, \\, c={c}$ zur Bestimmung des Zielsegments.",
+            sqrt_perfect: "{label}-Aufgabe: Berechne $\\sqrt{{n}}$ exakt.",
+            sqrt_simplify: "{label}-Aufgabe: Vereinfache $\\sqrt{{n}}$ in die einfachste Wurzelform.",
+            sqrt_estimate: "{label}-Aufgabe: Entscheide, ob $\\sqrt{{n}}$ im Intervall $[{lo}, {hi}]$ liegt."
         },
         mental: {
             title: "KOPFRECHNEN",
