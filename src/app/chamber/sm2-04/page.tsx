@@ -472,7 +472,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "M_B1", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}} = 10\\text{ m}, \\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2\\text{ m}) \\text{ ${t("sm2_04.mission.labels.shadow")}} = 4\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 5 }],
@@ -482,7 +482,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_B2", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=12\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=3\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 8 }],
@@ -492,7 +492,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_B3", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=15\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=5\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 6 }],
@@ -502,7 +502,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_B4", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=8\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=4\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 4 }],
@@ -512,7 +512,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_B5", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=18\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=6\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 6 }],
@@ -527,7 +527,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "M_C1", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=12\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(1.5\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=2.4\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 7.5 }],
@@ -537,7 +537,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_C2", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=15\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(1.8\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=3\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 9 }],
@@ -547,7 +547,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_C3", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=18\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2.5\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=4.5\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 10 }],
@@ -557,7 +557,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_C4", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=20\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(1.6\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=3.2\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 10 }],
@@ -567,7 +567,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_C5", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.tower_title")}\n${t("sm2_04.mission.description")}`,
+                    promptLatex: t("sm2_04.mission.tower_prompt"),
                     expressionLatex: `\\text{${t("sm2_04.mission.labels.tower_shadow")}}=24\\text{ m},\\; \\text{${t("sm2_04.mission.labels.stick_plain")}}(2.1\\text{ m})\\text{ ${t("sm2_04.mission.labels.shadow")}}=4.2\\text{ m}`,
                     targetLatex: `\\text{${t("sm2_04.mission.labels.tower_height")}}(H)`,
                     slots: [{ id: "h", labelLatex: `H`, placeholder: "H", expected: 12 }],
@@ -582,7 +582,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             return [
                 {
                     id: "M_A1", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                    promptLatex: t("sm2_04.mission.ring_prompt"),
                     expressionLatex: `R=6\\text{ cm},\\; L=9.6\\text{ cm}`,
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 1.2 }],
@@ -592,7 +592,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_A2", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                    promptLatex: t("sm2_04.mission.ring_prompt"),
                     expressionLatex: `R=8\\text{ cm},\\; L=12.8\\text{ cm}`,
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 3.2 }],
@@ -602,7 +602,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_A3", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                    promptLatex: t("sm2_04.mission.ring_prompt"),
                     expressionLatex: `R=10\\text{ cm},\\; L=16\\text{ cm}`,
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4 }],
@@ -612,7 +612,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_A4", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                    promptLatex: t("sm2_04.mission.ring_prompt"),
                     expressionLatex: `R=7\\text{ cm},\\; L=11.2\\text{ cm}`,
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 2.8 }],
@@ -622,7 +622,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
                 },
                 {
                     id: "M_A5", difficulty, stage,
-                    promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                    promptLatex: t("sm2_04.mission.ring_prompt"),
                     expressionLatex: `R=9\\text{ cm},\\; L=14.4\\text{ cm}`,
                     targetLatex: `w`,
                     slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 3.6 }],
@@ -637,7 +637,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
         return [
             {
                 id: "M_E1", difficulty, stage,
-                promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                promptLatex: t("sm2_04.mission.ring_prompt"),
                 expressionLatex: `R=12\\text{ cm},\\; L=19.2\\text{ cm}`,
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4.8 }],
@@ -647,7 +647,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "M_E2", difficulty, stage,
-                promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                promptLatex: t("sm2_04.mission.ring_prompt"),
                 expressionLatex: `R=14\\text{ cm},\\; L=22.4\\text{ cm}`,
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 5.6 }],
@@ -657,7 +657,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "M_E3", difficulty, stage,
-                promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                promptLatex: t("sm2_04.mission.ring_prompt"),
                 expressionLatex: `R=11\\text{ cm},\\; L=17.6\\text{ cm}`,
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 4.4 }],
@@ -667,7 +667,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "M_E4", difficulty, stage,
-                promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                promptLatex: t("sm2_04.mission.ring_prompt"),
                 expressionLatex: `R=13\\text{ cm},\\; L=20.8\\text{ cm}`,
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 5.2 }],
@@ -677,7 +677,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             },
             {
                 id: "M_E5", difficulty, stage,
-                promptLatex: `${t("sm2_04.mission.ring_title")}\n${t("sm2_04.mission.ring_desc")}`,
+                promptLatex: t("sm2_04.mission.ring_prompt"),
                 expressionLatex: `R=15\\text{ cm},\\; L=24\\text{ cm}`,
                 targetLatex: `w`,
                 slots: [{ id: "w", labelLatex: `w`, placeholder: "width", expected: 6 }],

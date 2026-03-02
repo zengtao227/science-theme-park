@@ -536,6 +536,11 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v5.0 (2026-03-02)
+- **SM2.04 Prompt Consolidation**: Replaced mission-stage prompt template concatenations in `sm2-04/page.tsx` with dedicated i18n keys (`sm2_04.mission.tower_prompt`, `sm2_04.mission.ring_prompt`) and synced EN/CN/DE math translations.
+- **SM2.07 Fallback Prompt Cleanup**: Replaced 11 elite/reverse-case `promptLatex: ""` placeholders in `sm2-07/page.tsx` with stage-localized fallback prompts (`distance/midpoint/slope`) while preserving dynamic `promptKey` rendering path.
+- **Quality Gate Target**: Keep `validate:translations`, `audit-rendering`, `lint`, and `build` green after final cleanup batch.
+
 ### v4.9 (2026-03-02)
 - **SC2.03 UI i18n Cleanup**: Removed remaining hardcoded English strings in `sc2-03/page.tsx` (`Simulation Control`, `Regional Case Study // Basel Node`, elite scenario label) and migrated them to `sc2_03.labels.*`.
 - **Tri-language Sync**: Added `simulation_control`, `regional_case_study`, `elite_integration` under `sc2_03.labels` in EN/CN/DE chemistry i18n files.
@@ -619,5 +624,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 4.9 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.0 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05

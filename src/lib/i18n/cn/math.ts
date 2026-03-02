@@ -1728,8 +1728,10 @@ export const cnMath = {    em1_01: {
             protocol: "NEXUS PROTOCOL // 瑞士节点在线",
             tower_title: "苏黎世钟楼",
             description: "在苏黎世，一位建筑师需要利用阴影测量一座历史钟楼的高度。相似三角形是解题的关键。",
+            tower_prompt: "苏黎世钟楼\n在苏黎世，一位建筑师需要利用阴影测量一座历史钟楼的高度。相似三角形是解题的关键。",
             ring_title: "卢塞恩观测环",
             ring_desc: "在卢塞恩，同心传感环被一条与内圆相切的弦切割，求圆环宽度。",
+            ring_prompt: "卢塞恩观测环\n在卢塞恩，同心传感环被一条与内圆相切的弦切割，求圆环宽度。",
             labels: {
                 tower: "钟楼",
                 tower_shadow: "钟楼阴影",

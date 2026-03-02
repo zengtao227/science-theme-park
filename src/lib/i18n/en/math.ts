@@ -1748,8 +1748,10 @@ export const enMath = {    em1_01: {
             protocol: "NEXUS PROTOCOL // SWISS NODE LIVE",
             tower_title: "ZURICH CLOCK TOWER",
             description: "In Zurich, an architect needs to measure a historic clock tower using its shadow. Similar triangles are the key.",
+            tower_prompt: "ZURICH CLOCK TOWER\nIn Zurich, an architect needs to measure a historic clock tower using its shadow. Similar triangles are the key.",
             ring_title: "LUCERNE OBSERVATION RING",
             ring_desc: "In Lucerne, a concentric sensor ring is cut by a chord touching the inner circle. Find the ring width.",
+            ring_prompt: "LUCERNE OBSERVATION RING\nIn Lucerne, a concentric sensor ring is cut by a chord touching the inner circle. Find the ring width.",
             labels: {
                 tower: "Clock Tower",
                 tower_shadow: "Tower Shadow",

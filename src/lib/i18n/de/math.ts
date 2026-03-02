@@ -1767,8 +1767,10 @@ export const deMath = {    em1_01: {
             protocol: "NEXUS PROTOCOL // SCHWEIZ-KNOTEN LIVE",
             tower_title: "ZÜRICHER KIRCHTURM",
             description: "In Zürich muss ein Architekt die Höhe eines historischen Kirchenturms mithilfe seines Schattens bestimmen. Ähnliche Dreiecke sind der Schlüssel.",
+            tower_prompt: "ZÜRICHER KIRCHTURM\nIn Zürich muss ein Architekt die Höhe eines historischen Kirchenturms mithilfe seines Schattens bestimmen. Ähnliche Dreiecke sind der Schlüssel.",
             ring_title: "LUCERNE BEOBACHTUNGSRING",
             ring_desc: "In Luzern schneidet eine Sehne den Außenkreis und berührt den Innenkreis. Bestimme die Ringbreite.",
+            ring_prompt: "LUCERNE BEOBACHTUNGSRING\nIn Luzern schneidet eine Sehne den Außenkreis und berührt den Innenkreis. Bestimme die Ringbreite.",
             labels: {
                 tower: "Kirchturm",
                 tower_shadow: "Turmschatten",
