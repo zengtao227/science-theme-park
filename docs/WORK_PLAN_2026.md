@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP2.02 + SP2.03 + SM3.01 + GM1.01 Batch B expansion completed, full QA passed)
-**Plan Version**: 6.0 (Batch B priority-wave completion)
+**Last Updated**: 2026-03-02 (GP3.03 + GP3.01 partial Batch B prompt expansion completed, full QA passed)
+**Plan Version**: 6.6 (Batch B high-frequency expansion wave-3)
 
 ---
 
@@ -111,7 +111,10 @@
 - [x] `GB2.02 + SP2.01 + GM2.02 Batch B`: upgraded prompt semantics to 4-element scenario style (background/task/givens/usage) in EN/CN/DE while preserving key names and quest logic.
 - [x] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 - [x] `SP2.02 + SP2.03 + SM3.01 + GM1.01 Batch B`: removed remaining bare parameter/formula prompts in priority modules; migrated SP2.02/SP2.03 chamber prompts to tri-language i18n templates and upgraded SM3.01/GM1.01 stage prompt semantics to scenario-task style.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（按审计清单滚动推进）。
+- [x] `GP3.01 + GP3.02 Batch B`: audited and rewrote high-frequency bare-parameter prompts; migrated `gp3-02` page-level prompt hardcoding to tri-language `gp3_02.prompts.*` templates and upgraded sampled `gp3_01` wave-property prompts to scenario-task wording.
+- [x] `GP3.03 Batch B`: rewrote all `gp3_03.prompts.*` bare parameter/formula statements in EN/CN/DE into four-element scenario-task wording while preserving keys/placeholders and quest logic.
+- [x] `GP3.01 Batch B (wave-2 extension)`: rewrote another 15 high-frequency bare prompts (Doppler/interference/duality cluster) in EN/CN/DE with scenario-task wording; key names and formulas unchanged.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP1.02 / GP1.03 / GP1.04，按审计清单滚动推进）。
 
 ---
 
@@ -434,13 +437,20 @@ Modules are classified by their quest density:
   - All with proper LaTeX, hints, and verified correct answers
 
 #### Phase 6.3: Secondary Curriculum Gaps (Priority: MEDIUM)
-- [ ] **6.3.1: SP1.03 — Weather & Climate** (Wetter & Klima)
-- [ ] **6.3.2: SP1.04 — Astronomy Basics** (Sonnensystem, Mondphasen)
-- [ ] **6.3.3: SC1.07 — Sustainability & Recycling** (Nachhaltigkeit)
+- [x] **6.3.1: SP1.03 — Weather & Climate** (Wetter & Klima)
+- [x] **6.3.2: SP1.04 — Astronomy Basics** (Sonnensystem, Mondphasen)
+- [x] **6.3.3: SC1.07 — Sustainability & Recycling** (Nachhaltigkeit)
 
 #### Phase 6.4: Companion Quests for Simulation Modules (Priority: MEDIUM)
-- [ ] **6.4.1: GP1.01–GP1.04** — Add computational quiz stages to Nuclear, Relativity, Collider, Quantum modules
-- [ ] **6.4.2: SC1.03–SC1.05** — Add quiz stages to Atoms, Periodic Table, Bonding visualization modules
+- [x] **6.4.1: GP1.01–GP1.04** — Add computational quiz stages to Nuclear, Relativity, Collider, Quantum modules
+  - [x] GP1.01 (Atomic Core) companion quiz integrated (alpha/beta/gamma tracks with verification loop)
+  - [x] GP1.02 (Relativity Lab) companion quiz integrated (Lorentz/contraction/dilation tracks with verification loop)
+  - [x] GP1.03 (Particle Collider) companion quiz integrated via `useQuestManager` (stage+difficulty pools)
+  - [x] GP1.04 (Quantum Tunnel) companion quiz integrated via `useQuestManager` (stage+difficulty pools)
+- [x] **6.4.2: SC1.03–SC1.05** — Add quiz stages to Atoms, Periodic Table, Bonding visualization modules
+  - [x] SC1.03 (Atoms Forge) companion quiz integrated via `useQuestManager` (build/elements/isotopes tracks)
+  - [x] SC1.04 (Periodic Puzzle) companion quiz integrated via `useQuestManager` (build/periodic/groups tracks)
+  - [x] SC1.05 (Bonding Bridge) companion quiz integrated via `useQuestManager` (ionic/covalent/metallic tracks)
 
 ---
 
@@ -493,6 +503,7 @@ Modules are classified by their quest density:
 ### 5.4 Global Performance & Access (P3)
 - [ ] **5.4.1: Edge Optimization**
 - [ ] **5.4.2: Universal Accessibility**
+  - [x] 5.4.2a: Companion interaction controls (`gp1-01`~`gp1-04`, `sc1-03`~`sc1-05`) now include explicit `aria-label` coverage for sliders, toggles, stage switches, and answer inputs.
 
 ### 5.5 Extra / Enrichment Challenges (P3) ✅ (2026-02-21)
 - [x] **5.5.1: Olympiad-level Module Sandbox**
@@ -504,7 +515,7 @@ Modules are classified by their quest density:
 - ✅ **Total Modules**: 97 chamber pages
 - ✅ **Rich Modules (≥40 quests)**: ~40 modules (41%)
 - ⚠️ **Sparse Modules (<10 quests)**: ~35 modules (36%)
-- ⚠️ **Curriculum Gaps**: 1 HIGH-priority (Geometric Transformations), 3 MEDIUM-priority
+- ✅ **Curriculum Gaps**: Core LP21 coverage gaps closed (remaining backlog is engineering scope: Phase 6.4 / 5.4)
 - ✅ **Build Status**: Zero type errors (Verified Feb 21)
 - ✅ **i18n Coverage**: EN, CN, DE across all modules
 
@@ -538,6 +549,7 @@ Modules are classified by their quest density:
     - [ ] 6.0.1: Left-Side Metadata & Content (SM1.01-SM3.12, SP/SB/SC)
     - [ ] 6.0.2: Right-Side Canvas/SVG Localization
     - [ ] 6.0.3: LaTeX Formula Standardization Sprint
+    - [x] 6.0.1a: Companion module hardcoded-copy cleanup (GP1.01/GP1.02 + SC1.03/SC1.04/SC1.05)
 
 ### March 2026
 - [x] Week 1: Phase 7.1 SP1.01 baseline completion (scenario_desc EN/CN/DE)
@@ -545,16 +557,55 @@ Modules are classified by their quest density:
 - [x] Week 1-2: Phase 6.1 (SM2.13 Geometric Transformations) — prompt i18n + module UI localization completed (2026-03-02)
 
 ### April 2026
-- [ ] Phase 6.2.3–6.2.5 (Physics/Chemistry/Biology Quest Sprint)
-- [ ] Phase 6.3 (Secondary curriculum gaps)
+- [x] Phase 6.2.3–6.2.5 (Physics/Chemistry/Biology Quest Sprint)
+- [x] Phase 6.3 (Secondary curriculum gaps)
 
 ### May 2026
-- [ ] Phase 6.4 (Companion quests for simulation modules)
+- [x] Phase 6.4 (Companion quests for simulation modules)
 - [ ] Phase 5.4 (Edge Optimization & Accessibility)
 
 ---
 
 ## 🔄 Version History
+
+### v6.6 (2026-03-02)
+- **Batch B High-frequency Wave-3**: Completed GP3.03 prompt semantic expansion across EN/CN/DE.
+  - `gp3_03.prompts.*` (39 keys) upgraded from bare parameter/formula phrasing to four-element scenario-task wording.
+  - `gp3_01.prompts.*` additional 15-key cluster (Doppler/interference/duality) upgraded in EN/CN/DE.
+  - Key names, placeholders (`{flux}`, `{time}`, `{turns}`, etc.), quest pool structure, and answer expectations remained unchanged.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
+### v6.5 (2026-03-02)
+- **Batch B High-frequency Wave-2**: Completed GP3.01/GP3.02 expansion pass.
+  - `gp3-02/page.tsx`: removed page-level hardcoded bare prompts, switched to `t("gp3_02.prompts.*")` template pipeline, and localized monitor labels (`question/formula/loading/answer labels`) via tri-language i18n.
+  - `gp3_02` EN/CN/DE: added new `prompts.*` and `labels.*` packs for electric-field / magnetic-field / particle-motion quest statements.
+  - `gp3_01` EN/CN/DE: upgraded sampled high-frequency wave-property prompts (`find_velocity`~`speed_ratio`) to four-element scenario-task wording.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
+### v6.4 (2026-03-02)
+- **Companion Accessibility Baseline**: Added explicit `aria-label` coverage on high-frequency interactive controls for `gp1-01`/`gp1-02`/`gp1-03`/`gp1-04` and `sc1-03`/`sc1-04`/`sc1-05` (sliders, toggles, stage buttons, quest inputs).
+- **No Logic Drift**: Changes limited to accessibility attributes and plan sync; quest pools, formulas, expected answers, and stage flow remain unchanged.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this accessibility wave.
+
+### v6.3 (2026-03-02)
+- **Companion i18n Hardening (Physics + Chemistry)**: Cleaned residual hardcoded companion text in `gp1-01` / `gp1-02` and `sc1-03` / `sc1-04` / `sc1-05` quest UIs and formulas after Phase 6.4 rollout.
+- **Stage Key Consistency Fix**: Added missing `sc1_05.stages.metallic` in EN/CN/DE to match active chamber stage IDs and prevent fallback-key rendering.
+- **Tri-language UI Additions**: Added `sc1_05.labels.bond_type`, `sc1_05.labels.case_study`, `sc1_05.descriptions.*`, and companion UI/effect keys for `gp1_01` / `gp1_02` in EN/CN/DE.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after cleanup.
+
+### v6.2 (2026-03-02)
+- **Phase 6.4 Fully Completed**: Added companion computational quiz capabilities for simulation-heavy modules:
+  - Physics: `gp1-01`, `gp1-02`, `gp1-03`, `gp1-04`
+  - Chemistry: `sc1-03`, `sc1-04`, `sc1-05`
+- **Quest Flow Standardization**: `gp1-03`/`gp1-04`/`sc1-03`/`sc1-04`/`sc1-05` now run stage+difficulty quest pools through `useQuestManager` with verify/next and solution reveal.
+- **Quality Gate Pass**: `lint`, `build`, `validate:translations`, and `audit-rendering` all passed after full rollout.
+
+### v6.1 (2026-03-02)
+- **Phase 6.4 (6.4.1) Completed**: Integrated companion computational quiz tracks across `gp1-01`/`gp1-02`/`gp1-03`/`gp1-04`.
+  - `gp1-03` and `gp1-04`: `useQuestManager` stage+difficulty pools with verify/next loop and solution reveal.
+  - `gp1-01` and `gp1-02`: lightweight companion quiz tracks embedded in existing simulation layout with verify/next loop.
+- **QA Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after GP1.01–GP1.04 integration.
+- **Plan Consistency Fixes**: Synced stale checkboxes for Phase 6.3 and timeline entries (6.2.3–6.2.5 / 6.3) to match already completed implementation state.
 
 ### v5.9 (2026-03-02)
 - **Batch B Four-Element Prompt Upgrade**: Rewrote `gb2_02.prompts.*`, `sp2_01.prompts.*`, and `gm2_02.prompts.*` from instruction-only text to scenario-compliant prompts (background/task/givens/usage) in EN/CN/DE.
@@ -692,5 +743,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.9 (Batch B four-element prompt compliance wave)
+**Plan Version**: 6.6 (Batch B high-frequency expansion wave-3)
 **Next Review**: 2026-03-05
