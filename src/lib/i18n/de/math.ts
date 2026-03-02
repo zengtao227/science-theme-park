@@ -936,7 +936,32 @@ export const deMath = {    em1_01: {
             unit_celsius: "°C"
         },
         prompts: {
-            distance: "Horizontale Distanz"
+            distance: "Horizontale Distanz",
+            pos: "Position",
+            final_temp: "Endtemperatur",
+            dist: "Entfernung",
+            colder: "Was ist kälter?",
+            smaller: "Was ist kleiner?",
+            middle_value: "Mittelwert",
+            water_lvl: "Wasserstand",
+            abs: "Absolutwert",
+            midpoint: "Mittelpunkt",
+            range: "Bereich",
+            result: "Ergebnis",
+            decimal: "Dezimalzahl",
+            which_is_larger: "Was ist größer?",
+            smallest_value: "Kleinster Wert",
+            sum: "Summe",
+            difference: "Differenz",
+            product: "Produkt",
+            quotient: "Quotient",
+            order_smallest: "Von kleinsten ordnen",
+            x_coord: "x-Koordinate",
+            y_coord: "y-Koordinate",
+            quadrant: "Quadrant",
+            plot_point: "Punkt zeichnen",
+            perimeter: "Umfang",
+            area: "Fläche"
         },
         stages: {
             number_line: "ZAHLENGERADE",
@@ -1010,7 +1035,8 @@ export const deMath = {    em1_01: {
             q_diagonal_distance: "Horizontale Entfernung von (2, 3) bis (6, 5)?",
             q_complex_translation: "Start bei (2, 3), bewege rechts 3, links 1. Finales x?"
         }
-    },
+    }
+,
     sm1_04: {
         back: "Zurück zum Nexus",
         title: "GLEICHUNGSWAAGE",

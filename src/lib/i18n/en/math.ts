@@ -920,7 +920,32 @@ export const enMath = {    em1_01: {
             unit_celsius: "°C"
         },
         prompts: {
-            distance: "Horizontal distance"
+            distance: "Horizontal distance",
+            pos: "Position",
+            final_temp: "Final temperature",
+            dist: "Distance",
+            colder: "Which is colder?",
+            smaller: "Which is smaller?",
+            middle_value: "Middle Value",
+            water_lvl: "Water level",
+            abs: "Absolute value",
+            midpoint: "Midpoint",
+            range: "Range",
+            result: "Result",
+            decimal: "Decimal",
+            which_is_larger: "Which is larger?",
+            smallest_value: "Smallest value",
+            sum: "Sum",
+            difference: "Difference",
+            product: "Product",
+            quotient: "Quotient",
+            order_smallest: "Order from smallest",
+            x_coord: "x-coordinate",
+            y_coord: "y-coordinate",
+            quadrant: "Quadrant",
+            plot_point: "Plot point",
+            perimeter: "Perimeter",
+            area: "Area"
         },
         stages: {
             number_line: "NUMBER LINE",
@@ -994,7 +1019,8 @@ export const enMath = {    em1_01: {
             q_diagonal_distance: "Horizontal distance from (2, 3) to (6, 5)?",
             q_complex_translation: "Start at (2, 3), move right 3, left 1. Final x?"
         }
-    },
+    }
+,
     sm1_04: {
         back: "Back to Nexus",
         title: "EQUATION BALANCE",

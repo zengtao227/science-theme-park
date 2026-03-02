@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 Updated)
-**Plan Version**: 3.9 (Batch A/B/C Wave-2 Complete, Wave-3 Ready)
+**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 + SM1.03 Updated)
+**Plan Version**: 4.0 (Batch A/B/C Wave-3 Complete, Wave-4 Ready)
 
 ---
 
@@ -37,6 +37,7 @@
 - [x] `gb1-01` (36 hardcoded promptLatex migrated to i18n; key symmetry verified)
 - [x] `gm1-01-advanced` (66 hardcoded promptLatex migrated to `gm1_01_advanced.prompts.*`; 27 keys tri-language aligned)
 - [x] `gp2-01` (23 remaining hardcoded promptLatex migrated; `gp2_01.prompts` EN/CN/DE aligned to 43 keys)
+- [x] `sm1-03` (59 promptLatex violations cleared: 56 wrappers + 3 hardcoded strings; `sm1_03.prompts` EN/CN/DE = 26)
 - [ ] `sm3-05`
 - [x] `sc3-01` (audit check: no hardcoded promptLatex / no `\\text{${tObj.labels...}` wrapper violations)
 - [x] `sp3-01` (audit check: no hardcoded promptLatex / no wrapper violations)
@@ -61,7 +62,8 @@
 - [x] `GM1.01-ADV Batch C`: 66 promptLatex hardcoding removed, rendering pipeline unchanged.
 - [x] `GP2.01 Batch C`: 23 residual hardcoded promptLatex removed; no quest structure changes.
 - [x] `SP3.04 Batch C`: EN/DE 60+ prompt placeholders replaced; key structure preserved.
-- [ ] Next wave target: `SM1.03` prompt wrapper cleanup (`\\text{${tObj.labels...}}` -> `t("sm1_03.prompts.*")`), then `SM2.08` hardcoded prompt text migration.
+- [x] `SM1.03 Batch C`: 59 promptLatex issues removed (`\\text{${tObj.labels...}}` wrappers + hardcoded prompt strings), i18n keys synchronized in EN/CN/DE.
+- [ ] Next wave target: `SM2.08` hardcoded prompt migration, then `SC2.05` / `SC2.01` prompt i18n extraction wave.
 
 ---
 

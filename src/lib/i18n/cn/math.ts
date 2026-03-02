@@ -904,7 +904,32 @@ export const cnMath = {    em1_01: {
             order_smallest: "按从小到大排序"
         },
         prompts: {
-            distance: "水平距离"
+            distance: "水平距离",
+            pos: "位置",
+            final_temp: "最终温度",
+            dist: "距离",
+            colder: "哪个更冷？",
+            smaller: "哪个更小？",
+            middle_value: "中间值",
+            water_lvl: "水位",
+            abs: "绝对值",
+            midpoint: "中点",
+            range: "范围",
+            result: "结果",
+            decimal: "小数",
+            which_is_larger: "哪个更大？",
+            smallest_value: "最小的值",
+            sum: "和",
+            difference: "差",
+            product: "积",
+            quotient: "商",
+            order_smallest: "按从小到大排序",
+            x_coord: "x 坐标",
+            y_coord: "y 坐标",
+            quadrant: "象限",
+            plot_point: "绘制点",
+            perimeter: "周长",
+            area: "面积"
         },
         scenarios: {
             number_line: "巴塞尔冬季温度：你正在监测巴塞尔欧洲机场的冬季温度。温度经常降到零度以下。理解负数对于读取温度计和比较温度至关重要。数轴帮助可视化整数及其关系。",
@@ -973,7 +998,8 @@ export const cnMath = {    em1_01: {
             q_diagonal_distance: "从(2, 3)到(6, 5)的水平距离？",
             q_complex_translation: "从(2, 3)开始，向右移动3，向左移动1。最终x？"
         }
-    },
+    }
+,
     sm1_04: {
         back: "返回枢纽",
         title: "等式平衡",
