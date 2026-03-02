@@ -1883,6 +1883,11 @@ export const dePhysics = {
                         formula: "Formel",
                         hint: "Hinweis"
                 },
+                prompts: {
+                        reflection_law: "\\text{Reflexionsgesetz}\\\\ \\theta_i = {angle}^\\circ",
+                        refraction_setup: "\\text{Brechung: } {material}\\\\ n_1={n1},\\; n_2={n2},\\; \\theta_1={theta1}^\\circ",
+                        lens_setup: "\\text{Linse: } f={f}\\text{mm},\\; u={u}\\text{mm}"
+                },
                 hints: {
                         refraction: "Licht wird zum Lot hin gebrochen, wenn es in ein dichteres Medium eintritt (n_2 > n_1)"
                 },

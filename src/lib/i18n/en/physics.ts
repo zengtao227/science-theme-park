@@ -1850,6 +1850,11 @@ export const enPhysics = {
                         formula: "Formula",
                         hint: "Hint"
                 },
+                prompts: {
+                        reflection_law: "\\text{Law of Reflection}\\\\ \\theta_i = {angle}^\\circ",
+                        refraction_setup: "\\text{Refraction: } {material}\\\\ n_1={n1},\\; n_2={n2},\\; \\theta_1={theta1}^\\circ",
+                        lens_setup: "\\text{Lens: } f={f}\\text{mm},\\; u={u}\\text{mm}"
+                },
                 hints: {
                         refraction: "Light bends toward the normal when entering a denser medium (n_2 > n_1)"
                 },

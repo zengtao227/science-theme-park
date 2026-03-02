@@ -1831,6 +1831,11 @@ export const cnPhysics = {
             formula: "公式",
             hint: "提示"
         },
+        prompts: {
+            reflection_law: "\\text{反射定律}\\\\ \\theta_i = {angle}^\\circ",
+            refraction_setup: "\\text{折射：} {material}\\\\ n_1={n1},\\; n_2={n2},\\; \\theta_1={theta1}^\\circ",
+            lens_setup: "\\text{透镜：} f={f}\\text{mm},\\; u={u}\\text{mm}"
+        },
         hints: {
             refraction: "光从光疏介质进入光密介质时向法线方向偏折 (n_2 > n_1)"
         },

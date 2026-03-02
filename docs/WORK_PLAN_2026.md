@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP/SM wrapper fallback cleanup wave-3, full QA passed)
-**Plan Version**: 5.6 (Batch C wrapper cleanup extension)
+**Last Updated**: 2026-03-02 (SP3.08 prompt i18n closure + wrapper cleanup waves sustained, full QA passed)
+**Plan Version**: 5.7 (Batch C wrapper cleanup + optics prompt i18n extension)
 
 ---
 
@@ -55,6 +55,7 @@
 - [x] `gc1-01` + `gc3-01` + `gc3-02` + `sc1-01` + `sc1-02` (removed residual `\\text{${t(...)}}` wrappers from quest `promptLatex`; prompt pipeline now direct i18n)
 - [x] `sc1-07` + `sp1-01` adapter + `sp1-03` + `sp1-04` + `sc2-07` + `sp3-02` + `sm3-04` (removed residual `promptLatex` wrapper shells and fallback `\\text{...}` prompt composition in quest builders)
 - [x] `sp1-02` + `sp1-02-quests` + `sm3-02` + `sm3-04` (removed `promptLatex` fallback `\\text{...}` wrappers and switched first-law prompt composition to direct i18n text)
+- [x] `sp3-08` (3 hardcoded optics `promptLatex` entries migrated to `sp3_08.prompts.*` with EN/CN/DE key symmetry)
 
 ### 7.4 Quality Gates (must pass before merge)
 - [x] `npm run lint` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
@@ -100,6 +101,7 @@
 - [x] `GC1.01 + GC3.01 + GC3.02 + SC1.01 + SC1.02 wrapper cleanup`: removed residual `promptLatex` wrapper shells (`\\text{${t(...)}}`) in quest builders and switched to direct i18n prompt strings.
 - [x] `SC1.07 + SP1.01 adapter + SP1.03 + SP1.04 + SC2.07 + SP3.02 + SM3.04 wrapper cleanup`: removed remaining `promptLatex` wrapper composition and direct `\\text{${t(...)}}` prompt construction in quest generators.
 - [x] `SP1.02 + SP1.02-quests + SM3.02 + SM3.04 fallback cleanup`: removed remaining `promptLatex` fallback wrappers (`\\text{...}`) and aligned prompt pipeline to direct i18n text.
+- [x] `SP3.08 Batch C`: migrated reflection/refraction/lens hardcoded prompt templates to `sp3_08.prompts.reflection_law/refraction_setup/lens_setup` with EN/CN/DE synchronization.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
@@ -545,6 +547,11 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v5.7 (2026-03-02)
+- **SP3.08 Prompt i18n Closure**: Replaced 3 hardcoded optics prompts in `src/lib/sp3-08/quests.ts` with `sp3_08.prompts.*` keys (`reflection_law`, `refraction_setup`, `lens_setup`).
+- **Tri-language Sync**: Added the new `sp3_08.prompts` keys in EN/CN/DE `physics.ts` with aligned placeholders (`angle`, `material`, `n1`, `n2`, `theta1`, `f`, `u`).
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after migration.
+
 ### v5.6 (2026-03-02)
 - **Wrapper Cleanup Wave-3**: Removed remaining fallback `promptLatex` wrappers in `sp1-02`, `sp1-02-quests`, `sm3-02`, and `sm3-04` (`\\text{...}` -> direct prompt strings).
 - **Pipeline Consistency**: `promptLatex` now consistently flows as direct i18n text in touched modules, with no change to quest math logic or expected values.
@@ -664,5 +671,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 5.6 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 5.7 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05
