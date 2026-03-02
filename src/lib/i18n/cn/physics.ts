@@ -1030,6 +1030,10 @@ export const cnPhysics = {
             si_unit: "{measurement} 的 SI 国际标准单位是什么？",
             convert: "将 {value} {from} 转换为 {to}",
             sigfigs: "数值 {value} 有几位有效数字？",
+            equivalent_unit: "{expr} 等价于哪个单位？",
+            round_sigfigs: "将 {value} 保留 {sigfigs} 位有效数字",
+            calculate_with_sigfigs: "按有效数字规则计算 {expr}",
+            percent_uncertainty: "{measurement} {unit} 的百分不确定度是多少？",
             hint_si: "对应的 SI 单位是 {name}",
             hint_factor: "转换系数为 {factor}",
             hint_sigfigs: "计算所有非零数字以及位于中间的零"

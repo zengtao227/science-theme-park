@@ -1095,6 +1095,10 @@ export const dePhysics = {
                         si_unit: "Was ist die SI-Einheit für {measurement}?",
                         convert: "Rechnen Sie {value} {from} in {to} um",
                         sigfigs: "Wie viele signifikante Stellen hat {value}?",
+                        equivalent_unit: "Welche Einheit ist äquivalent zu {expr}?",
+                        round_sigfigs: "Runden Sie {value} auf {sigfigs} signifikante Stellen",
+                        calculate_with_sigfigs: "Berechnen Sie {expr} mit korrekten signifikanten Stellen",
+                        percent_uncertainty: "Wie groß ist die prozentuale Unsicherheit von {measurement} {unit}?",
                         hint_si: "Die SI-Einheit ist {name}",
                         hint_factor: "Multiplizieren Sie mit {factor}",
                         hint_sigfigs: "Zählen Sie alle Ziffern außer führenden Nullen"

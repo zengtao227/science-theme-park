@@ -1035,6 +1035,10 @@ export const enPhysics = {
                         si_unit: "What is the SI unit for {measurement}?",
                         convert: "Convert {value} {from} to {to}",
                         sigfigs: "How many significant figures in {value}?",
+                        equivalent_unit: "What unit is equivalent to {expr}?",
+                        round_sigfigs: "Round {value} to {sigfigs} significant figures",
+                        calculate_with_sigfigs: "Calculate {expr} with proper sig figs",
+                        percent_uncertainty: "What is the percent uncertainty of {measurement} {unit}?",
                         hint_si: "The SI unit is {name}",
                         hint_factor: "Multiply by {factor}",
                         hint_sigfigs: "Count all non-zero digits and zeros between them"
