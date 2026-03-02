@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 + SM1.03 Updated)
-**Plan Version**: 4.0 (Batch A/B/C Wave-3 Complete, Wave-4 Ready)
+**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 Batch C + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 + SM1.03 Updated)
+**Plan Version**: 4.1 (Batch A/B/C Wave-4 in progress)
 
 ---
 
@@ -29,7 +29,7 @@
 - [ ] Produce per-batch audit snapshot under `temp/` before merge.
 
 ### 7.3 Priority Queue (First 10 high-risk modules)
-- [x] `sm2-08` (scenarios merged from `_updated.ts`, 26/26 coverage in EN/CN/DE)
+- [x] `sm2-08` (scenarios merged + Batch C prompt migration complete: 63 hardcoded `promptLatex` -> i18n, 53 tri-language keys aligned)
 - [x] `sm1-04` (applications/scenarios text aligned to 4-element structure in EN/CN/DE)
 - [x] `sc2-05` (60 context literals migrated to i18n in EN/CN/DE; page hardcoding removed)
 - [x] `em1-01` (79 hardcoded prompt/render violations removed; EN/CN/DE prompts aligned)
@@ -45,9 +45,9 @@
 
 ### 7.4 Quality Gates (must pass before merge)
 - [ ] `npm run lint`
-- [x] `npm run build` (passed after GM1.01-ADV merge, 2026-03-01)
-- [x] `npm run validate:translations` (passed after GM1.01-ADV merge, 2026-03-01)
-- [x] `bash scripts/audit-rendering.sh` (passed after GM1.01-ADV merge, 2026-03-01)
+- [x] `npm run build` (passed after SM2.08 Batch C merge prep, 2026-03-02)
+- [x] `npm run validate:translations` (passed after SM2.08 Batch C merge prep, 2026-03-02)
+- [x] `bash scripts/audit-rendering.sh` (passed after SM2.08 Batch C merge prep, 2026-03-02)
 - [ ] Scenario 4-element compliance check completed for touched content.
 
 ### 7.5 Batch A Wave-1 Results (2026-03-01)
@@ -63,7 +63,8 @@
 - [x] `GP2.01 Batch C`: 23 residual hardcoded promptLatex removed; no quest structure changes.
 - [x] `SP3.04 Batch C`: EN/DE 60+ prompt placeholders replaced; key structure preserved.
 - [x] `SM1.03 Batch C`: 59 promptLatex issues removed (`\\text{${tObj.labels...}}` wrappers + hardcoded prompt strings), i18n keys synchronized in EN/CN/DE.
-- [ ] Next wave target: `SM2.08` hardcoded prompt migration, then `SC2.05` / `SC2.01` prompt i18n extraction wave.
+- [x] `SM2.08 Batch C`: 63 hardcoded `promptLatex` removed from `page.tsx`; `sm2_08.prompts` EN/CN/DE +53 keys and DATA_STATS residual 3 migrated.
+- [ ] Next wave target: `SC2.01` prompt i18n extraction + `SM3.05` scenario/prompt compliance pass.
 
 ---
 
