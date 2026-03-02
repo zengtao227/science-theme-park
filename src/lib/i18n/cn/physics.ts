@@ -892,36 +892,36 @@ export const cnPhysics = {
             third_law: "作用-反作用检查：A 物体对 B 物体施加 {f1} N。任务：给出 B 对 A 的反作用力大小。",
             "FIRST_LAW": {
                 "BASIC": [
-                    "Object at rest, no force applied. Will it move?",
-                    "Object moving at 5 m/s, no net force. What happens?",
-                    "Car at rest. Driver applies no force. Does it move?",
-                    "Ball rolling at 3 m/s on frictionless surface. Net force?",
-                    "Book on table. Is it in equilibrium?",
-                    "Puck sliding on ice at constant speed. Net force?",
-                    "Object at rest stays at rest unless acted upon by?"
+                    "静止物体未受外力。任务：判断它是否会自行运动。",
+                    "物体以 5 m/s 匀速运动且合力为 0。任务：判断运动状态是否改变。",
+                    "汽车静止且驾驶员未施力。任务：判断汽车是否会启动。",
+                    "小球在无摩擦表面以 3 m/s 滚动。任务：判断合力大小。",
+                    "书放在桌面上。任务：判断系统是否处于平衡。",
+                    "冰球在冰面上匀速滑行。任务：判断合力大小。",
+                    "概念题：静止物体保持静止，除非受到什么作用？"
                 ],
                 "CORE": [
-                    "Basel tram at 15 m/s. Brakes apply -3000 N. Mass 10000 kg. Final velocity after 5s?",
-                    "Fasnacht float at rest. Push with 500 N. Friction 500 N. Does it move?",
-                    "Rhine boat moving at 2 m/s. Engine off. Friction 100 N. Mass 500 kg. Time to stop?",
-                    "Object moving at 10 m/s. Net force 0 N. Velocity after 10s?",
-                    "Car at 20 m/s. Friction 2000 N. Mass 1000 kg. Deceleration?",
-                    "Tram at constant 12 m/s. Applied force equals friction. Net force?",
-                    "Puck on ice at 5 m/s. No friction. Velocity after 20s?",
-                    "Basel bus at rest. Engine force 3000 N. Friction 3000 N. Acceleration?"
+                    "巴塞尔电车以 15 m/s 行驶，制动力为 -3000 N，质量 10000 kg。任务：求 5 s 后速度。",
+                    "Fasnacht 花车静止，推动力 500 N、摩擦力 500 N。任务：判断是否会运动。",
+                    "莱茵河船以 2 m/s 前进，发动机关停，摩擦力 100 N，质量 500 kg。任务：求停止所需时间。",
+                    "物体以 10 m/s 运动，合力为 0 N。任务：求 10 s 后速度。",
+                    "汽车以 20 m/s 行驶，摩擦力 2000 N，质量 1000 kg。任务：求减速度。",
+                    "电车以 12 m/s 匀速行驶，牵引力等于摩擦力。任务：判断合力。",
+                    "冰面冰球速度 5 m/s、无摩擦。任务：求 20 s 后速度。",
+                    "巴塞尔公交静止，发动机力 3000 N、摩擦力 3000 N。任务：求加速度。"
                 ],
                 "ADVANCED": [
-                    "Basel SBB train 50000 kg at 25 m/s. Brakes apply -10000 N. Distance to stop?",
-                    "Fasnacht parade float 2000 kg. Push 1000 N, friction 800 N. Acceleration?",
-                    "Rhine boat 1000 kg at 5 m/s. Water resistance 200 N. Time to reach 3 m/s?",
-                    "Tram 15000 kg at 20 m/s. Emergency brake -12000 N. Stopping distance?",
-                    "Object 500 kg moving at 8 m/s. Friction 100 N. Distance traveled before stopping?",
-                    "Car 1200 kg at 30 m/s. Brake force -4000 N. Time to stop?"
+                    "巴塞尔 SBB 列车质量 50000 kg，速度 25 m/s，制动力 -10000 N。任务：求停车距离。",
+                    "Fasnacht 花车质量 2000 kg，推动力 1000 N、摩擦力 800 N。任务：求加速度。",
+                    "莱茵河船质量 1000 kg，速度 5 m/s，水阻 200 N。任务：求降到 3 m/s 的时间。",
+                    "电车质量 15000 kg，速度 20 m/s，紧急制动 -12000 N。任务：求停车距离。",
+                    "质量 500 kg 物体以 8 m/s 运动，摩擦力 100 N。任务：求停止前位移。",
+                    "汽车质量 1200 kg，速度 30 m/s，制动力 -4000 N。任务：求停车时间。"
                 ],
                 "ELITE": [
-                    "Basel tram system: 3 trams, masses 10000, 12000, 15000 kg, all at 15 m/s. Total momentum?",
-                    "Fasnacht float 3000 kg at rest. Multiple pushes: 500 N, 300 N, -200 N. Net force?",
-                    "Rhine boat 2000 kg at 4 m/s. Engine thrust 1000 N, water resistance 800 N. Final velocity after 10s?"
+                    "巴塞尔电车系统：三辆电车质量分别为 10000、12000、15000 kg，速度均为 15 m/s。任务：求总动量。",
+                    "Fasnacht 花车质量 3000 kg 静止，受力分别为 500 N、300 N、-200 N。任务：求合力。",
+                    "莱茵河船质量 2000 kg，速度 4 m/s，发动机推力 1000 N、水阻 800 N。任务：求 10 s 后速度。"
                 ]
             },
             "SECOND_LAW": {
@@ -946,18 +946,18 @@ export const cnPhysics = {
                     "货车工况计算：m=5000 kg，a=0.5 m/s^{2}。任务：求力 F（N）。"
                 ],
                 "ADVANCED": [
-                    "Basel tram 10000 kg, applied force 18000 N, friction 3000 N. Find a (m/s^{2})",
-                    "Fasnacht float 3000 kg, push 2000 N, friction 500 N. Find a (m/s^{2})",
-                    "Rhine boat 2000 kg, thrust 4000 N, water resistance 1000 N. Find a (m/s^{2})",
-                    "SBB train 60000 kg, brake -15000 N, friction -3000 N. Find a (m/s^{2})",
-                    "Tram 15000 kg needs 1.8 m/s^{2} with friction 2000 N. Find applied force (N)",
-                    "Car 1200 kg, engine 5000 N, air resistance 800 N. Find a (m/s^{2})",
-                    "Basel bus 8000 kg, engine 10000 N, friction 2000 N. Find a (m/s^{2})"
+                    "巴塞尔电车质量 10000 kg，外力 18000 N，摩擦力 3000 N。任务：求 a (m/s^{2})。",
+                    "Fasnacht 花车质量 3000 kg，推动力 2000 N，摩擦力 500 N。任务：求 a (m/s^{2})。",
+                    "莱茵河船质量 2000 kg，推力 4000 N，水阻 1000 N。任务：求 a (m/s^{2})。",
+                    "SBB 列车质量 60000 kg，制动力 -15000 N，摩擦力 -3000 N。任务：求 a (m/s^{2})。",
+                    "电车质量 15000 kg，目标 a=1.8 m/s^{2}，摩擦力 2000 N。任务：求外加力 (N)。",
+                    "汽车质量 1200 kg，发动机力 5000 N，空气阻力 800 N。任务：求 a (m/s^{2})。",
+                    "巴塞尔公交质量 8000 kg，发动机力 10000 N，摩擦力 2000 N。任务：求 a (m/s^{2})。"
                 ],
                 "ELITE": [
-                    "Basel tram system: 3 trams (10000, 12000, 15000 kg) all accelerate at 1.5 m/s^{2}. Total force?",
-                    "Fasnacht parade: 5 floats, each 2000 kg, each pushed with 1000 N. Total acceleration?",
-                    "Rhine boat 2500 kg, thrust 5000 N, water resistance 20% of thrust. Find a (m/s^{2})"
+                    "巴塞尔电车系统：三辆电车（10000、12000、15000 kg）都以 1.5 m/s^{2} 加速。任务：求总力。",
+                    "Fasnacht 巡游：5 辆花车，每辆 2000 kg，每辆受推力 1000 N。任务：求系统加速度。",
+                    "莱茵河船质量 2500 kg，推力 5000 N，水阻为推力的 20%。任务：求 a (m/s^{2})。"
                 ]
             },
             "THIRD_LAW": {
@@ -980,19 +980,19 @@ export const cnPhysics = {
                     "人与墙相互作用：人对墙施加 200 N。任务：给出墙对人的反作用力大小。"
                 ],
                 "ADVANCED": [
-                    "Basel tram 10000 kg accelerates at 1.5 m/s^{2}. Force on track?",
-                    "Rhine boat 2000 kg accelerates at 2 m/s^{2}. Force on water?",
-                    "Fasnacht float 3000 kg, friction 500 N, accelerates at 0.5 m/s^{2}. Force on ground?",
-                    "SBB train 50000 kg decelerates at -0.2 m/s^{2}. Force on track?",
-                    "Rocket 5000 kg accelerates at 10 m/s^{2}. Force on exhaust gas?",
-                    "Car 1200 kg accelerates at 3 m/s^{2}. Force on road?",
-                    "Basel bus 8000 kg accelerates at 1 m/s^{2}. Force on road?"
+                    "巴塞尔电车质量 10000 kg，以 1.5 m/s^{2} 加速。任务：求电车对轨道的作用力。",
+                    "莱茵河船质量 2000 kg，以 2 m/s^{2} 加速。任务：求船对水的作用力。",
+                    "Fasnacht 花车质量 3000 kg，摩擦力 500 N，加速度 0.5 m/s^{2}。任务：求对地作用力。",
+                    "SBB 列车质量 50000 kg，减速度 -0.2 m/s^{2}。任务：求对轨道作用力。",
+                    "火箭质量 5000 kg，加速度 10 m/s^{2}。任务：求对尾气作用力。",
+                    "汽车质量 1200 kg，加速度 3 m/s^{2}。任务：求对路面作用力。",
+                    "巴塞尔公交质量 8000 kg，加速度 1 m/s^{2}。任务：求对路面作用力。"
                 ],
                 "ELITE": [
-                    "Basel tram 10000 kg and car 1000 kg collide. Tram exerts 50000 N on car. Car exerts how many N on tram?",
-                    "Rhine boat 2000 kg pushes water with 4000 N. Boat accelerates at 2 m/s^{2}. Water mass pushed?",
-                    "Fasnacht float 3000 kg, ground pushes with 2000 N. Float accelerates at 0.5 m/s^{2}. Friction force?",
-                    "SBB train 50000 kg, track pushes with 10000 N. Train decelerates at -0.2 m/s^{2}. Verify F=ma?"
+                    "巴塞尔电车（10000 kg）与汽车（1000 kg）碰撞。电车对汽车作用 50000 N。任务：求汽车对电车作用力。",
+                    "莱茵河船质量 2000 kg，以 4000 N 推水并以 2 m/s^{2} 加速。任务：估算被推动水体质量。",
+                    "Fasnacht 花车质量 3000 kg，地面对其推力 2000 N，花车加速度 0.5 m/s^{2}。任务：求摩擦力。",
+                    "SBB 列车质量 50000 kg，轨道推力 10000 N，减速度 -0.2 m/s^{2}。任务：验证 F=ma 是否成立。"
                 ]
             }
         },

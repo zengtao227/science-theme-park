@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP1.01 + GP1.02 Batch B wave-5 prompt migration completed, full QA passed)
-**Plan Version**: 6.8 (Batch B high-frequency expansion wave-5)
+**Last Updated**: 2026-03-02 (SP1.02 Batch B wave-6 localization closure completed, full QA passed)
+**Plan Version**: 6.9 (Batch B high-frequency expansion wave-6)
 
 ---
 
@@ -117,7 +117,8 @@
 - [x] `SP1.02 Batch B (partial)`: rewrote `SECOND_LAW` + `THIRD_LAW` BASIC/CORE prompt arrays in EN/CN/DE from bare-parameter style to scenario-task wording while preserving index order and answer mapping.
 - [x] `SP1.02 + GP1.03 + GP1.04 Batch B (wave-4)`: added missing runtime prompt template keys for `sp1_02.prompts.first_law_* / second_law / third_law` in EN/CN/DE; migrated all hardcoded `promptLatex` in `gp1-03/page.tsx` and `gp1-04/page.tsx` to tri-language i18n prompt keys and upgraded wording to scenario-task style.
 - [x] `GP1.01 + GP1.02 Batch B (wave-5)`: migrated companion-quiz hardcoded prompt symbols in `gp1-01/page.tsx` and `gp1-02/page.tsx` to i18n-driven `gp1_01.prompts.*` / `gp1_02.prompts.*`; synchronized EN/CN/DE prompt key packs.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP1.02 旧数组本地化收口 + 未覆盖 FIRST_LAW/ADV/ELITE 文案统一）。
+- [x] `SP1.02 Batch B (wave-6 localization closure)`: localized the remaining legacy arrays in CN/DE (`FIRST_LAW` BASIC/CORE/ADVANCED/ELITE + `SECOND_LAW` ADVANCED/ELITE + `THIRD_LAW` ADVANCED/ELITE), keeping array order, key names, and answer mapping unchanged.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP1.02 EN 旧数组语义统一 + GP3.01/GP3.02 余量抽检）。
 
 ---
 
@@ -571,6 +572,14 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v6.9 (2026-03-02)
+- **Batch B High-frequency Wave-6 (SP1.02 localization closure)**: completed CN/DE legacy-array localization to remove remaining English prompt residue.
+  - `sp1_02.prompts.FIRST_LAW` (BASIC/CORE/ADVANCED/ELITE) localized in CN and DE.
+  - `sp1_02.prompts.SECOND_LAW` (ADVANCED/ELITE) localized in CN and DE.
+  - `sp1_02.prompts.THIRD_LAW` (ADVANCED/ELITE) localized in CN and DE.
+  - Preserved key paths, array index order, quest-to-prompt mapping, formulas, and expected answers.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v6.8 (2026-03-02)
 - **Batch B High-frequency Wave-5**: Completed GP1.01 + GP1.02 prompt migration pass.
   - `gp1-01/page.tsx`: replaced 9 companion quiz hardcoded `promptLatex` entries with `t("gp1_01.prompts.*")`.
@@ -761,5 +770,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 6.8 (Batch B high-frequency expansion wave-5)
+**Plan Version**: 6.9 (Batch B high-frequency expansion wave-6)
 **Next Review**: 2026-03-05
