@@ -1202,11 +1202,11 @@ export const dePhysics = {
                         efficiency_find_loss_input_eff: "Verlustanalyse: Eingangsleistung {input} W bei η = {efficiency}%. Berechnen Sie P_loss.",
                         efficiency_find_loss_output_eff: "Verlustanalyse: Nutzleistung {output} W bei η = {efficiency}%. Berechnen Sie P_loss.",
                         efficiency_device: "Gerätecheck {device}: Eingangsleistung {input} W und Nutzleistung {output} W. Berechnen Sie den Wirkungsgrad η.",
-                        e1: "IWB Wärmepumpe: P=3kW für 500h. Tarif: 0.28 CHF/kWh. Kosten?",
-                        e2: "Sommer-Klimaanlage: P=1.5kW für 100h. Tarif: 0.28 CHF/kWh. Kosten?",
-                        e3: "Basler Läckerli Ofen: P=2kW für 5h. Tarif: 0.28 CHF/kWh. Kosten?",
-                        e4: "E-Auto Laden (Niedertarif): P=11kW für 50h. Tarif: 0.24 CHF/kWh. Kosten?",
-                        e5: "Fasnachtslaternen: P=0.5kW für 72h. Tarif: 0.28 CHF/kWh. Kosten?"
+                        e1: "IWB-Abrechnungsfall Haushalt: Wärmepumpe läuft mit P=3 kW für 500 h bei 0.28 CHF/kWh. Aufgabe: Gesamtkosten berechnen.",
+                        e2: "Sommer-Kühlbudget: Klimaanlage läuft mit P=1.5 kW für 100 h bei 0.28 CHF/kWh. Aufgabe: Gesamtkosten berechnen.",
+                        e3: "Bäckerei-Energiecheck: Basler Läckerli-Ofen läuft mit P=2 kW für 5 h bei 0.28 CHF/kWh. Aufgabe: Gesamtkosten berechnen.",
+                        e4: "E-Auto-Niedertarifprüfung: Laden mit P=11 kW für 50 h bei 0.24 CHF/kWh. Aufgabe: Gesamtkosten berechnen.",
+                        e5: "Fasnachtsbeleuchtung-Schätzung: Laternen laufen mit P=0.5 kW für 72 h bei 0.28 CHF/kWh. Aufgabe: Gesamtkosten berechnen."
                 }
         },
 

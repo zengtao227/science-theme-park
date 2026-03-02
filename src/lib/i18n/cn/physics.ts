@@ -1137,11 +1137,11 @@ export const cnPhysics = {
             efficiency_find_loss_input_eff: "损耗审计：输入 {input}W、效率 η={efficiency}% 。计算损耗功率 P_loss。",
             efficiency_find_loss_output_eff: "损耗审计：输出 {output}W、效率 η={efficiency}% 。计算损耗功率 P_loss。",
             efficiency_device: "{device} 设备评估：输入 {input}W、有效输出 {output}W。计算效率 η。",
-            e1: "IWB 热泵: P=3kW 运行 500h。费率: 0.28 CHF/kWh。总费用？",
-            e2: "夏季空调: P=1.5kW 运行 100h。费率: 0.28 CHF/kWh。总费用？",
-            e3: "巴塞尔 Läckerli 饼干烤箱: P=2kW 运行 5h。费率: 0.28 CHF/kWh。总费用？",
-            e4: "电动车充电 (谷电): P=11kW 运行 50h。费率: 0.24 CHF/kWh。总费用？",
-            e5: "巴塞尔狂欢节 (Fasnacht) 彩灯: P=0.5kW 运行 72h。费率: 0.28 CHF/kWh。总费用？"
+            e1: "IWB 家庭计费案例：热泵以 P=3 kW 运行 500 h，电价 0.28 CHF/kWh。任务：计算总费用。",
+            e2: "夏季制冷预算案例：空调以 P=1.5 kW 运行 100 h，电价 0.28 CHF/kWh。任务：计算总费用。",
+            e3: "烘焙能耗核算：巴塞尔 Läckerli 烤箱以 P=2 kW 运行 5 h，电价 0.28 CHF/kWh。任务：计算总费用。",
+            e4: "电动车谷电充电审计：充电器以 P=11 kW 运行 50 h，电价 0.24 CHF/kWh。任务：计算总费用。",
+            e5: "Fasnacht 彩灯用电估算：灯组以 P=0.5 kW 运行 72 h，电价 0.28 CHF/kWh。任务：计算总费用。"
         }
     },
 

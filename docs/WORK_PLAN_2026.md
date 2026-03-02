@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GP3.01 Batch B wave-8 prompt refinement completed, GP3.02 audit pass, full QA passed)
-**Plan Version**: 7.1 (Batch B high-frequency expansion wave-8)
+**Last Updated**: 2026-03-02 (SP2.03 Batch B wave-9 cost-case prompt refinement completed, full QA passed)
+**Plan Version**: 7.2 (Batch B high-frequency expansion wave-9)
 
 ---
 
@@ -120,7 +120,8 @@
 - [x] `SP1.02 Batch B (wave-6 localization closure)`: localized the remaining legacy arrays in CN/DE (`FIRST_LAW` BASIC/CORE/ADVANCED/ELITE + `SECOND_LAW` ADVANCED/ELITE + `THIRD_LAW` ADVANCED/ELITE), keeping array order, key names, and answer mapping unchanged.
 - [x] `SP1.02 Batch B (wave-7 EN semantic unification)`: rewrote EN legacy arrays to scenario-task wording (`FIRST_LAW` BASIC/CORE/ADVANCED/ELITE + `SECOND_LAW` ADVANCED/ELITE + `THIRD_LAW` ADVANCED/ELITE), preserving key paths and index order.
 - [x] `GP3.01 + GP3.02 Batch B (wave-8)`: completed residual audit and rewrote 35 bare parameter/formula prompts in `gp3_01.prompts.*` (standing-wave / diffraction / optics cluster) across EN/CN/DE; `gp3_02` audited with no additional bare-prompt migration required in this wave.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP2.02/SP2.03 裸参数题干抽检与收口）。
+- [x] `SP2.02 + SP2.03 Batch B (wave-9 partial)`: completed residual audit and rewrote `sp2_03.prompts.e1~e5` short billing prompts into scenario-task wording across EN/CN/DE; `sp2_02` prompts audited and kept as-is in this wave.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SP2.03 其余短题键 + 后续 SM3/GP2 抽检）。
 
 ---
 
@@ -574,6 +575,13 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v7.2 (2026-03-02)
+- **Batch B High-frequency Wave-9 (SP2.03 cost-case refinement)**:
+  - Rewrote `sp2_03.prompts.e1~e5` in EN/CN/DE from short bare parameter lines to scenario-task wording (given values + explicit cost task).
+  - Completed `sp2_02` residual prompt audit in this wave with no additional semantic rewrite required.
+  - Preserved prompt keys, formulas, and answer mapping; only wording changed.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v7.1 (2026-03-02)
 - **Batch B High-frequency Wave-8 (GP3.01/GP3.02 residual pass)**:
   - Rewrote 35 `gp3_01.prompts.*` bare parameter/formula entries (standing-wave, double-slit, thin-film, reflection/refraction, diffraction, grating cluster) into scenario-task wording in EN/CN/DE.
@@ -786,5 +794,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 7.1 (Batch B high-frequency expansion wave-8)
+**Plan Version**: 7.2 (Batch B high-frequency expansion wave-9)
 **Next Review**: 2026-03-05

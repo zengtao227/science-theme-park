@@ -2059,11 +2059,11 @@ export const enPhysics = {
                         efficiency_find_loss_input_eff: "Loss audit: input {input} W at η = {efficiency}%. Compute power loss P_loss.",
                         efficiency_find_loss_output_eff: "Loss audit: output {output} W at η = {efficiency}%. Compute power loss P_loss.",
                         efficiency_device: "{device} performance check: input {input} W and useful output {output} W. Compute efficiency η.",
-                        e1: "IWB Heat Pump: P=3kW for 500h. Rate: 0.28 CHF/kWh. Cost?",
-                        e2: "Summer AC: P=1.5kW for 100h. Rate: 0.28 CHF/kWh. Cost?",
-                        e3: "Basler Läckerli Oven: P=2kW for 5h. Rate: 0.28 CHF/kWh. Cost?",
-                        e4: "EV Charging (Off-peak): P=11kW for 50h. Rate: 0.24 CHF/kWh. Cost?",
-                        e5: "Fasnacht Lanterns: P=0.5kW for 72h. Rate: 0.28 CHF/kWh. Cost?"
+                        e1: "IWB household billing case: heat pump runs at P=3 kW for 500 h with tariff 0.28 CHF/kWh. Task: compute total cost.",
+                        e2: "Summer cooling budget case: AC runs at P=1.5 kW for 100 h with tariff 0.28 CHF/kWh. Task: compute total cost.",
+                        e3: "Bakery energy check: Basler Lackerli oven runs at P=2 kW for 5 h with tariff 0.28 CHF/kWh. Task: compute total cost.",
+                        e4: "EV off-peak charging audit: charger runs at P=11 kW for 50 h with tariff 0.24 CHF/kWh. Task: compute total cost.",
+                        e5: "Fasnacht lighting estimate: lantern system runs at P=0.5 kW for 72 h with tariff 0.28 CHF/kWh. Task: compute total cost."
                 }
         },
 
