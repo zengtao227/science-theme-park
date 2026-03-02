@@ -28,39 +28,40 @@ interface TitrationQuest extends Quest {
     };
 }
 
-function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): TitrationQuest[] {
+function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): TitrationQuest[] {
     const quests: TitrationQuest[] = [];
+    const tr = tObj.translate;
     
     // Stage 1: CURVES - Titration curve analysis (20 questions: 4 difficulties × 5 questions)
     if (stage === "CURVES") {
         const curveQuestions = [
             // BASIC (5 questions) - Simple curve identification
-            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.1, question: "Identify curve type", expected: "strong-strong" },
-            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, question: "Identify weak acid curve", expected: "weak-strong" },
-            { acidType: "strong" as const, acidConc: 0.2, baseConc: 0.1, question: "Find equivalence volume", expected: 100 },
-            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.2, question: "Calculate eq point", expected: 25 },
-            { acidType: "weak" as const, acidConc: 0.15, baseConc: 0.1, question: "Weak acid eq volume", expected: 75 },
+            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.1, prompt: tObj.prompts.curves_basic_1, expected: "strong-strong" },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, prompt: tObj.prompts.curves_basic_2, expected: "weak-strong" },
+            { acidType: "strong" as const, acidConc: 0.2, baseConc: 0.1, prompt: tObj.prompts.curves_basic_3, expected: 100 },
+            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.2, prompt: tObj.prompts.curves_basic_4, expected: 25 },
+            { acidType: "weak" as const, acidConc: 0.15, baseConc: 0.1, prompt: tObj.prompts.curves_basic_5, expected: 75 },
             
             // CORE (5 questions) - pH calculations
-            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.1, question: "pH at equivalence", expected: 7 },
-            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, question: "Weak acid pH at eq", expected: 8.5 },
-            { acidType: "strong" as const, acidConc: 0.2, baseConc: 0.2, question: "Strong acid eq pH", expected: 7 },
-            { acidType: "weak" as const, acidConc: 0.15, baseConc: 0.15, question: "Buffer region pH", expected: 4.75 },
-            { acidType: "strong" as const, acidConc: 0.05, baseConc: 0.1, question: "Dilute acid eq volume", expected: 25 },
+            { acidType: "strong" as const, acidConc: 0.1, baseConc: 0.1, prompt: tObj.prompts.curves_core_1, expected: 7 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, prompt: tObj.prompts.curves_core_2, expected: 8.5 },
+            { acidType: "strong" as const, acidConc: 0.2, baseConc: 0.2, prompt: tObj.prompts.curves_core_3, expected: 7 },
+            { acidType: "weak" as const, acidConc: 0.15, baseConc: 0.15, prompt: tObj.prompts.curves_core_4, expected: 4.75 },
+            { acidType: "strong" as const, acidConc: 0.05, baseConc: 0.1, prompt: tObj.prompts.curves_core_5, expected: 25 },
             
             // ADVANCED (5 questions) - Complex calculations
-            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.2, question: "Weak acid pKa", expected: 4.75 },
-            { acidType: "strong" as const, acidConc: 0.3, baseConc: 0.1, question: "High conc eq point", expected: 150 },
-            { acidType: "weak" as const, acidConc: 0.2, baseConc: 0.1, question: "Buffer capacity", expected: 100 },
-            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.15, question: "Half-eq pH", expected: 4.75 },
-            { acidType: "strong" as const, acidConc: 0.25, baseConc: 0.2, question: "Precise eq volume", expected: 62.5 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.2, prompt: tObj.prompts.curves_advanced_1, expected: 4.75 },
+            { acidType: "strong" as const, acidConc: 0.3, baseConc: 0.1, prompt: tObj.prompts.curves_advanced_2, expected: 150 },
+            { acidType: "weak" as const, acidConc: 0.2, baseConc: 0.1, prompt: tObj.prompts.curves_advanced_3, expected: 100 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.15, prompt: tObj.prompts.curves_advanced_4, expected: 4.75 },
+            { acidType: "strong" as const, acidConc: 0.25, baseConc: 0.2, prompt: tObj.prompts.curves_advanced_5, expected: 62.5 },
             
             // ELITE (5 questions) - Expert level
-            { acidType: "weak" as const, acidConc: 0.12, baseConc: 0.18, question: "Complex pKa calc", expected: 4.75 },
-            { acidType: "weak" as const, acidConc: 0.08, baseConc: 0.12, question: "Low conc buffer", expected: 33.3 },
-            { acidType: "strong" as const, acidConc: 0.15, baseConc: 0.25, question: "Multi-step calc", expected: 30 },
-            { acidType: "weak" as const, acidConc: 0.2, baseConc: 0.15, question: "Advanced buffer", expected: 66.7 },
-            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, question: "Exact pH at 25mL", expected: 4.75 },
+            { acidType: "weak" as const, acidConc: 0.12, baseConc: 0.18, prompt: tObj.prompts.curves_elite_1, expected: 4.75 },
+            { acidType: "weak" as const, acidConc: 0.08, baseConc: 0.12, prompt: tObj.prompts.curves_elite_2, expected: 33.3 },
+            { acidType: "strong" as const, acidConc: 0.15, baseConc: 0.25, prompt: tObj.prompts.curves_elite_3, expected: 30 },
+            { acidType: "weak" as const, acidConc: 0.2, baseConc: 0.15, prompt: tObj.prompts.curves_elite_4, expected: 66.7 },
+            { acidType: "weak" as const, acidConc: 0.1, baseConc: 0.1, prompt: tObj.prompts.curves_elite_5, expected: 4.75 },
         ];
         
         const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
@@ -71,10 +72,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): Titration
                 id: `CURVES_${difficulty}_${idx}`,
                 difficulty,
                 stage,
-                promptLatex: `\\\\text{${q.question}}`,
+                promptLatex: q.prompt,
                 expressionLatex: `C_a=${q.acidConc}\\text{M},\\; C_b=${q.baseConc}\\text{M}`,
-                targetLatex: "\\\\text{Answer}",
-                slots: [{ id: "ans", labelLatex: "Answer", placeholder: "Result", expected: q.expected }],
+                targetLatex: tObj.labels.answer_target,
+                slots: [{ id: "ans", labelLatex: tObj.labels.answer_slot, placeholder: tObj.labels.result_placeholder, expected: q.expected }],
                 correctLatex: q.expected.toString(),
                 simConfig: {
                     acidType: q.acidType,
@@ -93,32 +94,32 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): Titration
     if (stage === "EQUIVALENCE") {
         const eqQuestions = [
             // BASIC (5 questions)
-            { acidConc: 0.1, baseConc: 0.1, volume: 50, question: "Find equivalence volume", expected: 50 },
-            { acidConc: 0.2, baseConc: 0.1, volume: 50, question: "Calculate eq point", expected: 100 },
-            { acidConc: 0.1, baseConc: 0.2, volume: 50, question: "Eq volume calc", expected: 25 },
-            { acidConc: 0.15, baseConc: 0.1, volume: 50, question: "Find eq volume", expected: 75 },
-            { acidConc: 0.1, baseConc: 0.15, volume: 50, question: "Calculate eq", expected: 33.3 },
+            { acidConc: 0.1, baseConc: 0.1, volume: 50, prompt: tObj.prompts.equivalence_basic_1, expected: 50 },
+            { acidConc: 0.2, baseConc: 0.1, volume: 50, prompt: tObj.prompts.equivalence_basic_2, expected: 100 },
+            { acidConc: 0.1, baseConc: 0.2, volume: 50, prompt: tObj.prompts.equivalence_basic_3, expected: 25 },
+            { acidConc: 0.15, baseConc: 0.1, volume: 50, prompt: tObj.prompts.equivalence_basic_4, expected: 75 },
+            { acidConc: 0.1, baseConc: 0.15, volume: 50, prompt: tObj.prompts.equivalence_basic_5, expected: 33.3 },
             
             // CORE (5 questions)
-            { acidConc: 0.25, baseConc: 0.2, volume: 50, question: "Precise eq point", expected: 62.5 },
-            { acidConc: 0.3, baseConc: 0.15, volume: 50, question: "High conc eq", expected: 100 },
-            { acidConc: 0.05, baseConc: 0.1, volume: 50, question: "Low conc eq", expected: 25 },
-            { acidConc: 0.12, baseConc: 0.18, volume: 50, question: "Complex eq calc", expected: 33.3 },
-            { acidConc: 0.18, baseConc: 0.12, volume: 50, question: "Reverse calc", expected: 75 },
+            { acidConc: 0.25, baseConc: 0.2, volume: 50, prompt: tObj.prompts.equivalence_core_1, expected: 62.5 },
+            { acidConc: 0.3, baseConc: 0.15, volume: 50, prompt: tObj.prompts.equivalence_core_2, expected: 100 },
+            { acidConc: 0.05, baseConc: 0.1, volume: 50, prompt: tObj.prompts.equivalence_core_3, expected: 25 },
+            { acidConc: 0.12, baseConc: 0.18, volume: 50, prompt: tObj.prompts.equivalence_core_4, expected: 33.3 },
+            { acidConc: 0.18, baseConc: 0.12, volume: 50, prompt: tObj.prompts.equivalence_core_5, expected: 75 },
             
             // ADVANCED (5 questions)
-            { acidConc: 0.08, baseConc: 0.12, volume: 50, question: "Dilute eq point", expected: 33.3 },
-            { acidConc: 0.22, baseConc: 0.11, volume: 50, question: "2:1 ratio eq", expected: 100 },
-            { acidConc: 0.15, baseConc: 0.25, volume: 50, question: "Inverse ratio", expected: 30 },
-            { acidConc: 0.35, baseConc: 0.14, volume: 50, question: "High precision", expected: 125 },
-            { acidConc: 0.06, baseConc: 0.18, volume: 50, question: "1:3 ratio", expected: 16.7 },
+            { acidConc: 0.08, baseConc: 0.12, volume: 50, prompt: tObj.prompts.equivalence_advanced_1, expected: 33.3 },
+            { acidConc: 0.22, baseConc: 0.11, volume: 50, prompt: tObj.prompts.equivalence_advanced_2, expected: 100 },
+            { acidConc: 0.15, baseConc: 0.25, volume: 50, prompt: tObj.prompts.equivalence_advanced_3, expected: 30 },
+            { acidConc: 0.35, baseConc: 0.14, volume: 50, prompt: tObj.prompts.equivalence_advanced_4, expected: 125 },
+            { acidConc: 0.06, baseConc: 0.18, volume: 50, prompt: tObj.prompts.equivalence_advanced_5, expected: 16.7 },
             
             // ELITE (5 questions)
-            { acidConc: 0.125, baseConc: 0.175, volume: 50, question: "Complex ratio", expected: 35.7 },
-            { acidConc: 0.275, baseConc: 0.225, volume: 50, question: "Near 1:1 ratio", expected: 61.1 },
-            { acidConc: 0.085, baseConc: 0.135, volume: 50, question: "Precise dilute", expected: 31.5 },
-            { acidConc: 0.195, baseConc: 0.165, volume: 50, question: "Close conc", expected: 59.1 },
-            { acidConc: 0.105, baseConc: 0.155, volume: 50, question: "Fine tuning", expected: 33.9 },
+            { acidConc: 0.125, baseConc: 0.175, volume: 50, prompt: tObj.prompts.equivalence_elite_1, expected: 35.7 },
+            { acidConc: 0.275, baseConc: 0.225, volume: 50, prompt: tObj.prompts.equivalence_elite_2, expected: 61.1 },
+            { acidConc: 0.085, baseConc: 0.135, volume: 50, prompt: tObj.prompts.equivalence_elite_3, expected: 31.5 },
+            { acidConc: 0.195, baseConc: 0.165, volume: 50, prompt: tObj.prompts.equivalence_elite_4, expected: 59.1 },
+            { acidConc: 0.105, baseConc: 0.155, volume: 50, prompt: tObj.prompts.equivalence_elite_5, expected: 33.9 },
         ];
         
         const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
@@ -129,7 +130,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): Titration
                 id: `EQUIVALENCE_${difficulty}_${idx}`,
                 difficulty,
                 stage,
-                promptLatex: `\\\\text{${q.question}}`,
+                promptLatex: q.prompt,
                 expressionLatex: `V_a C_a = V_b C_b,\\; C_a=${q.acidConc}\\text{M},\\; C_b=${q.baseConc}\\text{M}`,
                 targetLatex: "V_b\\\\text{ (mL)}",
                 slots: [{ id: "ans", labelLatex: "Volume (mL)", placeholder: "mL", expected: q.expected }],
@@ -150,32 +151,32 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): Titration
     // Stage 3: INDICATORS - Indicator selection (20 questions)
     const indicatorQuestions = [
         // BASIC (5 questions)
-        { acidType: "strong" as const, pHRange: "8-10", question: "Select indicator for strong acid", expected: "phenolphthalein" },
-        { acidType: "strong" as const, pHRange: "3-5", question: "Choose indicator", expected: "methyl_orange" },
-        { acidType: "weak" as const, pHRange: "8-10", question: "Weak acid indicator", expected: "phenolphthalein" },
-        { acidType: "strong" as const, pHRange: "4-10", question: "Universal indicator", expected: "universal" },
-        { acidType: "strong" as const, pHRange: "8-10", question: "Basic range indicator", expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "8-10", prompt: tObj.prompts.indicators_basic_1, expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "3-5", prompt: tObj.prompts.indicators_basic_2, expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "8-10", prompt: tObj.prompts.indicators_basic_3, expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "4-10", prompt: tObj.prompts.indicators_basic_4, expected: "universal" },
+        { acidType: "strong" as const, pHRange: "8-10", prompt: tObj.prompts.indicators_basic_5, expected: "phenolphthalein" },
         
         // CORE (5 questions)
-        { acidType: "weak" as const, pHRange: "8-10", question: "Weak acid best indicator", expected: "phenolphthalein" },
-        { acidType: "strong" as const, pHRange: "3-5", question: "Acidic range", expected: "methyl_orange" },
-        { acidType: "weak" as const, pHRange: "7-9", question: "Near neutral weak", expected: "phenolphthalein" },
-        { acidType: "strong" as const, pHRange: "6-8", question: "Neutral range", expected: "universal" },
-        { acidType: "weak" as const, pHRange: "8-10", question: "Buffer indicator", expected: "phenolphthalein" },
+        { acidType: "weak" as const, pHRange: "8-10", prompt: tObj.prompts.indicators_core_1, expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "3-5", prompt: tObj.prompts.indicators_core_2, expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "7-9", prompt: tObj.prompts.indicators_core_3, expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "6-8", prompt: tObj.prompts.indicators_core_4, expected: "universal" },
+        { acidType: "weak" as const, pHRange: "8-10", prompt: tObj.prompts.indicators_core_5, expected: "phenolphthalein" },
         
         // ADVANCED (5 questions)
-        { acidType: "weak" as const, pHRange: "4-6", question: "Half-eq indicator", expected: "methyl_orange" },
-        { acidType: "strong" as const, pHRange: "2-4", question: "Strong acid low pH", expected: "methyl_orange" },
-        { acidType: "weak" as const, pHRange: "9-11", question: "High pH weak", expected: "phenolphthalein" },
-        { acidType: "strong" as const, pHRange: "1-14", question: "Full range", expected: "universal" },
-        { acidType: "weak" as const, pHRange: "7-10", question: "Weak acid eq range", expected: "phenolphthalein" },
+        { acidType: "weak" as const, pHRange: "4-6", prompt: tObj.prompts.indicators_advanced_1, expected: "methyl_orange" },
+        { acidType: "strong" as const, pHRange: "2-4", prompt: tObj.prompts.indicators_advanced_2, expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "9-11", prompt: tObj.prompts.indicators_advanced_3, expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "1-14", prompt: tObj.prompts.indicators_advanced_4, expected: "universal" },
+        { acidType: "weak" as const, pHRange: "7-10", prompt: tObj.prompts.indicators_advanced_5, expected: "phenolphthalein" },
         
         // ELITE (5 questions)
-        { acidType: "weak" as const, pHRange: "8.5-9.5", question: "Precise weak acid", expected: "phenolphthalein" },
-        { acidType: "strong" as const, pHRange: "3.5-4.5", question: "Narrow acidic", expected: "methyl_orange" },
-        { acidType: "weak" as const, pHRange: "4.5-5.5", question: "Buffer region", expected: "methyl_orange" },
-        { acidType: "strong" as const, pHRange: "6.5-7.5", question: "Near neutral", expected: "universal" },
-        { acidType: "weak" as const, pHRange: "8-10", question: "Optimal weak acid", expected: "phenolphthalein" },
+        { acidType: "weak" as const, pHRange: "8.5-9.5", prompt: tObj.prompts.indicators_elite_1, expected: "phenolphthalein" },
+        { acidType: "strong" as const, pHRange: "3.5-4.5", prompt: tObj.prompts.indicators_elite_2, expected: "methyl_orange" },
+        { acidType: "weak" as const, pHRange: "4.5-5.5", prompt: tObj.prompts.indicators_elite_3, expected: "methyl_orange" },
+        { acidType: "strong" as const, pHRange: "6.5-7.5", prompt: tObj.prompts.indicators_elite_4, expected: "universal" },
+        { acidType: "weak" as const, pHRange: "8-10", prompt: tObj.prompts.indicators_elite_5, expected: "phenolphthalein" },
     ];
     
     const startIdx = difficulty === "BASIC" ? 0 : difficulty === "CORE" ? 5 : difficulty === "ADVANCED" ? 10 : 15;
@@ -186,10 +187,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): Titration
             id: `INDICATORS_${difficulty}_${idx}`,
             difficulty,
             stage,
-            promptLatex: `\\\\text{${q.question} (pH ${q.pHRange})}`,
-            expressionLatex: `\\text{pH range: ${q.pHRange}}`,
-            targetLatex: "\\\\text{Indicator}",
-            slots: [{ id: "ans", labelLatex: "Indicator", placeholder: "indicator name", expected: q.expected }],
+            promptLatex: tr("sc2_02.prompts.indicator_with_range", { prompt: q.prompt, pHRange: q.pHRange }),
+            expressionLatex: `\\text{${tObj.labels.ph_range}: ${q.pHRange}}`,
+            targetLatex: tObj.labels.indicator_target,
+            slots: [{ id: "ans", labelLatex: tObj.labels.indicator_slot, placeholder: tObj.labels.indicator_placeholder, expected: q.expected }],
             correctLatex: `\\text{${q.expected}}`,
             simConfig: {
                 acidType: q.acidType,
@@ -208,6 +209,7 @@ export default function SC202Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const sc2_02_t = {
+        translate: t,
         title: t("sc2_02.title"),
         footer_left: t("sc2_02.footer_left"),
         monitor_title: t("sc2_02.monitor_title"),
@@ -223,9 +225,67 @@ export default function SC202Page() {
             indicators: t("sc2_02.stages.indicators"),
         },
         prompts: {
-            curve_type: t("sc2_02.prompts.curve_type"),
-            eq_volume: t("sc2_02.prompts.eq_volume"),
-            ph_at_eq: t("sc2_02.prompts.ph_at_eq"),
+            curves_basic_1: t("sc2_02.prompts.curves_basic_1"),
+            curves_basic_2: t("sc2_02.prompts.curves_basic_2"),
+            curves_basic_3: t("sc2_02.prompts.curves_basic_3"),
+            curves_basic_4: t("sc2_02.prompts.curves_basic_4"),
+            curves_basic_5: t("sc2_02.prompts.curves_basic_5"),
+            curves_core_1: t("sc2_02.prompts.curves_core_1"),
+            curves_core_2: t("sc2_02.prompts.curves_core_2"),
+            curves_core_3: t("sc2_02.prompts.curves_core_3"),
+            curves_core_4: t("sc2_02.prompts.curves_core_4"),
+            curves_core_5: t("sc2_02.prompts.curves_core_5"),
+            curves_advanced_1: t("sc2_02.prompts.curves_advanced_1"),
+            curves_advanced_2: t("sc2_02.prompts.curves_advanced_2"),
+            curves_advanced_3: t("sc2_02.prompts.curves_advanced_3"),
+            curves_advanced_4: t("sc2_02.prompts.curves_advanced_4"),
+            curves_advanced_5: t("sc2_02.prompts.curves_advanced_5"),
+            curves_elite_1: t("sc2_02.prompts.curves_elite_1"),
+            curves_elite_2: t("sc2_02.prompts.curves_elite_2"),
+            curves_elite_3: t("sc2_02.prompts.curves_elite_3"),
+            curves_elite_4: t("sc2_02.prompts.curves_elite_4"),
+            curves_elite_5: t("sc2_02.prompts.curves_elite_5"),
+            equivalence_basic_1: t("sc2_02.prompts.equivalence_basic_1"),
+            equivalence_basic_2: t("sc2_02.prompts.equivalence_basic_2"),
+            equivalence_basic_3: t("sc2_02.prompts.equivalence_basic_3"),
+            equivalence_basic_4: t("sc2_02.prompts.equivalence_basic_4"),
+            equivalence_basic_5: t("sc2_02.prompts.equivalence_basic_5"),
+            equivalence_core_1: t("sc2_02.prompts.equivalence_core_1"),
+            equivalence_core_2: t("sc2_02.prompts.equivalence_core_2"),
+            equivalence_core_3: t("sc2_02.prompts.equivalence_core_3"),
+            equivalence_core_4: t("sc2_02.prompts.equivalence_core_4"),
+            equivalence_core_5: t("sc2_02.prompts.equivalence_core_5"),
+            equivalence_advanced_1: t("sc2_02.prompts.equivalence_advanced_1"),
+            equivalence_advanced_2: t("sc2_02.prompts.equivalence_advanced_2"),
+            equivalence_advanced_3: t("sc2_02.prompts.equivalence_advanced_3"),
+            equivalence_advanced_4: t("sc2_02.prompts.equivalence_advanced_4"),
+            equivalence_advanced_5: t("sc2_02.prompts.equivalence_advanced_5"),
+            equivalence_elite_1: t("sc2_02.prompts.equivalence_elite_1"),
+            equivalence_elite_2: t("sc2_02.prompts.equivalence_elite_2"),
+            equivalence_elite_3: t("sc2_02.prompts.equivalence_elite_3"),
+            equivalence_elite_4: t("sc2_02.prompts.equivalence_elite_4"),
+            equivalence_elite_5: t("sc2_02.prompts.equivalence_elite_5"),
+            indicators_basic_1: t("sc2_02.prompts.indicators_basic_1"),
+            indicators_basic_2: t("sc2_02.prompts.indicators_basic_2"),
+            indicators_basic_3: t("sc2_02.prompts.indicators_basic_3"),
+            indicators_basic_4: t("sc2_02.prompts.indicators_basic_4"),
+            indicators_basic_5: t("sc2_02.prompts.indicators_basic_5"),
+            indicators_core_1: t("sc2_02.prompts.indicators_core_1"),
+            indicators_core_2: t("sc2_02.prompts.indicators_core_2"),
+            indicators_core_3: t("sc2_02.prompts.indicators_core_3"),
+            indicators_core_4: t("sc2_02.prompts.indicators_core_4"),
+            indicators_core_5: t("sc2_02.prompts.indicators_core_5"),
+            indicators_advanced_1: t("sc2_02.prompts.indicators_advanced_1"),
+            indicators_advanced_2: t("sc2_02.prompts.indicators_advanced_2"),
+            indicators_advanced_3: t("sc2_02.prompts.indicators_advanced_3"),
+            indicators_advanced_4: t("sc2_02.prompts.indicators_advanced_4"),
+            indicators_advanced_5: t("sc2_02.prompts.indicators_advanced_5"),
+            indicators_elite_1: t("sc2_02.prompts.indicators_elite_1"),
+            indicators_elite_2: t("sc2_02.prompts.indicators_elite_2"),
+            indicators_elite_3: t("sc2_02.prompts.indicators_elite_3"),
+            indicators_elite_4: t("sc2_02.prompts.indicators_elite_4"),
+            indicators_elite_5: t("sc2_02.prompts.indicators_elite_5"),
+            indicator_with_range: t("sc2_02.prompts.indicator_with_range"),
         },
         hints: {
             curve_hint: t("sc2_02.hints.curve_hint"),
@@ -241,6 +301,16 @@ export default function SC202Page() {
             eq_point: t("sc2_02.labels.eq_point"),
             input_answer: t("sc2_02.labels.input_answer"),
             formula: t("sc2_02.labels.formula"),
+            answer_target: t("sc2_02.labels.answer_target"),
+            answer_slot: t("sc2_02.labels.answer_slot"),
+            result_placeholder: t("sc2_02.labels.result_placeholder"),
+            indicator_target: t("sc2_02.labels.indicator_target"),
+            indicator_slot: t("sc2_02.labels.indicator_slot"),
+            indicator_placeholder: t("sc2_02.labels.indicator_placeholder"),
+            monitor_indicator: t("sc2_02.labels.monitor_indicator"),
+            monitor_acid_type: t("sc2_02.labels.monitor_acid_type"),
+            ph_range: t("sc2_02.labels.ph_range"),
+            case_study_label: t("sc2_02.labels.case_study_label"),
         },
         difficulty: {
             basic: "BASIC",
@@ -340,11 +410,11 @@ export default function SC202Page() {
 
                     <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
                         <div className="flex justify-between text-[9px] uppercase font-black text-white/40 mb-1">
-                            <span>INDICATOR</span>
+                            <span>{sc2_02_t.labels.monitor_indicator}</span>
                             <span className="text-neon-amber">{config.indicator.replace("_", " ")}</span>
                         </div>
                         <div className="flex justify-between text-[9px] uppercase font-black text-white/40">
-                            <span>ACID TYPE</span>
+                            <span>{sc2_02_t.labels.monitor_acid_type}</span>
                             <span className="text-neon-cyan">{config.acidType}</span>
                         </div>
                     </div>
@@ -399,7 +469,7 @@ export default function SC202Page() {
                                     </svg>
                                 </div>
                                 <div className="space-y-2">
-                                    <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+                                    <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">{sc2_02_t.labels.case_study_label}</div>
                                     <p className="text-sm text-white/50 leading-relaxed italic">
                                         {activeScenario}
                                     </p>

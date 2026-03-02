@@ -1580,6 +1580,21 @@ export const cnMath = {    em1_01: {
             chain_title: "苏黎世转运通道",
             chain_desc: "转运通道跨越矩形平台并上升至高位。求完整对角线。"
         },
+        prompts: {
+            explorer_mission: "勾股探索：调整缩放比例，观察相似关系不变性。",
+            solve_hyp: "求斜边长度：$a={a}, \\, b={b}$",
+            solve_leg: "求缺失直角边：$c={c}, \\, {knownVar}={known}$",
+            check_right: "判断 $({a}, \\, {b}, \\, {c})$ 是否为直角三角形。",
+            distance_3d: "计算三维距离：$({x1}, {y1}, {z1}) \\rightarrow ({x2}, {y2}, {z2})$",
+            elite_space: "计算空间对角线：$a={a}, \\, b={b}, \\, c={c}$",
+            mission_pair: "{title} — {desc}",
+            mental_hyp: "$a={a}, \\, b={b}$",
+            mental_leg: "$c={c}, \\, a={a}$",
+            chain: "{chainLabel}: $a={a}, \\, b={b}, \\, c={c}$",
+            sqrt_perfect: "{label}: $\\sqrt{{n}}$",
+            sqrt_simplify: "{label}: $\\sqrt{{n}}$",
+            sqrt_estimate: "{label}: $\\sqrt{{n}} \\in [{lo}, {hi}]$ ?"
+        },
         mental: {
             title: "心算",
             triples: "勾股数",

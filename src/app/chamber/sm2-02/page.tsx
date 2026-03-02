@@ -86,12 +86,13 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     ["EXPLORER", "SOLVE_HYP", "SOLVE_LEG", "CHECK_RIGHT", "DISTANCE", "ELITE_SPACE", "MISSION", "MENTAL", "CHAIN"].includes(stage)
       ? "PYTHAGORAS"
       : "SQRT";
+  const tr = sm2_02_t.translate;
 
   if (stage === "EXPLORER") {
     return [{
       id: "EXPLORER",
       difficulty, stage, tab,
-      promptLatex: sm2_02_t.pythagoras.explorer_mission || "Pythagorean Explorer: Adjust scale and witness constants.",
+      promptLatex: tr("sm2_02.prompts.explorer_mission"),
       expressionLatex: "a^{2} + b^{2} = c^{2}",
       targetLatex: "(k a)^{2} + (k b)^{2} = (k c)^{2}",
       correctLatex: "",
@@ -116,7 +117,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|SOLVE_HYP|${difficulty}|${a}|${b}`,
           difficulty, stage, tab,
-          promptLatex: `${sm2_02_t.pythagoras.solve_hyp}: $a=${a}, \\, b=${b}$`,
+          promptLatex: tr("sm2_02.prompts.solve_hyp", { a, b }),
           expressionLatex: `c^{2} = a^{2} + b^{2}`,
           targetLatex: `c`,
           correctLatex: `c = ${c}`,
@@ -152,7 +153,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|SOLVE_LEG|${difficulty}|${c}|${known}|${knownIsA ? "A" : "B"}`,
           difficulty, stage, tab,
-          promptLatex: `${sm2_02_t.pythagoras.solve_leg}: $c=${c}, \\, ${knownVar}=${known}$`,
+          promptLatex: tr("sm2_02.prompts.solve_leg", { c, knownVar, known }),
           expressionLatex: `${knownIsA ? "b^{2}" : "a^{2}"} = c^{2} - ${knownIsA ? "a^{2}" : "b^{2}"}`,
           targetLatex: `${knownIsA ? "b" : "a"}`,
           correctLatex: `${knownIsA ? "b" : "a"} = ${missing}`,
@@ -183,7 +184,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|CHECK_RIGHT|${difficulty}|${a}|${b}|${c}|T`,
           difficulty, stage, tab,
-          promptLatex: `${sm2_02_t.pythagoras.check_right}: $${a}, \\, ${b}, \\, ${c}$`,
+          promptLatex: tr("sm2_02.prompts.check_right", { a, b, c }),
           expressionLatex: `${a}^{2} + ${b}^{2} \\stackrel{?}{=} ${c}^{2}`,
           targetLatex: `\\text{${sm2_02_t.pythagoras.check_right_question}}`,
           correctLatex: `${sm2_02_t.yes}`,
@@ -195,7 +196,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `PYT|CHECK_RIGHT|${difficulty}|${a}|${b}|${c + 1}|F`,
           difficulty, stage, tab,
-          promptLatex: `${sm2_02_t.pythagoras.check_right}: $${a}, \\, ${b}, \\, ${c + 1}$`,
+          promptLatex: tr("sm2_02.prompts.check_right", { a, b, c: c + 1 }),
           expressionLatex: `${a}^{2} + ${b}^{2} \\stackrel{?}{=} ${c + 1}^{2}`,
           targetLatex: `\\text{${sm2_02_t.pythagoras.check_right_question}}`,
           correctLatex: `${sm2_02_t.no}`,
@@ -232,7 +233,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|DIST|${difficulty}|${x1}|${y1}|${z1}|${x2}|${y2}|${z2}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.pythagoras.distance}: $({${x1}}, {${y1}}, {${z1}}) \\rightarrow ({${x2}}, {${y2}}, {${z2}})$`,
+        promptLatex: tr("sm2_02.prompts.distance_3d", { x1, y1, z1, x2, y2, z2 }),
         expressionLatex: `d^{2} = (\\Delta x)^{2} + (\\Delta y)^{2} + (\\Delta z)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -263,7 +264,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|SPACE|${difficulty}|${a}|${b}|${c}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.pythagoras.elite_space}: $a = ${a}, \\, b = ${b}, \\, c = ${c}$`,
+        promptLatex: tr("sm2_02.prompts.elite_space", { a, b, c }),
         expressionLatex: `d^{2} = a^{2} + b^{2} + c^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -292,7 +293,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|CERN|${scale}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.cern_title} — ${sm2_02_t.mission.cern_desc}`,
+      promptLatex: tr("sm2_02.prompts.mission_pair", { title: sm2_02_t.mission.cern_title, desc: sm2_02_t.mission.cern_desc }),
       expressionLatex: `d^{2}=w^{2}+h^{2}`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(exact_cern)}`,
@@ -311,7 +312,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|GRIND|${a_grind}|${b_grind}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.roof_title} — ${sm2_02_t.mission.roof_desc}`,
+      promptLatex: tr("sm2_02.prompts.mission_pair", { title: sm2_02_t.mission.roof_title, desc: sm2_02_t.mission.roof_desc }),
       expressionLatex: `r^{2}=a^{2}+b^{2}`,
       targetLatex: `r`,
       correctLatex: `r=${formatRadicalLatex(exact_grind)}`,
@@ -329,7 +330,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|LUCERNE|${base_lucerne}|${height_lucerne}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.ladder_title} — ${sm2_02_t.mission.ladder_desc}`,
+      promptLatex: tr("sm2_02.prompts.mission_pair", { title: sm2_02_t.mission.ladder_title, desc: sm2_02_t.mission.ladder_desc }),
       expressionLatex: `c^{2}=a^{2}+b^{2}`,
       targetLatex: `c`,
       correctLatex: `c=${Math.sqrt(d2_lucerne)}`,
@@ -359,7 +360,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `PYT|MISSION|${difficulty}|GRID|${x1}|${y1}|${z1}|${x2}|${y2}|${z2}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.mission.grid_title} — ${sm2_02_t.mission.grid_desc}`,
+        promptLatex: tr("sm2_02.prompts.mission_pair", { title: sm2_02_t.mission.grid_title, desc: sm2_02_t.mission.grid_desc }),
         expressionLatex: `d^{2}=(\\Delta x)^{2}+(\\Delta y)^{2}+(\\Delta z)^{2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(exact)}`,
@@ -386,7 +387,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
     quests.push({
       id: `PYT|MISSION|${difficulty}|CHAIN|${a}|${b}|${c}`,
       difficulty, stage, tab,
-      promptLatex: `${sm2_02_t.mission.chain_title} — ${sm2_02_t.mission.chain_desc}`,
+      promptLatex: tr("sm2_02.prompts.mission_pair", { title: sm2_02_t.mission.chain_title, desc: sm2_02_t.mission.chain_desc }),
       expressionLatex: `d^{2}=s^{2}+c^{2}`,
       targetLatex: `d`,
       correctLatex: `d=${formatRadicalLatex(dExact)}`,
@@ -419,7 +420,9 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 
       quests.push({
         id: `MENT_B_${i}`, difficulty, stage, tab,
-        promptLatex: isHyp ? `$a=${a}, \\, b=${b}$` : `$c=${c}, \\, a=${a}$`,
+        promptLatex: isHyp
+          ? tr("sm2_02.prompts.mental_hyp", { a, b })
+          : tr("sm2_02.prompts.mental_leg", { c, a }),
         expressionLatex: isHyp ? `c = \\sqrt{a^2 + b^2}` : `b = \\sqrt{c^2 - a^2}`,
         targetLatex: isHyp ? `c` : `b`,
         correctLatex: isHyp ? `c=${c}` : `b=${b}`,
@@ -451,7 +454,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 
       quests.push({
         id: `MENT_C_${i}`, difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.mental.chain}: $a=${a}, \\, b=${b}, \\, c=${c}$`,
+        promptLatex: tr("sm2_02.prompts.chain", { chainLabel: sm2_02_t.mental.chain, a, b, c }),
         expressionLatex: `d = \\sqrt{a^2 + b^2 + c^2}`,
         targetLatex: `d`,
         correctLatex: `d=${formatRadicalLatex(dExact)}`,
@@ -481,7 +484,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `SQRT|PERFECT|${difficulty}|${n}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.sqrt.perfect}: $\\sqrt{${n}}$`,
+        promptLatex: tr("sm2_02.prompts.sqrt_perfect", { label: sm2_02_t.sqrt.perfect, n }),
         expressionLatex: `\\sqrt{${n}}`,
         targetLatex: `\\sqrt{${n}}`,
         correctLatex: `${r}`,
@@ -504,7 +507,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
         quests.push({
           id: `SQRT|SIMPLIFY|${difficulty}|${k}|${m}`,
           difficulty, stage, tab,
-          promptLatex: `${sm2_02_t.sqrt.simplify}: $\\sqrt{${n}}$`,
+          promptLatex: tr("sm2_02.prompts.sqrt_simplify", { label: sm2_02_t.sqrt.simplify, n }),
           expressionLatex: `\\sqrt{${n}} = k\\sqrt{m}`,
           targetLatex: `k\\sqrt{m}`,
           correctLatex: `${formatRadicalLatex({ k, m })}`,
@@ -530,7 +533,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
       quests.push({
         id: `SQRT|ESTIMATE|${difficulty}|${n}|${interval[0]}|${interval[1]}|${isTrue ? 1 : 0}`,
         difficulty, stage, tab,
-        promptLatex: `${sm2_02_t.sqrt.estimate}: $\\sqrt{${n}} \\in [${interval[0]}, ${interval[1]}]$ ?`,
+        promptLatex: tr("sm2_02.prompts.sqrt_estimate", { label: sm2_02_t.sqrt.estimate, n, lo: interval[0], hi: interval[1] }),
         expressionLatex: `\\sqrt{${n}}`,
         targetLatex: `\\sqrt{${n}} \\in [${interval[0]}, ${interval[1]}]`,
         correctLatex: isTrue ? sm2_02_t.yes : sm2_02_t.no,
@@ -550,6 +553,7 @@ export default function S202Page() {
   const { t } = useLanguage();
 
   const sm2_02_t = useMemo(() => ({
+    translate: t,
     title: t("sm2_02.title"),
     back: t("sm2_02.back"),
     check: t("sm2_02.check"),

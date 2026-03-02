@@ -27,7 +27,7 @@ export function generateBoyleQuests(t: any, difficulty: Difficulty): SC203Quest[
         quests.push({
             id: `B-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage: "boyle",
-            promptLatex: `V_1=10L, P_1=1bar, V_2=5L`,
+            promptLatex: t.prompts.boyle_given,
             expressionLatex: "P_1 V_1 = P_2 V_2",
             targetLatex: "P_2",
             slots: [{ id: "ans", labelLatex: "P_2", placeholder: "bar", expected: P2 }],
@@ -45,7 +45,7 @@ export function generateCharlesQuests(t: any, difficulty: Difficulty): SC203Ques
         quests.push({
             id: `C-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage: "charles",
-            promptLatex: `V_1=20L, T_1=300K, T_2=330K`,
+            promptLatex: t.prompts.charles_given,
             expressionLatex: "V_1/T_1 = V_2/T_2",
             targetLatex: "V_2",
             slots: [{ id: "ans", labelLatex: "V_2", placeholder: "L", expected: V2 }],
@@ -63,7 +63,7 @@ export function generateCombinedQuests(t: any, difficulty: Difficulty): SC203Que
         quests.push({
             id: `GL-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage: "combined",
-            promptLatex: `P_1=1, V_1=10, P_2=2`,
+            promptLatex: t.prompts.combined_given,
             expressionLatex: "P_1 V_1 / T_1 = P_2 V_2 / T_2",
             targetLatex: "V_2",
             slots: [{ id: "ans", labelLatex: "V_2", placeholder: "L", expected: V2 }],

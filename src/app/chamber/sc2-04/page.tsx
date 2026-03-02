@@ -80,7 +80,7 @@ export default function SC204Page() {
     { id: "dissolve" as Stage, label: t.stages.dissolve },
     { id: "saturate" as Stage, label: t.stages.saturate },
     { id: "crystallize" as Stage, label: t.stages.crystallize },
-    { id: "elite" as Stage, label: "ELITE" },
+    { id: "elite" as Stage, label: t.difficulty.elite },
   ], [t]);
 
   if (!currentQuest) return null;
@@ -108,12 +108,7 @@ export default function SC204Page() {
         next: t.next,
         correct: t.correct,
         incorrect: t.incorrect,
-        difficulty: {
-          basic: "BASIC",
-          core: "CORE",
-          advanced: "ADVANCED",
-          elite: "ELITE"
-        },
+        difficulty: t.difficulty,
       }}
       monitorContent={
         <div className="space-y-4">
@@ -171,7 +166,7 @@ export default function SC204Page() {
             {t.mission.title}
           </h3>
           <p className="text-base text-white/70 font-mono">
-            {stage === "elite" ? "Rhine Water Quality Analysis" : renderMixedText(currentQuest?.promptLatex || "")}
+            {stage === "elite" ? t.mission.elite_analysis_title : renderMixedText(currentQuest?.promptLatex || "")}
           </p>
         </div>
 
@@ -244,7 +239,7 @@ export default function SC204Page() {
               {stage === "dissolve" && t.stages.dissolve_hint}
               {stage === "saturate" && t.stages.saturate_hint}
               {stage === "crystallize" && t.stages.crystallize_hint}
-              {stage === "elite" && "Analyze the data rigorously."}
+              {stage === "elite" && t.stages.elite_hint}
             </div>
           </div>
         </div>
@@ -252,12 +247,12 @@ export default function SC204Page() {
         <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
           <div className="flex items-start gap-4">
             <div className="space-y-2">
-              <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+              <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">{t.labels.case_study_label}</div>
               <p className="text-sm text-white/50 leading-relaxed italic">
                 {stage === "dissolve" && t.scenarios.pharma_solubility}
                 {stage === "saturate" && t.scenarios.rhine_pollution_monitoring}
                 {stage === "crystallize" && t.scenarios.crystallization_purification}
-                {stage === "elite" && "Rhine Water Quality Expert Analysis"}
+                {stage === "elite" && t.scenarios.elite_analysis}
               </p>
             </div>
           </div>

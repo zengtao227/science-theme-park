@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 Batch C + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 + SM1.03 + SC2.01 + SM3.05 Batch C Updated)
-**Plan Version**: 4.3 (Batch A/B/C Wave-4 core prompt migration complete)
+**Last Updated**: 2026-03-02 (SC2.04 prompt i18n closure + SM2.04 audit pass, full QA passed)
+**Plan Version**: 4.8 (Batch C wave extension: SC2.04 closure and SM2.04 compliance verification)
 
 ---
 
@@ -26,7 +26,7 @@
 - [ ] **Batch A**: Empty scenario text completion (all modules).
 - [ ] **Batch B**: Bare formula / parameter-only prompt rewrite (e.g. `x+3=7`, `a=35,b=120` style).
 - [ ] **Batch C**: Hardcoded prompt extraction into i18n keys and tri-language sync.
-- [ ] Produce per-batch audit snapshot under `temp/` before merge.
+- [x] Produce per-batch audit snapshot under `temp/` before merge.
 
 ### 7.3 Priority Queue (First 10 high-risk modules)
 - [x] `sm2-08` (scenarios merged + Batch C prompt migration complete: 63 hardcoded `promptLatex` -> i18n, 53 tri-language keys aligned)
@@ -39,16 +39,24 @@
 - [x] `gp2-01` (23 remaining hardcoded promptLatex migrated; `gp2_01.prompts` EN/CN/DE aligned to 43 keys)
 - [x] `sm1-03` (59 promptLatex violations cleared: 56 wrappers + 3 hardcoded strings; `sm1_03.prompts` EN/CN/DE = 26)
 - [x] `sm3-05` (remaining 32 template-literal `promptLatex` migrated to `sm3_05.prompts.*`; EN/CN/DE prompts keys aligned = 60)
-- [x] `sc3-01` (audit check: no hardcoded promptLatex / no `\\text{${tObj.labels...}` wrapper violations)
+- [x] `sm1-01` (60 `promptLatex` wrapper shells removed: `` `\\text{${...}}` `` -> direct i18n text refs)
+- [x] `sm1-05` (60 `promptLatex` wrapper shells removed: `` `\\text{${...}}` `` -> direct i18n text refs)
+- [x] `sc3-01` (20 hardcoded `promptLatex` migrated to `sc3_01.prompts.*`; EN/CN/DE prompts aligned and hint hardcoding removed)
 - [x] `sp3-01` (audit check: no hardcoded promptLatex / no wrapper violations)
 - [x] `sp3-04` (EN/DE prompt TODO placeholders replaced with pedagogical prompts; physics i18n TODO = 0)
 - [x] `sc2-01` (60 hardcoded `promptLatex` migrated to `sc2_01.prompts.*`; EN/CN/DE prompts keys aligned = 45)
+- [x] `sc2-02` (60 stage prompts + monitor labels fully migrated to i18n; zero hardcoded `promptLatex` wrappers)
+- [x] `sm2-02` (all template-literal `promptLatex` migrated to `sm2_02.prompts.*` with parameterized tri-language keys)
+- [x] `sc2-03` (3 residual hardcoded stage `promptLatex` removed from quest generator; EN/CN/DE `sc2_03.prompts` keys aligned)
+- [x] `sm2-03` (audit pass: stage `promptLatex` already i18n-sourced; no migration delta required)
+- [x] `sc2-04` (hardcoded `promptLatex` removed from quest generator; EN/CN/DE `sc2_04.prompts` keys aligned)
+- [x] `sm2-04` (audit pass: stage prompts remain i18n-driven; no quest-logic migration required)
 
 ### 7.4 Quality Gates (must pass before merge)
-- [ ] `npm run lint`
-- [x] `npm run build` (passed after SM3.05 Batch C merge prep, 2026-03-02)
-- [x] `npm run validate:translations` (passed after SM3.05 Batch C merge prep, 2026-03-02)
-- [x] `bash scripts/audit-rendering.sh` (passed after SM3.05 Batch C merge prep, 2026-03-02)
+- [x] `npm run lint` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
+- [x] `npm run build` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
+- [x] `npm run validate:translations` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
+- [x] `bash scripts/audit-rendering.sh` (passed after SC2.02 + SM2.02 Batch C migration, 2026-03-02)
 - [ ] Scenario 4-element compliance check completed for touched content.
 
 ### 7.5 Batch A Wave-1 Results (2026-03-01)
@@ -67,6 +75,16 @@
 - [x] `SM2.08 Batch C`: 63 hardcoded `promptLatex` removed from `page.tsx`; `sm2_08.prompts` EN/CN/DE +53 keys and DATA_STATS residual 3 migrated.
 - [x] `SC2.01 Batch C`: 60 hardcoded `promptLatex` removed from `page.tsx`; `sc2_01.prompts` EN/CN/DE +45 keys, zero wrapper violations.
 - [x] `SM3.05 Batch C`: 32 template-literal hardcoded `promptLatex` removed; `sm3_05.prompts` EN/CN/DE aligned to 60 keys.
+- [x] `SC3.01 Batch C`: 20 hardcoded prompt strings removed from `page.tsx`; `sc3_01.prompts` EN/CN/DE +20 keys, dynamic molecule placeholders enabled.
+- [x] `SC3.05 Batch C continuation`: final 3 hardcoded `promptLatex` removed from `page.tsx` (VSEPR/HYBRIDIZATION/MO_THEORY), now using existing `sc3_05.prompts.*`.
+- [x] `SM1.01 wrapper cleanup`: 60 prompt wrappers removed (`\\text{${...}}` -> direct i18n string), render path unchanged.
+- [x] `SM1.05 wrapper cleanup`: 60 prompt wrappers removed (`\\text{${...}}` -> direct i18n string), render path unchanged.
+- [x] `SC2.02 Batch C`: migrated stage question prompts and monitor labels to i18n (EN/CN/DE), removed remaining prompt template hardcoding.
+- [x] `SM2.02 Batch C`: migrated all prompt template literals to parameterized `sm2_02.prompts.*` in EN/CN/DE, preserving quest math logic.
+- [x] `SC2.03 Batch C`: migrated 3 hardcoded quest prompts in `src/lib/sc2-03/quests.ts` to `t.prompts.*` and added tri-language keys (`boyle_given`, `charles_given`, `combined_given`).
+- [x] `SM2.03 Batch C`: completed audit; no hardcoded `promptLatex` remained, existing i18n path retained.
+- [x] `SC2.04 Batch C`: migrated residual hardcoded `promptLatex` in `src/lib/sc2-04/quests.ts` to i18n, added tri-language keys (`solubility_given`, `elite_rhine_sample`), and localized elite page labels.
+- [x] `SM2.04 Batch C`: completed audit; `promptLatex` pipeline already i18n-based, no structural quest changes required.
 - [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
@@ -511,6 +529,11 @@ Modules are classified by their quest density:
 ---
 
 ## 🔄 Version History
+
+### v4.6 (2026-03-02)
+- **SC2.02 Closed**: 60 stage prompts moved to `sc2_02.prompts.*` in EN/CN/DE; monitor labels and answer/indicator slot labels localized.
+- **SM2.02 Closed**: All template-literal `promptLatex` converted to parameterized `sm2_02.prompts.*` keys in EN/CN/DE.
+- **Rendering Guardrail Verified**: `promptLatex` hardcoding scan clean on `sc2-02/page.tsx` and `sm2-02/page.tsx`; `validate:translations` + `audit-rendering` + `build` + `lint` all pass.
 
 ### v3.6 (2026-03-01)
 - **SC2.05 Integrated**: Merged EN/CN/DE `contexts` block and replaced 60 inline `context` literals in `sc2-05/page.tsx` with i18n keys.

@@ -29,7 +29,7 @@ export function generateSolubilityQuests(t: any, difficulty: Difficulty, stage: 
         quests.push({
             id: `${stage.charAt(0).toUpperCase()}-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage,
-            promptLatex: `T = ${temp}°C`,
+            promptLatex: t.prompts.solubility_given.replace("{temp}", String(temp)),
             expressionLatex: "S = f(T)",
             targetLatex: "S",
             slots: [{ id: "ans", labelLatex: "S", placeholder: "g/100mL", expected: roundedS }],
@@ -46,7 +46,7 @@ export function generateEliteQuests(t: any, difficulty: Difficulty): SC204Quest[
         quests.push({
             id: `E-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage: "elite",
-            promptLatex: "Rhine Water Sample A: Mass before=100g, after=99.8g.",
+            promptLatex: t.prompts.elite_rhine_sample,
             expressionLatex: "S = m_{solute} / m_{water}",
             targetLatex: "S",
             slots: [{ id: "ans", labelLatex: "S", placeholder: "g", expected: 0.2 }],

@@ -1627,6 +1627,21 @@ export const deMath = {    em1_01: {
             chain_title: "CERN TRANSFERTUNNEL",
             chain_desc: "Ein Tunnel überspannt eine rechteckige Plattform und steigt zu einer höheren Ebene auf. Bestimme die Gesamtdiagonale."
         },
+        prompts: {
+            explorer_mission: "Pythagoras-Explorer: Skaliere und beobachte die Invarianz der Ähnlichkeit.",
+            solve_hyp: "Bestimme die Hypotenuse: $a={a}, \\, b={b}$",
+            solve_leg: "Bestimme die fehlende Kathete: $c={c}, \\, {knownVar}={known}$",
+            check_right: "Prüfe, ob $({a}, \\, {b}, \\, {c})$ ein rechtwinkliges Dreieck ist.",
+            distance_3d: "Berechne die 3D-Distanz: $({x1}, {y1}, {z1}) \\rightarrow ({x2}, {y2}, {z2})$",
+            elite_space: "Berechne die Raumdiagonale: $a={a}, \\, b={b}, \\, c={c}$",
+            mission_pair: "{title} — {desc}",
+            mental_hyp: "$a={a}, \\, b={b}$",
+            mental_leg: "$c={c}, \\, a={a}$",
+            chain: "{chainLabel}: $a={a}, \\, b={b}, \\, c={c}$",
+            sqrt_perfect: "{label}: $\\sqrt{{n}}$",
+            sqrt_simplify: "{label}: $\\sqrt{{n}}$",
+            sqrt_estimate: "{label}: $\\sqrt{{n}} \\in [{lo}, {hi}]$ ?"
+        },
         mental: {
             title: "KOPFRECHNEN",
             triples: "Pythagoreische Tripel",
