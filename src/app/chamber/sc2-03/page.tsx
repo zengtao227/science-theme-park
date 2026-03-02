@@ -188,7 +188,7 @@ export default function SC203Page() {
         </div>
 
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
-          <div className="text-[10px] uppercase tracking-widest text-white/40 mb-2">Simulation Control</div>
+          <div className="text-[10px] uppercase tracking-widest text-white/40 mb-2">{t.labels.simulation_control}</div>
           <div className="space-y-4">
             <div className="text-[10px] uppercase tracking-[0.35em] text-white font-black">
               {t.labels.volume}
@@ -249,12 +249,12 @@ export default function SC203Page() {
         <div className="bg-neon-purple/[0.02] border border-neon-purple/10 rounded-3xl p-8 backdrop-blur-sm max-w-3xl mx-auto w-full">
           <div className="flex items-start gap-4">
             <div className="space-y-2">
-              <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">Regional Case Study // Basel Node</div>
+              <div className="text-[10px] uppercase tracking-widest text-neon-purple/60 font-black">{t.labels.regional_case_study}</div>
               <p className="text-sm text-white/50 leading-relaxed italic">
                 {stage === "boyle" && t.scenarios.gas_compression}
                 {stage === "charles" && t.scenarios.weather_balloons}
                 {stage === "combined" && t.scenarios.chemical_reactors}
-                {stage === "elite" && "Basel Elite Physics/Chemistry Integration"}
+                {stage === "elite" && t.labels.elite_integration}
               </p>
             </div>
           </div>

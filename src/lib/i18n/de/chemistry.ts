@@ -949,7 +949,10 @@ export const deChemistry = {
             volume: "VOLUMEN (V)",
             temperature: "TEMPERATUR (T)",
             moles: "STOFFMENGE (n)",
-            formulas: "FORMELN"
+            formulas: "FORMELN",
+            simulation_control: "SIMULATIONSSTEUERUNG",
+            regional_case_study: "Regionale Fallstudie // Knoten Basel",
+            elite_integration: "Basler Elite Physik/Chemie Integration"
         },
         mission: {
             title: "MISSION: IDEALE GASGESETZE",

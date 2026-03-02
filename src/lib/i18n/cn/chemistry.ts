@@ -957,7 +957,10 @@ export const cnChemistry = {
             volume: "体积 (V)",
             temperature: "温度 (T)",
             moles: "摩尔数 (n)",
-            formulas: "公式"
+            formulas: "公式",
+            simulation_control: "模拟控制",
+            regional_case_study: "区域案例研究 // 巴塞尔节点",
+            elite_integration: "巴塞尔精英物理/化学整合"
         },
         mission: {
             title: "任务：理想气体定律",

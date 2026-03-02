@@ -957,7 +957,10 @@ export const enChemistry = {
             volume: "VOLUME (V)",
             temperature: "TEMPERATURE (T)",
             moles: "MOLES (n)",
-            formulas: "FORMULAS"
+            formulas: "FORMULAS",
+            simulation_control: "Simulation Control",
+            regional_case_study: "Regional Case Study // Basel Node",
+            elite_integration: "Basel Elite Physics/Chemistry Integration"
         },
         mission: {
             title: "MISSION: IDEAL GAS LAWS",

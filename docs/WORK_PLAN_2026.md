@@ -536,6 +536,11 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v4.9 (2026-03-02)
+- **SC2.03 UI i18n Cleanup**: Removed remaining hardcoded English strings in `sc2-03/page.tsx` (`Simulation Control`, `Regional Case Study // Basel Node`, elite scenario label) and migrated them to `sc2_03.labels.*`.
+- **Tri-language Sync**: Added `simulation_control`, `regional_case_study`, `elite_integration` under `sc2_03.labels` in EN/CN/DE chemistry i18n files.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after the cleanup.
+
 ### v4.8 (2026-03-02)
 - **SC2.05 Closed (Prompt i18n)**: Migrated all 60 `promptLatex` hardcoded entries in `sc2-05/page.tsx` to `t("sc2_05.prompts.*")` keys.
 - **Tri-language Symmetry Maintained**: Added matching `sc2_05.prompts.ph_* / nt_* / tt_*` keys in EN/CN/DE chemistry i18n files.
@@ -614,5 +619,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 4.8 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 4.9 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05
