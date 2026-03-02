@@ -536,6 +536,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v4.8 (2026-03-02)
+- **SC2.05 Closed (Prompt i18n)**: Migrated all 60 `promptLatex` hardcoded entries in `sc2-05/page.tsx` to `t("sc2_05.prompts.*")` keys.
+- **Tri-language Symmetry Maintained**: Added matching `sc2_05.prompts.ph_* / nt_* / tt_*` keys in EN/CN/DE chemistry i18n files.
+- **Global Scan Update**: Repository prompt-hardcode scan now only shows `t()`-composed template literals or intentional empty placeholders; no remaining direct hardcoded `promptLatex` strings in active migration scope.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after migration.
+
 ### v4.7 (2026-03-02)
 - **SP3.05 Closed (Prompt i18n)**: 12 hardcoded `promptLatex` templates migrated to `sp3_05.prompts.*` with EN/CN/DE key symmetry.
 - **SB3.01 Elite Prompt Migration**: 7 ELITE hardcoded `promptLatex` entries moved to `sb3_01.prompts.elite_*` in EN/CN/DE.
@@ -608,5 +614,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 4.7 (Cross-module Prompt i18n Cleanup Ongoing)
+**Plan Version**: 4.8 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05
