@@ -838,6 +838,20 @@ export const enPhysics = {
                         acceleration_hint: "Protons reach 99.9999991% speed of light",
                         collision_hint: "Collision energy: 13 TeV = 13,000 GeV",
                         detection_hint: "Magnetic field bends charged particle tracks"
+                },
+                prompts: {
+                        acc_gamma_basic: "LHC injector check: compute the Lorentz factor from the given beam speed.",
+                        acc_beam_energy_core: "ATLAS pre-run setup: compute single-beam energy in GeV for magnet tuning.",
+                        acc_gamma_advanced: "High-speed calibration: compute gamma for the near-light proton beam.",
+                        acc_momentum_elite: "Momentum diagnostics: estimate proton momentum p from relativistic parameters.",
+                        col_sqrts_basic: "Collision setup: compute center-of-mass energy sqrt(s) from two beam energies.",
+                        col_event_core: "Luminosity run: compute expected event count N from L, sigma, and run time.",
+                        col_ecm_advanced: "Ultra-relativistic approximation: compute E_cm from opposing beam momenta.",
+                        col_beta_elite: "Velocity fraction check: compute beta=v/c from the given gamma value.",
+                        det_radius_basic: "Tracker geometry: compute bending radius r in magnetic field B.",
+                        det_mass_core: "Invariant-mass reconstruction: compute m from measured E and p.",
+                        det_eta_advanced: "Forward detector mapping: compute pseudorapidity eta from theta.",
+                        det_delta_m_elite: "Higgs channel fit: compute mass residual Delta m = m_reco - m_H."
                 }
         },
         gp1_04: {
@@ -873,6 +887,20 @@ export const enPhysics = {
                         classical: "CLASSICAL LIMIT",
                         tunneling: "QUANTUM TUNNELING",
                         resonance: "RESONANCE"
+                },
+                prompts: {
+                        cl_transmission_basic: "Classical barrier check: since E > V_0, determine transmission coefficient T.",
+                        cl_reflection_core: "Classical limit consistency: with T=1, compute reflection coefficient R.",
+                        cl_wave_number_advanced: "Free-region wave analysis: compute wave number k from particle energy.",
+                        cl_de_broglie_elite: "High-energy beamline: compute de Broglie wavelength lambda.",
+                        tu_transmission_basic: "Quantum tunneling baseline: compute T using exponential decay model.",
+                        tu_kappa_core: "Barrier-penetration parameter: compute kappa from V_0 and E.",
+                        tu_transmission_advanced: "Thicker barrier test: compute tunneling probability T for given kappa and a.",
+                        tu_barrier_width_elite: "Barrier design inversion: solve for width a at target transmission T.",
+                        re_mode_basic: "Resonance mode condition: solve integer mode number n in 2a = n lambda.",
+                        re_energy_level_core: "Quantized states: compute E_n from n^2 E_1.",
+                        re_delta_energy_advanced: "Transition analysis: compute energy gap Delta E between two levels.",
+                        re_frequency_elite: "Photon emission check: compute frequency f = Delta E / h."
                 }
         },
 
@@ -900,6 +928,12 @@ export const enPhysics = {
                 },
 
                 prompts: {
+                        first_law_basic: "Basel inertia check: object speed is {v} m/s and net force is zero. Task: state F_net.",
+                        first_law_core: "Balanced-force setup: friction is {f_friction} N. Task: state the applied force for F_net=0.",
+                        first_law_adv: "Counterforce task: applied force is {f_applied} N. Task: state friction needed for constant velocity.",
+                        first_law_elite: "Heavy-system equilibrium: opposing force is {f_friction} N. Task: give the balancing force.",
+                        second_law: "Motion model: m={m} kg, F_applied={f} N, F_friction={friction} N. Task: compute acceleration a.",
+                        third_law: "Action-reaction check: object A exerts {f1} N on object B. Task: give the reaction-force magnitude on A.",
                         "FIRST_LAW": {
                                 "BASIC": [
                                         "Object at rest, no force applied. Will it move?",

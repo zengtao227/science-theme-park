@@ -837,6 +837,20 @@ export const dePhysics = {
                         acceleration_hint: "Protonen erreichen 99,9999991% der Lichtgeschwindigkeit",
                         collision_hint: "Kollisionsenergie: 13 TeV = 13.000 GeV",
                         detection_hint: "Das Magnetfeld krümmt die Spuren geladener Teilchen"
+                },
+                prompts: {
+                        acc_gamma_basic: "CERN-Injektorcheck: Berechnen Sie den Lorentz-Faktor gamma aus der gegebenen Strahlgeschwindigkeit.",
+                        acc_beam_energy_core: "ATLAS-Vorlauf: Berechnen Sie die Einzelstrahlenergie in GeV zur Magnetabstimmung.",
+                        acc_gamma_advanced: "Hochgeschwindigkeitskalibrierung: Berechnen Sie gamma für den nahezu lichtschnellen Protonenstrahl.",
+                        acc_momentum_elite: "Impulsdiagnostik: Schätzen Sie den Protonenimpuls p aus den relativistischen Parametern.",
+                        col_sqrts_basic: "Kollisionsaufbau: Berechnen Sie die Schwerpunktsenergie sqrt(s) aus den beiden Strahlenergien.",
+                        col_event_core: "Luminositätslauf: Berechnen Sie die erwartete Ereigniszahl N aus L, sigma und Laufzeit.",
+                        col_ecm_advanced: "Ultrarelativistische Näherung: Berechnen Sie E_cm aus den gegenläufigen Strahlimpulsen.",
+                        col_beta_elite: "Geschwindigkeitsanteil-Check: Berechnen Sie beta=v/c aus dem gegebenen gamma.",
+                        det_radius_basic: "Tracker-Geometrie: Berechnen Sie den Krümmungsradius r im Magnetfeld B.",
+                        det_mass_core: "Invariante-Masse-Rekonstruktion: Berechnen Sie m aus gemessenem E und p.",
+                        det_eta_advanced: "Vorwärtsdetektor-Mapping: Berechnen Sie die Pseudorapidität eta aus theta.",
+                        det_delta_m_elite: "Higgs-Kanal-Fit: Berechnen Sie das Massenresiduum Delta m = m_reco - m_H."
                 }
         },
         gp1_04: {
@@ -872,6 +886,20 @@ export const dePhysics = {
                         classical: "KLASSISCHES LIMIT",
                         tunneling: "QUANTENTUNNELN",
                         resonance: "RESONANZ"
+                },
+                prompts: {
+                        cl_transmission_basic: "Klassische Barriereprüfung: Bestimmen Sie bei E > V_0 den Transmissionskoeffizienten T.",
+                        cl_reflection_core: "Konsistenz im klassischen Grenzfall: Mit T=1 den Reflexionskoeffizienten R berechnen.",
+                        cl_wave_number_advanced: "Wellenanalyse im freien Bereich: Berechnen Sie die Wellenzahl k aus der Teilchenenergie.",
+                        cl_de_broglie_elite: "Hochenergie-Strahlführung: Berechnen Sie die de-Broglie-Wellenlänge lambda.",
+                        tu_transmission_basic: "Quantentunnel-Basisfall: Berechnen Sie T mit dem exponentiellen Abklingmodell.",
+                        tu_kappa_core: "Barrierenparameter: Berechnen Sie kappa aus V_0 und E.",
+                        tu_transmission_advanced: "Dickere-Barriere-Test: Berechnen Sie die Tunnelwahrscheinlichkeit T für gegebenes kappa und a.",
+                        tu_barrier_width_elite: "Barrieren-Design rückwärts: Bestimmen Sie die Breite a für vorgegebenes T.",
+                        re_mode_basic: "Resonanzmodus-Bedingung: Bestimmen Sie die ganzzahlige Modenzahl n in 2a=n lambda.",
+                        re_energy_level_core: "Quantisierte Zustände: Berechnen Sie E_n aus n^2E_1.",
+                        re_delta_energy_advanced: "Übergangsanalyse: Berechnen Sie die Energiedifferenz Delta E zwischen zwei Niveaus.",
+                        re_frequency_elite: "Photonenemission: Berechnen Sie die Frequenz f = Delta E / h."
                 }
         },
 
@@ -899,6 +927,12 @@ export const dePhysics = {
                 },
 
                 prompts: {
+                        first_law_basic: "Trägheitscheck in Basel: Objektgeschwindigkeit {v} m/s bei Nettokraft 0. Aufgabe: F_net angeben.",
+                        first_law_core: "Kraftgleichgewicht: Reibung ist {f_friction} N. Aufgabe: erforderliche Antriebskraft für F_net=0 bestimmen.",
+                        first_law_adv: "Gegenkraftaufgabe: Antriebskraft ist {f_applied} N. Aufgabe: nötige Reibung für konstante Geschwindigkeit angeben.",
+                        first_law_elite: "Schweres System im Gleichgewicht: Gegenkraft {f_friction} N. Aufgabe: ausgleichende Kraft bestimmen.",
+                        second_law: "Bewegungsmodell: m={m} kg, F_applied={f} N, F_friction={friction} N. Aufgabe: Beschleunigung a berechnen.",
+                        third_law: "Aktion-Reaktion-Check: Objekt A übt {f1} N auf Objekt B aus. Aufgabe: Betrag der Reaktionskraft auf A angeben.",
                         "FIRST_LAW": {
                                 "BASIC": [
                                         "Object at rest, no force applied. Will it move?",

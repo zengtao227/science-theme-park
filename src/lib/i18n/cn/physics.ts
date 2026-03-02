@@ -772,6 +772,20 @@ export const cnPhysics = {
             acceleration_hint: "质子速度可达光速的 99.9999991%",
             collision_hint: "对撞能量：13 TeV = 13,000 GeV",
             detection_hint: "强磁场会使带电粒子的径迹发生弯曲"
+        },
+        prompts: {
+            acc_gamma_basic: "CERN 注入器校准：根据给定束流速度计算洛伦兹因子 gamma。",
+            acc_beam_energy_core: "ATLAS 预运行设置：计算单束质子的 GeV 能量以配置磁体。",
+            acc_gamma_advanced: "高速束流标定：计算近光速质子的 gamma 值。",
+            acc_momentum_elite: "动量诊断：根据相对论参数估算质子动量 p。",
+            col_sqrts_basic: "对撞准备：根据两束能量计算质心能量 sqrt(s)。",
+            col_event_core: "亮度统计任务：由 L、sigma 与运行时间计算事件数 N。",
+            col_ecm_advanced: "超相对论近似：根据对向束流动量计算 E_cm。",
+            col_beta_elite: "速度分数校验：由给定 gamma 计算 beta=v/c。",
+            det_radius_basic: "径迹几何：在磁场 B 中计算弯曲半径 r。",
+            det_mass_core: "不变质量重建：根据测得 E 与 p 计算 m。",
+            det_eta_advanced: "前向探测映射：根据 theta 计算赝快度 eta。",
+            det_delta_m_elite: "希格斯道拟合：计算质量残差 Delta m = m_reco - m_H。"
         }
     },
     gp1_04: {
@@ -807,6 +821,20 @@ export const cnPhysics = {
             classical: "经典极限",
             tunneling: "量子隧道",
             resonance: "共振态"
+        },
+        prompts: {
+            cl_transmission_basic: "经典势垒检查：在 E > V_0 条件下判断透射系数 T。",
+            cl_reflection_core: "经典极限一致性：已知 T=1，计算反射系数 R。",
+            cl_wave_number_advanced: "自由区波动分析：根据粒子能量计算波数 k。",
+            cl_de_broglie_elite: "高能束线任务：计算德布罗意波长 lambda。",
+            tu_transmission_basic: "量子隧穿基线：使用指数衰减模型计算 T。",
+            tu_kappa_core: "势垒穿透参数：由 V_0 与 E 计算 kappa。",
+            tu_transmission_advanced: "厚势垒测试：给定 kappa 与 a，计算隧穿概率 T。",
+            tu_barrier_width_elite: "势垒反求设计：在目标 T 下求势垒宽度 a。",
+            re_mode_basic: "共振模态条件：在 2a=n lambda 中求整数模态数 n。",
+            re_energy_level_core: "量子能级计算：根据 n^2E_1 计算 E_n。",
+            re_delta_energy_advanced: "跃迁分析：计算两能级间能隙 Delta E。",
+            re_frequency_elite: "光子发射校验：计算频率 f = Delta E / h。"
         }
     },
 
@@ -834,6 +862,12 @@ export const cnPhysics = {
         },
 
         prompts: {
+            first_law_basic: "巴塞尔惯性检查：物体速度为 {v} m/s，合力为 0。任务：写出 F_net。",
+            first_law_core: "平衡受力设定：摩擦力为 {f_friction} N。任务：给出保持 F_net=0 所需外力。",
+            first_law_adv: "反向配平任务：外力为 {f_applied} N。任务：给出保持匀速所需摩擦力。",
+            first_law_elite: "重载系统平衡：已知阻力 {f_friction} N。任务：给出配平力大小。",
+            second_law: "运动建模：m={m} kg，F_applied={f} N，F_friction={friction} N。任务：计算加速度 a。",
+            third_law: "作用-反作用检查：A 物体对 B 物体施加 {f1} N。任务：给出 B 对 A 的反作用力大小。",
             "FIRST_LAW": {
                 "BASIC": [
                     "Object at rest, no force applied. Will it move?",
