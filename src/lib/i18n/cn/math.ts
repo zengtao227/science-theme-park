@@ -164,17 +164,17 @@ export const cnMath = {    em1_01: {
             composition: "复合变换"
         },
         prompts: {
-            identify_trans: "识别矩阵表示的变换.",
-            create_scale: "创建一个缩放系数为 {k} 的矩阵.",
-            create_rot: "创建一个逆时针旋转 {deg}° 的矩阵.",
-            create_shear: "创建一个切变矩阵: x -> x + {k}y.",
-            create_reflect: "创建一个关于 {axis} 轴反射的矩阵.",
-            create_custom: "创建一个矩阵: {desc}.",
-            calc_det: "计算矩阵的行列式.",
-            property_det: "这个行列式的性质是什么？",
-            calc_prod: "计算矩阵乘积 AB.",
-            calc_inv: "计算逆矩阵 A^-¹.",
-            identify_prop: "识别性质: {desc}."
+            identify_trans: "罗氏对称性审计任务：观察该矩阵并判断它对应的几何变换类型。",
+            create_scale: "分子缩放任务：构造一个按系数 {k} 缩放坐标的矩阵。",
+            create_rot: "方向对齐任务：构造一个将向量逆时针旋转 {deg}° 的矩阵。",
+            create_shear: "晶格畸变任务：构造满足 x -> x + {k}y 的切变矩阵。",
+            create_reflect: "镜像对称任务：构造关于 {axis} 轴的反射矩阵。",
+            create_custom: "工程定制任务：按以下规格构造矩阵：{desc}。",
+            calc_det: "单元体积校核：计算该矩阵的行列式。",
+            property_det: "行列式解释任务：说明该行列式对方向或缩放的含义。",
+            calc_prod: "复合运动任务：计算矩阵乘积 AB，得到两步变换的合成结果。",
+            calc_inv: "逆变换任务：计算逆矩阵 A^-¹，以恢复原始坐标。",
+            identify_prop: "矩阵诊断任务：识别所描述的性质：{desc}。"
         },
         scenario_title: "巴塞尔工程任务",
         scenarios: {

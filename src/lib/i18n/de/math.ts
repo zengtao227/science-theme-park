@@ -164,17 +164,17 @@ export const deMath = {    em1_01: {
             composition: "KOMPOSITION"
         },
         prompts: {
-            identify_trans: "Identifiziere die durch die Matrix dargestellte Transformation.",
-            create_scale: "Erstelle eine Skalierungsmatrix mit Faktor {k}.",
-            create_rot: "Erstelle eine Rotationsmatrix für {deg}°.",
-            create_shear: "Erstelle eine Schermatrix: x -> x + {k}y.",
-            create_reflect: "Erstelle eine Spiegelungsmatrix an der {axis}-Achse.",
-            create_custom: "Erstelle eine Matrix: {desc}.",
-            calc_det: "Berechne die Determinante der Matrix.",
-            property_det: "Was ist die Eigenschaft dieser Determinante?",
-            calc_prod: "Berechne das Matrixprodukt AB.",
-            calc_inv: "Berechne die inverse Matrix A^-¹.",
-            identify_prop: "Identifiziere die Eigenschaft: {desc}."
+            identify_trans: "Roche-Symmetrieaudit: Analysiere die Matrix und bestimme, welche geometrische Transformation sie darstellt.",
+            create_scale: "Molekül-Skalierungsaufgabe: Erstelle eine Matrix, die Koordinaten mit Faktor {k} skaliert.",
+            create_rot: "Ausrichtungsaufgabe: Erstelle eine Matrix, die Vektoren um {deg}° gegen den Uhrzeigersinn rotiert.",
+            create_shear: "Gitterverzerrungsaufgabe: Erstelle eine Schermatrix, die x -> x + {k}y umsetzt.",
+            create_reflect: "Spiegelsymmetrie-Aufgabe: Erstelle eine Spiegelungsmatrix an der {axis}-Achse.",
+            create_custom: "Ingenieurvorgabe-Aufgabe: Erstelle eine Matrix gemäß folgender Spezifikation: {desc}.",
+            calc_det: "Zellvolumen-Check: Berechne die Determinante der Matrix.",
+            property_det: "Determinanten-Interpretation: Gib an, was diese Determinante für Orientierung oder Skalierung bedeutet.",
+            calc_prod: "Kompositionsaufgabe: Berechne das Matrixprodukt AB für die zweistufige Transformation.",
+            calc_inv: "Rücktransformationsaufgabe: Berechne die inverse Matrix A^-¹, um Originalkoordinaten zu rekonstruieren.",
+            identify_prop: "Matrix-Diagnose: Bestimme die beschriebene Eigenschaft {desc}."
         },
         scenario_title: "BASLER INGENIEURSMISSION",
         scenarios: {

@@ -164,17 +164,17 @@ export const enMath = {    em1_01: {
             composition: "COMPOSITION"
         },
         prompts: {
-            identify_trans: "Identify the transformation represented by the matrix.",
-            create_scale: "Create a matrix that scales by factor {k}.",
-            create_rot: "Create a matrix that rotates {deg}° counter-clockwise.",
-            create_shear: "Create a shear matrix: x -> x + {k}y.",
-            create_reflect: "Create a reflection matrix over the {axis}-axis.",
-            create_custom: "Create a matrix: {desc}.",
-            calc_det: "Calculate the determinant of the matrix.",
-            property_det: "What is the property of this determinant?",
-            calc_prod: "Calculate the matrix product AB.",
-            calc_inv: "Calculate the inverse matrix A^-¹.",
-            identify_prop: "Identify the property: {desc}."
+            identify_trans: "Roche symmetry audit: inspect the matrix and identify which geometric transformation it represents.",
+            create_scale: "Molecule-resizing task: construct a matrix that scales coordinates by factor {k}.",
+            create_rot: "Orientation-alignment task: construct a matrix that rotates vectors {deg}° counter-clockwise.",
+            create_shear: "Lattice-distortion task: construct a shear matrix that applies x -> x + {k}y.",
+            create_reflect: "Mirror-symmetry task: construct a reflection matrix across the {axis}-axis.",
+            create_custom: "Custom-engineering task: construct a matrix satisfying this specification: {desc}.",
+            calc_det: "Cell-volume check: compute the determinant of the matrix.",
+            property_det: "Determinant interpretation task: state what this determinant implies for orientation or scaling.",
+            calc_prod: "Composite-motion task: compute the matrix product AB for the two-step transformation.",
+            calc_inv: "Reverse-transformation task: compute the inverse matrix A^-¹ to recover original coordinates.",
+            identify_prop: "Matrix diagnostics task: identify the property described as {desc}."
         },
         scenario_title: "BASEL ENGINEERING MISSION",
         scenarios: {
