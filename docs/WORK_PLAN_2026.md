@@ -536,6 +536,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v4.7 (2026-03-02)
+- **SP3.05 Closed (Prompt i18n)**: 12 hardcoded `promptLatex` templates migrated to `sp3_05.prompts.*` with EN/CN/DE key symmetry.
+- **SB3.01 Elite Prompt Migration**: 7 ELITE hardcoded `promptLatex` entries moved to `sb3_01.prompts.elite_*` in EN/CN/DE.
+- **SM2.09 Prompt Hardcode Removed**: `Solve: ${expression}` replaced by `sm2_09.prompts.solve_expression` in EN/CN/DE.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all pass after migration.
+
 ### v4.6 (2026-03-02)
 - **SC2.02 Closed**: 60 stage prompts moved to `sc2_02.prompts.*` in EN/CN/DE; monitor labels and answer/indicator slot labels localized.
 - **SM2.02 Closed**: All template-literal `promptLatex` converted to parameterized `sm2_02.prompts.*` keys in EN/CN/DE.
@@ -602,5 +608,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 3.6 (Batch A Wave-1 Complete)
+**Plan Version**: 4.7 (Cross-module Prompt i18n Cleanup Ongoing)
 **Next Review**: 2026-03-05

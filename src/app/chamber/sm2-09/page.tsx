@@ -115,7 +115,7 @@ export default function SM209Page() {
           constants: q.constants,
           systemInequalities: q.systemInequalities,
           absoluteValueExpression: q.absoluteValueExpression,
-          promptLatex: `Solve: ${q.expression}`,
+          promptLatex: t("sm2_09.prompts.solve_expression", { expression: q.expression || "" }),
           expressionLatex: q.expression || "",
           targetLatex: q.variable || "x",
           solutionType: q.solutionType || "INTERVAL",
@@ -138,7 +138,7 @@ export default function SM209Page() {
         return quest;
       });
     },
-    [sm2_09_t.solution_label, sm2_09_t.placeholder_interval]
+    [sm2_09_t.solution_label, sm2_09_t.placeholder_interval, t]
   );
 
   // Generate solution steps for a quest

@@ -1396,8 +1396,17 @@ export const enPhysics = {
                 },
                 prompts: {
                         lever: "A lever lifts a {load} N load. If effort arm is {effortArm} m and load arm is {loadArm} m, what effort force is needed?",
+                        lever_class: "Class {class} lever: load {load} N, effort arm {effortArm} m, load arm {loadArm} m. Effort?",
+                        lever_efficiency: "Lever with {efficiency}% efficiency: load {load} N, MA = {ma}. Actual effort?",
+                        lever_two_stage: "Two-stage lever system: each stage MA = {ma}, load {load} N. Input effort?",
                         pulley: "A pulley system lifts a {load} N load with {strands} supporting strands. What effort force is needed?",
+                        pulley_fixed_movable: "Pulley: {movable} movable, {fixed} fixed. Load {load} N. Effort?",
+                        pulley_efficiency: "Pulley: {strands} strands, {efficiency}% efficiency, load {load} N. Actual effort?",
+                        pulley_block_tackle: "Block and tackle: {blocks} blocks, {strands} strands, load {load} N. Effort?",
                         inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
+                        inclined_angle: "Inclined plane: angle {angle}°, load {load} N. Effort parallel to plane?",
+                        inclined_friction: "Inclined plane: h={height} m, l={length} m, load {load} N, friction μ={friction}. Effort?",
+                        screw_jack: "Screw jack: pitch {pitch} cm, handle radius {radius} cm, load {load} N. Effort?",
                         hint_lever: "Use MA = effort arm / load arm, then F_effort = F_load / MA",
                         hint_pulley: "Use MA = number of strands, then F_effort = F_load / MA",
                         hint_inclined: "Use MA = length / height, then F_effort = F_load / MA"

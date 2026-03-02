@@ -1322,7 +1322,14 @@ export const enBiology = {
             cycle_process: "In the {cycle} cycle, what is produced by {process}?",
             hint_trophic: "Only 10% of energy transfers to the next trophic level",
             hint_10percent: "Use the 10% rule: multiply by 0.1",
-            hint_cycle: "Think about the inputs and outputs of this process"
+            hint_cycle: "Think about the inputs and outputs of this process",
+            elite_b1: "\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m^{2}/year. Herbivores consume mean = 850 kcal/m^{2}/year. Calculate energy transfer efficiency (\\\\%).}",
+            elite_b2: "\\\\text{Rhine macroinvertebrates (n=200): Mayfly 80 (p=0.40), Caddisfly 60 (p=0.30), Stonefly 40 (p=0.20), Dragonfly 20 (p=0.10). Calculate Shannon index } H' = -\\\\sum p_i \\\\ln(p_i).",
+            elite_c1: "\\\\text{Basel blackbird population: 2020 = 450, 2024 = 520 (4 years). Using } N_t = N_0 \\\\times e^{rt}, \\\\text{ calculate annual growth rate } r.",
+            elite_c2: "\\\\text{Rhine biomass (kg/ha): Producers mean = 12,000, Primary consumers = 1,200, Secondary consumers = 120. Calculate biomass ratio (producers:secondary).}",
+            elite_a1: "\\\\text{Basel urban deer: logistic growth } \\\\frac{dN}{dt} = rN(1 - \\\\frac{N}{K}), \\\\text{ where } r = 0.18/\\\\text{year}, K = 200, N = 150. \\\\text{ Calculate } \\\\frac{dN}{dt}.",
+            elite_a2: "\\\\text{Rhine Salmon Return (Project Salmon 2020): In 1990, 0 salmon were found. In 2022, 1,200 salmon returned to Basel. If growth follows } N(t) = 1.15^t, \\\\text{ calculate population after 5 more years.}",
+            elite_e1: "\\\\text{Simpson's Index } D = \\\\sum (n/N)^{2} \\\\text{ for Rhine fish: } \\\\text{Eel 50, Salmon 30, Carp 20. Total } N=100. \\\\text{ Calculate } 1 - D \\\\text{ (Diversity).}"
         },
         results: {
             valid: "Ecological Balance",

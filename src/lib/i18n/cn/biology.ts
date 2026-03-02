@@ -1262,7 +1262,14 @@ export const cnBiology = {
             cycle_process: "在 {cycle} 循环中，{process} 产生什么？",
             hint_trophic: "只有10%的能量传递到下一个营养级",
             hint_10percent: "使用10%规则：乘以0.1",
-            hint_cycle: "思考这个过程的输入和输出"
+            hint_cycle: "思考这个过程的输入和输出",
+            elite_b1: "\\\\text{Kannenfeldpark：初级生产力为 8,500 kcal/m^{2}/year。草食动物平均摄入 850 kcal/m^{2}/year。计算能量传递效率（\\\\%）。}",
+            elite_b2: "\\\\text{莱茵河大型无脊椎动物（n=200）：蜉蝣 80（p=0.40）、石蛾 60（p=0.30）、襀翅目 40（p=0.20）、蜻蜓 20（p=0.10）。计算香农指数 } H' = -\\\\sum p_i \\\\ln(p_i).",
+            elite_c1: "\\\\text{巴塞尔黑鹂种群：2020 年 = 450，2024 年 = 520（4 年）。使用 } N_t = N_0 \\\\times e^{rt}, \\\\text{ 计算年增长率 } r.",
+            elite_c2: "\\\\text{莱茵河生物量（kg/ha）：生产者平均值 = 12,000，初级消费者 = 1,200，次级消费者 = 120。计算生物量比（生产者:次级消费者）。}",
+            elite_a1: "\\\\text{巴塞尔城市鹿群：逻辑斯蒂增长 } \\\\frac{dN}{dt} = rN(1 - \\\\frac{N}{K}), \\\\text{ 其中 } r = 0.18/\\\\text{year}, K = 200, N = 150。\\\\text{ 计算 } \\\\frac{dN}{dt}.",
+            elite_a2: "\\\\text{莱茵河鲑鱼回归（Project Salmon 2020）：1990 年发现 0 条，2022 年有 1,200 条回到巴塞尔。若增长满足 } N(t) = 1.15^t, \\\\text{ 计算再过 5 年后的种群数量。}",
+            elite_e1: "\\\\text{辛普森指数 } D = \\\\sum (n/N)^{2} \\\\text{，莱茵河鱼类：鳗鱼 50、鲑鱼 30、鲤鱼 20。总数 } N=100。\\\\text{ 计算 } 1 - D \\\\text{（多样性）。}"
         },
         results: {
             valid: "生态平衡",

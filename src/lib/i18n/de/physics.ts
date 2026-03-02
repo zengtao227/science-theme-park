@@ -1460,8 +1460,17 @@ export const dePhysics = {
                 },
                 prompts: {
                         lever: "Ein Hebel hebt eine Last von {load} N. Kraftarm: {effortArm} m, Lastarm: {loadArm} m. Welche Kraft ist nötig?",
+                        lever_class: "Hebelklasse {class}: Last {load} N, Kraftarm {effortArm} m, Lastarm {loadArm} m. Kraftaufwand?",
+                        lever_efficiency: "Hebel mit {efficiency}% Wirkungsgrad: Last {load} N, MA = {ma}. Tatsächlicher Kraftaufwand?",
+                        lever_two_stage: "Zweistufiges Hebelsystem: jede Stufe MA = {ma}, Last {load} N. Eingabekraft?",
                         pulley: "Flaschenzug mit {strands} tragenden Seilen hebt {load} N. Welche Kraft ist nötig?",
+                        pulley_fixed_movable: "Flaschenzug: {movable} beweglich, {fixed} fest. Last {load} N. Kraftaufwand?",
+                        pulley_efficiency: "Flaschenzug: {strands} Stränge, {efficiency}% Wirkungsgrad, Last {load} N. Tatsächlicher Kraftaufwand?",
+                        pulley_block_tackle: "Flaschenzugblock: {blocks} Blöcke, {strands} Stränge, Last {load} N. Kraftaufwand?",
                         inclined_plane: "Schiefe Ebene hebt {load} N auf Höhe {height} m über Länge {length} m. Welche Kraft ist nötig?",
+                        inclined_angle: "Schiefe Ebene: Winkel {angle}°, Last {load} N. Kraft parallel zur Ebene?",
+                        inclined_friction: "Schiefe Ebene: h={height} m, l={length} m, Last {load} N, Reibung μ={friction}. Kraftaufwand?",
+                        screw_jack: "Spindelheber: Steigung {pitch} cm, Hebelradius {radius} cm, Last {load} N. Kraftaufwand?",
                         hint_lever: "MA = Kraftarm / Lastarm; F_kraft = F_last / MA",
                         hint_pulley: "MA = Anzahl der tragenden Seile; F_kraft = F_last / MA",
                         hint_inclined: "MA = Länge / Höhe; F_kraft = F_last / MA"

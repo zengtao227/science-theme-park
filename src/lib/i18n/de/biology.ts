@@ -1262,7 +1262,14 @@ export const deBiology = {
             cycle_process: "Im {cycle}-Kreislauf, was wird durch {process} produziert?",
             hint_trophic: "Nur 10% der Energie werden auf die nächste trophische Ebene übertragen",
             hint_10percent: "Verwenden Sie die 10%-Regel: mit 0,1 multiplizieren",
-            hint_cycle: "Denken Sie an die Ein- und Ausgänge dieses Prozesses"
+            hint_cycle: "Denken Sie an die Ein- und Ausgänge dieses Prozesses",
+            elite_b1: "\\\\text{Kannenfeldpark: Primärproduktivität = 8.500 kcal/m^{2}/year. Herbivoren konsumieren im Mittel = 850 kcal/m^{2}/year. Berechnen Sie die Energieübertragungseffizienz (\\\\%).}",
+            elite_b2: "\\\\text{Rhein-Makroinvertebraten (n=200): Eintagsfliege 80 (p=0.40), Köcherfliege 60 (p=0.30), Steinfliege 40 (p=0.20), Libelle 20 (p=0.10). Berechnen Sie den Shannon-Index } H' = -\\\\sum p_i \\\\ln(p_i).",
+            elite_c1: "\\\\text{Basler Amselpopulation: 2020 = 450, 2024 = 520 (4 Jahre). Mit } N_t = N_0 \\\\times e^{rt}, \\\\text{ berechnen Sie die jährliche Wachstumsrate } r.",
+            elite_c2: "\\\\text{Rhein-Biomasse (kg/ha): Produzenten Mittelwert = 12.000, Primärkonsumenten = 1.200, Sekundärkonsumenten = 120. Berechnen Sie das Biomasseverhältnis (Produzenten:Sekundärkonsumenten).}",
+            elite_a1: "\\\\text{Basler Stadtrehbestand: logistisches Wachstum } \\\\frac{dN}{dt} = rN(1 - \\\\frac{N}{K}), \\\\text{ mit } r = 0.18/\\\\text{year}, K = 200, N = 150. \\\\text{ Berechnen Sie } \\\\frac{dN}{dt}.",
+            elite_a2: "\\\\text{Rhein-Lachsrückkehr (Projekt Salmon 2020): 1990 wurden 0 Lachse gefunden. 2022 kehrten 1.200 Lachse nach Basel zurück. Wenn das Wachstum } N(t) = 1.15^t \\\\text{ folgt, berechnen Sie die Population nach weiteren 5 Jahren.}",
+            elite_e1: "\\\\text{Simpson-Index } D = \\\\sum (n/N)^{2} \\\\text{ für Rheinfische: } \\\\text{Aal 50, Lachs 30, Karpfen 20. Gesamt } N=100. \\\\text{ Berechnen Sie } 1 - D \\\\text{ (Diversität).}"
         },
         results: {
             valid: "Ökologisches Gleichgewicht",

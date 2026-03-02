@@ -3050,6 +3050,9 @@ export const deMath = {    em1_01: {
             empty_set: "Keine Lösung (∅)",
             all_reals: "Alle reellen Zahlen (ℝ)"
         },
+        prompts: {
+            solve_expression: "Löse: {expression}"
+        },
         feedback: {
             correct: "Lösung verifiziert! Die Ungleichung ist korrekt gelöst.",
             incorrect: "Falsche Lösung. Überprüfen Sie Ihre Arbeit.",

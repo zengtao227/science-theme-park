@@ -3058,6 +3058,9 @@ export const cnMath = {    em1_01: {
             empty_set: "无解 (∅)",
             all_reals: "所有实数 (ℝ)"
         },
+        prompts: {
+            solve_expression: "求解：{expression}"
+        },
         feedback: {
             correct: "解验证成功！不等式求解正确。",
             incorrect: "解不正确。请检查你的计算。",

@@ -1392,8 +1392,17 @@ export const cnPhysics = {
         },
         prompts: {
             lever: "一个杠杆需举起 {load} N 的负载。如果动力臂为 {effortArm} m，阻力臂为 {loadArm} m，需要多大的动力？",
+            lever_class: "第{class}类杠杆：负载 {load} N，动力臂 {effortArm} m，阻力臂 {loadArm} m。所需动力？",
+            lever_efficiency: "杠杆效率 {efficiency}%：负载 {load} N，机械优势 MA = {ma}。实际动力？",
+            lever_two_stage: "两级杠杆系统：每级 MA = {ma}，负载 {load} N。输入动力？",
             pulley: "一个滑轮组用 {strands} 根绳子支撑 {load} N 的负载。需要多大的动力？",
+            pulley_fixed_movable: "滑轮系统：{movable} 个动滑轮，{fixed} 个定滑轮。负载 {load} N。所需动力？",
+            pulley_efficiency: "滑轮：{strands} 根绳段，效率 {efficiency}% ，负载 {load} N。实际动力？",
+            pulley_block_tackle: "滑轮组：{blocks} 个滑轮块，{strands} 根绳段，负载 {load} N。所需动力？",
             inclined_plane: "一个斜面将 {load} N 负载提升到 {height} m 高度，斜面长度为 {length} m。需要多少动力？",
+            inclined_angle: "斜面：角度 {angle}°，负载 {load} N。沿斜面所需动力？",
+            inclined_friction: "斜面：h={height} m，l={length} m，负载 {load} N，摩擦系数 μ={friction}。所需动力？",
+            screw_jack: "螺旋千斤顶：螺距 {pitch} cm，手柄半径 {radius} cm，负载 {load} N。所需动力？",
             hint_lever: "MA = 动力臂 / 阻力臂，动力 = 负载 / MA",
             hint_pulley: "MA = 绳子段数，动力 = 负载 / MA",
             hint_inclined: "MA = 长度 / 高度，动力 = 负载 / MA"

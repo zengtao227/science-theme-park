@@ -3065,6 +3065,9 @@ export const enMath = {    em1_01: {
             empty_set: "No solution (∅)",
             all_reals: "All real numbers (ℝ)"
         },
+        prompts: {
+            solve_expression: "Solve: {expression}"
+        },
         feedback: {
             correct: "Solution verified! The inequality is solved correctly.",
             incorrect: "Incorrect solution. Check your work.",

@@ -179,7 +179,7 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-B1", difficulty, stage, scenario: "kannenfeldpark",
-                        promptLatex: `\\\\text{Kannenfeldpark: Primary productivity = 8,500 kcal/m^{2}/year. Herbivores consume mean = 850 kcal/m^{2}/year. Calculate energy transfer efficiency (\\%).}`,
+                        promptLatex: t("sb3_01.prompts.elite_b1"),
                         expressionLatex: `\text{Efficiency} = \frac{\text{Energy consumed}}{\text{Energy available}} \times 100\\%`,
                         targetLatex: `\text{Efficiency}`,
                         slots: [{ id: "eff", labelLatex: `\\text{${t("sb3_01.labels.efficiency")}}`, placeholder: "10", expected: "10" }],
@@ -192,7 +192,7 @@ export default function SB301Page() {
                     },
                     {
                         id: "ELITE-B2", difficulty, stage, scenario: "rhine_river",
-                        promptLatex: `\\\\text{Rhine macroinvertebrates (n=200): Mayfly 80 (p=0.40), Caddisfly 60 (p=0.30), Stonefly 40 (p=0.20), Dragonfly 20 (p=0.10). Calculate Shannon index } H' = -\\\\sum p_i \\\\ln(p_i).`,
+                        promptLatex: t("sb3_01.prompts.elite_b2"),
                         expressionLatex: `H' = -[p_1\ln(p_1) + p_2\ln(p_2) + p_3\ln(p_3) + p_4\ln(p_4)]`,
                         targetLatex: `H'`,
                         slots: [{ id: "h", labelLatex: `H'`, placeholder: "1.28", expected: "1.28" }],
@@ -208,7 +208,7 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-C1", difficulty, stage, scenario: "basel_parks",
-                        promptLatex: `\\\\text{Basel blackbird population: 2020 = 450, 2024 = 520 (4 years). Using } N_t = N_0 \\\\times e^{rt}, \\\\text{ calculate annual growth rate } r.`,
+                        promptLatex: t("sb3_01.prompts.elite_c1"),
                         expressionLatex: `520 = 450 \times e^{4r}, \text{ solve for } r`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "0.036", expected: "0.036" }],
@@ -221,7 +221,7 @@ export default function SB301Page() {
                     },
                     {
                         id: "ELITE-C2", difficulty, stage, scenario: "rhine_river",
-                        promptLatex: `\\\\text{Rhine biomass (kg/ha): Producers mean = 12,000, Primary consumers = 1,200, Secondary consumers = 120. Calculate biomass ratio (producers:secondary).}`,
+                        promptLatex: t("sb3_01.prompts.elite_c2"),
                         expressionLatex: `\text{Ratio} = \frac{\text{Producer biomass}}{\text{Secondary consumer biomass}}`,
                         targetLatex: `\text{Ratio}`,
                         slots: [{ id: "ratio", labelLatex: `\text{Ratio}`, placeholder: "100", expected: "100" }],
@@ -237,7 +237,7 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-A1", difficulty, stage, scenario: "basel_green_corridors",
-                        promptLatex: `\\\\text{Basel urban deer: logistic growth } \\\\frac{dN}{dt} = rN(1 - \\\\frac{N}{K}), \\\\text{ where } r = 0.18/\\\\text{year}, K = 200, N = 150. \\\\text{ Calculate } \\\\frac{dN}{dt}.`,
+                        promptLatex: t("sb3_01.prompts.elite_a1"),
                         expressionLatex: `\frac{dN}{dt} = 0.18 \times 150 \times (1 - \frac{150}{200})`,
                         targetLatex: `\frac{dN}{dt}`,
                         slots: [{ id: "dndt", labelLatex: `\frac{dN}{dt}`, placeholder: "6.8", expected: "6.8" }],
@@ -250,7 +250,7 @@ export default function SB301Page() {
                     },
                     {
                         id: "ELITE-A2", difficulty, stage, scenario: "rhine_river",
-                        promptLatex: `\\\\text{Rhine Salmon Return (Project Salmon 2020): In 1990, 0 salmon were found. In 2022, 1,200 salmon returned to Basel. If growth follows } N(t) = 1.15^t, \\\\text{ calculate population after 5 more years.}`,
+                        promptLatex: t("sb3_01.prompts.elite_a2"),
                         expressionLatex: `N(5) = 1200 \times (1.15)^5`,
                         targetLatex: `N_{2027}`,
                         slots: [{ id: "n", labelLatex: `N`, placeholder: "2414", expected: "2414" }],
@@ -266,7 +266,7 @@ export default function SB301Page() {
                 quests.push(
                     {
                         id: "ELITE-E1", difficulty, stage, scenario: "rhine_river",
-                        promptLatex: `\\\\text{Simpson's Index } D = \\\\sum (n/N)^{2} \\\\text{ for Rhine fish: } \\\\text{Eel 50, Salmon 30, Carp 20. Total } N=100. \\\\text{ Calculate } 1 - D \\\\text{ (Diversity).}`,
+                        promptLatex: t("sb3_01.prompts.elite_e1"),
                         expressionLatex: `D = (0.5)^{2} + (0.3)^{2} + (0.2)^{2}, \text{ Diversity} = 1 - D`,
                         targetLatex: `1-D`,
                         slots: [{ id: "div", labelLatex: `1-D`, placeholder: "0.62", expected: "0.62" }],
