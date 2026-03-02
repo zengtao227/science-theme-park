@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 Batch C + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 + SM1.03 Updated)
-**Plan Version**: 4.1 (Batch A/B/C Wave-4 in progress)
+**Last Updated**: 2026-03-02 (SP1.01 + SM1.04 + SM2.08 Batch C + SC2.05 + GM1.01-ADV + GP2.01 + SP3.04 + SM1.03 + SC2.01 + SM3.05 Batch C Updated)
+**Plan Version**: 4.3 (Batch A/B/C Wave-4 core prompt migration complete)
 
 ---
 
@@ -38,16 +38,17 @@
 - [x] `gm1-01-advanced` (66 hardcoded promptLatex migrated to `gm1_01_advanced.prompts.*`; 27 keys tri-language aligned)
 - [x] `gp2-01` (23 remaining hardcoded promptLatex migrated; `gp2_01.prompts` EN/CN/DE aligned to 43 keys)
 - [x] `sm1-03` (59 promptLatex violations cleared: 56 wrappers + 3 hardcoded strings; `sm1_03.prompts` EN/CN/DE = 26)
-- [ ] `sm3-05`
+- [x] `sm3-05` (remaining 32 template-literal `promptLatex` migrated to `sm3_05.prompts.*`; EN/CN/DE prompts keys aligned = 60)
 - [x] `sc3-01` (audit check: no hardcoded promptLatex / no `\\text{${tObj.labels...}` wrapper violations)
 - [x] `sp3-01` (audit check: no hardcoded promptLatex / no wrapper violations)
 - [x] `sp3-04` (EN/DE prompt TODO placeholders replaced with pedagogical prompts; physics i18n TODO = 0)
+- [x] `sc2-01` (60 hardcoded `promptLatex` migrated to `sc2_01.prompts.*`; EN/CN/DE prompts keys aligned = 45)
 
 ### 7.4 Quality Gates (must pass before merge)
 - [ ] `npm run lint`
-- [x] `npm run build` (passed after SM2.08 Batch C merge prep, 2026-03-02)
-- [x] `npm run validate:translations` (passed after SM2.08 Batch C merge prep, 2026-03-02)
-- [x] `bash scripts/audit-rendering.sh` (passed after SM2.08 Batch C merge prep, 2026-03-02)
+- [x] `npm run build` (passed after SM3.05 Batch C merge prep, 2026-03-02)
+- [x] `npm run validate:translations` (passed after SM3.05 Batch C merge prep, 2026-03-02)
+- [x] `bash scripts/audit-rendering.sh` (passed after SM3.05 Batch C merge prep, 2026-03-02)
 - [ ] Scenario 4-element compliance check completed for touched content.
 
 ### 7.5 Batch A Wave-1 Results (2026-03-01)
@@ -64,7 +65,9 @@
 - [x] `SP3.04 Batch C`: EN/DE 60+ prompt placeholders replaced; key structure preserved.
 - [x] `SM1.03 Batch C`: 59 promptLatex issues removed (`\\text{${tObj.labels...}}` wrappers + hardcoded prompt strings), i18n keys synchronized in EN/CN/DE.
 - [x] `SM2.08 Batch C`: 63 hardcoded `promptLatex` removed from `page.tsx`; `sm2_08.prompts` EN/CN/DE +53 keys and DATA_STATS residual 3 migrated.
-- [ ] Next wave target: `SC2.01` prompt i18n extraction + `SM3.05` scenario/prompt compliance pass.
+- [x] `SC2.01 Batch C`: 60 hardcoded `promptLatex` removed from `page.tsx`; `sc2_01.prompts` EN/CN/DE +45 keys, zero wrapper violations.
+- [x] `SM3.05 Batch C`: 32 template-literal hardcoded `promptLatex` removed; `sm3_05.prompts` EN/CN/DE aligned to 60 keys.
+- [ ] Next wave target: Batch B 题干语义改写（裸公式/裸参数）+ 四要素场景质量复核（跨模块抽检）。
 
 ---
 

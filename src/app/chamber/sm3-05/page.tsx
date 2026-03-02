@@ -47,7 +47,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-B3", difficulty, stage, geometryType: "box",
-                        promptLatex: `\\\\text{A box is } 10\\\\text{m} \\times 8\\\\text{m} \\times 6\\\\text{m. What is its volume?}`,
+                        promptLatex: t("sm3_05.prompts.arch_b1_box_volume"),
                         expressionLatex: `V = l \\cdot w \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "480", expected: 480 }],
@@ -56,7 +56,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-B4", difficulty, stage, geometryType: "prism",
-                        promptLatex: `\\\\text{A prism has base area } 50\\\\text{ m}^{2} \\\\text{ and height } 12\\\\text{m. What is its volume?}`,
+                        promptLatex: t("sm3_05.prompts.arch_b4_prism_volume"),
                         expressionLatex: `V = A_{base} \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "600", expected: 600 }],
@@ -65,7 +65,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-B5", difficulty, stage, geometryType: "warehouse",
-                        promptLatex: `\\\\text{A warehouse is } 20\\\\text{m} \\times 15\\\\text{m} \\times 8\\\\text{m. What is its volume?}`,
+                        promptLatex: t("sm3_05.prompts.arch_b5_warehouse_volume"),
                         expressionLatex: `V = l \\cdot w \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "2400", expected: 2400 }],
@@ -87,7 +87,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-C2", difficulty, stage, geometryType: "cylinder",
-                        promptLatex: `\\\\text{A cylinder has radius } 4\\\\text{m and height } 10\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_c1_cylinder_volume"),
                         expressionLatex: `V = \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "502", expected: 502 }],
@@ -96,7 +96,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-C3", difficulty, stage, geometryType: "tank",
-                        promptLatex: `\\\\text{A water tank is cylindrical: radius } 3\\\\text{m, height } 8\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_c3_tank_volume"),
                         expressionLatex: `V = \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "226", expected: 226 }],
@@ -105,7 +105,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-C4", difficulty, stage, geometryType: "silo",
-                        promptLatex: `\\\\text{A grain silo: radius } 5\\\\text{m, height } 20\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_c4_silo_volume"),
                         expressionLatex: `V = \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "1570", expected: 1570 }],
@@ -114,7 +114,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-C5", difficulty, stage, geometryType: "pipe",
-                        promptLatex: `\\\\text{A pipe: radius } 2\\\\text{m, length } 50\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_c5_pipe_volume"),
                         expressionLatex: `V = \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "628", expected: 628 }],
@@ -136,7 +136,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-A2", difficulty, stage, geometryType: "pyramid",
-                        promptLatex: `\\\\text{A pyramid has square base } 10\\\\text{m} \\times 10\\\\text{m and height } 15\\\\text{m. Volume?}`,
+                        promptLatex: t("sm3_05.prompts.arch_a1_pyramid_volume"),
                         expressionLatex: `V = \\frac{1}{3} A_{base} \\cdot h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "500", expected: 500 }],
@@ -145,7 +145,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-A3", difficulty, stage, geometryType: "cone",
-                        promptLatex: `\\\\text{A cone has radius } 6\\\\text{m and height } 12\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_a3_cone_volume"),
                         expressionLatex: `V = \\frac{1}{3} \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "452", expected: 452 }],
@@ -163,7 +163,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-A5", difficulty, stage, geometryType: "composite",
-                        promptLatex: `\\\\text{A building: rectangular base } 30\\\\text{m} \\times 20\\\\text{m} \\times 50\\\\text{m topped with pyramid height } 10\\\\text{m. Total volume?}`,
+                        promptLatex: t("sm3_05.prompts.arch_a4_composite_volume"),
                         expressionLatex: `V = V_{prism} + V_{pyramid}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "32000", expected: 32000 }],
@@ -185,7 +185,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-E2", difficulty, stage, geometryType: "dome",
-                        promptLatex: `\\\\text{A hemispherical dome has radius } 10\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_e1_hemisphere_volume"),
                         expressionLatex: `V = \\frac{2}{3} \\pi r^{3}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "2093", expected: 2093 }],
@@ -194,7 +194,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-E3", difficulty, stage, geometryType: "complex",
-                        promptLatex: `\\\\text{A structure: cylinder radius } 5\\\\text{m, height } 20\\\\text{m topped with cone height } 8\\\\text{m. Total volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_e3_composite_volume"),
                         expressionLatex: `V = V_{cylinder} + V_{cone}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "1780", expected: 1780 }],
@@ -203,7 +203,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-E4", difficulty, stage, geometryType: "sphere",
-                        promptLatex: `\\\\text{A spherical tank has radius } 6\\\\text{m. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_e4_sphere_volume"),
                         expressionLatex: `V = \\frac{4}{3} \\pi r^{3}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "904", expected: 904 }],
@@ -212,7 +212,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "ARCH-E5", difficulty, stage, geometryType: "torus",
-                        promptLatex: `\\\\text{A torus (donut) has major radius } 5\\\\text{m and minor radius } 2\\\\text{m. Approximate volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.arch_e5_torus_volume"),
                         expressionLatex: `V \\approx 2 \\pi^{2} R r^{2}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (m}^{3}\\text{)}`, placeholder: "394", expected: 394 }],
@@ -427,7 +427,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CURVE-B1", difficulty, stage, geometryType: "sphere_vol",
-                        promptLatex: `\\\\text{A liposome (sphere) has radius } 3\\mu\\\\text{m. Calculate volume.} (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.cs_b1_liposome_volume"),
                         expressionLatex: `V = \\frac{4}{3}\\pi r^{3}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V`, placeholder: "113", expected: 113.04 }],
@@ -436,7 +436,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-B2", difficulty, stage, geometryType: "sphere",
-                        promptLatex: `\\\\text{A sphere has radius } 5\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_b2_sphere_volume"),
                         expressionLatex: `V = \\frac{4}{3}\\pi r^{3}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "523", expected: 523 }],
@@ -445,7 +445,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-B3", difficulty, stage, geometryType: "cylinder_basic",
-                        promptLatex: `\\\\text{A cylinder: radius } 3\\\\text{cm, height } 10\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_b3_cylinder_volume"),
                         expressionLatex: `V = \\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "283", expected: 283 }],
@@ -454,7 +454,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-B4", difficulty, stage, geometryType: "cone_basic",
-                        promptLatex: `\\\\text{A cone: radius } 4\\\\text{cm, height } 9\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_b4_cone_volume"),
                         expressionLatex: `V = \\frac{1}{3}\\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "151", expected: 151 }],
@@ -463,7 +463,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-B5", difficulty, stage, geometryType: "hemisphere",
-                        promptLatex: `\\\\text{A hemisphere has radius } 6\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_b5_hemisphere_volume"),
                         expressionLatex: `V = \\frac{2}{3}\\pi r^{3}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "452", expected: 452 }],
@@ -485,7 +485,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-C2", difficulty, stage, geometryType: "sphere_sa",
-                        promptLatex: `\\\\text{A sphere has radius } 7\\\\text{cm. Surface area? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_c1_sphere_area"),
                         expressionLatex: `A = 4\\pi r^{2}`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "616", expected: 616 }],
@@ -494,7 +494,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-C3", difficulty, stage, geometryType: "cone_sa",
-                        promptLatex: `\\\\text{A cone: radius } 5\\\\text{cm, slant height } 13\\\\text{cm. Lateral surface area? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_c3_cone_lateral_area"),
                         expressionLatex: `A = \\pi r l`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "204", expected: 204 }],
@@ -503,7 +503,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-C4", difficulty, stage, geometryType: "cylinder_lateral",
-                        promptLatex: `\\\\text{A cylinder: radius } 4\\\\text{cm, height } 15\\\\text{cm. Lateral surface area? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_c4_cylinder_lateral_area"),
                         expressionLatex: `A = 2\\pi r h`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "377", expected: 377 }],
@@ -512,7 +512,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-C5", difficulty, stage, geometryType: "hemisphere_sa",
-                        promptLatex: `\\\\text{A hemisphere: radius } 8\\\\text{cm. Total surface area (curved + base)? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_c5_hemisphere_area"),
                         expressionLatex: `A = 3\\pi r^{2}`,
                         targetLatex: `A`,
                         slots: [{ id: "area", labelLatex: `A\\text{ (cm}^{2}\\text{)}`, placeholder: "603", expected: 603 }],
@@ -525,7 +525,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CURVE-A1", difficulty, stage, geometryType: "cone_vol",
-                        promptLatex: `\\\\text{A conical storage bin: } r=1.5\\\\text{m, } h=4\\\\text{m. Volume?}`,
+                        promptLatex: t("sm3_05.prompts.curve_a1_conical_bin_volume"),
                         expressionLatex: `V = \\frac{1}{3}\\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V`, placeholder: "9.42", expected: 9.42 }],
@@ -534,7 +534,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-A2", difficulty, stage, geometryType: "sphere_segment",
-                        promptLatex: `\\\\text{A spherical cap: sphere radius } 10\\\\text{cm, cap height } 3\\\\text{cm. Approximate volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_a2_spherical_cap_volume"),
                         expressionLatex: `V \\approx \\frac{1}{3}\\pi h^{2}(3r - h)`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "254", expected: 254 }],
@@ -543,7 +543,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-A3", difficulty, stage, geometryType: "torus_approx",
-                        promptLatex: `\\\\text{A torus: major radius } 8\\\\text{cm, minor radius } 3\\\\text{cm. Approximate volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_a3_torus_volume"),
                         expressionLatex: `V \\approx 2\\pi^{2} R r^{2}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "1420", expected: 1420 }],
@@ -561,7 +561,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-A5", difficulty, stage, geometryType: "paraboloid",
-                        promptLatex: `\\\\text{A paraboloid: base radius } 6\\\\text{cm, height } 8\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_a4_paraboloid_volume"),
                         expressionLatex: `V = \\frac{1}{2}\\pi r^{2} h`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "452", expected: 452 }],
@@ -574,7 +574,7 @@ export default function SM305Page() {
                 quests.push(
                     {
                         id: "CURVE-E1", difficulty, stage, geometryType: "composite_sphere_cone",
-                        promptLatex: `\\\\text{A structure: hemisphere radius } 5\\\\text{cm on top of cone radius } 5\\\\text{cm, height } 12\\\\text{cm. Total volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_e1_composite_volume"),
                         expressionLatex: `V = V_{hemisphere} + V_{cone}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "576", expected: 576 }],
@@ -583,7 +583,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-E2", difficulty, stage, geometryType: "hollow_sphere",
-                        promptLatex: `\\\\text{A hollow sphere: outer radius } 10\\\\text{cm, inner radius } 8\\\\text{cm. Volume of material? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_e2_hollow_sphere_volume"),
                         expressionLatex: `V = \\frac{4}{3}\\pi(R^{3} - r^{3})`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "1877", expected: 1877 }],
@@ -592,7 +592,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-E3", difficulty, stage, geometryType: "spherical_shell",
-                        promptLatex: `\\\\text{A spherical shell: outer radius } 12\\\\text{cm, thickness } 2\\\\text{cm. Volume of shell? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_e3_shell_volume"),
                         expressionLatex: `V = \\frac{4}{3}\\pi(R^{3} - r^{3})`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "1206", expected: 1206 }],
@@ -601,7 +601,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-E4", difficulty, stage, geometryType: "truncated_cone",
-                        promptLatex: `\\\\text{A frustum: base radius } 10\\\\text{cm, top radius } 6\\\\text{cm, height } 12\\\\text{cm. Volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_e4_frustum_volume"),
                         expressionLatex: `V = \\frac{1}{3}\\pi h(R^{2} + Rr + r^{2})`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "2111", expected: 2111 }],
@@ -610,7 +610,7 @@ export default function SM305Page() {
                     },
                     {
                         id: "CURVE-E5", difficulty, stage, geometryType: "composite_complex",
-                        promptLatex: `\\\\text{A capsule: cylinder radius } 4\\\\text{cm, height } 10\\\\text{cm with hemispheres on both ends. Total volume? } (\\pi \\approx 3.14)`,
+                        promptLatex: t("sm3_05.prompts.curve_e5_capsule_volume"),
                         expressionLatex: `V = V_{cylinder} + 2V_{hemisphere}`,
                         targetLatex: `V`,
                         slots: [{ id: "vol", labelLatex: `V\\text{ (cm}^{3}\\text{)}`, placeholder: "770", expected: 770 }],
