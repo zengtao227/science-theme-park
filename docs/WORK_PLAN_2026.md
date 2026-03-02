@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (SM3.03 Batch B wave-17 stage-prompt semantic refinement completed, full QA passed)
-**Plan Version**: 8.0 (Batch B high-frequency expansion wave-17)
+**Last Updated**: 2026-03-02 (GM1.01-ADV Batch B wave-18 prompt semantic refinement completed, full QA passed)
+**Plan Version**: 8.1 (Batch B high-frequency expansion wave-18)
 
 ---
 
@@ -129,7 +129,8 @@
 - [x] `GP2.02 Batch B (wave-15 long-tail work-heat cluster)`: rewrote `q_wh_*` prompt keys to scenario-task wording across EN/CN/DE while preserving key names, notation, and calculation intent.
 - [x] `SM3.01 Batch B (wave-16 mode semantic cleanup)`: rewrote `modes.factor_prompt/formula_prompt/complete_square_prompt` in EN/CN/DE from bare directives to scenario-task wording, preserving mode keys and solver intent.
 - [x] `SM3.03 Batch B (wave-17 stage semantic cleanup)`: rewrote 14 stage-level prompts (`exponential/logarithm/applications` and `exp_* / log_* / app_*`) in EN/CN/DE to scenario-task wording while preserving formulas and placeholders.
-- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 GM1.01-ADV prompts 抽检与裸参数题干修复）。
+- [x] `GM1.01-ADV Batch B (wave-18 prompt semantic cleanup)`: rewrote all `gm1_01_advanced.prompts.*` point-target prompts in EN/CN/DE from bare parameter directives to scenario-task wording while preserving prompt keys and calculus notation.
+- [ ] Next wave target: Batch B 扩展到其余高频模块（优先 SM3.02 / SM3.05 抽检并修复裸参数题干）。
 
 ---
 
@@ -583,6 +584,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v8.1 (2026-03-02)
+- **Batch B High-frequency Wave-18 (GM1.01-ADV prompt semantic cleanup)**:
+  - Rewrote all `gm1_01_advanced.prompts.*` point-target prompt keys in EN/CN/DE from bare parameter directives to scenario-task wording.
+  - Kept prompt key names, notation (`f'(x)`, `v(t)=s'(t)`, `a(t)=v'(t)`), and quest mapping unchanged.
+- **Quality Gate Pass**: `validate:translations`, `audit-rendering`, `lint`, and `build` all passed after this wave.
+
 ### v7.4 (2026-03-02)
 - **Batch B High-frequency Wave-11 (GP2.01 long-tail refinement)**:
   - Rewrote long-tail `gp2_01.prompts.*` keys in EN/CN/DE from terse parameter statements to scenario-task wording:
@@ -820,5 +827,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 7.4 (Batch B high-frequency expansion wave-11)
+**Plan Version**: 8.1 (Batch B high-frequency expansion wave-18)
 **Next Review**: 2026-03-05
