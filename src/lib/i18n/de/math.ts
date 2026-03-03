@@ -3119,7 +3119,15 @@ export const deMath = {    em1_01: {
             enter_solution: "Lösung eingeben",
             placeholder_interval: "z.B. (-∞, 5] oder [2, 10)",
             empty_set: "Keine Lösung (∅)",
-            all_reals: "Alle reellen Zahlen (ℝ)"
+            all_reals: "Alle reellen Zahlen (ℝ)",
+            no_solution_exists: "Es existiert keine Lösung",
+            every_value_solution: "Jeder Wert von {variable} ist eine Lösung",
+            single_point: "Einzelner Punkt",
+            multiple_representations: "Mehrere Darstellungen der Ungleichungslösung",
+            graphical_representation: "Grafische Darstellung",
+            solution_description: "Lösungsbeschreibung",
+            inequalities: "Ungleichungen",
+            intersection_solution_region: "Schnittmenge (Lösungsbereich)"
         },
         prompts: {
             solve_expression: "Basler Ungleichungsaufgabe: Loese {expression}"

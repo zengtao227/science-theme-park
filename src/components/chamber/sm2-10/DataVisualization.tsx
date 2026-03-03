@@ -393,13 +393,13 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                             {copy.eliteTitle}
                         </text>
 
-                        <text x={16} y={62} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep1}</text>
-                        <text x={16} y={98} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep2}</text>
-                        <text x={16} y={134} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep3}</text>
-                        <text x={16} y={170} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep4}</text>
+                        <text x={16} y={62} fill="white" fontSize="8.5">{copy.eliteStep1}</text>
+                        <text x={16} y={98} fill="white" fontSize="8.5">{copy.eliteStep2}</text>
+                        <text x={16} y={134} fill="white" fontSize="8.5">{copy.eliteStep3}</text>
+                        <text x={16} y={170} fill="white" fontSize="8.5">{copy.eliteStep4}</text>
 
                         <line x1={16} y1={190} x2={324} y2={190} stroke="#a78bfa" strokeWidth={1} opacity={0.5} />
-                        <text x={16} y={220} fill="#ffd93d" fontSize="9" fontWeight="bold" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteGoal}</text>
+                        <text x={16} y={220} fill="#ffd93d" fontSize="8.5" fontWeight="bold">{copy.eliteGoal}</text>
                     </g>
                 )}
 

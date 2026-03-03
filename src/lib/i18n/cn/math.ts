@@ -3127,7 +3127,15 @@ export const cnMath = {    em1_01: {
             enter_solution: "输入解",
             placeholder_interval: "例如：(-∞, 5] 或 [2, 10)",
             empty_set: "无解 (∅)",
-            all_reals: "所有实数 (ℝ)"
+            all_reals: "所有实数 (ℝ)",
+            no_solution_exists: "不存在解",
+            every_value_solution: "{variable} 的每个值都是解",
+            single_point: "单点解",
+            multiple_representations: "不等式解的多种表示",
+            graphical_representation: "图形表示",
+            solution_description: "解的说明",
+            inequalities: "不等式",
+            intersection_solution_region: "交集（解区域）"
         },
         prompts: {
             solve_expression: "巴塞尔不等式任务：求解 {expression}"

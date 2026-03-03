@@ -3134,7 +3134,15 @@ export const enMath = {    em1_01: {
             enter_solution: "Enter solution",
             placeholder_interval: "e.g., (-∞, 5] or [2, 10)",
             empty_set: "No solution (∅)",
-            all_reals: "All real numbers (ℝ)"
+            all_reals: "All real numbers (ℝ)",
+            no_solution_exists: "No solution exists",
+            every_value_solution: "Every value of {variable} is a solution",
+            single_point: "Single Point",
+            multiple_representations: "Multiple representations of the inequality solution",
+            graphical_representation: "Graphical Representation",
+            solution_description: "Solution Description",
+            inequalities: "Inequalities",
+            intersection_solution_region: "Intersection (Solution Region)"
         },
         prompts: {
             solve_expression: "Basel inequality task: solve {expression}"

@@ -3,6 +3,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Interval } from '@/lib/sm2-09-types';
+import { useLanguage } from '@/lib/i18n';
 
 interface NumberLineVisualizerProps {
     intervals: Interval | Interval[];
@@ -21,6 +22,7 @@ export const NumberLineVisualizer: React.FC<NumberLineVisualizerProps> = ({
     showIntervalNotation = true,
     interactive = false
 }) => {
+    const { t } = useLanguage();
     const svgRef = useRef<SVGSVGElement>(null);
     const [dragging, setDragging] = useState<{
         intervalIndex: number;
@@ -238,7 +240,7 @@ export const NumberLineVisualizer: React.FC<NumberLineVisualizerProps> = ({
             {/* Interval notation display */}
             {showIntervalNotation && (
                 <div className="text-center">
-                    <p className="text-sm text-gray-600 mb-1">Solution Set:</p>
+                    <p className="text-sm text-gray-600 mb-1">{t("sm2_09.labels.solution_set")}:</p>
                     <p className="text-lg font-mono font-semibold text-gray-800">
                         {intervalArray.map((interval, index) => (
                             <span key={index}>

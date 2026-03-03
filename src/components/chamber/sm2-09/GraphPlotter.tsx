@@ -3,6 +3,7 @@
 
 import React, { useRef } from 'react';
 import { satisfiesInequality } from '@/lib/sm2-09-solvers';
+import { useLanguage } from '@/lib/i18n';
 
 interface GraphPlotterProps {
     inequalities: string[];
@@ -42,6 +43,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
     yMax = 10,
     showLegend = true
 }) => {
+    const { t } = useLanguage();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const width = 600;
     const height = 600;
@@ -280,7 +282,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
             {/* Legend */}
             {showLegend && inequalities.length > 0 && (
                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                    <p className="text-sm font-semibold text-gray-700 mb-2">Inequalities:</p>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">{t("sm2_09.labels.inequalities")}:</p>
                     <div className="space-y-2">
                         {inequalities.map((inequality, index) => {
                             const color = GRAPH_COLORS[index % GRAPH_COLORS.length];
@@ -304,7 +306,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
                             <div className="flex items-center gap-2">
                                 <div className="w-4 h-4 bg-purple-500 opacity-30 rounded" />
                                 <span className="text-sm text-gray-700">
-                                    Intersection (Solution Region)
+                                    {t("sm2_09.labels.intersection_solution_region")}
                                 </span>
                             </div>
                         </div>
