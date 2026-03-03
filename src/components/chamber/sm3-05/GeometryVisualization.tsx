@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import { useLanguage } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -18,6 +20,7 @@ const monitorCopy = {
     shapeButtons: { roche: "ROCHE", cube: "CUBE", pyramid: "PYRAMID", sphere: "SPHERE", cylinder: "CYLINDER" },
     rotationX: "Rotation X:",
     rotationY: "Rotation Y:",
+    rotateHint: "Drag to rotate",
     properties: "Properties:",
     rocheTitle: "Roche Tower Analogy",
     rocheStructure: "Structure: Stacked Prisms",
@@ -65,6 +68,7 @@ const monitorCopy = {
     shapeButtons: { roche: "罗氏塔", cube: "立方体", pyramid: "棱锥", sphere: "球体", cylinder: "圆柱" },
     rotationX: "X 轴旋转:",
     rotationY: "Y 轴旋转:",
+    rotateHint: "拖拽可旋转",
     properties: "性质:",
     rocheTitle: "罗氏塔类比",
     rocheStructure: "结构：分层棱柱",
@@ -112,6 +116,7 @@ const monitorCopy = {
     shapeButtons: { roche: "ROCHE", cube: "WUERFEL", pyramid: "PYRAMIDE", sphere: "KUGEL", cylinder: "ZYLINDER" },
     rotationX: "Rotation X:",
     rotationY: "Rotation Y:",
+    rotateHint: "Ziehen zum Drehen",
     properties: "Eigenschaften:",
     rocheTitle: "Roche-Turm Analogie",
     rocheStructure: "Struktur: Gestapelte Prismen",
@@ -157,6 +162,148 @@ const monitorCopy = {
   },
 } as const;
 
+const degToRad = (deg: number) => (deg * Math.PI) / 180;
+
+function ShapeModel({ shape }: { shape: Shape }) {
+  if (shape === "cube") {
+    return (
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={[1.7, 1.7, 1.7]} />
+        <meshStandardMaterial color="#06b6d4" metalness={0.2} roughness={0.35} />
+      </mesh>
+    );
+  }
+
+  if (shape === "pyramid") {
+    return (
+      <mesh castShadow receiveShadow rotation={[0, Math.PI / 4, 0]}>
+        <coneGeometry args={[1.25, 2.0, 4]} />
+        <meshStandardMaterial color="#22d3ee" metalness={0.1} roughness={0.4} />
+      </mesh>
+    );
+  }
+
+  if (shape === "sphere") {
+    return (
+      <mesh castShadow receiveShadow>
+        <sphereGeometry args={[1.05, 48, 48]} />
+        <meshStandardMaterial color="#67e8f9" metalness={0.1} roughness={0.3} />
+      </mesh>
+    );
+  }
+
+  if (shape === "cylinder") {
+    return (
+      <mesh castShadow receiveShadow>
+        <cylinderGeometry args={[0.9, 0.9, 2.0, 48]} />
+        <meshStandardMaterial color="#38bdf8" metalness={0.15} roughness={0.35} />
+      </mesh>
+    );
+  }
+
+  return (
+    <group>
+      <mesh castShadow receiveShadow position={[0, -0.65, 0]}>
+        <boxGeometry args={[2.0, 0.7, 1.2]} />
+        <meshStandardMaterial color="#0891b2" />
+      </mesh>
+      <mesh castShadow receiveShadow position={[0, 0.05, 0]}>
+        <boxGeometry args={[1.6, 0.8, 1.0]} />
+        <meshStandardMaterial color="#0e7490" />
+      </mesh>
+      <mesh castShadow receiveShadow position={[0, 0.85, 0]}>
+        <boxGeometry args={[1.25, 0.8, 0.85]} />
+        <meshStandardMaterial color="#155e75" />
+      </mesh>
+    </group>
+  );
+}
+
+function ViewportWrapper({
+  children,
+  camera = [3.8, 2.6, 3.8],
+}: {
+  children: React.ReactNode;
+  camera?: [number, number, number];
+}) {
+  return (
+    <div className="relative w-full h-64 bg-black/30 rounded overflow-hidden border border-cyan-500/20">
+      <Canvas camera={{ position: camera, fov: 46 }} shadows>
+        <color attach="background" args={["#030611"]} />
+        <ambientLight intensity={0.72} />
+        <directionalLight position={[4, 6, 3]} intensity={1.1} />
+        <pointLight position={[-3, 4, -2]} intensity={0.4} color="#7dd3fc" />
+        {children}
+        <OrbitControls enablePan={false} minDistance={2.2} maxDistance={9} />
+      </Canvas>
+    </div>
+  );
+}
+
+function BaselArchitectureViewport({
+  shape,
+  rotation,
+}: {
+  shape: Shape;
+  rotation: { x: number; y: number };
+}) {
+  return (
+    <ViewportWrapper>
+      <gridHelper args={[8, 16, "#0e7490", "#164e63"]} position={[0, -1.5, 0]} />
+      <group rotation={[degToRad(rotation.x), degToRad(rotation.y), 0]}>
+        <ShapeModel shape={shape} />
+      </group>
+    </ViewportWrapper>
+  );
+}
+
+function CrossSectionsViewport() {
+  return (
+    <ViewportWrapper camera={[4.2, 2.2, 3.8]}>
+      <gridHelper args={[8, 16, "#0e7490", "#164e63"]} position={[0, -1.5, 0]} />
+
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={[2.3, 2.3, 2.3]} />
+        <meshStandardMaterial color="#0ea5e9" opacity={0.25} transparent />
+      </mesh>
+
+      <mesh rotation={[Math.PI / 5, 0, Math.PI / 12]}>
+        <boxGeometry args={[3.1, 0.08, 2.2]} />
+        <meshStandardMaterial color="#facc15" opacity={0.9} transparent />
+      </mesh>
+    </ViewportWrapper>
+  );
+}
+
+function CurvedSolidsViewport() {
+  return (
+    <ViewportWrapper camera={[4.6, 2.8, 4.4]}>
+      <gridHelper args={[10, 20, "#0e7490", "#164e63"]} position={[0, -1.5, 0]} />
+      <axesHelper args={[2.5]} />
+
+      <mesh position={[-1.25, 0.65, -0.15]}>
+        <sphereGeometry args={[0.55, 32, 32]} />
+        <meshStandardMaterial color="#22d3ee" />
+      </mesh>
+
+      <mesh position={[1.0, 0.8, -0.6]}>
+        <cylinderGeometry args={[0.45, 0.45, 1.4, 28]} />
+        <meshStandardMaterial color="#06b6d4" />
+      </mesh>
+
+      <mesh position={[0.2, 0.6, 1.2]} rotation={[0, Math.PI / 8, 0]}>
+        <coneGeometry args={[0.5, 1.2, 28]} />
+        <meshStandardMaterial color="#38bdf8" />
+      </mesh>
+
+      <mesh position={[1.2, 1.5, 1.8]}>
+        <sphereGeometry args={[0.12, 16, 16]} />
+        <meshStandardMaterial color="#67e8f9" emissive="#67e8f9" emissiveIntensity={0.6} />
+      </mesh>
+    </ViewportWrapper>
+  );
+}
+
 export default function GeometryVisualization({ stage }: GeometryVisualizationProps) {
   const { currentLanguage } = useLanguage();
   const [rotation, setRotation] = useState({ x: 30, y: 45 });
@@ -169,7 +316,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
 
   const renderPolyhedra = () => (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-2">
         {(["roche", "cube", "pyramid", "sphere", "cylinder"] as const).map((shape) => (
           <button
             key={shape}
@@ -181,68 +328,33 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         ))}
       </div>
 
-      <div className="p-6 bg-gray-900/50 border border-cyan-500/30 rounded-lg">
-        <div className="relative w-full h-64 bg-black/30 rounded flex items-center justify-center">
-          <div
-            className="relative w-32 h-32"
-            style={{
-              transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-              transformStyle: "preserve-3d",
-              transition: "transform 0.3s",
-            }}
-          >
-            {selectedShape === "cube" && (
-              <div className="w-full h-full border-4 border-cyan-400 bg-cyan-500/20 shadow-[0_0_20px_#00ffff44]" />
-            )}
-            {selectedShape === "roche" && (
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-8 border-2 border-cyan-400 bg-cyan-500/30" />
-                <div className="w-20 h-12 border-2 border-cyan-400 bg-cyan-500/20 mt-1" />
-                <div className="w-24 h-16 border-2 border-cyan-400 bg-cyan-500/10 mt-1" />
-              </div>
-            )}
-            {selectedShape === "pyramid" && (
-              <div className="w-0 h-0 border-l-[64px] border-r-[64px] border-b-[96px] border-l-transparent border-r-transparent border-b-cyan-400/50 relative">
-                <div className="absolute top-[20px] left-[-32px] w-[64px] h-[76px] border-2 border-cyan-400" />
-              </div>
-            )}
-            {selectedShape === "sphere" && (
-              <div className="w-full h-full rounded-full border-4 border-cyan-400 bg-cyan-500/20 shadow-[0_0_30px_#00ffff66]" />
-            )}
-            {selectedShape === "cylinder" && (
-              <div className="w-full h-full rounded-xl border-4 border-cyan-400 bg-cyan-500/20 flex flex-col justify-between">
-                <div className="border-b-2 border-cyan-400 h-4" />
-                <div className="border-t-2 border-cyan-400 h-4" />
-              </div>
-            )}
-          </div>
-        </div>
+      <div className="text-[11px] text-cyan-300/70 font-mono">{copy.rotateHint}</div>
+      <BaselArchitectureViewport shape={selectedShape} rotation={rotation} />
 
-        <div className="mt-4 space-y-2">
-          <div className="flex items-center gap-4">
-            <span className="text-cyan-400">{copy.rotationX}</span>
-            <input
-              type="range"
-              min="0"
-              max="360"
-              value={rotation.x}
-              onChange={(e) => setRotation((prev) => ({ ...prev, x: parseInt(e.target.value, 10) }))}
-              className="flex-1"
-            />
-            <span className="text-white w-12">{rotation.x}°</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-cyan-400">{copy.rotationY}</span>
-            <input
-              type="range"
-              min="0"
-              max="360"
-              value={rotation.y}
-              onChange={(e) => setRotation((prev) => ({ ...prev, y: parseInt(e.target.value, 10) }))}
-              className="flex-1"
-            />
-            <span className="text-white w-12">{rotation.y}°</span>
-          </div>
+      <div className="mt-1 space-y-2">
+        <div className="flex items-center gap-4">
+          <span className="text-cyan-400">{copy.rotationX}</span>
+          <input
+            type="range"
+            min="0"
+            max="360"
+            value={rotation.x}
+            onChange={(e) => setRotation((prev) => ({ ...prev, x: parseInt(e.target.value, 10) }))}
+            className="flex-1"
+          />
+          <span className="text-white w-12">{rotation.x}°</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-cyan-400">{copy.rotationY}</span>
+          <input
+            type="range"
+            min="0"
+            max="360"
+            value={rotation.y}
+            onChange={(e) => setRotation((prev) => ({ ...prev, y: parseInt(e.target.value, 10) }))}
+            className="flex-1"
+          />
+          <span className="text-white w-12">{rotation.y}°</span>
         </div>
       </div>
 
@@ -294,7 +406,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
           </div>
           <div>
             <div className="text-cyan-400 mb-2">{copy.eulerTitle}</div>
-            <div className="text-lg">V - E + F = 2</div>
+            <div className="text-lg"><InlineMath math={"V-E+F=2"} /></div>
             <div className="text-xs text-gray-400 mt-2">{copy.convexPoly}</div>
           </div>
         </div>
@@ -304,33 +416,21 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
 
   const renderCrossSections = () => (
     <div className="space-y-4">
-      <div className="p-6 bg-gray-900/50 border border-cyan-500/30 rounded-lg">
-        <div className="text-center mb-4 text-cyan-400">{copy.crossSectionPlane}</div>
-        <div className="relative w-full h-64 bg-black/30 rounded flex items-center justify-center">
-          <div className="relative">
-            <div className="w-32 h-32 border-4 border-cyan-400 bg-cyan-500/20 relative">
-              <div
-                className="absolute inset-0 border-2 border-yellow-400 bg-yellow-500/20"
-                style={{ clipPath: "polygon(0 50%, 100% 50%, 100% 100%, 0 100%)" }}
-              />
-            </div>
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-yellow-400" />
-          </div>
-        </div>
+      <div className="text-[11px] text-cyan-300/70 font-mono">{copy.rotateHint}</div>
+      <CrossSectionsViewport />
 
-        <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
-          <div className="p-2 bg-gray-800 rounded">
-            <div className="text-cyan-400">{copy.cubeSquare}</div>
-            <div className="text-xs text-gray-400">{copy.parallelFace}</div>
-          </div>
-          <div className="p-2 bg-gray-800 rounded">
-            <div className="text-cyan-400">{copy.sphereCircle}</div>
-            <div className="text-xs text-gray-400">{copy.anyPlane}</div>
-          </div>
-          <div className="p-2 bg-gray-800 rounded">
-            <div className="text-cyan-400">{copy.cylinderRect}</div>
-            <div className="text-xs text-gray-400">{copy.parallelAxis}</div>
-          </div>
+      <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
+        <div className="p-2 bg-gray-800 rounded">
+          <div className="text-cyan-400">{copy.cubeSquare}</div>
+          <div className="text-xs text-gray-400">{copy.parallelFace}</div>
+        </div>
+        <div className="p-2 bg-gray-800 rounded">
+          <div className="text-cyan-400">{copy.sphereCircle}</div>
+          <div className="text-xs text-gray-400">{copy.anyPlane}</div>
+        </div>
+        <div className="p-2 bg-gray-800 rounded">
+          <div className="text-cyan-400">{copy.cylinderRect}</div>
+          <div className="text-xs text-gray-400">{copy.parallelAxis}</div>
         </div>
       </div>
 
@@ -356,39 +456,20 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
 
   const renderSpatialReasoning = () => (
     <div className="space-y-4">
-      <div className="p-6 bg-gray-900/50 border border-cyan-500/30 rounded-lg">
-        <div className="text-center mb-4 text-cyan-400">{copy.coordinateSystem}</div>
-        <div className="relative w-full h-64 bg-black/30 rounded flex items-center justify-center">
-          <div className="relative w-48 h-48">
-            <div className="absolute top-1/2 left-0 w-full h-0.5 bg-red-500" />
-            <div className="absolute top-1/2 right-0 text-red-500 text-xs">X</div>
+      <div className="text-[11px] text-cyan-300/70 font-mono">{copy.rotateHint}</div>
+      <CurvedSolidsViewport />
 
-            <div className="absolute left-1/2 top-0 w-0.5 h-full bg-green-500" />
-            <div className="absolute left-1/2 top-0 text-green-500 text-xs">Y</div>
-
-            <div
-              className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-blue-500"
-              style={{ transform: "rotate(-45deg) translateX(-50%)", transformOrigin: "left" }}
-            />
-            <div className="absolute bottom-4 left-4 text-blue-500 text-xs">Z</div>
-
-            <div className="absolute top-1/3 left-2/3 w-3 h-3 bg-cyan-400 rounded-full" />
-            <div className="absolute top-1/4 left-3/4 text-cyan-400 text-xs">(3, 4, 5)</div>
+      <div className="mt-4 space-y-2 text-sm">
+        <div className="p-2 bg-gray-800 rounded">
+          <div className="text-cyan-400">{copy.distanceFormula}</div>
+          <div className="text-lg">
+            <InlineMath math={"d=\\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}+(z_2-z_1)^{2}}"} />
           </div>
         </div>
-
-        <div className="mt-4 space-y-2 text-sm">
-          <div className="p-2 bg-gray-800 rounded">
-            <div className="text-cyan-400">{copy.distanceFormula}</div>
-            <div className="text-lg">
-              <InlineMath math={"d=\\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}+(z_2-z_1)^{2}}"} />
-            </div>
-          </div>
-          <div className="p-2 bg-gray-800 rounded">
-            <div className="text-cyan-400">{copy.midpointFormula}</div>
-            <div className="text-lg">
-              <InlineMath math={"M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2},\\frac{z_1+z_2}{2}\\right)"} />
-            </div>
+        <div className="p-2 bg-gray-800 rounded">
+          <div className="text-cyan-400">{copy.midpointFormula}</div>
+          <div className="text-lg">
+            <InlineMath math={"M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2},\\frac{z_1+z_2}{2}\\right)"} />
           </div>
         </div>
       </div>
