@@ -13,6 +13,95 @@ import clsx from "clsx";
 import { HelpCircle, BrainCircuit } from "lucide-react";
 import { renderMixedText } from "@/lib/latex-utils";
 
+type MonitorPoint = { x: number; y: number };
+
+function extractPoint(latex: string | undefined, pattern: RegExp): MonitorPoint | null {
+    if (!latex) return null;
+    const match = latex.match(pattern);
+    if (!match) return null;
+    const x = Number(match[1]);
+    const y = Number(match[2]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+    return { x, y };
+}
+
+function TransformationMonitor({
+    quest,
+    checkStatus,
+    labels,
+}: {
+    quest: SM213Quest | null;
+    checkStatus: { ok: boolean; correct: string } | null;
+    labels: {
+        original_point: string;
+        transformed_point: string;
+        monitor_verify_to_reveal: string;
+        monitor_no_point_data: string;
+    };
+}) {
+    if (!quest) {
+        return <div className="text-xs text-white/50">{labels.monitor_no_point_data}</div>;
+    }
+
+    const original = extractPoint(quest.promptLatex, /P\((-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)\)/);
+    const transformed = extractPoint(quest.correctLatex, /P'\((-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)\)/);
+    const showTransformed = !!checkStatus?.ok && !!transformed;
+
+    const size = 240;
+    const center = size / 2;
+    const unit = 10;
+    const toCanvas = (v: number) => center + v * unit;
+    const toCanvasY = (v: number) => center - v * unit;
+
+    return (
+        <div className="space-y-4">
+            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="w-full rounded-lg border border-white/10 bg-black/60">
+                {Array.from({ length: 25 }).map((_, i) => {
+                    const pos = i * 10;
+                    return (
+                        <g key={i}>
+                            <line x1={pos} y1={0} x2={pos} y2={size} stroke="rgba(255,255,255,0.05)" strokeWidth={1} />
+                            <line x1={0} y1={pos} x2={size} y2={pos} stroke="rgba(255,255,255,0.05)" strokeWidth={1} />
+                        </g>
+                    );
+                })}
+                <line x1={0} y1={center} x2={size} y2={center} stroke="rgba(255,255,255,0.35)" strokeWidth={1.5} />
+                <line x1={center} y1={0} x2={center} y2={size} stroke="rgba(255,255,255,0.35)" strokeWidth={1.5} />
+
+                {original && (
+                    <g>
+                        <circle cx={toCanvas(original.x)} cy={toCanvasY(original.y)} r={5} fill="#22d3ee" />
+                        <text x={toCanvas(original.x) + 8} y={toCanvasY(original.y) - 8} fill="#67e8f9" fontSize={10}>
+                            P
+                        </text>
+                    </g>
+                )}
+                {showTransformed && transformed && (
+                    <g>
+                        <circle cx={toCanvas(transformed.x)} cy={toCanvasY(transformed.y)} r={5} fill="#f59e0b" />
+                        <text x={toCanvas(transformed.x) + 8} y={toCanvasY(transformed.y) - 8} fill="#fcd34d" fontSize={10}>
+                            P&apos;
+                        </text>
+                    </g>
+                )}
+            </svg>
+
+            <div className="space-y-2 text-xs font-mono text-white/70">
+                <div className="flex items-center justify-between border border-white/10 rounded px-2 py-1 bg-white/[0.02]">
+                    <span className="text-cyan-300">{labels.original_point}</span>
+                    <span>{original ? `(${original.x}, ${original.y})` : "--"}</span>
+                </div>
+                <div className="flex items-center justify-between border border-white/10 rounded px-2 py-1 bg-white/[0.02]">
+                    <span className="text-amber-300">{labels.transformed_point}</span>
+                    <span>
+                        {showTransformed && transformed ? `(${transformed.x}, ${transformed.y})` : labels.monitor_verify_to_reveal}
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function SM213Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
@@ -26,34 +115,43 @@ export default function SM213Page() {
             rotation: t("sm2_13.stages.rotation"),
             composition: t("sm2_13.stages.composition")
         },
-        translations: {
-            back: t("sm2_13.back"),
-            check: t("sm2_13.check"),
-            next: t("sm2_13.next"),
-            correct: t("sm2_13.correct"),
-            incorrect: t("sm2_13.incorrect"),
-            ready: t("sm2_13.ready"),
-            difficulty: {
-                basic: t("sm2_13.difficulty.basic"),
-                core: t("sm2_13.difficulty.core"),
-                advanced: t("sm2_13.difficulty.advanced"),
-                elite: t("sm2_13.difficulty.elite")
+            translations: {
+                back: t("sm2_13.back"),
+                check: t("sm2_13.check"),
+                next: t("sm2_13.next"),
+                correct: t("sm2_13.correct"),
+                incorrect: t("sm2_13.incorrect"),
+                ready: t("sm2_13.ready"),
+                monitor_title: t("sm2_13.monitor_title"),
+                difficulty: {
+                    basic: t("sm2_13.difficulty.basic"),
+                    core: t("sm2_13.difficulty.core"),
+                    advanced: t("sm2_13.difficulty.advanced"),
+                    elite: t("sm2_13.difficulty.elite")
             }
         },
-        labels: {
-            context: t("sm2_13.labels.context"),
-            solution_input: t("sm2_13.labels.solution_input"),
-            answer_confirmed: t("sm2_13.labels.answer_confirmed"),
-            hint: t("sm2_13.labels.hint"),
+            labels: {
+                context: t("sm2_13.labels.context"),
+                solution_input: t("sm2_13.labels.solution_input"),
+                answer_confirmed: t("sm2_13.labels.answer_confirmed"),
+                hint: t("sm2_13.labels.hint"),
             loading_data: t("sm2_13.labels.loading_data"),
             transformation_matrix: t("sm2_13.labels.transformation_matrix"),
             reflection: t("sm2_13.labels.reflection"),
-            translation: t("sm2_13.labels.translation"),
-            rotation_origin: t("sm2_13.labels.rotation_origin"),
-            sequence_progress: t("sm2_13.labels.sequence_progress"),
-            id: t("sm2_13.labels.id")
-        }
-    };
+                translation: t("sm2_13.labels.translation"),
+                rotation_origin: t("sm2_13.labels.rotation_origin"),
+                sequence_progress: t("sm2_13.labels.sequence_progress"),
+                id: t("sm2_13.labels.id"),
+                x_axis: t("sm2_13.labels.x_axis"),
+                y_axis: t("sm2_13.labels.y_axis"),
+                degree_90: t("sm2_13.labels.degree_90"),
+                degree_180: t("sm2_13.labels.degree_180"),
+                original_point: t("sm2_13.labels.original_point"),
+                transformed_point: t("sm2_13.labels.transformed_point"),
+                monitor_verify_to_reveal: t("sm2_13.labels.monitor_verify_to_reveal"),
+                monitor_no_point_data: t("sm2_13.labels.monitor_no_point_data"),
+            }
+        };
 
     const {
         difficulty,
@@ -106,6 +204,19 @@ export default function SM213Page() {
             onNext={next}
             checkStatus={lastCheck}
             translations={sm2_13_t.translations}
+            footerLeft={t("sm2_13.footer_left")}
+            monitorContent={
+                <TransformationMonitor
+                    quest={currentQuest}
+                    checkStatus={lastCheck}
+                    labels={{
+                        original_point: sm2_13_t.labels.original_point,
+                        transformed_point: sm2_13_t.labels.transformed_point,
+                        monitor_verify_to_reveal: sm2_13_t.labels.monitor_verify_to_reveal,
+                        monitor_no_point_data: sm2_13_t.labels.monitor_no_point_data,
+                    }}
+                />
+            }
         >
             <div className="flex-1 flex flex-col h-full bg-black/40 backdrop-blur-sm overflow-y-auto">
                 <main className="flex-1 max-w-4xl mx-auto w-full p-6 md:p-12 space-y-8 flex flex-col lg:flex-row gap-8">
@@ -231,15 +342,15 @@ export default function SM213Page() {
                         <div className="text-sm font-mono text-white/70 space-y-6">
                             <div>
                                 <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">{sm2_13_t.labels.reflection}</div>
-                                <div className="space-y-1">
-                                    <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="\\text{x-axis}" />
-                                        <InlineMath math="(x, -y)" />
-                                    </div>
-                                    <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="\\text{y-axis}" />
-                                        <InlineMath math="(-x, y)" />
-                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
+                                            <span>{sm2_13_t.labels.x_axis}</span>
+                                            <InlineMath math="(x, -y)" />
+                                        </div>
+                                        <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
+                                            <span>{sm2_13_t.labels.y_axis}</span>
+                                            <InlineMath math="(-x, y)" />
+                                        </div>
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
                                         <InlineMath math="y = x" />
                                         <InlineMath math="(y, x)" />
@@ -260,11 +371,11 @@ export default function SM213Page() {
                                 <div className="text-white/50 mb-1 tracking-wider uppercase text-[10px]">{sm2_13_t.labels.rotation_origin}</div>
                                 <div className="space-y-1">
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="90^\\circ\\text{ CCW}" />
+                                        <span>{`${sm2_13_t.labels.degree_90} ${t("sm2_13.labels.ccw")}`}</span>
                                         <InlineMath math="(-y, x)" />
                                     </div>
                                     <div className="flex justify-between items-center bg-white/5 px-2 py-1 rounded">
-                                        <InlineMath math="180^\\circ" />
+                                        <span>{sm2_13_t.labels.degree_180}</span>
                                         <InlineMath math="(-x, -y)" />
                                     </div>
                                 </div>

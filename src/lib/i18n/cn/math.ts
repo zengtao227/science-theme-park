@@ -2929,7 +2929,13 @@ export const cnMath = {    em1_01: {
         labels: {
             sequence_data: "数列数据",
             progress: "进度",
-            formula: "公式"
+            formula: "公式",
+            no_data: "暂无数据",
+            pattern: "规律",
+            pattern_arithmetic: "d = {d}（每次加 {d}）",
+            pattern_geometric: "r = {r}（每次乘以 {r}）",
+            sum_of_terms: "{n} 项之和",
+            analyze_sequence: "分析数列"
         },
         results: {
             valid: "数列验证成功",
@@ -2977,7 +2983,14 @@ export const cnMath = {    em1_01: {
         },
         labels: {
             formula: "公式",
-            progress: "进度"
+            progress: "进度",
+            no_data: "暂无数据",
+            arrange_items: "从 {n} 个元素中排列 {r} 个（顺序相关）",
+            choose_items: "从 {n} 个元素中选择 {r} 个（顺序无关）",
+            selected_count: "已选：{selected} / {total}",
+            probability_total_outcomes: "总结果数为 {n} 的概率模型",
+            favorable_total: "有利：{favorable} / 总计：{total}",
+            calculate_result: "计算结果"
         },
         results: {
             valid: "计算验证成功",
@@ -2996,6 +3009,8 @@ export const cnMath = {    em1_01: {
         correct: "正确",
         incorrect: "错误",
         ready: "就绪",
+        monitor_title: "变换监控器",
+        footer_left: "几何变换 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -3021,7 +3036,15 @@ export const cnMath = {    em1_01: {
             rotation_origin: "旋转（原点）",
             sequence_progress: "序列进度",
             cw: "顺时针",
-            ccw: "逆时针"
+            ccw: "逆时针",
+            x_axis: "x 轴",
+            y_axis: "y 轴",
+            degree_90: "90°",
+            degree_180: "180°",
+            original_point: "原始点",
+            transformed_point: "变换后点",
+            monitor_verify_to_reveal: "验证后显示",
+            monitor_no_point_data: "当前题型无点位预览"
         },
         prompts: {
             reflection_basic_axis: "巴塞尔镜像网格任务：测绘点 $P({x}, {y})$ 关于 ${axis}$ 轴对称。求反射后的坐标 $P'(x', y')$。",
@@ -3040,6 +3063,13 @@ export const cnMath = {    em1_01: {
             composition_core: "两步变换任务：先将 $P({x}, {y})$ 关于 $y=x$ 对称，再绕原点旋转 $90^\\circ$ {direction}。求 $P'(x', y')$。",
             composition_advanced: "镜像组合分析：点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $x={dy}$ 对称。净效果等价于沿 $\\Delta x$ 平移。求 $\\Delta x$。",
             composition_elite: "复合变换分析：点 $P({x}, {y})$ 先关于 $x={dx}$ 对称，再关于 $y={dy}$ 对称。净效果等价于绕 $C(x_c,y_c)$ 旋转。求 $x_c+y_c$。"
+        },
+        expressions: {
+            mirror_distance: "\\text{镜像距离：} |{lineAxis} - {offset}|",
+            perpendicular_slope: "\\text{垂线斜率：} \\frac{-1}{{m}}",
+            observe_swaps_signs: "\\text{注意坐标交换与符号变化}",
+            rotate_line_hint: "\\text{先求截距，旋转关键点，再求新方程}",
+            perpendicular_reflection_rule: "\\text{关于两条互相垂直直线的连续对称，等价于绕交点旋转 }180^\\circ"
         }
     },
     gp3_03: {

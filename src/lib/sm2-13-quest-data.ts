@@ -72,7 +72,7 @@ export const buildStagePool = (
                     difficulty: "ADVANCED",
                     stage: "reflection",
                     promptLatex: t("sm2_13.prompts.reflection_advanced_line_offset", { x, y, lineAxis, offset }),
-                    expressionLatex: `\\text{Mirror distance is } |${lineAxis} - ${offset}|`,
+                    expressionLatex: t("sm2_13.expressions.mirror_distance", { lineAxis, offset }),
                     targetLatex: "P'(x', y')",
                     slots: [
                         { id: "x", labelLatex: "x'=", placeholder: "x", expected: aX },
@@ -97,7 +97,7 @@ export const buildStagePool = (
                     difficulty: "ELITE",
                     stage: "reflection",
                     promptLatex: t("sm2_13.prompts.reflection_elite_line", { x, y, lineEquation }),
-                    expressionLatex: `\\text{Perpendicular slope is } \\frac{-1}{${m}}`,
+                    expressionLatex: t("sm2_13.expressions.perpendicular_slope", { m }),
                     targetLatex: "x'",
                     slots: [
                         { id: "x", labelLatex: "x'\\approx", placeholder: "x", expected: Math.round(px * 10) / 10 }
@@ -185,7 +185,7 @@ export const buildStagePool = (
                         angle,
                         direction
                     }),
-                    expressionLatex: `\\text{Observe coordinate swaps & sign changes}`,
+                    expressionLatex: t("sm2_13.expressions.observe_swaps_signs"),
                     targetLatex: "P'(x', y')",
                     slots: [
                         { id: "x", labelLatex: "x'=", placeholder: "x", expected: ax },
@@ -249,7 +249,7 @@ export const buildStagePool = (
                     difficulty: "ELITE",
                     stage: "rotation",
                     promptLatex: t("sm2_13.prompts.rotation_elite_line", { equation, thetaStr }),
-                    expressionLatex: `\\text{Find intercepts, rotate the points, solve for new equation.}`,
+                    expressionLatex: t("sm2_13.expressions.rotate_line_hint"),
                     targetLatex: "b'",
                     slots: [
                         { id: "b", labelLatex: "b'\\approx", placeholder: "b", expected: Math.round(b / Math.cos(theta) * 10) / 10 }
@@ -311,7 +311,7 @@ export const buildStagePool = (
                     difficulty: "ELITE",
                     stage: "composition",
                     promptLatex: t("sm2_13.prompts.composition_elite", { x, y, dx, dy }),
-                    expressionLatex: `\\text{Reflection over 2 perpendicular lines = }180^\\circ\\text{ rotation around intersection}`,
+                    expressionLatex: t("sm2_13.expressions.perpendicular_reflection_rule"),
                     targetLatex: "x_c + y_c",
                     slots: [
                         { id: "val", labelLatex: "Sum=", placeholder: "val", expected: dx + dy }

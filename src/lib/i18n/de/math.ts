@@ -2921,7 +2921,13 @@ export const deMath = {    em1_01: {
         labels: {
             sequence_data: "FOLGENDATEN",
             progress: "FORTSCHRITT",
-            formula: "FORMEL"
+            formula: "FORMEL",
+            no_data: "Keine Daten",
+            pattern: "Muster",
+            pattern_arithmetic: "d = {d} (addiere {d})",
+            pattern_geometric: "r = {r} (multipliziere mit {r})",
+            sum_of_terms: "Summe von {n} Gliedern",
+            analyze_sequence: "Folge analysieren"
         },
         results: {
             valid: "FOLGE VERIFIZIERT",
@@ -2969,7 +2975,14 @@ export const deMath = {    em1_01: {
         },
         labels: {
             formula: "FORMEL",
-            progress: "FORTSCHRITT"
+            progress: "FORTSCHRITT",
+            no_data: "Keine Daten",
+            arrange_items: "Ordne {r} Elemente aus {n} an (Reihenfolge zählt)",
+            choose_items: "Wähle {r} Elemente aus {n} (Reihenfolge egal)",
+            selected_count: "Ausgewählt: {selected} / {total}",
+            probability_total_outcomes: "Wahrscheinlichkeit bei {n} Gesamtergebnissen",
+            favorable_total: "Günstig: {favorable} / Gesamt: {total}",
+            calculate_result: "Ergebnis berechnen"
         },
         results: {
             valid: "BERECHNUNG VERIFIZIERT",
@@ -2988,6 +3001,8 @@ export const deMath = {    em1_01: {
         correct: "Richtig",
         incorrect: "Falsch",
         ready: "Bereit",
+        monitor_title: "Transformationsmonitor",
+        footer_left: "GEOMETRISCHE_TRANSFORMATIONEN // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3013,7 +3028,15 @@ export const deMath = {    em1_01: {
             rotation_origin: "Drehung (Ursprung)",
             sequence_progress: "Sequenzfortschritt",
             cw: "Uhrzeigersinn",
-            ccw: "Gegen den Uhrzeigersinn"
+            ccw: "Gegen den Uhrzeigersinn",
+            x_axis: "x-Achse",
+            y_axis: "y-Achse",
+            degree_90: "90°",
+            degree_180: "180°",
+            original_point: "Ausgangspunkt",
+            transformed_point: "Bildpunkt",
+            monitor_verify_to_reveal: "Nach Verifikation sichtbar",
+            monitor_no_point_data: "Keine Punktvorschau verfügbar"
         },
         prompts: {
             reflection_basic_axis: "Basler Spiegelraster-Aufgabe: Der Messpunkt $P({x}, {y})$ wird an der ${axis}$-Achse gespiegelt. Bestimme den Bildpunkt $P'(x', y')$.",
@@ -3032,6 +3055,13 @@ export const deMath = {    em1_01: {
             composition_core: "Zweistufige Transformation: Spiegle $P({x}, {y})$ an $y=x$ und rotiere danach um $90^\\circ$ {direction} um den Ursprung. Bestimme $P'(x', y')$.",
             composition_advanced: "Spiegelpaar-Analyse: Punkt $P({x}, {y})$ wird an $x={dx}$ und danach an $x={dy}$ gespiegelt. Der Nettoeffekt ist eine Verschiebung um $\\Delta x$. Bestimme $\\Delta x$.",
             composition_elite: "Kompositionsanalyse: Spiegle $P({x}, {y})$ an $x={dx}$ und danach an $y={dy}$. Der Nettoeffekt entspricht einer Rotation um $C(x_c,y_c)$. Bestimme $x_c+y_c$."
+        },
+        expressions: {
+            mirror_distance: "\\text{Spiegelabstand: } |{lineAxis} - {offset}|",
+            perpendicular_slope: "\\text{Senkrechte Steigung: } \\frac{-1}{{m}}",
+            observe_swaps_signs: "\\text{Koordinatentausch und Vorzeichenwechsel beachten}",
+            rotate_line_hint: "\\text{Achsenabschnitte finden, Punkte drehen, neue Gleichung bestimmen}",
+            perpendicular_reflection_rule: "\\text{Spiegelung an zwei senkrechten Geraden entspricht einer }180^\\circ\\text{-Drehung um ihren Schnittpunkt}"
         }
     },
     gp3_03: {

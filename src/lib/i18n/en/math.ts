@@ -2936,7 +2936,13 @@ export const enMath = {    em1_01: {
         labels: {
             sequence_data: "SEQUENCE DATA",
             progress: "PROGRESS",
-            formula: "FORMULA"
+            formula: "FORMULA",
+            no_data: "No data",
+            pattern: "Pattern",
+            pattern_arithmetic: "d = {d} (add {d})",
+            pattern_geometric: "r = {r} (multiply by {r})",
+            sum_of_terms: "Sum of {n} terms",
+            analyze_sequence: "Analyze sequence"
         },
         results: {
             valid: "SEQUENCE VERIFIED",
@@ -2984,7 +2990,14 @@ export const enMath = {    em1_01: {
         },
         labels: {
             formula: "FORMULA",
-            progress: "PROGRESS"
+            progress: "PROGRESS",
+            no_data: "No data",
+            arrange_items: "Arrange {r} items from {n} (order matters)",
+            choose_items: "Choose {r} items from {n} (order doesn't matter)",
+            selected_count: "Selected: {selected} / {total}",
+            probability_total_outcomes: "Probability with {n} total outcomes",
+            favorable_total: "Favorable: {favorable} / Total: {total}",
+            calculate_result: "Calculate result"
         },
         results: {
             valid: "CALCULATION VERIFIED",
@@ -3003,6 +3016,8 @@ export const enMath = {    em1_01: {
         correct: "Correct",
         incorrect: "Incorrect",
         ready: "Ready",
+        monitor_title: "Transformation Monitor",
+        footer_left: "GEOMETRIC_TRANSFORMATIONS // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -3028,7 +3043,15 @@ export const enMath = {    em1_01: {
             rotation_origin: "Rotation (Origin)",
             sequence_progress: "Sequence Progress",
             cw: "CW",
-            ccw: "CCW"
+            ccw: "CCW",
+            x_axis: "x-axis",
+            y_axis: "y-axis",
+            degree_90: "90°",
+            degree_180: "180°",
+            original_point: "Original Point",
+            transformed_point: "Transformed Point",
+            monitor_verify_to_reveal: "Verify to reveal",
+            monitor_no_point_data: "No point preview available"
         },
         prompts: {
             reflection_basic_axis: "Basel mirror-grid task: survey point $P({x}, {y})$ is reflected across the ${axis}$-axis. Determine the reflected coordinate $P'(x', y')$.",
@@ -3047,6 +3070,13 @@ export const enMath = {    em1_01: {
             composition_core: "Two-step transform task: reflect $P({x}, {y})$ across $y=x$, then rotate $90^\\circ$ {direction} around the origin. Find $P'(x', y')$.",
             composition_advanced: "Mirror-pair analysis: point $P({x}, {y})$ is reflected across $x={dx}$, then across $x={dy}$. The net effect is translation by $\\Delta x$. Find $\\Delta x$.",
             composition_elite: "Composite transform analysis: reflect $P({x}, {y})$ across $x={dx}$, then across $y={dy}$. The net effect is rotation about $C(x_c,y_c)$. Find $x_c+y_c$."
+        },
+        expressions: {
+            mirror_distance: "\\text{Mirror distance: } |{lineAxis} - {offset}|",
+            perpendicular_slope: "\\text{Perpendicular slope: } \\frac{-1}{{m}}",
+            observe_swaps_signs: "\\text{Observe coordinate swaps and sign changes}",
+            rotate_line_hint: "\\text{Find intercepts, rotate points, solve the new equation}",
+            perpendicular_reflection_rule: "\\text{Reflection across two perpendicular lines equals }180^\\circ\\text{ rotation around their intersection}"
         }
     },
     gp3_03: {

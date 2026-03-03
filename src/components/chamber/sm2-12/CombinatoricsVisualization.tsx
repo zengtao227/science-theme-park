@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface CombinatoricsVisualizationProps {
   quest: any;
@@ -15,6 +16,7 @@ export default function CombinatoricsVisualization({
   checkStatus,
 }: CombinatoricsVisualizationProps) {
   void inputs;
+  const { t } = useLanguage();
   const visualData = useMemo(() => {
     if (!quest) return null;
 
@@ -42,7 +44,7 @@ export default function CombinatoricsVisualization({
       return (
         <div className="space-y-6">
           <div className="text-center text-sm text-cyan-300">
-            Arrange {displayR} items from {displayN} (order matters)
+            {t("sm2_12.labels.arrange_items", { r: displayR, n: displayN })}
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             {Array.from({ length: displayN }, (_, i) => (
@@ -62,7 +64,7 @@ export default function CombinatoricsVisualization({
             ))}
           </div>
           <div className="text-center text-xs text-white/60">
-            Selected: {displayR} / {displayN}
+            {t("sm2_12.labels.selected_count", { selected: displayR, total: displayN })}
           </div>
         </div>
       );
@@ -72,7 +74,7 @@ export default function CombinatoricsVisualization({
       return (
         <div className="space-y-6">
           <div className="text-center text-sm text-purple-300">
-            Choose {displayR} items from {displayN} (order doesn&apos;t matter)
+            {t("sm2_12.labels.choose_items", { r: displayR, n: displayN })}
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             {Array.from({ length: displayN }, (_, i) => (
@@ -92,7 +94,7 @@ export default function CombinatoricsVisualization({
             ))}
           </div>
           <div className="text-center text-xs text-white/60">
-            Selected: {displayR} / {displayN}
+            {t("sm2_12.labels.selected_count", { selected: displayR, total: displayN })}
           </div>
         </div>
       );
@@ -102,7 +104,7 @@ export default function CombinatoricsVisualization({
     return (
       <div className="space-y-6">
         <div className="text-center text-sm text-amber-300">
-          Probability with {displayN} total outcomes
+          {t("sm2_12.labels.probability_total_outcomes", { n: displayN })}
         </div>
         <div className="relative w-full h-32">
           <svg width="100%" height="100%" viewBox="0 0 400 120">
@@ -131,7 +133,7 @@ export default function CombinatoricsVisualization({
           </svg>
         </div>
         <div className="text-center text-xs text-white/60">
-          Favorable: {displayR} / Total: {displayN}
+          {t("sm2_12.labels.favorable_total", { favorable: displayR, total: displayN })}
         </div>
       </div>
     );
@@ -140,7 +142,7 @@ export default function CombinatoricsVisualization({
   if (!quest || !visualData) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white/60 text-sm">
-        No data
+        {t("sm2_12.labels.no_data")}
       </div>
     );
   }
@@ -155,12 +157,12 @@ export default function CombinatoricsVisualization({
       <div className="text-xs text-white/60 font-mono text-center">
         {checkStatus ? (
           checkStatus.ok ? (
-            <span className="text-green-400">✓ CALCULATION VERIFIED</span>
+            <span className="text-green-400">✓ {t("sm2_12.results.valid")}</span>
           ) : (
-            <span className="text-pink-400">✗ CHECK FORMULA</span>
+            <span className="text-pink-400">✗ {t("sm2_12.results.invalid_desc")}</span>
           )
         ) : (
-          "CALCULATE RESULT"
+          t("sm2_12.labels.calculate_result")
         )}
       </div>
     </div>
