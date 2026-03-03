@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-03 (GM2.02 + GP3.* residual closure completed, GP3.03 i18n micro-closure + full QA passed)
-**Plan Version**: 9.4 (Batch B high-frequency expansion wave-30.1)
+**Last Updated**: 2026-03-03 (SC1.03/SC1.04/SC1.05 prompt i18n closure + GP2.* / SC1.* residual audit completed, full QA passed)
+**Plan Version**: 9.5 (Batch B high-frequency expansion wave-31)
 
 ---
 
@@ -143,7 +143,7 @@
 - [x] `GM4.01 Batch B (wave-29 stage prompt cleanup)`: rewrote short stage-level operational prompts/targets in EN/CN/DE (`basics_prompt/target`, `operations_add/multiply/target`, `polar_prompt/target`) into scenario-task wording.
 - [x] `GM2.02 + GP3.* Batch B residual closure (wave-30)`: completed residual audit and closure. Migrated GM2.02 page-level hardcoded UI strings to i18n, migrated GM2.02 quest label/placeholder hardcoded English to `gm2_02.labels.*` with EN/CN/DE symmetry, and fixed GP3.01 CN mixed-language label (`yes_tir`).
 - [x] `GP3.03 Batch B residual micro-closure (wave-30.1)`: removed remaining hardcoded Faraday slot label (`EMF (V)`) from page logic and migrated it to `gp3_03.labels.emf` with EN/CN/DE key symmetry.
-- [ ] Next wave target: Batch B 跨模块残留抽检（优先 GP2.* / SC1.*）并继续收口。
+- [x] `GP2.* + SC1.* Batch B residual closure (wave-31)`: completed targeted residual audit for prompt hardcoding/wrapper violations in GP2.* and SC1.* scope; closed SC1.03/SC1.04/SC1.05 prompt pipeline by adding tri-language `prompts` key packs and migrating remaining hardcoded `promptLatex` to i18n references.
 
 ---
 

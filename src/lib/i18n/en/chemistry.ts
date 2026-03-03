@@ -545,6 +545,20 @@ export const enChemistry = {
             build_desc: "Free mode: Build any atom configuration",
             elements_desc: "Explore the first 20 elements of the periodic table",
             isotopes_desc: "Study isotopes: same protons, different neutrons"
+        },
+        prompts: {
+            build_mass_number: "A",
+            build_charge: "q",
+            build_electrons: "e",
+            build_neutrons: "n",
+            elements_atomic_number_basic: "Z",
+            elements_atomic_number_core: "Z",
+            elements_symbol_from_z: "X",
+            elements_period: "P",
+            isotope_neutrons: "n",
+            isotope_mass_number: "A",
+            isotope_delta_neutrons: "\\Delta n",
+            isotope_average_mass: "A_{avg}"
         }
     },
     sc1_03_orbitals: {
@@ -629,6 +643,20 @@ export const enChemistry = {
             build_hint: "Proton number determines the element",
             periodic_hint: "Elements are arranged by atomic number",
             groups_hint: "Same group = same valence electrons"
+        },
+        prompts: {
+            build_mass_number: "A",
+            build_charge: "q",
+            build_electrons: "e",
+            build_neutrons: "n",
+            periodic_atomic_number: "Z",
+            periodic_period: "P",
+            periodic_group: "G",
+            periodic_valence: "v_e",
+            groups_group_number: "G",
+            groups_same_group: "S",
+            groups_delta_z: "\\Delta Z",
+            groups_delta_period: "\\Delta P"
         }
     },
     sc1_05: {
@@ -649,12 +677,31 @@ export const enChemistry = {
         stages: {
             ionic: "IONIC",
             covalent: "COVALENT",
+            metallic: "METALLIC",
             lewis: "LEWIS"
         },
         labels: {
+            bond_type: "BOND TYPE",
+            case_study: "Regional Case Study // Basel Node",
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
+        },
+        descriptions: {
+            ionic: "Electrostatic attraction between oppositely charged ions.",
+            covalent: "Sharing of electron pairs between atoms.",
+            metallic: "Lattice of positive ions in a sea of delocalized electrons."
+        },
+        prompts: {
+            ionic_charge_product: "|q_1q_2|",
+            ionic_subscript: "x",
+            ionic_total_charge: "Q",
+            ionic_ratio_n: "n",
+            covalent_bond_order: "n",
+            covalent_bonds_count: "b",
+            metallic_valence: "v",
+            metallic_coordination_number: "N",
+            metallic_ratio: "r"
         },
         scenarios: {
             ionic_salts: "Basel Chemical Stores: Understanding ionic bonding between metals and non-metals is fundamental for the production of industrial salts and catalysts.",

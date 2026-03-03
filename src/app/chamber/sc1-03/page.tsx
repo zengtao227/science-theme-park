@@ -1,15 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
+import { useAppStore } from "@/lib/store";
+import { renderMixedText } from "@/lib/latex-utils";
+import { InlineMath } from "react-katex";
 import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 
 const OrbitalCanvas = dynamic(() => import("@/components/chamber/sc1-03/OrbitalCanvas"), {
     ssr: false,
 });
 
-// Periodic table elements (first 20)
 const elements = [
     { symbol: "H", name: "Hydrogen", z: 1, orbital: "s" },
     { symbol: "He", name: "Helium", z: 2, orbital: "s" },
@@ -33,31 +36,193 @@ const elements = [
     { symbol: "Ca", name: "Calcium", z: 20, orbital: "s" },
 ];
 
+type Stage = "build" | "elements" | "isotopes";
+type AtomQuest = Quest & { stage: Stage };
+
 export default function SC1_03_AtomsForge() {
     const { t } = useLanguage();
-    const [selectedElement, setSelectedElement] = useState(elements[5]); // Carbon
+    const { completeStage } = useAppStore();
+
+    const [selectedElement, setSelectedElement] = useState(elements[5]);
     const [orbitalType, setOrbitalType] = useState<"s" | "p" | "d">("p");
     const [showTransition, setShowTransition] = useState(false);
 
+    const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): AtomQuest[] => {
+        const bank: Record<Stage, Record<Difficulty, AtomQuest[]>> = {
+            build: {
+                BASIC: [{
+                    id: "B-B-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.build_mass_number"),
+                    expressionLatex: "p=8,\\;n=8,\\;A=p+n",
+                    targetLatex: "A",
+                    slots: [{ id: "A", labelLatex: "A", placeholder: "xx", expected: 16 }],
+                    correctLatex: "A=16",
+                }],
+                CORE: [{
+                    id: "B-C-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.build_charge"),
+                    expressionLatex: "p=11,\\;e=10,\\;q=p-e",
+                    targetLatex: "q",
+                    slots: [{ id: "q", labelLatex: "q", placeholder: "x", expected: 1 }],
+                    correctLatex: "q=+1",
+                }],
+                ADVANCED: [{
+                    id: "B-A-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.build_electrons"),
+                    expressionLatex: "Z=17",
+                    targetLatex: "e",
+                    slots: [{ id: "e", labelLatex: "e", placeholder: "xx", expected: 17 }],
+                    correctLatex: "e=17",
+                }],
+                ELITE: [{
+                    id: "B-E-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.build_neutrons"),
+                    expressionLatex: "A=56,\\;Z=26,\\;n=A-Z",
+                    targetLatex: "n",
+                    slots: [{ id: "n", labelLatex: "n", placeholder: "xx", expected: 30 }],
+                    correctLatex: "n=30",
+                }],
+            },
+            elements: {
+                BASIC: [{
+                    id: "E-B-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.elements_atomic_number_basic"),
+                    expressionLatex: "\\mathrm{C}",
+                    targetLatex: "Z",
+                    slots: [{ id: "Z", labelLatex: "Z", placeholder: "x", expected: 6 }],
+                    correctLatex: "Z=6",
+                }],
+                CORE: [{
+                    id: "E-C-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.elements_atomic_number_core"),
+                    expressionLatex: "\\mathrm{Mg}",
+                    targetLatex: "Z",
+                    slots: [{ id: "Z", labelLatex: "Z", placeholder: "xx", expected: 12 }],
+                    correctLatex: "Z=12",
+                }],
+                ADVANCED: [{
+                    id: "E-A-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.elements_symbol_from_z"),
+                    expressionLatex: "Z=19",
+                    targetLatex: "X",
+                    slots: [{ id: "sym", labelLatex: "X", placeholder: "K", expected: "K" }],
+                    correctLatex: "X=K",
+                }],
+                ELITE: [{
+                    id: "E-E-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.elements_period"),
+                    expressionLatex: "Z=18\\;(Ar)",
+                    targetLatex: "P",
+                    slots: [{ id: "period", labelLatex: "P", placeholder: "x", expected: 3 }],
+                    correctLatex: "P=3",
+                }],
+            },
+            isotopes: {
+                BASIC: [{
+                    id: "I-B-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.isotope_neutrons"),
+                    expressionLatex: "^{14}_{6}C",
+                    targetLatex: "n",
+                    slots: [{ id: "n", labelLatex: "n", placeholder: "x", expected: 8 }],
+                    correctLatex: "n=14-6=8",
+                }],
+                CORE: [{
+                    id: "I-C-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.isotope_mass_number"),
+                    expressionLatex: "Z=8,\\;n=10",
+                    targetLatex: "A",
+                    slots: [{ id: "A", labelLatex: "A", placeholder: "xx", expected: 18 }],
+                    correctLatex: "A=18",
+                }],
+                ADVANCED: [{
+                    id: "I-A-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.isotope_delta_neutrons"),
+                    expressionLatex: "^{35}_{17}Cl,\\;^{37}_{17}Cl",
+                    targetLatex: "\\Delta n",
+                    slots: [{ id: "dn", labelLatex: "\\Delta n", placeholder: "x", expected: 2 }],
+                    correctLatex: "\\Delta n=2",
+                }],
+                ELITE: [{
+                    id: "I-E-1", difficulty, stage,
+                    promptLatex: t("sc1_03.prompts.isotope_average_mass"),
+                    expressionLatex: "^{35}Cl:75\\%,\\;^{37}Cl:25\\%",
+                    targetLatex: "A_{avg}",
+                    slots: [{ id: "Aavg", labelLatex: "A_{avg}", placeholder: "xx.x", expected: 35.5 }],
+                    correctLatex: "A_{avg}=35\\times0.75+37\\times0.25=35.5",
+                }],
+            },
+        };
+        return bank[stage][difficulty] ?? [];
+    }, [t]);
+
+    const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => {
+        return buildStagePool(difficulty, stage);
+    }, [buildStagePool]);
+
+    const {
+        currentQuest: quest,
+        stage,
+        inputs,
+        setInputs,
+        lastCheck,
+        verify,
+        next,
+        handleStageChange,
+        difficulty,
+        handleDifficultyChange,
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback,
+    } = useQuestManager<AtomQuest, Stage>({
+        moduleCode: "sc1-03",
+        buildPool,
+        initialStage: "build",
+        tolerance: 0.02,
+    });
+
+    useEffect(() => {
+        if (lastCheck?.ok) {
+            completeStage("sc1-03", stage);
+        }
+    }, [lastCheck, completeStage, stage]);
+
     return (
         <ChamberLayout
+            adaptiveRecommendation={adaptiveRecommendation}
+            aiFeedback={aiFeedback}
+            isRequestingAi={isRequestingAi}
+            onAiDiagnosisRequested={requestAiFeedback}
             title={t("sc1_03.title")}
             moduleCode="SC1.03"
-            difficulty="CORE"
-            onDifficultyChange={() => { }}
-            stages={[{ id: "SANDBOX", label: t("sc1_03.stages.sandbox") || "Sandbox" }]}
-            currentStage="SANDBOX"
-            onStageChange={() => { }}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+            stages={[
+                { id: "build", label: t("sc1_03.stages.build") },
+                { id: "elements", label: t("sc1_03.stages.elements") },
+                { id: "isotopes", label: t("sc1_03.stages.isotopes") },
+            ]}
+            currentStage={stage}
+            onStageChange={(s) => handleStageChange(s as Stage)}
+            onVerify={verify}
+            onNext={next}
+            checkStatus={lastCheck}
             translations={{
                 back: t("sc1_03.back"),
-                difficulty: { core: "CORE" },
-                check: t("sc1_01.check"),
-                next: t("sc1_01.next"),
-                correct: t("sc1_01.correct"),
-                incorrect: t("sc1_01.incorrect"),
-                ready: "QUANTUM_ONLINE",
-                monitor_title: t("sc1_03.monitor_title")
+                difficulty: {
+                    basic: t("sc1_03.difficulty.basic"),
+                    core: t("sc1_03.difficulty.core"),
+                    advanced: t("sc1_03.difficulty.advanced"),
+                    elite: t("sc1_03.difficulty.elite"),
+                },
+                check: t("sc1_03.check"),
+                next: t("sc1_03.next"),
+                correct: t("sc1_03.correct"),
+                incorrect: t("sc1_03.incorrect"),
+                ready: t("sc1_03.ready"),
+                monitor_title: t("sc1_03.monitor_title"),
             }}
+            footerLeft={t("sc1_03.footer_left")}
             monitorContent={
                 <OrbitalCanvas
                     element={selectedElement.symbol}
@@ -68,31 +233,30 @@ export default function SC1_03_AtomsForge() {
             }
         >
             <div className="space-y-6 overflow-y-auto max-h-[70vh] pr-2">
-                {/* Selected Element Info */}
                 <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4">
                     <div className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-black">
-                        {t("sc1_03.labels.selected_element")}
+                        {t("sc1_03_orbitals.labels.selected_element")}
                     </div>
                     <div className="flex items-center gap-6">
                         <div className="text-6xl text-cyan-400 font-black italic">{selectedElement.symbol}</div>
                         <div>
                             <div className="text-xl text-white font-black">{selectedElement.name}</div>
-                            <div className="text-white/40 font-mono">ATOMIC NUMBER: {selectedElement.z}</div>
+                            <div className="text-white/40 font-mono">{t("sc1_03.labels.atomic_number")}: {selectedElement.z}</div>
                         </div>
                     </div>
                 </div>
 
-                {/* Orbital Control */}
                 <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-4">
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-black">
-                            {t("sc1_03.labels.orbital_type")}
+                            {t("sc1_03_orbitals.labels.orbital_type")}
                         </div>
                         <div className="flex gap-2">
                             {["s", "p", "d"].map((type) => (
                                 <button
                                     key={type}
-                                    onClick={() => setOrbitalType(type as any)}
+                                    onClick={() => setOrbitalType(type as "s" | "p" | "d")}
+                                    aria-label={`${t("sc1_03_orbitals.labels.orbital_type")} ${type.toUpperCase()}`}
                                     className={`w-10 h-10 rounded-lg border-2 font-black transition-all ${orbitalType === type
                                             ? "bg-white text-black border-white"
                                             : "border-white/20 text-white/40 hover:border-white/60"
@@ -105,10 +269,11 @@ export default function SC1_03_AtomsForge() {
                     </div>
                     <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center justify-between">
                         <span className="text-xs text-white/60 font-black tracking-widest uppercase">
-                            {t("sc1_03.labels.show_transition")}
+                            {t("sc1_03_orbitals.labels.show_transition")}
                         </span>
                         <button
                             onClick={() => setShowTransition(!showTransition)}
+                            aria-label={t("sc1_03_orbitals.labels.show_transition")}
                             className={`w-12 h-6 rounded-full transition-all relative ${showTransition ? "bg-cyan-500" : "bg-white/10"}`}
                         >
                             <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${showTransition ? "left-7" : "left-1"}`} />
@@ -116,10 +281,9 @@ export default function SC1_03_AtomsForge() {
                     </div>
                 </div>
 
-                {/* Periodic Table Selection */}
                 <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-4">
                     <div className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-black">
-                        {t("sc1_03.labels.periodic_table")}
+                        {t("sc1_03_orbitals.labels.periodic_table")}
                     </div>
                     <div className="grid grid-cols-5 gap-2">
                         {elements.map((elem) => (
@@ -127,8 +291,9 @@ export default function SC1_03_AtomsForge() {
                                 key={elem.z}
                                 onClick={() => {
                                     setSelectedElement(elem);
-                                    if (elem.orbital !== orbitalType) setOrbitalType(elem.orbital as any);
+                                    if (elem.orbital !== orbitalType) setOrbitalType(elem.orbital as "s" | "p" | "d");
                                 }}
+                                aria-label={`${t("sc1_03_orbitals.labels.selected_element")} ${elem.name} (${elem.symbol})`}
                                 className={`p-2 border rounded-lg flex flex-col items-center transition-all ${selectedElement.z === elem.z
                                         ? "bg-cyan-500/20 border-cyan-500 text-cyan-400"
                                         : "border-white/10 text-white/40 hover:border-white/30"
@@ -141,32 +306,36 @@ export default function SC1_03_AtomsForge() {
                     </div>
                 </div>
 
-                {/* Physics Legend */}
-                <div className="grid grid-cols-1 gap-4">
-                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
-                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-black">
-                            {t("sc1_03.labels.quantum_numbers")}
+                {quest && (
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-4">
+                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-black text-center">
+                            {t("sc1_03.check")}
                         </div>
-                        <div className="grid grid-cols-1 gap-2 text-[10px] text-white/70 font-mono tracking-wider">
-                            <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span>PRINCIPAL (n)</span>
-                                <span className="text-cyan-400">ENERGY LEVEL</span>
-                            </div>
-                            <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span>ANGULAR (l)</span>
-                                <span className="text-purple-400">0=s, 1=p, 2=d</span>
-                            </div>
-                            <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span>MAGNETIC (m_l)</span>
-                                <span className="text-pink-400">-l to +l</span>
-                            </div>
-                            <div className="flex justify-between border-b border-white/5 pb-1">
-                                <span>SPIN (m_s)</span>
-                                <span className="text-amber-400">±½</span>
-                            </div>
+                        <div className="text-center text-2xl text-white font-black">{renderMixedText(quest.promptLatex)}</div>
+                        <div className="text-center p-3 bg-white/5 border border-white/10 rounded-xl">
+                            <InlineMath math={quest.expressionLatex} />
                         </div>
+                        {quest.slots.map((slot) => (
+                            <div key={slot.id} className="space-y-2">
+                                <label className="text-sm text-white/70 font-mono">
+                                    <InlineMath math={slot.labelLatex} />
+                                </label>
+                                <input
+                                    value={inputs[slot.id] ?? ""}
+                                    onChange={(e) => setInputs((prev) => ({ ...prev, [slot.id]: e.target.value }))}
+                                    aria-label={slot.id}
+                                    className="w-full bg-black border-2 border-cyan-500/50 p-4 text-center outline-none focus:border-cyan-400 placeholder:text-white/40 font-black text-2xl text-white rounded-lg"
+                                    placeholder={slot.placeholder}
+                                />
+                            </div>
+                        ))}
+                        {lastCheck?.ok && (
+                            <div className="text-center p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+                                <InlineMath math={quest.correctLatex} />
+                            </div>
+                        )}
                     </div>
-                </div>
+                )}
             </div>
         </ChamberLayout>
     );

@@ -537,6 +537,20 @@ export const deChemistry = {
             build_desc: "Freier Modus: Beliebige Atomkonfiguration erstellen",
             elements_desc: "Erkunden Sie die ersten 20 Elemente des Periodensystems",
             isotopes_desc: "Studieren Sie Isotope: gleiche Protonenzahl, unterschiedliche Neutronenzahl"
+        },
+        prompts: {
+            build_mass_number: "A",
+            build_charge: "q",
+            build_electrons: "e",
+            build_neutrons: "n",
+            elements_atomic_number_basic: "Z",
+            elements_atomic_number_core: "Z",
+            elements_symbol_from_z: "X",
+            elements_period: "P",
+            isotope_neutrons: "n",
+            isotope_mass_number: "A",
+            isotope_delta_neutrons: "\\Delta n",
+            isotope_average_mass: "A_{avg}"
         }
     },
     sc1_03_orbitals: {
@@ -621,6 +635,20 @@ export const deChemistry = {
             build_hint: "Protonenzahl bestimmt das Element",
             periodic_hint: "Elemente sind nach Ordnungszahl angeordnet",
             groups_hint: "Gleiche Gruppe = gleiche Valenzelektronen"
+        },
+        prompts: {
+            build_mass_number: "A",
+            build_charge: "q",
+            build_electrons: "e",
+            build_neutrons: "n",
+            periodic_atomic_number: "Z",
+            periodic_period: "P",
+            periodic_group: "G",
+            periodic_valence: "v_e",
+            groups_group_number: "G",
+            groups_same_group: "S",
+            groups_delta_z: "\\Delta Z",
+            groups_delta_period: "\\Delta P"
         }
     },
     sc1_05: {
@@ -641,12 +669,31 @@ export const deChemistry = {
         stages: {
             ionic: "IONISCH",
             covalent: "KOVALENT",
+            metallic: "METALLISCH",
             lewis: "LEWIS"
         },
         labels: {
+            bond_type: "BINDUNGSTYP",
+            case_study: "Regionale Fallstudie // Basel-Knoten",
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
+        },
+        descriptions: {
+            ionic: "Elektrostatische Anziehung zwischen entgegengesetzt geladenen Ionen.",
+            covalent: "Gemeinsame Nutzung von Elektronenpaaren zwischen Atomen.",
+            metallic: "Gitter aus positiven Ionen in einem Meer delokalisierter Elektronen."
+        },
+        prompts: {
+            ionic_charge_product: "|q_1q_2|",
+            ionic_subscript: "x",
+            ionic_total_charge: "Q",
+            ionic_ratio_n: "n",
+            covalent_bond_order: "n",
+            covalent_bonds_count: "b",
+            metallic_valence: "v",
+            metallic_coordination_number: "N",
+            metallic_ratio: "r"
         },
         scenarios: {
             ionic_salts: "Basler Chemielager: Das Verständnis ionischer Bindungen ist grundlegend für die Produktion von Industriesalzen und Katalysatoren.",

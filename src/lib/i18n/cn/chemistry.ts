@@ -545,6 +545,20 @@ export const cnChemistry = {
             build_desc: "自由模式：构建任意原子配置",
             elements_desc: "探索元素周期表前 20 号元素",
             isotopes_desc: "研究同位素：相同质子数，不同中子数"
+        },
+        prompts: {
+            build_mass_number: "A",
+            build_charge: "q",
+            build_electrons: "e",
+            build_neutrons: "n",
+            elements_atomic_number_basic: "Z",
+            elements_atomic_number_core: "Z",
+            elements_symbol_from_z: "X",
+            elements_period: "P",
+            isotope_neutrons: "n",
+            isotope_mass_number: "A",
+            isotope_delta_neutrons: "\\Delta n",
+            isotope_average_mass: "A_{avg}"
         }
     },
     sc1_03_orbitals: {
@@ -629,6 +643,20 @@ export const cnChemistry = {
             build_hint: "质子数决定元素种类",
             periodic_hint: "元素按原子序数排列",
             groups_hint: "同族元素 = 相同价电子数"
+        },
+        prompts: {
+            build_mass_number: "A",
+            build_charge: "q",
+            build_electrons: "e",
+            build_neutrons: "n",
+            periodic_atomic_number: "Z",
+            periodic_period: "P",
+            periodic_group: "G",
+            periodic_valence: "v_e",
+            groups_group_number: "G",
+            groups_same_group: "S",
+            groups_delta_z: "\\Delta Z",
+            groups_delta_period: "\\Delta P"
         }
     },
     sc1_05: {
@@ -649,12 +677,31 @@ export const cnChemistry = {
         stages: {
             ionic: "离子键",
             covalent: "共价键",
+            metallic: "金属键",
             lewis: "路易斯结构"
         },
         labels: {
+            bond_type: "键类型",
+            case_study: "区域案例 // 巴塞尔节点",
             na_cl: "Na + Cl -> NaCl",
             h2: "H + H -> H2",
             co2: "C + 2O -> CO2"
+        },
+        descriptions: {
+            ionic: "带相反电荷离子之间的静电吸引。",
+            covalent: "原子之间共享电子对。",
+            metallic: "正离子晶格与离域电子海形成的金属键。"
+        },
+        prompts: {
+            ionic_charge_product: "|q_1q_2|",
+            ionic_subscript: "x",
+            ionic_total_charge: "Q",
+            ionic_ratio_n: "n",
+            covalent_bond_order: "n",
+            covalent_bonds_count: "b",
+            metallic_valence: "v",
+            metallic_coordination_number: "N",
+            metallic_ratio: "r"
         },
         scenarios: {
             ionic_salts: "巴塞尔化学仓库：了解金属与非金属之间的离子键是工业盐和催化剂生产的基础。",
