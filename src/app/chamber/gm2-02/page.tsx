@@ -17,6 +17,11 @@ export default function GM202Page() {
   const { t } = useLanguage();
 
   const gm2_02_t = {
+    back: t("gm2_02.back"),
+    ready: t("gm2_02.ready"),
+    monitor_title: t("gm2_02.monitor_title"),
+    objective_title: t("gm2_02.objective_title"),
+    input_tip_2dp: t("gm2_02.input_tip_2dp"),
     title: t("gm2_02.title"),
     subtitle: t("gm2_02.subtitle"),
     line_equations: t("gm2_02.line_equations"),
@@ -125,13 +130,13 @@ export default function GM202Page() {
       checkStatus={lastCheck}
       footerLeft={gm2_02_t.subtitle}
       translations={{
-        back: "Back",
+        back: gm2_02_t.back,
         check: gm2_02_t.check,
         next: gm2_02_t.next,
         correct: gm2_02_t.correct,
         incorrect: gm2_02_t.incorrect,
-        ready: "Ready",
-        monitor_title: "Visualization",
+        ready: gm2_02_t.ready,
+        monitor_title: gm2_02_t.monitor_title,
         difficulty: {
           basic: gm2_02_t.basic,
           core: gm2_02_t.core,
@@ -171,7 +176,7 @@ export default function GM202Page() {
           <>
             <div className="text-center">
               <h3 className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black mb-4">
-                OBJECTIVE
+                {gm2_02_t.objective_title}
               </h3>
               <p className="text-2xl text-white font-black">
                 {renderMixedText(currentQuest?.promptLatex || "")}
@@ -198,7 +203,7 @@ export default function GM202Page() {
                 </div>
               ))}
               <div className="text-[10px] text-white/90 font-mono italic text-center">
-                Enter your answer with precision to 2 decimal places
+                {gm2_02_t.input_tip_2dp}
               </div>
             </div>
           </>

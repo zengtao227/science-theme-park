@@ -2317,7 +2317,7 @@ export const cnPhysics = {
             yes_heisenberg: "\\text{是（Heisenberg）}",
             constructive: "\\text{相长干涉}",
             green_500nm: "\\text{绿色（500 nm）}",
-            yes_tir: "\\text{是（TIR occurs）}",
+            yes_tir: "\\text{是（发生全内反射）}",
             total_internal_reflection: "\\text{全内反射}",
             dispersion: "\\text{色散}",
             maximize_efficiency: "\\text{最大化效率}"
