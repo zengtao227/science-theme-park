@@ -1997,7 +1997,23 @@ export const enChemistry = {
         next: "Next Challenge",
         correct: "Sustainable Method Verified",
         incorrect: "Check lifecycle data",
-        labels: { mission_objective: "LIFECYCLE ANALYSIS", terminal_input: "ECOLOGICAL INPUT", hint: "HINT" },
+        ready: "Ready",
+        monitor_title: "SC1.07_SUSTAINABILITY_MONITOR",
+        loading: "Loading...",
+        labels: {
+            mission_objective: "LIFECYCLE ANALYSIS",
+            terminal_input: "ECOLOGICAL INPUT",
+            hint: "HINT",
+            sensor_feed: "SENSOR FEED",
+            material: "Material",
+            atom_economy: "Atom Economy",
+            lifecycle_stage: "Lifecycle Stage"
+        },
+        placeholders: {
+            material: "Type",
+            percent: "%",
+            stage: "Name"
+        },
         prompts: {
             sc1_07_q1: "Identify this recyclable plastic (abbreviation).",
             sc1_07_q2: "Calculate the ideal atom economy (%).",

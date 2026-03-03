@@ -1997,7 +1997,23 @@ export const cnChemistry = {
         next: "下一挑战",
         correct: "可持续方法已验证",
         incorrect: "检查生命周期数据",
-        labels: { mission_objective: "生命周期分析", terminal_input: "生态输入", hint: "提示" },
+        ready: "就绪",
+        monitor_title: "SC1.07_可持续性监视器",
+        loading: "加载中...",
+        labels: {
+            mission_objective: "生命周期分析",
+            terminal_input: "生态输入",
+            hint: "提示",
+            sensor_feed: "传感器数据流",
+            material: "材料",
+            atom_economy: "原子经济性",
+            lifecycle_stage: "生命周期阶段"
+        },
+        placeholders: {
+            material: "输入类型",
+            percent: "%",
+            stage: "名称"
+        },
         prompts: {
             sc1_07_q1: "识别此类可回收塑料（缩写）。",
             sc1_07_q2: "计算理想状态下的原子经济性 (%)。",

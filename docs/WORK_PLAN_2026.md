@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-03 (SC1.03/SC1.04/SC1.05 prompt i18n closure + GP2.* / SC1.* residual audit completed, full QA passed)
-**Plan Version**: 9.5 (Batch B high-frequency expansion wave-31)
+**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 kickoff: SC1.07 right-panel localization/accessibility closure + baseline audits)
+**Plan Version**: 9.6 (Batch B high-frequency expansion wave-32)
 
 ---
 
@@ -144,6 +144,7 @@
 - [x] `GM2.02 + GP3.* Batch B residual closure (wave-30)`: completed residual audit and closure. Migrated GM2.02 page-level hardcoded UI strings to i18n, migrated GM2.02 quest label/placeholder hardcoded English to `gm2_02.labels.*` with EN/CN/DE symmetry, and fixed GP3.01 CN mixed-language label (`yes_tir`).
 - [x] `GP3.03 Batch B residual micro-closure (wave-30.1)`: removed remaining hardcoded Faraday slot label (`EMF (V)`) from page logic and migrated it to `gp3_03.labels.emf` with EN/CN/DE key symmetry.
 - [x] `GP2.* + SC1.* Batch B residual closure (wave-31)`: completed targeted residual audit for prompt hardcoding/wrapper violations in GP2.* and SC1.* scope; closed SC1.03/SC1.04/SC1.05 prompt pipeline by adding tri-language `prompts` key packs and migrating remaining hardcoded `promptLatex` to i18n references.
+- [x] `Phase 5.4 + 6.0 kickoff (wave-32)`: localized SC1.07 right-panel hardcoded runtime strings (`ready`/`monitor_title`/`loading`/`sensor feed`) and quest input labels/placeholders into EN/CN/DE i18n; added input `aria-label` baseline; executed fresh Batch A/B/C + translation quality baseline scan for next-wave closure.
 
 ---
 

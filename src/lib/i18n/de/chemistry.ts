@@ -1991,7 +1991,23 @@ export const deChemistry = {
         next: "Nächste Herausforderung",
         correct: "Nachhaltigkeitsdaten verifiziert",
         incorrect: "Parameter prüfen",
-        labels: { mission_objective: "ÖKOBILANZ", terminal_input: "ÖKO-EINGABE", hint: "HINWEIS" },
+        ready: "Bereit",
+        monitor_title: "SC1.07_NACHHALTIGKEIT_MONITOR",
+        loading: "Wird geladen...",
+        labels: {
+            mission_objective: "ÖKOBILANZ",
+            terminal_input: "ÖKO-EINGABE",
+            hint: "HINWEIS",
+            sensor_feed: "SENSOR-DATENSTROM",
+            material: "Material",
+            atom_economy: "Atomökonomie",
+            lifecycle_stage: "Lebenszyklus-Phase"
+        },
+        placeholders: {
+            material: "Eingeben",
+            percent: "%",
+            stage: "Name"
+        },
         prompts: {
             sc1_07_q1: "Identifizieren Sie diesen recycelbaren Kunststoff (Abkürzung).",
             sc1_07_q2: "Berechnen Sie die ideale Atomökonomie (%).",

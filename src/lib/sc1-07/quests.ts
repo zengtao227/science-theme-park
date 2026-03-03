@@ -41,15 +41,39 @@ export const QUEST_DATA: SC107Quest[] = [
 
 export const generateRecyclingQuests = (t: any, difficulty: Difficulty): SC107Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "RECYCLING" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex }));
+        .map(q => ({
+            ...q,
+            promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex,
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: t("sc1_07.labels.material") || slot.labelLatex,
+                placeholder: t("sc1_07.placeholders.material") || slot.placeholder,
+            })),
+        }));
 };
 
 export const generateGreenChemistryQuests = (t: any, difficulty: Difficulty): SC107Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "GREEN_CHEMISTRY" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex }));
+        .map(q => ({
+            ...q,
+            promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex,
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: t("sc1_07.labels.atom_economy") || slot.labelLatex,
+                placeholder: t("sc1_07.placeholders.percent") || slot.placeholder,
+            })),
+        }));
 };
 
 export const generateCircularEconomyQuests = (t: any, difficulty: Difficulty): SC107Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "CIRCULAR_ECONOMY" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex }));
+        .map(q => ({
+            ...q,
+            promptLatex: t(`sc1_07.prompts.${q.id}`) || q.promptLatex,
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: t("sc1_07.labels.lifecycle_stage") || slot.labelLatex,
+                placeholder: t("sc1_07.placeholders.stage") || slot.placeholder,
+            })),
+        }));
 };

@@ -21,24 +21,30 @@ export default function SC107Sustainability() {
     const { t } = useLanguage();
 
     const sc1_07_t = useMemo(() => ({
-        title: t("sc1_07.title") || "SC1.07 // Sustainability & Recycling",
-        back: t("sc1_07.back") || "Back",
+        title: t("sc1_07.title"),
+        back: t("sc1_07.back"),
         difficulty: {
-            basic: t("sc1_07.difficulty.basic") || "BASIC",
-            core: t("sc1_07.difficulty.core") || "CORE",
-            advanced: t("sc1_07.difficulty.advanced") || "ADVANCED",
-            elite: t("sc1_07.difficulty.elite") || "ELITE"
+            basic: t("sc1_07.difficulty.basic"),
+            core: t("sc1_07.difficulty.core"),
+            advanced: t("sc1_07.difficulty.advanced"),
+            elite: t("sc1_07.difficulty.elite")
         },
         stages: {
-            recycling: t("sc1_07.stages.recycling") || "RECYCLING",
-            green_chemistry: t("sc1_07.stages.green_chemistry") || "GREEN CHEMISTRY",
-            circular_economy: t("sc1_07.stages.circular_economy") || "CIRCULAR ECONOMY"
+            recycling: t("sc1_07.stages.recycling"),
+            green_chemistry: t("sc1_07.stages.green_chemistry"),
+            circular_economy: t("sc1_07.stages.circular_economy")
         },
-        footer_left: t("sc1_07.footer_left") || "SC1.07_SUSTAINABILITY",
-        check: t("sc1_07.check") || "Verify",
-        next: t("sc1_07.next") || "Next",
-        correct: t("sc1_07.correct") || "Correct",
-        incorrect: t("sc1_07.incorrect") || "Incorrect"
+        footer_left: t("sc1_07.footer_left"),
+        check: t("sc1_07.check"),
+        next: t("sc1_07.next"),
+        correct: t("sc1_07.correct"),
+        incorrect: t("sc1_07.incorrect"),
+        ready: t("sc1_07.ready"),
+        monitor_title: t("sc1_07.monitor_title"),
+        loading: t("sc1_07.loading"),
+        labels: {
+            sensor_feed: t("sc1_07.labels.sensor_feed"),
+        },
     }), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
@@ -65,7 +71,7 @@ export default function SC107Sustainability() {
         buildPool
     });
 
-    if (!currentQuest) return <div className="p-8 text-white">Loading...</div>;
+    if (!currentQuest) return <div className="p-8 text-white">{sc1_07_t.loading}</div>;
 
     const handleInputChange = (slotId: string, val: string) => {
         setInputs((prev) => ({ ...prev, [slotId]: val }));
@@ -97,15 +103,15 @@ export default function SC107Sustainability() {
                 next: sc1_07_t.next,
                 correct: sc1_07_t.correct,
                 incorrect: sc1_07_t.incorrect,
-                ready: "SYSTEM_READY",
-                monitor_title: "ECOLOGY_V1"
+                ready: sc1_07_t.ready,
+                monitor_title: sc1_07_t.monitor_title
             }}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}
                 <div className="lg:w-1/2 p-6 flex flex-col bg-[#050B14] border-r border-[#0ff]/20">
                     <div className="h-full rounded border border-[#0ff]/30 shadow-[0_0_15px_rgba(0,255,255,0.1)] flex items-center justify-center p-8 bg-black/40 relative overflow-hidden">
-                        <h2 className="text-[#0ff] font-mono opacity-50 absolute top-4 left-4">SENSOR FEED</h2>
+                        <h2 className="text-[#0ff] font-mono opacity-50 absolute top-4 left-4">{sc1_07_t.labels.sensor_feed}</h2>
                     </div>
                 </div>
 
@@ -129,6 +135,7 @@ export default function SC107Sustainability() {
                                         value={inputs[s.id] || ""}
                                         onChange={(e) => handleInputChange(s.id, e.target.value)}
                                         disabled={lastCheck?.ok}
+                                        aria-label={s.id}
                                     />
                                     {s.unit && <span className="text-[#0ff]/70 font-mono text-lg">{s.unit}</span>}
                                 </div>
