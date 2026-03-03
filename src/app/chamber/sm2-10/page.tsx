@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useMemo } from "react";
-import { InlineMath } from "react-katex";
+import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -15,6 +15,56 @@ type Stage = "BOX_PLOTS" | "SCATTER_PLOTS" | "CORRELATION" | "ELITE";
 interface SM210Quest extends Quest {
     stage: Stage;
     dataType?: string;
+}
+
+const PRINT_STAGE_ORDER: Stage[] = ["BOX_PLOTS", "SCATTER_PLOTS", "CORRELATION", "ELITE"];
+const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
+
+function PrintableSM210Section({
+    moduleTitle,
+    stageLabel,
+    groups,
+}: {
+    moduleTitle: string;
+    stageLabel: string;
+    groups: { difficultyLabel: string; quests: SM210Quest[] }[];
+}) {
+    return (
+        <article className="text-black bg-white px-8 py-6 space-y-6">
+            <header className="border-b-2 border-black pb-3">
+                <h2 className="text-2xl font-black tracking-wide">{moduleTitle}</h2>
+                <p className="text-sm font-semibold mt-1">{stageLabel}</p>
+            </header>
+
+            {groups.map((group) => (
+                <section key={group.difficultyLabel} className="space-y-4">
+                    <h3 className="text-lg font-black border-l-4 border-black pl-3">{group.difficultyLabel}</h3>
+                    <div className="space-y-5">
+                        {group.quests.map((quest, index) => (
+                            <div key={quest.id} className="border border-black/30 p-4 space-y-3">
+                                <div className="text-sm font-bold">
+                                    {index + 1}. {renderMixedText(quest.promptLatex)}
+                                </div>
+                                <div className="text-black">
+                                    <BlockMath math={quest.expressionLatex} />
+                                </div>
+                                <div className="space-y-2 pt-1">
+                                    {quest.slots.map((slot) => (
+                                        <div key={slot.id} className="space-y-1">
+                                            <div className="text-sm">
+                                                <InlineMath math={slot.labelLatex} />
+                                            </div>
+                                            <div className="h-7 border-b border-black" />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            ))}
+        </article>
+    );
 }
 
 export default function SM210Page() {
@@ -602,7 +652,7 @@ export default function SM210Page() {
                     {
                         id: "C-E5", difficulty, stage, dataType: "coefficient_determination",
                         promptLatex: t("sm2_10.prompts.b2_2_c_e5"),
-                        expressionLatex: `r^{2} = \\text{coefficient of determination}`,
+                        expressionLatex: `r^{2} = \\text{${t("sm2_10.formula_phrases.coefficient_of_determination")}}`,
                         targetLatex: t("sm2_10.labels.name"),
                         slots: [{ id: "name", labelLatex: t("sm2_10.labels.name"), placeholder: "determination", expected: "determination" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.coefficient_of_determination")}}`,
@@ -618,7 +668,7 @@ export default function SM210Page() {
                     {
                         id: "ELITE-B1", difficulty, stage, dataType: "rhine_temp_fish",
                         promptLatex: t("sm2_10.prompts.b2_2_elite_b1"),
-                        expressionLatex: `z = \\frac{x - \\mu}{\\sigma}, \\text{ then use normal distribution}`,
+                        expressionLatex: `z = \\frac{x - \\mu}{\\sigma}, \\text{${t("sm2_10.expressions.then_use_normal_distribution")}}`,
                         targetLatex: `P(T > 24)`,
                         slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
                         correctLatex: `0.138 \\text{ or } 13.8\\%`,
@@ -729,6 +779,39 @@ export default function SM210Page() {
         { id: "ELITE" as Stage, label: t("sm2_10.stages.elite") },
     ], [t]);
 
+    const printSections = useMemo(() => {
+        const stageLabels: Record<Stage, string> = {
+            BOX_PLOTS: t("sm2_10.stages.box_plots"),
+            SCATTER_PLOTS: t("sm2_10.stages.scatter_plots"),
+            CORRELATION: t("sm2_10.stages.correlation"),
+            ELITE: t("sm2_10.stages.elite"),
+        };
+
+        return PRINT_STAGE_ORDER.map((stageId) => {
+            const groups = PRINT_DIFFICULTY_ORDER
+                .map((diff) => {
+                    const key = diff.toLowerCase();
+                    return {
+                        difficultyLabel: t(`sm2_10.difficulty.${key}`),
+                        quests: buildStagePool(diff, stageId),
+                    };
+                })
+                .filter((group) => group.quests.length > 0);
+
+            return {
+                id: stageId,
+                label: stageLabels[stageId],
+                content: (
+                    <PrintableSM210Section
+                        moduleTitle={t("sm2_10.title")}
+                        stageLabel={stageLabels[stageId]}
+                        groups={groups}
+                    />
+                ),
+            };
+        });
+    }, [buildStagePool, t]);
+
     if (!currentQuest) {
         return (
             <ChamberLayout
@@ -738,6 +821,9 @@ export default function SM210Page() {
                 onAiDiagnosisRequested={requestAiFeedback}
                 title={t("sm2_10.title")}
                 moduleCode="SM2.10"
+                defaultLeftWidth={62}
+                minLeftWidth={35}
+                maxLeftWidth={85}
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
@@ -752,6 +838,7 @@ export default function SM210Page() {
                     incorrect: t("sm2_10.incorrect"),
                     difficulty: t("sm2_10.difficulty"),
                 }}
+                printSections={printSections}
                 monitorContent={<DataVisualization quest={null} stage={stage} />}
             >
                 <div className="text-center text-purple-400 text-xl">Module Complete!</div>
@@ -767,6 +854,9 @@ export default function SM210Page() {
             onAiDiagnosisRequested={requestAiFeedback}
             title={t("sm2_10.title")}
             moduleCode="SM2.10"
+            defaultLeftWidth={62}
+            minLeftWidth={35}
+            maxLeftWidth={85}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
@@ -784,6 +874,7 @@ export default function SM210Page() {
                 incorrect: t("sm2_10.incorrect"),
                 difficulty: t("sm2_10.difficulty"),
             }}
+            printSections={printSections}
             monitorContent={<DataVisualization quest={currentQuest} stage={stage} />}
         >
             <div className="space-y-6">

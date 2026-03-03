@@ -39,6 +39,24 @@ import {
 export type { Language, Translations, AllTranslations } from './types';
 export type { Language as LanguageType } from './types';
 
+function mergeCommonNamespaces(namespaces: Array<Record<string, any>>): Record<string, any> {
+  return namespaces.reduce((acc, namespaceObj) => {
+    const common = namespaceObj?.common;
+    if (!common || typeof common !== "object") return acc;
+
+    const merged = { ...acc, ...common };
+
+    if (acc.labels || common.labels) {
+      merged.labels = { ...(acc.labels || {}), ...(common.labels || {}) };
+    }
+    if (acc.achievements || common.achievements) {
+      merged.achievements = { ...(acc.achievements || {}), ...(common.achievements || {}) };
+    }
+
+    return merged;
+  }, {} as Record<string, any>);
+}
+
 /**
  * Main translations object
  * Combines all language-specific translations into a single structure
@@ -50,6 +68,7 @@ export const translations: Record<string, any> = {
     ...enPhysics,
     ...enChemistry,
     ...enBiology,
+    common: mergeCommonNamespaces([enMath, enPhysics, enChemistry, enBiology, enCommon]),
   },
   CN: {
     ...cnCommon,
@@ -57,6 +76,7 @@ export const translations: Record<string, any> = {
     ...cnPhysics,
     ...cnChemistry,
     ...cnBiology,
+    common: mergeCommonNamespaces([cnMath, cnPhysics, cnChemistry, cnBiology, cnCommon]),
   },
   DE: {
     ...deCommon,
@@ -64,6 +84,7 @@ export const translations: Record<string, any> = {
     ...dePhysics,
     ...deChemistry,
     ...deBiology,
+    common: mergeCommonNamespaces([deMath, dePhysics, deChemistry, deBiology, deCommon]),
   },
 };
 

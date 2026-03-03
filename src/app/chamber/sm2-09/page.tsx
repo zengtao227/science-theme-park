@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -28,6 +28,52 @@ import {
 } from "@/lib/sm2-09-quests";
 import { solveLinearInequality, solveAbsoluteValueInequality } from "@/lib/sm2-09-solvers";
 
+const PRINT_STAGE_ORDER: Stage[] = ["INEQUALITY_BASICS", "SYSTEMS", "ABSOLUTE_VALUE"];
+const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
+
+function PrintableSM209Section({
+  moduleTitle,
+  stageLabel,
+  groups,
+  answerLabel,
+}: {
+  moduleTitle: string;
+  stageLabel: string;
+  groups: { difficultyLabel: string; quests: SM209Quest[] }[];
+  answerLabel: string;
+}) {
+  return (
+    <article className="text-black bg-white px-8 py-6 space-y-6">
+      <header className="border-b-2 border-black pb-3">
+        <h2 className="text-2xl font-black tracking-wide">{moduleTitle}</h2>
+        <p className="text-sm font-semibold mt-1">{stageLabel}</p>
+      </header>
+
+      {groups.map((group) => (
+        <section key={group.difficultyLabel} className="space-y-4">
+          <h3 className="text-lg font-black border-l-4 border-black pl-3">{group.difficultyLabel}</h3>
+          <div className="space-y-5">
+            {group.quests.map((quest, index) => (
+              <div key={quest.id} className="border border-black/30 p-4 space-y-3">
+                <div className="text-sm font-bold">
+                  {index + 1}. {renderMixedText(quest.promptLatex)}
+                </div>
+                <div className="text-black">
+                  <BlockMath math={quest.expressionLatex} />
+                </div>
+                <div className="pt-2">
+                  <div className="text-xs font-semibold mb-2">{answerLabel}</div>
+                  <div className="h-7 border-b border-black" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </article>
+  );
+}
+
 export default function SM209Page() {
   const { completeStage } = useAppStore();
   const { t, currentLanguage } = useLanguage();
@@ -53,29 +99,29 @@ export default function SM209Page() {
     ready: t("sm2_09.ready"),
     monitor_title: t("sm2_09.monitor_title"),
     footer_left: t("sm2_09.footer_left"),
-    scenario_title: t("sm2_09.scenario_title"),
-    problem_title: t("sm2_09.problem_title"),
-    solution_title: t("sm2_09.solution_title"),
-    visualization_title: t("sm2_09.visualization_title"),
-    step_solver_title: t("sm2_09.step_solver_title"),
+    scenario_title: t("sm2_09.labels.scenario_title"),
+    problem_title: t("sm2_09.labels.problem_title"),
+    solution_title: t("sm2_09.labels.solution_title"),
+    visualization_title: t("sm2_09.labels.visualization_title"),
+    step_solver_title: t("sm2_09.labels.step_solver_title"),
     stages: {
       inequality_basics: t("sm2_09.stages.inequality_basics"),
       systems: t("sm2_09.stages.systems"),
       absolute_value: t("sm2_09.stages.absolute_value"),
     },
-    step: t("sm2_09.step"),
-    justification: t("sm2_09.justification"),
-    final_solution: t("sm2_09.final_solution"),
-    number_line: t("sm2_09.number_line"),
-    graph: t("sm2_09.graph"),
-    solution_set: t("sm2_09.solution_set"),
+    step: t("sm2_09.labels.step"),
+    justification: t("sm2_09.labels.justification"),
+    final_solution: t("sm2_09.labels.final_solution"),
+    number_line: t("sm2_09.labels.number_line"),
+    graph: t("sm2_09.labels.graph"),
+    solution_set: t("sm2_09.labels.solution_set"),
     solution_label: t("sm2_09.labels.solution"),
-    enter_solution: t("sm2_09.enter_solution"),
-    placeholder_interval: t("sm2_09.placeholder_interval"),
+    enter_solution: t("sm2_09.labels.enter_solution"),
+    placeholder_interval: t("sm2_09.labels.placeholder_interval"),
     feedback: {
       correct: t("sm2_09.feedback.correct"),
       incorrect: t("sm2_09.feedback.incorrect"),
-      format_error: t("sm2_09.feedback.format_error"),
+      format_error: t("sm2_09.feedback.invalid_format"),
       empty_input: t("sm2_09.feedback.empty_input"),
     }
   };
@@ -252,6 +298,39 @@ export default function SM209Page() {
     return scenario.en;
   }, [currentQuest, currentLanguage]);
 
+  const printableSections = useMemo(() => {
+    const stageLabels: Record<Stage, string> = {
+      INEQUALITY_BASICS: sm2_09_t.stages.inequality_basics,
+      SYSTEMS: sm2_09_t.stages.systems,
+      ABSOLUTE_VALUE: sm2_09_t.stages.absolute_value,
+    };
+
+    return PRINT_STAGE_ORDER.map((stageId) => {
+      const groups = PRINT_DIFFICULTY_ORDER
+        .map((diff) => {
+          const key = diff.toLowerCase() as keyof typeof sm2_09_t.difficulty;
+          return {
+            difficultyLabel: sm2_09_t.difficulty[key],
+            quests: buildStagePool(sm2_09_t, diff, stageId),
+          };
+        })
+        .filter((group) => group.quests.length > 0);
+
+      return {
+        id: stageId,
+        label: stageLabels[stageId],
+        content: (
+          <PrintableSM209Section
+            moduleTitle={sm2_09_t.title}
+            stageLabel={stageLabels[stageId]}
+            groups={groups}
+            answerLabel={sm2_09_t.solution_title}
+          />
+        ),
+      };
+    });
+  }, [buildStagePool, sm2_09_t]);
+
   useEffect(() => {
     completeStage("sm2-09", currentStage);
   }, [completeStage, currentStage]);
@@ -265,6 +344,9 @@ export default function SM209Page() {
       onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_09_t.title}
         moduleCode="SM2.09"
+        defaultLeftWidth={64}
+        minLeftWidth={35}
+        maxLeftWidth={85}
         difficulty={difficulty}
         onDifficultyChange={handleDifficultyChangeLocal}
         stages={[
@@ -307,6 +389,9 @@ export default function SM209Page() {
       onAiDiagnosisRequested={requestAiFeedback}
       title={sm2_09_t.title}
       moduleCode="SM2.09"
+      defaultLeftWidth={64}
+      minLeftWidth={35}
+      maxLeftWidth={85}
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChangeLocal}
       stages={[
@@ -317,6 +402,7 @@ export default function SM209Page() {
       currentStage={currentStage}
       onStageChange={(s) => handleStageChangeLocal(s as Stage)}
       footerLeft={sm2_09_t.footer_left}
+      printSections={printableSections}
       translations={{
         back: sm2_09_t.back,
         check: sm2_09_t.check,
