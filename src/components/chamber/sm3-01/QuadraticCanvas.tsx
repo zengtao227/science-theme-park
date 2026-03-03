@@ -110,7 +110,7 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
       {roots.map((r, i) => { const [rx, ry] = toSvg(r, 0); return (<g key={i}><circle cx={rx} cy={ry} r="5" fill="#39ff14" filter="url(#svgGlow)" /><text x={rx} y={ry + 18} fill="#39ff14" fontSize="11" fontWeight="bold" textAnchor="middle">x={r.toFixed(1)}</text></g>); })}
       {disc < 0 && (
         <foreignObject x={W / 2 - 50} y={10} width="100" height="40">
-          <div className="flex justify-center"><InlineMath math="\Delta < 0" /></div>
+          <div className="flex justify-center"><InlineMath math="\\Delta < 0" /></div>
         </foreignObject>
       )}
       <foreignObject x={0} y={H - 40} width={W} height={40}>

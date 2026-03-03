@@ -1969,6 +1969,7 @@ export const enMath = {    em1_01: {
         monitor_title: "PROBABILITY_MONITOR",
         footer_left: "PROBABILITY // NODE: BASEL",
         formula_title: "PROBABILITY FORMULA",
+        formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "PROBLEM",
         basel_scenario: "BASEL LIFE SCENARIO",
         calculate_title: "CALCULATE",

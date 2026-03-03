@@ -36,7 +36,7 @@ export default function PowerVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider mb-2">
-                    <BlockMath math="P = U \times I" />
+                    <BlockMath math="P = U \\times I" />
                 </div>
                 
                 <div className="relative w-48 h-48">
@@ -55,7 +55,7 @@ export default function PowerVisualization({
                     />
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <div className="text-yellow-400 text-5xl font-bold">{power}</div>
-                        <div className="text-white/60 text-sm"><InlineMath math="\text{W}" /></div>
+                        <div className="text-white/60 text-sm"><InlineMath math="\\text{W}" /></div>
                     </div>
                 </div>
                 
@@ -63,13 +63,13 @@ export default function PowerVisualization({
                     <div className="flex flex-col items-center gap-2 bg-cyan-500/10 rounded-lg p-4 border border-cyan-500/30">
                         <div className="text-cyan-400 text-xs uppercase">Voltage</div>
                         <div className="text-white text-2xl font-bold">{voltage}</div>
-                        <div className="text-white/40 text-xs"><InlineMath math="\text{V}" /></div>
+                        <div className="text-white/40 text-xs"><InlineMath math="\\text{V}" /></div>
                     </div>
                     
                     <div className="flex flex-col items-center gap-2 bg-red-500/10 rounded-lg p-4 border border-red-500/30">
                         <div className="text-red-400 text-xs uppercase">Current</div>
                         <div className="text-white text-2xl font-bold">{current.toFixed(2)}</div>
-                        <div className="text-white/40 text-xs"><InlineMath math="\text{A}" /></div>
+                        <div className="text-white/40 text-xs"><InlineMath math="\\text{A}" /></div>
                     </div>
                 </div>
             </div>
@@ -85,14 +85,14 @@ export default function PowerVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider mb-2">
-                    <BlockMath math="E = P \times t" />
+                    <BlockMath math="E = P \\times t" />
                 </div>
                 
                 <div className="w-full max-w-md space-y-4">
                     <div className="bg-black/30 rounded-lg p-4 border border-white/10">
                         <div className="flex justify-between items-center">
                             <span className="text-white/60 text-sm">Power</span>
-                            <span className="text-white font-bold">{power} <InlineMath math="\text{W}" /></span>
+                            <span className="text-white font-bold">{power} <InlineMath math="\\text{W}" /></span>
                         </div>
                     </div>
                     
@@ -101,7 +101,7 @@ export default function PowerVisualization({
                     <div className="bg-black/30 rounded-lg p-4 border border-white/10">
                         <div className="flex justify-between items-center">
                             <span className="text-white/60 text-sm">Time</span>
-                            <span className="text-white font-bold">{time} <InlineMath math="\text{h}" /></span>
+                            <span className="text-white font-bold">{time} <InlineMath math="\\text{h}" /></span>
                         </div>
                     </div>
                     
@@ -110,14 +110,14 @@ export default function PowerVisualization({
                     <div className="bg-green-500/20 rounded-lg p-4 border-2 border-green-500">
                         <div className="flex justify-between items-center">
                             <span className="text-green-400 text-sm font-bold">Energy</span>
-                            <span className="text-green-400 font-bold text-xl">{(energy / 1000).toFixed(2)} <InlineMath math="\text{kWh}" /></span>
+                            <span className="text-green-400 font-bold text-xl">{(energy / 1000).toFixed(2)} <InlineMath math="\\text{kWh}" /></span>
                         </div>
                     </div>
                     
                     <div className="bg-yellow-500/20 rounded-lg p-4 border-2 border-yellow-500">
                         <div className="flex justify-between items-center">
-                            <span className="text-yellow-400 text-sm font-bold">Cost ({cost} <InlineMath math="\text{CHF/kWh}" />)</span>
-                            <span className="text-yellow-400 font-bold text-xl">{totalCost.toFixed(2)} <InlineMath math="\text{CHF}" /></span>
+                            <span className="text-yellow-400 text-sm font-bold">Cost ({cost} <InlineMath math="\\text{CHF/kWh}" />)</span>
+                            <span className="text-yellow-400 font-bold text-xl">{totalCost.toFixed(2)} <InlineMath math="\\text{CHF}" /></span>
                         </div>
                     </div>
                 </div>
@@ -134,33 +134,33 @@ export default function PowerVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider mb-2">
-                    <BlockMath math="\eta = \frac{P_{\text{out}}}{P_{\text{in}}} \times 100\%" />
+                    <BlockMath math="\\eta = \\frac{P_{\\text{out}}}{P_{\\text{in}}} \\times 100\\%" />
                 </div>
                 
                 <div className="relative w-full max-w-md">
                     <div className="flex items-center gap-4">
                         <div className="flex-1 bg-blue-500/20 rounded-lg p-4 border-2 border-blue-500">
                             <div className="text-blue-400 text-xs uppercase mb-2">Input</div>
-                            <div className="text-white text-2xl font-bold">{input} <InlineMath math="\text{W}" /></div>
+                            <div className="text-white text-2xl font-bold">{input} <InlineMath math="\\text{W}" /></div>
                         </div>
                         
                         <div className="text-white/40 text-2xl">→</div>
                         
                         <div className="flex-1 bg-green-500/20 rounded-lg p-4 border-2 border-green-500">
                             <div className="text-green-400 text-xs uppercase mb-2">Output</div>
-                            <div className="text-white text-2xl font-bold">{output} <InlineMath math="\text{W}" /></div>
+                            <div className="text-white text-2xl font-bold">{output} <InlineMath math="\\text{W}" /></div>
                         </div>
                     </div>
                     
                     <div className="mt-6 grid grid-cols-2 gap-4">
                         <div className="bg-yellow-500/20 rounded-lg p-4 border border-yellow-500">
                             <div className="text-yellow-400 text-xs uppercase mb-2">Efficiency</div>
-                            <div className="text-white text-xl font-bold">{efficiency.toFixed(1)}<InlineMath math="\%" /></div>
+                            <div className="text-white text-xl font-bold">{efficiency.toFixed(1)}<InlineMath math="\\%" /></div>
                         </div>
                         
                         <div className="bg-red-500/20 rounded-lg p-4 border border-red-500">
                             <div className="text-red-400 text-xs uppercase mb-2">Loss</div>
-                            <div className="text-white text-xl font-bold">{loss} <InlineMath math="\text{W}" /></div>
+                            <div className="text-white text-xl font-bold">{loss} <InlineMath math="\\text{W}" /></div>
                         </div>
                     </div>
                 </div>

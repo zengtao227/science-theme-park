@@ -18,6 +18,7 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
         data_stats: "Data Statistics",
         frequency: "Frequency Data",
         combined: "Combined Events",
+        weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
       },
       CN: {
         dice: "骰子 (6种结果)",
@@ -27,6 +28,7 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
         data_stats: "数据统计",
         frequency: "频率数据",
         combined: "组合事件",
+        weekdays: ["周一", "周二", "周三", "周四", "周五"],
       },
       DE: {
         dice: "Würfel (6 Ergebnisse)",
@@ -36,10 +38,18 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
         data_stats: "Datenstatistik",
         frequency: "Häufigkeitsdaten",
         combined: "Kombinierte Ereignisse",
+        weekdays: ["Mo", "Di", "Mi", "Do", "Fr"],
       },
     };
 
     const t = labels[language];
+    const weeklyBars = [
+      { x: 20, h: 80 },
+      { x: 60, h: 100 },
+      { x: 100, h: 70 },
+      { x: 140, h: 90 },
+      { x: 180, h: 85 },
+    ];
 
     return {
       BASIC_PROB: (
@@ -112,17 +122,11 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
         <svg width="300" height="200" className="mx-auto">
           {/* Bar chart */}
           <g transform="translate(30, 20)">
-            {[
-              { x: 20, h: 80, label: "Mon" },
-              { x: 60, h: 100, label: "Tue" },
-              { x: 100, h: 70, label: "Wed" },
-              { x: 140, h: 90, label: "Thu" },
-              { x: 180, h: 85, label: "Fri" },
-            ].map((bar, i) => (
+            {weeklyBars.map((bar, i) => (
               <g key={i}>
                 <rect x={bar.x} y={120 - bar.h} width="30" height={bar.h} fill="#00e5ff" fillOpacity="0.6" stroke="#00e5ff" strokeWidth="1" />
                 <text x={bar.x + 15} y="140" textAnchor="middle" fill="#00e5ff" fontSize="10">
-                  {bar.label}
+                  {t.weekdays[i]}
                 </text>
               </g>
             ))}
@@ -137,17 +141,11 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
         <svg width="300" height="200" className="mx-auto">
           {/* Bar chart */}
           <g transform="translate(30, 20)">
-            {[
-              { x: 20, h: 80, label: "Mon" },
-              { x: 60, h: 100, label: "Tue" },
-              { x: 100, h: 70, label: "Wed" },
-              { x: 140, h: 90, label: "Thu" },
-              { x: 180, h: 85, label: "Fri" },
-            ].map((bar, i) => (
+            {weeklyBars.map((bar, i) => (
               <g key={i}>
                 <rect x={bar.x} y={120 - bar.h} width="30" height={bar.h} fill="#00e5ff" fillOpacity="0.6" stroke="#00e5ff" strokeWidth="1" />
                 <text x={bar.x + 15} y="140" textAnchor="middle" fill="#00e5ff" fontSize="10">
-                  {bar.label}
+                  {t.weekdays[i]}
                 </text>
               </g>
             ))}

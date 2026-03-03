@@ -1988,6 +1988,7 @@ export const deMath = {    em1_01: {
         monitor_title: "WAHRSCHEINLICHKEIT_MONITOR",
         footer_left: "WAHRSCHEINLICHKEIT // KNOTEN: BASEL",
         formula_title: "WAHRSCHEINLICHKEITSFORMEL",
+        formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "PROBLEM",
         basel_scenario: "BASLER LEBENSSZENARIO",
         calculate_title: "BERECHNEN",

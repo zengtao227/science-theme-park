@@ -78,6 +78,9 @@ export default function ChamberLayout({
     const { currentLanguage, setLanguage, history, addHistory } = useAppStore();
     const common = i18n[currentLanguage].common;
     const locale = currentLanguage === "CN" ? "zh-CN" : currentLanguage === "DE" ? "de-DE" : "en-US";
+    const historyToggleLabel = typeof common?.history_toggle === "string" && common.history_toggle.trim().length > 0
+        ? common.history_toggle
+        : (typeof common?.history_title === "string" && common.history_title.trim().length > 0 ? common.history_title : "History");
     const [historyOpen, setHistoryOpen] = useState(false);
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const [activePanel, setActivePanel] = useState<"controls" | "monitor" | "history">("controls");
@@ -293,12 +296,13 @@ export default function ChamberLayout({
                 <div className="flex items-center gap-4 z-10">
                     <button
                         onClick={() => setHistoryOpen((v) => !v)}
+                        title={historyToggleLabel}
                         className={clsx(
-                            "hidden md:inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.3em] uppercase transition-all border",
+                            "hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[6.5rem] px-3 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase whitespace-nowrap transition-all border",
                             historyOpen ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
                         )}
                     >
-                        {common.history_toggle}
+                        {historyToggleLabel}
                     </button>
                     <button
                         onClick={() => window.print()}

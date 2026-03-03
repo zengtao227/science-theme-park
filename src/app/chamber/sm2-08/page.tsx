@@ -1211,7 +1211,7 @@ export default function SM208Page() {
             {t("sm2_08.formula_title")}
           </div>
           <div className="rounded-xl border border-cyan-500/30 bg-black/50 p-4">
-            <BlockMath math="P(E) = \\frac{\\text{favorable outcomes}}{\\text{total outcomes}}" />
+            <BlockMath math={t("sm2_08.formula_latex")} />
           </div>
         </div>
       }

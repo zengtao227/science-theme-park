@@ -67,7 +67,7 @@ export default function ElectromagnetismVisualization({
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    <InlineMath math="E = \frac{kQ}{r^2}" />
+                    <InlineMath math="E = \\frac{kQ}{r^2}" />
                 </div>
             </div>
         );
@@ -112,7 +112,7 @@ export default function ElectromagnetismVisualization({
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    <InlineMath math="B = \frac{\mu_0 I}{2\pi r}" />
+                    <InlineMath math="B = \\frac{\\mu_0 I}{2\\pi r}" />
                 </div>
             </div>
         );

@@ -106,7 +106,7 @@ export default function GC301Page() {
               {t("gc3_01.labels.reaction")}
             </div>
             <div className="text-xl text-white font-black text-center">
-              <InlineMath math="A + B \rightleftharpoons C + D" />
+              <InlineMath math="A + B \\rightleftharpoons C + D" />
             </div>
           </div>
         </div>

@@ -1949,6 +1949,7 @@ export const cnMath = {    em1_01: {
         monitor_title: "概率监视器",
         footer_left: "概率统计 // 节点：巴塞尔",
         formula_title: "概率公式",
+        formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "问题",
         basel_scenario: "巴塞尔生活场景",
         calculate_title: "计算",

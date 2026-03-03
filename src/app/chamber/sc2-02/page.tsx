@@ -448,7 +448,7 @@ export default function SC202Page() {
                         <div className="text-[10px] text-white/40 uppercase font-black mb-4 tracking-widest text-center">{sc2_02_t.labels.formula}</div>
                         <div className="flex flex-wrap gap-6 justify-center items-center">
                             <div className="text-white font-mono text-sm opacity-60"><InlineMath math="V_a C_a = V_b C_b" /></div>
-                            <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\text{pH} = pK_a + \log\frac{[A^-]}{[HA]}" /></div>
+                            <div className="text-white font-mono text-sm opacity-60"><InlineMath math="\\text{pH} = pK_a + \\log\\frac{[A^-]}{[HA]}" /></div>
                         </div>
                     </div>
                 </div>
