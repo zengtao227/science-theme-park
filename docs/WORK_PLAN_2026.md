@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-02 (GM4.01 Batch B wave-29 stage-prompt semantic cleanup completed, full QA passed)
-**Plan Version**: 9.2 (Batch B high-frequency expansion wave-29)
+**Last Updated**: 2026-03-03 (GM2.02 + GP3.* residual closure completed, full QA passed)
+**Plan Version**: 9.3 (Batch B high-frequency expansion wave-30)
 
 ---
 
@@ -141,7 +141,8 @@
 - [x] `EM2.01 Batch B (wave-27 prompt semantic cleanup)`: rewrote all `em2_01.prompts.*` matrix-task prompts in EN/CN/DE from short directive wording into scenario-task wording while preserving key names and placeholders.
 - [x] `GM1.02 Batch B (wave-28 prompt semantic cleanup)`: rewrote core integral prompt keys in EN/CN/DE (`find_antiderivative`, `evaluate_integral`, `find_area`) from directive style to scenario-task wording while preserving formulas/placeholders.
 - [x] `GM4.01 Batch B (wave-29 stage prompt cleanup)`: rewrote short stage-level operational prompts/targets in EN/CN/DE (`basics_prompt/target`, `operations_add/multiply/target`, `polar_prompt/target`) into scenario-task wording.
-- [ ] Next wave target: Batch B 跨模块残留抽检（优先 GM2.02 / GP3.*）并继续收口。
+- [x] `GM2.02 + GP3.* Batch B residual closure (wave-30)`: completed residual audit and closure. Migrated GM2.02 page-level hardcoded UI strings to i18n, migrated GM2.02 quest label/placeholder hardcoded English to `gm2_02.labels.*` with EN/CN/DE symmetry, and fixed GP3.01 CN mixed-language label (`yes_tir`).
+- [ ] Next wave target: Batch B 跨模块残留抽检（优先 GP2.* / SC1.*）并继续收口。
 
 ---
 
