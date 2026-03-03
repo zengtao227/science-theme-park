@@ -149,7 +149,7 @@ export default function GP303Induction() {
                 targetLatex: "answer",
                 slots: [{
                     id: "answer",
-                    labelLatex: "EMF (V)",
+                    labelLatex: t("gp3_03.labels.emf"),
                     placeholder: t("gp3_03.labels.type_value"),
                     expected: item.emf
                 }],

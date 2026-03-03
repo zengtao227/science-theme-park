@@ -2458,6 +2458,7 @@ export const dePhysics = {
                 labels: {
                         direction_effect: "Richtung/Effekt",
                         answer: "Antwort",
+                        emf: "EMK (V)",
                         voltage: "Spannung (V)",
                         value: "Wert",
                         output_power: "Ausgangsleistung (W)",

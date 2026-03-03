@@ -2490,6 +2490,7 @@ export const enPhysics = {
                 labels: {
                         direction_effect: "Direction/Effect",
                         answer: "Answer",
+                        emf: "EMF (V)",
                         voltage: "Voltage (V)",
                         value: "Value",
                         output_power: "Output Power (W)",

@@ -2411,6 +2411,7 @@ export const cnPhysics = {
         labels: {
             direction_effect: "方向/效果",
             answer: "答案",
+            emf: "感应电动势 (V)",
             voltage: "电压 (V)",
             value: "数值",
             output_power: "输出功率 (W)",
