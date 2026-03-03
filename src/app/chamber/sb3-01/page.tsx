@@ -67,9 +67,9 @@ export default function SB301Page() {
                     stage,
                     scenario: item.scenario,
                     promptLatex: t("sb3_01.prompts.food_chain", { producer: item.p, consumer: item.c }),
-                    expressionLatex: `\text{${item.p}} \rightarrow \text{${item.c}} \rightarrow ?`,
+                    expressionLatex: `\\text{${item.p}} \rightarrow \\text{${item.c}} \rightarrow ?`,
                     targetLatex: item.next,
-                    slots: [{ id: "ans", labelLatex: "\text{Level 3}", placeholder: "...", expected: item.next.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Level 3}", placeholder: "...", expected: item.next.toLowerCase() }],
                     correctLatex: item.next,
                     hintLatex: [t("sb3_01.prompts.hint_trophic")]
                 });
@@ -116,10 +116,10 @@ export default function SB301Page() {
                     stage,
                     scenario: "energy_pyramid",
                     promptLatex: t("sb3_01.prompts.energy_transfer", { level: item.level, energy: item.energy.toString() }),
-                    expressionLatex: `E_{next} = E_{current} \times 10\%`,
+                    expressionLatex: `E_{next} = E_{current} \times 10\\%`,
                     targetLatex: item.expected,
                     slots: [{ id: "ans", labelLatex: `\\text{${t("sb3_01.labels.energy_kj")}}`, placeholder: "0", expected: item.expected }],
-                    correctLatex: `${item.expected}\text{ kJ}`,
+                    correctLatex: `${item.expected}\\text{ kJ}`,
                     hintLatex: [t("sb3_01.prompts.hint_10percent")]
                 });
             });
@@ -165,9 +165,9 @@ export default function SB301Page() {
                     stage,
                     scenario: item.scenario,
                     promptLatex: t("sb3_01.prompts.cycle_process", { cycle: item.cycle, process: item.process }),
-                    expressionLatex: `\text{${item.process}} \rightarrow ?`,
+                    expressionLatex: `\\text{${item.process}} \rightarrow ?`,
                     targetLatex: item.out,
-                    slots: [{ id: "ans", labelLatex: "\text{Product}", placeholder: "...", expected: item.out.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: "\\text{Product}", placeholder: "...", expected: item.out.toLowerCase() }],
                     correctLatex: item.out,
                     hintLatex: [t("sb3_01.prompts.hint_cycle")]
                 });
@@ -180,13 +180,13 @@ export default function SB301Page() {
                     {
                         id: "ELITE-B1", difficulty, stage, scenario: "kannenfeldpark",
                         promptLatex: t("sb3_01.prompts.elite_b1"),
-                        expressionLatex: `\text{Efficiency} = \frac{\text{Energy consumed}}{\text{Energy available}} \times 100\\%`,
-                        targetLatex: `\text{Efficiency}`,
+                        expressionLatex: `\\text{Efficiency} = \\frac{\\text{Energy consumed}}{\\text{Energy available}} \times 100\\%`,
+                        targetLatex: `\\text{Efficiency}`,
                         slots: [{ id: "eff", labelLatex: `\\text{${t("sb3_01.labels.efficiency")}}`, placeholder: "10", expected: "10" }],
-                        correctLatex: `10\%`,
+                        correctLatex: `10\\%`,
                         hintLatex: [
                             `\\frac{850}{8500} \\times 100\\% = 10\\%`,
-                            `\\text{Matches theoretical 10\% rule}`,
+                            `\\text{Matches theoretical 10\\% rule}`,
                             `\\text{Energy loss through respiration, heat, incomplete consumption}`
                         ]
                     },
@@ -209,7 +209,7 @@ export default function SB301Page() {
                     {
                         id: "ELITE-C1", difficulty, stage, scenario: "basel_parks",
                         promptLatex: t("sb3_01.prompts.elite_c1"),
-                        expressionLatex: `520 = 450 \times e^{4r}, \text{ solve for } r`,
+                        expressionLatex: `520 = 450 \times e^{4r}, \\text{ solve for } r`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "0.036", expected: "0.036" }],
                         correctLatex: `r = 0.036`,
@@ -222,9 +222,9 @@ export default function SB301Page() {
                     {
                         id: "ELITE-C2", difficulty, stage, scenario: "rhine_river",
                         promptLatex: t("sb3_01.prompts.elite_c2"),
-                        expressionLatex: `\text{Ratio} = \frac{\text{Producer biomass}}{\text{Secondary consumer biomass}}`,
-                        targetLatex: `\text{Ratio}`,
-                        slots: [{ id: "ratio", labelLatex: `\text{Ratio}`, placeholder: "100", expected: "100" }],
+                        expressionLatex: `\\text{Ratio} = \\frac{\\text{Producer biomass}}{\\text{Secondary consumer biomass}}`,
+                        targetLatex: `\\text{Ratio}`,
+                        slots: [{ id: "ratio", labelLatex: `\\text{Ratio}`, placeholder: "100", expected: "100" }],
                         correctLatex: `100:1`,
                         hintLatex: [
                             `\\frac{12000}{120} = 100`,
@@ -238,10 +238,10 @@ export default function SB301Page() {
                     {
                         id: "ELITE-A1", difficulty, stage, scenario: "basel_green_corridors",
                         promptLatex: t("sb3_01.prompts.elite_a1"),
-                        expressionLatex: `\frac{dN}{dt} = 0.18 \times 150 \times (1 - \frac{150}{200})`,
-                        targetLatex: `\frac{dN}{dt}`,
-                        slots: [{ id: "dndt", labelLatex: `\frac{dN}{dt}`, placeholder: "6.8", expected: "6.8" }],
-                        correctLatex: `6.8 \text{ individuals/year}`,
+                        expressionLatex: `\\frac{dN}{dt} = 0.18 \times 150 \times (1 - \\frac{150}{200})`,
+                        targetLatex: `\\frac{dN}{dt}`,
+                        slots: [{ id: "dndt", labelLatex: `\\frac{dN}{dt}`, placeholder: "6.8", expected: "6.8" }],
+                        correctLatex: `6.8 \\text{ individuals/year}`,
                         hintLatex: [
                             `1 - \\frac{150}{200} = 1 - 0.75 = 0.25`,
                             `\\frac{dN}{dt} = 0.18 \\times 150 \\times 0.25`,
@@ -267,7 +267,7 @@ export default function SB301Page() {
                     {
                         id: "ELITE-E1", difficulty, stage, scenario: "rhine_river",
                         promptLatex: t("sb3_01.prompts.elite_e1"),
-                        expressionLatex: `D = (0.5)^{2} + (0.3)^{2} + (0.2)^{2}, \text{ Diversity} = 1 - D`,
+                        expressionLatex: `D = (0.5)^{2} + (0.3)^{2} + (0.2)^{2}, \\text{ Diversity} = 1 - D`,
                         targetLatex: `1-D`,
                         slots: [{ id: "div", labelLatex: `1-D`, placeholder: "0.62", expected: "0.62" }],
                         correctLatex: `0.62`,

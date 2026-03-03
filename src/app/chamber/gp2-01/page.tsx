@@ -358,7 +358,7 @@ function buildStagePool(
                 { id: "C-C2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2_c2"), expressionLatex: "T_2 = 3 \\times 200/2", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: "300", expected: 300 }], correctLatex: "300 K", hintLatex: ["Ratio 1.5"] },
                 { id: "C-C3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_relation"), expressionLatex: "V \\propto T", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "\\times", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Linear"] },
                 { id: "C-C4", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_cool_factor"), expressionLatex: "100/400", targetLatex: "\\text{Factor}", slots: [{ id: "f", labelLatex: "F", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["1/4"] },
-                { id: "C-C5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_abs_zero"), expressionLatex: "0 \\text{ K}", targetLatex: "^\circ\\text{C}", slots: [{ id: "c", labelLatex: "C", placeholder: "-273.15", expected: -273.15 }], correctLatex: "-273.15", hintLatex: ["Offset"] }
+                { id: "C-C5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_abs_zero"), expressionLatex: "0 \\text{ K}", targetLatex: "^\\circ\\text{C}", slots: [{ id: "c", labelLatex: "C", placeholder: "-273.15", expected: -273.15 }], correctLatex: "-273.15", hintLatex: ["Offset"] }
             );
         } else if (difficulty === "ADVANCED") {
             quests.push(
