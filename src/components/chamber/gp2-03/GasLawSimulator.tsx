@@ -91,13 +91,28 @@ export default function GasLawSimulator({
     };
   }, [temperature, moles]);
 
+  const ui = {
+    lawTitle: {
+      boyle: { en: "Boyle's Law", cn: "波义耳定律", de: "Boyle-Gesetz" },
+      charles: { en: "Charles's Law", cn: "查理定律", de: "Charles-Gesetz" },
+      avogadro: { en: "Avogadro's Law", cn: "阿伏伽德罗定律", de: "Avogadro-Gesetz" },
+    },
+    pressure: { en: "Pressure", cn: "压力", de: "Druck" },
+    volume: { en: "Volume", cn: "体积", de: "Volumen" },
+    temperature: { en: "Temperature", cn: "温度", de: "Temperatur" },
+    moles: { en: "Moles", cn: "物质的量", de: "Stoffmenge" },
+    tConstant: { en: "T constant", cn: "T 恒定", de: "T konstant" },
+    pConstant: { en: "P constant", cn: "P 恒定", de: "P konstant" },
+    ptConstant: { en: "P, T constant", cn: "P、T 恒定", de: "P, T konstant" },
+  } as const;
+
   const getLawTitle = () => {
     if (law === "boyle") {
-      return language === "en" ? "Boyle's Law" : language === "cn" ? "波义耳定律" : "Boyle-Gesetz";
+      return ui.lawTitle.boyle[language];
     } else if (law === "charles") {
-      return language === "en" ? "Charles's Law" : language === "cn" ? "查理定律" : "Charles-Gesetz";
+      return ui.lawTitle.charles[language];
     } else {
-      return language === "en" ? "Avogadro's Law" : language === "cn" ? "阿伏伽德罗定律" : "Avogadro-Gesetz";
+      return ui.lawTitle.avogadro[language];
     }
   };
 
@@ -112,6 +127,7 @@ export default function GasLawSimulator({
           width={400}
           height={300}
           className="w-full h-full"
+          aria-label={getLawTitle()}
         />
       </div>
 
@@ -121,7 +137,7 @@ export default function GasLawSimulator({
           <>
             <div>
               <label className="text-sm text-gray-300 mb-1 block">
-                Pressure: {(pressure / 1000).toFixed(1)} kPa
+                {ui.pressure[language]}: {(pressure / 1000).toFixed(1)} kPa
               </label>
               <input
                 type="range"
@@ -132,12 +148,13 @@ export default function GasLawSimulator({
                 onChange={(e) => setPressure(Number(e.target.value))}
                 className="w-full"
                 disabled={law === "charles" || law === "avogadro"}
+                aria-label={ui.pressure[language]}
               />
             </div>
 
             <div>
               <label className="text-sm text-gray-300 mb-1 block">
-                Volume: {(volume * 1000).toFixed(1)} L
+                {ui.volume[language]}: {(volume * 1000).toFixed(1)} L
               </label>
               <input
                 type="range"
@@ -148,12 +165,13 @@ export default function GasLawSimulator({
                 onChange={(e) => setVolume(Number(e.target.value))}
                 className="w-full"
                 disabled={law === "boyle"}
+                aria-label={ui.volume[language]}
               />
             </div>
 
             <div>
               <label className="text-sm text-gray-300 mb-1 block">
-                Temperature: {(temperature - 273.15).toFixed(1)} °C ({temperature.toFixed(1)} K)
+                {ui.temperature[language]}: {(temperature - 273.15).toFixed(1)} °C ({temperature.toFixed(1)} K)
               </label>
               <input
                 type="range"
@@ -164,12 +182,13 @@ export default function GasLawSimulator({
                 onChange={(e) => setTemperature(Number(e.target.value))}
                 className="w-full"
                 disabled={law === "boyle" || law === "avogadro"}
+                aria-label={ui.temperature[language]}
               />
             </div>
 
             <div>
               <label className="text-sm text-gray-300 mb-1 block">
-                Moles: {moles.toFixed(2)} mol
+                {ui.moles[language]}: {moles.toFixed(2)} mol
               </label>
               <input
                 type="range"
@@ -180,6 +199,7 @@ export default function GasLawSimulator({
                 onChange={(e) => setMoles(Number(e.target.value))}
                 className="w-full"
                 disabled={law === "boyle" || law === "charles"}
+                aria-label={ui.moles[language]}
               />
             </div>
           </>
@@ -189,9 +209,9 @@ export default function GasLawSimulator({
       {/* Law Formula */}
       <div className="mt-4 p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
         <p className="text-cyan-300 text-center font-mono">
-          {law === "boyle" && "P_1V_1 = P_2V_2 (T constant)"}
-          {law === "charles" && "V_1/T_1 = V_2/T_2 (P constant)"}
-          {law === "avogadro" && "V_1/n_1 = V_2/n_2 (P, T constant)"}
+          {law === "boyle" && `P_1V_1 = P_2V_2 (${ui.tConstant[language]})`}
+          {law === "charles" && `V_1/T_1 = V_2/T_2 (${ui.pConstant[language]})`}
+          {law === "avogadro" && `V_1/n_1 = V_2/n_2 (${ui.ptConstant[language]})`}
         </p>
       </div>
     </div>

@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 wave-35: SB3.02 dynamic panel loading for edge optimization + quality baseline retained)
-**Plan Version**: 9.9 (Batch B high-frequency expansion wave-35)
+**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 wave-36: GP2.03 simulator/calculator i18n + accessibility closure)
+**Plan Version**: 10.0 (Batch B high-frequency expansion wave-36)
 
 ---
 
@@ -148,6 +148,7 @@
 - [x] `Phase 5.4 + 6.0 continuation (wave-33)`: closed `audit-modules.js` false-positive empty-pool detection by adding quiz-bank and external quest-source heuristics (module-scope component/lib scans + flat `src/lib/<module>-*.ts` support), bringing audit result to `101/101 clean`; localized GP2.03 page-level UI text for EN/CN/DE and added answer/button ARIA labels; added SB3.02 language/stage/tab ARIA labels and guarded overall progress percentage division.
 - [x] `Phase 5.4 + 6.0 continuation (wave-34)`: refined `i18n:scan-quality` SAME_AS_KEY heuristics to ignore symbol/unit-like tokens and EN self-key values, reducing quality scan from 15 residual findings to 0 without changing translation symmetry.
 - [x] `Phase 5.4 + 6.0 continuation (wave-35)`: applied edge optimization on SB3.02 by converting scenario/visualization panel imports to dynamic lazy-loading (`next/dynamic`, client-only), reducing initial page payload while preserving quest tab behavior; production build remained green.
+- [x] `Phase 5.4 + 6.0 continuation (wave-36)`: localized remaining GP2.03 right-panel interaction copy in `GasLawSimulator` and `PartialPressureCalculator` (EN/CN/DE), including slider labels, action buttons, validation feedback, and results copy; added ARIA labels to calculator/simulator input controls and action buttons.
 
 ---
 
@@ -601,6 +602,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v10.0 (2026-03-03)
+- **Phase 5.4.2 + 6.0.2 GP2.03 interaction closure (wave-36)**:
+  - Completed tri-language localization of `gp2-03` simulator/calculator UI copy that was still hardcoded in English (control labels, result labels, validation errors, add/remove actions).
+  - Added explicit ARIA labels for key controls (pressure/volume/temperature/moles sliders, gas-name input, add/remove actions, answer controls), tightening accessibility baseline for interactive right-panel tools.
+- **Quality Gate Pass**: `audit-rendering`, `audit-modules`, and production `build` all passed after component updates.
+
 ### v9.9 (2026-03-03)
 - **Phase 5.4.1 edge optimization pass (wave-35)**:
   - Converted SB3.02 heavy side panels (`BaselScenarioGrid`, `DiversityCalculator`, `EcosystemMap`, `ConservationPlanner`) from eager imports to `next/dynamic` lazy loading on demand.
@@ -894,5 +901,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 9.9 (Batch B high-frequency expansion wave-35)
+**Plan Version**: 10.0 (Batch B high-frequency expansion wave-36)
 **Next Review**: 2026-03-05
