@@ -72,6 +72,12 @@ export default function BiodiversityModule() {
     visualizations: { en: 'Visualizations', cn: '可视化', de: 'Visualisierungen' },
   };
 
+  const languageButtonAria = {
+    en: { en: 'Switch language to English', cn: '切换到英文', de: 'Sprache auf Englisch wechseln' },
+    cn: { en: 'Switch language to Chinese', cn: '切换到中文', de: 'Sprache auf Chinesisch wechseln' },
+    de: { en: 'Switch language to German', cn: '切换到德文', de: 'Sprache auf Deutsch wechseln' },
+  } as const;
+
   const translations = {
     back: { en: 'Back', cn: '返回', de: 'Zurück' }[language],
     check: { en: 'Check', cn: '检查', de: 'Prüfen' }[language],
@@ -91,6 +97,9 @@ export default function BiodiversityModule() {
     id: s.id,
     label: s.title[language],
   }));
+  const overallProgressPercent = allQuests.length > 0
+    ? Math.round((completedQuestIds.length / allQuests.length) * 100)
+    : 0;
 
   return (
     <ChamberLayout
@@ -112,6 +121,7 @@ export default function BiodiversityModule() {
             <button
               key={lang}
               onClick={() => handleLanguageChange(lang)}
+              aria-label={languageButtonAria[lang][language]}
               className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
                 language === lang
                   ? 'bg-blue-600 text-white'
@@ -134,6 +144,7 @@ export default function BiodiversityModule() {
               <button
                 key={stage.id}
                 onClick={() => setCurrentStageId(stage.id)}
+                aria-label={stage.title[language]}
                 className={`flex-shrink-0 px-6 py-3 rounded-lg font-semibold transition-all ${
                   currentStageId === stage.id
                     ? 'bg-blue-600 text-white shadow-lg'
@@ -157,6 +168,7 @@ export default function BiodiversityModule() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
+              aria-label={tabLabels[tab][language]}
               className={`px-6 py-3 font-semibold transition-colors ${
                 activeTab === tab
                   ? 'text-blue-600 border-b-2 border-blue-600'
@@ -219,7 +231,7 @@ export default function BiodiversityModule() {
                 {language === 'de' && 'Fortschritt'}
               </p>
               <p className="text-3xl font-bold text-green-600">
-                {Math.round((completedQuestIds.length / allQuests.length) * 100)}%
+                {overallProgressPercent}%
               </p>
             </div>
           </div>

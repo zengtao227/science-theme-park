@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useGP203Store } from "@/lib/gp2-03-store";
 import type { StageId, Language, Difficulty } from "@/lib/gp2-03-types";
 import { ALL_QUESTS } from "@/lib/gp2-03-quest-data";
@@ -36,6 +36,118 @@ export default function ModuleContainer({
   const [currentQuestIndex, setCurrentQuestIndex] = useState(0);
   const [studentAnswer, setStudentAnswer] = useState("");
   const [lastValidation, setLastValidation] = useState<any>(null);
+
+  const ui = useMemo(() => ({
+    title: {
+      en: "GP2.03 Gas Laws",
+      cn: "GP2.03 气体定律",
+      de: "GP2.03 Gasgesetze",
+    }[currentLanguage],
+    footerIntro: {
+      en: "Master the fundamental gas laws",
+      cn: "掌握基础气体定律",
+      de: "Beherrschen Sie die grundlegenden Gasgesetze",
+    }[currentLanguage],
+    back: {
+      en: "Back",
+      cn: "返回",
+      de: "Zurück",
+    }[currentLanguage],
+    check: {
+      en: "Check",
+      cn: "检查",
+      de: "Prüfen",
+    }[currentLanguage],
+    next: {
+      en: "Next",
+      cn: "下一个",
+      de: "Weiter",
+    }[currentLanguage],
+    correct: {
+      en: "Correct!",
+      cn: "正确！",
+      de: "Richtig!",
+    }[currentLanguage],
+    incorrect: {
+      en: "Incorrect",
+      cn: "不正确",
+      de: "Falsch",
+    }[currentLanguage],
+    stageComplete: {
+      en: "Stage Complete! Select another difficulty or stage.",
+      cn: "阶段完成！请选择其他难度或阶段。",
+      de: "Stufe abgeschlossen! Wählen Sie eine andere Schwierigkeit oder Stufe.",
+    }[currentLanguage],
+    baselScenarios: {
+      en: "Basel Scenarios",
+      cn: "巴塞尔场景",
+      de: "Basler Szenarien",
+    }[currentLanguage],
+    answerLabel: {
+      en: "Your Answer:",
+      cn: "你的答案：",
+      de: "Ihre Antwort:",
+    }[currentLanguage],
+    answerPlaceholder: {
+      en: "Enter your answer...",
+      cn: "输入你的答案...",
+      de: "Geben Sie Ihre Antwort ein...",
+    }[currentLanguage],
+    checkAnswer: {
+      en: "Check Answer",
+      cn: "检查答案",
+      de: "Antwort prüfen",
+    }[currentLanguage],
+    nextQuest: {
+      en: "Next Quest",
+      cn: "下一题",
+      de: "Nächste Quest",
+    }[currentLanguage],
+    hints: {
+      en: "Hints:",
+      cn: "提示：",
+      de: "Hinweise:",
+    }[currentLanguage],
+    stageLabels: {
+      BASIC_GAS_LAWS: {
+        en: "Basic Gas Laws",
+        cn: "基础气体定律",
+        de: "Grundlegende Gasgesetze",
+      },
+      IDEAL_GAS_EQUATION: {
+        en: "Ideal Gas Equation",
+        cn: "理想气体方程",
+        de: "Ideale Gasgleichung",
+      },
+      GAS_MIXTURES: {
+        en: "Gas Mixtures",
+        cn: "气体混合",
+        de: "Gasmischungen",
+      },
+    },
+    difficulty: {
+      BASIC: {
+        en: "Basic",
+        cn: "基础",
+        de: "Grundlagen",
+      },
+      CORE: {
+        en: "Core",
+        cn: "核心",
+        de: "Kern",
+      },
+      ADVANCED: {
+        en: "Advanced",
+        cn: "进阶",
+        de: "Fortgeschritten",
+      },
+      ELITE: {
+        en: "Elite",
+        cn: "精英",
+        de: "Elite",
+      },
+    },
+  }), [currentLanguage]);
 
   // Initialize language
   useEffect(() => {
@@ -87,9 +199,9 @@ export default function ModuleContainer({
 
   // Stage configuration
   const stages = [
-    { id: "BASIC_GAS_LAWS" as StageId, label: "Basic Gas Laws" },
-    { id: "IDEAL_GAS_EQUATION" as StageId, label: "Ideal Gas Equation" },
-    { id: "GAS_MIXTURES" as StageId, label: "Gas Mixtures" },
+    { id: "BASIC_GAS_LAWS" as StageId, label: ui.stageLabels.BASIC_GAS_LAWS[currentLanguage] },
+    { id: "IDEAL_GAS_EQUATION" as StageId, label: ui.stageLabels.IDEAL_GAS_EQUATION[currentLanguage] },
+    { id: "GAS_MIXTURES" as StageId, label: ui.stageLabels.GAS_MIXTURES[currentLanguage] },
   ];
 
   // Get visualization based on stage
@@ -118,57 +230,63 @@ export default function ModuleContainer({
   if (!currentQuest) {
     return (
       <ChamberLayout
-        title="GP2.03 Gas Laws"
+        title={ui.title}
         moduleCode={moduleCode}
         difficulty={difficulty}
         onDifficultyChange={handleDifficultyChange}
         stages={stages}
         currentStage={currentStage}
         onStageChange={handleStageChange}
-        footerLeft="Master the fundamental gas laws"
+        footerLeft={ui.footerIntro}
         translations={{
-          back: "Back",
-          check: "Check",
-          next: "Next",
-          correct: "Correct!",
-          incorrect: "Incorrect",
+          back: ui.back,
+          check: ui.check,
+          next: ui.next,
+          correct: ui.correct,
+          incorrect: ui.incorrect,
           difficulty: {
-            BASIC: "Basic",
-            CORE: "Core",
-            ADVANCED: "Advanced",
-            ELITE: "Elite"
+            BASIC: ui.difficulty.BASIC[currentLanguage],
+            CORE: ui.difficulty.CORE[currentLanguage],
+            ADVANCED: ui.difficulty.ADVANCED[currentLanguage],
+            ELITE: ui.difficulty.ELITE[currentLanguage],
           },
         }}
         monitorContent={getVisualization()}
       >
         <div className="text-center text-green-400 text-xl">
-          Stage Complete! Select another difficulty or stage.
+          {ui.stageComplete}
         </div>
       </ChamberLayout>
     );
   }
 
+  const localizedFooter = currentLanguage === "cn"
+    ? `任务 ${currentQuestIndex + 1}/${stageQuests.length}`
+    : currentLanguage === "de"
+      ? `Quest ${currentQuestIndex + 1} von ${stageQuests.length}`
+      : `Quest ${currentQuestIndex + 1} of ${stageQuests.length}`;
+
   return (
     <ChamberLayout
-      title="GP2.03 Gas Laws"
+      title={ui.title}
       moduleCode={moduleCode}
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}
       currentStage={currentStage}
       onStageChange={handleStageChange}
-      footerLeft={`Quest ${currentQuestIndex + 1} of ${stageQuests.length}`}
+      footerLeft={localizedFooter}
       translations={{
-        back: "Back",
-        check: "Check",
-        next: "Next",
-        correct: "Correct!",
-        incorrect: "Incorrect",
+        back: ui.back,
+        check: ui.check,
+        next: ui.next,
+        correct: ui.correct,
+        incorrect: ui.incorrect,
         difficulty: {
-          BASIC: "Basic",
-          CORE: "Core",
-          ADVANCED: "Advanced",
-          ELITE: "Elite"
+          BASIC: ui.difficulty.BASIC[currentLanguage],
+          CORE: ui.difficulty.CORE[currentLanguage],
+          ADVANCED: ui.difficulty.ADVANCED[currentLanguage],
+          ELITE: ui.difficulty.ELITE[currentLanguage],
         },
       }}
       monitorContent={getVisualization()}
@@ -177,7 +295,7 @@ export default function ModuleContainer({
         {/* Scenarios (show on first quest) */}
         {currentQuestIndex === 0 && (
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-cyan-400">Basel Scenarios</h3>
+            <h3 className="text-xl font-bold text-cyan-400">{ui.baselScenarios}</h3>
             {BASEL_SCENARIOS.filter((s) => {
               // Show relevant scenarios for current stage
               if (currentStage === "BASIC_GAS_LAWS") return s.relatedConcepts.includes("boyle") || s.relatedConcepts.includes("charles");
@@ -210,13 +328,14 @@ export default function ModuleContainer({
 
           {/* Answer Input */}
           <div className="mb-4">
-            <label className="block text-sm text-gray-400 mb-2">Your Answer:</label>
+            <label className="block text-sm text-gray-400 mb-2">{ui.answerLabel}</label>
             <input
               type="text"
               value={studentAnswer}
               onChange={(e) => setStudentAnswer(e.target.value)}
+              aria-label={ui.answerLabel}
               className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:border-cyan-500 focus:outline-none"
-              placeholder="Enter your answer..."
+              placeholder={ui.answerPlaceholder}
             />
           </div>
 
@@ -233,16 +352,18 @@ export default function ModuleContainer({
           <div className="flex gap-4">
             <button
               onClick={handleVerify}
+              aria-label={ui.checkAnswer}
               className="px-6 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition-colors"
             >
-              Check Answer
+              {ui.checkAnswer}
             </button>
             {lastValidation?.isCorrect && (
               <button
                 onClick={handleNext}
+                aria-label={ui.nextQuest}
                 className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
               >
-                Next Quest
+                {ui.nextQuest}
               </button>
             )}
           </div>
@@ -250,7 +371,7 @@ export default function ModuleContainer({
           {/* Hints */}
           {currentQuest.hints.length > 0 && (
             <div className="mt-4 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-              <p className="text-yellow-300 font-semibold mb-2">Hints:</p>
+              <p className="text-yellow-300 font-semibold mb-2">{ui.hints}</p>
               {currentQuest.hints.map((hint, idx) => (
                 <p key={idx} className="text-yellow-200 text-sm">
                   • <ContentRenderer content={hint} language={currentLanguage} />
