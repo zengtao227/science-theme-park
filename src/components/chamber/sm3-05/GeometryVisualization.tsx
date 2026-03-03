@@ -2,6 +2,8 @@
 
 import React, { useMemo, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 type Stage = "BASEL_ARCH" | "CROSS_SECTIONS" | "CURVED_SOLIDS";
 type Shape = "cube" | "pyramid" | "sphere" | "cylinder" | "roche";
@@ -19,7 +21,7 @@ const monitorCopy = {
     properties: "Properties:",
     rocheTitle: "Roche Tower Analogy",
     rocheStructure: "Structure: Stacked Prisms",
-    rocheArea: "Area: 2400m^2-1800m^2",
+    rocheAreaLabel: "Area:",
     rocheHeight: "Height: 205m",
     cubeFaces: "Faces: 6",
     cubeVertices: "Vertices: 8",
@@ -66,7 +68,7 @@ const monitorCopy = {
     properties: "性质:",
     rocheTitle: "罗氏塔类比",
     rocheStructure: "结构：分层棱柱",
-    rocheArea: "面积：2400m^2-1800m^2",
+    rocheAreaLabel: "面积：",
     rocheHeight: "高度：205m",
     cubeFaces: "面数：6",
     cubeVertices: "顶点：8",
@@ -113,7 +115,7 @@ const monitorCopy = {
     properties: "Eigenschaften:",
     rocheTitle: "Roche-Turm Analogie",
     rocheStructure: "Struktur: Gestapelte Prismen",
-    rocheArea: "Flaeche: 2400m^2-1800m^2",
+    rocheAreaLabel: "Flaeche:",
     rocheHeight: "Hoehe: 205m",
     cubeFaces: "Flaechen: 6",
     cubeVertices: "Ecken: 8",
@@ -252,7 +254,9 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
               <>
                 <div className="text-white">{copy.rocheTitle}</div>
                 <div>{copy.rocheStructure}</div>
-                <div>{copy.rocheArea}</div>
+                <div>
+                  {copy.rocheAreaLabel} <InlineMath math={"2400\\,m^{2}-1800\\,m^{2}"} />
+                </div>
                 <div>{copy.rocheHeight}</div>
               </>
             )}
@@ -261,7 +265,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div>{copy.cubeFaces}</div>
                 <div>{copy.cubeVertices}</div>
                 <div>{copy.cubeEdges}</div>
-                <div>V = a^{3}</div>
+                <div><InlineMath math={"V=a^{3}"} /></div>
               </>
             )}
             {selectedShape === "pyramid" && (
@@ -269,22 +273,22 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div>{copy.pyramidFaces}</div>
                 <div>{copy.pyramidVertices}</div>
                 <div>{copy.pyramidEdges}</div>
-                <div>V = (1/3)Bh</div>
+                <div><InlineMath math={"V=\\frac{1}{3}Bh"} /></div>
               </>
             )}
             {selectedShape === "sphere" && (
               <>
                 <div>{copy.sphereSurface}</div>
                 <div>{copy.sphereNoEdge}</div>
-                <div>V = (4/3)pi r^{3}</div>
-                <div>A = 4pi r^{2}</div>
+                <div><InlineMath math={"V=\\frac{4}{3}\\pi r^{3}"} /></div>
+                <div><InlineMath math={"A=4\\pi r^{2}"} /></div>
               </>
             )}
             {selectedShape === "cylinder" && (
               <>
                 <div>{copy.cylinderFaces}</div>
-                <div>V = pi r^{2}h</div>
-                <div>A = 2pi r^{2} + 2pi rh</div>
+                <div><InlineMath math={"V=\\pi r^{2}h"} /></div>
+                <div><InlineMath math={"A=2\\pi r^{2}+2\\pi rh"} /></div>
               </>
             )}
           </div>
@@ -376,11 +380,15 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         <div className="mt-4 space-y-2 text-sm">
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">{copy.distanceFormula}</div>
-            <div className="text-lg">d = sqrt[(x_2-x_1)^{2} + (y_2-y_1)^{2} + (z_2-z_1)^{2}]</div>
+            <div className="text-lg">
+              <InlineMath math={"d=\\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}+(z_2-z_1)^{2}}"} />
+            </div>
           </div>
           <div className="p-2 bg-gray-800 rounded">
             <div className="text-cyan-400">{copy.midpointFormula}</div>
-            <div className="text-lg">M = ((x_1+x_2)/2, (y_1+y_2)/2, (z_1+z_2)/2)</div>
+            <div className="text-lg">
+              <InlineMath math={"M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2},\\frac{z_1+z_2}{2}\\right)"} />
+            </div>
           </div>
         </div>
       </div>

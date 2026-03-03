@@ -24,19 +24,19 @@ const hintPanelI18n: Record<string, Record<string, { title: string; items: strin
     TERMS: { title: "Combining Like Terms", items: ["ax + bx = (a+b)x", "Group same variables", "Watch signs: -(a-b) = -a+b", "Distribute: c(x+y) = cx + cy"] },
     FACTORIZE: { title: "Factorization Identities", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Always check: GCF first"] },
     FRACTIONS: { title: "Simplifying Fractions", items: ["Factor numerator & denominator", "Cancel common factors", "a^{2} - b^{2} = (a-b)(a+b)", "Check domain restrictions"] },
-    EQUATIONS: { title: "Solving Equations", items: ["Zero Product: if pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "Complete the square for vertex form"] },
+    EQUATIONS: { title: "Solving Equations", items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"] },
   },
   CN: {
     TERMS: { title: "合并同类项", items: ["ax + bx = (a+b)x", "同类项：变量和次数相同的项", "注意符号：-(a-b) = -a+b", "分配律：c(x+y) = cx + cy"] },
     FACTORIZE: { title: "因式分解恒等式", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "先提取公因式"] },
     FRACTIONS: { title: "分式化简", items: ["对分子分母进行因式分解", "约去公因式", "a^{2} - b^{2} = (a-b)(a+b)", "注意定义域限制"] },
-    EQUATIONS: { title: "解方程", items: ["零因式定理：若 pq=0 \\implies p=0 \\vee q=0", "求根公式：x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}", "\\Delta = b^{2} - 4ac", "配方法可求顶点式"] },
+    EQUATIONS: { title: "解方程", items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"] },
   },
   DE: {
     TERMS: { title: "Gleichartige Terme", items: ["ax + bx = (a+b)x", "Gleiche Variablen zusammenfassen", "Vorzeichen: -(a-b) = -a+b", "Ausmultiplizieren: c(x+y) = cx + cy"] },
     FACTORIZE: { title: "Faktorisierungs-Identitäten", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Immer zuerst: Gemeinsamer Faktor"] },
     FRACTIONS: { title: "Brüche Vereinfachen", items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a^{2}-b^{2} = (a-b)(a+b)", "Definitionsmenge beachten"] },
-    EQUATIONS: { title: "Gleichungen Lösen", items: ["Nullproduktsatz: wenn pq=0 \\implies p=0 \\vee q=0", "Mitternachtsformel: x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}", "\\Delta = b^{2} - 4ac", "Quadratische Ergänzung"] },
+    EQUATIONS: { title: "Gleichungen Lösen", items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"] },
   },
 };
 
@@ -70,6 +70,20 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
   const scale = Math.min(scaleX, scaleY, 25);
 
   const toSvg = useCallback((x: number, y: number): [number, number] => [ox + x * scale, oy - y * scale], [ox, oy, scale]);
+  const pickTickStep = useCallback((unitsPerLabel: number) => {
+    const bases = [1, 2, 5];
+    let factor = 1;
+    while (factor < 1000) {
+      for (const base of bases) {
+        const candidate = base * factor;
+        if (candidate >= unitsPerLabel) return candidate;
+      }
+      factor *= 10;
+    }
+    return 1;
+  }, []);
+  const xTickStep = pickTickStep(28 / scale);
+  const yTickStep = pickTickStep(24 / scale);
 
   const path = useMemo(() => {
     const pts: string[] = [];
@@ -84,6 +98,10 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
   }, [a, b, c, maxAbsX, toSvg]);
 
   const [svx, svy] = toSvg(vx, vy);
+  const closeRoots = roots.length === 2 && Math.abs(roots[0] - roots[1]) * scale < 56;
+  const vertexNearRoots = roots.some((r) => Math.abs(toSvg(r, 0)[0] - svx) < 52 && Math.abs(toSvg(r, 0)[1] - svy) < 34);
+  const vertexDx = vertexNearRoots ? -68 : 10;
+  const vertexAnchor = vertexNearRoots ? "end" : "start";
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full rounded-lg" style={{ background: '#080812' }}>
@@ -99,15 +117,46 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
       <text x={W - 15} y={oy - 8} fill="#00e5ff" fontSize="11" opacity="0.5" fontWeight="bold">x</text>
       <text x={ox + 8} y={15} fill="#00e5ff" fontSize="11" opacity="0.5" fontWeight="bold">y</text>
       {/* Tick numbers */}
-      {Array.from({ length: Math.ceil(maxAbsX) * 2 + 1 }).map((_, i) => { const val = i - Math.ceil(maxAbsX); if (val === 0) return null; const [sx] = toSvg(val, 0); if (sx < 10 || sx > W - 10) return null; return (<g key={`tx-${i}`}><line x1={sx} y1={oy - 3} x2={sx} y2={oy + 3} stroke="#00e5ff" strokeWidth="1" opacity="0.3" /><text x={sx} y={oy + 14} fill="#00e5ff" fontSize="8" textAnchor="middle" opacity="0.3">{val}</text></g>); })}
-      {Array.from({ length: Math.ceil(maxAbsY) * 2 + 1 }).map((_, i) => { const val = i - Math.ceil(maxAbsY); if (val === 0) return null; const [, sy] = toSvg(0, val); if (sy < 10 || sy > H - 10) return null; return (<g key={`ty-${i}`}><line x1={ox - 3} y1={sy} x2={ox + 3} y2={sy} stroke="#00e5ff" strokeWidth="1" opacity="0.3" /><text x={ox - 10} y={sy + 3} fill="#00e5ff" fontSize="8" textAnchor="end" opacity="0.3">{val}</text></g>); })}
+      {Array.from({ length: Math.ceil(maxAbsX) * 2 + 1 }).map((_, i) => {
+        const val = i - Math.ceil(maxAbsX);
+        if (val === 0 || Math.abs(val % xTickStep) > 1e-9) return null;
+        const [sx] = toSvg(val, 0);
+        if (sx < 10 || sx > W - 10) return null;
+        return (
+          <g key={`tx-${i}`}>
+            <line x1={sx} y1={oy - 3} x2={sx} y2={oy + 3} stroke="#00e5ff" strokeWidth="1" opacity="0.3" />
+            <text x={sx} y={oy + 14} fill="#00e5ff" fontSize="8" textAnchor="middle" opacity="0.3">{val}</text>
+          </g>
+        );
+      })}
+      {Array.from({ length: Math.ceil(maxAbsY) * 2 + 1 }).map((_, i) => {
+        const val = i - Math.ceil(maxAbsY);
+        if (val === 0 || Math.abs(val % yTickStep) > 1e-9) return null;
+        const [, sy] = toSvg(0, val);
+        if (sy < 10 || sy > H - 10) return null;
+        return (
+          <g key={`ty-${i}`}>
+            <line x1={ox - 3} y1={sy} x2={ox + 3} y2={sy} stroke="#00e5ff" strokeWidth="1" opacity="0.3" />
+            <text x={ox - 10} y={sy + 3} fill="#00e5ff" fontSize="8" textAnchor="end" opacity="0.3">{val}</text>
+          </g>
+        );
+      })}
       {/* Parabola */}
       <path d={path} fill="none" stroke="#00ffff" strokeWidth="2.5" filter="url(#svgGlow)" opacity="0.9" />
       {/* Vertex */}
       <circle cx={svx} cy={svy} r="5" fill="#ff00ff" filter="url(#svgGlow)" />
-      <text x={svx + 10} y={svy - 8} fill="#ff00ff" fontSize="11" fontWeight="bold">V({vx.toFixed(1)}, {vy.toFixed(1)})</text>
+      <text x={svx + vertexDx} y={svy - 8} fill="#ff00ff" fontSize="11" fontWeight="bold" textAnchor={vertexAnchor}>V({vx.toFixed(1)}, {vy.toFixed(1)})</text>
       {/* Roots */}
-      {roots.map((r, i) => { const [rx, ry] = toSvg(r, 0); return (<g key={i}><circle cx={rx} cy={ry} r="5" fill="#39ff14" filter="url(#svgGlow)" /><text x={rx} y={ry + 18} fill="#39ff14" fontSize="11" fontWeight="bold" textAnchor="middle">x={r.toFixed(1)}</text></g>); })}
+      {roots.map((r, i) => {
+        const [rx, ry] = toSvg(r, 0);
+        const labelY = closeRoots ? (i === 0 ? ry - 12 : ry + 24) : ry + 18;
+        return (
+          <g key={i}>
+            <circle cx={rx} cy={ry} r="5" fill="#39ff14" filter="url(#svgGlow)" />
+            <text x={rx} y={labelY} fill="#39ff14" fontSize="11" fontWeight="bold" textAnchor="middle">x={r.toFixed(1)}</text>
+          </g>
+        );
+      })}
       {disc < 0 && (
         <foreignObject x={W / 2 - 50} y={10} width="100" height="40">
           <div className="flex justify-center"><InlineMath math="\\Delta < 0" /></div>
