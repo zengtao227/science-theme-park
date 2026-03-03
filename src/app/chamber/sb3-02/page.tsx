@@ -6,12 +6,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import ChamberLayout from '@/components/layout/ChamberLayout';
 import { StageView } from '@/components/chamber/sb3-02/StageView';
-import { BaselScenarioGrid } from '@/components/chamber/sb3-02/BaselScenarioPanel';
-import { DiversityCalculator } from '@/components/chamber/sb3-02/DiversityCalculator';
-import { EcosystemMap } from '@/components/chamber/sb3-02/EcosystemMap';
-import { ConservationPlanner } from '@/components/chamber/sb3-02/ConservationPlanner';
 import { Language } from '@/lib/sb3-02/types';
 import { stages, allQuests } from '@/lib/sb3-02/content/quest-data';
 import { baselScenarios } from '@/lib/sb3-02/content/basel-scenarios';
@@ -23,6 +20,23 @@ import {
   markQuestComplete,
   updateLanguage,
 } from '@/lib/sb3-02/storage';
+
+const BaselScenarioGrid = dynamic(
+  () => import('@/components/chamber/sb3-02/BaselScenarioPanel').then((m) => m.BaselScenarioGrid),
+  { ssr: false }
+);
+const DiversityCalculator = dynamic(
+  () => import('@/components/chamber/sb3-02/DiversityCalculator').then((m) => m.DiversityCalculator),
+  { ssr: false }
+);
+const EcosystemMap = dynamic(
+  () => import('@/components/chamber/sb3-02/EcosystemMap').then((m) => m.EcosystemMap),
+  { ssr: false }
+);
+const ConservationPlanner = dynamic(
+  () => import('@/components/chamber/sb3-02/ConservationPlanner').then((m) => m.ConservationPlanner),
+  { ssr: false }
+);
 
 export default function BiodiversityModule() {
   const [language, setLanguage] = useState<Language>('en');
