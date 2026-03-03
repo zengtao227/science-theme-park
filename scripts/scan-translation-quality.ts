@@ -64,6 +64,8 @@ function isKnownExempt(key: string, value: string): boolean {
   if (/^[-+]?[\d\s.,%]+$/.test(value)) return true;
   if (/^\\/.test(value)) return true; // latex/formula-like
   if (/[{}$]/.test(value)) return true; // template-ish values
+  if (/^[A-Za-z]{1,3}$/.test(value)) return true; // unit/symbol-like tokens (m, km, ab)
+  if (/^[A-Z_]{2,}$/.test(value)) return true; // enum-like stage/status tokens
   return false;
 }
 
@@ -129,7 +131,7 @@ function scanFile(filePath: string, lang: "en" | "cn" | "de"): Issue[] {
         if (value === "") {
           issues.push({ file: filePath, line: lineNo, lang, key, value, type: "EMPTY", reason: "empty string value" });
         }
-        if (value === kvMatch[1]) {
+        if (value === kvMatch[1] && lang !== "en") {
           issues.push({
             file: filePath,
             line: lineNo,

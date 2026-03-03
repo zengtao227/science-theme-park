@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
 **Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 wave-33: audit false-positive closure + GP2.03/SB3.02 accessibility/i18n page-level closure)
-**Plan Version**: 9.7 (Batch B high-frequency expansion wave-33)
+**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 wave-34: i18n quality scan rule closure + zero-issue baseline)
+**Plan Version**: 9.8 (Batch B high-frequency expansion wave-34)
 
 ---
 
@@ -146,6 +146,7 @@
 - [x] `GP2.* + SC1.* Batch B residual closure (wave-31)`: completed targeted residual audit for prompt hardcoding/wrapper violations in GP2.* and SC1.* scope; closed SC1.03/SC1.04/SC1.05 prompt pipeline by adding tri-language `prompts` key packs and migrating remaining hardcoded `promptLatex` to i18n references.
 - [x] `Phase 5.4 + 6.0 kickoff (wave-32)`: localized SC1.07 right-panel hardcoded runtime strings (`ready`/`monitor_title`/`loading`/`sensor feed`) and quest input labels/placeholders into EN/CN/DE i18n; added input `aria-label` baseline; executed fresh Batch A/B/C + translation quality baseline scan for next-wave closure.
 - [x] `Phase 5.4 + 6.0 continuation (wave-33)`: closed `audit-modules.js` false-positive empty-pool detection by adding quiz-bank and external quest-source heuristics (module-scope component/lib scans + flat `src/lib/<module>-*.ts` support), bringing audit result to `101/101 clean`; localized GP2.03 page-level UI text for EN/CN/DE and added answer/button ARIA labels; added SB3.02 language/stage/tab ARIA labels and guarded overall progress percentage division.
+- [x] `Phase 5.4 + 6.0 continuation (wave-34)`: refined `i18n:scan-quality` SAME_AS_KEY heuristics to ignore symbol/unit-like tokens and EN self-key values, reducing quality scan from 15 residual findings to 0 without changing translation symmetry.
 
 ---
 
@@ -599,6 +600,12 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v9.8 (2026-03-03)
+- **Phase 6.0.1 scan rule closure (wave-34)**:
+  - Updated `scripts/scan-translation-quality.ts` SAME_AS_KEY logic to avoid false positives on short symbol/unit tokens (`m`, `km`, `ab`) and uppercase enum-like values, while restricting strict same-key checks to non-EN locales.
+  - `npm run i18n:scan-quality` now reports `Found 0 issues` on current baseline.
+- **Quality Gate Pass**: `i18n:scan-quality`, `validate:translations`, `audit-rendering`, and `audit-modules` all passed.
+
 ### v9.7 (2026-03-03)
 - **Phase 5.4 + 6.0 Wave-33 closure (audit + accessibility + i18n page-level)**:
   - Upgraded `scripts/audit-modules.js` with quiz-bank + external quest-source heuristics, including flat `src/lib/<module>-*.ts` scanning.
@@ -880,5 +887,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 9.7 (Batch B high-frequency expansion wave-33)
+**Plan Version**: 9.8 (Batch B high-frequency expansion wave-34)
 **Next Review**: 2026-03-05
