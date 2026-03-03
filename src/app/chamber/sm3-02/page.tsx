@@ -156,19 +156,19 @@ function TrigMonitorPanel({
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                     <div className="bg-white/5 rounded p-2 border border-white/10">
-                        <div className="text-[9px] text-yellow-400/70 mb-1">SIN</div>
+                        <div className="text-[9px] text-yellow-400/70 mb-1">{t("sm3_02.labels.sin")}</div>
                         <div className="font-mono text-sm text-yellow-300 font-bold flex items-center h-6 overflow-hidden">
                             {exact ? <InlineMath math={exact.sin} /> : sinValue.toFixed(4)}
                         </div>
                     </div>
                     <div className="bg-white/5 rounded p-2 border border-white/10">
-                        <div className="text-[9px] text-green-400/70 mb-1">COS</div>
+                        <div className="text-[9px] text-green-400/70 mb-1">{t("sm3_02.labels.cos")}</div>
                         <div className="font-mono text-sm text-green-300 font-bold flex items-center h-6 overflow-hidden">
                             {exact ? <InlineMath math={exact.cos} /> : cosValue.toFixed(4)}
                         </div>
                     </div>
                     <div className="bg-white/5 rounded p-2 border border-white/10">
-                        <div className="text-[9px] text-pink-400/70 mb-1">TAN</div>
+                        <div className="text-[9px] text-pink-400/70 mb-1">{t("sm3_02.labels.tan")}</div>
                         <div className="font-mono text-sm text-pink-300 font-bold flex items-center h-6 overflow-hidden">
                             {exact ? <InlineMath math={exact.tan} /> : Math.abs(cosValue) < 0.001 ? <InlineMath math="\\infty" /> : <>{tanValue.toFixed(4)}</>}
                         </div>
@@ -184,19 +184,19 @@ function TrigMonitorPanel({
                 <div className="grid grid-cols-2 gap-2">
                     <label className="flex items-center gap-2 cursor-pointer bg-white/5 p-2 rounded border border-white/10 hover:bg-white/10 transition-colors">
                         <input type="checkbox" checked={showSin} onChange={(e) => setShowSin(e.target.checked)} className="accent-yellow-400" />
-                        <span className="text-xs text-yellow-400 font-mono">sin(θ)</span>
+                        <span className="text-xs text-yellow-400 font-mono">{t("sm3_02.labels.sin")}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer bg-white/5 p-2 rounded border border-white/10 hover:bg-white/10 transition-colors">
                         <input type="checkbox" checked={showCos} onChange={(e) => setShowCos(e.target.checked)} className="accent-green-400" />
-                        <span className="text-xs text-green-400 font-mono">cos(θ)</span>
+                        <span className="text-xs text-green-400 font-mono">{t("sm3_02.labels.cos")}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer bg-white/5 p-2 rounded border border-white/10 hover:bg-white/10 transition-colors">
                         <input type="checkbox" checked={showTan} onChange={(e) => setShowTan(e.target.checked)} className="accent-pink-400" />
-                        <span className="text-xs text-pink-400 font-mono">tan(θ)</span>
+                        <span className="text-xs text-pink-400 font-mono">{t("sm3_02.labels.tan")}</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer bg-white/5 p-2 rounded border border-white/10 hover:bg-white/10 transition-colors">
                         <input type="checkbox" checked={showWaves} onChange={(e) => setShowWaves(e.target.checked)} className="accent-purple-400" />
-                        <span className="text-xs text-purple-400 font-mono">Waves</span>
+                        <span className="text-xs text-purple-400 font-mono">{t("sm3_02.labels.show_waves")}</span>
                     </label>
                 </div>
             </div>

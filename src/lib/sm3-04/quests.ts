@@ -71,10 +71,10 @@ export function generatePhQuests(t: ReturnType<typeof useLanguage>["t"], difficu
         quests.push({
             id, difficulty, stage: "PH",
             concentration, value: pH, scenarioKey,
-            promptLatex: t("sm3_04.stages.ph_prompt_latex") || "Calculate pH",
+            promptLatex: t("sm3_04.stages.ph_prompt_latex"),
             expressionLatex: `[H^+]=${concentration.toExponential(2)}\\;M`,
             targetLatex: "pH",
-            slots: [{ id: "pH", labelLatex: "pH", placeholder: "pH value", expected: pH }],
+            slots: [{ id: "pH", labelLatex: "pH", placeholder: t("sm3_04.placeholders.ph_value"), expected: pH }],
             correctLatex: `pH=${pH}`
         });
     }
@@ -101,10 +101,10 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: reduction, scenarioKey: "decibel_elite",
-                promptLatex: t("sm3_04.stages.decibel_reduction") || "Calculate dB reduction",
+                promptLatex: t("sm3_04.stages.decibel_reduction"),
                 expressionLatex: `I_1=${intensity.toExponential(0)}\\;W/m^{2},\\; I_2=${intensity2.toExponential(0)}\\;W/m^{2}`,
                 targetLatex: "\\Delta L",
-                slots: [{ id: "dB", labelLatex: "\\Delta L", placeholder: "dB reduction", expected: reduction, unit: "dB" }],
+                slots: [{ id: "dB", labelLatex: "\\Delta L", placeholder: t("sm3_04.placeholders.db_reduction"), expected: reduction, unit: "dB" }],
                 correctLatex: `\\Delta L=${reduction}\\;dB`,
             });
         }
@@ -133,10 +133,10 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: dB, scenarioKey,
-                promptLatex: t("sm3_04.stages.decibel_prompt_latex") || "Calculate decibel",
+                promptLatex: t("sm3_04.stages.decibel_prompt_latex"),
                 expressionLatex: `I=${intensity.toExponential(0)}\\;W/m^{2},\\; I_0=10^{-12}\\;W/m^{2}`,
                 targetLatex: "L",
-                slots: [{ id: "L", labelLatex: "L", placeholder: "decibels", expected: dB, unit: "dB" }],
+                slots: [{ id: "L", labelLatex: "L", placeholder: t("sm3_04.placeholders.decibels"), expected: dB, unit: "dB" }],
                 correctLatex: `L=${dB}\\;dB`
             });
         }
@@ -165,10 +165,10 @@ export function generateRichterQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "RICHTER",
                 amplitude, value: diff, scenarioKey: "richter_elite",
-                promptLatex: t("sm3_04.stages.magnitude_difference") || "Magnitude diff",
+                promptLatex: t("sm3_04.stages.magnitude_difference"),
                 expressionLatex: `A_1=${amplitude}\\;\\mu m,\\; A_2=${amplitude2}\\;\\mu m`,
                 targetLatex: "\\Delta M",
-                slots: [{ id: "M", labelLatex: "\\Delta M", placeholder: "magnitude diff", expected: diff }],
+                slots: [{ id: "M", labelLatex: "\\Delta M", placeholder: t("sm3_04.placeholders.magnitude_diff"), expected: diff }],
                 correctLatex: `\\Delta M=${diff}`,
             });
         }
@@ -200,10 +200,10 @@ export function generateRichterQuests(t: ReturnType<typeof useLanguage>["t"], di
             quests.push({
                 id, difficulty, stage: "RICHTER",
                 amplitude, value: magnitude, scenarioKey,
-                promptLatex: t("sm3_04.stages.richter_prompt_latex") || "Calculate magnitude",
+                promptLatex: t("sm3_04.stages.richter_prompt_latex"),
                 expressionLatex: `A=${amplitude}\\;\\mu m`,
                 targetLatex: "M",
-                slots: [{ id: "M", labelLatex: "M", placeholder: "magnitude", expected: magnitude }],
+                slots: [{ id: "M", labelLatex: "M", placeholder: t("sm3_04.placeholders.magnitude"), expected: magnitude }],
                 correctLatex: `M=${magnitude}`
             });
         }

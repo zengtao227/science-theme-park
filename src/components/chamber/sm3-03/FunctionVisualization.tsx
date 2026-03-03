@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface FunctionVisualizationProps {
   quest: any;
@@ -14,6 +15,7 @@ export default function FunctionVisualization({
   inputs,
   checkStatus,
 }: FunctionVisualizationProps) {
+  const { t } = useLanguage();
   void inputs;
   // Generate function curve
   const curveData = useMemo(() => {
@@ -53,7 +55,7 @@ export default function FunctionVisualization({
   if (!quest) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white/60 text-sm">
-        No data
+        {t("sm3_03.labels.no_data")}
       </div>
     );
   }
@@ -155,12 +157,12 @@ export default function FunctionVisualization({
       <div className="text-xs text-white/60 font-mono text-center">
         {checkStatus ? (
           checkStatus.ok ? (
-            <span className="text-green-400">✓ FUNCTION VERIFIED</span>
+            <span className="text-green-400">✓ {t("sm3_03.labels.function_verified")}</span>
           ) : (
-            <span className="text-pink-400">✗ CHECK CALCULATION</span>
+            <span className="text-pink-400">✗ {t("sm3_03.labels.check_calculation")}</span>
           )
         ) : (
-          "ANALYZE FUNCTION"
+          t("sm3_03.labels.analyze_function")
         )}
       </div>
     </div>

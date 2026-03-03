@@ -2301,11 +2301,25 @@ export const cnMath = {    em1_01: {
             values: "三角函数值",
             display: "显示选项",
             show_waves: "显示波函数",
+            sin: "sin(θ)",
+            cos: "cos(θ)",
+            tan: "tan(θ)",
             formulas: "公式",
             special_angles: "特殊角",
             exact_value: "精确值",
             decimal_value: "数值",
             quadrant: "象限"
+        },
+        targets: {
+            quadrant_latex: "\\text{象限}",
+            sign_latex: "\\text{符号}~(+/-)",
+            radians_latex: "\\text{弧度}",
+            degrees_latex: "\\text{角度}",
+            amplitude_latex: "\\text{振幅}",
+            period_latex: "\\text{周期 (rad)}",
+            max_latex: "\\text{最大值}",
+            min_latex: "\\text{最小值}",
+            derivative_latex: "\\text{导数}"
         },
         mission: {
             title: "任务：单位圆",
@@ -2356,7 +2370,11 @@ export const cnMath = {    em1_01: {
             growth_rate: "增长率 (k)",
             half_life: "半衰期",
             principal: "本金 (P)",
-            rate: "利率 (r)"
+            rate: "利率 (r)",
+            no_data: "暂无数据",
+            function_verified: "函数已验证",
+            check_calculation: "请检查计算",
+            analyze_function: "分析函数"
         },
         hints: {
             exp_rule1: "每次倍增，种群数量乘以 2",
@@ -2433,6 +2451,13 @@ export const cnMath = {    em1_01: {
             decibel: "分贝 (dB)",
             richter: "里氏震级"
         },
+        placeholders: {
+            ph_value: "pH 数值",
+            db_reduction: "分贝差值",
+            decibels: "分贝",
+            magnitude_diff: "震级差值",
+            magnitude: "震级"
+        },
         mission: {
             title: "对数测量实验室",
             description: "掌握三种真实世界的对数刻度：pH值（化学）、分贝（声音）、里氏震级（地震）。每种刻度都将巨大的范围压缩成可管理的数字。"
@@ -2492,6 +2517,7 @@ export const cnMath = {    em1_01: {
         next: "下一挑战",
         correct: "正确",
         incorrect: "错误",
+        module_complete: "模块完成！",
         stages: {
             box_plots: "箱线图",
             scatter_plots: "散点图",

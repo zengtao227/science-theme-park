@@ -2299,6 +2299,17 @@ export const deMath = {    em1_01: {
             adjacent: "Ankathete",
             hypotenuse: "Hypotenuse"
         },
+        targets: {
+            quadrant_latex: "\\text{Quadrant}",
+            sign_latex: "\\text{Vorzeichen}~(+/-)",
+            radians_latex: "\\text{Bogenmass}",
+            degrees_latex: "\\text{Grad}",
+            amplitude_latex: "\\text{Amplitude}",
+            period_latex: "\\text{Periode (rad)}",
+            max_latex: "\\text{Maximum}",
+            min_latex: "\\text{Minimum}",
+            derivative_latex: "\\text{Ableitung}"
+        },
         mission: {
             title: "MISSION: EINHEITSKREIS",
             description: "Meistern Sie den Einheitskreis und trigonometrische Funktionen. Verstehen Sie sin-, cos- und tan-Beziehungen."
@@ -2348,7 +2359,11 @@ export const deMath = {    em1_01: {
             growth_rate: "Wachstumsrate (k)",
             half_life: "Halbwertszeit",
             principal: "Kapital (P)",
-            rate: "Zinssatz (r)"
+            rate: "Zinssatz (r)",
+            no_data: "Keine Daten",
+            function_verified: "FUNKTION VERIFIZIERT",
+            check_calculation: "BERECHNUNG PRUEFEN",
+            analyze_function: "FUNKTION ANALYSIEREN"
         },
         hints: {
             exp_rule1: "Jede Verdopplung multipliziert die Population mit 2",
@@ -2425,6 +2440,13 @@ export const deMath = {    em1_01: {
             decibel: "Dezibel (dB)",
             richter: "Richterskala"
         },
+        placeholders: {
+            ph_value: "pH-Wert",
+            db_reduction: "dB-Reduktion",
+            decibels: "Dezibel",
+            magnitude_diff: "Magnituden-Differenz",
+            magnitude: "Magnitude"
+        },
         mission: {
             title: "LOGARITHMISCHES MESSLABOR",
             description: "Meistere drei reale logarithmische Skalen: pH-Wert (Chemie), Dezibel (Schall) und Richter (Erdbeben). Jede Skala komprimiert riesige Bereiche in handhabbare Zahlen."
@@ -2484,6 +2506,7 @@ export const deMath = {    em1_01: {
         next: "Nächste Herausforderung",
         correct: "Richtig",
         incorrect: "Falsch",
+        module_complete: "Modul abgeschlossen!",
         stages: {
             box_plots: "BOXPLOTS",
             scatter_plots: "STREUDIAGRAMME",

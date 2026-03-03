@@ -260,7 +260,10 @@ export default function S301Page() {
     { id: "EQUATIONS", label: t("sm3_01.stages.equations") },
   ];
 
-  if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
+  if (!currentQuest) {
+    const loadingText = currentLanguage === "CN" ? "加载中..." : currentLanguage === "DE" ? "Wird geladen..." : "Loading...";
+    return <div className="p-20 text-white">{loadingText}</div>;
+  }
 
   return (
     <ChamberLayout

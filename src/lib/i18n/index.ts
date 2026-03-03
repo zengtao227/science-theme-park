@@ -118,9 +118,12 @@ export function useLanguage() {
     if (typeof node === "string") {
       let val = node;
       if (params) {
+        const escapeRegex = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         Object.entries(params).forEach(([key, value]) => {
-          val = val.replace(`{${key}}`, String(value));
-          val = val.replace(`\${${key}}`, String(value));
+          const safeKey = escapeRegex(key);
+          const normalizedValue = String(value);
+          val = val.replace(new RegExp(`\\{${safeKey}\\}`, "g"), normalizedValue);
+          val = val.replace(new RegExp(`\\$\\{${safeKey}\\}`, "g"), normalizedValue);
         });
       }
       return val;

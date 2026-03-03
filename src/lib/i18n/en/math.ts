@@ -2308,11 +2308,25 @@ export const enMath = {    em1_01: {
             values: "TRIGONOMETRIC VALUES",
             display: "DISPLAY OPTIONS",
             show_waves: "Show Wave Functions",
+            sin: "sin(θ)",
+            cos: "cos(θ)",
+            tan: "tan(θ)",
             formulas: "FORMULAS",
             special_angles: "SPECIAL ANGLES",
             exact_value: "EXACT VALUE",
             decimal_value: "DECIMAL",
             quadrant: "QUADRANT"
+        },
+        targets: {
+            quadrant_latex: "\\text{Quadrant}",
+            sign_latex: "\\text{Sign}~(+/-)",
+            radians_latex: "\\text{Radians}",
+            degrees_latex: "\\text{Degrees}",
+            amplitude_latex: "\\text{Amplitude}",
+            period_latex: "\\text{Period (rad)}",
+            max_latex: "\\text{Max}",
+            min_latex: "\\text{Min}",
+            derivative_latex: "\\text{Derivative}"
         },
         mission: {
             title: "MISSION: UNIT CIRCLE",
@@ -2363,7 +2377,11 @@ export const enMath = {    em1_01: {
             growth_rate: "Growth Rate (k)",
             half_life: "Half-life",
             principal: "Principal (P)",
-            rate: "Interest Rate (r)"
+            rate: "Interest Rate (r)",
+            no_data: "No data",
+            function_verified: "FUNCTION VERIFIED",
+            check_calculation: "CHECK CALCULATION",
+            analyze_function: "ANALYZE FUNCTION"
         },
         hints: {
             exp_rule1: "Each doubling multiplies the population by 2",
@@ -2440,6 +2458,13 @@ export const enMath = {    em1_01: {
             decibel: "Decibels (dB)",
             richter: "Richter Scale"
         },
+        placeholders: {
+            ph_value: "pH value",
+            db_reduction: "dB reduction",
+            decibels: "decibels",
+            magnitude_diff: "magnitude diff",
+            magnitude: "magnitude"
+        },
         mission: {
             title: "LOGARITHMIC MEASUREMENT LAB",
             description: "Master three real-world logarithmic scales: pH (chemistry), decibels (sound), and Richter (earthquakes). Each scale compresses huge ranges into manageable numbers."
@@ -2499,6 +2524,7 @@ export const enMath = {    em1_01: {
         next: "Next Challenge",
         correct: "Correct",
         incorrect: "Incorrect",
+        module_complete: "Module Complete!",
         stages: {
             box_plots: "BOX PLOTS",
             scatter_plots: "SCATTER PLOTS",

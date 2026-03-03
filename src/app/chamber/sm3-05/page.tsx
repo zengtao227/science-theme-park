@@ -689,7 +689,7 @@ export default function SM305Page() {
                 }}
                 monitorContent={<GeometryVisualization stage={stage} />}
             >
-                <div className="text-center text-green-400 text-xl">Module Complete!</div>
+                <div className="text-center text-green-400 text-xl">{t("sm3_05.module_complete")}</div>
             </ChamberLayout>
         );
     }
