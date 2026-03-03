@@ -599,6 +599,14 @@ Modules are classified by their quest density:
 
 ## 🔄 Version History
 
+### v9.7 (2026-03-03)
+- **Phase 5.4 + 6.0 Wave-33 closure (audit + accessibility + i18n page-level)**:
+  - Upgraded `scripts/audit-modules.js` with quiz-bank + external quest-source heuristics, including flat `src/lib/<module>-*.ts` scanning.
+  - Cleared residual false-positive `empty_question_pools` flags (`gp1-01`, `gp1-02`, `gp2-03`, `sb3-02`) and reached `101/101 clean` in module audit.
+  - Localized remaining hardcoded UI text in `gp2-03` module container (EN/CN/DE) and added ARIA labels for answer/check/next interactions.
+  - Added SB3.02 page-level ARIA labels (language/stage/tab buttons) and guarded global progress calculation against zero-division.
+- **Quality Gate Pass**: `audit-rendering`, `validate:translations`, and `build` all passed.
+
 ### v8.6 (2026-03-02)
 - **Batch B High-frequency Wave-23 (SM2.11 + SM2.12 short-prompt cleanup)**:
   - Rewrote the remaining short directive prompts in EN/CN/DE for sequence and combinatorics modules (`find_nth_term`, `find_sum`, `calculate_permutation`, `calculate_combination`, `calculate_probability`) into scenario-task phrasing.
@@ -872,5 +880,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 8.6 (Batch B high-frequency expansion wave-23)
+**Plan Version**: 9.7 (Batch B high-frequency expansion wave-33)
 **Next Review**: 2026-03-05
