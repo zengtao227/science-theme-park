@@ -1,24 +1,68 @@
 "use client";
 
+import type { Language } from "@/lib/gp2-03-types";
+
 interface HeatEngineVisualizationProps {
     quest: any;
     stage: string;
+    language?: Language;
 }
 
-export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisualizationProps) {
+const stageLabels = {
+    EFFICIENCY: { en: "Efficiency", cn: "效率", de: "Wirkungsgrad" },
+    CARNOT_CYCLE: { en: "Carnot Cycle", cn: "卡诺循环", de: "Carnot-Kreisprozess" },
+    HEAT_FLOW: { en: "Heat Flow", cn: "热流", de: "Waermestrom" },
+} as const;
+
+const ui = {
+    hot: { en: "HOT", cn: "高温", de: "HEISS" },
+    cold: { en: "COLD", cn: "低温", de: "KALT" },
+    engine: { en: "ENGINE", cn: "引擎", de: "MOTOR" },
+    efficiency: { en: "Efficiency", cn: "效率", de: "Wirkungsgrad" },
+    wastedHeat: {
+        en: "70% wasted as heat",
+        cn: "70% 以热量形式损失",
+        de: "70% als Waermeverlust",
+    },
+    volume: { en: "Volume", cn: "体积", de: "Volumen" },
+    pressure: { en: "Pressure", cn: "压力", de: "Druck" },
+    isothermal: { en: "Isothermal", cn: "等温", de: "Isotherm" },
+    adiabatic: { en: "Adiabatic", cn: "绝热", de: "Adiabatisch" },
+    area: { en: "Area", cn: "面积", de: "Flaeche" },
+    maximumPossibleEfficiency: {
+        en: "Maximum possible efficiency",
+        cn: "最大可能效率",
+        de: "Maximal moeglicher Wirkungsgrad",
+    },
+    carnot: { en: "CARNOT", cn: "卡诺", de: "CARNOT" },
+    carnotRelations: {
+        en: "CARNOT RELATIONS",
+        cn: "卡诺关系",
+        de: "CARNOT-BEZIEHUNGEN",
+    },
+} as const;
+
+export default function HeatEngineVisualization({ quest, stage, language = "en" }: HeatEngineVisualizationProps) {
     void quest;
     const canvasSize = 400;
+    const stageTitle = stageLabels[stage as keyof typeof stageLabels]?.[language] ?? stage.replace(/_/g, " ");
 
     return (
         <div className="w-full h-full flex items-center justify-center bg-gray-900/50 rounded-xl p-4">
-            <svg width={canvasSize} height={canvasSize} className="bg-black/30 rounded-lg">
+            <svg
+                width={canvasSize}
+                height={canvasSize}
+                className="bg-black/30 rounded-lg"
+                aria-label={stageTitle}
+                role="img"
+            >
                 {stage === "EFFICIENCY" && (
                     <>
                         <g>
                             {/* Hot reservoir */}
                             <rect x={120} y={50} width={160} height={40} fill="#ff3300" opacity={0.7} rx={5} />
                             <text x={200} y={75} textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">
-                                HOT (Qₕ)
+                                {ui.hot[language]} (Qₕ)
                             </text>
                             
                             {/* Heat flow in */}
@@ -28,7 +72,7 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                             {/* Engine */}
                             <rect x={150} y={140} width={100} height={80} fill="#4a5568" stroke="#00e5ff" strokeWidth={3} rx={5} />
                             <text x={200} y={170} textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">
-                                ENGINE
+                                {ui.engine[language]}
                             </text>
                             <text x={200} y={195} textAnchor="middle" fill="#ffd93d" fontSize="12">
                                 η = W/Qₕ
@@ -48,16 +92,16 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                             {/* Cold reservoir */}
                             <rect x={120} y={270} width={160} height={40} fill="#0066ff" opacity={0.7} rx={5} />
                             <text x={200} y={295} textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">
-                                COLD (Qc)
+                                {ui.cold[language]} (Qc)
                             </text>
                             
                             {/* Efficiency box */}
                             <g transform="translate(50, 330)">
                                 <text x={150} y={0} textAnchor="middle" fill="#00e5ff" fontSize="14" fontWeight="bold">
-                                    η = 30% (Efficiency)
+                                    η = 30% ({ui.efficiency[language]})
                                 </text>
                                 <text x={150} y={20} textAnchor="middle" fill="white" fontSize="10">
-                                    70% wasted as heat
+                                    {ui.wastedHeat[language]}
                                 </text>
                             </g>
                         </g>
@@ -83,31 +127,31 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                             <g>
                                 <line x1={80} y1={300} x2={320} y2={300} stroke="white" strokeWidth={2} />
                                 <line x1={80} y1={300} x2={80} y2={80} stroke="white" strokeWidth={2} />
-                                <text x={200} y={330} textAnchor="middle" fill="white" fontSize="12">Volume</text>
+                                <text x={200} y={330} textAnchor="middle" fill="white" fontSize="12">{ui.volume[language]}</text>
                                 <text x={50} y={190} textAnchor="middle" fill="white" fontSize="12" transform="rotate(-90, 50, 190)">
-                                    Pressure
+                                    {ui.pressure[language]}
                                 </text>
                                 
                                 {/* Carnot cycle path */}
                                 {/* 1. Isothermal expansion (hot) */}
                                 <path d="M 120 120 Q 160 140 200 150" stroke="#ff3300" strokeWidth={3} fill="none" />
-                                <text x={160} y={110} fill="#ff3300" fontSize="10">1. Isothermal (Tₕ)</text>
+                                <text x={160} y={110} fill="#ff3300" fontSize="10">1. {ui.isothermal[language]} (Tₕ)</text>
                                 
                                 {/* 2. Adiabatic expansion */}
                                 <path d="M 200 150 Q 230 200 250 260" stroke="#ff9900" strokeWidth={3} fill="none" />
-                                <text x={260} y={200} fill="#ff9900" fontSize="10">2. Adiabatic</text>
+                                <text x={260} y={200} fill="#ff9900" fontSize="10">2. {ui.adiabatic[language]}</text>
                                 
                                 {/* 3. Isothermal compression (cold) */}
                                 <path d="M 250 260 Q 210 270 170 275" stroke="#0066ff" strokeWidth={3} fill="none" />
-                                <text x={210} y={295} fill="#0066ff" fontSize="10">3. Isothermal (Tc)</text>
+                                <text x={210} y={295} fill="#0066ff" fontSize="10">3. {ui.isothermal[language]} (Tc)</text>
                                 
                                 {/* 4. Adiabatic compression */}
                                 <path d="M 170 275 Q 140 220 120 120" stroke="#4da6ff" strokeWidth={3} fill="none" />
-                                <text x={100} y={200} fill="#4da6ff" fontSize="10">4. Adiabatic</text>
+                                <text x={100} y={200} fill="#4da6ff" fontSize="10">4. {ui.adiabatic[language]}</text>
                                 
                                 {/* Work area */}
                                 <text x={180} y={210} textAnchor="middle" fill="#ffd93d" fontSize="11" fontWeight="bold">
-                                    W = Area
+                                    W = {ui.area[language]}
                                 </text>
                             </g>
                             
@@ -117,7 +161,7 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                                     ηc = 1 - Tc/Tₕ
                                 </text>
                                 <text x={150} y={18} textAnchor="middle" fill="white" fontSize="10">
-                                    Maximum possible efficiency
+                                    {ui.maximumPossibleEfficiency[language]}
                                 </text>
                             </g>
                         </g>
@@ -146,10 +190,10 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                             <g>
                                 <circle cx={110} cy={200} r={50} fill="#4a5568" stroke="#00e5ff" strokeWidth={3} />
                                 <text x={110} y={195} textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
-                                    CARNOT
+                                    {ui.carnot[language]}
                                 </text>
                                 <text x={110} y={210} textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
-                                    ENGINE
+                                    {ui.engine[language]}
                                 </text>
                             </g>
                             
@@ -172,7 +216,7 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                             <g transform="translate(230, 100)">
                                 <rect x={0} y={0} width={140} height={180} fill="none" stroke="#00e5ff" strokeWidth={1} opacity={0.3} />
                                 <text x={70} y={25} textAnchor="middle" fill="#00e5ff" fontSize="11" fontWeight="bold">
-                                    CARNOT RELATIONS
+                                    {ui.carnotRelations[language]}
                                 </text>
                                 
                                 <text x={70} y={50} textAnchor="middle" fill="white" fontSize="10">
@@ -220,7 +264,7 @@ export default function HeatEngineVisualization({ quest, stage }: HeatEngineVisu
                 )}
 
                 <text x={canvasSize / 2} y={25} textAnchor="middle" fill="#00e5ff" fontSize="16" fontWeight="bold">
-                    {stage.replace(/_/g, ' ')}
+                    {stageTitle}
                 </text>
             </svg>
         </div>

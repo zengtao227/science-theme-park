@@ -16,6 +16,20 @@ export default function PVDiagram({
   interactive = true,
   onPointHover,
 }: PVDiagramProps) {
+  const ui = {
+    title: { en: "PV Diagram", cn: "PV 图", de: "PV-Diagramm" },
+    volumeAxis: { en: "Volume (m^3)", cn: "体积 (m^3)", de: "Volumen (m^3)" },
+    pressureAxis: { en: "Pressure (Pa)", cn: "压力 (Pa)", de: "Druck (Pa)" },
+    pressureValue: { en: "P", cn: "压强", de: "P" },
+    volumeValue: { en: "V", cn: "体积", de: "V" },
+    process: {
+      isothermal: { en: "Isothermal", cn: "等温", de: "Isotherm" },
+      isobaric: { en: "Isobaric", cn: "等压", de: "Isobar" },
+      isochoric: { en: "Isochoric", cn: "等容", de: "Isochor" },
+      adiabatic: { en: "Adiabatic", cn: "绝热", de: "Adiabatisch" },
+    },
+  } as const;
+
   const [hoveredPoint, setHoveredPoint] = useState<PVPoint | null>(null);
 
   const width = 400;
@@ -68,11 +82,7 @@ export default function PVDiagram({
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-900/50 rounded-xl p-4">
-      <h3 className="text-xl font-bold text-cyan-400 mb-4">
-        {language === "en" && "PV Diagram"}
-        {language === "cn" && "PV 图"}
-        {language === "de" && "PV-Diagramm"}
-      </h3>
+      <h3 className="text-xl font-bold text-cyan-400 mb-4">{ui.title[language]}</h3>
 
       <svg
         width={width}
@@ -80,6 +90,7 @@ export default function PVDiagram({
         className="bg-black/30 rounded-lg"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        aria-label={ui.title[language]}
       >
         {/* Grid lines */}
         <g opacity={0.2}>
@@ -101,10 +112,10 @@ export default function PVDiagram({
 
         {/* Axis labels */}
         <text x={width / 2} y={height - 10} textAnchor="middle" fill="white" fontSize="14">
-          Volume (m^{3})
+          {ui.volumeAxis[language]}
         </text>
         <text x={20} y={height / 2} textAnchor="middle" fill="white" fontSize="14" transform={`rotate(-90, 20, ${height / 2})`}>
-          Pressure (Pa)
+          {ui.pressureAxis[language]}
         </text>
 
         {/* Draw processes */}
@@ -163,7 +174,7 @@ export default function PVDiagram({
               fill="#00e5ff"
               fontSize="12"
             >
-              P: {(hoveredPoint.pressure / 1000).toFixed(1)} kPa
+              {ui.pressureValue[language]}: {(hoveredPoint.pressure / 1000).toFixed(1)} kPa
             </text>
             <text
               x={scaleX(hoveredPoint.volume) + 10}
@@ -171,7 +182,7 @@ export default function PVDiagram({
               fill="#00e5ff"
               fontSize="12"
             >
-              V: {(hoveredPoint.volume * 1000).toFixed(1)} L
+              {ui.volumeValue[language]}: {(hoveredPoint.volume * 1000).toFixed(1)} L
             </text>
           </>
         )}
@@ -183,7 +194,7 @@ export default function PVDiagram({
           {processes.map((process, idx) => (
             <div key={idx} className="flex items-center gap-2 text-sm">
               <div className="w-4 h-4 rounded" style={{ backgroundColor: process.color }} />
-              <span className="text-gray-300">{process.type}</span>
+              <span className="text-gray-300">{ui.process[process.type]?.[language] ?? process.type}</span>
             </div>
           ))}
         </div>

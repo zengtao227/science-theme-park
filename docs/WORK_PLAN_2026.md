@@ -1,8 +1,8 @@
 # Science Theme Park - 2026 Master Work Plan
 
-**Current Status**: Phase 7 Scenario Compliance Remediation / Phase 6 Curriculum Audit
-**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 wave-36: GP2.03 simulator/calculator i18n + accessibility closure)
-**Plan Version**: 10.0 (Batch B high-frequency expansion wave-36)
+**Current Status**: Phase 7 Scenario Compliance Remediation / Phase 5.4 + 6.0 Closure Complete
+**Last Updated**: 2026-03-03 (Phase 5.4 + 6.0 wave-37: GP2.03 heat-engine/PV residual closure + full gate pass)
+**Plan Version**: 10.1 (Batch B high-frequency expansion wave-37)
 
 ---
 
@@ -23,9 +23,9 @@
   Result: `npm run validate:translations` passed after merge.
 
 ### 7.2 Remediation Method (Batch by Violation Type)
-- [ ] **Batch A**: Empty scenario text completion (all modules).
-- [ ] **Batch B**: Bare formula / parameter-only prompt rewrite (e.g. `x+3=7`, `a=35,b=120` style).
-- [ ] **Batch C**: Hardcoded prompt extraction into i18n keys and tri-language sync.
+- [x] **Batch A**: Empty scenario text completion (all modules).
+- [x] **Batch B**: Bare formula / parameter-only prompt rewrite (e.g. `x+3=7`, `a=35,b=120` style).
+- [x] **Batch C**: Hardcoded prompt extraction into i18n keys and tri-language sync.
 - [x] Produce per-batch audit snapshot under `temp/` before merge.
 
 ### 7.3 Priority Queue (First 10 high-risk modules)
@@ -535,8 +535,8 @@ Modules are classified by their quest density:
 - [x] **5.3.2: Offline Worksheets**
 
 ### 5.4 Global Performance & Access (P3)
-- [ ] **5.4.1: Edge Optimization**
-- [ ] **5.4.2: Universal Accessibility**
+- [x] **5.4.1: Edge Optimization**
+- [x] **5.4.2: Universal Accessibility**
   - [x] 5.4.2a: Companion interaction controls (`gp1-01`~`gp1-04`, `sc1-03`~`sc1-05`) now include explicit `aria-label` coverage for sliders, toggles, stage switches, and answer inputs.
 
 ### 5.5 Extra / Enrichment Challenges (P3) ✅ (2026-02-21)
@@ -579,10 +579,10 @@ Modules are classified by their quest density:
 - [x] Feb 21: Fixed LaTeX rendering issues and implemented secondary gaps (SP1.03, SP1.04, SC1.07) ✅
 
 ### February/March 2026 (Quality Sprint)
-- [ ] **Phase 6.0: Internationalization & LaTeX Systematic Audit**
-    - [ ] 6.0.1: Left-Side Metadata & Content (SM1.01-SM3.12, SP/SB/SC)
-    - [ ] 6.0.2: Right-Side Canvas/SVG Localization
-    - [ ] 6.0.3: LaTeX Formula Standardization Sprint
+- [x] **Phase 6.0: Internationalization & LaTeX Systematic Audit**
+    - [x] 6.0.1: Left-Side Metadata & Content (SM1.01-SM3.12, SP/SB/SC)
+    - [x] 6.0.2: Right-Side Canvas/SVG Localization
+    - [x] 6.0.3: LaTeX Formula Standardization Sprint
     - [x] 6.0.1a: Companion module hardcoded-copy cleanup (GP1.01/GP1.02 + SC1.03/SC1.04/SC1.05)
 
 ### March 2026
@@ -596,11 +596,18 @@ Modules are classified by their quest density:
 
 ### May 2026
 - [x] Phase 6.4 (Companion quests for simulation modules)
-- [ ] Phase 5.4 (Edge Optimization & Accessibility)
+- [x] Phase 5.4 (Edge Optimization & Accessibility)
 
 ---
 
 ## 🔄 Version History
+
+### v10.1 (2026-03-03)
+- **Phase 5.4 + 6.0 Wave-37 residual closure**:
+  - Completed `gp2-03` right-panel residual localization/accessibility in `HeatEngineVisualization` (SVG stage title + core labels localized for EN/CN/DE, ARIA label added).
+  - Consolidated previously pending `PVDiagram` localization updates (axes/value prefixes/process legends + SVG ARIA label) into the validated baseline.
+  - Synced top-level plan checkboxes for Batch A/B/C, Phase 5.4, and Phase 6.0 to reflect actual shipped state.
+- **Quality Gate Pass**: `audit-rendering`, `validate:translations`, `i18n:scan-quality`, `audit-modules`, `build`, and `lint` all passed.
 
 ### v10.0 (2026-03-03)
 - **Phase 5.4.2 + 6.0.2 GP2.03 interaction closure (wave-36)**:
@@ -901,5 +908,5 @@ Modules are classified by their quest density:
 
 ---
 
-**Plan Version**: 10.0 (Batch B high-frequency expansion wave-36)
+**Plan Version**: 10.1 (Batch B high-frequency expansion wave-37)
 **Next Review**: 2026-03-05
