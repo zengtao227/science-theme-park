@@ -2639,8 +2639,9 @@ export const cnMath = {    em1_01: {
             then_use_normal_distribution: "然后使用正态分布",
             ci_diff: "置信区间：差值",
             temp_increase: "温度上升",
-            days_per_deg_c: "每 degC 对应天数",
+            days_per_deg_c: "每 °C 对应天数",
             baseline: "基线",
+            growing_season_increase: "生长季增加天数",
             ci_90: "90\\% 置信区间："
         },
         hints: {
@@ -2681,7 +2682,8 @@ export const cnMath = {    em1_01: {
             spurious_false_misleading: "虚假相关 = 错误/误导",
             named_after_karl_pearson: "以卡尔·皮尔逊命名",
             straight_line_relationship: "直线关系",
-            determines_percent_variation_explained: "表示被解释的变异百分比"
+            determines_percent_variation_explained: "表示被解释的变异百分比",
+            strong_negative_temp_reduces_diversity: "强负相关表示温度越高，生物多样性越低"
         },
         prompts: {
             b2_1_box_represents: "在箱线图中，箱体表示什么？",
@@ -3110,6 +3112,10 @@ export const cnMath = {    em1_01: {
             visualization_title: "可视化",
             step_solver_title: "分步求解器",
             solution: "解",
+            inequality: "不等式",
+            system_of_inequalities: "不等式组",
+            absolute_value_expression: "绝对值表达式",
+            inner_expression: "内部表达式",
             interval_notation: "区间记号",
             set_builder: "集合构造记号",
             number_line: "数轴",

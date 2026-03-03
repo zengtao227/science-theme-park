@@ -334,6 +334,16 @@ export default function ChamberLayout({
                 </div>
 
                 <div className="flex items-center gap-4 z-10">
+                    <button
+                        onClick={() => setHistoryOpen((v) => !v)}
+                        title={historyToggleLabel}
+                        className={clsx(
+                            "hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[6.5rem] px-3 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase whitespace-nowrap transition-all border",
+                            historyOpen ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
+                        )}
+                    >
+                        {historyToggleLabel}
+                    </button>
                     {hasPrintSections && (
                         <div className="relative hidden md:block no-print">
                             <button
@@ -386,16 +396,6 @@ export default function ChamberLayout({
                             )}
                         </div>
                     )}
-                    <button
-                        onClick={() => setHistoryOpen((v) => !v)}
-                        title={historyToggleLabel}
-                        className={clsx(
-                            "hidden md:inline-flex items-center justify-center min-h-[44px] min-w-[6.5rem] px-3 py-1.5 text-[10px] font-black tracking-[0.2em] uppercase whitespace-nowrap transition-all border",
-                            historyOpen ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
-                        )}
-                    >
-                        {historyToggleLabel}
-                    </button>
                     <button
                         onClick={() => canPrint && window.print()}
                         disabled={!canPrint}

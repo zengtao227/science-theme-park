@@ -259,7 +259,11 @@ export const VisualizationDemo: React.FC = () => {
                                             translations={{
                                                 number_line: 'Number Line',
                                                 graph: 'Graph',
-                                                solution_set: 'Solution Set'
+                                                solution_set: 'Solution Set',
+                                                inequality: 'Inequality',
+                                                system_of_inequalities: 'System of Inequalities',
+                                                absolute_value_expression: 'Absolute Value Expression',
+                                                inner_expression: 'Inner expression'
                                             }}
                                         />
                                     </div>
@@ -274,7 +278,11 @@ export const VisualizationDemo: React.FC = () => {
                                             translations={{
                                                 number_line: 'Number Line',
                                                 graph: 'Graph',
-                                                solution_set: 'Solution Set'
+                                                solution_set: 'Solution Set',
+                                                inequality: 'Inequality',
+                                                system_of_inequalities: 'System of Inequalities',
+                                                absolute_value_expression: 'Absolute Value Expression',
+                                                inner_expression: 'Inner expression'
                                             }}
                                         />
                                     </div>

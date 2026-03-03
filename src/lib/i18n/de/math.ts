@@ -2631,8 +2631,9 @@ export const deMath = {    em1_01: {
             then_use_normal_distribution: "dann Normalverteilung verwenden",
             ci_diff: "KI: Differenz",
             temp_increase: "Temperaturanstieg",
-            days_per_deg_c: "Tage pro degC",
+            days_per_deg_c: "Tage pro °C",
             baseline: "Basiswert",
+            growing_season_increase: "Anstieg der Vegetationsperiode",
             ci_90: "90\\%-KI:"
         },
         hints: {
@@ -2673,7 +2674,8 @@ export const deMath = {    em1_01: {
             spurious_false_misleading: "Scheinbar = falsch/irreführend",
             named_after_karl_pearson: "Benannt nach Karl Pearson",
             straight_line_relationship: "Lineare Beziehung",
-            determines_percent_variation_explained: "Bestimmt den erklärten Varianzanteil"
+            determines_percent_variation_explained: "Bestimmt den erklärten Varianzanteil",
+            strong_negative_temp_reduces_diversity: "Eine starke negative Korrelation bedeutet: Höhere Temperatur verringert die Biodiversität"
         },
         prompts: {
             b2_1_box_represents: "Was stellt die Box in einem Boxplot dar?",
@@ -3102,6 +3104,10 @@ export const deMath = {    em1_01: {
             visualization_title: "Visualisierung",
             step_solver_title: "Schritt-für-Schritt-Löser",
             solution: "LÖSUNG",
+            inequality: "Ungleichung",
+            system_of_inequalities: "Ungleichungssystem",
+            absolute_value_expression: "Betragsausdruck",
+            inner_expression: "Innerer Ausdruck",
             interval_notation: "Intervallschreibweise",
             set_builder: "Mengenschreibweise",
             number_line: "ZAHLENSTRAHL",

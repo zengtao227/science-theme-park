@@ -37,13 +37,15 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                 weakNone: "r = -0.3 到 0.3：弱/无相关",
                 moderateNeg: "r = -0.5 到 -0.8：中等负相关",
                 strongNeg: "r = -0.8 到 -1.0：强负相关",
+                perfect: "完全",
+                noCorrShort: "无相关",
                 warning: "相关不等于因果！",
                 eliteTitle: "精英分析流程",
-                eliteStep1: "1. 标准化：z = (x - μ) / σ",
-                eliteStep2: "2. 区间估计：CI = x̄ ± z*SE",
-                eliteStep3: "3. 相关诊断：识别混淆变量",
-                eliteStep4: "4. 解释结论：区分相关与因果",
-                eliteGoal: "目标：将统计结论转化为可执行决策",
+                eliteStep1: "1. 标准化: z = (x - μ) / σ",
+                eliteStep2: "2. 区间估计: CI = x̄ ± z*SE",
+                eliteStep3: "3. 诊断混淆变量",
+                eliteStep4: "4. 区分相关与因果",
+                eliteGoal: "目标: 统计结论 -> 可执行决策",
             }
             : currentLanguage === "DE"
                 ? {
@@ -69,13 +71,15 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                     weakNone: "r = -0.3 bis 0.3: Schwach/keine Korrelation",
                     moderateNeg: "r = -0.5 bis -0.8: Mäßig negativ",
                     strongNeg: "r = -0.8 bis -1.0: Stark negativ",
+                    perfect: "Perfekt",
+                    noCorrShort: "Keine Korrelation",
                     warning: "Korrelation ist nicht Kausalität!",
                     eliteTitle: "ELITE-ANALYSE-PIPELINE",
-                    eliteStep1: "1. Standardisierung: z = (x - μ) / σ",
+                    eliteStep1: "1. Standardisieren: z = (x - μ) / σ",
                     eliteStep2: "2. Intervallschätzung: KI = x̄ ± z*SE",
-                    eliteStep3: "3. Korrelationsdiagnostik: Störvariablen prüfen",
-                    eliteStep4: "4. Schlussfolgerung: Korrelation von Kausalität trennen",
-                    eliteGoal: "Ziel: Statistik in belastbare Entscheidungen überführen",
+                    eliteStep3: "3. Störvariablen prüfen",
+                    eliteStep4: "4. Korrelation von Kausalität trennen",
+                    eliteGoal: "Ziel: Statistik -> belastbare Entscheidungen",
                 }
                 : {
                     boxPlot: "BOX PLOT (Box-and-Whisker)",
@@ -100,13 +104,15 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                     weakNone: "r = -0.3 to 0.3: Weak/No correlation",
                     moderateNeg: "r = -0.5 to -0.8: Moderate negative",
                     strongNeg: "r = -0.8 to -1.0: Strong negative",
+                    perfect: "Perfect",
+                    noCorrShort: "No correlation",
                     warning: "Correlation does not imply causation!",
                     eliteTitle: "ELITE ANALYSIS PIPELINE",
                     eliteStep1: "1. Standardize: z = (x - μ) / σ",
-                    eliteStep2: "2. Interval estimate: CI = x̄ ± z*SE",
-                    eliteStep3: "3. Correlation diagnostics: check confounders",
-                    eliteStep4: "4. Interpret outcome: separate correlation from causation",
-                    eliteGoal: "Goal: turn statistical evidence into actionable decisions",
+                    eliteStep2: "2. Estimate CI: x̄ ± z*SE",
+                    eliteStep3: "3. Check confounders",
+                    eliteStep4: "4. Separate correlation from causation",
+                    eliteGoal: "Goal: evidence -> decisions",
                 };
 
     const stageTitle =
@@ -321,10 +327,10 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                                     -1
                                 </text>
                                 <text x={50} y={88} textAnchor="middle" fill="white" fontSize="8">
-                                    Perfect
+                                    {copy.perfect}
                                 </text>
                                 <text x={50} y={98} textAnchor="middle" fill="white" fontSize="8">
-                                    Negative
+                                    {t("sm2_10.labels.negative")}
                                 </text>
                                 
                                 <line x1={150} y1={55} x2={150} y2={65} stroke="white" strokeWidth={2} />
@@ -332,10 +338,7 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                                     0
                                 </text>
                                 <text x={150} y={88} textAnchor="middle" fill="white" fontSize="8">
-                                    No
-                                </text>
-                                <text x={150} y={98} textAnchor="middle" fill="white" fontSize="8">
-                                    Correlation
+                                    {copy.noCorrShort}
                                 </text>
                                 
                                 <line x1={250} y1={55} x2={250} y2={65} stroke="white" strokeWidth={2} />
@@ -343,10 +346,10 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                                     +1
                                 </text>
                                 <text x={250} y={88} textAnchor="middle" fill="white" fontSize="8">
-                                    Perfect
+                                    {copy.perfect}
                                 </text>
                                 <text x={250} y={98} textAnchor="middle" fill="white" fontSize="8">
-                                    Positive
+                                    {t("sm2_10.labels.positive")}
                                 </text>
                             </g>
 
@@ -390,13 +393,13 @@ export default function DataVisualization({ quest, stage }: DataVisualizationPro
                             {copy.eliteTitle}
                         </text>
 
-                        <text x={16} y={62} fill="white" fontSize="10">{copy.eliteStep1}</text>
-                        <text x={16} y={98} fill="white" fontSize="10">{copy.eliteStep2}</text>
-                        <text x={16} y={134} fill="white" fontSize="10">{copy.eliteStep3}</text>
-                        <text x={16} y={170} fill="white" fontSize="10">{copy.eliteStep4}</text>
+                        <text x={16} y={62} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep1}</text>
+                        <text x={16} y={98} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep2}</text>
+                        <text x={16} y={134} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep3}</text>
+                        <text x={16} y={170} fill="white" fontSize="9" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteStep4}</text>
 
                         <line x1={16} y1={190} x2={324} y2={190} stroke="#a78bfa" strokeWidth={1} opacity={0.5} />
-                        <text x={16} y={220} fill="#ffd93d" fontSize="10" fontWeight="bold">{copy.eliteGoal}</text>
+                        <text x={16} y={220} fill="#ffd93d" fontSize="9" fontWeight="bold" textLength={306} lengthAdjust="spacingAndGlyphs">{copy.eliteGoal}</text>
                     </g>
                 )}
 

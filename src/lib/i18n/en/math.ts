@@ -2645,9 +2645,10 @@ export const enMath = {    em1_01: {
             assumes_linear_relationship: "Assumes linear relationship",
             then_use_normal_distribution: "then use normal distribution",
             ci_diff: "CI: diff",
-            temp_increase: "Temp increase",
-            days_per_deg_c: "days per degC",
+            temp_increase: "Temperature increase",
+            days_per_deg_c: "days per °C",
             baseline: "baseline",
+            growing_season_increase: "Growing season increase",
             ci_90: "90\\% CI:"
         },
         hints: {
@@ -2688,7 +2689,8 @@ export const enMath = {    em1_01: {
             spurious_false_misleading: "Spurious = false/misleading",
             named_after_karl_pearson: "Named after Karl Pearson",
             straight_line_relationship: "Straight line relationship",
-            determines_percent_variation_explained: "Determines percent of variation explained"
+            determines_percent_variation_explained: "Determines percent of variation explained",
+            strong_negative_temp_reduces_diversity: "Strong negative correlation means higher temperature reduces biodiversity"
         },
         prompts: {
             b2_1_box_represents: "In a box plot, what does the box represent?",
@@ -3117,6 +3119,10 @@ export const enMath = {    em1_01: {
             visualization_title: "Visualization",
             step_solver_title: "Step-by-Step Solver",
             solution: "SOLUTION",
+            inequality: "Inequality",
+            system_of_inequalities: "System of inequalities",
+            absolute_value_expression: "Absolute value expression",
+            inner_expression: "Inner expression",
             interval_notation: "Interval Notation",
             set_builder: "Set-Builder Notation",
             number_line: "NUMBER LINE",

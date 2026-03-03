@@ -95,7 +95,7 @@ export const InequalityVisualization: React.FC<InequalityVisualizationProps> = (
                     {/* System Information */}
                     <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                         <h4 className="text-sm font-semibold text-blue-900 mb-2">
-                            System of Inequalities:
+                            {translations.system_of_inequalities}
                         </h4>
                         <div className="space-y-1">
                             {quest.systemInequalities.map((ineq, index) => (
@@ -131,14 +131,14 @@ export const InequalityVisualization: React.FC<InequalityVisualizationProps> = (
                     {/* Absolute Value Expression */}
                     <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
                         <h4 className="text-sm font-semibold text-yellow-900 mb-2">
-                            Absolute Value Expression:
+                            {translations.absolute_value_expression}
                         </h4>
                         <p className="text-lg font-mono text-yellow-800">
                             {quest.expression}
                         </p>
                         {quest.absoluteValueExpression && (
                             <p className="text-sm text-yellow-700 mt-2">
-                                Inner expression: {quest.absoluteValueExpression}
+                                {translations.inner_expression}: {quest.absoluteValueExpression}
                             </p>
                         )}
                     </div>
@@ -217,27 +217,8 @@ export const InequalityVisualization: React.FC<InequalityVisualizationProps> = (
             <div className="max-w-5xl mx-auto p-6">
                 {/* Quest Information */}
                 <div className="mb-6 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-200">
-                    <div className="flex items-center justify-between mb-4">
-                        <div>
-                            <h2 className="text-2xl font-bold text-gray-800">
-                                {quest.id}
-                            </h2>
-                            <div className="flex gap-2 mt-2">
-                                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-                                    {quest.difficulty}
-                                </span>
-                                <span className="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
-                                    {quest.stage}
-                                </span>
-                                <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
-                                    {quest.inequalityType}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div className="bg-white p-4 rounded-lg border border-gray-200">
-                        <p className="text-sm text-gray-600 mb-2">Inequality:</p>
+                        <p className="text-sm text-gray-600 mb-2">{translations.inequality}</p>
                         <p className="text-2xl font-mono font-bold text-gray-800">
                             {quest.expression}
                         </p>

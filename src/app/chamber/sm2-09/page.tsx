@@ -115,6 +115,10 @@ export default function SM209Page() {
     number_line: t("sm2_09.labels.number_line"),
     graph: t("sm2_09.labels.graph"),
     solution_set: t("sm2_09.labels.solution_set"),
+    inequality: t("sm2_09.labels.inequality"),
+    system_of_inequalities: t("sm2_09.labels.system_of_inequalities"),
+    absolute_value_expression: t("sm2_09.labels.absolute_value_expression"),
+    inner_expression: t("sm2_09.labels.inner_expression"),
     solution_label: t("sm2_09.labels.solution"),
     enter_solution: t("sm2_09.labels.enter_solution"),
     placeholder_interval: t("sm2_09.labels.placeholder_interval"),
@@ -510,6 +514,10 @@ export default function SM209Page() {
                   number_line: sm2_09_t.number_line,
                   graph: sm2_09_t.graph,
                   solution_set: sm2_09_t.solution_set,
+                  inequality: sm2_09_t.inequality,
+                  system_of_inequalities: sm2_09_t.system_of_inequalities,
+                  absolute_value_expression: sm2_09_t.absolute_value_expression,
+                  inner_expression: sm2_09_t.inner_expression,
                 }}
               />
             </div>

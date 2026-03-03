@@ -499,7 +499,7 @@ export default function SM210Page() {
                     {
                         id: "C-B4", difficulty, stage, dataType: "perfect_negative",
                         promptLatex: t("sm2_10.prompts.b2_1_r_perfect_negative"),
-                        expressionLatex: `r = -1 = \\text{perfect negative}`,
+                        expressionLatex: `r = -1 = \\text{${t("sm2_10.formula_phrases.perfect_negative")}}`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "-1", expected: -1 }],
                         correctLatex: `r = -1`,
@@ -508,7 +508,7 @@ export default function SM210Page() {
                     {
                         id: "C-B5", difficulty, stage, dataType: "no_correlation",
                         promptLatex: t("sm2_10.prompts.b2_1_r_no_correlation"),
-                        expressionLatex: `r = 0 = \\text{no correlation}`,
+                        expressionLatex: `r = 0 = \\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
                         targetLatex: `r`,
                         slots: [{ id: "r", labelLatex: `r`, placeholder: "0", expected: 0 }],
                         correctLatex: `r = 0`,
@@ -520,7 +520,7 @@ export default function SM210Page() {
                     {
                         id: "C-C1", difficulty, stage, dataType: "interpret_r",
                         promptLatex: t("sm2_10.prompts.b2_2_c_c1"),
-                        expressionLatex: `r > 0 = \\text{positive}`,
+                        expressionLatex: `r > 0 = \\text{${t("sm2_10.labels.positive")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.labels.positive")}}`,
@@ -529,25 +529,25 @@ export default function SM210Page() {
                     {
                         id: "C-C2", difficulty, stage, dataType: "strength",
                         promptLatex: t("sm2_10.prompts.b2_2_c_c2"),
-                        expressionLatex: `|r| \\text{ near } 1 = \\text{strong}`,
+                        expressionLatex: `|r| \\text{ ${t("sm2_10.expressions.near")} } 1 = \\text{${t("sm2_10.labels.strong")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
                         correctLatex: `\\text{${t("sm2_10.labels.strong")}}`,
-                        hintLatex: [`0.95 \\text{ is close to } 1`]
+                        hintLatex: [`0.95 \\text{ ${t("sm2_10.expressions.close_to")} } 1`]
                     },
                     {
                         id: "C-C3", difficulty, stage, dataType: "weak",
                         promptLatex: t("sm2_10.prompts.b2_2_c_c3"),
-                        expressionLatex: `|r| \\text{ near } 0 = \\text{weak}`,
+                        expressionLatex: `|r| \\text{ ${t("sm2_10.expressions.near")} } 0 = \\text{${t("sm2_10.labels.weak")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "weak", expected: "weak" }],
                         correctLatex: `\\text{${t("sm2_10.labels.weak")}}`,
-                        hintLatex: [`0.15 \\text{ is close to } 0`]
+                        hintLatex: [`0.15 \\text{ ${t("sm2_10.expressions.close_to")} } 0`]
                     },
                     {
                         id: "C-C4", difficulty, stage, dataType: "negative_strong",
                         promptLatex: t("sm2_10.prompts.b2_2_c_c4"),
-                        expressionLatex: `r < 0, |r| \\text{ near } 1`,
+                        expressionLatex: `r < 0, \\ |r| \\text{ ${t("sm2_10.expressions.near")} } 1`,
                         targetLatex: t("sm2_10.labels.description"),
                         slots: [{ id: "desc", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "strong negative", expected: "strong negative" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_negative")}}`,
@@ -556,7 +556,7 @@ export default function SM210Page() {
                     {
                         id: "C-C5", difficulty, stage, dataType: "moderate",
                         promptLatex: t("sm2_10.prompts.b2_2_c_c5"),
-                        expressionLatex: `0.3 < |r| < 0.7 = \\text{moderate}`,
+                        expressionLatex: `0.3 < |r| < 0.7 = \\text{${t("sm2_10.labels.moderate")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "moderate", expected: "moderate" }],
                         correctLatex: `\\text{${t("sm2_10.labels.moderate")}}`,
@@ -577,29 +577,29 @@ export default function SM210Page() {
                     {
                         id: "C-A2", difficulty, stage, dataType: "coefficient",
                         promptLatex: t("sm2_10.prompts.b2_2_c_a2"),
-                        expressionLatex: `r \\text{ close to } 1 = \\text{strong}`,
+                        expressionLatex: `r \\text{ ${t("sm2_10.expressions.close_to")} } 1 = \\text{${t("sm2_10.labels.strong")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.strength")}}`,
                         slots: [{ id: "strength", labelLatex: `\\text{${t("sm2_10.labels.strength")}}`, placeholder: "strong", expected: "strong" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_positive")}}`,
-                        hintLatex: [`r \\text{ near } 1 = \\text{strong positive}`]
+                        hintLatex: [`r \\text{ ${t("sm2_10.expressions.near")} } 1 = \\text{${t("sm2_10.formula_phrases.strong_positive")}}`]
                     },
                     {
                         id: "C-A3", difficulty, stage, dataType: "negative_r",
                         promptLatex: t("sm2_10.prompts.b2_2_c_a3"),
-                        expressionLatex: `r < 0 = \\text{negative}`,
+                        expressionLatex: `r < 0 = \\text{${t("sm2_10.labels.negative")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
                         slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_negative")}}`,
-                        hintLatex: [`\\text{Negative } r = \\text{negative correlation}`]
+                        hintLatex: [`\\text{${t("sm2_10.hints.opposite_directions_negative")}}`]
                     },
                     {
                         id: "C-A4", difficulty, stage, dataType: "zero_r",
                         promptLatex: t("sm2_10.prompts.b2_2_c_a4"),
-                        expressionLatex: `r \\approx 0 = \\text{no correlation}`,
+                        expressionLatex: `r \\approx 0 = \\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
                         targetLatex: t("sm2_10.labels.meaning"),
                         slots: [{ id: "meaning", labelLatex: t("sm2_10.labels.meaning"), placeholder: "none", expected: "none" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.no_correlation")}}`,
-                        hintLatex: [`r \\text{ near } 0 = \\text{no correlation}`]
+                        hintLatex: [`r \\text{ ${t("sm2_10.expressions.near")} } 0 = \\text{${t("sm2_10.formula_phrases.no_correlation")}}`]
                     },
                     {
                         id: "C-A5", difficulty, stage, dataType: "prediction",
@@ -675,7 +675,7 @@ export default function SM210Page() {
                         hintLatex: [
                             `z = \\frac{24 - 21.5}{2.3} = 1.087`,
                             `P(z > 1.087) \\approx 0.138`,
-                            `\\text{Strong negative correlation means higher temp reduces diversity}`
+                            `\\text{${t("sm2_10.hints.strong_negative_temp_reduces_diversity")}}`
                         ]
                     },
                     {
@@ -702,8 +702,8 @@ export default function SM210Page() {
                         slots: [{ id: "days", labelLatex: `\\text{${t("sm2_10.labels.days")}}`, placeholder: "179", expected: 179 }],
                         correctLatex: `179 \\text{ days}`,
                         hintLatex: [
-                            `\\text{Temp increase} = 11.0 - 9.2 = 1.8deg\\text{C}`,
-                            `\\text{Growing season increase} = 1.8 \\times 8 = 14.4 \\text{ days}`,
+                            `\\text{${t("sm2_10.expressions.temp_increase")}} = 11.0 - 9.2 = 1.8^\\circ\\text{C}`,
+                            `\\text{${t("sm2_10.expressions.growing_season_increase")}} = 1.8 \\times 8 = 14.4 \\text{ days}`,
                             `2024: 165 + 14.4 = 179.4 \\approx 179 \\text{ days}`
                         ]
                     },

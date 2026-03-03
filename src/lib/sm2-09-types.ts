@@ -70,6 +70,10 @@ export interface InequalityVisualizationProps {
         number_line: string;
         graph: string;
         solution_set: string;
+        inequality: string;
+        system_of_inequalities: string;
+        absolute_value_expression: string;
+        inner_expression: string;
     };
 }
 
