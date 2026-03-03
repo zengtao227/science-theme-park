@@ -20,6 +20,9 @@ interface S101Quest extends Quest {
     visualMeta?: GeometryMeta;
 }
 
+const PRINT_DIFFICULTIES: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
+const PRINT_STAGES: Stage[] = ["AREAS", "VOLUMES", "COMPLEX"];
+
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest[] {
     if (stage === "AREAS") {
         // BASIC: Direct observation, simple integers, single-step calculation
@@ -702,6 +705,65 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S101Quest
     return [];
 }
 
+function PrintableQuestList({ t }: { t: any }) {
+    return (
+        <section className="print-questlist hidden print:block space-y-8">
+            <div className="space-y-2">
+                <h2 className="text-2xl font-black uppercase tracking-wide">{t.title}</h2>
+                <p className="text-sm">{t.mission.description}</p>
+            </div>
+
+            {PRINT_STAGES.map((stage) => (
+                <div key={stage} className="space-y-6">
+                    <h3 className="text-xl font-black uppercase border-b-2 border-black pb-2">
+                        {t.stages[stage.toLowerCase()]}
+                    </h3>
+
+                    {PRINT_DIFFICULTIES.map((difficulty) => {
+                        const quests = buildStagePool(t, difficulty, stage);
+                        if (!quests.length) return null;
+
+                        return (
+                            <div key={`${stage}-${difficulty}`} className="space-y-3">
+                                <h4 className="text-sm font-black uppercase tracking-wide">
+                                    {t.difficulty[difficulty.toLowerCase()]}
+                                </h4>
+                                <ol className="space-y-4 list-decimal pl-6">
+                                    {quests.map((quest, index) => (
+                                        <li key={`${stage}-${difficulty}-${quest.id}`} className="space-y-2 break-inside-avoid">
+                                            <div className="font-semibold">
+                                                {renderMixedText(quest.promptLatex || "", "font-sans whitespace-pre-wrap")}
+                                            </div>
+                                            <div className="font-mono">
+                                                <span className="font-bold">{t.target_title}: </span>
+                                                <InlineMath math={quest.expressionLatex || ""} />
+                                            </div>
+                                            <div className="font-mono">
+                                                <span className="font-bold">Solve: </span>
+                                                <InlineMath math={quest.targetLatex || ""} />
+                                            </div>
+                                            <div className="font-mono">
+                                                <span className="font-bold">{t.labels.hints}: </span>
+                                                {quest.hintLatex?.slice(0, 1).map((hint, idx) => (
+                                                    <span key={`${quest.id}-hint-${idx}`} className="ml-1">
+                                                        <InlineMath math={hint} />
+                                                    </span>
+                                                ))}
+                                            </div>
+                                            <div className="border-b border-black/70 h-6" />
+                                            <div className="text-xs opacity-70">Q{index + 1}.{quest.id}</div>
+                                        </li>
+                                    ))}
+                                </ol>
+                            </div>
+                        );
+                    })}
+                </div>
+            ))}
+        </section>
+    );
+}
+
 export default function S101Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
@@ -873,6 +935,7 @@ export default function S101Page() {
             successRate={successRate}
             footerLeft={sm1_01_t.footer_left}
             checkStatus={lastCheck}
+            printContent={<PrintableQuestList t={sm1_01_t} />}
             translations={{
                 back: sm1_01_t.back,
                 check: sm1_01_t.check,
@@ -942,7 +1005,7 @@ export default function S101Page() {
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {sm1_01_t.target_title}
                         </div>
-                        <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-nowrap">
+                        <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-normal break-words">
                             <span className="inline-block">
                                 <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </span>

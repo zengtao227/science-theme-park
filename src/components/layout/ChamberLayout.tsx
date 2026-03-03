@@ -27,6 +27,7 @@ interface ChamberLayoutProps {
     onStageChange: (s: string) => void;
     children: React.ReactNode;
     monitorContent?: React.ReactNode;
+    printContent?: React.ReactNode;
     footerLeft?: string;
     checkStatus?: { ok: boolean; correct: string } | null;
     onVerify?: () => void;
@@ -62,6 +63,7 @@ export default function ChamberLayout({
     onStageChange,
     children,
     monitorContent,
+    printContent,
     footerLeft,
     checkStatus,
     onVerify,
@@ -274,7 +276,7 @@ export default function ChamberLayout({
     );
 
     return (
-        <div className="w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono">
+        <div className={clsx("chamber-root w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono", printContent && "has-print-content")}>
             <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
                 <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10 text-nowrap">
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -371,9 +373,9 @@ export default function ChamberLayout({
                 </div>
             </div>
 
-            <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+            <div className="chamber-body flex-1 flex flex-col md:flex-row overflow-hidden relative">
                 {/* 桌面端：可拖动布局 */}
-                <div className="hidden md:flex flex-1 overflow-hidden">
+                <div className="chamber-desktop hidden md:flex flex-1 overflow-hidden">
                     <ResizableLayout
                         moduleCode={moduleCode}
                         leftContent={
@@ -495,7 +497,7 @@ export default function ChamberLayout({
                 </div>
 
                 {/* 移动端：原有布局 */}
-                <main className="flex-1 md:hidden p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
+                <main className="chamber-mobile-main flex-1 md:hidden p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
                     <div className="w-full max-w-5xl space-y-10">
                         <div className="flex flex-wrap gap-3 justify-center">
                             {stages.map((s) => (
@@ -622,6 +624,10 @@ export default function ChamberLayout({
 
             <CoopPanel lastCheckCorrect={checkStatus ? checkStatus.ok : null} />
 
+            <div className="print-questlist-wrapper hidden">
+                {printContent}
+            </div>
+
             <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-between tracking-[0.4em] text-white/80 uppercase">
                 <span>{footerLeft}</span>
                 <span className="flex items-center gap-2">
@@ -639,6 +645,22 @@ export default function ChamberLayout({
                         background: white !important;
                         color: black !important;
                     }
+                    .chamber-root {
+                        display: block !important;
+                        height: auto !important;
+                        min-height: auto !important;
+                        overflow: visible !important;
+                        background: white !important;
+                        color: black !important;
+                    }
+                    .chamber-body,
+                    .chamber-desktop,
+                    .chamber-mobile-main {
+                        height: auto !important;
+                        min-height: auto !important;
+                        overflow: visible !important;
+                        display: block !important;
+                    }
                     main, .print-content {
                         display: block !important;
                         position: static !important;
@@ -648,6 +670,18 @@ export default function ChamberLayout({
                         background: white !important;
                         color: black !important;
                         padding: 2rem !important;
+                    }
+                    .print-questlist-wrapper {
+                        display: none !important;
+                        padding: 1rem 2rem 2rem !important;
+                        color: black !important;
+                        background: white !important;
+                    }
+                    .has-print-content .chamber-body {
+                        display: none !important;
+                    }
+                    .has-print-content .print-questlist-wrapper {
+                        display: block !important;
                     }
                     .katex {
                         font-size: 1.4em !important;

@@ -92,7 +92,7 @@ export default function ResizableLayout({
     <div ref={containerRef} className="flex h-full w-full overflow-hidden">
       {/* 左侧内容区 */}
       <div
-        className="overflow-y-auto overflow-x-hidden"
+        className="overflow-y-auto overflow-x-auto"
         style={{ width: `${leftWidth}%` }}
       >
         {leftContent}

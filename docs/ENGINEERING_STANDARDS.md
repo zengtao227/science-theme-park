@@ -54,6 +54,7 @@ Every quest must be grounded in a concrete real-world context, preferably using 
 - **Location**: Roche Tower, Rhine River, University of Basel, etc.
 - **Mission**: Clear "why" behind the calculation.
 - **Length**: 3-5 sentences (80-250 characters).
+- **Generation Standard**: For prompt/mission/scenario writing rules, see `docs/SCENARIO_GENERATION_REQUIREMENTS.md`.
 
 ---
 

@@ -316,7 +316,7 @@ export default function S301Page() {
               <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40" />
               <span className="text-[10px] text-white/60 uppercase tracking-[0.8em] font-black block mb-4">{t("sm3_01.target_title")}</span>
               <div className="space-y-4">
-                <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-nowrap">
+                <div className="text-white font-black text-[clamp(1.6rem,4.8vw,4.5rem)] leading-[0.95] whitespace-normal break-words">
                   <InlineMath math={currentQuest?.expressionLatex || ""} />
                 </div>
                 <div className="text-white/60 font-black">

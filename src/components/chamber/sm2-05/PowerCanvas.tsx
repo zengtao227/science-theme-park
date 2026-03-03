@@ -2,7 +2,9 @@
 
 import { useRef, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Center, PerspectiveCamera } from "@react-three/drei";
+import { OrbitControls, Text, Center, PerspectiveCamera, Html } from "@react-three/drei";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 import * as THREE from "three";
 
 export interface PowerVisual {
@@ -253,14 +255,18 @@ function NegativeScene({ base, n }: { base: string, n: number }) {
   // Right: Fraction structure 1 / a^n (Blue Stack)
   // Animation: Transformation arrow
 
+  const wrappedBase = `\\left(${base}\\right)`;
+
   return (
     <group>
       {/* Left Side: a^-n */}
       <group position={[-2.5, 0, 0]}>
         <Stack count={n} baseLabel={`-${base}`} color="#ef4444" />
-        <Text position={[0, -n * 0.9 - 0.5, 0]} fontSize={0.4} color="#ef4444">
-          {`${base}^-${n}`}
-        </Text>
+        <Html position={[0, -n * 0.9 - 0.5, 0]} center>
+          <div className="px-2 py-1 rounded bg-black/70 text-white text-xs">
+            <InlineMath math={`${wrappedBase}^{-${n}}`} />
+          </div>
+        </Html>
       </group>
 
       {/* Arrow */}
@@ -284,9 +290,11 @@ function NegativeScene({ base, n }: { base: string, n: number }) {
           <Stack count={n} baseLabel={String(base)} position={[0, 0, 0]} color={BASE_COLOR} gap={0.05} />
         </group>
 
-        <Text position={[1.5, 0, 0]} fontSize={0.4} color={BASE_COLOR}>
-          {`${base}^${n}`}
-        </Text>
+        <Html position={[1.5, 0, 0]} center>
+          <div className="px-2 py-1 rounded bg-black/70 text-white text-xs">
+            <InlineMath math={`${wrappedBase}^{${n}}`} />
+          </div>
+        </Html>
       </group>
     </group>
   );
@@ -332,9 +340,11 @@ function ScientificScene({ m, n }: { m: number, n: number }) {
       </Center>
 
       <group position={[0, -1.5, 0]}>
-        <Text fontSize={0.4} color={BLOOM_COLOR}>
-          {`× 10^${n}`}
-        </Text>
+        <Html center>
+          <div className="px-2 py-1 rounded bg-black/70 text-white text-xs">
+            <InlineMath math={`\\times 10^{${n}}`} />
+          </div>
+        </Html>
         <Text position={[0, -0.6, 0]} fontSize={0.3} color="white">
           {n > 0 ? `Move Right ${cycle > steps ? steps : cycle}/${steps}` : `Move Left ${cycle > steps ? steps : cycle}/${steps}`}
         </Text>
