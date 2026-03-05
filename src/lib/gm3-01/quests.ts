@@ -119,9 +119,9 @@ export function generateBasicProbQuests(gm3_01_t: any, difficulty: Difficulty): 
             stage,
             favorable,
             total,
-            problemText,
+            problemText: "",
             promptLatex: gm3_01_t.stages.basic_prob_prompt_latex,
-            expressionLatex: `\\text{Favorable: }${favorable},\\;\\text{Total: }${total}`,
+            expressionLatex: `F=${favorable},\\;N=${total}`,
             targetLatex: "P(E)",
             slots: [{ id: "probability", labelLatex: "P(E)", placeholder: "0.0000", expected: prob }],
             correctLatex: `P(E)=${prob}`,
@@ -157,14 +157,12 @@ export function generateBinomialQuests(gm3_01_t: any, difficulty: Difficulty): G
         }
 
         const prob = round4(binomial(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k));
-        const problemText = `A Basel research lab runs ${n} trials of a quantum experiment. Each trial has a success probability of ${p}. What is the probability of exactly ${k} successes?`;
-
         quests.push({
             id,
             difficulty,
             stage,
             n, k, p,
-            problemText,
+            problemText: "",
             promptLatex: gm3_01_t.stages.binomial_prompt_latex,
             expressionLatex: `n=${n},\\;k=${k},\\;p=${p}`,
             targetLatex: "P(X=k)",
@@ -210,8 +208,6 @@ export function generateConditionalQuests(gm3_01_t: any, difficulty: Difficulty)
         }
 
         const condProb = round4(pAB / pB);
-        const problemText = `In an insurance risk evaluation at Basler Versicherungen, the probability of an event A is ${pA}, and the probability of a risk factor B is ${pB}. The combined probability P(A∩B) is ${pAB}. Find P(A|B).`;
-
         quests.push({
             id,
             difficulty,
@@ -219,7 +215,7 @@ export function generateConditionalQuests(gm3_01_t: any, difficulty: Difficulty)
             eventA: pA,
             eventB: pB,
             eventAB: pAB,
-            problemText,
+            problemText: "",
             promptLatex: gm3_01_t.stages.conditional_prompt_latex,
             expressionLatex: `P(A)=${pA},\\;P(B)=${pB},\\;P(A\\cap B)=${pAB}`,
             targetLatex: "P(A|B)",

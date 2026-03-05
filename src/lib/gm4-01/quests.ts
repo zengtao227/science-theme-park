@@ -27,6 +27,11 @@ export interface G401Quest {
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
+function formatComplexLatex(re: number, im: number): string {
+    const imSign = im >= 0 ? "+" : "-";
+    return `${re} ${imSign} ${Math.abs(im)}i`;
+}
+
 export function randomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -67,8 +72,8 @@ export function generateBasicsQuests(t: any, difficulty: Difficulty): G401Quest[
             z1: { re, im },
             operation: "polar",
             promptLatex: t?.stages?.basics_prompt || "Calculate magnitude",
-            expressionLatex: `z = ${re} + ${im}i`,
-            targetLatex: t?.stages?.basics_target || "Find |z|",
+            expressionLatex: `z = ${formatComplexLatex(re, im)}`,
+            targetLatex: "\\left|z\\right|",
             slots: [{ id: "magnitude", labelLatex: "|z|", placeholder: "val", expected: round2(r) }],
             correctLatex: `|z| = ${round2(r)}`,
         });
@@ -120,13 +125,13 @@ export function generateOperationsQuests(t: any, difficulty: Difficulty): G401Qu
             z1, z2,
             operation: op,
             promptLatex: op === "add" ? (t?.stages?.operations_add || "Add") : (t?.stages?.operations_multiply || "Multiply"),
-            expressionLatex: `z_1 = ${z1.re} + ${z1.im}i,\\; z_2 = ${z2.re} + ${z2.im}i`,
+            expressionLatex: `z_1 = ${formatComplexLatex(z1.re, z1.im)},\\; z_2 = ${formatComplexLatex(z2.re, z2.im)}`,
             targetLatex: `z_1 ${opSymbol} z_2`,
             slots: [
-                { id: "re", labelLatex: "\\text{Re}", placeholder: "real", expected: round2(resultRe) },
-                { id: "im", labelLatex: "\\text{Im}", placeholder: "imag", expected: round2(resultIm) },
+                { id: "re", labelLatex: "\\mathrm{Re}", placeholder: "0.00", expected: round2(resultRe) },
+                { id: "im", labelLatex: "\\mathrm{Im}", placeholder: "0.00", expected: round2(resultIm) },
             ],
-            correctLatex: `z = ${round2(resultRe)} + ${round2(resultIm)}i`,
+            correctLatex: `z = ${formatComplexLatex(round2(resultRe), round2(resultIm))}`,
         });
     }
     return quests;
@@ -174,13 +179,13 @@ export function generatePolarQuests(t: any, difficulty: Difficulty): G401Quest[]
             power: n,
             operation: "power",
             promptLatex: t?.stages?.polar_prompt || "Calculate power",
-            expressionLatex: `z = (${re} + ${im}i), \\text{ find } z^{${n}}`,
+            expressionLatex: `z = ${formatComplexLatex(re, im)},\\; z^{${n}}`,
             targetLatex: `z^{${n}}`,
             slots: [
-                { id: "re", labelLatex: "\\text{Re}", placeholder: "real", expected: round2(resultRe) },
-                { id: "im", labelLatex: "\\text{Im}", placeholder: "imag", expected: round2(resultIm) },
+                { id: "re", labelLatex: "\\mathrm{Re}", placeholder: "0.00", expected: round2(resultRe) },
+                { id: "im", labelLatex: "\\mathrm{Im}", placeholder: "0.00", expected: round2(resultIm) },
             ],
-            correctLatex: `z^{${n}} = ${round2(resultRe)} + ${round2(resultIm)}i`,
+            correctLatex: `z^{${n}} = ${formatComplexLatex(round2(resultRe), round2(resultIm))}`,
         });
     }
     return quests;

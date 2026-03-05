@@ -3,6 +3,8 @@
 import { useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { translations } from "@/lib/i18n";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 interface ProbabilityVisualizationProps {
   stage: string;
@@ -31,12 +33,7 @@ const palette = {
 
 // Basic Probability: Visual representation of sample space
 function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: number; total: number; lang: string }) {
-  const t = translations[lang as keyof typeof translations].gm3_01.viz || {
-    sampleSpace: lang === 'CN' ? '样本空间' : lang === 'DE' ? 'Stichprobenraum' : 'Sample Space',
-    outcomes: lang === 'CN' ? '个结果' : lang === 'DE' ? 'Ergebnisse' : 'outcomes',
-    favorable: lang === 'CN' ? '有利' : lang === 'DE' ? 'Günstig' : 'Favorable',
-    unfavorable: lang === 'CN' ? '不利' : lang === 'DE' ? 'Ungünstig' : 'Unfavorable',
-  };
+  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
   
   const items = useMemo(() => {
     const arr = [];
@@ -74,7 +71,7 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-4 font-mono">
-        {t.sampleSpace}: {total} {t.outcomes}
+        {(t as Record<string, string>).sampleSpace || "Ω"}: {total} {(t as Record<string, string>).outcomes || ""}
       </div>
       
       <div 
@@ -115,16 +112,16 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
         <div className="flex items-center justify-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded border-2" style={{ backgroundColor: palette.green + '40', borderColor: palette.green }} />
-            <span className="text-sm" style={{ color: palette.green }}>{t.favorable}: {favorable}</span>
+            <span className="text-sm" style={{ color: palette.green }}>{(t as Record<string, string>).favorable || "F"}: {favorable}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded border-2" style={{ backgroundColor: palette.white + '10', borderColor: palette.white + '40' }} />
-            <span className="text-sm text-white/60">{t.unfavorable}: {total - favorable}</span>
+            <span className="text-sm text-white/60">{(t as Record<string, string>).unfavorable || "U"}: {total - favorable}</span>
           </div>
         </div>
         
         <div className="text-lg font-mono" style={{ color: palette.cyan }}>
-          P(E) = {favorable} / {total} = {(favorable / total).toFixed(4)}
+          <InlineMath math={`P(E)=\\frac{${favorable}}{${total}}=${(favorable / total).toFixed(4)}`} />
         </div>
       </div>
     </div>
@@ -133,10 +130,8 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
 
 // Binomial Distribution: Show distribution bars
 function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p: number; lang: string }) {
-  const t = {
-    binomialDist: lang === 'CN' ? '二项分布' : lang === 'DE' ? 'Binomialverteilung' : 'Binomial Distribution',
-    formula: lang === 'CN' ? '公式' : lang === 'DE' ? 'Formel' : 'Formula',
-  };
+  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const binomialFormulaLatex = "P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}";
   
   const binomial = (n: number, k: number): number => {
     if (k > n) return 0;
@@ -163,7 +158,7 @@ function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p:
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-3 font-mono">
-        {t.binomialDist}: n={n}, p={p}
+        {(t as Record<string, string>).binomialDist || "B(n,p)"}: n={n}, p={p}
       </div>
       
       <div className="flex items-end justify-center gap-1 mb-4 overflow-x-auto" style={{ height: '280px', maxWidth: '100%' }}>
@@ -194,14 +189,15 @@ function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p:
       </div>
       
       <div className="space-y-2 text-center">
-        <div className="text-xs text-white/70">
-          {t.formula}: P(X=k) = C(n,k) × p^k × (1-p)^(n-k)
+        <div className="text-xs text-white/70 flex items-center justify-center gap-2">
+          <span>{(t as Record<string, string>).formula || "f"}:</span>
+          <InlineMath math={binomialFormulaLatex} />
         </div>
         <div className="text-lg font-mono" style={{ color: palette.yellow }}>
-          P(X={k}) = {targetProb.toFixed(4)}
+          <InlineMath math={`P(X=${k})=${targetProb.toFixed(4)}`} />
         </div>
         <div className="text-sm" style={{ color: palette.cyan }}>
-          C({n},{k}) = {binomial(n, k)}
+          <InlineMath math={`\\binom{${n}}{${k}}=${binomial(n, k)}`} />
         </div>
       </div>
     </div>
@@ -210,12 +206,8 @@ function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p:
 
 // Conditional Probability: Venn diagram
 function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { eventA: number; eventB: number; eventAB: number; lang: string }) {
-  const t = {
-    conditionalProb: lang === 'CN' ? '条件概率' : lang === 'DE' ? 'Bedingte Wahrscheinlichkeit' : 'Conditional Probability',
-    sampleSpace: lang === 'CN' ? '样本空间' : lang === 'DE' ? 'Stichprobenraum' : 'Sample Space',
-    formula: lang === 'CN' ? '公式' : lang === 'DE' ? 'Formel' : 'Formula',
-    probGivenB: lang === 'CN' ? '"在B发生的条件下A的概率"' : lang === 'DE' ? '"Wahrscheinlichkeit von A gegeben B"' : '"Probability of A given that B has occurred"',
-  };
+  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const conditionalFormulaLatex = "P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}";
   
   const condProb = eventAB / eventB;
   
@@ -227,13 +219,13 @@ function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { e
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-4 font-mono">
-        {t.conditionalProb}: P(A|B)
+        {(t as Record<string, string>).conditionalProb || "P(A|B)"}: P(A|B)
       </div>
       
       <svg width="480" height="320" className="mb-4">
         {/* Rectangle for sample space */}
         <rect x="40" y="40" width="400" height="240" fill="none" stroke={palette.white} strokeWidth="2" opacity="0.3" />
-        <text x="50" y="32" fill={palette.white} fontSize="13" opacity="0.6">{t.sampleSpace} (Ω)</text>
+        <text x="50" y="32" fill={palette.white} fontSize="13" opacity="0.6">{(t as Record<string, string>).sampleSpace || "Ω"} (Ω)</text>
         
         {/* Circle B */}
         <circle
@@ -267,14 +259,15 @@ function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { e
       </svg>
       
       <div className="space-y-2 text-center">
-        <div className="text-xs text-white/70">
-          {t.formula}: P(A|B) = P(A∩B) / P(B)
+        <div className="text-xs text-white/70 flex items-center justify-center gap-2">
+          <span>{(t as Record<string, string>).formula || "f"}:</span>
+          <InlineMath math={conditionalFormulaLatex} />
         </div>
         <div className="text-lg font-mono" style={{ color: palette.green }}>
-          P(A|B) = {eventAB} / {eventB} = {condProb.toFixed(4)}
+          <InlineMath math={`P(A\\mid B)=\\frac{${eventAB}}{${eventB}}=${condProb.toFixed(4)}`} />
         </div>
         <div className="text-xs text-white/60">
-          {t.probGivenB}
+          {(t as Record<string, string>).probGivenB || ""}
         </div>
       </div>
     </div>
@@ -286,20 +279,23 @@ export default function ProbabilityVisualization(props: ProbabilityVisualization
   const { currentLanguage } = useAppStore();
   const lang = currentLanguage;
   
-  const stageLabels = {
-    EN: { BASIC_PROB: "BASIC PROBABILITY", BINOMIAL: "BINOMIAL DISTRIBUTION", CONDITIONAL: "CONDITIONAL PROBABILITY", MISSION: "MISSION MODE" },
-    CN: { BASIC_PROB: "基础概率", BINOMIAL: "二项分布", CONDITIONAL: "条件概率", MISSION: "任务模式" },
-    DE: { BASIC_PROB: "GRUNDWAHRSCHEINLICHKEIT", BINOMIAL: "BINOMIALVERTEILUNG", CONDITIONAL: "BEDINGTE WAHRSCHEINLICHKEIT", MISSION: "MISSIONSMODUS" }
+  const stageKeyMap: Record<string, "basic_prob" | "binomial" | "conditional" | "mission"> = {
+    BASIC_PROB: "basic_prob",
+    BINOMIAL: "binomial",
+    CONDITIONAL: "conditional",
+    MISSION: "mission",
   };
-  
-  const dataLabels = {
-    EN: { favorable: "Favorable", total: "Total", trials: "trials", successes: "successes", probability: "probability" },
-    CN: { favorable: "有利", total: "总数", trials: "次试验", successes: "次成功", probability: "概率" },
-    DE: { favorable: "Günstig", total: "Gesamt", trials: "Versuche", successes: "Erfolge", probability: "Wahrscheinlichkeit" }
+  const stageKey = stageKeyMap[stage] || "mission";
+  const currentStageLabel =
+    translations[lang as keyof typeof translations]?.gm3_01?.stages?.[stageKey] || stage;
+  const vizLabels = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const labels = {
+    favorable: (vizLabels as Record<string, string>).favorable || "F",
+    total: (vizLabels as Record<string, string>).total || "N",
+    trials: (vizLabels as Record<string, string>).trials || "n",
+    successes: (vizLabels as Record<string, string>).successes || "k",
+    probability: (vizLabels as Record<string, string>).probability || "p",
   };
-  
-  const currentStageLabel = stageLabels[lang as keyof typeof stageLabels]?.[stage as keyof typeof stageLabels.EN] || stage;
-  const labels = dataLabels[lang as keyof typeof dataLabels] || dataLabels.EN;
   
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-auto shadow-2xl">

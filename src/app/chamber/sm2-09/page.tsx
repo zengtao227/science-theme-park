@@ -31,6 +31,22 @@ import { solveLinearInequality, solveAbsoluteValueInequality } from "@/lib/sm2-0
 const PRINT_STAGE_ORDER: Stage[] = ["INEQUALITY_BASICS", "SYSTEMS", "ABSOLUTE_VALUE"];
 const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
 
+function normalizeExpressionSpacing(expression: string): string {
+  return expression.replace(/\s+/g, " ").trim();
+}
+
+function formatExpressionForPrompt(expression: string, andConnector: string): string {
+  return normalizeExpressionSpacing(
+    expression.replace(/\s*AND\s*/gi, ` ${andConnector} `)
+  );
+}
+
+function formatExpressionForLatex(expression: string): string {
+  return normalizeExpressionSpacing(
+    expression.replace(/\s*AND\s*/gi, " \\land ")
+  );
+}
+
 function PrintableSM209Section({
   moduleTitle,
   stageLabel,
@@ -122,6 +138,7 @@ export default function SM209Page() {
     solution_label: t("sm2_09.labels.solution"),
     enter_solution: t("sm2_09.labels.enter_solution"),
     placeholder_interval: t("sm2_09.labels.placeholder_interval"),
+    and_connector: t("sm2_09.labels.and_connector") || "AND",
     feedback: {
       correct: t("sm2_09.feedback.correct"),
       incorrect: t("sm2_09.feedback.incorrect"),
@@ -154,19 +171,23 @@ export default function SM209Page() {
 
       // Convert to full SM209Quest objects with LaTeX and steps
       return rawQuests.map((q, index) => {
+        const rawExpression = q.expression || "";
+        const displayExpression = formatExpressionForPrompt(rawExpression, sm2_09_t.and_connector);
+        const expressionLatex = formatExpressionForLatex(rawExpression);
+
         const quest: SM209Quest = {
           id: q.id || `${stage}_${difficulty}_${index + 1}`,
           difficulty: difficulty,
           stage: stage,
           inequalityType: q.inequalityType || "LINEAR",
-          expression: q.expression || "",
+          expression: rawExpression,
           variable: q.variable || "x",
           coefficients: q.coefficients,
           constants: q.constants,
           systemInequalities: q.systemInequalities,
           absoluteValueExpression: q.absoluteValueExpression,
-          promptLatex: t("sm2_09.prompts.solve_expression", { expression: q.expression || "" }),
-          expressionLatex: q.expression || "",
+          promptLatex: t("sm2_09.prompts.solve_expression", { expression: displayExpression }),
+          expressionLatex: expressionLatex,
           targetLatex: q.variable || "x",
           solutionType: q.solutionType || "INTERVAL",
           solutionInterval: q.solutionInterval,
@@ -188,7 +209,7 @@ export default function SM209Page() {
         return quest;
       });
     },
-    [sm2_09_t.solution_label, sm2_09_t.placeholder_interval, t]
+    [sm2_09_t.solution_label, sm2_09_t.placeholder_interval, sm2_09_t.and_connector, t]
   );
 
   // Generate solution steps for a quest

@@ -6,6 +6,8 @@ import { InequalityVisualizationProps } from '@/lib/sm2-09-types';
 import { NumberLineVisualizer } from './NumberLineVisualizer';
 import { GraphPlotter } from './GraphPlotter';
 import { SolutionSetVisualizer } from './SolutionSetVisualizer';
+import { BlockMath, InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 export const InequalityVisualization: React.FC<InequalityVisualizationProps> = ({
     quest,
@@ -99,8 +101,8 @@ export const InequalityVisualization: React.FC<InequalityVisualizationProps> = (
                         </h4>
                         <div className="space-y-1">
                             {quest.systemInequalities.map((ineq, index) => (
-                                <p key={index} className="text-sm font-mono text-blue-800">
-                                    {ineq}
+                                <p key={index} className="text-sm text-blue-800">
+                                    <InlineMath math={ineq} />
                                 </p>
                             ))}
                         </div>
@@ -133,12 +135,13 @@ export const InequalityVisualization: React.FC<InequalityVisualizationProps> = (
                         <h4 className="text-sm font-semibold text-yellow-900 mb-2">
                             {translations.absolute_value_expression}
                         </h4>
-                        <p className="text-lg font-mono text-yellow-800">
-                            {quest.expression}
-                        </p>
+                        <div className="text-lg text-yellow-800">
+                            <BlockMath math={quest.expressionLatex || quest.expression} />
+                        </div>
                         {quest.absoluteValueExpression && (
-                            <p className="text-sm text-yellow-700 mt-2">
-                                {translations.inner_expression}: {quest.absoluteValueExpression}
+                            <p className="text-sm text-yellow-700 mt-2 flex items-center gap-2">
+                                <span>{translations.inner_expression}:</span>
+                                <InlineMath math={quest.absoluteValueExpression} />
                             </p>
                         )}
                     </div>
@@ -219,9 +222,9 @@ export const InequalityVisualization: React.FC<InequalityVisualizationProps> = (
                 <div className="mb-6 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-200">
                     <div className="bg-white p-4 rounded-lg border border-gray-200">
                         <p className="text-sm text-gray-600 mb-2">{translations.inequality}</p>
-                        <p className="text-2xl font-mono font-bold text-gray-800">
-                            {quest.expression}
-                        </p>
+                        <div className="text-2xl font-bold text-gray-800">
+                            <BlockMath math={quest.expressionLatex || quest.expression} />
+                        </div>
                     </div>
                 </div>
 

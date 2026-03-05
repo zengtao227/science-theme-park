@@ -4,6 +4,8 @@
 import React, { useRef } from 'react';
 import { satisfiesInequality } from '@/lib/sm2-09-solvers';
 import { useLanguage } from '@/lib/i18n';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 interface GraphPlotterProps {
     inequalities: string[];
@@ -297,7 +299,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({
                                         }}
                                     />
                                     <span className="text-sm font-mono text-gray-800">
-                                        {inequality}
+                                        <InlineMath math={inequality} />
                                     </span>
                                 </div>
                             );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Grid, Line } from "@react-three/drei";
 import { GeometryData } from "@/lib/gm2-02-types";
@@ -9,25 +10,30 @@ interface SpaceVisualizer3DProps {
   data: GeometryData;
 }
 
+interface SceneBounds {
+  center: [number, number, number];
+  extent: number;
+}
+
 // Axes component
-function Axes() {
+function Axes({ extent }: { extent: number }) {
   return (
     <>
       {/* X-axis (red) */}
       <Line
-        points={[[-10, 0, 0], [10, 0, 0]]}
+        points={[[-extent, 0, 0], [extent, 0, 0]]}
         color="red"
         lineWidth={2}
       />
       {/* Y-axis (green) */}
       <Line
-        points={[[0, -10, 0], [0, 10, 0]]}
+        points={[[0, -extent, 0], [0, extent, 0]]}
         color="green"
         lineWidth={2}
       />
       {/* Z-axis (blue) */}
       <Line
-        points={[[0, 0, -10], [0, 0, 10]]}
+        points={[[0, 0, -extent], [0, 0, extent]]}
         color="blue"
         lineWidth={2}
       />
@@ -36,7 +42,17 @@ function Axes() {
 }
 
 // Plane component
-function PlaneObject({ coefficients, color, opacity }: { coefficients: [number, number, number, number]; color: string; opacity: number }) {
+function PlaneObject({
+  coefficients,
+  color,
+  opacity,
+  size,
+}: {
+  coefficients: [number, number, number, number];
+  color: string;
+  opacity: number;
+  size: number;
+}) {
   const [A, B, C, D] = coefficients;
   
   // Calculate plane orientation and position
@@ -60,7 +76,7 @@ function PlaneObject({ coefficients, color, opacity }: { coefficients: [number, 
   
   return (
     <mesh position={point} quaternion={quaternion}>
-      <planeGeometry args={[10, 10]} />
+      <planeGeometry args={[size, size]} />
       <meshStandardMaterial
         color={color}
         opacity={opacity}
@@ -72,10 +88,20 @@ function PlaneObject({ coefficients, color, opacity }: { coefficients: [number, 
 }
 
 // 3D Line component
-function Line3D({ point, direction, color }: { point: [number, number, number]; direction: [number, number, number]; color: string }) {
+function Line3D({
+  point,
+  direction,
+  color,
+  extent,
+}: {
+  point: [number, number, number];
+  direction: [number, number, number];
+  color: string;
+  extent: number;
+}) {
   // Extend line in both directions
-  const t1 = -10;
-  const t2 = 10;
+  const t1 = -extent;
+  const t2 = extent;
   
   const start = [
     point[0] + t1 * direction[0],
@@ -99,12 +125,22 @@ function Line3D({ point, direction, color }: { point: [number, number, number]; 
 }
 
 // Point component
-function PointObject({ coordinates, label, color }: { coordinates: [number, number, number]; label: string; color: string }) {
+function PointObject({
+  coordinates,
+  label,
+  color,
+  radius,
+}: {
+  coordinates: [number, number, number];
+  label: string;
+  color: string;
+  radius: number;
+}) {
   void label;
   return (
     <group position={coordinates}>
       <mesh>
-        <sphereGeometry args={[0.2, 16, 16]} />
+        <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial color={color} />
       </mesh>
     </group>
@@ -112,29 +148,97 @@ function PointObject({ coordinates, label, color }: { coordinates: [number, numb
 }
 
 export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
+  const sceneBounds = useMemo<SceneBounds>(() => {
+    const allPoints: Array<[number, number, number]> = [];
+
+    data.points?.forEach((point) => {
+      if (point.coordinates.length === 3) {
+        allPoints.push(point.coordinates as [number, number, number]);
+      }
+    });
+
+    data.lines?.forEach((line) => {
+      if (line.type !== "3D") return;
+      const sampleT = 6;
+      allPoints.push([line.point.x, line.point.y, line.point.z]);
+      allPoints.push([
+        line.point.x + line.direction.x * sampleT,
+        line.point.y + line.direction.y * sampleT,
+        line.point.z + line.direction.z * sampleT,
+      ]);
+      allPoints.push([
+        line.point.x - line.direction.x * sampleT,
+        line.point.y - line.direction.y * sampleT,
+        line.point.z - line.direction.z * sampleT,
+      ]);
+    });
+
+    data.planes?.forEach((plane) => {
+      const [A, B, C, D] = plane.coefficients;
+      if (Math.abs(C) > 1e-6) allPoints.push([0, 0, -D / C]);
+      else if (Math.abs(B) > 1e-6) allPoints.push([0, -D / B, 0]);
+      else if (Math.abs(A) > 1e-6) allPoints.push([-D / A, 0, 0]);
+    });
+
+    if (allPoints.length === 0) {
+      return { center: [0, 0, 0], extent: 10 };
+    }
+
+    const xs = allPoints.map((p) => p[0]);
+    const ys = allPoints.map((p) => p[1]);
+    const zs = allPoints.map((p) => p[2]);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    const minZ = Math.min(...zs);
+    const maxZ = Math.max(...zs);
+
+    const center: [number, number, number] = [
+      (minX + maxX) / 2,
+      (minY + maxY) / 2,
+      (minZ + maxZ) / 2,
+    ];
+
+    const maxSpan = Math.max(maxX - minX, maxY - minY, maxZ - minZ);
+    const extent = Math.max(8, maxSpan * 0.75 + 2);
+    return { center, extent };
+  }, [data]);
+
+  const pointRadius = Math.max(0.14, Math.min(0.35, sceneBounds.extent * 0.03));
+
   return (
-    <div className="w-full h-full min-h-[400px] border border-white/10 rounded-xl overflow-hidden bg-black">
-      <Canvas camera={{ position: [8, 8, 8], fov: 50 }}>
+    <div className="relative w-full h-full min-h-[560px] border border-white/10 rounded-xl overflow-hidden bg-black">
+      <Canvas
+        camera={{
+          position: [
+            sceneBounds.center[0] + sceneBounds.extent * 1.8,
+            sceneBounds.center[1] + sceneBounds.extent * 1.5,
+            sceneBounds.center[2] + sceneBounds.extent * 1.8,
+          ],
+          fov: 50,
+        }}
+      >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
         {/* Grid */}
         <Grid
-          args={[20, 20]}
-          cellSize={1}
+          args={[sceneBounds.extent * 2.8, sceneBounds.extent * 2.8]}
+          cellSize={Math.max(1, sceneBounds.extent / 10)}
           cellThickness={0.5}
           cellColor="#333333"
-          sectionSize={5}
+          sectionSize={Math.max(2, sceneBounds.extent / 4)}
           sectionThickness={1}
           sectionColor="#444444"
-          fadeDistance={30}
+          fadeDistance={sceneBounds.extent * 4}
           fadeStrength={1}
           followCamera={false}
           infiniteGrid={false}
         />
         
         {/* Axes */}
-        <Axes />
+        <Axes extent={sceneBounds.extent} />
         
         {/* Render planes */}
         {data.planes?.map((plane, idx) => (
@@ -143,6 +247,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
             coefficients={plane.coefficients}
             color={plane.color}
             opacity={plane.opacity}
+            size={sceneBounds.extent * 2}
           />
         ))}
         
@@ -155,6 +260,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
                 point={[line.point.x, line.point.y, line.point.z]}
                 direction={[line.direction.x, line.direction.y, line.direction.z]}
                 color={line.color}
+                extent={sceneBounds.extent * 1.6}
               />
             );
           }
@@ -170,6 +276,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
                 coordinates={point.coordinates as [number, number, number]}
                 label={point.label}
                 color={point.color}
+                radius={pointRadius}
               />
             );
           }
@@ -182,6 +289,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.5}
+          target={sceneBounds.center}
         />
       </Canvas>
       

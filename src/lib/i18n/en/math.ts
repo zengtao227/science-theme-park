@@ -501,7 +501,22 @@ export const enMath = {    em1_01: {
         },
         labels: {
             input: "INPUT",
-            hints: "HINTS"
+            hints: "HINTS",
+            problem_tag: "PROBLEM"
+        },
+        viz: {
+            sampleSpace: "Sample Space",
+            outcomes: "outcomes",
+            favorable: "Favorable",
+            unfavorable: "Unfavorable",
+            binomialDist: "Binomial Distribution",
+            conditionalProb: "Conditional Probability",
+            formula: "Formula",
+            probGivenB: "Probability of A given B",
+            total: "Total",
+            trials: "trials",
+            successes: "successes",
+            probability: "probability"
         },
         mission: {
             title: "MISSION: BASEL PROBABILITY LAB",
@@ -509,7 +524,7 @@ export const enMath = {    em1_01: {
         },
         scenarios: {
             basic_prob: "Basel Quality Control at Novartis: You are working in the quality control department at Novartis pharmaceutical manufacturing in Basel. Each batch of medication undergoes random sampling inspection. Given that a sample contains a certain number of favorable outcomes (passing quality tests) out of total samples, calculate the probability P(E) that a randomly selected item passes inspection. This probability determines whether the entire batch is approved for distribution to Swiss hospitals.",
-            binomial: "Swiss Lottery System Analysis: The Swiss Lotto operates from Basel headquarters. In each draw, players select numbers with a fixed probability p of matching. For n independent trials (lottery draws), calculate the probability P(X=k) of exactly k successes using the binomial distribution formula: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). This helps lottery officials predict payout frequencies and set prize structures for Swiss players.",
+            binomial: "Swiss Lottery System Analysis: The Swiss Lotto operates from Basel headquarters. In each draw, players select numbers with a fixed probability p of matching. For n independent trials (lottery draws), calculate the probability $P(X=k)$ of exactly k successes using the binomial distribution formula $P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$. This helps lottery officials predict payout frequencies and set prize structures for Swiss players.",
             conditional: "Basel Insurance Risk Assessment: Basler Versicherungen (Basel Insurance) needs to calculate conditional probabilities for risk assessment. Given P(A) = probability of an event occurring, P(B) = probability of a condition being met, and P(A∩B) = probability of both occurring, calculate P(A|B) = P(A∩B)/P(B). This conditional probability helps determine insurance premiums for Basel residents based on specific risk factors.",
             mission: "Basel Integrated Probability Mission: You are consulting for multiple Basel companies - Novartis (pharmaceuticals), Swiss Lotto (lottery), and Basler Versicherungen (insurance). Each company presents a different probability problem: basic probability for quality control, binomial distribution for lottery analysis, or conditional probability for insurance risk. Apply the appropriate probability formula to solve each company's specific challenge and provide accurate probability calculations."
         },
@@ -648,7 +663,7 @@ export const enMath = {    em1_01: {
         scenarios: {
             basics: "Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.",
             operations: "Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.",
-            polar: "Basel University Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form (r·e^(iθ)) to compute z^n efficiently. The result determines optimal power distribution across Basel's renewable energy network."
+            polar: "Basel University Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form $r e^{i\\theta}$ to compute $z^n$ efficiently. The result determines optimal power distribution across Basel's renewable energy network."
         },
         stages: {
             basics: "BASICS",
@@ -816,6 +831,13 @@ export const enMath = {    em1_01: {
     sm1_02: {
         back: "Back to Nexus",
         title: "ALGEBRA QUEST",
+        next: "Execute Next Sequence",
+        check: "Verify",
+        correct: "Verified",
+        incorrect: "Mismatch",
+        ready: "Ready",
+        monitor_title: "ALGEBRA_MONITOR",
+        footer_left: "ALGEBRA_QUEST // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -3189,6 +3211,7 @@ export const enMath = {    em1_01: {
             final_solution: "FINAL SOLUTION",
             enter_solution: "Enter solution",
             placeholder_interval: "e.g., (-∞, 5] or [2, 10)",
+            and_connector: "AND",
             empty_set: "No solution (∅)",
             all_reals: "All real numbers (ℝ)",
             no_solution_exists: "No solution exists",

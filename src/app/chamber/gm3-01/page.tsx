@@ -64,6 +64,7 @@ export default function G301Page() {
     labels: {
       input: t("gm3_01.labels.input"),
       hints: t("gm3_01.labels.hints"),
+      problem_tag: t("gm3_01.labels.problem_tag") || "PROBLEM",
     },
     mission: {
       title: t("gm3_01.mission.title"),
@@ -181,7 +182,9 @@ export default function G301Page() {
         {/* Problem Text */}
         {currentQuest?.problemText && (
           <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-6 max-w-4xl mx-auto">
-            <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider mb-3">PROBLEM</div>
+            <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider mb-3">
+              {gm3_01_t.labels.problem_tag}
+            </div>
             <div className="text-base text-cyan-300 leading-relaxed whitespace-pre-line">
               {renderMixedText(currentQuest?.problemText, "whitespace-pre-wrap")}
             </div>

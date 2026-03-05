@@ -27,6 +27,25 @@ export interface S304Quest {
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
+function toScientificLatex(value: number, precision: number, omitUnitCoefficient = true): string {
+    if (!Number.isFinite(value)) return String(value);
+    if (value === 0) return "0";
+
+    const [coefficientRaw, exponentRaw] = value.toExponential(precision).split("e");
+    const coefficient = Number(coefficientRaw);
+    const exponent = Number(exponentRaw);
+    const coefficientText = coefficient.toFixed(precision).replace(/\.?0+$/, "");
+
+    if (omitUnitCoefficient && Math.abs(coefficient - 1) < 1e-10) {
+        return `10^{${exponent}}`;
+    }
+    if (omitUnitCoefficient && Math.abs(coefficient + 1) < 1e-10) {
+        return `-10^{${exponent}}`;
+    }
+
+    return `${coefficientText} \\times 10^{${exponent}}`;
+}
+
 export function randomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -72,7 +91,7 @@ export function generatePhQuests(t: ReturnType<typeof useLanguage>["t"], difficu
             id, difficulty, stage: "PH",
             concentration, value: pH, scenarioKey,
             promptLatex: t("sm3_04.stages.ph_prompt_latex"),
-            expressionLatex: `[H^+]=${concentration.toExponential(2)}\\;M`,
+            expressionLatex: `[H^+] = ${toScientificLatex(concentration, 2)}\\;\\mathrm{mol/L}`,
             targetLatex: "pH",
             slots: [{ id: "pH", labelLatex: "pH", placeholder: t("sm3_04.placeholders.ph_value"), expected: pH }],
             correctLatex: `pH=${pH}`
@@ -102,7 +121,7 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: reduction, scenarioKey: "decibel_elite",
                 promptLatex: t("sm3_04.stages.decibel_reduction"),
-                expressionLatex: `I_1=${intensity.toExponential(0)}\\;W/m^{2},\\; I_2=${intensity2.toExponential(0)}\\;W/m^{2}`,
+                expressionLatex: `I_1 = ${toScientificLatex(intensity, 0)}\\;\\mathrm{W/m^{2}},\\; I_2 = ${toScientificLatex(intensity2, 0)}\\;\\mathrm{W/m^{2}}`,
                 targetLatex: "\\Delta L",
                 slots: [{ id: "dB", labelLatex: "\\Delta L", placeholder: t("sm3_04.placeholders.db_reduction"), expected: reduction, unit: "dB" }],
                 correctLatex: `\\Delta L=${reduction}\\;dB`,
@@ -134,7 +153,7 @@ export function generateDecibelQuests(t: ReturnType<typeof useLanguage>["t"], di
                 id, difficulty, stage: "DECIBEL",
                 intensity, value: dB, scenarioKey,
                 promptLatex: t("sm3_04.stages.decibel_prompt_latex"),
-                expressionLatex: `I=${intensity.toExponential(0)}\\;W/m^{2},\\; I_0=10^{-12}\\;W/m^{2}`,
+                expressionLatex: `I = ${toScientificLatex(intensity, 0)}\\;\\mathrm{W/m^{2}},\\; I_0 = 10^{-12}\\;\\mathrm{W/m^{2}}`,
                 targetLatex: "L",
                 slots: [{ id: "L", labelLatex: "L", placeholder: t("sm3_04.placeholders.decibels"), expected: dB, unit: "dB" }],
                 correctLatex: `L=${dB}\\;dB`

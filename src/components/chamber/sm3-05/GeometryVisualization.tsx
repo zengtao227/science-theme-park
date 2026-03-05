@@ -163,6 +163,18 @@ const monitorCopy = {
 } as const;
 
 const degToRad = (deg: number) => (deg * Math.PI) / 180;
+const FORMULAS = {
+  rocheArea: "2400\\,m^{2}-1800\\,m^{2}",
+  cubeVolume: "V=a^{3}",
+  pyramidVolume: "V=\\frac{1}{3}Bh",
+  sphereVolume: "V=\\frac{4}{3}\\pi r^{3}",
+  sphereArea: "A=4\\pi r^{2}",
+  cylinderVolume: "V=\\pi r^{2}h",
+  cylinderArea: "A=2\\pi r^{2}+2\\pi rh",
+  euler: "V-E+F=2",
+  distance3D: "d=\\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}+(z_2-z_1)^{2}}",
+  midpoint3D: "M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2},\\frac{z_1+z_2}{2}\\right)",
+} as const;
 
 function ShapeModel({ shape }: { shape: Shape }) {
   if (shape === "cube") {
@@ -367,7 +379,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div className="text-white">{copy.rocheTitle}</div>
                 <div>{copy.rocheStructure}</div>
                 <div>
-                  {copy.rocheAreaLabel} <InlineMath math={"2400\\,m^{2}-1800\\,m^{2}"} />
+                  {copy.rocheAreaLabel} <InlineMath math={FORMULAS.rocheArea} />
                 </div>
                 <div>{copy.rocheHeight}</div>
               </>
@@ -377,7 +389,7 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div>{copy.cubeFaces}</div>
                 <div>{copy.cubeVertices}</div>
                 <div>{copy.cubeEdges}</div>
-                <div><InlineMath math={"V=a^{3}"} /></div>
+                <div><InlineMath math={FORMULAS.cubeVolume} /></div>
               </>
             )}
             {selectedShape === "pyramid" && (
@@ -385,28 +397,28 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
                 <div>{copy.pyramidFaces}</div>
                 <div>{copy.pyramidVertices}</div>
                 <div>{copy.pyramidEdges}</div>
-                <div><InlineMath math={"V=\\frac{1}{3}Bh"} /></div>
+                <div><InlineMath math={FORMULAS.pyramidVolume} /></div>
               </>
             )}
             {selectedShape === "sphere" && (
               <>
                 <div>{copy.sphereSurface}</div>
                 <div>{copy.sphereNoEdge}</div>
-                <div><InlineMath math={"V=\\frac{4}{3}\\pi r^{3}"} /></div>
-                <div><InlineMath math={"A=4\\pi r^{2}"} /></div>
+                <div><InlineMath math={FORMULAS.sphereVolume} /></div>
+                <div><InlineMath math={FORMULAS.sphereArea} /></div>
               </>
             )}
             {selectedShape === "cylinder" && (
               <>
                 <div>{copy.cylinderFaces}</div>
-                <div><InlineMath math={"V=\\pi r^{2}h"} /></div>
-                <div><InlineMath math={"A=2\\pi r^{2}+2\\pi rh"} /></div>
+                <div><InlineMath math={FORMULAS.cylinderVolume} /></div>
+                <div><InlineMath math={FORMULAS.cylinderArea} /></div>
               </>
             )}
           </div>
           <div>
             <div className="text-cyan-400 mb-2">{copy.eulerTitle}</div>
-            <div className="text-lg"><InlineMath math={"V-E+F=2"} /></div>
+            <div className="text-lg"><InlineMath math={FORMULAS.euler} /></div>
             <div className="text-xs text-gray-400 mt-2">{copy.convexPoly}</div>
           </div>
         </div>
@@ -463,13 +475,13 @@ export default function GeometryVisualization({ stage }: GeometryVisualizationPr
         <div className="p-2 bg-gray-800 rounded">
           <div className="text-cyan-400">{copy.distanceFormula}</div>
           <div className="text-lg">
-            <InlineMath math={"d=\\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}+(z_2-z_1)^{2}}"} />
+            <InlineMath math={FORMULAS.distance3D} />
           </div>
         </div>
         <div className="p-2 bg-gray-800 rounded">
           <div className="text-cyan-400">{copy.midpointFormula}</div>
           <div className="text-lg">
-            <InlineMath math={"M=\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2},\\frac{z_1+z_2}{2}\\right)"} />
+            <InlineMath math={FORMULAS.midpoint3D} />
           </div>
         </div>
       </div>

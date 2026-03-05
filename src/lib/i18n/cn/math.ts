@@ -502,7 +502,22 @@ export const cnMath = {    em1_01: {
         },
         labels: {
             input: "输入",
-            hints: "提示"
+            hints: "提示",
+            problem_tag: "题目"
+        },
+        viz: {
+            sampleSpace: "样本空间",
+            outcomes: "个结果",
+            favorable: "有利",
+            unfavorable: "不利",
+            binomialDist: "二项分布",
+            conditionalProb: "条件概率",
+            formula: "公式",
+            probGivenB: "在 B 发生条件下 A 的概率",
+            total: "总数",
+            trials: "次试验",
+            successes: "次成功",
+            probability: "概率"
         },
         mission: {
             title: "任务：巴塞尔概率实验室",
@@ -510,7 +525,7 @@ export const cnMath = {    em1_01: {
         },
         scenarios: {
             basic_prob: "诺华巴塞尔质量控制：你在巴塞尔诺华制药的质量控制部门工作。每批药品都要进行随机抽样检验。给定样本中有一定数量的合格结果（通过质量测试）占总样本数，计算随机选择的物品通过检验的概率P(E)。这个概率决定了整批产品是否被批准分发到瑞士医院。",
-            binomial: "瑞士彩票系统分析：瑞士乐透从巴塞尔总部运营。在每次抽奖中，玩家选择的号码有固定概率p匹配。对于n次独立试验（彩票抽奖），使用二项分布公式计算恰好k次成功的概率P(X=k)：P(X=k) = C(n,k) × p^k × (1-p)^(n-k)。这帮助彩票官员预测支付频率并为瑞士玩家设置奖金结构。",
+            binomial: "瑞士彩票系统分析：瑞士乐透从巴塞尔总部运营。在每次抽奖中，玩家选择的号码有固定概率 p 匹配。对于 n 次独立试验（彩票抽奖），使用二项分布公式计算恰好 k 次成功的概率 $P(X=k)$：$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$。这帮助彩票官员预测支付频率并为瑞士玩家设置奖金结构。",
             conditional: "巴塞尔保险风险评估：巴塞尔保险公司需要计算条件概率进行风险评估。给定P(A) = 事件发生的概率，P(B) = 条件满足的概率，P(A∩B) = 两者都发生的概率，计算P(A|B) = P(A∩B)/P(B)。这个条件概率帮助根据特定风险因素确定巴塞尔居民的保险费。",
             mission: "巴塞尔综合概率任务：你正在为多家巴塞尔公司提供咨询——诺华（制药）、瑞士乐透（彩票）和巴塞尔保险公司（保险）。每家公司都提出不同的概率问题：质量控制的基础概率、彩票分析的二项分布或保险风险的条件概率。应用适当的概率公式解决每家公司的具体挑战，并提供准确的概率计算。"
         },
@@ -629,7 +644,7 @@ export const cnMath = {    em1_01: {
         scenarios: {
             basics: "罗氏制药信号处理：您正在罗氏巴塞尔校准用于 MRI 信号处理的医学成像设备，该设备使用复数分析。每个复数 z = a + bi 表示一个具有实部（振幅）和虚部（相位）的信号。计算模长 |z| 以确定信号强度。准确的模长计算对于检测患者扫描中的组织异常至关重要。",
             operations: "诺华量子化学模拟：您正在诺华巴塞尔使用复数算术运行分子轨道计算。波函数表示为复数，它们的相互作用需要在复平面中进行加法和乘法运算。计算复数运算的结果以预测分子行为。这些计算决定了药物结合效率。",
-            polar: "巴塞尔大学电气工程：您正在分析巴塞尔智能电网电力系统中的交流电路行为。在计算谐振频率时，复阻抗被提升到幂次。使用极坐标形式 (r·e^(iθ)) 高效计算 z^n。结果决定了巴塞尔可再生能源网络的最佳功率分配。"
+            polar: "巴塞尔大学电气工程：您正在分析巴塞尔智能电网电力系统中的交流电路行为。在计算谐振频率时，复阻抗被提升到幂次。使用极坐标形式 $r e^{i\\theta}$ 高效计算 $z^n$。结果决定了巴塞尔可再生能源网络的最佳功率分配。"
         },
         stages: {
             basics: "基础",
@@ -796,6 +811,13 @@ export const cnMath = {    em1_01: {
     sm1_02: {
         back: "返回枢纽",
         title: "代数探险",
+        next: "执行下一序列",
+        check: "验证",
+        correct: "验证通过",
+        incorrect: "不匹配",
+        ready: "就绪",
+        monitor_title: "代数监控器",
+        footer_left: "代数探险 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -819,7 +841,9 @@ export const cnMath = {    em1_01: {
             coefficient: "系数",
             mixed_items: "混合物品 (集市)",
             combine_hint: "将相同颜色/类型的项目合并。",
-            processing_core: "处理核心"
+            processing_core: "处理核心",
+            holds_value: "保存数值",
+            remove: "移除"
         },
         stages: {
             variables: "变量概念",
@@ -836,7 +860,10 @@ export const cnMath = {    em1_01: {
             substitute_and_evaluate: "代入并计算",
             if: "如果",
             calculate: "计算",
-            what_is: "什么是"
+            what_is: "什么是",
+            evaluate: "计算表达式",
+            substitute_both: "代入两个变量",
+            multiply_coeffs: "先计算系数乘法"
         },
         objective_title: "任务目标",
         scenario_title: "场景说明",
@@ -3182,6 +3209,7 @@ export const cnMath = {    em1_01: {
             final_solution: "最终解",
             enter_solution: "输入解",
             placeholder_interval: "例如：(-∞, 5] 或 [2, 10)",
+            and_connector: "且",
             empty_set: "无解 (∅)",
             all_reals: "所有实数 (ℝ)",
             no_solution_exists: "不存在解",

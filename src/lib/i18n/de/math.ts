@@ -501,7 +501,22 @@ export const deMath = {    em1_01: {
         },
         labels: {
             input: "EINGABE",
-            hints: "HINWEISE"
+            hints: "HINWEISE",
+            problem_tag: "AUFGABE"
+        },
+        viz: {
+            sampleSpace: "Stichprobenraum",
+            outcomes: "Ergebnisse",
+            favorable: "Guenstig",
+            unfavorable: "Unguenstig",
+            binomialDist: "Binomialverteilung",
+            conditionalProb: "Bedingte Wahrscheinlichkeit",
+            formula: "Formel",
+            probGivenB: "Wahrscheinlichkeit von A gegeben B",
+            total: "Gesamt",
+            trials: "Versuche",
+            successes: "Erfolge",
+            probability: "Wahrscheinlichkeit"
         },
         mission: {
             title: "MISSION: BASLER WAHRSCHEINLICHKEITSLABOR",
@@ -509,7 +524,7 @@ export const deMath = {    em1_01: {
         },
         scenarios: {
             basic_prob: "Qualitätskontrolle bei Novartis Basel: Sie arbeiten in der Qualitätskontrollabteilung der Novartis-Pharmaproduktion in Basel. Jede Charge von Medikamenten wird einer Stichprobenprüfung unterzogen. Gegeben ist, dass eine Stichprobe eine bestimmte Anzahl günstiger Ergebnisse (bestandene Qualitätstests) von der Gesamtzahl der Proben enthält, berechnen Sie die Wahrscheinlichkeit P(E), dass ein zufällig ausgewähltes Element die Inspektion besteht. Diese Wahrscheinlichkeit bestimmt, ob die gesamte Charge für die Verteilung an Schweizer Krankenhäuser freigegeben wird.",
-            binomial: "Schweizer Lotteriesystem-Analyse: Das Swiss Lotto wird von der Basler Zentrale aus betrieben. Bei jeder Ziehung wählen Spieler Zahlen mit einer festen Wahrscheinlichkeit p für eine Übereinstimmung. Für n unabhängige Versuche (Lottoziehungen) berechnen Sie die Wahrscheinlichkeit P(X=k) für genau k Erfolge mit der Binomialverteilungsformel: P(X=k) = C(n,k) × p^k × (1-p)^(n-k). Dies hilft Lotteriebeamten, Auszahlungshäufigkeiten vorherzusagen und Preisstrukturen für Schweizer Spieler festzulegen.",
+            binomial: "Schweizer Lotteriesystem-Analyse: Das Swiss Lotto wird von der Basler Zentrale aus betrieben. Bei jeder Ziehung wählen Spieler Zahlen mit einer festen Wahrscheinlichkeit p für eine Übereinstimmung. Für n unabhängige Versuche (Lottoziehungen) berechnen Sie die Wahrscheinlichkeit $P(X=k)$ für genau k Erfolge mit der Binomialverteilungsformel $P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$. Dies hilft Lotteriebeamten, Auszahlungshäufigkeiten vorherzusagen und Preisstrukturen für Schweizer Spieler festzulegen.",
             conditional: "Basler Versicherungs-Risikobewertung: Basler Versicherungen müssen bedingte Wahrscheinlichkeiten für die Risikobewertung berechnen. Gegeben P(A) = Wahrscheinlichkeit eines Ereignisses, P(B) = Wahrscheinlichkeit einer erfüllten Bedingung und P(A∩B) = Wahrscheinlichkeit beider Ereignisse, berechnen Sie P(A|B) = P(A∩B)/P(B). Diese bedingte Wahrscheinlichkeit hilft, Versicherungsprämien für Basler Einwohner basierend auf spezifischen Risikofaktoren zu bestimmen.",
             mission: "Basler Integrierte Wahrscheinlichkeitsmission: Sie beraten mehrere Basler Unternehmen - Novartis (Pharma), Swiss Lotto (Lotterie) und Basler Versicherungen (Versicherung). Jedes Unternehmen präsentiert ein anderes Wahrscheinlichkeitsproblem: Grundwahrscheinlichkeit für Qualitätskontrolle, Binomialverteilung für Lotterieanalyse oder bedingte Wahrscheinlichkeit für Versicherungsrisiko. Wenden Sie die entsprechende Wahrscheinlichkeitsformel an, um die spezifische Herausforderung jedes Unternehmens zu lösen und genaue Wahrscheinlichkeitsberechnungen bereitzustellen."
         },
@@ -658,7 +673,7 @@ export const deMath = {    em1_01: {
         scenarios: {
             basics: "Roche Pharma-Signalverarbeitung: Sie kalibrieren medizinische Bildgebungsgeräte bei Roche Basel, die komplexe Zahlenanalyse für die MRT-Signalverarbeitung verwenden. Jede komplexe Zahl z = a + bi repräsentiert ein Signal mit Realteil (Amplitude) und Imaginärteil (Phase). Berechnen Sie den Betrag |z|, um die Signalstärke zu bestimmen. Eine genaue Betragsberechnung ist entscheidend für die Erkennung von Gewebeanomalien in Patientenscans.",
             operations: "Novartis Quantenchemie-Simulation: Sie führen Molekülorbitalberechnungen bei Novartis Basel mit komplexer Zahlenarithmetik durch. Wellenfunktionen werden als komplexe Zahlen dargestellt, und ihre Wechselwirkungen erfordern Addition und Multiplikation in der komplexen Ebene. Berechnen Sie das Ergebnis komplexer Operationen, um molekulares Verhalten vorherzusagen. Diese Berechnungen bestimmen die Arzneimittelbindungseffizienz.",
-            polar: "Universität Basel Elektrotechnik: Sie analysieren das Verhalten von Wechselstromkreisen in Energiesystemen für Basels Smart Grid. Komplexe Impedanzen werden potenziert, wenn Resonanzfrequenzen berechnet werden. Verwenden Sie die Polarform (r·e^(iθ)), um z^n effizient zu berechnen. Das Ergebnis bestimmt die optimale Stromverteilung im erneuerbaren Energienetz von Basel."
+            polar: "Universität Basel Elektrotechnik: Sie analysieren das Verhalten von Wechselstromkreisen in Energiesystemen für Basels Smart Grid. Komplexe Impedanzen werden potenziert, wenn Resonanzfrequenzen berechnet werden. Verwenden Sie die Polarform $r e^{i\\theta}$, um $z^n$ effizient zu berechnen. Das Ergebnis bestimmt die optimale Stromverteilung im erneuerbaren Energienetz von Basel."
         },
         stages: {
             basics: "GRUNDLAGEN",
@@ -825,6 +840,13 @@ export const deMath = {    em1_01: {
     sm1_02: {
         back: "Zurück zum Nexus",
         title: "ALGEBRA QUEST",
+        next: "Nächste Sequenz ausführen",
+        check: "Verifizieren",
+        correct: "Verifiziert",
+        incorrect: "Nicht übereinstimmend",
+        ready: "Bereit",
+        monitor_title: "ALGEBRA_MONITOR",
+        footer_left: "ALGEBRA_QUEST // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3171,6 +3193,7 @@ export const deMath = {    em1_01: {
             final_solution: "ENDGÜLTIGE LÖSUNG",
             enter_solution: "Lösung eingeben",
             placeholder_interval: "z.B. (-∞, 5] oder [2, 10)",
+            and_connector: "UND",
             empty_set: "Keine Lösung (∅)",
             all_reals: "Alle reellen Zahlen (ℝ)",
             no_solution_exists: "Es existiert keine Lösung",
