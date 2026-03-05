@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/i18n";
+import { normalizePlainMathNotation } from "@/lib/latex-utils";
 
 interface SequenceVisualizationProps {
   quest: any;
@@ -79,7 +80,9 @@ export default function SequenceVisualization({
                   : "border-2 border-cyan-400/50 bg-cyan-900/20"
               } rounded-lg p-4 min-w-[80px]`}
             >
-              <div className="text-xs text-white/60 text-center mb-1">a_{idx + 1}</div>
+              <div className="text-xs text-white/60 text-center mb-1">
+                {normalizePlainMathNotation(`a_{${idx + 1}}`)}
+              </div>
               <div className="text-2xl font-bold text-white text-center">{displayValue}</div>
               {isTargetTerm && showSolution && (
                 <motion.div

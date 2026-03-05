@@ -730,7 +730,7 @@ export default function SM305Page() {
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-green-500/30">
                     <h3 className="text-green-400 font-bold mb-2">{t("sm3_05.objective_title")}</h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                        {t(`sm3_05.scenarios.${stage.toLowerCase()}`)}
+                        {renderMixedText(t(`sm3_05.scenarios.${stage.toLowerCase()}`))}
                     </p>
                 </div>
 

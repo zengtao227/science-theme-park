@@ -4,6 +4,7 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Line, Grid, Float, Billboard } from "@react-three/drei";
 import * as THREE from "three";
+import { normalizePlainMathNotation } from "@/lib/latex-utils";
 
 interface TriangleCanvasProps {
   a: number;
@@ -171,7 +172,7 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
           animationDelay={0}
         />
         <Text position={[a * 0.2, -0.8, 0]} fontSize={0.4} color="#ff4444" anchorX="center">
-          a^{2} = {a * a}
+          {normalizePlainMathNotation(`a^{2} = ${a * a}`)}
         </Text>
       </group>
 
@@ -186,7 +187,7 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
           animationDelay={1}
         />
         <Text position={[b * 0.2, -0.8, 0]} fontSize={0.4} color="#4488ff" anchorX="center">
-          b^{2} = {b * b}
+          {normalizePlainMathNotation(`b^{2} = ${b * b}`)}
         </Text>
       </group>
 
@@ -201,13 +202,13 @@ function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
           animationDelay={2}
         />
         <Text position={[c * 0.2, -0.8, 0]} fontSize={0.4} color="#ff00ff" anchorX="center">
-          c^{2} = {(c * c).toFixed(1)}
+          {normalizePlainMathNotation(`c^{2} = ${(c * c).toFixed(1)}`)}
         </Text>
       </group>
 
       {/* Equation display */}
       <Text position={[0, b * 0.8 + 1, 0]} fontSize={0.5} color="#ffffff" anchorX="center">
-        a^{2} + b^{2} = c^{2}
+        {normalizePlainMathNotation("a^{2} + b^{2} = c^{2}")}
       </Text>
 
       {/* Triangle labels */}

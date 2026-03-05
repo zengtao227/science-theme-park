@@ -429,7 +429,7 @@ export default function S303Page() {
             </div>
             {currentQuest?.scenarioKey && sm3_03_t.scenarios && (
               <div className="text-sm font-medium text-emerald-300 mb-6 max-w-2xl mx-auto border-l-2 border-emerald-500/50 pl-4 py-2 text-left bg-emerald-900/10 rounded-r shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]">
-                {(sm3_03_t.scenarios as any)[currentQuest?.scenarioKey]}
+                {renderMixedText((sm3_03_t.scenarios as any)[currentQuest?.scenarioKey])}
               </div>
             )}
             <h2 className="text-3xl font-black text-white tracking-tight">

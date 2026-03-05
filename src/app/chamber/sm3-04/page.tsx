@@ -121,7 +121,7 @@ export default function S304Page() {
         {currentQuest?.scenarioKey && (
           <div className="max-w-4xl mx-auto p-6 bg-emerald-950/20 border-2 border-emerald-500/30 rounded-xl">
             <div className="text-sm font-medium text-emerald-300 leading-relaxed">
-              {t(`sm3_04.scenarios.${currentQuest?.scenarioKey}`)}
+              {renderMixedText(t(`sm3_04.scenarios.${currentQuest?.scenarioKey}`))}
             </div>
           </div>
         )}

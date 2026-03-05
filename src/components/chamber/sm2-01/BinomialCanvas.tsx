@@ -6,6 +6,7 @@ import { OrbitControls, Text, Grid } from "@react-three/drei";
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from "three";
 import Canvas3DControls from "@/components/ui/Canvas3DControls";
+import { normalizePlainMathNotation } from "@/lib/latex-utils";
 
 interface S201BinomialCanvasProps {
   a: number;
@@ -118,7 +119,7 @@ function GlassCube({
         anchorX="center"
         anchorY="middle"
       >
-        {label}
+        {normalizePlainMathNotation(label)}
       </Text>
     </group>
   );
@@ -255,7 +256,7 @@ function Legend({ a, b, translations }: { a: number; b: number; translations: an
   return (
     <group position={[-6, 0, 0]}>
       <Text position={[0, 3, 0]} fontSize={0.4} color="#ffffff" anchorX="left">
-        {translations.decomposition_pattern_3d}
+        {normalizePlainMathNotation((translations.decomposition_pattern_3d || "").replace(/\$/g, ""))}
       </Text>
 
       <Text position={[0, 2, 0]} fontSize={0.25} color="#ff3131" anchorX="left">

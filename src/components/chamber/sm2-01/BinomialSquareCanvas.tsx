@@ -6,6 +6,7 @@ import { OrbitControls, Text } from "@react-three/drei";
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import * as THREE from "three";
 import Canvas3DControls from "@/components/ui/Canvas3DControls";
+import { normalizePlainMathNotation } from "@/lib/latex-utils";
 
 // 单个矩形区域组件
 function Rectangle({
@@ -60,7 +61,7 @@ function Rectangle({
         anchorX="center"
         anchorY="middle"
       >
-        {label}
+        {normalizePlainMathNotation(label)}
       </Text>
     </group>
   );
@@ -144,7 +145,7 @@ function Legend({ a, b, translations }: { a: number; b: number; translations: an
   return (
     <group position={[6, 0, 0]}>
       <Text position={[0, 3, 0]} fontSize={0.35} color="#ffffff" anchorX="left">
-        {translations.decomposition_pattern_2d}
+        {normalizePlainMathNotation((translations.decomposition_pattern_2d || "").replace(/\$/g, ""))}
       </Text>
 
       <Text position={[0, 2.2, 0]} fontSize={0.25} color="#ff3131" anchorX="left">
