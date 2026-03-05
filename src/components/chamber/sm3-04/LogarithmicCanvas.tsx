@@ -72,7 +72,7 @@ function PHScale({ value }: { value: number }) {
           </Text>
           {ph % 2 === 0 && (
             <Text position={[1.2, 0, 0]} fontSize={0.18} color={palette.cyan}>
-              {`10^-${ph}`}
+              {`10^(-${ph})`}
             </Text>
           )}
         </group>
