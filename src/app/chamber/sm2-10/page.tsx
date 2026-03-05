@@ -881,7 +881,7 @@ export default function SM210Page() {
                 <div className="bg-gray-800/50 p-4 rounded-lg border border-purple-500/30">
                     <h3 className="text-purple-400 font-bold mb-2">{t("sm2_10.objective_title")}</h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                        {t(`sm2_10.scenarios.${stage.toLowerCase()}`)}
+                        {renderMixedText(t(`sm2_10.scenarios.${stage.toLowerCase()}`), "whitespace-pre-wrap")}
                     </p>
                 </div>
 

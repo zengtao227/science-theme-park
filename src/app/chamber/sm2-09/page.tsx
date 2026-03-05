@@ -429,7 +429,7 @@ export default function SM209Page() {
                   {sm2_09_t.scenario_title}
                 </h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {baselScenarioText}
+                  {renderMixedText(baselScenarioText, "whitespace-pre-wrap")}
                 </p>
               </div>
             )}

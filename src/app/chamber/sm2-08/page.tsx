@@ -1222,7 +1222,9 @@ export default function SM208Page() {
             <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
               {t("sm2_08.basel_scenario")}
             </div>
-            <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
+            <p className="text-white/90 leading-relaxed font-medium">
+              {renderMixedText(quest.scenario, "font-sans whitespace-pre-wrap")}
+            </p>
           </div>
         )}
 
@@ -1231,7 +1233,9 @@ export default function SM208Page() {
             <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
               {t("sm2_08.scenario_title")}
             </div>
-            <p className="text-white/80 leading-relaxed">{quest.context}</p>
+            <p className="text-white/80 leading-relaxed">
+              {renderMixedText(quest.context, "font-sans whitespace-pre-wrap")}
+            </p>
           </div>
         )}
 

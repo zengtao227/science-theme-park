@@ -637,9 +637,9 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
           />
           {(() => {
             const offset = getLabelOffset(result.re, result.im);
-            const powerText = quest.power === 2 ? "z^{2}" : 
-                             quest.power === 3 ? "z^{3}" : 
-                             quest.power === 4 ? "z^{4}" : 
+            const powerText = quest.power === 2 ? "z^2" : 
+                             quest.power === 3 ? "z^3" : 
+                             quest.power === 4 ? "z^4" : 
                              quest.power === 5 ? "z^5" : 
                              `z^${quest.power}`;
             return (

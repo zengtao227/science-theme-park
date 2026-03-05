@@ -88,3 +88,13 @@ else
   echo "$E8"
   FAIL=1
 fi
+
+echo "=== 审计 9：SM 场景文本直出检查（应使用 renderMixedText） ==="
+E9=$(rg -n '\{(quest\.scenario|quest\.context|baselScenarioText|t\(`sm[0-9]_[0-9]+\.scenarios\.)\}' \
+  src/app/chamber/sm*/page.tsx src/app/chamber/sm*-*/page.tsx)
+if [ -z "$E9" ]; then
+  echo "  OK – no direct scenario/context rendering"
+else
+  echo "$E9"
+  FAIL=1
+fi

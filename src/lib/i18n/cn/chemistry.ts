@@ -815,7 +815,7 @@ export const cnChemistry = {
             arr_catalyst: "催化剂降低 Ea 20 kJ/mol（从 80 到 60）。计算 300K 时的 k 比值。",
             arr_two_temps: "在 300K 和 350K 测量 k。使用 ln(k_2/k_1) = -Ea/R(1/T_2 - 1/T_1) 求 Ea=52 kJ/mol。",
             arr_plot: "阿伦尼乌斯图的斜率为 -7800 K。计算 Ea（斜率 = -Ea/R）。",
-            arr_frequency: "已知 k=1.5×10^-^9，Ea=50 kJ/mol，T=300K。求指前因子 A。",
+            arr_frequency: "已知 k=1.5×10^{-9}，Ea=50 kJ/mol，T=300K。求指前因子 A。",
             arr_temp_for_k: "目标速率常数 k=10^6 s^-¹，Ea=60 kJ/mol。需要什么温度？",
             arr_enzyme: "酶催化反应：Ea=40 kJ/mol，体温 T=310K。计算 k。",
             arr_complex: "两步机理：Ea1=50，Ea2=30 kJ/mol。总 Ea=40 kJ/mol。求 300K 时的 k。",

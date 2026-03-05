@@ -815,7 +815,7 @@ export const enChemistry = {
             arr_catalyst: "Catalyst reduces Ea by 20 kJ/mol (from 80 to 60). Calculate k ratio at 300K.",
             arr_two_temps: "Measure k at 300K and 350K. Use ln(k_2/k_1) = -Ea/R(1/T_2 - 1/T_1) to find Ea=52 kJ/mol.",
             arr_plot: "Arrhenius plot has slope -7800 K. Calculate Ea (slope = -Ea/R).",
-            arr_frequency: "Given k=1.5×10^-^9, Ea=50 kJ/mol, T=300K. Find pre-exponential factor A.",
+            arr_frequency: "Given k=1.5×10^{-9}, Ea=50 kJ/mol, T=300K. Find pre-exponential factor A.",
             arr_temp_for_k: "Target rate constant k=10^6 s^-¹, Ea=60 kJ/mol. What temperature is needed?",
             arr_enzyme: "Enzyme-catalyzed reaction: Ea=40 kJ/mol, body temperature T=310K. Calculate k.",
             arr_complex: "Two-step mechanism: Ea1=50, Ea2=30 kJ/mol. Overall Ea=40 kJ/mol. Find k at 300K.",

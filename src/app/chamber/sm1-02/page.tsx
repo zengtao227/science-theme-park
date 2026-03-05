@@ -420,9 +420,14 @@ export default function SM102Page() {
                 <div className="mt-8 text-center opacity-60 hover:opacity-100 transition-opacity">
                     <div className="text-xs font-mono text-neon-blue mb-2">{sm1_02_t.scenario_title}</div>
                     <div className="text-sm italic text-white max-w-lg mx-auto leading-relaxed">
-                        {stage === 'VARIABLES' && sm1_02_t.scenarios.variables}
-                        {stage === 'TERMS' && sm1_02_t.scenarios.terms}
-                        {stage === 'SUBSTITUTION' && sm1_02_t.scenarios.substitution}
+                        {renderMixedText(
+                            stage === 'VARIABLES'
+                                ? sm1_02_t.scenarios.variables
+                                : stage === 'TERMS'
+                                    ? sm1_02_t.scenarios.terms
+                                    : sm1_02_t.scenarios.substitution,
+                            "font-sans whitespace-pre-wrap"
+                        )}
                     </div>
                 </div>
             </div>

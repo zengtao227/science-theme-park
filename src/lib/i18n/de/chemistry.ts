@@ -807,7 +807,7 @@ export const deChemistry = {
             arr_catalyst: "Katalysator reduziert Ea um 20 kJ/mol (von 80 auf 60). Berechnen Sie k-Verhältnis bei 300K.",
             arr_two_temps: "Messen Sie k bei 300K und 350K. Verwenden Sie ln(k_2/k_1) = -Ea/R(1/T_2 - 1/T_1) um Ea=52 kJ/mol zu finden.",
             arr_plot: "Arrhenius-Diagramm hat Steigung -7800 K. Berechnen Sie Ea (Steigung = -Ea/R).",
-            arr_frequency: "Gegeben k=1.5×10^-^9, Ea=50 kJ/mol, T=300K. Finden Sie präexponentiellen Faktor A.",
+            arr_frequency: "Gegeben k=1.5×10^{-9}, Ea=50 kJ/mol, T=300K. Finden Sie präexponentiellen Faktor A.",
             arr_temp_for_k: "Ziel-Geschwindigkeitskonstante k=10^6 s^-¹, Ea=60 kJ/mol. Welche Temperatur wird benötigt?",
             arr_enzyme: "Enzymkatalysierte Reaktion: Ea=40 kJ/mol, Körpertemperatur T=310K. Berechnen Sie k.",
             arr_complex: "Zweistufiger Mechanismus: Ea1=50, Ea2=30 kJ/mol. Gesamt-Ea=40 kJ/mol. Finden Sie k bei 300K.",
