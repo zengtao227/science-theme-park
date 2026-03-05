@@ -68,6 +68,11 @@ export default function GM102Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const currentScenario =
+    stage === "ANTIDERIVATIVE" ? t("gm1_02.scenarios.antiderivative") :
+    stage === "DEFINITE_INTEGRAL" ? t("gm1_02.scenarios.definite_integral") :
+    t("gm1_02.scenarios.application");
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -153,9 +158,7 @@ export default function GM102Page() {
         {/* Scenario Description */}
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "ANTIDERIVATIVE" && t("gm1_02.scenarios.antiderivative")}
-            {stage === "DEFINITE_INTEGRAL" && t("gm1_02.scenarios.definite_integral")}
-            {stage === "APPLICATION" && t("gm1_02.scenarios.application")}
+            {renderMixedText(currentScenario, "whitespace-pre-wrap")}
           </div>
         </div>
 

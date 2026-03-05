@@ -1332,7 +1332,7 @@ export default function G101AdvancedPage() {
         {/* Scenario */}
         <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-cyan-400/90 leading-relaxed whitespace-pre-line">
-            {currentQuest?.scenario}
+            {renderMixedText(currentQuest?.scenario, "whitespace-pre-wrap")}
           </div>
         </div>
 

@@ -18,7 +18,7 @@ import {
   generateQuotientRuleQuests,
   generateChainRuleQuests
 } from "@/lib/gm1-01/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { normalizePlainMathNotation, renderMixedText } from "@/lib/latex-utils";
 
 
 
@@ -145,6 +145,14 @@ export default function G101Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const currentScenario =
+    stage === "POWER_RULE" ? gm1_01_t.scenarios.power_rule :
+    stage === "FACTOR_RULE" ? gm1_01_t.scenarios.factor_rule :
+    stage === "SUM_RULE" ? gm1_01_t.scenarios.sum_rule :
+    stage === "PRODUCT_RULE" ? gm1_01_t.scenarios.product_rule :
+    stage === "QUOTIENT_RULE" ? gm1_01_t.scenarios.quotient_rule :
+    gm1_01_t.scenarios.chain_rule;
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -192,12 +200,14 @@ export default function G101Page() {
             derivative={parseFloat(inputs.derivative || "0")}
             translations={{
               title: gm1_01_t.canvas.title,
-              subtitle: stage === "POWER_RULE" ? gm1_01_t.canvas.subtitle_power :
-                       stage === "FACTOR_RULE" ? gm1_01_t.canvas.subtitle_factor :
-                       stage === "SUM_RULE" ? gm1_01_t.canvas.subtitle_sum :
-                       stage === "PRODUCT_RULE" ? gm1_01_t.canvas.subtitle_product :
-                       stage === "QUOTIENT_RULE" ? gm1_01_t.canvas.subtitle_quotient :
-                       gm1_01_t.canvas.subtitle_chain,
+              subtitle: normalizePlainMathNotation(
+                stage === "POWER_RULE" ? gm1_01_t.canvas.subtitle_power :
+                stage === "FACTOR_RULE" ? gm1_01_t.canvas.subtitle_factor :
+                stage === "SUM_RULE" ? gm1_01_t.canvas.subtitle_sum :
+                stage === "PRODUCT_RULE" ? gm1_01_t.canvas.subtitle_product :
+                stage === "QUOTIENT_RULE" ? gm1_01_t.canvas.subtitle_quotient :
+                gm1_01_t.canvas.subtitle_chain
+              ),
               xLabel: gm1_01_t.canvas.x_label,
               yLabel: gm1_01_t.canvas.y_label,
               slopeLabel: gm1_01_t.canvas.slope_label,
@@ -230,12 +240,7 @@ export default function G101Page() {
         {/* Scenario Description */}
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "POWER_RULE" && gm1_01_t.scenarios.power_rule}
-            {stage === "FACTOR_RULE" && gm1_01_t.scenarios.factor_rule}
-            {stage === "SUM_RULE" && gm1_01_t.scenarios.sum_rule}
-            {stage === "PRODUCT_RULE" && gm1_01_t.scenarios.product_rule}
-            {stage === "QUOTIENT_RULE" && gm1_01_t.scenarios.quotient_rule}
-            {stage === "CHAIN_RULE" && gm1_01_t.scenarios.chain_rule}
+            {renderMixedText(currentScenario, "whitespace-pre-wrap")}
           </div>
         </div>
 

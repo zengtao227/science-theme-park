@@ -100,6 +100,11 @@ export default function G201Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const currentScenario =
+    stage === "NAVIGATION" ? gm2_01_t.scenarios.navigation :
+    stage === "DOT" ? gm2_01_t.scenarios.dot :
+    gm2_01_t.scenarios.mission;
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -161,9 +166,7 @@ export default function G201Page() {
         
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "NAVIGATION" && gm2_01_t.scenarios.navigation}
-            {stage === "DOT" && gm2_01_t.scenarios.dot}
-            {stage === "MISSION" && gm2_01_t.scenarios.mission}
+            {renderMixedText(currentScenario, "whitespace-pre-wrap")}
           </div>
         </div>
 

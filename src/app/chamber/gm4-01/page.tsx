@@ -55,6 +55,13 @@ export default function GM401Page() {
     initialStage: "BASICS",
   });
 
+  const currentScenario =
+    stage === "BASICS"
+      ? (t?.scenarios?.basics || "[FALLBACK] Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.")
+      : stage === "OPERATIONS"
+        ? (t?.scenarios?.operations || "[FALLBACK] Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.")
+        : (t?.scenarios?.polar || "[FALLBACK] University of Basel Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form (r·e^(iθ)) to compute z^n efficiently. The result determines optimal power distribution across Basel's renewable energy network.");
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -106,9 +113,7 @@ export default function GM401Page() {
               {t?.scenario_title || "MISSION"}
             </div>
             <p className="text-sm text-white/80 font-mono max-w-2xl mx-auto leading-relaxed">
-              {stage === "BASICS" && (t?.scenarios?.basics || "[FALLBACK] Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.")}
-              {stage === "OPERATIONS" && (t?.scenarios?.operations || "[FALLBACK] Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.")}
-              {stage === "POLAR" && (t?.scenarios?.polar || "[FALLBACK] University of Basel Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form (r·e^(iθ)) to compute z^n efficiently. The result determines optimal power distribution across Basel's renewable energy network.")}
+              {renderMixedText(currentScenario, "whitespace-pre-wrap")}
             </p>
           </div>
 

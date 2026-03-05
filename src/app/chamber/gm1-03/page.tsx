@@ -199,7 +199,7 @@ export default function GM103Page() {
         {/* Scenario Description */}
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {getCurrentScenario()}
+            {renderMixedText(getCurrentScenario(), "whitespace-pre-wrap")}
           </div>
         </div>
 

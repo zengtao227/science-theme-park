@@ -78,3 +78,13 @@ else
   echo "$E2"
   FAIL=1
 fi
+
+echo "=== 审计 8：GM 场景文本直出检查（应使用 renderMixedText） ==="
+E8=$(rg -n '\{(stage === ".*" && .*scenarios\.|getCurrentScenario\(\)|currentQuest\?\.scenario|scenario\.description)\}' \
+  src/app/chamber/gm*/page.tsx src/app/chamber/gm*-*/page.tsx)
+if [ -z "$E8" ]; then
+  echo "  OK – no direct scenario rendering"
+else
+  echo "$E8"
+  FAIL=1
+fi

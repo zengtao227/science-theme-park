@@ -167,7 +167,7 @@ export default function GM202Page() {
             {scenario.title}
           </h3>
           <div className="text-sm text-green-400/90 leading-relaxed">
-            {scenario.description}
+            {renderMixedText(scenario.description, "whitespace-pre-wrap")}
           </div>
         </div>
 

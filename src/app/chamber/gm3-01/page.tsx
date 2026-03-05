@@ -106,6 +106,12 @@ export default function G301Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const currentScenario =
+    stage === "BASIC_PROB" ? gm3_01_t.scenarios.basic_prob :
+    stage === "BINOMIAL" ? gm3_01_t.scenarios.binomial :
+    stage === "CONDITIONAL" ? gm3_01_t.scenarios.conditional :
+    gm3_01_t.scenarios.mission;
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -168,10 +174,7 @@ export default function G301Page() {
 
         <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6 max-w-4xl mx-auto">
           <div className="text-sm text-green-400/90 leading-relaxed whitespace-pre-line">
-            {stage === "BASIC_PROB" && gm3_01_t.scenarios.basic_prob}
-            {stage === "BINOMIAL" && gm3_01_t.scenarios.binomial}
-            {stage === "CONDITIONAL" && gm3_01_t.scenarios.conditional}
-            {stage === "MISSION" && gm3_01_t.scenarios.mission}
+            {renderMixedText(currentScenario, "whitespace-pre-wrap")}
           </div>
         </div>
 
@@ -180,7 +183,7 @@ export default function G301Page() {
           <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-6 max-w-4xl mx-auto">
             <div className="text-[10px] text-cyan-400/60 uppercase tracking-wider mb-3">PROBLEM</div>
             <div className="text-base text-cyan-300 leading-relaxed whitespace-pre-line">
-              {currentQuest?.problemText}
+              {renderMixedText(currentQuest?.problemText, "whitespace-pre-wrap")}
             </div>
           </div>
         )}

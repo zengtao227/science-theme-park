@@ -4,6 +4,52 @@ import React from 'react';
 import { InlineMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 
+const SUPERSCRIPT_MAP: Record<string, string> = {
+    '0': '⁰',
+    '1': '¹',
+    '2': '²',
+    '3': '³',
+    '4': '⁴',
+    '5': '⁵',
+    '6': '⁶',
+    '7': '⁷',
+    '8': '⁸',
+    '9': '⁹',
+    '+': '⁺',
+    '-': '⁻',
+    '=': '⁼',
+    '(': '⁽',
+    ')': '⁾',
+    n: 'ⁿ',
+    i: 'ⁱ',
+};
+
+const SUBSCRIPT_MAP: Record<string, string> = {
+    '0': '₀',
+    '1': '₁',
+    '2': '₂',
+    '3': '₃',
+    '4': '₄',
+    '5': '₅',
+    '6': '₆',
+    '7': '₇',
+    '8': '₈',
+    '9': '₉',
+    '+': '₊',
+    '-': '₋',
+    '=': '₌',
+    '(': '₍',
+    ')': '₎',
+};
+
+function convertScriptGroup(content: string, map: Record<string, string>, originalPrefix: '^' | '_'): string {
+    const converted = [...content].map((ch) => map[ch]);
+    if (converted.every(Boolean)) {
+        return converted.join('');
+    }
+    return `${originalPrefix}{${content}}`;
+}
+
 /**
  * Normalize accidental double-backslash LaTeX commands (e.g. \\sqrt -> \sqrt)
  * before passing into InlineMath.
@@ -45,6 +91,17 @@ function preprocessLegacyLatex(input: string): string {
 }
 
 /**
+ * Converts plain-text LaTeX-like exponent/subscript markers into readable Unicode forms.
+ * Example: x^{2} -> x², h_1 -> h₁
+ */
+export function normalizePlainMathNotation(text: string): string {
+    return text
+        .replace(/\^\{([^{}]+)\}/g, (_, content: string) => convertScriptGroup(content, SUPERSCRIPT_MAP, '^'))
+        .replace(/_\{([^{}]+)\}/g, (_, content: string) => convertScriptGroup(content, SUBSCRIPT_MAP, '_'))
+        .replace(/_([0-9+\-=()]+)/g, (_, content: string) => convertScriptGroup(content, SUBSCRIPT_MAP, '_'));
+}
+
+/**
  * Renders a string that may contain LaTeX segments wrapped in $ ... $.
  * Also handles legacy "\\text{...}" mixed-format prompt strings.
  * 
@@ -53,8 +110,9 @@ function preprocessLegacyLatex(input: string): string {
  */
 export const renderMixedText = (text: string | undefined | null, className: string = "font-sans font-black whitespace-pre-wrap") => {
     if (!text) return null;
-    const normalized = preprocessLegacyLatex(text);
-    if (!normalized) return null;
+    const preprocessed = preprocessLegacyLatex(text);
+    if (!preprocessed) return null;
+    const normalized = preprocessed.includes('$') ? preprocessed : normalizePlainMathNotation(preprocessed);
 
     // Split by $...$ to handle mixed content
     const parts = normalized.split(/(\$[^$]+\$)/g);
