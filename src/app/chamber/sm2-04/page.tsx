@@ -780,7 +780,7 @@ export default function S204Page() {
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {t("sm2_04.target_title")}
                         </div>
-                        <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-normal break-words">
+                        <div className="text-white font-black text-xl max-w-full py-1 whitespace-normal break-words katex-text-wrap">
                             <span className="inline-block">
                                 <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </span>

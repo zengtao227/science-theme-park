@@ -130,3 +130,12 @@ body {
     @apply absolute inset-0 bg-neon-green opacity-0 group-hover:opacity-10 transition-opacity duration-300;
   }
 }
+
+/* Allow KaTeX \text{} to wrap in monitor panel and task cards */
+.katex-text-wrap .katex {
+  white-space: normal;
+}
+.katex-text-wrap .katex .mord.text {
+  white-space: normal;
+  word-break: break-word;
+}

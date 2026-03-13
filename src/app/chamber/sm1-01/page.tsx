@@ -1005,7 +1005,7 @@ export default function S101Page() {
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {sm1_01_t.target_title}
                         </div>
-                        <div className="text-white font-black text-xl overflow-x-auto max-w-full py-1 whitespace-normal break-words">
+                        <div className="text-white font-black text-xl max-w-full py-1 whitespace-normal break-words katex-text-wrap">
                             <span className="inline-block">
                                 <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </span>
@@ -1053,7 +1053,7 @@ export default function S101Page() {
                             {sm1_01_t.target_title}
                         </span>
                         <div className="space-y-4">
-                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
+                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words katex-text-wrap">
                                 <InlineMath math={currentQuest?.expressionLatex || ""} />
                             </div>
                             <div className="text-white/60 font-black">
