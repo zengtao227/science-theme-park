@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BodySystemVisualization from "@/components/chamber/sb2-02-body-systems/BodySystemVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -748,7 +748,7 @@ export default function SB202BodySystemsPage() {
                     </div>
 
                     <div className="text-cyan-300">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     {/* Input Slots */}

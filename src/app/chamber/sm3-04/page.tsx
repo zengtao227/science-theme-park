@@ -15,7 +15,7 @@ import {
     generateDecibelQuests,
     generateRichterQuests,
 } from "@/lib/sm3-04/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 function buildStagePool(t: ReturnType<typeof useLanguage>["t"], difficulty: Difficulty, stage: Stage): S304Quest[] {
     if (stage === "PH") return generatePhQuests(t, difficulty);
@@ -105,7 +105,7 @@ export default function S304Page() {
               <InlineMath math={t(`sm3_04.formulas.${stage.toLowerCase()}`)} />
             </div>
             <div className="text-white/70 text-sm font-mono">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
+              <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
         </div>

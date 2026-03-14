@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BinomialSquare2D from "@/components/chamber/sm2-01/BinomialSquare2D";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -669,7 +669,7 @@ export default function S201Page() {
                   {sm2_01_t.target_expression}
                 </span>
                 <div className="font-black italic tracking-tighter text-white block py-1 drop-shadow-lg text-[clamp(1.5rem,5vw,4.5rem)] leading-tight whitespace-normal break-words">
-                  <InlineMath math={currentQuest?.expressionLatex || ""} />
+                  <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                 </div>
                 {questMode === "SPEEDSTER" && (
                   <div className="text-sm text-white/90 font-normal tracking-wide mt-2">{renderMixedText(sm2_01_t.speedster_hint)}</div>

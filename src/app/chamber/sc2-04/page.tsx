@@ -14,7 +14,7 @@ import {
   generateSolubilityQuests,
   generateEliteQuests,
 } from "@/lib/sc2-04/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 // Solubility curve data (g/100mL water)
 function getSolubility(temperature: number): number {
@@ -176,7 +176,7 @@ export default function SC204Page() {
           </div>
 
           <div className="text-neon-cyan">
-            <InlineMath math={currentQuest?.expressionLatex || ""} />
+            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
           </div>
 
           <div className="space-y-3">

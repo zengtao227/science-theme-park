@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicReactionCanvas from "@/components/chamber/sc3-03/OrganicReactionCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "COMBUSTION" | "SUBSTITUTION" | "ADDITION";
 
@@ -327,7 +327,7 @@ export default function SC303Page() {
                                     {t("sc3_03.labels.reaction_display")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,7 @@ import {
   generateConditionalQuests,
   generateMissionQuests,
 } from "@/lib/gm3-01/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 
 
@@ -197,7 +197,7 @@ export default function G301Page() {
             {renderMixedText(currentQuest?.promptLatex || "")}
           </p>
           <p className="text-lg text-white/70 font-mono">
-            <InlineMath math={currentQuest?.expressionLatex || ""} />
+            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
           </p>
         </div>
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">

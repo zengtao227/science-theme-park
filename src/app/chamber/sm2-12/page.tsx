@@ -5,7 +5,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CombinatoricsVisualization from "@/components/chamber/sm2-12/CombinatoricsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -299,7 +299,7 @@ export default function SM212Page() {
                   {t("sm2_12.labels.formula")}
                 </span>
                 <div className="text-4xl text-white font-black">
-                  <InlineMath math={currentQuest?.expressionLatex || ""} />
+                  <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                 </div>
               </div>
             </div>

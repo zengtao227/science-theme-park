@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { InlineMath } from "react-katex";
@@ -426,7 +426,7 @@ export default function GP1_01_AtomicCore() {
                             {renderMixedText(currentQuest.promptLatex)}
                         </div>
                         <div className="text-center p-2 bg-white/5 border border-white/10 rounded">
-                            <InlineMath math={currentQuest.expressionLatex} />
+                            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                         </div>
                         <div className="space-y-1">
                             <label className="text-xs text-white/70"><InlineMath math={currentQuest.labelLatex} /></label>

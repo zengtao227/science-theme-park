@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { useEffect, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlchemistCanvas, { type SystemsVisual } from "@/components/chamber/sm2-06/AlchemistCanvas";
@@ -1145,7 +1145,7 @@ export default function S206Page() {
           </p>
           <div className="mt-8 p-6 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm">
             <div className="text-4xl text-white font-black">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
+              <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
         </div>

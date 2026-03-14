@@ -5,7 +5,7 @@ import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DataVisualization from "@/components/chamber/sm2-10/DataVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -891,7 +891,7 @@ export default function SM210Page() {
                     </div>
 
                     <div className="text-purple-300">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">

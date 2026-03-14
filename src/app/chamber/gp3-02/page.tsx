@@ -8,7 +8,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "ELECTRIC_FIELD" | "MAGNETIC_FIELD" | "PARTICLE_MOTION";
 
@@ -413,7 +413,7 @@ export default function GP302Electromagnetism() {
                         <div className="mb-4 p-4 bg-black/50 rounded-lg border border-cyan-500/30">
                             <div className="text-white/60 text-xs uppercase tracking-wider mb-2">{gp3_02_t.labels.formula}</div>
                             <div className="text-white text-xl">
-                                <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                             </div>
                         </div>
 

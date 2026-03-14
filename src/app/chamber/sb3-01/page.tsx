@@ -11,7 +11,7 @@ import DataTracker from "@/components/shared/DataTracker";
 import ProgressBar from "@/components/shared/ProgressBar";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES" | "ELITE";
 
@@ -414,7 +414,7 @@ export default function SB301Page() {
                                     {t("sb3_01.labels.input_terminal")}
                                 </span>
                                 <div className="text-3xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

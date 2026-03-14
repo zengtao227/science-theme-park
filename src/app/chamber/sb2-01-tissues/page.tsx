@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import TissueVisualization from "@/components/chamber/sb2-01-tissues/TissueVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "TISSUES" | "ORGANS" | "SYSTEMS";
 
@@ -381,7 +381,7 @@ export default function SB201TissuesPage() {
                                     {stage === "TISSUES" ? "TISSUE SAMPLE" : stage === "ORGANS" ? "ORGAN STRUCTURE" : "HIERARCHY LEVEL"}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </motion.div>

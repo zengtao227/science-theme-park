@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeometryVisualization from "@/components/chamber/sm3-05/GeometryVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "BASEL_ARCH" | "CROSS_SECTIONS" | "CURVED_SOLIDS";
 
@@ -740,7 +740,7 @@ export default function SM305Page() {
                     </div>
 
                     <div className="text-green-300">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">

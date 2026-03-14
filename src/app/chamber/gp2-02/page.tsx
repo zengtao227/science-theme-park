@@ -8,7 +8,7 @@ import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThermodynamicsVisualization from "@/components/chamber/gp2-02/ThermodynamicsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "FIRST_LAW" | "INTERNAL_ENERGY" | "WORK_HEAT";
 
@@ -250,7 +250,7 @@ export default function GP202Page() {
                     </div>
 
                     <div className="text-cyan-300">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">

@@ -736,7 +736,7 @@ function PrintableQuestList({ t }: { t: any }) {
                                             </div>
                                             <div className="font-mono">
                                                 <span className="font-bold">{t.target_title}: </span>
-                                                <InlineMath math={quest.expressionLatex || ""} />
+                                                <KatexTextWrap math={quest.expressionLatex || ""} />
                                             </div>
                                             <div className="font-mono">
                                                 <span className="font-bold">Solve: </span>

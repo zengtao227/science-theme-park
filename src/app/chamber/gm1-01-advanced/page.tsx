@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Challenge = "COMPOSITE" | "MODELING" | "OPTIMIZATION" | "ANALYSIS";
 

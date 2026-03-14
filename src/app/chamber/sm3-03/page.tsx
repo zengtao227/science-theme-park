@@ -9,7 +9,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ExponentialChart from "@/components/chamber/sm3-03/ExponentialChart";
 import { clsx } from "clsx";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS";
 
@@ -438,7 +438,7 @@ export default function S303Page() {
             {currentQuest?.expressionLatex && (
               <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10 inline-block min-w-[300px]">
                 <span className="text-4xl text-cyan-300 font-serif">
-                  <InlineMath math={currentQuest?.expressionLatex || ""} />
+                  <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                 </span>
               </div>
             )}

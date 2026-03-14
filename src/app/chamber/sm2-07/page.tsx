@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { useEffect, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CoordinateCanvas2D from "@/components/chamber/sm2-07/CoordinateCanvas2D";
@@ -378,7 +378,7 @@ export default function S207Page() {
               <InlineMath math={t(`sm2_07.formulas.${stage.toLowerCase()}`)} />
             </div>
             <div className="text-white/70 text-sm font-mono">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
+              <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import WaveVisualization from "@/components/chamber/gp3-01/WaveVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "WAVE_PROPERTIES" | "SUPERPOSITION" | "OPTICS";
 
@@ -802,7 +802,7 @@ export default function GP301Page() {
                     </div>
                     
                     <div className="text-blue-300">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">

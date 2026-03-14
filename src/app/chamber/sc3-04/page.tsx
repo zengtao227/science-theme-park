@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import FunctionalGroupCanvas from "@/components/chamber/sc3-04/FunctionalGroupCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "ALCOHOLS" | "ACIDS" | "ESTERS";
 
@@ -315,7 +315,7 @@ export default function SC304Page() {
                                     MOLECULAR SYSTEM
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

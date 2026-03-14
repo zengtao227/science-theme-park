@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import MeasurementCanvas from "@/components/chamber/sp3-01/MeasurementCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "SI_UNITS" | "CONVERSION" | "PRECISION";
 
@@ -599,7 +599,7 @@ export default function SP301Page() {
                                     {sp3_01_t.labels.measurement_display}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

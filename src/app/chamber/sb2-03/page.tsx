@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeneticsLab from "@/components/chamber/sb2-03/GeneticsLab";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "MONOHYBRID" | "PROBABILITY" | "DIHYBRID";
 type Genotype = "RR" | "Rr" | "rr" | "AA" | "Aa" | "aa" | "BB" | "Bb" | "bb";
@@ -303,7 +303,7 @@ export default function SB203Page() {
                                     {t("sb2_03.labels.prediction")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

@@ -18,7 +18,7 @@ import {
   generateQuotientRuleQuests,
   generateChainRuleQuests
 } from "@/lib/gm1-01/quests";
-import { normalizePlainMathNotation, renderMixedText } from "@/lib/latex-utils";
+import { normalizePlainMathNotation, renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 
 
@@ -225,7 +225,7 @@ export default function G101Page() {
               <InlineMath math={gm1_01_t.formulas[stage.toLowerCase() as keyof typeof gm1_01_t.formulas]} />
             </div>
             <div className="text-white/70 text-sm font-mono">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
+              <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
         </div>

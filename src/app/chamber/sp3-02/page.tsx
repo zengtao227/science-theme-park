@@ -15,7 +15,7 @@ import {
   generateNewton2Quests,
   generateFrictionQuests,
 } from "@/lib/sp3-02/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 
 
@@ -114,7 +114,7 @@ export default function SP302Page() {
             {renderMixedText(currentQuest?.promptLatex || "")}
           </div>
           <div className="text-cyan-300">
-            <InlineMath math={currentQuest?.expressionLatex || ""} />
+            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
           </div>
           <div className="space-y-3">
             {currentQuest?.slots.map((slot) => (

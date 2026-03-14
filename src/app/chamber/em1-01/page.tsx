@@ -8,7 +8,7 @@ import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "BASICS" | "MEASURE" | "SURVEY";
 
@@ -271,7 +271,7 @@ export default function EM101Page() {
 
         <div className="bg-gray-900/50 p-6 rounded-lg space-y-4">
           <div className="text-orange-300 text-lg">
-            <InlineMath math={currentQuest?.expressionLatex || ""} />
+            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
           </div>
 
           <div className="space-y-3">

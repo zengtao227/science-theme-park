@@ -10,7 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import LimitsContinuityVisualization from "@/components/chamber/gm1-03/LimitsContinuityVisualization";
 import { GM103Quest, Stage } from "@/lib/gm1-03-types";
 import { buildStagePool } from "@/lib/gm1-03-quest-builder";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function GM103Page() {
   const { completeStage } = useAppStore();
@@ -222,7 +222,7 @@ export default function GM103Page() {
             <InlineMath math={getHint()} />
           </div>
           <div className="text-white/70 text-sm font-mono mt-2">
-            <InlineMath math={currentQuest?.expressionLatex || ""} />
+            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
           </div>
         </div>
 

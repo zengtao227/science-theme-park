@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { InlineMath } from "react-katex";
 import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -313,7 +313,7 @@ export default function SC1_03_AtomsForge() {
                         </div>
                         <div className="text-center text-2xl text-white font-black">{renderMixedText(quest.promptLatex)}</div>
                         <div className="text-center p-3 bg-white/5 border border-white/10 rounded-xl">
-                            <InlineMath math={quest.expressionLatex} />
+                            <KatexTextWrap math={quest.expressionLatex || ""} />
                         </div>
                         {quest.slots.map((slot) => (
                             <div key={slot.id} className="space-y-2">

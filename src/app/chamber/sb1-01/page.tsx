@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import CellCanvas from "@/components/chamber/sb1-01/CellCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "IDENTIFICATION" | "FUNCTION" | "ORGANELLES";
 
@@ -304,7 +304,7 @@ export default function SB101Page() {
                                     {t("sb1_01.results.analysis")}
                                 </span>
                                 <div className="text-4xl text-white font-black uppercase">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

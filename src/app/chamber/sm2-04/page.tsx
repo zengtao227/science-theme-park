@@ -825,7 +825,7 @@ export default function S204Page() {
                         </span>
                         <div className="space-y-4">
                             <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words">
-                                <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                             </div>
                             <div className="text-white/60 font-black">
                                 <InlineMath math={currentQuest?.targetLatex || ""} />

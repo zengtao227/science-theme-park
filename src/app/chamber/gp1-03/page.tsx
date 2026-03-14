@@ -5,7 +5,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -425,7 +425,7 @@ export default function P103Page() {
               </div>
               <div className="text-center text-2xl text-white font-black">{renderMixedText(quest.promptLatex)}</div>
               <div className="text-center p-3 bg-white/5 border border-white/10 rounded-xl">
-                <InlineMath math={quest.expressionLatex} />
+                <KatexTextWrap math={quest.expressionLatex || ""} />
               </div>
               {quest.slots.map((slot) => (
                 <div key={slot.id} className="space-y-2">

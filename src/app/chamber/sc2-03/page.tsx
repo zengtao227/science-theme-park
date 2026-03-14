@@ -17,7 +17,7 @@ import {
   generateCombinedQuests,
   generateEliteQuests,
 } from "@/lib/sc2-03/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SC203Page() {
   const { t: getT } = useLanguage();
@@ -166,7 +166,7 @@ export default function SC203Page() {
           </div>
 
           <div className="text-neon-cyan">
-            <InlineMath math={currentQuest?.expressionLatex || ""} />
+            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
           </div>
 
           <div className="space-y-3">

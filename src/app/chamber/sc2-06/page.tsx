@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "OXIDATION_STATE" | "ELECTRON_TRANSFER" | "ELECTROCHEMISTRY";
 
@@ -470,7 +470,7 @@ export default function SC206Page() {
                 {t("sc2_06.labels.reaction")}
               </div>
               <div className="text-sm text-white/70 italic text-center">
-                <InlineMath math={currentQuest?.expressionLatex || ""} />
+                <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
               </div>
             </div>
           )}

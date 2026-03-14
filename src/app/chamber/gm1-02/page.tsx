@@ -15,7 +15,7 @@ import {
   generateDefiniteIntegralQuests,
   generateApplicationQuests,
 } from "@/lib/gm1-02/quests";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 
 
@@ -119,7 +119,7 @@ export default function GM102Page() {
               {t("gm1_02.target_title")}
             </div>
             <div className="text-white font-black text-lg">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
+              <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
             {stage === "ANTIDERIVATIVE" && (
               <div className="text-white/70 text-sm">

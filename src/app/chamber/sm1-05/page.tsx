@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "RECIPES" | "PERCENT" | "MIXTURES";
 
@@ -664,7 +664,7 @@ export default function SM105Page() {
                                 {sm1_05_t.labels.logic_framework}
                             </div>
                             <div className="text-4xl text-white font-black">
-                                <InlineMath math={currentQuest.expressionLatex} />
+                                <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                             </div>
                         </div>
 

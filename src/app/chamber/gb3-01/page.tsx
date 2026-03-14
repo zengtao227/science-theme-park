@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import DnaCanvas from "@/components/chamber/gb3-01/DnaCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "PAIRING" | "BONDS" | "SEQUENCE";
 
@@ -330,7 +330,7 @@ export default function GB301Page() {
                                     {t("gb3_01.labels.analysis")}
                                 </span>
                                 <div className="text-4xl text-white font-black uppercase">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

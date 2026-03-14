@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import CellDivisionVisualization from "@/components/chamber/sb1-03/CellDivisionVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "MITOSIS" | "MEIOSIS_I" | "MEIOSIS_II";
 
@@ -313,7 +313,7 @@ export default function SB103Page() {
                                     {t("sb1_03.labels.chromosome_count")}
                                 </span>
                                 <div className="text-3xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

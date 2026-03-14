@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S205_PowerCanvas, { type PowerVisual } from "@/components/chamber/sm2-05/PowerCanvas";
@@ -720,7 +720,7 @@ export default function S205Page() {
             monitorContent={
                 <div className="w-full flex flex-col items-center justify-center gap-4 p-4">
                     <div className="text-center text-gray-300 text-sm">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
                     <div className="mt-2 text-center">
                         <button
@@ -744,7 +744,7 @@ export default function S205Page() {
                     </div>
                     <div className="mt-8 p-8 bg-white/[0.03] border border-white/10 rounded-2xl inline-block backdrop-blur-sm shadow-2xl">
                         <div className="text-5xl text-white font-black tracking-widest">
-                            <InlineMath math={currentQuest?.expressionLatex || ""} />
+                            <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                         </div>
                         <div className="mt-4 text-white/90 font-mono text-[10px] tracking-[0.4em] uppercase">
                             Target_Pattern: <InlineMath math={currentQuest?.targetLatex || ""} />

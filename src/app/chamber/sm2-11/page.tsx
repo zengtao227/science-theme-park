@@ -5,7 +5,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import SequenceVisualization from "@/components/chamber/sm2-11/SequenceVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -288,7 +288,7 @@ export default function SM211Page() {
                   {t("sm2_11.labels.sequence_data")}
                 </span>
                 <div className="text-4xl text-white font-black">
-                  <InlineMath math={currentQuest?.expressionLatex || ""} />
+                  <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "IDEAL_GAS" | "BOYLES_LAW" | "CHARLES_LAW";
 
@@ -496,7 +496,7 @@ export default function GP201Page() {
                     </div>
 
                     <div className="text-cyan-300">
-                        <InlineMath math={currentQuest?.expressionLatex || ""} />
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                     </div>
 
                     <div className="space-y-3">

@@ -24,7 +24,7 @@ import 'katex/dist/katex.min.css';
 import { EnergyDiagram } from '@/components/sc2-07/EnergyDiagram';
 import { HessCycleView } from '@/components/sc2-07/HessCycleView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SC207Page() {
   const { completeStage } = useAppStore();

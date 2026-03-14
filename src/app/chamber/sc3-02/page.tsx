@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "HYDROCARBONS" | "FUNCTIONAL_GROUPS" | "ISOMERS";
 
@@ -320,7 +320,7 @@ export default function SC302Page() {
                                     {t("sc3_02.labels.molecule_display")}
                                 </span>
                                 <div className="text-4xl text-white font-black">
-                                    <InlineMath math={currentQuest?.expressionLatex || ""} />
+                                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                                 </div>
                             </div>
                         </div>

@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect } from "react";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -165,7 +165,7 @@ export default function P301Page() {
           <div className="mt-6 p-4 bg-white/[0.01] border border-white/5 rounded-xl">
             <div className="text-[9px] uppercase tracking-[0.3em] text-white/90 font-black mb-2">{t("sp3_08.labels.formula")}</div>
             <div className="text-sm text-white/60 font-mono">
-              <InlineMath math={currentQuest?.expressionLatex || ""} />
+              <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
           </div>
 

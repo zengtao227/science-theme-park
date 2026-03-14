@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import clsx from "clsx";
 import { HelpCircle, BrainCircuit } from "lucide-react";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type MonitorPoint = { x: number; y: number };
 

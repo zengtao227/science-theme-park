@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { InlineMath } from "react-katex";
@@ -287,7 +287,7 @@ export default function GP1_02_RelativityLab() {
 
                 <div className="text-center text-2xl text-white font-black">{renderMixedText(currentQuest.promptLatex)}</div>
                 <div className="text-center p-3 bg-white/5 border border-white/10 rounded-xl">
-                    <InlineMath math={currentQuest.expressionLatex} />
+                    <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
                 </div>
 
                 <div className="space-y-2">
