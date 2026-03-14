@@ -127,3 +127,42 @@ export const renderMixedText = (text: string | undefined | null, className: stri
         </>
     );
 };
+
+/**
+ * Replaces KaTeX's non-breaking spaces (U+00A0) with regular spaces
+ * inside .mord.text elements of the given container, enabling CSS word-wrap.
+ */
+function replaceKatexNbsp(el: HTMLElement) {
+    const textSpans = el.querySelectorAll('.katex .mord.text .mord');
+    textSpans.forEach((span) => {
+        const walker = document.createTreeWalker(span, NodeFilter.SHOW_TEXT);
+        let node: Text | null;
+        while ((node = walker.nextNode() as Text | null)) {
+            if (node.nodeValue && node.nodeValue.includes('\u00a0')) {
+                node.nodeValue = node.nodeValue.replace(/\u00a0/g, ' ');
+            }
+        }
+    });
+}
+
+/**
+ * Wrapper component that renders <InlineMath> with automatic text wrapping.
+ * Replaces KaTeX's non-breaking spaces in \text{} blocks with regular spaces,
+ * allowing CSS word-wrap to work.
+ *
+ * Pair with the .katex-text-wrap CSS class in globals.css.
+ */
+export function KatexTextWrap({ math, className = '' }: { math: string; className?: string }) {
+    const ref = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        if (ref.current) replaceKatexNbsp(ref.current);
+    });
+
+    return (
+        <div ref={ref} className={`katex-text-wrap ${className}`}>
+            <InlineMath math={math} />
+        </div>
+    );
+}
+

@@ -4,7 +4,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useCallback } from "react";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -780,11 +780,7 @@ export default function S204Page() {
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {t("sm2_04.target_title")}
                         </div>
-                        <div className="text-white font-black text-xl max-w-full py-1 whitespace-normal break-words katex-text-wrap">
-                            <span className="inline-block">
-                                <InlineMath math={currentQuest?.expressionLatex || ""} />
-                            </span>
-                        </div>
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} className="text-white font-black text-xl max-w-full py-1" />
                         <div className="text-white/70 font-mono text-sm whitespace-pre-wrap break-words">
                             {renderMixedText(currentQuest?.promptLatex || "")}
                           </div>

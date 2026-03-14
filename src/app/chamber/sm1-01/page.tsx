@@ -7,7 +7,7 @@ import { useEffect, useCallback, useMemo } from "react";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { renderMixedText } from "@/lib/latex-utils";
+import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/sm1-01/GeometryCanvas";
@@ -1005,11 +1005,7 @@ export default function S101Page() {
                         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
                             {sm1_01_t.target_title}
                         </div>
-                        <div className="text-white font-black text-xl max-w-full py-1 whitespace-normal break-words katex-text-wrap">
-                            <span className="inline-block">
-                                <InlineMath math={currentQuest?.expressionLatex || ""} />
-                            </span>
-                        </div>
+                        <KatexTextWrap math={currentQuest?.expressionLatex || ""} className="text-white font-black text-xl max-w-full py-1" />
                         <div className="text-white/70 font-mono text-sm break-words">
                             {renderMixedText(currentQuest?.promptLatex || "")}
                         </div>
@@ -1053,9 +1049,7 @@ export default function S101Page() {
                             {sm1_01_t.target_title}
                         </span>
                         <div className="space-y-4">
-                            <div className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2] whitespace-normal break-words katex-text-wrap">
-                                <InlineMath math={currentQuest?.expressionLatex || ""} />
-                            </div>
+                            <KatexTextWrap math={currentQuest?.expressionLatex || ""} className="text-white font-black text-[clamp(1.2rem,3.8vw,3.3rem)] leading-[1.2]" />
                             <div className="text-white/60 font-black">
                                 <InlineMath math={currentQuest?.targetLatex || ""} />
                             </div>

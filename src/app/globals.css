@@ -131,11 +131,13 @@ body {
   }
 }
 
-/* Allow KaTeX \text{} to wrap in monitor panel and task cards */
-.katex-text-wrap .katex {
-  white-space: normal;
-}
+/* Allow KaTeX \text{} to wrap in monitor panel and task cards.
+   Works together with the katex-text-wrap JS logic that replaces
+   non-breaking spaces (inserted by KaTeX) with regular spaces. */
 .katex-text-wrap .katex .mord.text {
   white-space: normal;
   word-break: break-word;
+}
+.katex-text-wrap .katex .katex-html > .base {
+  white-space: normal;
 }
