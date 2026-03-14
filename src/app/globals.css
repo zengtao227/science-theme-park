@@ -131,10 +131,3 @@ body {
   }
 }
 
-/* Allow KaTeX \text{} to wrap in monitor panel and task cards.
-   Works together with the KatexTextWrap component that replaces
-   non-breaking spaces (inserted by KaTeX) with regular spaces. */
-.katex-text-wrap .katex .mord.text {
-  white-space: normal;
-  word-break: break-word;
-}

@@ -129,40 +129,82 @@ export const renderMixedText = (text: string | undefined | null, className: stri
 };
 
 /**
- * Replaces KaTeX's non-breaking spaces (U+00A0) with regular spaces
- * inside .mord.text elements of the given container, enabling CSS word-wrap.
+ * Parses a LaTeX expression string and splits it into text segments
+ * (from \text{...}) and math segments (everything else).
  */
-function replaceKatexNbsp(el: HTMLElement) {
-    const textSpans = el.querySelectorAll('.katex .mord.text .mord');
-    textSpans.forEach((span) => {
-        const walker = document.createTreeWalker(span, NodeFilter.SHOW_TEXT);
-        let node: Text | null;
-        while ((node = walker.nextNode() as Text | null)) {
-            if (node.nodeValue && node.nodeValue.includes('\u00a0')) {
-                node.nodeValue = node.nodeValue.replace(/\u00a0/g, ' ');
+function parseLatexSegments(latex: string): Array<{ type: 'text' | 'math'; content: string }> {
+    const segments: Array<{ type: 'text' | 'math'; content: string }> = [];
+    let i = 0;
+    let currentMath = '';
+
+    while (i < latex.length) {
+        // Check for \text{ (handles both \text{ and \\text{ from template literals)
+        if (latex.startsWith('\\text{', i)) {
+            if (currentMath.trim()) {
+                segments.push({ type: 'math', content: currentMath.trim() });
             }
+            currentMath = '';
+
+            i += 6; // Skip past \text{
+
+            // Find matching closing brace, handling nested braces
+            let depth = 1;
+            let textContent = '';
+            while (i < latex.length && depth > 0) {
+                if (latex[i] === '{') depth++;
+                else if (latex[i] === '}') {
+                    depth--;
+                    if (depth === 0) break;
+                }
+                textContent += latex[i];
+                i++;
+            }
+            i++; // Skip closing }
+
+            if (textContent) {
+                segments.push({ type: 'text', content: textContent });
+            }
+        } else {
+            currentMath += latex[i];
+            i++;
         }
-    });
+    }
+
+    if (currentMath.trim()) {
+        segments.push({ type: 'math', content: currentMath.trim() });
+    }
+
+    return segments;
 }
 
 /**
- * Wrapper component that renders <InlineMath> with automatic text wrapping.
- * Replaces KaTeX's non-breaking spaces in \text{} blocks with regular spaces,
- * allowing CSS word-wrap to work.
+ * Renders a LaTeX expression with automatic text wrapping.
  *
- * Pair with the .katex-text-wrap CSS class in globals.css.
+ * Parses the LaTeX string to split \text{...} blocks (rendered as plain
+ * wrappable HTML) from math segments (rendered via <InlineMath>).
+ * This avoids fighting KaTeX's internal CSS layout.
  */
 export function KatexTextWrap({ math, className = '' }: { math: string; className?: string }) {
-    const ref = React.useRef<HTMLDivElement>(null);
+    const segments = parseLatexSegments(math);
 
-    React.useEffect(() => {
-        if (ref.current) replaceKatexNbsp(ref.current);
-    });
+    // If no \text{} blocks found, fall back to plain InlineMath
+    if (segments.length === 1 && segments[0].type === 'math') {
+        return (
+            <span className={className}>
+                <InlineMath math={math} />
+            </span>
+        );
+    }
 
     return (
-        <div ref={ref} className={`katex-text-wrap ${className}`}>
-            <InlineMath math={math} />
-        </div>
+        <span className={className} style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
+            {segments.map((seg, i) =>
+                seg.type === 'text'
+                    ? <span key={i}>{seg.content}</span>
+                    : <InlineMath key={i} math={seg.content} />
+            )}
+        </span>
     );
 }
+
 
