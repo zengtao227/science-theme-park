@@ -200,9 +200,9 @@ export default function RatioCanvas({ mode, quest, language, translations }: Rat
         );
     };
 
-    if (mode === "RECIPES") return <div className="w-full h-[400px] flex items-center justify-center p-8">{renderRecipes()}</div>;
-    if (mode === "PERCENT") return <div className="w-full h-[400px] flex items-center justify-center p-8">{renderPercent()}</div>;
-    if (mode === "MIXTURES") return <div className="w-full h-[400px] flex items-center justify-center p-8">{renderMixtures()}</div>;
+    if (mode === "RECIPES") return <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8">{renderRecipes()}</div>;
+    if (mode === "PERCENT") return <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8">{renderPercent()}</div>;
+    if (mode === "MIXTURES") return <div className="w-full h-full min-h-[300px] flex items-center justify-center p-8">{renderMixtures()}</div>;
 
     return null;
 }
