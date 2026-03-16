@@ -352,6 +352,9 @@ export default function ChamberLayout({
 
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
                     <ConceptIcon code={moduleCode} className="w-8 h-8 text-white mb-1" />
+                    <div className="text-[10px] font-black tracking-[0.35em] uppercase text-white/60 text-nowrap">
+                        {moduleCode}
+                    </div>
                     <div className="text-lg font-black tracking-[0.25em] uppercase text-white shadow-neon text-nowrap">
                         {title}
                     </div>

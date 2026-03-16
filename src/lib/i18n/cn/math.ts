@@ -1029,7 +1029,7 @@ export const cnMath = {    em1_01: {
 ,
     sm1_04: {
         back: "返回枢纽",
-        title: "等式平衡",
+        title: "方程平衡",
         difficulty: {
             basic: "基础", core: "核心", advanced: "进阶", elite: "精英"
         },
@@ -1038,8 +1038,8 @@ export const cnMath = {    em1_01: {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
-        monitor_title: "等式监视器",
-        footer_left: "等式平衡 // 节点：巴塞尔",
+        monitor_title: "方程监视器",
+        footer_left: "方程平衡 // 节点：巴塞尔",
         basel_scenario: "巴塞尔等式场景",
         scenario_title: "场景说明",
         objective_title: "任务目标",
