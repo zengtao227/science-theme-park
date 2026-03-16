@@ -913,6 +913,13 @@ export default function S101Page() {
         { id: "VOLUMES", label: sm1_01_t.stages.volumes },
         { id: "COMPLEX", label: sm1_01_t.stages.complex },
     ];
+    const difficultyLabelMap: Record<Difficulty, string> = {
+        BASIC: sm1_01_t.difficulty.basic,
+        CORE: sm1_01_t.difficulty.core,
+        ADVANCED: sm1_01_t.difficulty.advanced,
+        ELITE: sm1_01_t.difficulty.elite,
+    };
+    const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
 
     const userAnswer = inputs['A'] || inputs['V'] || inputs['d'] || inputs['SA'] || inputs['h'] || inputs['r'] || inputs['P'];
     const parsedAnswer = userAnswer ? parseFloat(userAnswer) : undefined;
@@ -1026,7 +1033,7 @@ export default function S101Page() {
 
                     <div className="space-y-2">
                         <div className="text-white/70 text-[10px] font-black tracking-[0.3em] uppercase">
-                            {difficulty}{" // "}S1.01{" // "}{sm1_01_t.stages[stage.toLowerCase() as keyof typeof sm1_01_t.stages]}
+                            {difficultyLabel}{" // "}S1.01{" // "}{sm1_01_t.stages[stage.toLowerCase() as keyof typeof sm1_01_t.stages]}
                         </div>
                     </div>
                 </>

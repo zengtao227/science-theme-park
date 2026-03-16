@@ -730,6 +730,13 @@ export default function S204Page() {
         { id: "SIMILAR_TRIANGLES", label: t("sm2_04.stages.similar_triangles") },
         { id: "MISSION", label: t("sm2_04.mission.title") || t("sm2_04.stages.application") },
     ];
+    const difficultyLabelMap: Record<Difficulty, string> = {
+        BASIC: t("sm2_04.difficulty.basic"),
+        CORE: t("sm2_04.difficulty.core"),
+        ADVANCED: t("sm2_04.difficulty.advanced"),
+        ELITE: t("sm2_04.difficulty.elite"),
+    };
+    const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
 
     return (
         <ChamberLayout
@@ -801,7 +808,7 @@ export default function S204Page() {
 
                     <div className="space-y-2">
                         <div className="text-white/70 text-[10px] font-black tracking-[0.3em] uppercase">
-                            {difficulty}{" // "}S2.04{" // "}{stages.find(s => s.id === stage)?.label}
+                            {difficultyLabel}{" // "}S2.04{" // "}{stages.find(s => s.id === stage)?.label}
                         </div>
                     </div>
                 </>

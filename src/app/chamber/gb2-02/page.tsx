@@ -57,11 +57,25 @@ export default function GB202Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const difficultyLabelMap: Record<string, string> = {
+    BASIC: gb2_02_t.basic,
+    CORE: gb2_02_t.core,
+    ADVANCED: gb2_02_t.advanced,
+    ELITE: gb2_02_t.elite,
+  };
+  const stageLabelMap: Record<string, string> = {
+    HORMONE_IDENTIFICATION: gb2_02_t.hormone_identification,
+    FEEDBACK_MECHANISMS: gb2_02_t.feedback_mechanisms,
+    CLINICAL_APPLICATIONS: gb2_02_t.clinical_applications,
+  };
+  const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
+  const stageLabel = stageLabelMap[stage] || stage;
+
   // Get scenario content based on stage
   const getScenarioContent = () => {
     if (currentQuest?.baselContext) {
       return {
-        title: `${stage} - ${difficulty}`,
+        title: `${stageLabel} - ${difficultyLabel}`,
         description: currentQuest?.baselContext
       };
     }

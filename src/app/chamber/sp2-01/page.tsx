@@ -69,6 +69,20 @@ export default function SP201CircuitBasics() {
     );
   }
 
+  const difficultyLabelMap: Record<string, string> = {
+    BASIC: sp2_01_t.difficulty.basic,
+    CORE: sp2_01_t.difficulty.core,
+    ADVANCED: sp2_01_t.difficulty.advanced,
+    ELITE: sp2_01_t.difficulty.elite,
+  };
+  const stageLabelMap: Record<string, string> = {
+    COMPONENTS: sp2_01_t.stages.components,
+    CIRCUITS: sp2_01_t.stages.simple_circuits,
+    DIAGRAMS: sp2_01_t.stages.circuit_diagrams,
+  };
+  const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
+  const stageLabel = stageLabelMap[stage] || stage;
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -142,7 +156,7 @@ export default function SP201CircuitBasics() {
           >
             <div className="mb-4">
               <div className="text-white/50 text-sm mb-2">
-                Quest {currentQuest?.id} | {difficulty} | {stage}
+                Quest {currentQuest?.id} | {difficultyLabel} | {stageLabel}
               </div>
               <div className="text-white text-lg mb-4">{renderMixedText(currentQuest?.promptLatex || "")}</div>
               
