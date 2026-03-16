@@ -13,6 +13,7 @@
 - Prefer minimal, reversible edits.
 - Avoid destructive actions unless explicitly requested.
 - Validate changes with project checks before commit.
+- After any code changes, push to GitHub.
 
 ## Rendering Hard Rules
 - Rule 1: `promptLatex` must be rendered via `renderMixedText`, and new modules must not use `\text{${t(...)}}` wrappers. Use `t(...)` directly for prompt text.

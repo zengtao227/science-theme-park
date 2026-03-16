@@ -9,7 +9,7 @@ import ConceptIcon from "@/components/ConceptIcon";
 import ResizableLayout from "@/components/layout/ResizableLayout";
 import { useAppStore, type HistoryEntry } from "@/lib/store";
 import { Difficulty } from "@/hooks/useQuestManager";
-import { translations as i18n } from "@/lib/i18n";
+import { translations as i18n, useLanguage } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import SuccessEureka from "@/components/shared/SuccessEureka";
@@ -84,6 +84,7 @@ export default function ChamberLayout({
     onAiDiagnosisRequested
 }: ChamberLayoutProps) {
     const { currentLanguage, setLanguage, history, addHistory } = useAppStore();
+    const { t } = useLanguage();
     const common = i18n[currentLanguage].common;
     const locale = currentLanguage === "CN" ? "zh-CN" : currentLanguage === "DE" ? "de-DE" : "en-US";
     const historyToggleLabel = typeof common?.history_toggle === "string" && common.history_toggle.trim().length > 0
@@ -139,6 +140,29 @@ export default function ChamberLayout({
     }, [moduleCode, history]);
 
     const allPrereqsMet = useMemo(() => prerequisites.every(p => p.isCompleted), [prerequisites]);
+    const missingPrereqCodes = useMemo(
+        () => prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode),
+        [prerequisites]
+    );
+    const missingPrereqLabel = missingPrereqCodes.join(", ");
+
+    const getDifficultyLabel = useCallback((value?: string) => {
+        if (!value) return t("common.ai_recommendation_difficulty_unknown");
+        const key = value.toLowerCase();
+        const moduleLabel = translations?.difficulty?.[key];
+        if (moduleLabel) return moduleLabel;
+        const commonLabel = common?.difficulty?.[key];
+        if (commonLabel) return commonLabel;
+        return t("common.ai_recommendation_difficulty_unknown");
+    }, [common, t, translations]);
+
+    const getRecommendationReason = useCallback((reason?: string) => {
+        if (!reason) return t("common.ai_recommendation_reason_unknown");
+        const key = `common.ai_recommendation_reason.${reason}`;
+        const translated = t(key);
+        if (translated === key) return t("common.ai_recommendation_reason_unknown");
+        return translated;
+    }, [t]);
 
     useEffect(() => {
         stageStartRef.current = Date.now();
@@ -535,12 +559,7 @@ export default function ChamberLayout({
                                             </div>
                                             {!allPrereqsMet && (
                                                 <p className="text-[10px] text-white/60 leading-relaxed italic mt-2">
-                                                    {currentLanguage === "CN"
-                                                        ? `建议先完成 ${prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode).join(", ")} 以获得最佳学习体验。`
-                                                        : currentLanguage === "DE"
-                                                            ? `Empfehlung: Schließen Sie ${prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode).join(", ")} zuerst ab.`
-                                                            : `Recommended: Complete ${prerequisites.filter(p => !p.isCompleted).map(p => p.moduleCode).join(", ")} first for the optimal experience.`
-                                                    }
+                                                    {t("common.prereq_recommendation", { modules: missingPrereqLabel })}
                                                 </p>
                                             )}
                                         </HUDAlert>
@@ -549,24 +568,21 @@ export default function ChamberLayout({
                                     {adaptiveRecommendation && adaptiveRecommendation.recommendedDifficulty !== difficulty && (
                                         <HUDAlert
                                             type="info"
-                                            title={currentLanguage === "CN" ? "AI 难度建议" : currentLanguage === "DE" ? "AI-SCHWIERIGKEITSEMPFEHLUNG" : "AI DIFFICULTY ADAPTATION"}
+                                            title={t("common.ai_recommendation_title")}
                                             className="mb-6 border-cyan-500/50 bg-cyan-500/5"
                                         >
                                             <div className="flex flex-col gap-1">
                                                 <div className="text-[11px] font-bold text-cyan-300">
-                                                    {currentLanguage === "CN" ? "推荐切换至" : currentLanguage === "DE" ? "Empfohlen:" : "Recommended:"} {adaptiveRecommendation.recommendedDifficulty}
+                                                    {t("common.ai_recommendation_switch_to", { difficulty: getDifficultyLabel(adaptiveRecommendation.recommendedDifficulty) })}
                                                 </div>
                                                 <div className="text-[9px] text-white/60">
-                                                    {adaptiveRecommendation.reason === 'HIGH_ACCURACY_DETECTED' && (currentLanguage === "CN" ? "检测到极高正确率，您可以尝试更高难度。" : "High accuracy detected. Challenge yourself with a higher level.")}
-                                                    {adaptiveRecommendation.reason === 'MASTERY_DETECTED' && (currentLanguage === "CN" ? "已精通当前级别，建议进阶。" : "Mastery detected. Time to move up.")}
-                                                    {adaptiveRecommendation.reason === 'REMEDIATION_REQUIRED' && (currentLanguage === "CN" ? "检测到挑战较大，建议先巩固基础。" : "Multiple errors detected. Let's build a stronger foundation first.")}
-                                                    {adaptiveRecommendation.reason === 'STABLE_PERFORMANCE' && (currentLanguage === "CN" ? "表现稳定，可以根据需要调整。" : "Performance is stable. Adjust as you feel comfortable.") || adaptiveRecommendation.reason}
+                                                    {getRecommendationReason(adaptiveRecommendation.reason)}
                                                 </div>
                                                 <button
                                                     onClick={() => onDifficultyChange(adaptiveRecommendation.recommendedDifficulty as Difficulty)}
                                                     className="mt-2 self-start px-3 py-1 bg-cyan-500/20 hover:bg-cyan-500/40 border border-cyan-500/50 text-cyan-300 text-[9px] font-black uppercase tracking-widest rounded"
                                                 >
-                                                    {currentLanguage === "CN" ? "应用建议" : currentLanguage === "DE" ? "ÜBERNEHMEN" : "APPLY"}
+                                                    {t("common.ai_recommendation_apply")}
                                                 </button>
                                             </div>
                                         </HUDAlert>

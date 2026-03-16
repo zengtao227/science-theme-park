@@ -57,7 +57,23 @@ export const cnCommon = {
         three_d_reset: "重置视角",
         three_d_help: "使用说明",
         three_d_controls_title: "3D 控制说明",
-        three_d_hint: "提示：针对3D模型，你可以从任意角度观察细节。"
+        three_d_hint: "提示：针对3D模型，你可以从任意角度观察细节。",
+        prereq_recommendation: "建议先完成 {modules} 以获得最佳学习体验。",
+        ai_recommendation_title: "AI 难度建议",
+        ai_recommendation_switch_to: "推荐切换至 {difficulty}",
+        ai_recommendation_apply: "应用建议",
+        ai_recommendation_reason_unknown: "已提供难度建议，可按需调整。",
+        ai_recommendation_difficulty_unknown: "未知难度",
+        ai_recommendation_reason: {
+            DEFAULT_CALIBRATION_PENDING: "新用户校准中，先从推荐难度开始。",
+            HIGH_ACCURACY_DETECTED: "检测到极高正确率，您可以尝试更高难度。",
+            MASTERY_DETECTED: "已精通当前级别，建议进阶。",
+            REMEDIATION_REQUIRED: "检测到挑战较大，建议先巩固基础。",
+            STABLE_PERFORMANCE: "表现稳定，可以根据需要调整。",
+            MAINTAINING_MAX_LEVEL: "已稳定保持最高等级，可继续挑战。",
+            DIFFICULTY_SPIKE_DETECTED: "难度陡升，建议暂时下调。",
+            RECALIBRATING_BASICS: "需要重新校准基础，建议回到核心。"
+        }
     },
     home: {
         title: "理科主题乐园",

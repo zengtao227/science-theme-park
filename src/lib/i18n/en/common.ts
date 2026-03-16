@@ -57,7 +57,23 @@ export const enCommon = {
         three_d_reset: "Reset view",
         three_d_help: "Help",
         three_d_controls_title: "3D CONTROLS",
-        three_d_hint: "Hint: Observe the 3D model from any angle."
+        three_d_hint: "Hint: Observe the 3D model from any angle.",
+        prereq_recommendation: "Recommended: Complete {modules} first for the optimal experience.",
+        ai_recommendation_title: "AI DIFFICULTY ADAPTATION",
+        ai_recommendation_switch_to: "Recommended: {difficulty}",
+        ai_recommendation_apply: "APPLY",
+        ai_recommendation_reason_unknown: "Recommendation available. Adjust as you feel comfortable.",
+        ai_recommendation_difficulty_unknown: "Unknown level",
+        ai_recommendation_reason: {
+            DEFAULT_CALIBRATION_PENDING: "New profile detected. Calibrating difficulty.",
+            HIGH_ACCURACY_DETECTED: "High accuracy detected. Challenge yourself with a higher level.",
+            MASTERY_DETECTED: "Mastery detected. Time to move up.",
+            REMEDIATION_REQUIRED: "Multiple errors detected. Let's build a stronger foundation first.",
+            STABLE_PERFORMANCE: "Performance is stable. Adjust as you feel comfortable.",
+            MAINTAINING_MAX_LEVEL: "Top level maintained. Keep pushing at this difficulty.",
+            DIFFICULTY_SPIKE_DETECTED: "Difficulty spike detected. Consider stepping down briefly.",
+            RECALIBRATING_BASICS: "Recalibrating fundamentals. Consider core practice."
+        }
     },
     home: {
         title: "SCIENCE THEME PARK",

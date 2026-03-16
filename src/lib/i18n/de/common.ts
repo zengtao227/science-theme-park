@@ -57,7 +57,23 @@ export const deCommon = {
         three_d_reset: "Blickwinkel zurücksetzen",
         three_d_help: "Hilfe",
         three_d_controls_title: "3D-STEUERUNG",
-        three_d_hint: "Hinweis: Das 3D-Modell kann aus jedem Winkel betrachtet werden."
+        three_d_hint: "Hinweis: Das 3D-Modell kann aus jedem Winkel betrachtet werden.",
+        prereq_recommendation: "Empfehlung: Schließen Sie {modules} zuerst ab, um die beste Lernerfahrung zu erhalten.",
+        ai_recommendation_title: "AI-SCHWIERIGKEITSEMPFEHLUNG",
+        ai_recommendation_switch_to: "Empfohlen: {difficulty}",
+        ai_recommendation_apply: "ÜBERNEHMEN",
+        ai_recommendation_reason_unknown: "Empfehlung verfügbar. Passe bei Bedarf an.",
+        ai_recommendation_difficulty_unknown: "Unbekannte Stufe",
+        ai_recommendation_reason: {
+            DEFAULT_CALIBRATION_PENDING: "Neues Profil erkannt. Die Schwierigkeit wird kalibriert.",
+            HIGH_ACCURACY_DETECTED: "Hohe Genauigkeit erkannt. Probiere eine höhere Stufe.",
+            MASTERY_DETECTED: "Beherrschung erkannt. Zeit für die nächste Stufe.",
+            REMEDIATION_REQUIRED: "Mehrere Fehler erkannt. Wir festigen zuerst die Grundlagen.",
+            STABLE_PERFORMANCE: "Leistung stabil. Passe bei Bedarf an.",
+            MAINTAINING_MAX_LEVEL: "Höchstes Niveau gehalten. Bleibe auf dieser Stufe.",
+            DIFFICULTY_SPIKE_DETECTED: "Schwierigkeitsanstieg erkannt. Erwäge kurz zurückzuschalten.",
+            RECALIBRATING_BASICS: "Grundlagen werden neu kalibriert. Empfohlen: Kernstufe."
+        }
     },
     home: {
         title: "WISSENSCHAFTSPARK",
