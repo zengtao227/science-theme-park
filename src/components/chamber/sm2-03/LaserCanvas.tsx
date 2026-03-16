@@ -53,16 +53,8 @@ export default function LaserCanvas({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hitVisible] = useState(false);
 
-  const originX = 60;
-  const originY = 700; // Inverted Y, origin near bottom-left
   const maxX = 30;  // 30 km — keeps targets near center
   const maxY = 30;  // 30 CHF
-
-  // Convert grid coordinates to canvas coordinates
-  const toCanvas = (x: number, y: number) => ({
-    cx: originX + (x / maxX) * (canvasRef.current?.width ? canvasRef.current.width - 120 : 600),
-    cy: originY - (y / maxY) * (canvasRef.current?.height ? canvasRef.current.height - 150 : 600),
-  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -73,10 +65,35 @@ export default function LaserCanvas({
     let raf = 0;
     const render = () => {
       const targetPos = { x: targetX ?? 0, y: targetY ?? 0 };
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      const cssWidth = rect.width || 800;
+      const cssHeight = rect.height || 800;
+      const nextWidth = Math.max(1, Math.round(cssWidth * dpr));
+      const nextHeight = Math.max(1, Math.round(cssHeight * dpr));
+      if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
+        canvas.width = nextWidth;
+        canvas.height = nextHeight;
+      }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const padding = { left: 60, right: 40, top: 40, bottom: 60 };
+      const plotWidth = Math.max(1, cssWidth - padding.left - padding.right);
+      const plotHeight = Math.max(1, cssHeight - padding.top - padding.bottom);
+      const scale = Math.min(plotWidth / maxX, plotHeight / maxY);
+      const originX = padding.left;
+      const originY = cssHeight - padding.bottom;
+      const topY = originY - maxY * scale;
+      const rightX = originX + maxX * scale;
+
+      const toCanvas = (x: number, y: number) => ({
+        cx: originX + x * scale,
+        cy: originY - y * scale,
+      });
 
       // DRAWING LOGIC FOR PRICING
       ctx.fillStyle = "#000005";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, cssWidth, cssHeight);
 
       // 1. GRID
       const step = maxX / 10;
@@ -86,14 +103,14 @@ export default function LaserCanvas({
         const { cx } = toCanvas(i, 0);
         ctx.beginPath();
         ctx.moveTo(cx, originY);
-        ctx.lineTo(cx, toCanvas(0, maxY).cy);
+        ctx.lineTo(cx, topY);
         ctx.stroke();
       }
       for (let i = 0; i <= maxY; i += step) {
         const { cy } = toCanvas(0, i);
         ctx.beginPath();
         ctx.moveTo(originX, cy);
-        ctx.lineTo(toCanvas(maxX, 0).cx, cy);
+        ctx.lineTo(rightX, cy);
         ctx.stroke();
       }
 
@@ -102,11 +119,11 @@ export default function LaserCanvas({
       ctx.lineWidth = 2;
       ctx.beginPath(); // Y Axis
       ctx.moveTo(originX, originY + 20);
-      ctx.lineTo(originX, toCanvas(0, maxY).cy - 20);
+      ctx.lineTo(originX, topY - 20);
       ctx.stroke();
       ctx.beginPath(); // X Axis
       ctx.moveTo(originX - 20, originY);
-      ctx.lineTo(toCanvas(maxX, 0).cx + 20, originY);
+      ctx.lineTo(rightX + 20, originY);
       ctx.stroke();
 
       // Tick labels
@@ -126,9 +143,9 @@ export default function LaserCanvas({
       ctx.fillStyle = palette.white;
       ctx.font = "bold 13px monospace";
       ctx.textAlign = "center";
-      ctx.fillText("km", toCanvas(maxX, 0).cx + 10, originY + 36);
+      ctx.fillText("km", rightX + 10, originY + 36);
       ctx.textAlign = "right";
-      ctx.fillText("CHF", originX - 6, toCanvas(0, maxY).cy - 12);
+      ctx.fillText("CHF", originX - 6, topY - 12);
       ctx.textAlign = "start"; // reset
 
       // 3. PLAN A (Static/Target) - The Cyan Line
