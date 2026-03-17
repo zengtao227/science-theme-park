@@ -1602,7 +1602,12 @@ export const enMath = {    em1_01: {
             solve_diagonal: "Calculate diagonal",
             explorer_mission: "PYTHAGOREAN EXPLORER: Adjust scale and witness similarity constants.",
             fluid_title: "Fluid Volume Conservation",
-            fluid_desc: "Tilt to see A^{2} + B^{2} flow into C^{2}. This visualizes area conservation: the geometry sum remains constant."
+            fluid_desc: "Tilt to see A^{2} + B^{2} flow into C^{2}. This visualizes area conservation: the geometry sum remains constant.",
+            diagonal_unknown: "d = ?",
+            distance_unknown: "d = ?",
+            delta_x: "Δx = {value}",
+            delta_y: "Δy = {value}",
+            delta_z: "Δz = {value}"
         },
         sqrt: {
             perfect: "Perfect squares",

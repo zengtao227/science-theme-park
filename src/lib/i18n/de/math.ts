@@ -1628,7 +1628,12 @@ export const deMath = {    em1_01: {
             solve_diagonal: "Raumdiagonale berechnen",
             explorer_mission: "PYTHAGORAS-ENTDECKER: Skalierung anpassen und Ähnlichkeitskonstanten beobachten.",
             fluid_title: "Fluid-Volumenerhaltung",
-            fluid_desc: "Kippen Sie die Behälter, um zu sehen, wie $A^{2} + B^{2}$ exakt $C^{2}$ füllen. Dies visualisiert die Flächenerhaltung."
+            fluid_desc: "Kippen Sie die Behälter, um zu sehen, wie $A^{2} + B^{2}$ exakt $C^{2}$ füllen. Dies visualisiert die Flächenerhaltung.",
+            diagonal_unknown: "d = ?",
+            distance_unknown: "d = ?",
+            delta_x: "Δx = {value}",
+            delta_y: "Δy = {value}",
+            delta_z: "Δz = {value}"
         },
         sqrt: {
             perfect: "Quadratzahlen",

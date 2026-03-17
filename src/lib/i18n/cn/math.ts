@@ -1586,7 +1586,12 @@ export const cnMath = {    em1_01: {
             solve_diagonal: "计算对角线长度",
             explorer_mission: "勾股探索：调整缩放比例，见证几何相似性的不变性。",
             fluid_title: "流体面积守恒实验",
-            fluid_desc: "倾斜容器观察 $A^{2} + B^{2}$ 的液体如何精准填满 $C^{2}$。这直观证明了面积之和的守恒性。"
+            fluid_desc: "倾斜容器观察 $A^{2} + B^{2}$ 的液体如何精准填满 $C^{2}$。这直观证明了面积之和的守恒性。",
+            diagonal_unknown: "d = ?",
+            distance_unknown: "d = ?",
+            delta_x: "Δx = {value}",
+            delta_y: "Δy = {value}",
+            delta_z: "Δz = {value}"
         },
         sqrt: {
             perfect: "完全平方数",

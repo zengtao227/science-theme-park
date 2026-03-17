@@ -5,6 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Line, Grid, Float, Billboard } from "@react-three/drei";
 import * as THREE from "three";
 import { normalizePlainMathNotation } from "@/lib/latex-utils";
+import { useLanguage } from "@/lib/i18n";
 
 interface TriangleCanvasProps {
   a: number;
@@ -405,7 +406,7 @@ function Space3D({ a, b, c }: SpaceCanvasProps) {
 
       <Billboard position={[a / 2, b + 1.8, c / 2]}>
         <Text fontSize={0.6} color="#ff0080" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
-          d = ?
+          {t("sm2_02.pythagoras.diagonal_unknown")}
         </Text>
       </Billboard>
     </group>
@@ -419,6 +420,7 @@ interface DistanceCanvasProps {
 
 // 3D Coordinate Distance with Voxel Path
 function Distance3D({ p1, p2 }: DistanceCanvasProps) {
+  const { t } = useLanguage();
   // 移除自动旋转
 
   const z1 = p1.z ?? 0;
@@ -538,17 +540,17 @@ function Distance3D({ p1, p2 }: DistanceCanvasProps) {
 
       <Billboard position={[(p1.x + p2.x) / 2, (p1.y + p2.y) / 2 + 1.5, (z1 + z2) / 2 + 0.5]}>
         <Text fontSize={0.6} color="#d946ef" anchorX="center" renderOrder={100} material-depthTest={false} material-depthWrite={false}>
-          d = ?
+          {t("sm2_02.pythagoras.distance_unknown")}
         </Text>
       </Billboard>
       <Text position={[(p1.x + cornerXY.x) / 2, p1.y - 0.7, z1]} fontSize={0.35} color="#39ff14" anchorX="center">
-        Δx = {dx}
+        {t("sm2_02.pythagoras.delta_x", { value: dx })}
       </Text>
       <Text position={[p2.x + 0.9, (p1.y + p2.y) / 2, z1]} fontSize={0.35} color="#00e5ff" anchorX="center">
-        Δy = {dy}
+        {t("sm2_02.pythagoras.delta_y", { value: dy })}
       </Text>
       <Text position={[p2.x + 0.9, p2.y + 0.9, (z1 + z2) / 2]} fontSize={0.35} color="#f59e0b" anchorX="center">
-        Δz = {dz}
+        {t("sm2_02.pythagoras.delta_z", { value: dz })}
       </Text>
     </group>
   );
