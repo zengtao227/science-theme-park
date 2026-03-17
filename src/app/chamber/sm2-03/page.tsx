@@ -162,7 +162,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         expressionLatex: `\\text{Plan: } y = ${data.m}x + ${data.c} \\quad | \\quad x = ${data.x} \\text{ km}`,
         targetLatex: `y`,
         correctLatex: `y=${y}`,
-        slots: [{ id: "y", labelLatex: "y", placeholder: "Total Price (CHF)", expected: y }],
+        slots: [{ id: "y", labelLatex: "y", placeholder: t.placeholders.total_price, expected: y }],
       });
     });
   } else if (stage === "LEVEL2") {
@@ -249,6 +249,9 @@ export default function S203Page() {
       level1: t("sm2_03.prompts.level1"),
       level2: t("sm2_03.prompts.level2"),
       level3: t("sm2_03.prompts.level3"),
+    },
+    placeholders: {
+      total_price: t("sm2_03.placeholders.total_price"),
     },
     labels: {
       hints: t("sm2_03.labels.hints"),

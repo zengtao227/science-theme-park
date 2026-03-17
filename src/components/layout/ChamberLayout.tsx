@@ -537,7 +537,7 @@ export default function ChamberLayout({
                                         >
                                             <div className="flex items-center justify-between mb-1">
                                                 <span className="text-[8px] font-mono opacity-60">
-                                                    {allPrereqsMet ? "LINK_STABLE" : "PREREQUISITE_REQUIRED"}
+                                                    {allPrereqsMet ? t("quest.link_stable") : t("quest.prereq_required")}
                                                 </span>
                                             </div>
                                             <div className="flex items-center gap-3">

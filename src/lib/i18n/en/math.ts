@@ -4,7 +4,12 @@
  * Last updated: 2026-02-15
  */
 
-export const enMath = {    em1_01: {
+export const enMath = {
+    quest: {
+        link_stable: "LINK_STABLE",
+        prereq_required: "PREREQUISITE_REQUIRED"
+    },
+    em1_01: {
         back: "Back to Nexus",
         title: "EM1.01 // THALES TOWER",
         difficulty: {
@@ -1742,7 +1747,8 @@ export const enMath = {    em1_01: {
             level3: "LEVEL 3"
         },
         placeholders: {
-            question: "?"
+            question: "?",
+            total_price: "Total Price (CHF)"
         },
         laser: {
             axis_km: "km",

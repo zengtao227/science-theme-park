@@ -4,7 +4,12 @@
  * Last updated: 2026-02-15
  */
 
-export const cnMath = {    em1_01: {
+export const cnMath = {
+    quest: {
+        link_stable: "链接稳定",
+        prereq_required: "前置条件未完成"
+    },
+    em1_01: {
         back: "返回枢纽",
         title: "EM1.01 // THALES TOWER",
         difficulty: {
@@ -1726,7 +1731,8 @@ export const cnMath = {    em1_01: {
             level3: "等级 3"
         },
         placeholders: {
-            question: "?"
+            question: "?",
+            total_price: "总价 (CHF)"
         },
         laser: {
             axis_km: "km",
