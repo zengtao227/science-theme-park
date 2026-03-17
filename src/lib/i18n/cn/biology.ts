@@ -686,6 +686,11 @@ export const cnBiology = {
             structure_label: "结构：",
             water_transport_title: "水分运输机制",
             nutrient_transport_title: "营养物质运输"
+        },
+        formulas: {
+            structure_label: "\\text{结构：}",
+            water_transport: "\\text{水分运输机制}",
+            nutrient_transport: "\\text{营养物质运输}"
         }
     },
 

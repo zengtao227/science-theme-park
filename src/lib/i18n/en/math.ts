@@ -1838,6 +1838,14 @@ export const enMath = {
         placeholders: {
             value: "value",
             width: "width"
+        },
+        formulas: {
+            old_value: "\\text{Old}",
+            new_value: "\\text{New}",
+            tower_shadow: "\\text{Tower Shadow}",
+            tower_height: "\\text{Tower Height}",
+            stick_plain: "\\text{Stick}",
+            shadow: "\\text{Shadow}"
         }
     },
     sm2_05: {
@@ -2881,6 +2889,44 @@ export const enMath = {
             b2_2_elite_c1: "Basel temperature: $9.2^\\circ\\mathrm{C}$ (1990) to $11.0^\\circ\\mathrm{C}$ (2024), over 34 years. Growing season was 165 days (1990), increasing by 8 days per $^\\circ\\mathrm{C}$. Calculate the 2024 growing season.",
             b2_2_elite_c2: "Basel urban fox: mean $K = 150$, SD = 18 (normal). Safe range: 120-180. Calculate $P(\\text{outside safe range})$.",
             b2_2_elite_a1: "Rhine dissolved oxygen ($n=25$): mean = 9.8 mg/L, SD = 1.4. Fish need $\\ge 8.0$ mg/L. Find the lower bound of the 90% CI."
+        },
+        formulas: {
+            range: "\\text{Range} = \\text{Max} - \\text{Min}",
+            mean: "\\text{Mean} = \\frac{\\text{Sum}}{n}",
+            q3: "Q_3 = \\text{median of upper half}",
+            upper_boundary: "\\text{Upper boundary} = Q_3 + 1.5 \\times \\text{IQR}",
+            lower_boundary: "\\text{Lower boundary} = Q_1 - 1.5 \\times \\text{IQR}",
+            right_skewed: "\\text{Median near } Q_1 = \\text{Right skewed}",
+            larger_iqr_more_spread: "\\text{Larger IQR} = \\text{more spread}",
+            upward_trend_positive: "\\text{Upward trend} = \\text{Positive}",
+            downward_trend_negative: "\\text{Downward trend} = \\text{Negative}",
+            no_pattern_no_correlation: "\\text{No pattern} = \\text{No correlation}",
+            tight_cluster_strong: "\\text{Tight cluster} = \\text{Strong}",
+            positive_slope_positive_trend: "\\text{Positive slope} = \\text{Positive trend}",
+            wide_scatter_weak: "\\text{Wide scatter} = \\text{Weak}",
+            curved_pattern_nonlinear: "\\text{Curved pattern} = \\text{Nonlinear}",
+            hidden_variable_lurking: "\\text{Hidden variable} = \\text{Lurking variable}",
+            finding_best_fit_regression: "\\text{Finding best fit} = \\text{Regression}",
+            actual_minus_predicted_residual: "\\text{Actual} - \\text{Predicted} = \\text{Residual}",
+            beyond_range_extrapolation: "\\text{Beyond range} = \\text{Extrapolation}",
+            within_range_interpolation: "\\text{Within range} = \\text{Interpolation}",
+            r_positive: "r > 0 = \\text{Positive}",
+            r_minus_1_perfect_negative: "r = -1 = \\text{Perfect negative}",
+            r_0_no_correlation: "r = 0 = \\text{No correlation}",
+            moderate_correlation: "0.3 < |r| < 0.7 = \\text{Moderate}",
+            correlation_not_causation: "\\text{Correlation} \\neq \\text{Causation}",
+            r_negative: "r < 0 = \\text{Negative}",
+            r_approx_0_no_correlation: "r \\approx 0 = \\text{No correlation}",
+            r_squared_coefficient_determination: "r^{2} = \\text{Coefficient of determination}",
+            z_score_normal_dist: "z = \\frac{x - \\mu}{\\sigma}, \\text{ then use normal distribution}",
+            se_diff_ci: "\\text{SE}_{\\text{diff}} = \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}, \\text{ CI: diff } \\pm 1.96(\\text{SE})",
+            temp_increase_growing_season: "\\text{Temp increase} \\times \\text{days per °C} + \\text{baseline}",
+            se_ci_90: "\\text{SE} = \\frac{s}{\\sqrt{n}}, \\text{ 90\\% CI: } \\mu \\pm 1.645(\\text{SE})",
+            r_near_1_strong: "|r| \\text{ near } 1 = \\text{Strong}",
+            r_near_0_weak: "|r| \\text{ near } 0 = \\text{Weak}",
+            r_close_to_1_strong: "r \\text{ close to } 1 = \\text{Strong}",
+            r_near_1_strong_positive: "r \\text{ near } 1 = \\text{Strong positive}",
+            r_near_0_no_correlation: "r \\text{ near } 0 = \\text{No correlation}"
         },
         scenarios: {
             box_plots: "Basel Weather Station - Temperature Data Analysis: You are analyzing temperature data collected by the Basel Meteorological Institute over the past month. Box plots (box-and-whisker plots) are powerful tools for visualizing the distribution and spread of data. A box plot displays five key statistics: minimum, first quartile (Q1), median, third quartile (Q3), and maximum. The box represents the middle 50% of the data (from Q1 to Q3), called the interquartile range (IQR). The median line inside the box shows the center of the data. The whiskers extend to the minimum and maximum values (excluding outliers). Outliers are data points that fall more than 1.5 × IQR beyond the quartiles - these are unusually high or low values that may indicate measurement errors or special conditions. For example, Basel's daily high temperatures in January might have: Min = -2°C, Q1 = 2°C, Median = 5°C, Q3 = 8°C, Max = 12°C. The IQR = 8 - 2 = 6°C shows the temperature varied by 6 degrees for the middle 50% of days. Box plots are excellent for comparing multiple datasets side-by-side, identifying skewness (asymmetric distribution), and spotting outliers. Basel uses box plots to analyze pollution levels, Rhine River water levels, and public transport delays. Understanding box plots helps you interpret scientific data, make informed decisions, and communicate statistical findings clearly.",

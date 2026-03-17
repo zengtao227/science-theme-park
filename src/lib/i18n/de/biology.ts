@@ -686,6 +686,11 @@ export const deBiology = {
             structure_label: "Struktur:",
             water_transport_title: "Wassertransportmechanismus",
             nutrient_transport_title: "Nährstofftransport"
+        },
+        formulas: {
+            structure_label: "\\text{Struktur: }",
+            water_transport: "\\text{Wassertransportmechanismus}",
+            nutrient_transport: "\\text{Nährstofftransport}"
         }
     },
 

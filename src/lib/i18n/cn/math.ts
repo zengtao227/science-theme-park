@@ -1820,6 +1820,14 @@ export const cnMath = {
         placeholders: {
             width: "宽度",
             value: "数值"
+        },
+        formulas: {
+            old_value: "\\text{旧值}",
+            new_value: "\\text{新值}",
+            tower_shadow: "\\text{钟楼阴影}",
+            tower_height: "\\text{钟楼高度}",
+            stick_plain: "\\text{木棍}",
+            shadow: "\\text{阴影}"
         }
     },
     sm2_05: {
@@ -2876,6 +2884,44 @@ export const cnMath = {
             b2_2_elite_c1: "巴塞尔温度：从 1990 年的 $9.2^\\circ\\mathrm{C}$ 到 2024 年的 $11.0^\\circ\\mathrm{C}$，共 34 年。1990 年生长季为 165 天，每升高 $1^\\circ\\mathrm{C}$ 增加 8 天。计算 2024 年生长季。",
             b2_2_elite_c2: "巴塞尔城市狐狸：均值 $K = 150$，SD = 18（正态）。安全范围：120-180。计算 $P(\\text{超出安全范围})$。",
             b2_2_elite_a1: "莱茵河溶解氧（$n=25$）：均值 = 9.8 mg/L，SD = 1.4。鱼类需要 $\\ge 8.0$ mg/L。求 90% 置信区间下界。"
+        },
+        formulas: {
+            range: "\\text{极差} = \\text{最大值} - \\text{最小值}",
+            mean: "\\text{均值} = \\frac{\\text{总和}}{n}",
+            q3: "Q_3 = \\text{上半部分的中位数}",
+            upper_boundary: "\\text{上边界} = Q_3 + 1.5 \\times \\text{IQR}",
+            lower_boundary: "\\text{下边界} = Q_1 - 1.5 \\times \\text{IQR}",
+            right_skewed: "\\text{中位数接近 } Q_1 = \\text{右偏}",
+            larger_iqr_more_spread: "\\text{IQR 更大} = \\text{更分散}",
+            upward_trend_positive: "\\text{上升趋势} = \\text{正相关}",
+            downward_trend_negative: "\\text{下降趋势} = \\text{负相关}",
+            no_pattern_no_correlation: "\\text{无模式} = \\text{无相关}",
+            tight_cluster_strong: "\\text{紧密聚集} = \\text{强相关}",
+            positive_slope_positive_trend: "\\text{正斜率} = \\text{正趋势}",
+            wide_scatter_weak: "\\text{分散} = \\text{弱相关}",
+            curved_pattern_nonlinear: "\\text{曲线模式} = \\text{非线性}",
+            hidden_variable_lurking: "\\text{隐藏变量} = \\text{潜伏变量}",
+            finding_best_fit_regression: "\\text{寻找最佳拟合} = \\text{回归}",
+            actual_minus_predicted_residual: "\\text{实际值} - \\text{预测值} = \\text{残差}",
+            beyond_range_extrapolation: "\\text{超出范围} = \\text{外推}",
+            within_range_interpolation: "\\text{范围内} = \\text{内插}",
+            r_positive: "r > 0 = \\text{正相关}",
+            r_minus_1_perfect_negative: "r = -1 = \\text{完全负相关}",
+            r_0_no_correlation: "r = 0 = \\text{无相关}",
+            moderate_correlation: "0.3 < |r| < 0.7 = \\text{中等相关}",
+            correlation_not_causation: "\\text{相关性} \\neq \\text{因果关系}",
+            r_negative: "r < 0 = \\text{负相关}",
+            r_approx_0_no_correlation: "r \\approx 0 = \\text{无相关}",
+            r_squared_coefficient_determination: "r^{2} = \\text{决定系数}",
+            z_score_normal_dist: "z = \\frac{x - \\mu}{\\sigma}, \\text{ 然后使用正态分布}",
+            se_diff_ci: "\\text{SE}_{\\text{diff}} = \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}, \\text{ 置信区间：差值 } \\pm 1.96(\\text{SE})",
+            temp_increase_growing_season: "\\text{温度上升} \\times \\text{每°C天数} + \\text{基线}",
+            se_ci_90: "\\text{SE} = \\frac{s}{\\sqrt{n}}, \\text{ 90\\% 置信区间：} \\mu \\pm 1.645(\\text{SE})",
+            r_near_1_strong: "|r| \\text{ 接近 } 1 = \\text{强相关}",
+            r_near_0_weak: "|r| \\text{ 接近 } 0 = \\text{弱相关}",
+            r_close_to_1_strong: "r \\text{ 接近 } 1 = \\text{强相关}",
+            r_near_1_strong_positive: "r \\text{ 接近 } 1 = \\text{强正相关}",
+            r_near_0_no_correlation: "r \\text{ 接近 } 0 = \\text{无相关}"
         },
         scenarios: {
             box_plots: "巴塞尔气象站 - 温度数据分析：你正在分析巴塞尔气象研究所上个月收集的温度数据。箱线图（盒须图）是可视化数据分布和离散程度的强大工具。箱线图显示五个关键统计量：最小值、第一四分位数（Q1）、中位数、第三四分位数（Q3）和最大值。箱体代表数据的中间50%（从Q1到Q3），称为四分位距（IQR）。箱体内的中位数线显示数据的中心。须延伸到最小值和最大值（不包括异常值）。异常值是超出四分位数1.5 × IQR以上的数据点 - 这些是异常高或低的值，可能表示测量误差或特殊条件。例如，巴塞尔1月份的每日最高温度可能有：最小值 = -2°C，Q1 = 2°C，中位数 = 5°C，Q3 = 8°C，最大值 = 12°C。IQR = 8 - 2 = 6°C显示中间50%的天数温度变化了6度。箱线图非常适合并排比较多个数据集，识别偏斜（不对称分布）和发现异常值。巴塞尔使用箱线图分析污染水平、莱茵河水位和公共交通延误。理解箱线图帮助你解释科学数据，做出明智决策，并清晰地传达统计发现。",

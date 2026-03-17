@@ -1854,6 +1854,14 @@ export const deMath = {
         placeholders: {
             width: "Breite",
             value: "Wert"
+        },
+        formulas: {
+            old_value: "\\text{alt}",
+            new_value: "\\text{Neu}",
+            tower_shadow: "\\text{Turmschatten}",
+            tower_height: "\\text{Turmhöhe}",
+            stick_plain: "\\text{Stab}",
+            shadow: "\\text{Schatten}"
         }
     },
     sm2_05: {
@@ -2860,6 +2868,44 @@ export const deMath = {
             b2_2_elite_c1: "Basel-Temperatur: $9.2^\\circ\\mathrm{C}$ (1990) bis $11.0^\\circ\\mathrm{C}$ (2024), über 34 Jahre. Die Vegetationsperiode betrug 165 Tage (1990) und steigt um 8 Tage pro $^\\circ\\mathrm{C}$. Berechne die Vegetationsperiode 2024.",
             b2_2_elite_c2: "Stadtfuchs in Basel: Mittelwert $K = 150$, SD = 18 (normalverteilt). Sicherer Bereich: 120-180. Berechne $P(\\text{außerhalb des sicheren Bereichs})$.",
             b2_2_elite_a1: "Gelöster Sauerstoff im Rhein ($n=25$): Mittelwert = 9.8 mg/L, SD = 1.4. Fische benötigen $\\ge 8.0$ mg/L. Bestimme die untere Grenze des 90%-Konfidenzintervalls."
+        },
+        formulas: {
+            range: "\\text{Spannweite} = \\text{Max} - \\text{Min}",
+            mean: "\\text{Mittelwert} = \\frac{\\text{Summe}}{n}",
+            q3: "Q_3 = \\text{Median der oberen Hälfte}",
+            upper_boundary: "\\text{Obere Grenze} = Q_3 + 1.5 \\times \\text{IQR}",
+            lower_boundary: "\\text{Untere Grenze} = Q_1 - 1.5 \\times \\text{IQR}",
+            right_skewed: "\\text{Median nahe } Q_1 = \\text{Rechtsschief}",
+            larger_iqr_more_spread: "\\text{Größerer IQR} = \\text{mehr Streuung}",
+            upward_trend_positive: "\\text{Aufwärtstrend} = \\text{Positiv}",
+            downward_trend_negative: "\\text{Abwärtstrend} = \\text{Negativ}",
+            no_pattern_no_correlation: "\\text{Kein Muster} = \\text{Keine Korrelation}",
+            tight_cluster_strong: "\\text{Enge Gruppierung} = \\text{Stark}",
+            positive_slope_positive_trend: "\\text{Positive Steigung} = \\text{Positiver Trend}",
+            wide_scatter_weak: "\\text{Weite Streuung} = \\text{Schwach}",
+            curved_pattern_nonlinear: "\\text{Kurvenmuster} = \\text{Nichtlinear}",
+            hidden_variable_lurking: "\\text{Versteckte Variable} = \\text{Lurking-Variable}",
+            finding_best_fit_regression: "\\text{Beste Anpassung finden} = \\text{Regression}",
+            actual_minus_predicted_residual: "\\text{Tatsächlich} - \\text{Vorhergesagt} = \\text{Residuum}",
+            beyond_range_extrapolation: "\\text{Außerhalb des Bereichs} = \\text{Extrapolation}",
+            within_range_interpolation: "\\text{Innerhalb des Bereichs} = \\text{Interpolation}",
+            r_positive: "r > 0 = \\text{Positiv}",
+            r_minus_1_perfect_negative: "r = -1 = \\text{Perfekt negativ}",
+            r_0_no_correlation: "r = 0 = \\text{Keine Korrelation}",
+            moderate_correlation: "0.3 < |r| < 0.7 = \\text{Moderat}",
+            correlation_not_causation: "\\text{Korrelation} \\neq \\text{Kausalität}",
+            r_negative: "r < 0 = \\text{Negativ}",
+            r_approx_0_no_correlation: "r \\approx 0 = \\text{Keine Korrelation}",
+            r_squared_coefficient_determination: "r^{2} = \\text{Bestimmtheitsmaß}",
+            z_score_normal_dist: "z = \\frac{x - \\mu}{\\sigma}, \\text{ dann Normalverteilung verwenden}",
+            se_diff_ci: "\\text{SE}_{\\text{diff}} = \\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}, \\text{ KI: Diff } \\pm 1.96(\\text{SE})",
+            temp_increase_growing_season: "\\text{Temp.-Anstieg} \\times \\text{Tage pro °C} + \\text{Basis}",
+            se_ci_90: "\\text{SE} = \\frac{s}{\\sqrt{n}}, \\text{ 90\\%-KI: } \\mu \\pm 1.645(\\text{SE})",
+            r_near_1_strong: "|r| \\text{ nahe } 1 = \\text{Stark}",
+            r_near_0_weak: "|r| \\text{ nahe } 0 = \\text{Schwach}",
+            r_close_to_1_strong: "r \\text{ nahe } 1 = \\text{Stark}",
+            r_near_1_strong_positive: "r \\text{ nahe } 1 = \\text{Stark positiv}",
+            r_near_0_no_correlation: "r \\text{ nahe } 0 = \\text{Keine Korrelation}"
         },
         scenarios: {
             box_plots: "Basler Wetterstation - Temperaturdatenanalyse: Sie analysieren Temperaturdaten, die vom Meteorologischen Institut Basel im letzten Monat gesammelt wurden. Boxplots (Box-Whisker-Diagramme) sind leistungsstarke Werkzeuge zur Visualisierung der Verteilung und Streuung von Daten. Ein Boxplot zeigt fünf Schlüsselstatistiken: Minimum, erstes Quartil (Q1), Median, drittes Quartil (Q3) und Maximum. Die Box repräsentiert die mittleren 50% der Daten (von Q1 bis Q3), genannt Interquartilsabstand (IQR). Die Medianlinie innerhalb der Box zeigt die Mitte der Daten. Die Whisker erstrecken sich bis zu den Minimum- und Maximumwerten (ohne Ausreißer). Ausreißer sind Datenpunkte, die mehr als 1,5 × IQR über die Quartile hinausfallen - dies sind ungewöhnlich hohe oder niedrige Werte, die auf Messfehler oder besondere Bedingungen hinweisen können. Zum Beispiel könnten Basels tägliche Höchsttemperaturen im Januar haben: Min = -2°C, Q1 = 2°C, Median = 5°C, Q3 = 8°C, Max = 12°C. Der IQR = 8 - 2 = 6°C zeigt, dass die Temperatur für die mittleren 50% der Tage um 6 Grad variierte. Boxplots eignen sich hervorragend zum Vergleichen mehrerer Datensätze nebeneinander, zum Identifizieren von Schiefe (asymmetrische Verteilung) und zum Erkennen von Ausreißern. Basel verwendet Boxplots zur Analyse von Verschmutzungsgraden, Rhein-Wasserständen und Verspätungen im öffentlichen Verkehr. Das Verständnis von Boxplots hilft Ihnen, wissenschaftliche Daten zu interpretieren, fundierte Entscheidungen zu treffen und statistische Erkenntnisse klar zu kommunizieren.",

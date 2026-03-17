@@ -746,6 +746,11 @@ export const enBiology = {
             structure_label: "Structure:",
             water_transport_title: "Water Transport Mechanism",
             nutrient_transport_title: "Nutrient Transport"
+        },
+        formulas: {
+            structure_label: "\\text{Structure: }",
+            water_transport: "\\text{Water Transport Mechanism}",
+            nutrient_transport: "\\text{Nutrient Transport}"
         }
     },
 
