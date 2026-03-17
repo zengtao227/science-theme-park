@@ -166,7 +166,7 @@ export default function GB202Page() {
                   value={inputs[slot.id] || ""}
                   onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
                   className="w-full bg-gray-900 border border-cyan-500/30 rounded px-4 py-2 text-white focus:outline-none focus:border-cyan-500"
-                  placeholder="Enter answer..."
+                  placeholder="..."
                 />
               )}
             </div>

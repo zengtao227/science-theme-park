@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
 import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
+import { canonicalizeFreeText, localizeFreeText } from "@/lib/i18n/freeTextLocale";
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 
@@ -112,7 +113,16 @@ export function useQuestManager<T extends Quest, S extends string>({
 
     const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
 
-    const pool = useMemo(() => buildPool(difficulty, stage), [buildPool, difficulty, stage]);
+    const rawPool = useMemo(() => buildPool(difficulty, stage), [buildPool, difficulty, stage]);
+    const pool = useMemo(() => {
+        return rawPool.map((quest) => ({
+            ...quest,
+            slots: quest.slots.map((slot) => ({
+                ...slot,
+                placeholder: localizeFreeText(slot.placeholder, locale),
+            })),
+        }));
+    }, [rawPool, locale]);
 
     const currentQuest = useMemo(() => {
         const sorted = [...pool].sort((a, b) => a.id.localeCompare(b.id));
@@ -270,7 +280,8 @@ export function useQuestManager<T extends Quest, S extends string>({
             } else {
                 // Robust String comparison with mathematical normalization (e.g., 1x == x)
                 const normalize = (s: string) => {
-                    return s.trim()
+                    const canonical = canonicalizeFreeText(s, locale);
+                    return canonical.trim()
                         .toLowerCase()
                         .replace(/\s/g, "")
                         .replace(/^2/g, "^2") // Normalize superscript
@@ -317,7 +328,7 @@ export function useQuestManager<T extends Quest, S extends string>({
         });
         setErrorCounts((prev) => ({ ...prev, [questKey]: 0 }));
         setLastCheck({ ok: true, correct: currentQuest.correctLatex });
-    }, [currentQuest, inputs, parseNumberLike, stage, tolerance]);
+    }, [currentQuest, inputs, parseNumberLike, stage, tolerance, locale]);
 
     const handleDifficultyChange = useCallback((d: Difficulty) => {
         setDifficulty(d);
