@@ -291,7 +291,20 @@ export const deMath = {    em1_01: {
         integral_preview_title: "KOMMT BALD: INTEGRALRECHNUNG",
         integral_preview_desc: "Meistere die Umkehrung der Ableitung. Berechne Flächen unter Kurven.",
         integral_preview_hint: "Freischalten nach Ableitungs-Meisterschaft →",
-        input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
+        input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
+        canvas_labels: {
+            trigonometry_tower: "TRIGONOMETRIE-TURM",
+            sin: "sin",
+            cos: "cos",
+            tan: "tan",
+            values: "Werte",
+            angle: "Winkel (θ)",
+            circle: "Kreis",
+            triangle: "Dreieck",
+            waves: "Wellen",
+            trig_tower: "TRIG_TURM",
+            mode: "MODUS"
+        }
     },
     gm1_01_advanced: {
         back: "Zurück zum Nexus",
@@ -1762,6 +1775,11 @@ export const deMath = {    em1_01: {
             chamber: "KAMMER",
             laser_sim: "LASER_SIM",
             level: "LEVEL"
+        },
+        canvas_labels: {
+            matrix_visualizer: "Matrix-Visualisierer v2.0",
+            chart_mode: "DIAGRAMM-MODUS: KARTESISCH",
+            render_engine: "RENDER-ENGINE: 2D_NEON_CORE"
         }
     },
     sm2_04: {
@@ -1822,6 +1840,10 @@ export const deMath = {    em1_01: {
                 shadow: "Schatten",
                 calculate_height: "Turmhöhe berechnen"
             }
+        },
+        canvas_labels: {
+            sim_matrix: "SIM-MATRIX",
+            k_scale_active: "K-SKALIERUNG AKTIV"
         }
     },
     sm2_05: {

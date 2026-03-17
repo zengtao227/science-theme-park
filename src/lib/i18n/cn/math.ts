@@ -292,7 +292,20 @@ export const cnMath = {    em1_01: {
         integral_preview_desc: "掌握微分的逆运算。计算曲线下的面积。",
         integral_preview_hint: "掌握导数后解锁 →",
         input_tip_2dp: "提示：保留 2 位小数。",
-        input_tip_4dp: "提示：保留 4 位小数。"
+        input_tip_4dp: "提示：保留 4 位小数。",
+        canvas_labels: {
+            trigonometry_tower: "三角函数塔",
+            sin: "sin",
+            cos: "cos",
+            tan: "tan",
+            values: "数值",
+            angle: "角度 (θ)",
+            circle: "圆",
+            triangle: "三角形",
+            waves: "波形",
+            trig_tower: "三角塔",
+            mode: "模式"
+        }
     },
     gm1_01_advanced: {
         back: "返回枢纽",
@@ -1728,6 +1741,11 @@ export const cnMath = {    em1_01: {
             chamber: "实验室",
             laser_sim: "激光模拟",
             level: "等级"
+        },
+        canvas_labels: {
+            matrix_visualizer: "矩阵可视化器 v2.0",
+            chart_mode: "图表模式: 笛卡尔",
+            render_engine: "渲染引擎: 2D_霓虹核心"
         }
     },
     sm2_04: {
@@ -1788,6 +1806,10 @@ export const cnMath = {    em1_01: {
                 shadow: "阴影",
                 calculate_height: "计算钟楼高度"
             }
+        },
+        canvas_labels: {
+            sim_matrix: "相似矩阵",
+            k_scale_active: "K-缩放激活"
         }
     },
     sm2_05: {

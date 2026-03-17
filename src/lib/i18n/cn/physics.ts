@@ -1007,6 +1007,17 @@ export const cnPhysics = {
         }
     },
 
+    // SP1.06: 单摆与振动
+    sp1_06: {
+        back: "返回枢纽",
+        title: "SP1.06 // 单摆与振动",
+        canvas_labels: {
+            ke: "动能",
+            pe: "势能",
+            total: "总能量"
+        }
+    },
+
     // --- 巴塞尔 Sek 2 系列 (SP2 - 电学) ---
 
     // SP2.01: 电路基础
@@ -1198,6 +1209,14 @@ export const cnPhysics = {
             convert_num_denom: "分别换算分子和分母",
             count_sig_figs: "计算非零数字和夹零",
             divide_uncertainty: "用不确定度除以测量值"
+        },
+        canvas_labels: {
+            ruler: "直尺",
+            ruler_unit: "cm",
+            scale: "数字天平",
+            scale_unit: "kg",
+            stopwatch: "秒表",
+            stopwatch_unit: "s"
         }
     },
 

@@ -1072,6 +1072,17 @@ export const dePhysics = {
                 }
         },
 
+        // SP1.06: Pendel & Schwingungen
+        sp1_06: {
+                back: "Zurück zum Nexus",
+                title: "SP1.06 // PENDEL & SCHWINGUNGEN",
+                canvas_labels: {
+                        ke: "KE",
+                        pe: "PE",
+                        total: "Gesamt"
+                }
+        },
+
         // --- Basel Sek 2 Serie (SP2 - Elektrizität) ---
 
         // SP2.01: Stromkreis Grundlagen
@@ -1263,6 +1274,14 @@ export const dePhysics = {
                         convert_num_denom: "Zähler und Nenner getrennt umrechnen",
                         count_sig_figs: "Nicht-Null-Ziffern und eingeschlossene Nullen zählen",
                         divide_uncertainty: "Unsicherheit durch Messwert teilen"
+                },
+                canvas_labels: {
+                        ruler: "LINEAL",
+                        ruler_unit: "cm",
+                        scale: "DIGITALWAAGE",
+                        scale_unit: "kg",
+                        stopwatch: "STOPPUHR",
+                        stopwatch_unit: "s"
                 }
         },
 

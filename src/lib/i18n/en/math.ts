@@ -291,7 +291,20 @@ export const enMath = {    em1_01: {
         integral_preview_title: "COMING SOON: INTEGRATION",
         integral_preview_desc: "Master the inverse operation of differentiation. Calculate areas under curves.",
         integral_preview_hint: "Unlock after mastering derivatives →",
-        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
+        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
+        canvas_labels: {
+            trigonometry_tower: "TRIGONOMETRY TOWER",
+            sin: "sin",
+            cos: "cos",
+            tan: "tan",
+            values: "Values",
+            angle: "Angle (θ)",
+            circle: "circle",
+            triangle: "triangle",
+            waves: "waves",
+            trig_tower: "TRIG_TOWER",
+            mode: "MODE"
+        }
     },
     gm1_01_advanced: {
         back: "Back to Nexus",
@@ -1744,6 +1757,11 @@ export const enMath = {    em1_01: {
             chamber: "CHAMBER",
             laser_sim: "LASER_SIM",
             level: "LEVEL"
+        },
+        canvas_labels: {
+            matrix_visualizer: "Matrix Visualizer v2.0",
+            chart_mode: "CHART_MODE: CARTESIAN",
+            render_engine: "RENDER_ENGINE: 2D_NEON_CORE"
         }
     },
     sm2_04: {
@@ -1803,6 +1821,10 @@ export const enMath = {    em1_01: {
                 shadow: "Shadow",
                 calculate_height: "Calculate Tower Height"
             }
+        },
+        canvas_labels: {
+            sim_matrix: "SIM-MATRIX",
+            k_scale_active: "K-SCALE ACTIVE"
         }
     },
     sm2_05: {

@@ -1073,6 +1073,17 @@ export const enPhysics = {
                 }
         },
 
+        // SP1.06: Pendulum & Oscillations
+        sp1_06: {
+                back: "Back to Nexus",
+                title: "SP1.06 // PENDULUM & OSCILLATIONS",
+                canvas_labels: {
+                        ke: "KE",
+                        pe: "PE",
+                        total: "Total"
+                }
+        },
+
         // --- Basel Sek 2 Series (SP2 - Electricity) ---
 
         // SP2.01: Circuit Basics
@@ -1156,6 +1167,14 @@ export const enPhysics = {
                         unit: "\\text{Unit}",
                         sig_figs: "\\text{Sig Figs}",
                         percent: "\\text{Percent}"
+                },
+                canvas_labels: {
+                        ruler: "RULER",
+                        ruler_unit: "cm",
+                        scale: "DIGITAL SCALE",
+                        scale_unit: "kg",
+                        stopwatch: "STOPWATCH",
+                        stopwatch_unit: "s"
                 },
                 prompts: {
                         si_unit: "What is the SI unit for {measurement}?",
