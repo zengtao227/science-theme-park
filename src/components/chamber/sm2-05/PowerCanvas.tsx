@@ -6,6 +6,7 @@ import { OrbitControls, Text, Center, PerspectiveCamera, Html } from "@react-thr
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import * as THREE from "three";
+import { useLanguage } from "@/lib/i18n";
 
 export interface PowerVisual {
   mode: 'MULTIPLY' | 'DIVIDE' | 'POWER' | 'NEGATIVE' | 'SCIENTIFIC';
@@ -89,6 +90,7 @@ function Stack({
 
 // Visualizes a^m * a^n = a^(m+n)
 function MultiplyScene({ base, m, n }: { base: string, m: number, n: number }) {
+  const { t } = useLanguage();
   // Initial state: Two stacks side by side
   // Animation: Right stack moves on top of Left stack
   const groupRef = useRef<THREE.Group>(null);
@@ -138,8 +140,8 @@ function MultiplyScene({ base, m, n }: { base: string, m: number, n: number }) {
       <Stack count={n} baseLabel={String(base)} position={[1.5, 0, 0]} color={BLOOM_COLOR} />
 
       {/* Labels */}
-      <Text position={[-1, -1, 0]} fontSize={0.5} color="white">{`m=${m}`}</Text>
-      <Text position={[2.5, -1, 0]} fontSize={0.5} color="white">{`n=${n}`}</Text>
+      <Text position={[-1, -1, 0]} fontSize={0.5} color="white">{t("sm2_05.canvas.m_label", { value: m })}</Text>
+      <Text position={[2.5, -1, 0]} fontSize={0.5} color="white">{t("sm2_05.canvas.n_label", { value: n })}</Text>
     </group>
   );
 }
@@ -194,6 +196,7 @@ function PowerRuleScene({ base, m, n }: { base: string, m: number, n: number }) 
 
 // Visualizes a^m / a^n = a^(m-n)
 function DivideScene({ base, m, n }: { base: string, m: number, n: number }) {
+  const { t } = useLanguage();
   // Show Stack m
   // Show Stack n (Anti-particles)
   // Animation: n moves to m, and both disappear
@@ -244,13 +247,14 @@ function DivideScene({ base, m, n }: { base: string, m: number, n: number }) {
         <Stack count={n} baseLabel={`-${base}`} color="#ef4444" />{/* Red for subtract */}
       </group>
 
-      <Text position={[0, -1, 0]} fontSize={0.5} color="white">Division = Cancellation</Text>
+      <Text position={[0, -1, 0]} fontSize={0.5} color="white">{t("sm2_05.canvas.division_cancellation")}</Text>
     </group>
   );
 }
 
 // Visualizes a^-n = 1 / a^n
 function NegativeScene({ base, n }: { base: string, n: number }) {
+  const { t } = useLanguage();
   // Left: Red Stack (Negative) representing a^-n
   // Right: Fraction structure 1 / a^n (Blue Stack)
   // Animation: Transformation arrow
@@ -271,7 +275,7 @@ function NegativeScene({ base, n }: { base: string, n: number }) {
 
       {/* Arrow */}
       <Text position={[0, 0, 0]} fontSize={0.8} color="white">→</Text>
-      <Text position={[0, -0.6, 0]} fontSize={0.3} color="white">Reciprocal</Text>
+      <Text position={[0, -0.6, 0]} fontSize={0.3} color="white">{t("sm2_05.canvas.reciprocal")}</Text>
 
       {/* Right Side: 1 / a^n */}
       <group position={[2.5, 0.5, 0]}>
@@ -302,6 +306,7 @@ function NegativeScene({ base, n }: { base: string, n: number }) {
 
 // Visualizes Scientific Notation: Decimal Shift
 function ScientificScene({ m, n }: { m: number, n: number }) {
+  const { t } = useLanguage();
   // Show the number m.
   // Show the decimal point moving n times.
   // For n=3, m=4.2 -> 4.200 -> 4200.
@@ -346,7 +351,7 @@ function ScientificScene({ m, n }: { m: number, n: number }) {
           </div>
         </Html>
         <Text position={[0, -0.6, 0]} fontSize={0.3} color="white">
-          {n > 0 ? `Move Right ${cycle > steps ? steps : cycle}/${steps}` : `Move Left ${cycle > steps ? steps : cycle}/${steps}`}
+          {n > 0 ? t("sm2_05.canvas.move_right", { current: cycle > steps ? steps : cycle, total: steps }) : t("sm2_05.canvas.move_left", { current: cycle > steps ? steps : cycle, total: steps })}
         </Text>
       </group>
 
@@ -364,6 +369,7 @@ function ScientificScene({ m, n }: { m: number, n: number }) {
 }
 
 export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
+  const { t } = useLanguage();
   if (!visual) return null;
 
   const { mode, base, m, n } = visual;
@@ -390,11 +396,6 @@ export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
 
         <OrbitControls enableZoom={true} enablePan={true} />
       </Canvas>
-
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/70 text-right uppercase">
-        VISUAL_MODE: {mode}<br />
-        BASE: {base} {/* M: {m} N: {n} */}
-      </div>
     </div>
   );
 }

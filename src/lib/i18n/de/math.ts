@@ -1823,6 +1823,18 @@ export const deMath = {    em1_01: {
         ready: "Bereit",
         monitor_title: "MONITOR",
         footer_left: "POTENZEN // KNOTEN: BASEL",
+        experimental: {
+            show: "▸ Experimentell (3D)",
+            hide: "▾ Verstecken"
+        },
+        canvas: {
+            m_label: "m={{value}}",
+            n_label: "n={{value}}",
+            division_cancellation: "Division = Streichung",
+            reciprocal: "Kehrwert",
+            move_right: "Verschiebe rechts {{current}}/{{total}}",
+            move_left: "Verschiebe links {{current}}/{{total}}"
+        },
         stages: {
             rules: "GESETZE",
             negative: "NEGATIV",

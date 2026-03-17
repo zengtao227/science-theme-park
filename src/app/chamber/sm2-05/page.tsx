@@ -727,7 +727,7 @@ export default function S205Page() {
                             onClick={() => setShowExperimental(!showExperimental)}
                             className="text-xs text-gray-400 hover:text-gray-200 underline"
                         >
-                            {showExperimental ? "▾ 隐藏实验功能" : "▸ 实验功能 (3D)"}
+                            {showExperimental ? t("sm2_05.experimental.hide") : t("sm2_05.experimental.show")}
                         </button>
                     </div>
                     {showExperimental && <S205_PowerCanvas visual={currentQuest?.visual} />}

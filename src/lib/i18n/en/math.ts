@@ -1804,6 +1804,18 @@ export const enMath = {    em1_01: {
         ready: "Ready",
         monitor_title: "MONITOR",
         footer_left: "POWERS_ROOTS // NODE: BASEL",
+        experimental: {
+            show: "▸ Experimental (3D)",
+            hide: "▾ Hide Experimental"
+        },
+        canvas: {
+            m_label: "m={{value}}",
+            n_label: "n={{value}}",
+            division_cancellation: "Division = Cancellation",
+            reciprocal: "Reciprocal",
+            move_right: "Move Right {{current}}/{{total}}",
+            move_left: "Move Left {{current}}/{{total}}"
+        },
         stages: {
             rules: "LAWS",
             negative: "NEGATIVE",

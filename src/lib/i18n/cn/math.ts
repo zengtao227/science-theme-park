@@ -1789,6 +1789,18 @@ export const cnMath = {    em1_01: {
         ready: "就绪",
         monitor_title: "监控",
         footer_left: "幂与根号 // 节点：巴塞尔",
+        experimental: {
+            show: "▸ 实验功能 (3D)",
+            hide: "▾ 隐藏实验功能"
+        },
+        canvas: {
+            m_label: "m={{value}}",
+            n_label: "n={{value}}",
+            division_cancellation: "除法 = 消去",
+            reciprocal: "倒数",
+            move_right: "右移 {{current}}/{{total}}",
+            move_left: "左移 {{current}}/{{total}}"
+        },
         stages: {
             rules: "法则",
             negative: "负指数",
