@@ -2009,6 +2009,11 @@ export const dePhysics = {
                 loudness_intensity_e4: "85 dB für 8 Stunden entspricht 100 % Lärmbelastung. Was ist die Belastung für 88 dB über 4 Stunden?",
                 loudness_intensity_e5: "Die ITU-R 468-Bewertung betont den 6-kHz-Bereich. Wofür wird sie verwendet?",
                 },
+                placeholders: {
+                        true: "wahr",
+                        no: "nein",
+                        yes: "ja"
+                },
         },
 
         // 8. OPTIK (Wellenlehre II)

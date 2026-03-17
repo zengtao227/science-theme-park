@@ -1955,6 +1955,11 @@ export const enPhysics = {
                 loudness_intensity_e4: "85 dB for 8 hours equals 100% noise dose. What is the dose for 88 dB over 4 hours?",
                 loudness_intensity_e5: "ITU-R 468 weighting emphasises the 6 kHz region. It is used to measure what?",
                 },
+                placeholders: {
+                        true: "true",
+                        no: "no",
+                        yes: "yes"
+                },
         },
 
         // SP3.08: Geometrical Optics (from sp1_08)

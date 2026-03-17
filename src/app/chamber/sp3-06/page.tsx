@@ -50,7 +50,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b3"),
                         expressionLatex: t("sp3_06.expressions.sw_b3"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: t("sp3_06.placeholders.true"), expected: "true" }],
                         correctLatex: t("sp3_06.corrects.correct_true"),
                         hintLatex: [t("sp3_06.hints.sw_b3")]
                     },
@@ -68,7 +68,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b5"),
                         expressionLatex: t("sp3_06.expressions.sw_b5"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: t("sp3_06.placeholders.no"), expected: "no" }],
                         correctLatex: t("sp3_06.corrects.sw_b5"),
                         hintLatex: [t("sp3_06.hints.sw_b5")]
                     }
@@ -258,7 +258,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b4"),
                         expressionLatex: t("sp3_06.expressions.fp_b4"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: t("sp3_06.placeholders.no"), expected: "no" }],
                         correctLatex: t("sp3_06.corrects.correct_no"),
                         hintLatex: [t("sp3_06.hints.fp_b4")]
                     },
@@ -267,7 +267,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b5"),
                         expressionLatex: t("sp3_06.expressions.fp_b5"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: t("sp3_06.placeholders.no"), expected: "no" }],
                         correctLatex: t("sp3_06.corrects.correct_no"),
                         hintLatex: [t("sp3_06.hints.fp_b5")]
                     }
@@ -307,7 +307,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_c4"),
                         expressionLatex: `50{,}000 > 20{,}000`,
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: t("sp3_06.placeholders.yes"), expected: "yes" }],
                         correctLatex: t("sp3_06.corrects.fp_c4"),
                         hintLatex: [`50{,}000 \\text{ Hz} > 20{,}000 \\text{ Hz}`]
                     },
@@ -356,7 +356,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a4"),
                         expressionLatex: `5 < 20 \\text{ Hz}`,
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: t("sp3_06.placeholders.no"), expected: "no" }],
                         correctLatex: t("sp3_06.corrects.fp_a4"),
                         hintLatex: [`5 \\text{ Hz} < 20 \\text{ Hz}`]
                     },
@@ -365,7 +365,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a5"),
                         expressionLatex: t("sp3_06.expressions.fp_a5"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_yes_no"), placeholder: t("sp3_06.placeholders.yes"), expected: "yes" }],
                         correctLatex: t("sp3_06.corrects.fp_a5"),
                         hintLatex: [t("sp3_06.hints.fp_a5")]
                     }
@@ -448,7 +448,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b3"),
                         expressionLatex: t("sp3_06.expressions.li_b3"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_safe"), placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_safe"), placeholder: t("sp3_06.placeholders.no"), expected: "no" }],
                         correctLatex: t("sp3_06.corrects.li_b3"),
                         hintLatex: [`140 \\text{ dB} >> 85 \\text{ dB}`]
                     },
@@ -466,7 +466,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b5"),
                         expressionLatex: t("sp3_06.expressions.li_b3"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: "true", expected: "true" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_tf"), placeholder: t("sp3_06.placeholders.true"), expected: "true" }],
                         correctLatex: t("sp3_06.corrects.correct_true"),
                         hintLatex: [t("sp3_06.hints.li_b5")]
                     }

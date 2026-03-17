@@ -1957,6 +1957,11 @@ export const cnPhysics = {
         loudness_intensity_e4: "85 dB 持续 8 小时等于 100% 噪声剂量，88 dB 持续 4 小时的噪声剂量是多少？",
         loudness_intensity_e5: "ITU-R 468 计权强调 6 kHz 频段，用于测量什么？",
         },
+        placeholders: {
+            true: "正确",
+            no: "否",
+            yes: "是"
+        },
     },
 
     // SP3.08: 几何光学 (映射自原 sp1_08)
