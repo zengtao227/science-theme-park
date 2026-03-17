@@ -436,7 +436,6 @@ export default function SM210Page() {
                         hintLatex: [t("sm2_10.hints.large_influence_on_line")]
                     },
                     {
-                    {
                         id: "SP-E3", difficulty, stage, dataType: "lurking",
                         promptLatex: t("sm2_10.prompts.b2_1_hidden_variable_name"),
                         expressionLatex: t("sm2_10.formulas.hidden_variable_lurking"),
