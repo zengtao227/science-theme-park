@@ -1832,8 +1832,8 @@ export const deMath = {    em1_01: {
             n_label: "n={{value}}",
             division_cancellation: "Division = Streichung",
             reciprocal: "Kehrwert",
-            move_right: "Verschiebe rechts {{current}}/{{total}}",
-            move_left: "Verschiebe links {{current}}/{{total}}"
+            move_right: "Verschiebe rechts {current}/{total}",
+            move_left: "Verschiebe links {current}/{total}"
         },
         stages: {
             rules: "GESETZE",

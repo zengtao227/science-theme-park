@@ -1813,8 +1813,8 @@ export const enMath = {    em1_01: {
             n_label: "n={{value}}",
             division_cancellation: "Division = Cancellation",
             reciprocal: "Reciprocal",
-            move_right: "Move Right {{current}}/{{total}}",
-            move_left: "Move Left {{current}}/{{total}}"
+            move_right: "Move Right {current}/{total}",
+            move_left: "Move Left {current}/{total}"
         },
         stages: {
             rules: "LAWS",

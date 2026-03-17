@@ -1798,8 +1798,8 @@ export const cnMath = {    em1_01: {
             n_label: "n={{value}}",
             division_cancellation: "除法 = 消去",
             reciprocal: "倒数",
-            move_right: "右移 {{current}}/{{total}}",
-            move_left: "左移 {{current}}/{{total}}"
+            move_right: "右移 {current}/{total}",
+            move_left: "左移 {current}/{total}"
         },
         stages: {
             rules: "法则",
