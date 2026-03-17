@@ -1122,6 +1122,10 @@ export const deChemistry = {
             degree: "\\text{Grad}",
             total_word: "Gesamt",
         },
+        placeholders: {
+            question_mark: "?",
+            name: "Name",
+        },
         hints: {
             carbon_is_black: "\\text{Kohlenstoff ist schwarz.}",
             hydrogen_is_white: "\\text{Wasserstoff ist weiß.}",
@@ -1264,6 +1268,10 @@ export const deChemistry = {
             animation_speed: "Animationsgeschwindigkeit",
             show_mechanism: "Mechanismus anzeigen",
             chemistry_score: "Chemie-Punktzahl"
+        },
+        placeholders: {
+            formula: "Formel",
+            ellipsis: "...",
         },
         prompts: {
             combustion: "Vollständige Verbrennung von {reactant} produziert CO_2 und H_2O. Wie viele CO_2-Moleküle?",

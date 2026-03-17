@@ -2161,6 +2161,11 @@ export const enPhysics = {
                         factor: "Factor",
                         symbol: "Symbol",
                         constant: "Constant"
+                },
+                placeholders: {
+                        temperature: "temperature",
+                        pressure: "pressure",
+                        charles: "charles"
                 }
         }
 ,
@@ -2242,6 +2247,25 @@ export const enPhysics = {
                         first_law: "The First Law of Thermodynamics is the law of conservation of energy.",
                         internal_energy: "Internal energy depends on the temperature and state of the system.",
                         work_heat: "Heat and work are the two ways energy is transferred."
+                },
+                labels: {
+                        yes_no: "Yes/No",
+                        label_yn: "Y/N",
+                        factor: "Factor",
+                        sign: "Sign",
+                        type: "Type",
+                        label_type: "Type",
+                        label_ps: "Path/State",
+                        label_symbol: "Symbol",
+                        limit: "Limit",
+                        corr: "Correction",
+                        procs: "Process",
+                        cv_r: "Cv/R"
+                },
+                placeholders: {
+                        isothermal: "isothermal",
+                        constant: "constant",
+                        state: "state"
                 }
         },
         gp2_03: {
@@ -2422,6 +2446,9 @@ export const enPhysics = {
                         total_internal_reflection: "\\text{Total Internal Reflection}",
                         dispersion: "\\text{Dispersion}",
                         maximize_efficiency: "\\text{Maximize efficiency}"
+                },
+                placeholders: {
+                        yes: "yes"
                 },
                 expr: {
                         same_phase_constructive: "\\text{Same phase} \\rightarrow \\text{constructive}",

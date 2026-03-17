@@ -40,31 +40,31 @@ export default function SC301Page() {
         {
           id: `${currentStage}-C1`, promptLatex: t("sc3_01.prompts.find_carbon_count", { molecule: config.name }),
           expressionLatex: `C_?H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "c", labelLatex: t("sc3_01.labels.carbon"), placeholder: "?", expected: config.c.toString() }],
+          slots: [{ id: "c", labelLatex: t("sc3_01.labels.carbon"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.c.toString() }],
           hintLatex: [t("sc3_01.hints.carbon_is_black")]
         },
         {
           id: `${currentStage}-H1`, promptLatex: t("sc3_01.prompts.find_hydrogen_count", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_?${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "h", labelLatex: t("sc3_01.labels.hydrogen"), placeholder: "?", expected: config.h.toString() }],
+          slots: [{ id: "h", labelLatex: t("sc3_01.labels.hydrogen"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.h.toString() }],
           hintLatex: [t("sc3_01.hints.hydrogen_is_white")]
         },
         {
           id: `${currentStage}-O1`, promptLatex: t("sc3_01.prompts.find_oxygen_count", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_?`,
-          slots: [{ id: "o", labelLatex: t("sc3_01.labels.oxygen"), placeholder: "?", expected: config.o.toString() }],
+          slots: [{ id: "o", labelLatex: t("sc3_01.labels.oxygen"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.o.toString() }],
           hintLatex: [t("sc3_01.hints.oxygen_is_red")]
         },
         ...(config.n > 0 ? [{
           id: `${currentStage}-N1`, promptLatex: t("sc3_01.prompts.find_nitrogen_count", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}N_?O_{${config.o}}`,
-          slots: [{ id: "n", labelLatex: t("sc3_01.labels.nitrogen"), placeholder: "?", expected: config.n.toString() }],
+          slots: [{ id: "n", labelLatex: t("sc3_01.labels.nitrogen"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.n.toString() }],
           hintLatex: [t("sc3_01.hints.nitrogen_is_blue")]
         }] : []),
         {
           id: `${currentStage}-TOTAL1`, promptLatex: t("sc3_01.prompts.total_atom_count", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "total", labelLatex: t("sc3_01.labels.total"), placeholder: "?", expected: (config.c + config.h + config.o + config.n).toString() }],
+          slots: [{ id: "total", labelLatex: t("sc3_01.labels.total"), placeholder: t("sc3_01.placeholders.question_mark"), expected: (config.c + config.h + config.o + config.n).toString() }],
           hintLatex: [t("sc3_01.hints.add_all_atoms")]
         },
       ],
@@ -72,19 +72,19 @@ export default function SC301Page() {
         {
           id: `${currentStage}-C2`, promptLatex: t("sc3_01.prompts.verify_carbon_atoms", { molecule: config.name }),
           expressionLatex: `C_?H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "c", labelLatex: t("sc3_01.labels.carbon"), placeholder: "?", expected: config.c.toString() }],
+          slots: [{ id: "c", labelLatex: t("sc3_01.labels.carbon"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.c.toString() }],
           hintLatex: [t("sc3_01.hints.count_black_spheres")]
         },
         {
           id: `${currentStage}-H2`, promptLatex: t("sc3_01.prompts.count_hydrogen", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_?${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "h", labelLatex: t("sc3_01.labels.hydrogen"), placeholder: "?", expected: config.h.toString() }],
+          slots: [{ id: "h", labelLatex: t("sc3_01.labels.hydrogen"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.h.toString() }],
           hintLatex: [t("sc3_01.hints.smallest_white_atoms")]
         },
         {
           id: `${currentStage}-O2`, promptLatex: t("sc3_01.prompts.oxygen_atoms", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_?`,
-          slots: [{ id: "o", labelLatex: t("sc3_01.labels.oxygen"), placeholder: "?", expected: config.o.toString() }],
+          slots: [{ id: "o", labelLatex: t("sc3_01.labels.oxygen"), placeholder: t("sc3_01.placeholders.question_mark"), expected: config.o.toString() }],
           hintLatex: [t("sc3_01.hints.red_spheres")]
         },
         {
@@ -96,7 +96,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-MASS1`, promptLatex: t("sc3_01.prompts.approx_molar_mass", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "mass", labelLatex: t("sc3_01.labels.mass_per_mol"), placeholder: "?", expected: (config.c * 12 + config.h * 1 + config.o * 16 + config.n * 14).toString() }],
+          slots: [{ id: "mass", labelLatex: t("sc3_01.labels.mass_per_mol"), placeholder: t("sc3_01.placeholders.question_mark"), expected: (config.c * 12 + config.h * 1 + config.o * 16 + config.n * 14).toString() }],
           hintLatex: [t("sc3_01.hints.relative_atomic_masses")]
         },
       ],
@@ -121,7 +121,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-BONDS1`, promptLatex: t("sc3_01.prompts.estimate_bond_count", { molecule: config.name }),
           expressionLatex: t("sc3_01.expressions.approximate"),
-          slots: [{ id: "bonds", labelLatex: t("sc3_01.labels.bonds"), placeholder: "?", expected: (config.c + config.h + config.o + config.n - 1).toString() }],
+          slots: [{ id: "bonds", labelLatex: t("sc3_01.labels.bonds"), placeholder: t("sc3_01.placeholders.question_mark"), expected: (config.c + config.h + config.o + config.n - 1).toString() }],
           hintLatex: [t("sc3_01.hints.roughly_atoms_minus_one")]
         },
         {
@@ -133,7 +133,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-MASS2`, promptLatex: t("sc3_01.prompts.precise_molar_mass", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "mass", labelLatex: t("sc3_01.labels.mass_per_mol"), placeholder: "?", expected: (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01).toFixed(2) }],
+          slots: [{ id: "mass", labelLatex: t("sc3_01.labels.mass_per_mol"), placeholder: t("sc3_01.placeholders.question_mark"), expected: (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01).toFixed(2) }],
           hintLatex: [t("sc3_01.hints.use_precise_masses")]
         },
       ],
@@ -158,19 +158,19 @@ export default function SC301Page() {
         {
           id: `${currentStage}-FUNCTIONAL1`, promptLatex: t("sc3_01.prompts.functional_groups", { molecule: config.name }),
           expressionLatex: t("sc3_01.expressions.identify"),
-          slots: [{ id: "groups", labelLatex: t("sc3_01.labels.groups"), placeholder: "name", expected: currentStage === "ASPIRIN" ? "ester,carboxyl" : currentStage === "CAFFEINE" ? "amide,amine" : "amine,hydroxyl" }],
+          slots: [{ id: "groups", labelLatex: t("sc3_01.labels.groups"), placeholder: t("sc3_01.placeholders.name"), expected: currentStage === "ASPIRIN" ? "ester,carboxyl" : currentStage === "CAFFEINE" ? "amide,amine" : "amine,hydroxyl" }],
           hintLatex: [t("sc3_01.hints.look_for_o_n_patterns")]
         },
         {
           id: `${currentStage}-STRUCTURE1`, promptLatex: t("sc3_01.prompts.ring_structures", { molecule: config.name }),
           expressionLatex: t("sc3_01.expressions.count"),
-          slots: [{ id: "rings", labelLatex: t("sc3_01.labels.rings"), placeholder: "?", expected: currentStage === "ASPIRIN" ? "1" : currentStage === "CAFFEINE" ? "2" : "1" }],
+          slots: [{ id: "rings", labelLatex: t("sc3_01.labels.rings"), placeholder: t("sc3_01.placeholders.question_mark"), expected: currentStage === "ASPIRIN" ? "1" : currentStage === "CAFFEINE" ? "2" : "1" }],
           hintLatex: [t("sc3_01.hints.closed_carbon_chains")]
         },
         {
           id: `${currentStage}-SATURATION1`, promptLatex: t("sc3_01.prompts.degree_unsaturation", { molecule: config.name }),
           expressionLatex: `\\frac{2C + 2 + N - H}{2}`,
-          slots: [{ id: "unsat", labelLatex: t("sc3_01.labels.degree"), placeholder: "?", expected: Math.floor((2 * config.c + 2 + config.n - config.h) / 2).toString() }],
+          slots: [{ id: "unsat", labelLatex: t("sc3_01.labels.degree"), placeholder: t("sc3_01.placeholders.question_mark"), expected: Math.floor((2 * config.c + 2 + config.n - config.h) / 2).toString() }],
           hintLatex: [t("sc3_01.hints.use_formula")]
         },
       ]

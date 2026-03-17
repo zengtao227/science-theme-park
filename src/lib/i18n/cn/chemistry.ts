@@ -1130,6 +1130,10 @@ export const cnChemistry = {
             degree: "\\text{不饱和度}",
             total_word: "合计",
         },
+        placeholders: {
+            question_mark: "?",
+            name: "名称",
+        },
         hints: {
             carbon_is_black: "\\text{碳原子为黑色。}",
             hydrogen_is_white: "\\text{氢原子为白色。}",
@@ -1271,6 +1275,10 @@ export const cnChemistry = {
             animation_speed: "动画速度",
             show_mechanism: "显示机理",
             chemistry_score: "化学分数"
+        },
+        placeholders: {
+            formula: "化学式",
+            ellipsis: "...",
         },
         prompts: {
             combustion: "{reactant} 的完全燃烧产生 CO_2 和 H_2O。产生多少个 CO_2 分子？",

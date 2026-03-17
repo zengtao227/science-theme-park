@@ -1130,6 +1130,10 @@ export const enChemistry = {
             degree: "\\text{Degree}",
             total_word: "Total",
         },
+        placeholders: {
+            question_mark: "?",
+            name: "name",
+        },
         hints: {
             carbon_is_black: "\\text{Carbon is black.}",
             hydrogen_is_white: "\\text{Hydrogen is white.}",
@@ -1271,6 +1275,10 @@ export const enChemistry = {
             animation_speed: "Animation Speed",
             show_mechanism: "Show Mechanism",
             chemistry_score: "Chemistry Score"
+        },
+        placeholders: {
+            formula: "Formula",
+            ellipsis: "...",
         },
         prompts: {
             combustion: "Complete combustion of {reactant} produces CO_2 and H_2O. How many CO_2 molecules?",
