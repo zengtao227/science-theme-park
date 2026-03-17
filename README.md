@@ -109,3 +109,4 @@ git commit -m "feat/fix: 简要描述"
 git push
 ```
 **2. [编译检查] 推送前必须确保本地 `npm run build` 通过。**
+# i18n 100% complete - force Vercel rebuild
