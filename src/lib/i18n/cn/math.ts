@@ -1709,6 +1709,20 @@ export const cnMath = {    em1_01: {
         },
         placeholders: {
             question: "?"
+        },
+        laser: {
+            axis_km: "km",
+            axis_chf: "CHF",
+            plan_a: "方案 A",
+            plan_b: "方案 B",
+            break_even: "盈亏平衡点: {distance} km",
+            target_cost: "目标: {cost} CHF",
+            fare_statistics: "票价统计",
+            target_position: "目标位置",
+            target_hit: "目标命中",
+            chamber: "实验室",
+            laser_sim: "激光模拟",
+            level: "等级"
         }
     },
     sm2_04: {

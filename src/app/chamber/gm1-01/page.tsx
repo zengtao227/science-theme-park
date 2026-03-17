@@ -274,12 +274,7 @@ export default function G101Page() {
             ))}
           </div>
           <div className="text-[10px] text-white/90 font-mono italic text-center">
-            {currentLanguage === 'DE'
-              ? gm1_01_t.input_tip_2dp
-              : currentLanguage === 'CN'
-                ? "提示：保留 2 位小数。"
-                : "Tip: Enter result rounded to 2 decimal places."
-            }
+            {gm1_01_t.input_tip_2dp}
           </div>
         </div>
       </div>

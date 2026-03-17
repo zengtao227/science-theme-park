@@ -1725,6 +1725,20 @@ export const enMath = {    em1_01: {
         },
         placeholders: {
             question: "?"
+        },
+        laser: {
+            axis_km: "km",
+            axis_chf: "CHF",
+            plan_a: "PLAN A",
+            plan_b: "PLAN B",
+            break_even: "Break-even: {distance} km",
+            target_cost: "Target: {cost} CHF",
+            fare_statistics: "Fare Statistics",
+            target_position: "Target Position",
+            target_hit: "TARGET HIT",
+            chamber: "CHAMBER",
+            laser_sim: "LASER_SIM",
+            level: "LEVEL"
         }
     },
     sm2_04: {

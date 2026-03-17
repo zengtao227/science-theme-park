@@ -1743,6 +1743,20 @@ export const deMath = {    em1_01: {
         },
         placeholders: {
             question: "?"
+        },
+        laser: {
+            axis_km: "km",
+            axis_chf: "CHF",
+            plan_a: "PLAN A",
+            plan_b: "PLAN B",
+            break_even: "Break-even: {distance} km",
+            target_cost: "Ziel: {cost} CHF",
+            fare_statistics: "Tarifstatistik",
+            target_position: "Zielposition",
+            target_hit: "ZIEL GETROFFEN",
+            chamber: "KAMMER",
+            laser_sim: "LASER_SIM",
+            level: "LEVEL"
         }
     },
     sm2_04: {
