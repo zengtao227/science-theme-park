@@ -1865,7 +1865,9 @@ export const cnMath = {
             hints: "提示"
         },
         placeholders: {
-            value: "数值"
+            value: "数值",
+            x: "x",
+            n: "n"
         }
     },
     sm2_06: {

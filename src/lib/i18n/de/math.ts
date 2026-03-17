@@ -1899,7 +1899,9 @@ export const deMath = {
             hints: "HINWEISE"
         },
         placeholders: {
-            value: "Wert"
+            value: "Wert",
+            x: "x",
+            n: "n"
         }
     },
     sm2_06: {

@@ -1836,6 +1836,7 @@ export const enMath = {
             k_scale_active: "K-SCALE ACTIVE"
         },
         placeholders: {
+            value: "value",
             width: "width"
         }
     },
@@ -1882,7 +1883,9 @@ export const enMath = {
             hints: "HINTS"
         },
         placeholders: {
-            value: "value"
+            value: "value",
+            x: "x",
+            n: "n"
         }
     },
     sm2_06: {

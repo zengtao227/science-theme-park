@@ -1,0 +1,42 @@
+{
+  "sm2_04": {
+    "placeholders": {
+      "value": "Enter value"
+    },
+    "labels": {
+      "old_value": "old",
+      "new_value": "new"
+    },
+    "hints": {
+      "rules": {
+        "scale_factor_latex": "New = k × Old"
+      }
+    }
+  },
+  "sm2_05": {
+    "placeholders": {
+      "x_placeholder": "x",
+      "answer_placeholder": "Enter your answer"
+    }
+  },
+  "sm2_07": {
+    "formulas": {
+      "distance": "d = \\sqrt{\\Delta x^2 + \\Delta y^2}",
+      "midpoint": "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
+      "slope": "m = \\frac{\\Delta y}{\\Delta x}"
+    },
+    "placeholders": {
+      "distance": "d",
+      "slope": "m"
+    }
+  },
+  "sm2_10": {
+    "formulas": {
+      "mean": "\\bar{x} = \\frac{\\sum x_i}{n}"
+    },
+    "labels": {
+      "mean": "mean",
+      "sum": "sum"
+    }
+  }
+}

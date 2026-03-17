@@ -29,7 +29,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `2^{3} \\cdot 2^{2}`,
                 targetLatex: `2^{x}`,
                 visual: { mode: 'MULTIPLY', base: 2, m: 3, n: 2 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 5 }],
                 correctLatex: `2^5`,
                 hintLatex: [`a^m \\cdot a^n = a^{m+n}`, `2^{3+2}=2^5`],
             });
@@ -39,7 +39,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `3^6 \\div 3^{2}`,
                 targetLatex: `3^x`,
                 visual: { mode: 'DIVIDE', base: 3, m: 6, n: 2 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 4 }],
                 correctLatex: `3^{4}`,
                 hintLatex: [`a^m \\div a^n = a^{m-n}`, `3^{6-2}=3^{4}`],
             });
@@ -49,7 +49,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `5^{4} \\cdot 5^{3}`,
                 targetLatex: `5^x`,
                 visual: { mode: 'MULTIPLY', base: 5, m: 4, n: 3 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 7 }],
                 correctLatex: `5^7`,
                 hintLatex: [`a^m \\cdot a^n = a^{m+n}`, `5^{4+3}=5^7`],
             });
@@ -59,7 +59,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `7^8 \\div 7^5`,
                 targetLatex: `7^x`,
                 visual: { mode: 'DIVIDE', base: 7, m: 8, n: 5 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 3 }],
                 correctLatex: `7^{3}`,
                 hintLatex: [`a^m \\div a^n = a^{m-n}`, `7^{8-5}=7^{3}`],
             });
@@ -69,7 +69,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(4^{2})^{3}`,
                 targetLatex: `4^x`,
                 visual: { mode: 'POWER', base: 4, m: 2, n: 3 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 6 }],
                 correctLatex: `4^6`,
                 hintLatex: [`(a^m)^n = a^{m \\cdot n}`, `4^{2 \\cdot 3}=4^6`],
             });
@@ -81,7 +81,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `x^5 \\cdot x^{4}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'MULTIPLY', base: 'x', m: 5, n: 4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 9 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 9 }],
                 correctLatex: `x^9`,
                 hintLatex: [`x^5 \\cdot x^{4} = x^{5+4}`],
             });
@@ -91,7 +91,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(z^{4})^{2}`,
                 targetLatex: `z^n`,
                 visual: { mode: 'POWER', base: 'z', m: 4, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 8 }],
                 correctLatex: `z^8`,
                 hintLatex: [`(z^{4})^{2} = z^{4 \\cdot 2}`],
             });
@@ -101,7 +101,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `a^7 \\div a^{3}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'DIVIDE', base: 'a', m: 7, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 4 }],
                 correctLatex: `a^{4}`,
                 hintLatex: [`a^7 \\div a^{3} = a^{7-3}`],
             });
@@ -111,7 +111,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(y^{3})^{4}`,
                 targetLatex: `y^n`,
                 visual: { mode: 'POWER', base: 'y', m: 3, n: 4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 12 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 12 }],
                 correctLatex: `y^{12}`,
                 hintLatex: [`(y^{3})^{4} = y^{3 \\cdot 4}`],
             });
@@ -121,7 +121,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `m^6 \\cdot m^{2}`,
                 targetLatex: `m^n`,
                 visual: { mode: 'MULTIPLY', base: 'm', m: 6, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 8 }],
                 correctLatex: `m^8`,
                 hintLatex: [`m^6 \\cdot m^{2} = m^{6+2}`],
             });
@@ -133,7 +133,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `a^{2} \\cdot (a^{3})^{2}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'POWER', base: 'a', m: 3, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 8 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 8 }],
                 correctLatex: `a^{2} \\cdot a^6 = a^8`,
                 hintLatex: [`Apply (a^m)^n first`, `Then a^m \\cdot a^n`],
             });
@@ -143,7 +143,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(b^{4} \\cdot b^{2})^{3}`,
                 targetLatex: `b^n`,
                 visual: { mode: 'MULTIPLY', base: 'b', m: 4, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 18 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 18 }],
                 correctLatex: `(b^{4+2})^{3} = (b^6)^{3} = b^{18}`,
                 hintLatex: [`Apply a^m \\cdot a^n inside parentheses first`],
             });
@@ -153,7 +153,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(x^5)^{2} \\div x^{3}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'POWER', base: 'x', m: 5, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 7 }],
                 correctLatex: `x^{10} \\div x^{3} = x^7`,
                 hintLatex: [`Apply (x^m)^n first`, `Then x^m \\div x^n`],
             });
@@ -163,7 +163,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `c^{3} \\cdot (c^{2})^{3} \\div c^{4}`,
                 targetLatex: `c^n`,
                 visual: { mode: 'POWER', base: 'c', m: 2, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 5 }],
                 correctLatex: `c^{3} \\cdot c^6 \\div c^{4} = c^5`,
                 hintLatex: [`Apply power rule first`, `Then multiply and divide`],
             });
@@ -173,7 +173,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(d^{2})^{4} \\cdot d^{3}`,
                 targetLatex: `d^n`,
                 visual: { mode: 'POWER', base: 'd', m: 2, n: 4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 11 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 11 }],
                 correctLatex: `d^8 \\cdot d^{3} = d^{11}`,
                 hintLatex: [`Apply (d^m)^n first`, `Then d^m \\cdot d^n`],
             });
@@ -185,7 +185,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(2x^{3})^{2} \\div 4x^{2}`,
                 targetLatex: `x^n`,
                 visual: { mode: 'POWER', base: '2x', m: 3, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 4 }],
                 correctLatex: `4x^6 \\div 4x^{2} = x^{4}`,
                 hintLatex: [`(cx^m)^n = c^n \\cdot x^{mn}`, `Then divide`],
             });
@@ -195,7 +195,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(3a^{2})^{3} \\cdot 2a^{4}`,
                 targetLatex: `54a^n`,
                 visual: { mode: 'POWER', base: '3a', m: 2, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 10 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 10 }],
                 correctLatex: `27a^6 \\cdot 2a^{4} = 54a^{10}`,
                 hintLatex: [`(3a^{2})^{3} = 27a^6`, `Then multiply`],
             });
@@ -205,7 +205,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(5y^{4})^{2} \\div (5y^{2})`,
                 targetLatex: `5y^n`,
                 visual: { mode: 'POWER', base: '5y', m: 4, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 6 }],
                 correctLatex: `25y^8 \\div 5y^{2} = 5y^6`,
                 hintLatex: [`Expand (5y^{4})^{2} first`, `Then divide`],
             });
@@ -215,7 +215,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(2m^{3})^{2} \\cdot (3m^{2})^{2}`,
                 targetLatex: `36m^n`,
                 visual: { mode: 'POWER', base: '2m', m: 3, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 10 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 10 }],
                 correctLatex: `4m^6 \\cdot 9m^{4} = 36m^{10}`,
                 hintLatex: [`Expand both powers`, `Then multiply`],
             });
@@ -225,7 +225,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(4n^{2})^{3} \\div 8n^{3}`,
                 targetLatex: `8n^n`,
                 visual: { mode: 'POWER', base: '4n', m: 2, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `64n^6 \\div 8n^{3} = 8n^{3}`,
                 hintLatex: [`(4n^{2})^{3} = 64n^6`, `Then divide`],
             });
@@ -241,7 +241,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `5^{-2}`,
                 targetLatex: `\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 5, m: 1, n: 2 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 25 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 25 }],
                 correctLatex: `\\frac{1}{5^2} = \\frac{1}{25}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -251,7 +251,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `3^{-3}`,
                 targetLatex: `\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 3, m: 1, n: 3 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 27 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 27 }],
                 correctLatex: `\\frac{1}{3^3} = \\frac{1}{27}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -261,7 +261,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `2^{-4}`,
                 targetLatex: `\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 2, m: 1, n: 4 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 16 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 16 }],
                 correctLatex: `\\frac{1}{2^4} = \\frac{1}{16}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -271,7 +271,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `10^{-1}`,
                 targetLatex: `\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 10, m: 1, n: 1 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 10 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 10 }],
                 correctLatex: `\\frac{1}{10^1} = \\frac{1}{10}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -281,7 +281,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `4^{-2}`,
                 targetLatex: `\\frac{1}{x}`,
                 visual: { mode: 'NEGATIVE', base: 4, m: 1, n: 2 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 16 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_05.placeholders.x"), expected: 16 }],
                 correctLatex: `\\frac{1}{4^2} = \\frac{1}{16}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -292,7 +292,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `x^{-4}`,
                 targetLatex: `\\frac{1}{x^n}`,
                 visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 4 }],
                 correctLatex: `\\frac{1}{x^4}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -302,7 +302,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `y^{-5}`,
                 targetLatex: `\\frac{1}{y^n}`,
                 visual: { mode: 'NEGATIVE', base: 'y', m: 1, n: 5 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 5 }],
                 correctLatex: `\\frac{1}{y^5}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -312,7 +312,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `a^{-3}`,
                 targetLatex: `\\frac{1}{a^n}`,
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `\\frac{1}{a^3}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -322,7 +322,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `m^{-6}`,
                 targetLatex: `\\frac{1}{m^n}`,
                 visual: { mode: 'NEGATIVE', base: 'm', m: 1, n: 6 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 6 }],
                 correctLatex: `\\frac{1}{m^6}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -332,7 +332,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `z^{-2}`,
                 targetLatex: `\\frac{1}{z^n}`,
                 visual: { mode: 'NEGATIVE', base: 'z', m: 1, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 2 }],
                 correctLatex: `\\frac{1}{z^2}`,
                 hintLatex: [`a^{-n} = \\frac{1}{a^n}`],
             });
@@ -343,7 +343,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `\\frac{1}{a^{-3}}`,
                 targetLatex: `a^n`,
                 visual: { mode: 'NEGATIVE', base: 'a', m: 1, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `a^{3}`,
                 hintLatex: [`\\frac{1}{a^{-n}} = a^n`],
             });
@@ -353,7 +353,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `\\frac{1}{b^{-5}}`,
                 targetLatex: `b^n`,
                 visual: { mode: 'NEGATIVE', base: 'b', m: 1, n: 5 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 5 }],
                 correctLatex: `b^5`,
                 hintLatex: [`\\frac{1}{a^{-n}} = a^n`],
             });
@@ -363,7 +363,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `x^{-2} \\cdot x^5`,
                 targetLatex: `x^n`,
                 visual: { mode: 'NEGATIVE', base: 'x', m: 1, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `x^{-2+5} = x^{3}`,
                 hintLatex: [`a^m \\cdot a^n = a^{m+n}`],
             });
@@ -373,7 +373,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `y^{3} \\div y^{-2}`,
                 targetLatex: `y^n`,
                 visual: { mode: 'NEGATIVE', base: 'y', m: 1, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 5 }],
                 correctLatex: `y^{3-(-2)} = y^5`,
                 hintLatex: [`a^m \\div a^n = a^{m-n}`],
             });
@@ -383,7 +383,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(c^{-2})^{3}`,
                 targetLatex: `c^n`,
                 visual: { mode: 'NEGATIVE', base: 'c', m: 1, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -6 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: -6 }],
                 correctLatex: `c^{-6}`,
                 hintLatex: [`(a^m)^n = a^{m \\cdot n}`],
             });
@@ -394,7 +394,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `\\left(\\frac{x}{2}\\right)^{-3}`,
                 targetLatex: `\\frac{8}{x^n}`,
                 visual: { mode: 'NEGATIVE', base: 'x/2', m: 1, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `(\\frac{2}{x})^{3} = \\frac{8}{x^3}`,
                 hintLatex: [`(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n`],
             });
@@ -404,7 +404,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `\\left(\\frac{3}{y}\\right)^{-2}`,
                 targetLatex: `\\frac{y^n}{9}`,
                 visual: { mode: 'NEGATIVE', base: '3/y', m: 1, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 2 }],
                 correctLatex: `(\\frac{y}{3})^{2} = \\frac{y^2}{9}`,
                 hintLatex: [`(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n`],
             });
@@ -414,7 +414,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(2a^{-3})^{-2}`,
                 targetLatex: `\\frac{a^n}{4}`,
                 visual: { mode: 'NEGATIVE', base: '2a', m: 1, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 6 }],
                 correctLatex: `(2^{-2})(a^{-3 \\cdot -2}) = \\frac{a^6}{4}`,
                 hintLatex: [`(ca^m)^n = c^n \\cdot a^{mn}`],
             });
@@ -424,7 +424,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(3m^{2})^{-2} \\cdot 9m^5`,
                 targetLatex: `m^n`,
                 visual: { mode: 'NEGATIVE', base: '3m', m: 2, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 1 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 1 }],
                 correctLatex: `\\frac{1}{9m^4} \\cdot 9m^5 = m`,
                 hintLatex: [`Expand (3m^{2})^{-2}`, `Then multiply`],
             });
@@ -434,7 +434,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `\\frac{(2x)^3}{(2x)^{-2}}`,
                 targetLatex: `32x^n`,
                 visual: { mode: 'NEGATIVE', base: '2x', m: 3, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 5 }],
                 correctLatex: `(2x)^{3-(-2)} = (2x)^5 = 32x^5`,
                 hintLatex: [`a^m \\div a^n = a^{m-n}`],
             });
@@ -450,7 +450,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `72000`,
                 targetLatex: `7.2 \\cdot 10^{n}`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 7.2, n: 4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 4 }],
                 correctLatex: `7.2 \\cdot 10^{4}`,
                 hintLatex: [`Move decimal 4 places left`],
             });
@@ -460,7 +460,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `5600`,
                 targetLatex: `5.6 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 5.6, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `5.6 \\cdot 10^{3}`,
                 hintLatex: [`Move decimal 3 places left`],
             });
@@ -470,7 +470,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `890000`,
                 targetLatex: `8.9 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.9, n: 5 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 5 }],
                 correctLatex: `8.9 \\cdot 10^5`,
                 hintLatex: [`Move decimal 5 places left`],
             });
@@ -480,7 +480,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `340`,
                 targetLatex: `3.4 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.4, n: 2 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 2 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 2 }],
                 correctLatex: `3.4 \\cdot 10^{2}`,
                 hintLatex: [`Move decimal 2 places left`],
             });
@@ -490,7 +490,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `1200000`,
                 targetLatex: `1.2 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 1.2, n: 6 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 6 }],
                 correctLatex: `1.2 \\cdot 10^6`,
                 hintLatex: [`Move decimal 6 places left`],
             });
@@ -501,7 +501,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `0.00035`,
                 targetLatex: `3.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.5, n: -4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -4 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: -4 }],
                 correctLatex: `3.5 \\cdot 10^{-4}`,
                 hintLatex: [`Move decimal 4 places right`],
             });
@@ -511,7 +511,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `0.0082`,
                 targetLatex: `8.2 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.2, n: -3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: -3 }],
                 correctLatex: `8.2 \\cdot 10^{-3}`,
                 hintLatex: [`Move decimal 3 places right`],
             });
@@ -521,7 +521,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `0.000067`,
                 targetLatex: `6.7 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6.7, n: -5 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -5 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: -5 }],
                 correctLatex: `6.7 \\cdot 10^{-5}`,
                 hintLatex: [`Move decimal 5 places right`],
             });
@@ -531,7 +531,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `0.00000091`,
                 targetLatex: `9.1 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 9.1, n: -7 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -7 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: -7 }],
                 correctLatex: `9.1 \\cdot 10^{-7}`,
                 hintLatex: [`Move decimal 7 places right`],
             });
@@ -541,7 +541,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `0.0045`,
                 targetLatex: `4.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 4.5, n: -3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: -3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: -3 }],
                 correctLatex: `4.5 \\cdot 10^{-3}`,
                 hintLatex: [`Move decimal 3 places right`],
             });
@@ -603,7 +603,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(3 \\cdot 10^{4}) \\cdot (2 \\cdot 10^{3})`,
                 targetLatex: `6 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6, n: 7 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 7 }],
                 correctLatex: `(3\\cdot 2) \\cdot 10^{4+3} = 6 \\cdot 10^7`,
                 hintLatex: [`Multiply coefficients, add exponents`],
             });
@@ -613,7 +613,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(8 \\cdot 10^6) \\div (2 \\cdot 10^{2})`,
                 targetLatex: `4 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 4, n: 4 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 4 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 4 }],
                 correctLatex: `(8\\div 2) \\cdot 10^{6-2} = 4 \\cdot 10^{4}`,
                 hintLatex: [`Divide coefficients, subtract exponents`],
             });
@@ -623,7 +623,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(5 \\cdot 10^{3})^{2}`,
                 targetLatex: `25 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 25, n: 6 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 6 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 6 }],
                 correctLatex: `5^{2} \\cdot (10^{3})^{2} = 25 \\cdot 10^6`,
                 hintLatex: [`Square coefficient and multiply exponent by 2`],
             });
@@ -633,7 +633,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(9 \\cdot 10^5) \\cdot (4 \\cdot 10^{-2})`,
                 targetLatex: `36 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 36, n: 3 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 3 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 3 }],
                 correctLatex: `(9\\cdot 4) \\cdot 10^{5+(-2)} = 36 \\cdot 10^{3}`,
                 hintLatex: [`Multiply coefficients, add exponents (including negative)`],
             });
@@ -643,7 +643,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `(1.5 \\cdot 10^{4}) \\div (3 \\cdot 10^{-3})`,
                 targetLatex: `0.5 \\cdot 10^n`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 0.5, n: 7 },
-                slots: [{ id: "n", labelLatex: "n", placeholder: "n", expected: 7 }],
+                slots: [{ id: "n", labelLatex: "n", placeholder: t("sm2_05.placeholders.n"), expected: 7 }],
                 correctLatex: `(1.5\\div 3) \\cdot 10^{4-(-3)} = 0.5 \\cdot 10^7`,
                 hintLatex: [`Divide coefficients, subtract exponents`],
             });
