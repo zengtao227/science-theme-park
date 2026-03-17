@@ -1885,6 +1885,9 @@ export const enChemistry = {
             no_hint: "No hint available.",
             hint_increase_products: "Try increasing the coefficient for a product containing {element}",
             hint_increase_reactants: "Try increasing the coefficient for a reactant containing {element}"
+        },
+        placeholders: {
+            Formula: "Formula"
         }
     },
     sc2_07: {

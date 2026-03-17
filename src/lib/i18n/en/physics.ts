@@ -2270,7 +2270,8 @@ export const enPhysics = {
                 placeholders: {
                         isothermal: "isothermal",
                         constant: "constant",
-                        state: "state"
+                        state: "state",
+                        yes: "yes"
                 }
         },
         gp2_03: {

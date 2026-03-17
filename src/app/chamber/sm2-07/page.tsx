@@ -36,7 +36,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "D-E1", difficulty, stage, point1: [0, 0], point2: [3, 4],
           promptKey: 'DIST_REV_Y', promptParams: { d: 5 },
-          promptLatex: t.stages.distance_prompt_latex,
+          promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(0,0), B(3,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
@@ -45,7 +45,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "D-E2", difficulty, stage, point1: [1, 1], point2: [4, 5],
           promptKey: 'DIST_REV_X', promptParams: { d: 5 },
-          promptLatex: t.stages.distance_prompt_latex,
+          promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(1,1), B(x,5)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 4 }],
@@ -54,7 +54,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "D-E3", difficulty, stage, point1: [0, 0], point2: [5, 12],
           promptKey: 'DIST_REV_Y', promptParams: { d: 13 },
-          promptLatex: t.stages.distance_prompt_latex,
+          promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(0,0), B(5,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 12 }],
@@ -63,7 +63,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "D-E4", difficulty, stage, point1: [2, 1], point2: [10, 7],
           promptKey: 'DIST_REV_X', promptParams: { d: 10 },
-          promptLatex: t.stages.distance_prompt_latex,
+          promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(2,1), B(x,7)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 10 }],
@@ -72,7 +72,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "D-E5", difficulty, stage, point1: [-1, -1], point2: [2, 3],
           promptKey: 'DIST_REV_Y', promptParams: { d: 5 },
-          promptLatex: t.stages.distance_prompt_latex,
+          promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(-1,-1), B(2,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 3 }],
@@ -119,10 +119,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: t.stages.distance_prompt_latex,
+        promptLatex: t("sm2_07.stages.distance_prompt_latex"),
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `d`,
-        slots: [{ id: "d", labelLatex: "d", placeholder: sm2_07_t.placeholders.distance, expected: distance }],
+        slots: [{ id: "d", labelLatex: "d", placeholder: t("sm2_07.placeholders.distance"), expected: distance }],
         correctLatex: `d=${distance}`,
       };
     });
@@ -146,7 +146,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         point1: item.A as [number, number],
         point2: item.B as [number, number],
         promptKey: 'MID_REV',
-        promptLatex: t.stages.midpoint_prompt_latex,
+        promptLatex: t("sm2_07.stages.midpoint_prompt_latex"),
         expressionLatex: `A(${item.A[0]},${item.A[1]}),\\; M(${item.M[0]},${item.M[1]})`,
         targetLatex: "B(x,y)",
         slots: [
@@ -188,7 +188,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: t.stages.midpoint_prompt_latex,
+        promptLatex: t("sm2_07.stages.midpoint_prompt_latex"),
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `M(x, y)`,
         slots: [
@@ -207,7 +207,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "S-E1", difficulty, stage, point1: [0, 0], point2: [2, 4],
           promptKey: 'COLLINEAR', promptParams: { target: 'y' },
-          promptLatex: t.stages.slope_prompt_latex,
+          promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(0,0), B(1,2), C(2,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
@@ -216,7 +216,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "S-E2", difficulty, stage, point1: [1, 3], point2: [5, 11],
           promptKey: 'COLLINEAR', promptParams: { target: 'x' },
-          promptLatex: t.stages.slope_prompt_latex,
+          promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(1,3), B(3,7), C(x,11)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 5 }],
@@ -225,7 +225,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "S-E3", difficulty, stage, point1: [2, 1], point2: [6, 9],
           promptKey: 'COLLINEAR', promptParams: { target: 'y' },
-          promptLatex: t.stages.slope_prompt_latex,
+          promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(2,1), B(4,5), C(6,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 9 }],
@@ -234,7 +234,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "S-E4", difficulty, stage, point1: [-1, -2], point2: [3, 6],
           promptKey: 'COLLINEAR', promptParams: { target: 'x' },
-          promptLatex: t.stages.slope_prompt_latex,
+          promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(-1,-2), B(1,2), C(x,6)",
           targetLatex: "x",
           slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 3 }],
@@ -243,7 +243,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         {
           id: "S-E5", difficulty, stage, point1: [0, 3], point2: [4, 7],
           promptKey: 'COLLINEAR', promptParams: { target: 'y' },
-          promptLatex: t.stages.slope_prompt_latex,
+          promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(0,3), B(2,5), C(4,y)",
           targetLatex: "y",
           slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 7 }],
@@ -290,10 +290,10 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         stage,
         point1: item.point1,
         point2: item.point2,
-        promptLatex: t.stages.slope_prompt_latex,
+        promptLatex: t("sm2_07.stages.slope_prompt_latex"),
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `m`,
-        slots: [{ id: "m", labelLatex: "m", placeholder: sm2_07_t.placeholders.slope, expected: slope }],
+        slots: [{ id: "m", labelLatex: "m", placeholder: t("sm2_07.placeholders.slope"), expected: slope }],
         correctLatex: `m=${slope}`,
       };
     });
@@ -306,7 +306,7 @@ export default function S207Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t("sm2_07"), d, s), [t]);
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
   const {
     difficulty,

@@ -108,6 +108,9 @@ export const enMath = {
         mission: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "Measure the tower height using Thales' theorem and shadow ratios."
+        },
+        placeholders: {
+            yes: "yes"
         }
     },
     em2_01: {
