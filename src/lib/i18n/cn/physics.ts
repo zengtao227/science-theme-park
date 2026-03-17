@@ -2081,6 +2081,11 @@ export const cnPhysics = {
             factor: "因子",
             symbol: "符号",
             constant: "常量"
+        },
+        placeholders: {
+            temperature: "温度",
+            pressure: "压强",
+            charles: "查理"
         }
     }
 ,
@@ -2162,6 +2167,11 @@ export const cnPhysics = {
             first_law: "热力学第一定律即能量守恒定律。",
             internal_energy: "内能取决于系统的温度和状态。",
             work_heat: "热量和功是能量转移的两种方式。"
+        },
+        placeholders: {
+            isothermal: "等温",
+            constant: "常数",
+            state: "状态"
         }
     },
     gp2_03: {
@@ -2347,6 +2357,9 @@ export const cnPhysics = {
         expr: {
             same_phase_constructive: "\\text{同相位} \\rightarrow \\text{相长干涉}",
             blaze_angle_efficiency: "\\text{闪耀角} \\rightarrow \\text{最大效率}"
+        },
+        placeholders: {
+            yes: "是"
         }
     },
 

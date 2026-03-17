@@ -2133,6 +2133,11 @@ export const dePhysics = {
                         factor: "Faktor",
                         symbol: "Symbol",
                         constant: "Konstante"
+                },
+                placeholders: {
+                        temperature: "Temperatur",
+                        pressure: "Druck",
+                        charles: "Charles"
                 }
         }
 ,
@@ -2214,6 +2219,11 @@ export const dePhysics = {
                         first_law: "Der erste Hauptsatz der Thermodynamik ist der Satz von der Erhaltung der Energie.",
                         internal_energy: "Die innere Energie hängt von der Temperatur und dem Zustand des Systems ab.",
                         work_heat: "Wärme und Arbeit sind die zwei Arten, wie Energie übertragen wird."
+                },
+                placeholders: {
+                        isothermal: "isotherm",
+                        constant: "Konstante",
+                        state: "Zustand"
                 }
         },
         gp2_03: {
@@ -2394,6 +2404,9 @@ export const dePhysics = {
                 expr: {
                         same_phase_constructive: "\\text{Gleiche Phase} \\rightarrow \\text{konstruktiv}",
                         blaze_angle_efficiency: "\\text{Blazewinkel} \\rightarrow \\text{maximale Effizienz}"
+                },
+                placeholders: {
+                        yes: "Ja"
                 }
         },
 

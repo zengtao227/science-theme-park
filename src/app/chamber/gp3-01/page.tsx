@@ -239,7 +239,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.uncertainty"),
                         expressionLatex: `\\Delta x \\Delta p \\geq \\frac{h}{4\\pi}`,
                         targetLatex: t("gp3_01.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: t.placeholders.yes, expected: "yes" }],
                         correctLatex: t("gp3_01.labels.yes_heisenberg"),
                         hintLatex: [t("gp3_01.hints.uncertainty")]
                     }
@@ -538,7 +538,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.total_internal_reflection"),
                         expressionLatex: `\\theta > \\theta_c \\rightarrow \\text{TIR}`,
                         targetLatex: t("gp3_01.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.yes_no"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.yes_no"), placeholder: t.placeholders.yes, expected: "yes" }],
                         correctLatex: t("gp3_01.labels.yes_tir"),
                         hintLatex: [t("gp3_01.hints.tir_condition")]
                     },
