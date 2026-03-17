@@ -780,6 +780,8 @@ export default function S204Page() {
                             tower_shadow: t("sm2_04.mission.labels.tower_shadow"),
                             stick: t("sm2_04.mission.labels.stick"),
                             stick_shadow: t("sm2_04.mission.labels.stick_shadow"),
+                            sim_matrix: t("sm2_04.canvas_labels.sim_matrix"),
+                            k_scale_active: t("sm2_04.canvas_labels.k_scale_active")
                         }}
                     />
 

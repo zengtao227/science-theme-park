@@ -140,13 +140,14 @@ export default function S203_FunctionCanvas({
                 style={{ width: '100%', aspectRatio: '1/1' }}
                 className="bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
             />
-            <div className="absolute top-4 left-4 flex gap-2">
+            <div className="absolute top-3 left-4 flex gap-2 items-center pointer-events-none">
                 <div className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
-                <div className="text-[8px] font-black text-white/90 uppercase tracking-[0.3em]">Matrix Visualizer v2.0</div>
+                <span className="text-[8px] font-mono text-white/70 tracking-[0.3em] uppercase">{translations("sm2_03.canvas_labels.matrix_visualizer")}</span>
             </div>
-            <div className="absolute bottom-4 right-4 text-[7px] font-mono text-white/60 uppercase tracking-widest text-right">
-                CHART_MODE: CARTESIAN<br />
-                RENDER_ENGINE: 2D_NEON_CORE
+
+            <div className="absolute bottom-3 left-4 text-[7px] font-mono text-white/10 uppercase tracking-widest">
+                {translations("sm2_03.canvas_labels.chart_mode")}<br />
+                {translations("sm2_03.canvas_labels.render_engine")}
             </div>
         </div>
     );

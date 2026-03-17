@@ -10,8 +10,17 @@ interface MeasurementCanvasProps {
 }
 
 export default function MeasurementCanvas({ tool, value, stage, translations }: MeasurementCanvasProps) {
-    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    // Extract canvas labels from translations
+    const canvasLabels = {
+        ruler: translations("sp3_01.canvas_labels.ruler"),
+        ruler_unit: translations("sp3_01.canvas_labels.ruler_unit"),
+        scale: translations("sp3_01.canvas_labels.scale"),
+        scale_unit: translations("sp3_01.canvas_labels.scale_unit"),
+        stopwatch: translations("sp3_01.canvas_labels.stopwatch"),
+        stopwatch_unit: translations("sp3_01.canvas_labels.stopwatch_unit")
+    };
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -82,7 +91,7 @@ export default function MeasurementCanvas({ tool, value, stage, translations }: 
         ctx.font = "12px monospace";
         ctx.fillStyle = "#00ff00";
         ctx.textAlign = "center";
-        ctx.fillText("RULER [cm]", w / 2, centerY + 35);
+        ctx.fillText(`${canvasLabels.ruler} [${canvasLabels.ruler_unit}]`, w / 2, centerY + 35);
     };
 
     const drawScale = (ctx: CanvasRenderingContext2D, w: number, h: number, value: number) => {
@@ -117,11 +126,11 @@ export default function MeasurementCanvas({ tool, value, stage, translations }: 
         ctx.fillStyle = "#00ff00";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText(`${value.toFixed(2)} kg`, centerX, centerY - 20);
+        ctx.fillText(`${value.toFixed(2)} ${canvasLabels.scale_unit}`, centerX, centerY - 20);
 
         // Label
         ctx.font = "12px monospace";
-        ctx.fillText("DIGITAL SCALE", centerX, centerY + 80);
+        ctx.fillText(canvasLabels.scale, centerX, centerY + 80);
     };
 
     const drawTimer = (ctx: CanvasRenderingContext2D, w: number, h: number, value: number) => {
@@ -180,11 +189,11 @@ export default function MeasurementCanvas({ tool, value, stage, translations }: 
         ctx.font = "14px monospace";
         ctx.fillStyle = "#00ff00";
         ctx.textAlign = "center";
-        ctx.fillText(`${value.toFixed(1)} s`, centerX, centerY + radius + 25);
+        ctx.fillText(`${value.toFixed(1)} ${canvasLabels.stopwatch_unit}`, centerX, centerY + radius + 25);
 
         // Label
         ctx.font = "12px monospace";
-        ctx.fillText("STOPWATCH", centerX, centerY + radius + 45);
+        ctx.fillText(canvasLabels.stopwatch, centerX, centerY + radius + 45);
     };
 
     return (
