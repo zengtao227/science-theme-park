@@ -374,9 +374,6 @@ export default function S207Page() {
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t("sm2_07.target_title")}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
             <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{t("sm2_07.labels.hints")}</div>
-            <div className="text-white font-black text-lg">
-              <InlineMath math={t(`sm2_07.formulas.${stage.toLowerCase()}`)} />
-            </div>
             <div className="text-white/70 text-sm font-mono">
               <KatexTextWrap math={currentQuest?.expressionLatex || ""} />
             </div>
