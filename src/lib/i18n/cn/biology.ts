@@ -1228,6 +1228,11 @@ export const cnBiology = {
             respiratory_e3: "CO2 形成碳酸",
             respiratory_e4: "更多红细胞",
             respiratory_e5: "液体阻碍气体交换"
+        },
+        placeholders: {
+            gradient: "梯度",
+            pressure: "压力",
+            rate: "速率"
         }
     },
     sb3_01: {

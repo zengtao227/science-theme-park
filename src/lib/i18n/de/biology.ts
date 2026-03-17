@@ -1228,6 +1228,11 @@ export const deBiology = {
             respiratory_e3: "CO2 bildet Kohlensäure",
             respiratory_e4: "Mehr rote Blutkörperchen",
             respiratory_e5: "Flüssigkeit blockiert Gasaustausch"
+        },
+        placeholders: {
+            gradient: "Gradient",
+            pressure: "Druck",
+            rate: "Rate"
         }
     },
     sb3_01: {

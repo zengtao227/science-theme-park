@@ -507,7 +507,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_c4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.diaphragm")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.pressure")}}`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: "pressure", expected: t("sb2_02.labels.pressure") }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: t("sb2_02.placeholders.pressure"), expected: t("sb2_02.labels.pressure") }],
                         correctLatex: `\\text{${t("sb2_02.labels.pressure")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c4")]
                     },
@@ -516,7 +516,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_c5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.breathing")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.respiratory_rate")}}`,
-                        slots: [{ id: "term", labelLatex: `\\text{${t("sb2_02.labels.term")}}`, placeholder: "rate", expected: "rate" }],
+                        slots: [{ id: "term", labelLatex: `\\text{${t("sb2_02.labels.term")}}`, placeholder: t("sb2_02.placeholders.rate"), expected: "rate" }],
                         correctLatex: `\\text{${t("sb2_02.answers.respiratory_rate")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c5")]
                     }
@@ -547,7 +547,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_a3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.gradient")}}`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: "gradient", expected: "gradient" }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: t("sb2_02.placeholders.gradient"), expected: "gradient" }],
                         correctLatex: `\\text{${t("sb2_02.answers.concentration_gradient")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_a3")]
                     },

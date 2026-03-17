@@ -1288,6 +1288,11 @@ export const enBiology = {
             respiratory_e3: "CO2 forms carbonic acid",
             respiratory_e4: "More red blood cells",
             respiratory_e5: "Fluid blocks gas exchange"
+        },
+        placeholders: {
+            gradient: "gradient",
+            pressure: "pressure",
+            rate: "rate"
         }
     },
     sb3_01: {
