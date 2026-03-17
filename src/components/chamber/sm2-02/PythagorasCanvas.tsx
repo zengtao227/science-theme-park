@@ -235,6 +235,7 @@ interface SpaceCanvasProps {
 
 // Elite Space: Glassy 3D Cuboid with Glowing Body Diagonal
 function Space3D({ a, b, c }: SpaceCanvasProps) {
+  const { t } = useLanguage();
   const diagonalRef = useRef<THREE.Mesh>(null);
 
   useFrame(({ clock }) => {
