@@ -2887,7 +2887,7 @@ export const cnMath = {
         },
         formulas: {
             range: "\\text{极差} = \\text{最大值} - \\text{最小值}",
-            mean: "\\text{均值} = \\frac{\\text{总和}}{n}",
+            mean: "\\text{均值}=\\frac{Sum}{n}",
             q3: "Q_3 = \\text{上半部分的中位数}",
             upper_boundary: "\\text{上边界} = Q_3 + 1.5 \\times \\text{IQR}",
             lower_boundary: "\\text{下边界} = Q_1 - 1.5 \\times \\text{IQR}",

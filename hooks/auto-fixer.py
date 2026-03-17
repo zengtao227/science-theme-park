@@ -14,7 +14,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 class AutoFixer:
-    def __init__(self, max_loops: int = 5, check_only: bool = False, timeout_sec: int = 180):
+    def __init__(self, max_loops: int = 5, check_only: bool = False, timeout_sec: int = 600):
         self.max_loops = max_loops
         self.check_only = check_only
         self.timeout_sec = timeout_sec
@@ -22,14 +22,28 @@ class AutoFixer:
 
     def run_npm_build(self) -> tuple[bool, str]:
         os.chdir(self.project_root)
-        result = subprocess.run(
-            ["npm", "run", "build"],
-            capture_output=True,
-            text=True,
-            timeout=self.timeout_sec,
-        )
-        output = "\n".join(part for part in [result.stdout, result.stderr] if part)
-        return result.returncode == 0, output
+        try:
+            result = subprocess.run(
+                ["npm", "run", "build"],
+                capture_output=True,
+                text=True,
+                timeout=self.timeout_sec,
+            )
+            output = "\n".join(part for part in [result.stdout, result.stderr] if part)
+            return result.returncode == 0, output
+        except subprocess.TimeoutExpired as exc:
+            stdout = exc.stdout if isinstance(exc.stdout, str) else (exc.stdout or b"").decode(errors="ignore")
+            stderr = exc.stderr if isinstance(exc.stderr, str) else (exc.stderr or b"").decode(errors="ignore")
+            output = "\n".join(
+                part
+                for part in [
+                    stdout,
+                    stderr,
+                    f"[auto-fixer] build timed out after {self.timeout_sec}s",
+                ]
+                if part
+            )
+            return False, output
 
     def parse_and_fix_ts(self, build_output: str) -> list[dict[str, Any]]:
         fixes: list[dict[str, Any]] = []
@@ -114,7 +128,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Build validator and optional local auto-fix loop.")
     parser.add_argument("--check", action="store_true", help="Check mode for git hook: run build once and exit.")
     parser.add_argument("--max-loops", type=int, default=5, help="Maximum auto-fix iterations.")
-    parser.add_argument("--timeout-sec", type=int, default=180, help="Build timeout per iteration.")
+    parser.add_argument("--timeout-sec", type=int, default=600, help="Build timeout per iteration.")
     args = parser.parse_args()
 
     fixer = AutoFixer(max_loops=args.max_loops, check_only=args.check, timeout_sec=args.timeout_sec)

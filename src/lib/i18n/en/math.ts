@@ -2892,7 +2892,7 @@ export const enMath = {
         },
         formulas: {
             range: "\\text{Range} = \\text{Max} - \\text{Min}",
-            mean: "\\text{Mean} = \\frac{\\text{Sum}}{n}",
+            mean: "\\text{Mean}=\\frac{Sum}{n}",
             q3: "Q_3 = \\text{median of upper half}",
             upper_boundary: "\\text{Upper boundary} = Q_3 + 1.5 \\times \\text{IQR}",
             lower_boundary: "\\text{Lower boundary} = Q_1 - 1.5 \\times \\text{IQR}",

@@ -2871,7 +2871,7 @@ export const deMath = {
         },
         formulas: {
             range: "\\text{Spannweite} = \\text{Max} - \\text{Min}",
-            mean: "\\text{Mittelwert} = \\frac{\\text{Summe}}{n}",
+            mean: "\\text{Mittelwert}=\\frac{Sum}{n}",
             q3: "Q_3 = \\text{Median der oberen Hälfte}",
             upper_boundary: "\\text{Obere Grenze} = Q_3 + 1.5 \\times \\text{IQR}",
             lower_boundary: "\\text{Untere Grenze} = Q_1 - 1.5 \\times \\text{IQR}",
