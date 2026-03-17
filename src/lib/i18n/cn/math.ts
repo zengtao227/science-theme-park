@@ -1816,6 +1816,10 @@ export const cnMath = {
         canvas_labels: {
             sim_matrix: "相似矩阵",
             k_scale_active: "K-缩放激活"
+        },
+        placeholders: {
+            width: "宽度",
+            value: "数值"
         }
     },
     sm2_05: {
@@ -1859,6 +1863,9 @@ export const cnMath = {
         labels: {
             input: "输入",
             hints: "提示"
+        },
+        placeholders: {
+            value: "数值"
         }
     },
     sm2_06: {
@@ -2019,7 +2026,11 @@ export const cnMath = {
             mid_rev: "M 是中点。已知 A 和 M，求 B(x,y)。",
             collinear: "A, B, C 三点共线。求 ${target}。"
         },
-        input_tip_2dp: "提示：保留 2 位小数。"
+        input_tip_2dp: "提示：保留 2 位小数。",
+        placeholders: {
+            slope: "斜率",
+            distance: "距离"
+        }
     },
     sm2_08: {
         back: "返回枢纽",
@@ -3001,6 +3012,15 @@ export const cnMath = {
             midpoints_hexagon: "\\text{过棱中点} \\rightarrow \\text{正六边形}",
             ellipse_angled: "\\text{斜截面形成椭圆}",
             torus_cross: "\\text{圆环截面}"
+        },
+        placeholders: {
+            distance: "距离",
+            yes: "是",
+            no: "否",
+            right: "右",
+            positive: "正",
+            negative: "负",
+            nonlinear: "非线性"
         }
     },
     sm2_11: {

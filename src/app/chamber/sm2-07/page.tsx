@@ -122,7 +122,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         promptLatex: t.stages.distance_prompt_latex,
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `d`,
-        slots: [{ id: "d", labelLatex: "d", placeholder: "distance", expected: distance }],
+        slots: [{ id: "d", labelLatex: "d", placeholder: sm2_07_t.placeholders.distance, expected: distance }],
         correctLatex: `d=${distance}`,
       };
     });
@@ -293,7 +293,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         promptLatex: t.stages.slope_prompt_latex,
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `m`,
-        slots: [{ id: "m", labelLatex: "m", placeholder: "slope", expected: slope }],
+        slots: [{ id: "m", labelLatex: "m", placeholder: sm2_07_t.placeholders.slope, expected: slope }],
         correctLatex: `m=${slope}`,
       };
     });

@@ -552,7 +552,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `1.2 \\cdot 10^5`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 1.2, n: 5 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 120000 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: sm2_05_t.placeholders.value, expected: 120000 }],
                 correctLatex: `120,000`,
                 hintLatex: [`Add 5 zeros and move decimal`],
             });
@@ -562,7 +562,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `3.5 \\cdot 10^{-4}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 3.5, n: -4 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 0.00035 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: sm2_05_t.placeholders.value, expected: 0.00035 }],
                 correctLatex: `0.00035`,
                 hintLatex: [`Move decimal 4 places left`],
             });
@@ -572,7 +572,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `8.9 \\cdot 10^{3}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 8.9, n: 3 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 8900 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: sm2_05_t.placeholders.value, expected: 8900 }],
                 correctLatex: `8,900`,
                 hintLatex: [`Move decimal 3 places right`],
             });
@@ -582,7 +582,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `2.4 \\cdot 10^{-2}`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 2.4, n: -2 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 0.024 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: sm2_05_t.placeholders.value, expected: 0.024 }],
                 correctLatex: `0.024`,
                 hintLatex: [`Move decimal 2 places left`],
             });
@@ -592,7 +592,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
                 expressionLatex: `6.7 \\cdot 10^6`,
                 targetLatex: `x`,
                 visual: { mode: 'SCIENTIFIC', base: 10, m: 6.7, n: 6 },
-                slots: [{ id: "x", labelLatex: "x", placeholder: "value", expected: 6700000 }],
+                slots: [{ id: "x", labelLatex: "x", placeholder: sm2_05_t.placeholders.value, expected: 6700000 }],
                 correctLatex: `6,700,000`,
                 hintLatex: [`Move decimal 6 places right`],
             });

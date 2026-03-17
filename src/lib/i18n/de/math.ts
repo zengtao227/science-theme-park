@@ -1850,6 +1850,10 @@ export const deMath = {
         canvas_labels: {
             sim_matrix: "SIM-MATRIX",
             k_scale_active: "K-SKALIERUNG AKTIV"
+        },
+        placeholders: {
+            width: "Breite",
+            value: "Wert"
         }
     },
     sm2_05: {
@@ -1893,6 +1897,9 @@ export const deMath = {
         labels: {
             input: "EINGABE",
             hints: "HINWEISE"
+        },
+        placeholders: {
+            value: "Wert"
         }
     },
     sm2_06: {
@@ -2053,7 +2060,11 @@ export const deMath = {
             mid_rev: "M ist der Mittelpunkt. Finde B(x,y).",
             collinear: "Punkte A, B, C sind kollinear. Finde ${target}."
         },
-        input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
+        input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
+        placeholders: {
+            slope: "Steigung",
+            distance: "Abstand"
+        }
     },
     sm2_08: {
         back: "Zurück zum Nexus",
@@ -2985,6 +2996,15 @@ export const deMath = {
             midpoints_hexagon: "\\text{Durch Kantenmittelpunkte} \\rightarrow \\text{Sechseck}",
             ellipse_angled: "\\text{Ellipse durch schraegen Schnitt}",
             torus_cross: "\\text{Torus-Querschnitt}"
+        },
+        placeholders: {
+            distance: "Abstand",
+            yes: "ja",
+            no: "nein",
+            right: "rechts",
+            positive: "positiv",
+            negative: "negativ",
+            nonlinear: "nichtlinear"
         }
     },
     sm2_11: {

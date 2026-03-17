@@ -1831,6 +1831,9 @@ export const enMath = {
         canvas_labels: {
             sim_matrix: "SIM-MATRIX",
             k_scale_active: "K-SCALE ACTIVE"
+        },
+        placeholders: {
+            width: "width"
         }
     },
     sm2_05: {
@@ -1874,6 +1877,9 @@ export const enMath = {
         labels: {
             input: "INPUT",
             hints: "HINTS"
+        },
+        placeholders: {
+            value: "value"
         }
     },
     sm2_06: {
@@ -2034,7 +2040,11 @@ export const enMath = {
             mid_rev: "M is midpoint. Find B(x,y).",
             collinear: "Points A, B, C are collinear. Find ${target}."
         },
-        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
+        input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
+        placeholders: {
+            slope: "slope",
+            distance: "distance"
+        }
     },
     sm2_08: {
         back: "Back to Nexus",
@@ -3003,6 +3013,15 @@ export const enMath = {
             midpoints_hexagon: "\\text{Through edge midpoints} \\rightarrow \\text{hexagon}",
             ellipse_angled: "\\text{Ellipse from angled cut}",
             torus_cross: "\\text{Torus cross-section}"
+        },
+        placeholders: {
+            distance: "distance",
+            yes: "yes",
+            no: "no",
+            right: "right",
+            positive: "positive",
+            negative: "negative",
+            nonlinear: "nonlinear"
         }
     },
     sm2_11: {

@@ -157,7 +157,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c4"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.outlier_q1_q3_range")}}`,
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: `\\text{${t("sm2_10.labels.outlier")}?}`, placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${t("sm2_10.labels.outlier")}?}`, placeholder: sm2_10_t.placeholders.yes, expected: "yes" }],
                         correctLatex: `\\text{${t("sm2_10.answers.yes")}}`,
                         hintLatex: [`50 \\text{ is much larger than others}`]
                     },
@@ -196,7 +196,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a3"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.median_near_q1")}} = \\text{${t("sm2_10.formula_phrases.right_skewed")}}`,
                         targetLatex: t("sm2_10.labels.skew"),
-                        slots: [{ id: "skew", labelLatex: `\\text{${t("sm2_10.labels.direction")}}`, placeholder: "right", expected: "right" }],
+                        slots: [{ id: "skew", labelLatex: `\\text{${t("sm2_10.labels.direction")}}`, placeholder: sm2_10_t.placeholders.right, expected: "right" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.right_skewed")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.long_tail_right")}}`]
                     },
@@ -278,7 +278,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_up_correlation"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.upward_trend")}} = \\text{${t("sm2_10.labels.positive")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.positive, expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.labels.positive")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.both_variables_increase")}}`]
                     },
@@ -287,7 +287,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_down_correlation"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.downward_trend")}} = \\text{${t("sm2_10.labels.negative")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.negative, expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.labels.negative")}}`,
                         hintLatex: [`\\text{${t("sm2_10.expressions.one_up_one_down")}}`]
                     },
@@ -326,7 +326,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_study_scores_correlation"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.both_increase_together")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.positive, expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.answers.positive_correlation")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.both_up_positive")}}`]
                     },
@@ -335,7 +335,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_temp_heating_correlation"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.one_up_one_down")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.negative, expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.answers.negative_correlation")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.opposite_directions_negative")}}`]
                     },
@@ -362,7 +362,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_positive_slope"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.positive_slope")}} = \\text{${t("sm2_10.answers.positive_trend")}}`,
                         targetLatex: t("sm2_10.labels.trend"),
-                        slots: [{ id: "trend", labelLatex: t("sm2_10.labels.trend"), placeholder: "positive", expected: "positive" }],
+                        slots: [{ id: "trend", labelLatex: t("sm2_10.labels.trend"), placeholder: sm2_10_t.placeholders.positive, expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.answers.positive_trend")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.upward_slope_positive")}}`]
                     }
@@ -374,7 +374,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_minimizes"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.minimizes_distance_from_points")}}`,
                         targetLatex: t("sm2_10.labels.minimizes"),
-                        slots: [{ id: "min", labelLatex: t("sm2_10.labels.minimizes"), placeholder: "distance", expected: "distance" }],
+                        slots: [{ id: "min", labelLatex: t("sm2_10.labels.minimizes"), placeholder: sm2_10_t.placeholders.distance, expected: "distance" }],
                         correctLatex: `\\text{${t("sm2_10.answers.sum_of_squared_distances")}}`,
                         hintLatex: [`\\text{${t("sm2_10.formula_phrases.least_squares")}}`]
                     },
@@ -422,7 +422,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_curve_not_line_relationship"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.curved_pattern")}} = \\text{${t("sm2_10.labels.nonlinear")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "nonlinear", expected: "nonlinear" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.nonlinear, expected: "nonlinear" }],
                         correctLatex: `\\text{${t("sm2_10.labels.nonlinear")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.not_straight_line")}}`]
                     },
@@ -522,7 +522,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_c1"),
                         expressionLatex: `r > 0 = \\text{${t("sm2_10.labels.positive")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "positive", expected: "positive" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.positive, expected: "positive" }],
                         correctLatex: `\\text{${t("sm2_10.labels.positive")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.positive_r_positive_correlation")}}`]
                     },
@@ -570,7 +570,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_icecream_drowning"),
                         expressionLatex: `\\text{${t("sm2_10.labels.correlation")}} \\neq \\text{${t("sm2_10.labels.causation")}}`,
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.cause_q"), placeholder: "no", expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.cause_q"), placeholder: sm2_10_t.placeholders.no, expected: "no" }],
                         correctLatex: `\\text{${t("sm2_10.answers.no_hot_weather_cause")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.correlation_not_causation")}}`]
                     },
@@ -588,7 +588,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_a3"),
                         expressionLatex: `r < 0 = \\text{${t("sm2_10.labels.negative")}}`,
                         targetLatex: `\\text{${t("sm2_10.labels.type")}}`,
-                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: "negative", expected: "negative" }],
+                        slots: [{ id: "type", labelLatex: `\\text{${t("sm2_10.labels.type")}}`, placeholder: sm2_10_t.placeholders.negative, expected: "negative" }],
                         correctLatex: `\\text{${t("sm2_10.formula_phrases.strong_negative")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.opposite_directions_negative")}}`]
                     },
@@ -606,7 +606,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_strong_positive_predict"),
                         expressionLatex: `\\text{${t("sm2_10.expressions.strong_correlation_allows_prediction")}}`,
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.predict_q"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.predict_q"), placeholder: sm2_10_t.placeholders.yes, expected: "yes" }],
                         correctLatex: `\\text{${t("sm2_10.answers.yes_with_some_error")}}`,
                         hintLatex: [`\\text{${t("sm2_10.hints.strong_correlation_enables_prediction")}}`]
                     }
