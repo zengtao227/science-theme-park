@@ -1085,6 +1085,9 @@ export const dePhysics = {
                 ready: "Bereit",
                 monitor_title: "SP2.01_STROMKREIS_LABOR",
                 footer_left: "SP2.01_ELEKTRIZITÄT // KNOTEN: BASEL",
+                labels: {
+                        quest: "Aufgabe"
+                },
                 objective_title: "Stromkreis Ziel",
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE" },
                 stages: {

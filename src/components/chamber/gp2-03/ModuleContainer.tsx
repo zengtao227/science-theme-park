@@ -101,7 +101,7 @@ export default function ModuleContainer({
     nextQuest: {
       en: "Next Quest",
       cn: "下一题",
-      de: "Nächste Quest",
+      de: "Nächste Aufgabe",
     }[currentLanguage],
     hints: {
       en: "Hints:",
@@ -263,7 +263,7 @@ export default function ModuleContainer({
   const localizedFooter = currentLanguage === "cn"
     ? `任务 ${currentQuestIndex + 1}/${stageQuests.length}`
     : currentLanguage === "de"
-      ? `Quest ${currentQuestIndex + 1} von ${stageQuests.length}`
+      ? `Aufgabe ${currentQuestIndex + 1} von ${stageQuests.length}`
       : `Quest ${currentQuestIndex + 1} of ${stageQuests.length}`;
 
   return (

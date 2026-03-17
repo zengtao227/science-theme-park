@@ -1020,6 +1020,9 @@ export const cnPhysics = {
         ready: "就绪",
         monitor_title: "SP2.01_电路实验室",
         footer_left: "SP2.01_电学 // 节点: 巴塞尔",
+        labels: {
+            quest: "任务"
+        },
         objective_title: "电路目标",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         stages: {

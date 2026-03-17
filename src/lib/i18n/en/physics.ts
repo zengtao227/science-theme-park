@@ -1086,6 +1086,9 @@ export const enPhysics = {
                 ready: "Ready",
                 monitor_title: "SP2.01_CIRCUIT_LAB",
                 footer_left: "SP2.01_ELECTRICITY // NODE: BASEL",
+                labels: {
+                        quest: "Quest"
+                },
                 objective_title: "Circuit Objective",
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
                 stages: {

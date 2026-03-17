@@ -37,7 +37,10 @@ export default function SP201CircuitBasics() {
     check: t("sp2_01.check"),
     next: t("sp2_01.next"),
     correct: t("sp2_01.correct"),
-    incorrect: t("sp2_01.incorrect")
+    incorrect: t("sp2_01.incorrect"),
+    labels: {
+      quest: t("sp2_01.labels.quest")
+    }
   }), [t]);
 
   const {
@@ -156,7 +159,7 @@ export default function SP201CircuitBasics() {
           >
             <div className="mb-4">
               <div className="text-white/50 text-sm mb-2">
-                Quest {currentQuest?.id} | {difficultyLabel} | {stageLabel}
+                {sp2_01_t.labels.quest} {currentQuest?.id} | {difficultyLabel} | {stageLabel}
               </div>
               <div className="text-white text-lg mb-4">{renderMixedText(currentQuest?.promptLatex || "")}</div>
               
