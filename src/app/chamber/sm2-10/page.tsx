@@ -157,7 +157,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c4"),
                         expressionLatex: t("sm2_10.expressions.outlier_q1_q3_range"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.outlier") + "?", placeholder: t("sm2_10.placeholders.yes"), expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.outlier") + "?", placeholder: t("sm2_10.placeholders.yes"), expected: t("sm2_10.placeholders.yes") }],
                         correctLatex: t("sm2_10.answers.yes"),
                         hintLatex: [`50 \\text{ is much larger than others}`]
                     },
@@ -166,7 +166,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_box_represents"),
                         expressionLatex: t("sm2_10.expressions.box_iqr_q1_q3"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.represents"), placeholder: "IQR", expected: "IQR" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.represents"), placeholder: t("sm2_10.placeholders.iqr"), expected: t("sm2_10.placeholders.iqr") }],
                         correctLatex: `\\text{IQR (middle 50\\%)}`,
                         hintLatex: [t("sm2_10.hints.box_shows_q1_q3")]
                     }
@@ -196,7 +196,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a3"),
                         expressionLatex: t("sm2_10.formulas.right_skewed"),
                         targetLatex: t("sm2_10.labels.skew"),
-                        slots: [{ id: "skew", labelLatex: t("sm2_10.labels.direction"), placeholder: t("sm2_10.placeholders.right"), expected: "right" }],
+                        slots: [{ id: "skew", labelLatex: t("sm2_10.labels.direction"), placeholder: t("sm2_10.placeholders.right"), expected: t("sm2_10.placeholders.right") }],
                         correctLatex: t("sm2_10.formula_phrases.right_skewed"),
                         hintLatex: [t("sm2_10.hints.long_tail_right")]
                     },
@@ -226,7 +226,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_modified_boxplot_useful"),
                         expressionLatex: t("sm2_10.expressions.shows_extreme_values_clearly"),
                         targetLatex: t("sm2_10.labels.reason"),
-                        slots: [{ id: "reason", labelLatex: t("sm2_10.labels.benefit"), placeholder: "clarity", expected: "clarity" }],
+                        slots: [{ id: "reason", labelLatex: t("sm2_10.labels.benefit"), placeholder: t("sm2_10.placeholders.clarity"), expected: t("sm2_10.placeholders.clarity") }],
                         correctLatex: t("sm2_10.answers.identifies_extreme_values"),
                         hintLatex: [t("sm2_10.hints.outliers_individual_points")]
                     },
@@ -235,7 +235,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_e2"),
                         expressionLatex: t("sm2_10.expressions.iqr_middle_50_range_all"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.more_variable"), placeholder: "depends", expected: "depends" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.more_variable"), placeholder: t("sm2_10.placeholders.depends"), expected: t("sm2_10.placeholders.depends") }],
                         correctLatex: t("sm2_10.answers.depends_on_context"),
                         hintLatex: [t("sm2_10.hints.iqr_vs_range_different")]
                     },
@@ -244,7 +244,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_median_or_mean_resistant"),
                         expressionLatex: t("sm2_10.expressions.median_not_affected_by_extremes"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.more_resistant"), placeholder: "median", expected: "median" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.more_resistant"), placeholder: t("sm2_10.placeholders.median"), expected: t("sm2_10.placeholders.median") }],
                         correctLatex: t("sm2_10.labels.median"),
                         hintLatex: [t("sm2_10.hints.median_position_based")]
                     },
@@ -253,7 +253,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_e4"),
                         expressionLatex: t("sm2_10.expressions.five_numbers_describe_distribution"),
                         targetLatex: t("sm2_10.labels.fifth_number"),
-                        slots: [{ id: "num", labelLatex: t("sm2_10.labels.fifth"), placeholder: "Max", expected: "Max" }],
+                        slots: [{ id: "num", labelLatex: t("sm2_10.labels.fifth"), placeholder: t("sm2_10.placeholders.max"), expected: t("sm2_10.placeholders.max") }],
                         correctLatex: t("sm2_10.labels.maximum"),
                         hintLatex: [t("sm2_10.labels.five_number_summary")]
                     },
@@ -262,7 +262,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_e5"),
                         expressionLatex: t("sm2_10.expressions.symmetric_distribution"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.distribution"), placeholder: "symmetric", expected: "symmetric" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.distribution"), placeholder: t("sm2_10.placeholders.symmetric"), expected: t("sm2_10.placeholders.symmetric") }],
                         correctLatex: t("sm2_10.formula_phrases.symmetric"),
                         hintLatex: [t("sm2_10.hints.balanced_both_sides")]
                     }
@@ -278,7 +278,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_up_correlation"),
                         expressionLatex: t("sm2_10.formulas.upward_trend_positive"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.positive"), expected: "positive" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.positive"), expected: t("sm2_10.placeholders.positive") }],
                         correctLatex: t("sm2_10.labels.positive"),
                         hintLatex: [t("sm2_10.hints.both_variables_increase")]
                     },
@@ -287,7 +287,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_down_correlation"),
                         expressionLatex: t("sm2_10.formulas.downward_trend_negative"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.negative"), expected: "negative" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.negative"), expected: t("sm2_10.placeholders.negative") }],
                         correctLatex: t("sm2_10.labels.negative"),
                         hintLatex: [t("sm2_10.expressions.one_up_one_down")]
                     },
@@ -296,7 +296,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_random_correlation"),
                         expressionLatex: t("sm2_10.formulas.no_pattern_no_correlation"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: "none", expected: "none" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.none"), expected: t("sm2_10.placeholders.none") }],
                         correctLatex: t("sm2_10.answers.none"),
                         hintLatex: [t("sm2_10.expressions.no_relationship")]
                     },
@@ -314,7 +314,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_each_point_represents"),
                         expressionLatex: t("sm2_10.expressions.point_one_data_pair"),
                         targetLatex: t("sm2_10.labels.represents"),
-                        slots: [{ id: "rep", labelLatex: t("sm2_10.labels.represents"), placeholder: "pair", expected: "pair" }],
+                        slots: [{ id: "rep", labelLatex: t("sm2_10.labels.represents"), placeholder: t("sm2_10.placeholders.pair"), expected: t("sm2_10.placeholders.pair") }],
                         correctLatex: t("sm2_10.answers.one_data_pair"),
                         hintLatex: [t("sm2_10.hints.one_observation_two_values")]
                     }
@@ -326,7 +326,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_study_scores_correlation"),
                         expressionLatex: t("sm2_10.expressions.both_increase_together"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.positive"), expected: "positive" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.positive"), expected: t("sm2_10.placeholders.positive") }],
                         correctLatex: t("sm2_10.answers.positive_correlation"),
                         hintLatex: [t("sm2_10.hints.both_up_positive")]
                     },
@@ -335,7 +335,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_temp_heating_correlation"),
                         expressionLatex: t("sm2_10.expressions.one_up_one_down"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.negative"), expected: "negative" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.negative"), expected: t("sm2_10.placeholders.negative") }],
                         correctLatex: t("sm2_10.answers.negative_correlation"),
                         hintLatex: [t("sm2_10.hints.opposite_directions_negative")]
                     },
@@ -344,7 +344,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_shoe_math_no_pattern"),
                         expressionLatex: t("sm2_10.expressions.no_relationship"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: "none", expected: "none" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.none"), expected: t("sm2_10.placeholders.none") }],
                         correctLatex: t("sm2_10.formula_phrases.no_correlation"),
                         hintLatex: [t("sm2_10.formulas.no_pattern_no_correlation")]
                     },
@@ -353,7 +353,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_cluster_strength"),
                         expressionLatex: t("sm2_10.formulas.tight_cluster_strong"),
                         targetLatex: t("sm2_10.labels.strength"),
-                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: "strong", expected: "strong" }],
+                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: t("sm2_10.placeholders.strong"), expected: t("sm2_10.placeholders.strong") }],
                         correctLatex: t("sm2_10.answers.strong_correlation"),
                         hintLatex: [t("sm2_10.hints.close_to_line_strong")]
                     },
@@ -362,7 +362,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_positive_slope"),
                         expressionLatex: t("sm2_10.formulas.positive_slope_positive_trend"),
                         targetLatex: t("sm2_10.labels.trend"),
-                        slots: [{ id: "trend", labelLatex: t("sm2_10.labels.trend"), placeholder: t("sm2_10.placeholders.positive"), expected: "positive" }],
+                        slots: [{ id: "trend", labelLatex: t("sm2_10.labels.trend"), placeholder: t("sm2_10.placeholders.positive"), expected: t("sm2_10.placeholders.positive") }],
                         correctLatex: t("sm2_10.answers.positive_trend"),
                         hintLatex: [t("sm2_10.hints.upward_slope_positive")]
                     }
@@ -374,7 +374,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_best_fit_minimizes"),
                         expressionLatex: t("sm2_10.expressions.minimizes_distance_from_points"),
                         targetLatex: t("sm2_10.labels.minimizes"),
-                        slots: [{ id: "min", labelLatex: t("sm2_10.labels.minimizes"), placeholder: t("sm2_10.placeholders.distance"), expected: "distance" }],
+                        slots: [{ id: "min", labelLatex: t("sm2_10.labels.minimizes"), placeholder: t("sm2_10.placeholders.distance"), expected: t("sm2_10.placeholders.distance") }],
                         correctLatex: t("sm2_10.answers.sum_of_squared_distances"),
                         hintLatex: [t("sm2_10.formula_phrases.least_squares")]
                     },
@@ -383,7 +383,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_predict_beyond_range"),
                         expressionLatex: t("sm2_10.formulas.beyond_range_extrapolation"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "extrapolation", expected: "extrapolation" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.extrapolation"), expected: t("sm2_10.placeholders.extrapolation") }],
                         correctLatex: t("sm2_10.labels.extrapolation"),
                         hintLatex: [t("sm2_10.hints.extra_beyond_polation_prediction")]
                     },
@@ -392,7 +392,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_predict_within_range"),
                         expressionLatex: t("sm2_10.formulas.within_range_interpolation"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "interpolation", expected: "interpolation" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.interpolation"), expected: t("sm2_10.placeholders.interpolation") }],
                         correctLatex: t("sm2_10.labels.interpolation"),
                         hintLatex: [t("sm2_10.hints.inter_between")]
                     },
@@ -401,7 +401,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_actual_predicted_difference"),
                         expressionLatex: t("sm2_10.formulas.actual_minus_predicted_residual"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "residual", expected: "residual" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.residual"), expected: t("sm2_10.placeholders.residual") }],
                         correctLatex: t("sm2_10.labels.residual"),
                         hintLatex: [t("sm2_10.hints.residual_leftover_error")]
                     },
@@ -410,7 +410,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_points_wide_scatter"),
                         expressionLatex: t("sm2_10.formulas.wide_scatter_weak"),
                         targetLatex: t("sm2_10.labels.strength"),
-                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: "weak", expected: "weak" }],
+                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: t("sm2_10.placeholders.weak"), expected: t("sm2_10.placeholders.weak") }],
                         correctLatex: t("sm2_10.labels.weak"),
                         hintLatex: [t("sm2_10.hints.far_from_line_weak")]
                     }
@@ -422,7 +422,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_curve_not_line_relationship"),
                         expressionLatex: t("sm2_10.formulas.curved_pattern_nonlinear"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.nonlinear"), expected: "nonlinear" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.nonlinear"), expected: t("sm2_10.placeholders.nonlinear") }],
                         correctLatex: t("sm2_10.labels.nonlinear"),
                         hintLatex: [t("sm2_10.hints.not_straight_line")]
                     },
@@ -431,7 +431,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_far_point_affects_line"),
                         expressionLatex: t("sm2_10.expressions.influential_point_or_outlier"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "influential", expected: "influential" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.influential"), expected: t("sm2_10.placeholders.influential") }],
                         correctLatex: t("sm2_10.formula_phrases.influential_point"),
                         hintLatex: [t("sm2_10.hints.large_influence_on_line")]
                     },
@@ -440,7 +440,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_hidden_variable_name"),
                         expressionLatex: t("sm2_10.formulas.hidden_variable_lurking"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "lurking", expected: "lurking" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.lurking"), expected: t("sm2_10.placeholders.lurking") }],
                         correctLatex: t("sm2_10.formula_phrases.lurking_variable"),
                         hintLatex: [t("sm2_10.hints.lurking_hidden")]
                     },
@@ -449,7 +449,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_process_best_fit"),
                         expressionLatex: t("sm2_10.formulas.finding_best_fit_regression"),
                         targetLatex: t("sm2_10.labels.process"),
-                        slots: [{ id: "proc", labelLatex: t("sm2_10.labels.process"), placeholder: "regression", expected: "regression" }],
+                        slots: [{ id: "proc", labelLatex: t("sm2_10.labels.process"), placeholder: t("sm2_10.placeholders.regression"), expected: t("sm2_10.placeholders.regression") }],
                         correctLatex: t("sm2_10.formula_phrases.linear_regression"),
                         hintLatex: [t("sm2_10.hints.regression_analysis")]
                     },
@@ -474,7 +474,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_correlation_measures"),
                         expressionLatex: t("sm2_10.expressions.measures_relationship_strength"),
                         targetLatex: t("sm2_10.labels.measures"),
-                        slots: [{ id: "meas", labelLatex: t("sm2_10.labels.measures"), placeholder: "relationship", expected: "relationship" }],
+                        slots: [{ id: "meas", labelLatex: t("sm2_10.labels.measures"), placeholder: t("sm2_10.placeholders.relationship"), expected: t("sm2_10.placeholders.relationship") }],
                         correctLatex: t("sm2_10.answers.relationship_between_variables"),
                         hintLatex: [t("sm2_10.hints.how_variables_relate")]
                     },
@@ -522,7 +522,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_c1"),
                         expressionLatex: t("sm2_10.formulas.r_positive"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.positive"), expected: "positive" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.positive"), expected: t("sm2_10.placeholders.positive") }],
                         correctLatex: t("sm2_10.labels.positive"),
                         hintLatex: [t("sm2_10.hints.positive_r_positive_correlation")]
                     },
@@ -531,7 +531,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_c2"),
                         expressionLatex: t("sm2_10.formulas.r_near_1_strong"),
                         targetLatex: t("sm2_10.labels.strength"),
-                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: "strong", expected: "strong" }],
+                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: t("sm2_10.placeholders.strong"), expected: t("sm2_10.placeholders.strong") }],
                         correctLatex: t("sm2_10.labels.strong"),
                         hintLatex: [`0.95 \\text{ ${t("sm2_10.expressions.close_to")} } 1`]
                     },
@@ -540,7 +540,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_c3"),
                         expressionLatex: t("sm2_10.formulas.r_near_0_weak"),
                         targetLatex: t("sm2_10.labels.strength"),
-                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: "weak", expected: "weak" }],
+                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: t("sm2_10.placeholders.weak"), expected: t("sm2_10.placeholders.weak") }],
                         correctLatex: t("sm2_10.labels.weak"),
                         hintLatex: [`0.15 \\text{ ${t("sm2_10.expressions.close_to")} } 0`]
                     },
@@ -549,7 +549,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_c4"),
                         expressionLatex: `r < 0, \\ |r| \\text{ ${t("sm2_10.expressions.near")} } 1`,
                         targetLatex: t("sm2_10.labels.description"),
-                        slots: [{ id: "desc", labelLatex: t("sm2_10.labels.type"), placeholder: "strong negative", expected: "strong negative" }],
+                        slots: [{ id: "desc", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.strong_negative"), expected: t("sm2_10.placeholders.strong_negative") }],
                         correctLatex: t("sm2_10.formula_phrases.strong_negative"),
                         hintLatex: [t("sm2_10.hints.negative_and_close_to") + " -1"]
                     },
@@ -558,7 +558,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_c5"),
                         expressionLatex: t("sm2_10.formulas.moderate_correlation"),
                         targetLatex: t("sm2_10.labels.strength"),
-                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: "moderate", expected: "moderate" }],
+                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: t("sm2_10.placeholders.moderate"), expected: t("sm2_10.placeholders.moderate") }],
                         correctLatex: t("sm2_10.labels.moderate"),
                         hintLatex: [t("sm2_10.hints.middle_range")]
                     }
@@ -570,7 +570,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_icecream_drowning"),
                         expressionLatex: t("sm2_10.formulas.correlation_not_causation"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.cause_q"), placeholder: t("sm2_10.placeholders.no"), expected: "no" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.cause_q"), placeholder: t("sm2_10.placeholders.no"), expected: t("sm2_10.placeholders.no") }],
                         correctLatex: t("sm2_10.answers.no_hot_weather_cause"),
                         hintLatex: [t("sm2_10.hints.correlation_not_causation")]
                     },
@@ -579,7 +579,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_a2"),
                         expressionLatex: t("sm2_10.formulas.r_close_to_1_strong"),
                         targetLatex: t("sm2_10.labels.strength"),
-                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: "strong", expected: "strong" }],
+                        slots: [{ id: "strength", labelLatex: t("sm2_10.labels.strength"), placeholder: t("sm2_10.placeholders.strong"), expected: t("sm2_10.placeholders.strong") }],
                         correctLatex: t("sm2_10.formula_phrases.strong_positive"),
                         hintLatex: [t("sm2_10.formulas.r_near_1_strong_positive")]
                     },
@@ -588,7 +588,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_a3"),
                         expressionLatex: t("sm2_10.formulas.r_negative"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.negative"), expected: "negative" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.negative"), expected: t("sm2_10.placeholders.negative") }],
                         correctLatex: t("sm2_10.formula_phrases.strong_negative"),
                         hintLatex: [t("sm2_10.hints.opposite_directions_negative")]
                     },
@@ -597,7 +597,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_a4"),
                         expressionLatex: t("sm2_10.formulas.r_approx_0_no_correlation"),
                         targetLatex: t("sm2_10.labels.meaning"),
-                        slots: [{ id: "meaning", labelLatex: t("sm2_10.labels.meaning"), placeholder: "none", expected: "none" }],
+                        slots: [{ id: "meaning", labelLatex: t("sm2_10.labels.meaning"), placeholder: t("sm2_10.placeholders.none"), expected: t("sm2_10.placeholders.none") }],
                         correctLatex: t("sm2_10.formula_phrases.no_correlation"),
                         hintLatex: [t("sm2_10.formulas.r_near_0_no_correlation")]
                     },
@@ -606,7 +606,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_strong_positive_predict"),
                         expressionLatex: t("sm2_10.expressions.strong_correlation_allows_prediction"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.predict_q"), placeholder: t("sm2_10.placeholders.yes"), expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.predict_q"), placeholder: t("sm2_10.placeholders.yes"), expected: t("sm2_10.placeholders.yes") }],
                         correctLatex: t("sm2_10.answers.yes_with_some_error"),
                         hintLatex: [t("sm2_10.hints.strong_correlation_enables_prediction")]
                     }
@@ -618,7 +618,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_false_correlation_variable"),
                         expressionLatex: t("sm2_10.formula_phrases.confounding_variable"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "confounding", expected: "confounding" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.confounding"), expected: t("sm2_10.placeholders.confounding") }],
                         correctLatex: t("sm2_10.formula_phrases.confounding_variable"),
                         hintLatex: [t("sm2_10.hints.confounds_confuses_relationship")]
                     },
@@ -627,7 +627,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_no_causal_relationship"),
                         expressionLatex: t("sm2_10.formula_phrases.spurious_correlation"),
                         targetLatex: t("sm2_10.labels.term"),
-                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: "spurious", expected: "spurious" }],
+                        slots: [{ id: "term", labelLatex: t("sm2_10.labels.term"), placeholder: t("sm2_10.placeholders.spurious"), expected: t("sm2_10.placeholders.spurious") }],
                         correctLatex: t("sm2_10.formula_phrases.spurious_correlation"),
                         hintLatex: [t("sm2_10.hints.spurious_false_misleading")]
                     },
@@ -636,7 +636,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_common_correlation_coefficient"),
                         expressionLatex: t("sm2_10.expressions.pearsons_r"),
                         targetLatex: t("sm2_10.labels.name"),
-                        slots: [{ id: "name", labelLatex: t("sm2_10.labels.name"), placeholder: "Pearson", expected: "Pearson" }],
+                        slots: [{ id: "name", labelLatex: t("sm2_10.labels.name"), placeholder: t("sm2_10.placeholders.pearson"), expected: t("sm2_10.placeholders.pearson") }],
                         correctLatex: t("sm2_10.answers.pearson_correlation_coefficient"),
                         hintLatex: [t("sm2_10.hints.named_after_karl_pearson")]
                     },
@@ -645,7 +645,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_pearson_assumes_relationship"),
                         expressionLatex: t("sm2_10.expressions.assumes_linear_relationship"),
                         targetLatex: t("sm2_10.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: "linear", expected: "linear" }],
+                        slots: [{ id: "type", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.linear"), expected: t("sm2_10.placeholders.linear") }],
                         correctLatex: t("sm2_10.labels.linear"),
                         hintLatex: [t("sm2_10.hints.straight_line_relationship")]
                     },
@@ -654,7 +654,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_c_e5"),
                         expressionLatex: t("sm2_10.formulas.r_squared_coefficient_determination"),
                         targetLatex: t("sm2_10.labels.name"),
-                        slots: [{ id: "name", labelLatex: t("sm2_10.labels.name"), placeholder: "determination", expected: "determination" }],
+                        slots: [{ id: "name", labelLatex: t("sm2_10.labels.name"), placeholder: t("sm2_10.placeholders.determination"), expected: t("sm2_10.placeholders.determination") }],
                         correctLatex: t("sm2_10.formula_phrases.coefficient_of_determination"),
                         hintLatex: [t("sm2_10.hints.determines_percent_variation_explained")]
                     }
