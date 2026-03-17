@@ -55,7 +55,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.build_mass_number"),
                     expressionLatex: "p=8,\\;n=8,\\;A=p+n",
                     targetLatex: "A",
-                    slots: [{ id: "A", labelLatex: "A", placeholder: "xx", expected: 16 }],
+                    slots: [{ id: "A", labelLatex: "A", placeholder: t("sc1_03.placeholders.xx"), expected: 16 }],
                     correctLatex: "A=16",
                 }],
                 CORE: [{
@@ -63,7 +63,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.build_charge"),
                     expressionLatex: "p=11,\\;e=10,\\;q=p-e",
                     targetLatex: "q",
-                    slots: [{ id: "q", labelLatex: "q", placeholder: "x", expected: 1 }],
+                    slots: [{ id: "q", labelLatex: "q", placeholder: t("sc1_03.placeholders.x"), expected: 1 }],
                     correctLatex: "q=+1",
                 }],
                 ADVANCED: [{
@@ -71,7 +71,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.build_electrons"),
                     expressionLatex: "Z=17",
                     targetLatex: "e",
-                    slots: [{ id: "e", labelLatex: "e", placeholder: "xx", expected: 17 }],
+                    slots: [{ id: "e", labelLatex: "e", placeholder: t("sc1_03.placeholders.xx"), expected: 17 }],
                     correctLatex: "e=17",
                 }],
                 ELITE: [{
@@ -79,7 +79,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.build_neutrons"),
                     expressionLatex: "A=56,\\;Z=26,\\;n=A-Z",
                     targetLatex: "n",
-                    slots: [{ id: "n", labelLatex: "n", placeholder: "xx", expected: 30 }],
+                    slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_03.placeholders.xx"), expected: 30 }],
                     correctLatex: "n=30",
                 }],
             },
@@ -89,7 +89,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.elements_atomic_number_basic"),
                     expressionLatex: "\\mathrm{C}",
                     targetLatex: "Z",
-                    slots: [{ id: "Z", labelLatex: "Z", placeholder: "x", expected: 6 }],
+                    slots: [{ id: "Z", labelLatex: "Z", placeholder: t("sc1_03.placeholders.x"), expected: 6 }],
                     correctLatex: "Z=6",
                 }],
                 CORE: [{
@@ -97,7 +97,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.elements_atomic_number_core"),
                     expressionLatex: "\\mathrm{Mg}",
                     targetLatex: "Z",
-                    slots: [{ id: "Z", labelLatex: "Z", placeholder: "xx", expected: 12 }],
+                    slots: [{ id: "Z", labelLatex: "Z", placeholder: t("sc1_03.placeholders.xx"), expected: 12 }],
                     correctLatex: "Z=12",
                 }],
                 ADVANCED: [{
@@ -113,7 +113,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.elements_period"),
                     expressionLatex: "Z=18\\;(Ar)",
                     targetLatex: "P",
-                    slots: [{ id: "period", labelLatex: "P", placeholder: "x", expected: 3 }],
+                    slots: [{ id: "period", labelLatex: "P", placeholder: t("sc1_03.placeholders.x"), expected: 3 }],
                     correctLatex: "P=3",
                 }],
             },
@@ -123,7 +123,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.isotope_neutrons"),
                     expressionLatex: "^{14}_{6}C",
                     targetLatex: "n",
-                    slots: [{ id: "n", labelLatex: "n", placeholder: "x", expected: 8 }],
+                    slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_03.placeholders.x"), expected: 8 }],
                     correctLatex: "n=14-6=8",
                 }],
                 CORE: [{
@@ -131,7 +131,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.isotope_mass_number"),
                     expressionLatex: "Z=8,\\;n=10",
                     targetLatex: "A",
-                    slots: [{ id: "A", labelLatex: "A", placeholder: "xx", expected: 18 }],
+                    slots: [{ id: "A", labelLatex: "A", placeholder: t("sc1_03.placeholders.xx"), expected: 18 }],
                     correctLatex: "A=18",
                 }],
                 ADVANCED: [{
@@ -139,7 +139,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.isotope_delta_neutrons"),
                     expressionLatex: "^{35}_{17}Cl,\\;^{37}_{17}Cl",
                     targetLatex: "\\Delta n",
-                    slots: [{ id: "dn", labelLatex: "\\Delta n", placeholder: "x", expected: 2 }],
+                    slots: [{ id: "dn", labelLatex: "\\Delta n", placeholder: t("sc1_03.placeholders.x"), expected: 2 }],
                     correctLatex: "\\Delta n=2",
                 }],
                 ELITE: [{
@@ -147,7 +147,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.isotope_average_mass"),
                     expressionLatex: "^{35}Cl:75\\%,\\;^{37}Cl:25\\%",
                     targetLatex: "A_{avg}",
-                    slots: [{ id: "Aavg", labelLatex: "A_{avg}", placeholder: "xx.x", expected: 35.5 }],
+                    slots: [{ id: "Aavg", labelLatex: "A_{avg}", placeholder: t("sc1_03.placeholders.xx_dot_x"), expected: 35.5 }],
                     correctLatex: "A_{avg}=35\\times0.75+37\\times0.25=35.5",
                 }],
             },

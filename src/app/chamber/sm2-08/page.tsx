@@ -143,7 +143,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_on_time"),
             expressionLatex: "\\frac{16}{20}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.8, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.8, unit: "" }],
             correctLatex: "P = \\frac{16}{20} = 0.8 = 80\\%",
           },
           {
@@ -155,7 +155,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_rain"),
             expressionLatex: "\\frac{12}{30}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.4, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.4, unit: "" }],
             correctLatex: "P = \\frac{12}{30} = 0.4 = 40\\%",
           },
           {
@@ -167,7 +167,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_3"),
             expressionLatex: "\\frac{1}{6}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.167, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.167, unit: "" }],
             correctLatex: "P = \\frac{1}{6} \\approx 0.167",
           },
           {
@@ -179,7 +179,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_heads"),
             expressionLatex: "\\frac{1}{2}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.5, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.5, unit: "" }],
             correctLatex: "P = \\frac{1}{2} = 0.5 = 50\\%",
           },
           {
@@ -191,7 +191,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_on_time"),
             expressionLatex: "\\frac{18}{20}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.9, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.9, unit: "" }],
             correctLatex: "P = \\frac{18}{20} = 0.9 = 90\\%",
           },
         ],
@@ -205,7 +205,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_pizza"),
             expressionLatex: "\\frac{3}{5}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.6, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.6, unit: "" }],
             correctLatex: "P = \\frac{3}{5} = 0.6 = 60\\%",
           },
           {
@@ -217,7 +217,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_pass"),
             expressionLatex: "\\frac{85}{100}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.85, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.85, unit: "" }],
             correctLatex: "P = 0.85 = 85\\%",
           },
           {
@@ -229,7 +229,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sunny"),
             expressionLatex: "\\frac{21}{30}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.7, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.7, unit: "" }],
             correctLatex: "P = \\frac{21}{30} = 0.7 = 70\\%",
           },
           {
@@ -241,7 +241,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_on_time"),
             expressionLatex: "\\frac{17}{20}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.85, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.85, unit: "" }],
             correctLatex: "P = \\frac{17}{20} = 0.85 = 85\\%",
           },
           {
@@ -253,7 +253,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_gt4"),
             expressionLatex: "\\frac{2}{6}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.333, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.333, unit: "" }],
             correctLatex: "P = \\frac{2}{6} \\approx 0.333",
           },
         ],
@@ -267,7 +267,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_even"),
             expressionLatex: "\\frac{3}{6}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.5, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.5, unit: "" }],
             correctLatex: "P = \\frac{3}{6} = 0.5 = 50\\%",
           },
           {
@@ -279,7 +279,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_heart"),
             expressionLatex: "\\frac{13}{52}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.25, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.25, unit: "" }],
             correctLatex: "P = \\frac{13}{52} = 0.25 = 25\\%",
           },
           {
@@ -291,7 +291,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_red"),
             expressionLatex: "\\frac{26}{52}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.5, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.5, unit: "" }],
             correctLatex: "P = \\frac{26}{52} = 0.5 = 50\\%",
           },
           {
@@ -303,7 +303,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sum_8"),
             expressionLatex: "\\frac{5}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.139, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.139, unit: "" }],
             correctLatex: "P = \\frac{5}{36} \\approx 0.139",
           },
           {
@@ -315,7 +315,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_face"),
             expressionLatex: "\\frac{12}{52}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.231, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.231, unit: "" }],
             correctLatex: "P = \\frac{12}{52} \\approx 0.231",
           },
         ],
@@ -329,7 +329,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_prime"),
             expressionLatex: "\\frac{3}{6}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.x", expected: 0.5, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_x"), expected: 0.5, unit: "" }],
             correctLatex: "P = \\frac{3}{6} = 0.5 = 50\\%",
           },
           {
@@ -341,7 +341,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sum_10"),
             expressionLatex: "\\frac{3}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.083, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.083, unit: "" }],
             correctLatex: "P = \\frac{3}{36} \\approx 0.083",
           },
           {
@@ -353,7 +353,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_a_or_k"),
             expressionLatex: "\\frac{8}{52}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.154, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.154, unit: "" }],
             correctLatex: "P = \\frac{8}{52} \\approx 0.154",
           },
           {
@@ -365,7 +365,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_doubles"),
             expressionLatex: "\\frac{6}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.167, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.167, unit: "" }],
             correctLatex: "P = \\frac{6}{36} \\approx 0.167",
           },
           {
@@ -377,7 +377,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_spade_face"),
             expressionLatex: "\\frac{3}{52}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.058, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.058, unit: "" }],
             correctLatex: "P = \\frac{3}{52} \\approx 0.058",
           },
         ],
@@ -393,7 +393,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{3}{100}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.03, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.03, unit: "" }],
             correctLatex: "P = \\frac{3}{100} = 0.03 = 3\\%",
           },
           {
@@ -405,7 +405,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{5}{100}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.05, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.05, unit: "" }],
             correctLatex: "P = \\frac{5}{100} = 0.05 = 5\\%",
           },
           {
@@ -417,7 +417,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_2_heads"),
             expressionLatex: "\\frac{1}{4}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.25, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.25, unit: "" }],
             correctLatex: "P = \\frac{1}{4} = 0.25 = 25\\%",
           },
           {
@@ -429,7 +429,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_not_6"),
             expressionLatex: "\\frac{5}{6}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.833, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.833, unit: "" }],
             correctLatex: "P = \\frac{5}{6} \\approx 0.833",
           },
           {
@@ -441,7 +441,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{2}{50}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.04, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.04, unit: "" }],
             correctLatex: "P = \\frac{2}{50} = 0.04 = 4\\%",
           },
         ],
@@ -455,7 +455,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sum_7"),
             expressionLatex: "\\frac{6}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.167, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.167, unit: "" }],
             correctLatex: "P = \\frac{6}{36} \\approx 0.167 = 16.7\\%",
           },
           {
@@ -467,7 +467,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sum_9"),
             expressionLatex: "\\frac{4}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.111, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.111, unit: "" }],
             correctLatex: "P = \\frac{4}{36} \\approx 0.111",
           },
           {
@@ -479,7 +479,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_3_heads"),
             expressionLatex: "\\frac{1}{8}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.125, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.125, unit: "" }],
             correctLatex: "P = \\frac{1}{8} = 0.125",
           },
           {
@@ -491,7 +491,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sum_6"),
             expressionLatex: "\\frac{5}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.139, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.139, unit: "" }],
             correctLatex: "P = \\frac{5}{36} \\approx 0.139",
           },
           {
@@ -503,7 +503,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_2_red"),
             expressionLatex: "\\frac{26}{52} \\times \\frac{25}{51}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.245, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.245, unit: "" }],
             correctLatex: "P \\approx 0.245",
           },
         ],
@@ -517,7 +517,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{1}{20}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.05, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.05, unit: "" }],
             correctLatex: "P = \\frac{1}{20} = 0.05 = 5\\%",
           },
           {
@@ -529,7 +529,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{1}{70}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.014, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.014, unit: "" }],
             correctLatex: "P = \\frac{1}{70} \\approx 0.014",
           },
           {
@@ -541,7 +541,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_sum_lt5"),
             expressionLatex: "\\frac{6}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.167, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.167, unit: "" }],
             correctLatex: "P = \\frac{6}{36} \\approx 0.167",
           },
           {
@@ -553,7 +553,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_geq3_heads"),
             expressionLatex: "\\frac{5}{16}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.313, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.313, unit: "" }],
             correctLatex: "P = \\frac{5}{16} \\approx 0.313",
           },
           {
@@ -565,7 +565,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_3_hearts"),
             expressionLatex: "\\frac{13}{52} \\times \\frac{12}{51} \\times \\frac{11}{50}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.013, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.013, unit: "" }],
             correctLatex: "P \\approx 0.013",
           },
         ],
@@ -579,7 +579,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{8}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.222, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.222, unit: "" }],
             correctLatex: "P = \\frac{8}{36} \\approx 0.222 = 22.2\\%",
           },
           {
@@ -591,7 +591,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_lose"),
             expressionLatex: "\\frac{4}{36}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.111, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.111, unit: "" }],
             correctLatex: "P = \\frac{4}{36} \\approx 0.111",
           },
           {
@@ -603,7 +603,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_win"),
             expressionLatex: "\\frac{1}{252}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxxx", expected: 0.004, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxxx"), expected: 0.004, unit: "" }],
             correctLatex: "P = \\frac{1}{252} \\approx 0.004",
           },
           {
@@ -615,7 +615,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_exactly_2"),
             expressionLatex: "\\frac{10}{32}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.313, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.313, unit: "" }],
             correctLatex: "P = \\frac{10}{32} \\approx 0.313",
           },
           {
@@ -627,7 +627,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_pair"),
             expressionLatex: "\\text{complex}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.423, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.423, unit: "" }],
             correctLatex: "P \\approx 0.423",
           },
         ],
@@ -643,7 +643,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_both_on_time"),
             expressionLatex: "0.8 \\times 0.7",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.56, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.56, unit: "" }],
             correctLatex: "P = 0.8 \\times 0.7 = 0.56 = 56\\%",
           },
           {
@@ -655,7 +655,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_both_heads"),
             expressionLatex: "0.5 \\times 0.5",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.25, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.25, unit: "" }],
             correctLatex: "P = 0.5 \\times 0.5 = 0.25",
           },
           {
@@ -667,7 +667,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_both_even"),
             expressionLatex: "0.5 \\times 0.5",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.25, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.25, unit: "" }],
             correctLatex: "P = 0.5 \\times 0.5 = 0.25",
           },
           {
@@ -679,7 +679,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_both_sunny"),
             expressionLatex: "0.7 \\times 0.7",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.49, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.49, unit: "" }],
             correctLatex: "P = 0.7 \\times 0.7 = 0.49",
           },
           {
@@ -691,7 +691,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_both_pass"),
             expressionLatex: "0.85 \\times 0.85",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.723, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.723, unit: "" }],
             correctLatex: "P = 0.85 \\times 0.85 \\approx 0.723",
           },
         ],
@@ -705,7 +705,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_both_win"),
             expressionLatex: "0.6 \\times 0.3",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.18, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.18, unit: "" }],
             correctLatex: "P = 0.6 \\times 0.3 = 0.18 = 18\\%",
           },
           {
@@ -717,7 +717,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_all_on_time"),
             expressionLatex: "0.8 \\times 0.75 \\times 0.9",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.54, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.54, unit: "" }],
             correctLatex: "P = 0.8 \\times 0.75 \\times 0.9 = 0.54",
           },
           {
@@ -729,7 +729,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_all_sunny"),
             expressionLatex: "0.7^{3}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.343, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.343, unit: "" }],
             correctLatex: "P = 0.7^{3} = 0.343",
           },
           {
@@ -741,7 +741,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_all_6"),
             expressionLatex: "(\\frac{1}{6})^{3}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxxx", expected: 0.0046, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxxx"), expected: 0.0046, unit: "" }],
             correctLatex: "P = (\\frac{1}{6})^{3} \\approx 0.0046",
           },
           {
@@ -753,7 +753,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_geq1_win"),
             expressionLatex: "1 - (0.4 \\times 0.7)",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.72, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.72, unit: "" }],
             correctLatex: "P = 1 - 0.28 = 0.72",
           },
         ],
@@ -767,7 +767,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_all_5_pass"),
             expressionLatex: "0.95^5",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.774, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.774, unit: "" }],
             correctLatex: "P = 0.95^5 \\approx 0.774 = 77.4\\%",
           },
           {
@@ -779,7 +779,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_geq4_pass"),
             expressionLatex: "0.95^5 + 5 \\times 0.95^{4} \\times 0.05",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.977, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.977, unit: "" }],
             correctLatex: "P \\approx 0.977",
           },
           {
@@ -791,7 +791,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_all_on_time"),
             expressionLatex: "0.8^{4}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.41, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.41, unit: "" }],
             correctLatex: "P = 0.8^{4} \\approx 0.41",
           },
           {
@@ -803,7 +803,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_no_rain_7_days"),
             expressionLatex: "0.6^7",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.028, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.028, unit: "" }],
             correctLatex: "P = 0.6^7 \\approx 0.028",
           },
           {
@@ -815,7 +815,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_all_5_pass"),
             expressionLatex: "0.85^5",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.444, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.444, unit: "" }],
             correctLatex: "P = 0.85^5 \\approx 0.444",
           },
         ],
@@ -829,7 +829,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_exactly_2_heads"),
             expressionLatex: "\\frac{3}{8}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.375, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.375, unit: "" }],
             correctLatex: "P = \\frac{3}{8} = 0.375 = 37.5\\%",
           },
           {
@@ -841,7 +841,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_exactly_3"),
             expressionLatex: "\\frac{4}{16}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xx", expected: 0.25, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xx"), expected: 0.25, unit: "" }],
             correctLatex: "P = \\frac{4}{16} = 0.25",
           },
           {
@@ -853,7 +853,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_exactly_4"),
             expressionLatex: "5 \\times 0.95^{4} \\times 0.05",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.204, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.204, unit: "" }],
             correctLatex: "P \\approx 0.204",
           },
           {
@@ -865,7 +865,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_geq4_heads"),
             expressionLatex: "\\frac{6}{32}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxx", expected: 0.188, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxx"), expected: 0.188, unit: "" }],
             correctLatex: "P = \\frac{6}{32} \\approx 0.188",
           },
           {
@@ -877,7 +877,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.p_match"),
             expressionLatex: "1 - \\frac{365 \\times 364}{365^2}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "P", placeholder: "0.xxxx", expected: 0.0027, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm2_08.placeholders.v_0_dot_xxxx"), expected: 0.0027, unit: "" }],
             correctLatex: "P \\approx 0.0027",
           },
         ],
@@ -893,7 +893,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_average"),
             expressionLatex: "\\frac{18+22+20+19+21+23+20}{7}",
             targetLatex: "\\bar{x}",
-            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: "xx.x", expected: 20.4, unit: "degC" }],
+            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: t("sm2_08.placeholders.xx_dot_x"), expected: 20.4, unit: "degC" }],
             correctLatex: "\\bar{x} \\approx 20.4degC",
           },
           {
@@ -905,7 +905,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_average"),
             expressionLatex: "\\frac{80+85+90+75+95}{5}",
             targetLatex: "\\bar{x}",
-            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: "xx", expected: 85, unit: "" }],
+            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: t("sm2_08.placeholders.xx"), expected: 85, unit: "" }],
             correctLatex: "\\bar{x} = 85",
           },
           {
@@ -917,7 +917,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_total"),
             expressionLatex: "40+25+20+15",
             targetLatex: "T",
-            slots: [{ id: "T", labelLatex: "T", placeholder: "xxx", expected: 100, unit: "CHF" }],
+            slots: [{ id: "T", labelLatex: "T", placeholder: t("sm2_08.placeholders.xxx"), expected: 100, unit: "CHF" }],
             correctLatex: "T = 100 \\text{ CHF}",
           },
           {
@@ -929,7 +929,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_average"),
             expressionLatex: "\\frac{15+18+20+17+20}{5}",
             targetLatex: "\\bar{x}",
-            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: "xx", expected: 18, unit: "degC" }],
+            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: t("sm2_08.placeholders.xx"), expected: 18, unit: "degC" }],
             correctLatex: "\\bar{x} = 18degC",
           },
           {
@@ -941,7 +941,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_median"),
             expressionLatex: "\\text{middle of } 10,12,15,18,20",
             targetLatex: "M",
-            slots: [{ id: "M", labelLatex: "M", placeholder: "xx", expected: 15, unit: "" }],
+            slots: [{ id: "M", labelLatex: "M", placeholder: t("sm2_08.placeholders.xx"), expected: 15, unit: "" }],
             correctLatex: "M = 15",
           },
         ],
@@ -955,7 +955,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_class_average"),
             expressionLatex: "\\frac{\\sum scores}{n}",
             targetLatex: "\\bar{x}",
-            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: "xx", expected: 78, unit: "" }],
+            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: t("sm2_08.placeholders.xx"), expected: 78, unit: "" }],
             correctLatex: "\\bar{x} = 78",
           },
           {
@@ -967,7 +967,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_food_pct"),
             expressionLatex: "\\frac{40}{100}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "\\%", placeholder: "xx", expected: 40, unit: "%" }],
+            slots: [{ id: "P", labelLatex: "\\%", placeholder: t("sm2_08.placeholders.xx"), expected: 40, unit: "%" }],
             correctLatex: "40\\%",
           },
           {
@@ -979,7 +979,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_median"),
             expressionLatex: "\\frac{75+80}{2}",
             targetLatex: "M",
-            slots: [{ id: "M", labelLatex: "M", placeholder: "xx.x", expected: 77.5, unit: "" }],
+            slots: [{ id: "M", labelLatex: "M", placeholder: t("sm2_08.placeholders.xx_dot_x"), expected: 77.5, unit: "" }],
             correctLatex: "M = 77.5",
           },
           {
@@ -991,7 +991,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_range"),
             expressionLatex: "23 - 15",
             targetLatex: "R",
-            slots: [{ id: "R", labelLatex: "R", placeholder: "x", expected: 8, unit: "degC" }],
+            slots: [{ id: "R", labelLatex: "R", placeholder: t("sm2_08.placeholders.x"), expected: 8, unit: "degC" }],
             correctLatex: "R = 8degC",
           },
           {
@@ -1003,7 +1003,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_transport_pct"),
             expressionLatex: "\\frac{25}{100}",
             targetLatex: "P",
-            slots: [{ id: "P", labelLatex: "\\%", placeholder: "xx", expected: 25, unit: "%" }],
+            slots: [{ id: "P", labelLatex: "\\%", placeholder: t("sm2_08.placeholders.xx"), expected: 25, unit: "%" }],
             correctLatex: "25\\%",
           },
         ],
@@ -1017,7 +1017,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_weighted_avg"),
             expressionLatex: "\\frac{80 \\times 2 + 90 \\times 3}{5}",
             targetLatex: "\\bar{x}_w",
-            slots: [{ id: "avg", labelLatex: "\\bar{x}_w", placeholder: "xx", expected: 86, unit: "" }],
+            slots: [{ id: "avg", labelLatex: "\\bar{x}_w", placeholder: t("sm2_08.placeholders.xx"), expected: 86, unit: "" }],
             correctLatex: "\\bar{x}_w = 86",
           },
           {
@@ -1029,7 +1029,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_median"),
             expressionLatex: t("sm2_08.expr.middle_value"),
             targetLatex: "M",
-            slots: [{ id: "M", labelLatex: "M", placeholder: "xx", expected: 15, unit: "" }],
+            slots: [{ id: "M", labelLatex: "M", placeholder: t("sm2_08.placeholders.xx"), expected: 15, unit: "" }],
             correctLatex: "M = 15",
           },
           {
@@ -1041,7 +1041,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_mode"),
             expressionLatex: t("sm2_08.expr.most_frequent"),
             targetLatex: "Mo",
-            slots: [{ id: "Mo", labelLatex: "Mo", placeholder: "xx", expected: 85, unit: "" }],
+            slots: [{ id: "Mo", labelLatex: "Mo", placeholder: t("sm2_08.placeholders.xx"), expected: 85, unit: "" }],
             correctLatex: "Mo = 85",
           },
           {
@@ -1053,7 +1053,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_remaining"),
             expressionLatex: "100 - 40 - 25 - 20",
             targetLatex: "R",
-            slots: [{ id: "R", labelLatex: "R", placeholder: "xx", expected: 15, unit: "CHF" }],
+            slots: [{ id: "R", labelLatex: "R", placeholder: t("sm2_08.placeholders.xx"), expected: 15, unit: "CHF" }],
             correctLatex: "R = 15 \\text{ CHF}",
           },
           {
@@ -1065,7 +1065,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.q1"),
             expressionLatex: t("sm2_08.expr.p25"),
             targetLatex: "Q_1",
-            slots: [{ id: "Q1", labelLatex: "Q_1", placeholder: "xx", expected: 17, unit: "degC" }],
+            slots: [{ id: "Q1", labelLatex: "Q_1", placeholder: t("sm2_08.placeholders.xx"), expected: 17, unit: "degC" }],
             correctLatex: "Q_1 = 17degC",
           },
         ],
@@ -1079,7 +1079,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_variance"),
             expressionLatex: "\\frac{\\sum(x_i - \\bar{x})^2}{n}",
             targetLatex: "\\sigma^{2}",
-            slots: [{ id: "var", labelLatex: "\\sigma^{2}", placeholder: "xx", expected: 50, unit: "" }],
+            slots: [{ id: "var", labelLatex: "\\sigma^{2}", placeholder: t("sm2_08.placeholders.xx"), expected: 50, unit: "" }],
             correctLatex: "\\sigma^{2} = 50",
           },
           {
@@ -1091,7 +1091,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_new_mean"),
             expressionLatex: "\\frac{10+12+15+18+100}{5}",
             targetLatex: "\\bar{x}",
-            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: "xx", expected: 31, unit: "" }],
+            slots: [{ id: "avg", labelLatex: "\\bar{x}", placeholder: t("sm2_08.placeholders.xx"), expected: 31, unit: "" }],
             correctLatex: "\\bar{x} = 31",
           },
           {
@@ -1103,7 +1103,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.iqr"),
             expressionLatex: "Q_3 - Q_1",
             targetLatex: "IQR",
-            slots: [{ id: "IQR", labelLatex: "IQR", placeholder: "xx", expected: 10, unit: "" }],
+            slots: [{ id: "IQR", labelLatex: "IQR", placeholder: t("sm2_08.placeholders.xx"), expected: 10, unit: "" }],
             correctLatex: "IQR = 10",
           },
           {
@@ -1115,7 +1115,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.pct_change"),
             expressionLatex: "\\frac{120-100}{100} \\times 100",
             targetLatex: "\\Delta\\%",
-            slots: [{ id: "pct", labelLatex: "\\Delta\\%", placeholder: "xx", expected: 20, unit: "%" }],
+            slots: [{ id: "pct", labelLatex: "\\Delta\\%", placeholder: t("sm2_08.placeholders.xx"), expected: 20, unit: "%" }],
             correctLatex: "\\Delta\\% = 20\\%",
           },
           {
@@ -1127,7 +1127,7 @@ export default function SM208Page() {
             promptLatex: t("sm2_08.prompts.prompt_correlation"),
             expressionLatex: "\\text{positive/negative}",
             targetLatex: "r",
-            slots: [{ id: "r", labelLatex: "r", placeholder: "1 or -1", expected: 1, unit: "" }],
+            slots: [{ id: "r", labelLatex: "r", placeholder: t("sm2_08.placeholders.v_1_or_minus_1"), expected: 1, unit: "" }],
             correctLatex: "r > 0 \\text{ (positive)}",
           },
         ],

@@ -69,7 +69,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): OrganicQu
             promptLatex: t(`gc2_01.prompts.${data.key}`),
             expressionLatex: "",
             targetLatex: "\\\\text{Answer}",
-            slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected: data.expected }],
+            slots: [{ id: "ans", labelLatex: "Answer", placeholder: t("gc2_01.placeholders.ellipsis"), expected: data.expected }],
             correctLatex: data.expected,
             simConfig: {
                 molecule: data.molecule,
@@ -215,7 +215,7 @@ export default function GC201Page() {
                             value={inputs["ans"] || ""}
                             onChange={(e) => setInputs({ ans: e.target.value })}
                             className="w-full bg-black/50 border-2 border-neon-purple p-4 text-center outline-none focus:border-white placeholder:text-white/20 font-black text-2xl text-white transition-all shadow-[0_0_30px_rgba(255,0,255,0.05)]"
-                            placeholder="..."
+                            placeholder={t("gc2_01.placeholders.ellipsis")}
                         />
                     </div>
                 </div>

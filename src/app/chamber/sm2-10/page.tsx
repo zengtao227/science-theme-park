@@ -82,7 +82,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b1"),
                         expressionLatex: t("sm2_10.expressions.median_middle_value"),
                         targetLatex: t("sm2_10.labels.median"),
-                        slots: [{ id: "median", labelLatex: t("sm2_10.labels.median"), placeholder: "6", expected: 6 }],
+                        slots: [{ id: "median", labelLatex: t("sm2_10.labels.median"), placeholder: t("sm2_10.placeholders.v_6"), expected: 6 }],
                         correctLatex: `6`,
                         hintLatex: [t("sm2_10.hints.middle_of_5_third")]
                     },
@@ -91,7 +91,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b2"),
                         expressionLatex: t("sm2_10.expressions.q1_median_lower_half"),
                         targetLatex: `Q_1`,
-                        slots: [{ id: "q1", labelLatex: `Q_1`, placeholder: "3", expected: 3 }],
+                        slots: [{ id: "q1", labelLatex: `Q_1`, placeholder: t("sm2_10.placeholders.v_3"), expected: 3 }],
                         correctLatex: `Q_1 = 3`,
                         hintLatex: [t("sm2_10.hints.lower_half") + " 1, 3"]
                     },
@@ -100,7 +100,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b3"),
                         expressionLatex: t("sm2_10.formulas.range"),
                         targetLatex: t("sm2_10.labels.range"),
-                        slots: [{ id: "range", labelLatex: t("sm2_10.labels.range"), placeholder: "20", expected: 20 }],
+                        slots: [{ id: "range", labelLatex: t("sm2_10.labels.range"), placeholder: t("sm2_10.placeholders.v_20"), expected: 20 }],
                         correctLatex: `20`,
                         hintLatex: [`30 - 10 = 20`]
                     },
@@ -109,7 +109,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b4"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
-                        slots: [{ id: "iqr", labelLatex: `\\text{IQR}`, placeholder: "10", expected: 10 }],
+                        slots: [{ id: "iqr", labelLatex: `\\text{IQR}`, placeholder: t("sm2_10.placeholders.v_10"), expected: 10 }],
                         correctLatex: `\\text{IQR} = 10`,
                         hintLatex: [`15 - 5 = 10`]
                     },
@@ -118,7 +118,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b5"),
                         expressionLatex: t("sm2_10.expressions.outlier_far_from_others"),
                         targetLatex: t("sm2_10.labels.outlier"),
-                        slots: [{ id: "outlier", labelLatex: t("sm2_10.labels.outlier"), placeholder: "20", expected: 20 }],
+                        slots: [{ id: "outlier", labelLatex: t("sm2_10.labels.outlier"), placeholder: t("sm2_10.placeholders.v_20"), expected: 20 }],
                         correctLatex: `20`,
                         hintLatex: [`\\text{20 is much larger than others}`]
                     }
@@ -130,7 +130,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c1"),
                         expressionLatex: t("sm2_10.formulas.q3"),
                         targetLatex: `Q_3`,
-                        slots: [{ id: "q3", labelLatex: `Q_3`, placeholder: "12", expected: 12 }],
+                        slots: [{ id: "q3", labelLatex: `Q_3`, placeholder: t("sm2_10.placeholders.v_12"), expected: 12 }],
                         correctLatex: `Q_3 = 12`,
                         hintLatex: [t("sm2_10.hints.upper_half") + " 10, 12, 14"]
                     },
@@ -139,7 +139,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c2"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
-                        slots: [{ id: "iqr", labelLatex: `\\text{IQR}`, placeholder: "20", expected: 20 }],
+                        slots: [{ id: "iqr", labelLatex: `\\text{IQR}`, placeholder: t("sm2_10.placeholders.v_20"), expected: 20 }],
                         correctLatex: `\\text{IQR} = 20`,
                         hintLatex: [`Q_1 = 10, Q_3 = 30`]
                     },
@@ -148,7 +148,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c3"),
                         expressionLatex: t("sm2_10.formulas.mean"),
                         targetLatex: t("sm2_10.labels.mean"),
-                        slots: [{ id: "mean", labelLatex: t("sm2_10.labels.mean"), placeholder: "8", expected: 8 }],
+                        slots: [{ id: "mean", labelLatex: t("sm2_10.labels.mean"), placeholder: t("sm2_10.placeholders.v_8"), expected: 8 }],
                         correctLatex: t("sm2_10.labels.mean_equals_8"),
                         hintLatex: [`\\frac{4+6+8+10+12}{5} = 8`]
                     },
@@ -178,7 +178,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a1"),
                         expressionLatex: t("sm2_10.formulas.upper_boundary"),
                         targetLatex: t("sm2_10.labels.boundary"),
-                        slots: [{ id: "boundary", labelLatex: t("sm2_10.labels.upper"), placeholder: "35", expected: 35 }],
+                        slots: [{ id: "boundary", labelLatex: t("sm2_10.labels.upper"), placeholder: t("sm2_10.placeholders.v_35"), expected: 35 }],
                         correctLatex: `35`,
                         hintLatex: [`20 + 1.5 \\times 10 = 35`]
                     },
@@ -187,7 +187,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a2"),
                         expressionLatex: t("sm2_10.formulas.lower_boundary"),
                         targetLatex: t("sm2_10.labels.boundary"),
-                        slots: [{ id: "boundary", labelLatex: t("sm2_10.labels.lower"), placeholder: "3", expected: 3 }],
+                        slots: [{ id: "boundary", labelLatex: t("sm2_10.labels.lower"), placeholder: t("sm2_10.placeholders.v_3"), expected: 3 }],
                         correctLatex: `3`,
                         hintLatex: [`15 - 1.5 \\times 8 = 3`]
                     },
@@ -214,7 +214,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a5"),
                         expressionLatex: `Q_1 = 25\\text{th percentile}`,
                         targetLatex: t("sm2_10.labels.percentile"),
-                        slots: [{ id: "pct", labelLatex: t("sm2_10.labels.percentile"), placeholder: "25", expected: 25 }],
+                        slots: [{ id: "pct", labelLatex: t("sm2_10.labels.percentile"), placeholder: t("sm2_10.placeholders.v_25"), expected: 25 }],
                         correctLatex: `25\\text{th}`,
                         hintLatex: [`Q_1 \\text{ is 25th percentile}`]
                     }
@@ -305,7 +305,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_scatter_independent_axis"),
                         expressionLatex: t("sm2_10.expressions.independent_on_x_axis"),
                         targetLatex: t("sm2_10.labels.axis"),
-                        slots: [{ id: "axis", labelLatex: t("sm2_10.labels.axis"), placeholder: "x", expected: "x" }],
+                        slots: [{ id: "axis", labelLatex: t("sm2_10.labels.axis"), placeholder: t("sm2_10.placeholders.x"), expected: "x" }],
                         correctLatex: `\\text{x-axis}`,
                         hintLatex: [`\\text{x = independent, y = dependent}`]
                     },
@@ -458,7 +458,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_sp_e5"),
                         expressionLatex: `r^{2} \\times 100\\% = \\text{percent explained}`,
                         targetLatex: t("sm2_10.labels.percent"),
-                        slots: [{ id: "pct", labelLatex: t("sm2_10.labels.percent"), placeholder: "81", expected: 81 }],
+                        slots: [{ id: "pct", labelLatex: t("sm2_10.labels.percent"), placeholder: t("sm2_10.placeholders.v_81"), expected: 81 }],
                         correctLatex: `81\\%`,
                         hintLatex: [`r^{2} = 0.81 = 81\\%`]
                     }
@@ -483,7 +483,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_r_range"),
                         expressionLatex: `-1 \\leq r \\leq 1`,
                         targetLatex: t("sm2_10.labels.range"),
-                        slots: [{ id: "min", labelLatex: t("sm2_10.labels.min"), placeholder: "-1", expected: -1 }, { id: "max", labelLatex: t("sm2_10.labels.max"), placeholder: "1", expected: 1 }],
+                        slots: [{ id: "min", labelLatex: t("sm2_10.labels.min"), placeholder: t("sm2_10.placeholders.minus_1"), expected: -1 }, { id: "max", labelLatex: t("sm2_10.labels.max"), placeholder: t("sm2_10.placeholders.v_1"), expected: 1 }],
                         correctLatex: `-1 \\text{ to } 1`,
                         hintLatex: [`r \\text{ is between } -1 \\text{ and } 1`]
                     },
@@ -492,7 +492,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_r_perfect_positive"),
                         expressionLatex: `r = 1 = \\text{perfect positive}`,
                         targetLatex: `r`,
-                        slots: [{ id: "r", labelLatex: `r`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "r", labelLatex: `r`, placeholder: t("sm2_10.placeholders.v_1"), expected: 1 }],
                         correctLatex: `r = 1`,
                         hintLatex: [t("sm2_10.hints.perfect_positive") + " = 1"]
                     },
@@ -501,7 +501,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_r_perfect_negative"),
                         expressionLatex: t("sm2_10.formulas.r_minus_1_perfect_negative"),
                         targetLatex: `r`,
-                        slots: [{ id: "r", labelLatex: `r`, placeholder: "-1", expected: -1 }],
+                        slots: [{ id: "r", labelLatex: `r`, placeholder: t("sm2_10.placeholders.minus_1"), expected: -1 }],
                         correctLatex: `r = -1`,
                         hintLatex: [t("sm2_10.hints.perfect_negative") + " = -1"]
                     },
@@ -510,7 +510,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_1_r_no_correlation"),
                         expressionLatex: t("sm2_10.formulas.r_0_no_correlation"),
                         targetLatex: `r`,
-                        slots: [{ id: "r", labelLatex: `r`, placeholder: "0", expected: 0 }],
+                        slots: [{ id: "r", labelLatex: `r`, placeholder: t("sm2_10.placeholders.v_0"), expected: 0 }],
                         correctLatex: `r = 0`,
                         hintLatex: [t("sm2_10.hints.no_correlation") + " = 0"]
                     }
@@ -670,7 +670,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_elite_b1"),
                         expressionLatex: t("sm2_10.formulas.z_score_normal_dist"),
                         targetLatex: `P(T > 24)`,
-                        slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: "0.138", expected: 0.138 }],
+                        slots: [{ id: "prob", labelLatex: `P(T > 24)`, placeholder: t("sm2_10.placeholders.v_0_dot_138"), expected: 0.138 }],
                         correctLatex: `0.138 \\text{ or } 13.8\\%`,
                         hintLatex: [
                             `z = \\frac{24 - 21.5}{2.3} = 1.087`,
@@ -683,7 +683,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_elite_b2"),
                         expressionLatex: t("sm2_10.formulas.se_diff_ci"),
                         targetLatex: t("sm2_10.labels.lower_bound"),
-                        slots: [{ id: "lower", labelLatex: t("sm2_10.labels.lower"), placeholder: "1.52", expected: 1.52 }],
+                        slots: [{ id: "lower", labelLatex: t("sm2_10.labels.lower"), placeholder: t("sm2_10.placeholders.v_1_dot_52"), expected: 1.52 }],
                         correctLatex: `1.52 \\text{ species}`,
                         hintLatex: [
                             `\\text{Difference} = 32 - 28 = 4`,
@@ -699,7 +699,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_elite_c1"),
                         expressionLatex: t("sm2_10.formulas.temp_increase_growing_season"),
                         targetLatex: t("sm2_10.labels.days_in_2024"),
-                        slots: [{ id: "days", labelLatex: t("sm2_10.labels.days"), placeholder: "179", expected: 179 }],
+                        slots: [{ id: "days", labelLatex: t("sm2_10.labels.days"), placeholder: t("sm2_10.placeholders.v_179"), expected: 179 }],
                         correctLatex: `179 \\text{ days}`,
                         hintLatex: [
                             t("sm2_10.expressions.temp_increase") + " = 11.0 - 9.2 = 1.8^\\circ\\text{C}",
@@ -712,7 +712,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_elite_c2"),
                         expressionLatex: `P(X < 120) + P(X > 180)`,
                         targetLatex: `P(\\text{outside})`,
-                        slots: [{ id: "prob", labelLatex: `P(\\text{out})`, placeholder: "0.096", expected: 0.096 }],
+                        slots: [{ id: "prob", labelLatex: `P(\\text{out})`, placeholder: t("sm2_10.placeholders.v_0_dot_096"), expected: 0.096 }],
                         correctLatex: `0.096 \\text{ or } 9.6\\%`,
                         hintLatex: [
                             `z_1 = \\frac{120-150}{18} = -1.667, P(X<120) = 0.048`,
@@ -728,7 +728,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_elite_a1"),
                         expressionLatex: t("sm2_10.formulas.se_ci_90"),
                         targetLatex: t("sm2_10.labels.lower_bound"),
-                        slots: [{ id: "lower", labelLatex: t("sm2_10.labels.lower"), placeholder: "9.34", expected: 9.34 }],
+                        slots: [{ id: "lower", labelLatex: t("sm2_10.labels.lower"), placeholder: t("sm2_10.placeholders.v_9_dot_34"), expected: 9.34 }],
                         correctLatex: `9.34 \\text{ mg/L}`,
                         hintLatex: [
                             `\\text{SE} = \\frac{1.4}{\\sqrt{25}} = \\frac{1.4}{5} = 0.28`,

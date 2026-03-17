@@ -67,7 +67,7 @@ export default function SC305MolecularForge() {
                     promptLatex: t("sc3_05.prompts.vsepr_geometry", { molecule: m.name, lone: m.lone, bonded: m.bonded }),
                     expressionLatex: "",
                     targetLatex: `\\text{${m.shape}}`,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.geometry"), placeholder: "...", expected: m.shape }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.geometry"), placeholder: t("sc3_05.placeholders.ellipsis"), expected: m.shape }],
                     correctLatex: m.shape,
                     hintLatex: [t("sc3_05.hints.vsepr_theory_count_electron_domains")]
                 });
@@ -91,7 +91,7 @@ export default function SC305MolecularForge() {
                     promptLatex: t("sc3_05.prompts.hybridization_type", { molecule: h.m }),
                     expressionLatex: "",
                     targetLatex: h.h,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.hybridization"), placeholder: "...", expected: h.h }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.hybridization"), placeholder: t("sc3_05.placeholders.ellipsis"), expected: h.h }],
                     correctLatex: h.h,
                     hintLatex: [t("sc3_05.hints.electron_domains_around_central_atom")]
                 });
@@ -114,7 +114,7 @@ export default function SC305MolecularForge() {
                     promptLatex: t("sc3_05.prompts.bond_order_calc", { ion: m.ion }),
                     expressionLatex: "\\text{Bond Order} = \\frac{1}{2}(n_b - n_a)",
                     targetLatex: m.order,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.bond_order"), placeholder: "0", expected: m.order }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.bond_order"), placeholder: t("sc3_05.placeholders.v_0"), expected: m.order }],
                     correctLatex: m.order,
                     hintLatex: [t("sc3_05.prompts.hint_mo")]
                 });

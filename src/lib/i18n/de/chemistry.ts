@@ -6,6 +6,9 @@
 
 export const deChemistry = {
     gc3_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Zurück zum Nexus",
         title: "GC3.01 // GLEICHGEWICHTSMEISTER",
         difficulty: {
@@ -111,6 +114,9 @@ export const deChemistry = {
         }
     },
     gc3_02: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Zurück zum Nexus",
         title: "GC3.02 // KRISTALLPALAST",
         difficulty: {
@@ -171,6 +177,9 @@ export const deChemistry = {
         }
     },
     gc1_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Zurück zum Nexus",
         title: "GC1.01 // REDOX-TITAN",
         difficulty: {
@@ -234,6 +243,9 @@ export const deChemistry = {
         }
     },
     gc2_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Zurück zum Nexus",
         title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
@@ -540,7 +552,10 @@ export const deChemistry = {
         },
         placeholders: {
             k: "K",
-        },
+                    xx: "xx",
+            x: "x",
+            xx_dot_x: "xx.x",
+},
         prompts: {
             build_mass_number: "A",
             build_charge: "q",
@@ -599,6 +614,11 @@ export const deChemistry = {
         }
     },
     sc1_04: {
+        placeholders: {
+            xx: "xx",
+            x: "x",
+            v_1: "1",
+        },
         back: "Zurück zum Nexus",
         title: "SC1.04 // PERIODISCHES PUZZLE",
         difficulty: {
@@ -655,6 +675,13 @@ export const deChemistry = {
         }
     },
     sc1_05: {
+        placeholders: {
+            v_1: "1",
+            v_2: "2",
+            v_0: "0",
+            v_3: "3",
+            v_12: "12",
+        },
         back: "Zurück zum Nexus",
         title: "SC1.05 // CHEMISCHE BINDUNGEN",
         check: "Prüfen",
@@ -706,6 +733,9 @@ export const deChemistry = {
         }
     },
     sc2_01: {
+        placeholders: {
+            question: "?",
+        },
         back: "Zurück zum Nexus",
         title: "C2.01 // CHEMISCHE KINETIK",
         difficulty: {
@@ -901,7 +931,8 @@ export const deChemistry = {
         },
         placeholders: {
             ml: "mL",
-        },
+                    ellipsis: "...",
+},
         prompts: {
             curve_type: "Der pH-Wert ist {ph}. Säuretyp? (Stark=1, Schwach=2).",
             find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M. Finde Vb am Äquivalenzpunkt.",
@@ -1132,7 +1163,10 @@ export const deChemistry = {
             question_mark: "?",
             name: "Name",
         
-            cxhyoz: "CxHyOz",},
+            cxhyoz: "CxHyOz",            x_to_y: "x:y",
+            v_0: "0",
+            percent: "%",
+},
         hints: {
             carbon_is_black: "\\text{Kohlenstoff ist schwarz.}",
             hydrogen_is_white: "\\text{Wasserstoff ist weiß.}",
@@ -1228,7 +1262,8 @@ export const deChemistry = {
         },
         placeholders: {
             cxhy: "CxHy",
-        },
+                    ellipsis: "...",
+},
         prompts: {
             name_formula: "Was ist die Summenformel für {name}?",
             functional_group: "Was ist die funktionelle Gruppe in {name}?",
@@ -1304,6 +1339,10 @@ export const deChemistry = {
         }
     },
     sc3_05: {
+        placeholders: {
+            ellipsis: "...",
+            v_0: "0",
+        },
         back: "Zurück zum Nexus",
         title: "SC3.05 // MOLEKULARE SCHMIEDE",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
@@ -1454,6 +1493,9 @@ export const deChemistry = {
         }
     },
     sc2_05: {
+        placeholders: {
+            question: "?",
+        },
         back: "Zurück zum Nexus",
         title: "SC2.05 // SÄURE-BASE-CHEMIE",
         difficulty: {
@@ -1641,7 +1683,9 @@ export const deChemistry = {
             n: "n",
             v: "V",
             g: "g",
-        },
+                    plus_minus_n: "±n",
+            ellipsis: "...",
+},
         scenarios: {
             oxidation_state: "Novartis Arzneimittelsynthese Oxidationskontrolle: Sie sind synthetischer Chemiker bei Novartis Basel und arbeiten an einer komplexen pharmazeutischen Synthese. Der Wirkstoff erfordert eine präzise Oxidationsstufenkontrolle eines Übergangsmetallkatalysators. In Ihrer aktuellen Reaktion wechselt Mangan zwischen +4 und +7 Oxidationsstufen, um die C-H-Bindungsaktivierung zu erleichtern. Sie müssen Oxidationsstufenänderungen durch jeden Schritt verfolgen, um unerwünschte Nebenreaktionen zu verhindern. Mit spektroskopischer Analyse überwachen Sie die violette Farbe von Permanganat (Mn^7^+), die sich in braunes Mangandioxid (Mn^{4}^+) umwandelt. Eine einzige Elektronenfehlberechnung könnte zu toxischen Nebenprodukten führen und die gesamte Charge unbrauchbar machen. Diese Oxidationsstufenverfolgung ist entscheidend für die Herstellung sicherer, wirksamer Medikamente für Patienten in der ganzen Schweiz. Das Verständnis von Oxidationsstufen ist wie das Verfolgen von Bankkontoguthaben – Sie müssen genau wissen, wie viele Elektronen jedes Atom gewonnen oder verloren hat.",
             electron_transfer: "Roche Batterietechnologieentwicklung: Sie sind Materialwissenschaftler in der Energieforschungsabteilung von Roche in Basel und entwickeln Lithium-Ionen-Batterien der nächsten Generation für medizinische Geräte. Das Kathodenmaterial der Batterie (LiCoO_2) durchläuft während der Lade- und Entladezyklen reversiblen Elektronentransfer. Kobalt wechselt zwischen +3 und +4 Oxidationsstufen, während Lithiumionen ein- und ausströmen. Sie müssen die Redoxgleichungen ausgleichen, um Energiedichte und Zykluslebensdauer zu optimieren. Jede Batteriezelle muss genau 3,7 V für über 500 Ladezyklen liefern, um tragbare Insulinpumpen und Herzmonitore zuverlässig mit Strom zu versorgen. Die Effizienz des Elektronentransfers wirkt sich direkt auf die Patientensicherheit aus – eine ausfallende Batterie in einem kritischen medizinischen Gerät könnte lebensbedrohlich sein. Dies ähnelt einer wiederaufladbaren Telefonbatterie, jedoch mit medizinischer Präzision und Zuverlässigkeitsanforderungen.",

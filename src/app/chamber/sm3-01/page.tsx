@@ -24,19 +24,29 @@ interface S301Quest extends Quest {
   vizMode?: "AREA" | "PARABOLA";
 }
 
-// Helper to create a quest object concisely
-function q(id: string, d: Difficulty, s: Stage, p: string, expr: string, target: string,
-  slots: Array<{ id: string; l: string; e: number | string }>, correct: string,
-  extra?: { a?: number; b?: number; c?: number; vizMode?: "AREA" | "PARABOLA"; hintLatex?: string[] }
-): S301Quest {
-  return {
-    id, difficulty: d, stage: s, promptLatex: p, expressionLatex: expr, targetLatex: target,
-    slots: slots.map(sl => ({ id: sl.id, labelLatex: sl.l, placeholder: "?", expected: sl.e })),
-    correctLatex: correct, ...extra,
-  };
-}
-
 function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest[] {
+  const q = (
+    id: string,
+    d: Difficulty,
+    s: Stage,
+    p: string,
+    expr: string,
+    target: string,
+    slots: Array<{ id: string; l: string; e: number | string }>,
+    correct: string,
+    extra?: { a?: number; b?: number; c?: number; vizMode?: "AREA" | "PARABOLA"; hintLatex?: string[] }
+  ): S301Quest => ({
+    id,
+    difficulty: d,
+    stage: s,
+    promptLatex: p,
+    expressionLatex: expr,
+    targetLatex: target,
+    slots: slots.map((sl) => ({ id: sl.id, labelLatex: sl.l, placeholder: t.placeholders.question, expected: sl.e })),
+    correctLatex: correct,
+    ...extra,
+  });
+
   const tp = t.stages.terms_prompt_latex;
   const fp = t.stages.factor_prompt_latex;
   const rp = t.stages.fractions_prompt_latex;

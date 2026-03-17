@@ -178,7 +178,7 @@ export default function SM104Page() {
             targetLatex: "x",
             equation: "x + 3 = 7",
             operation: "+2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -192,7 +192,7 @@ export default function SM104Page() {
             targetLatex: "x",
             equation: "x + 5 = 8",
             operation: "-5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
           {
@@ -206,7 +206,7 @@ export default function SM104Page() {
             targetLatex: "x",
             equation: "x/2 = 4",
             operation: "×2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "x = 8",
           },
           {
@@ -220,7 +220,7 @@ export default function SM104Page() {
             targetLatex: "x",
             equation: "2x = 10",
             operation: "÷2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -233,7 +233,7 @@ export default function SM104Page() {
             expressionLatex: "x = 6 - 2",
             targetLatex: "x",
             equation: "x + 2 = 6",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
         ],
@@ -248,7 +248,7 @@ export default function SM104Page() {
             expressionLatex: "2x = 11 - 3, \\quad x = \\frac{8}{2}",
             targetLatex: "x",
             equation: "2x + 3 = 11",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -261,7 +261,7 @@ export default function SM104Page() {
             expressionLatex: "x = 3 - 7",
             targetLatex: "x",
             equation: "x + 7 = 3",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.minus_x"), expected: -4, unit: "" }],
             correctLatex: "x = -4",
           },
           {
@@ -274,7 +274,7 @@ export default function SM104Page() {
             expressionLatex: "\\frac{x}{3} = 3, \\quad x = 9",
             targetLatex: "x",
             equation: "x/3 + 2 = 5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 9, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 9, unit: "" }],
             correctLatex: "x = 9",
           },
           {
@@ -287,7 +287,7 @@ export default function SM104Page() {
             expressionLatex: "5 = 2x - x",
             targetLatex: "x",
             equation: "x + 5 = 2x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -300,7 +300,7 @@ export default function SM104Page() {
             expressionLatex: "3x + 6 = 15, \\quad 3x = 9",
             targetLatex: "x",
             equation: "3(x + 2) = 15",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
         ],
@@ -315,7 +315,7 @@ export default function SM104Page() {
             expressionLatex: "2x - x = 7 - 3",
             targetLatex: "x",
             equation: "2x + 3 = x + 7",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -328,7 +328,7 @@ export default function SM104Page() {
             expressionLatex: "\\frac{3x + 2x}{6} = 5, \\quad 5x = 30",
             targetLatex: "x",
             equation: "x/2 + x/3 = 5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 6, unit: "" }],
             correctLatex: "x = 6",
           },
           {
@@ -341,7 +341,7 @@ export default function SM104Page() {
             expressionLatex: "2x + 2 = 3x - 6, \\quad x = 8",
             targetLatex: "x",
             equation: "2(x + 1) = 3(x - 2)",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "x = 8",
           },
           {
@@ -354,7 +354,7 @@ export default function SM104Page() {
             expressionLatex: "0.5x = 1.5, \\quad x = 3",
             targetLatex: "x",
             equation: "0.5x + 1.5 = 3",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
           {
@@ -367,7 +367,7 @@ export default function SM104Page() {
             expressionLatex: "-2x = -8, \\quad x = 4",
             targetLatex: "x",
             equation: "-2x + 5 = -3",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
         ],
@@ -382,7 +382,7 @@ export default function SM104Page() {
             expressionLatex: "2(2x - 1) = 10, \\quad 4x - 2 = 10",
             targetLatex: "x",
             equation: "2(3x - (x + 1)) = 10",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
           {
@@ -395,7 +395,7 @@ export default function SM104Page() {
             expressionLatex: "\\frac{3x - 2x + x}{6} = 2, \\quad 2x = 12",
             targetLatex: "x",
             equation: "x/2 - x/3 + x/6 = 2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 6, unit: "" }],
             correctLatex: "x = 6",
           },
           {
@@ -408,7 +408,7 @@ export default function SM104Page() {
             expressionLatex: "6x - 3 - 2x - 6 = 5, \\quad 4x = 14",
             targetLatex: "x",
             equation: "3(2x - 1) - 2(x + 3) = 5",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 3.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x_dot_x"), expected: 3.5, unit: "" }],
             correctLatex: "x = 3.5",
           },
           {
@@ -421,7 +421,7 @@ export default function SM104Page() {
             expressionLatex: "\\frac{2 + 1}{2x} = \\frac{3}{4}, \\quad x = 2",
             targetLatex: "x",
             equation: "1/x + 1/(2x) = 3/4",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 2, unit: "" }],
             correctLatex: "x = 2",
           },
           {
@@ -434,7 +434,7 @@ export default function SM104Page() {
             expressionLatex: "x + 1 = 2(x - 1), \\quad x = 3",
             targetLatex: "x",
             equation: "(x + 1)/(x - 1) = 2",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
         ],
@@ -450,7 +450,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_b1"),
             expressionLatex: "x = 7 - 3",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -462,7 +462,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_b2"),
             expressionLatex: "x = 2 + 5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 7, unit: "" }],
             correctLatex: "x = 7",
           },
           {
@@ -474,7 +474,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_b3"),
             expressionLatex: "x = \\frac{12}{3}",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -486,7 +486,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_b4"),
             expressionLatex: "x = 3 \\times 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 12, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 12, unit: "" }],
             correctLatex: "x = 12",
           },
           {
@@ -498,7 +498,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_b5"),
             expressionLatex: "x = 3 - 8",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.minus_x"), expected: -5, unit: "" }],
             correctLatex: "x = -5",
           },
         ],
@@ -512,7 +512,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_c1"),
             expressionLatex: "2x = 8, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -524,7 +524,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_c2"),
             expressionLatex: "\\frac{x}{3} = 6, \\quad x = 18",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 18, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 18, unit: "" }],
             correctLatex: "x = 18",
           },
           {
@@ -536,7 +536,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_c3"),
             expressionLatex: "x = \\frac{15}{-3}",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.minus_x"), expected: -5, unit: "" }],
             correctLatex: "x = -5",
           },
           {
@@ -548,7 +548,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_c4"),
             expressionLatex: "2x = 3, \\quad x = 1.5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 1.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x_dot_x"), expected: 1.5, unit: "" }],
             correctLatex: "x = 1.5",
           },
           {
@@ -560,7 +560,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_c5"),
             expressionLatex: "x = \\frac{4}{0.5}",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "x = 8",
           },
         ],
@@ -574,7 +574,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_a1"),
             expressionLatex: "5x = 15, \\quad x = 3",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
           {
@@ -586,7 +586,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_a2"),
             expressionLatex: "2x + 6 = 14, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -598,7 +598,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_a3"),
             expressionLatex: "2x = 8, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -610,7 +610,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_a4"),
             expressionLatex: "\\frac{3x}{4} = 6, \\quad x = 8",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "x = 8",
           },
           {
@@ -622,7 +622,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_a5"),
             expressionLatex: "-x = -8, \\quad x = 8",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "x = 8",
           },
         ],
@@ -636,7 +636,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_e1"),
             expressionLatex: "6x - 3 = 2x + 10, \\quad x = 3.25",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.xx", expected: 3.25, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x_dot_xx"), expected: 3.25, unit: "" }],
             correctLatex: "x = 3.25",
           },
           {
@@ -648,7 +648,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_e2"),
             expressionLatex: "2(2x - 3) = 10, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -660,7 +660,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_e3"),
             expressionLatex: "\\frac{2x}{3} = 4, \\quad x = 6",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 6, unit: "" }],
             correctLatex: "x = 6",
           },
           {
@@ -672,7 +672,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_e4"),
             expressionLatex: "0.8x - 1 = 2.6, \\quad x = 4.5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 4.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x_dot_x"), expected: 4.5, unit: "" }],
             correctLatex: "x = 4.5",
           },
           {
@@ -684,7 +684,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.sol_e5"),
             expressionLatex: "5(x - 2) = 3(x + 1), \\quad x = 6.5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 6.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x_dot_x"), expected: 6.5, unit: "" }],
             correctLatex: "x = 6.5",
           },
         ],
@@ -700,7 +700,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_b1"),
             expressionLatex: "x = 12 - 7",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -712,7 +712,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_b2"),
             expressionLatex: "2x - x = 5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -724,7 +724,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_b3"),
             expressionLatex: "x = \\frac{15}{3}",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -736,7 +736,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_b4"),
             expressionLatex: "2x = 8, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -748,7 +748,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_b5"),
             expressionLatex: "x = -2 + 6",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
         ],
@@ -762,7 +762,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_c1"),
             expressionLatex: "5x = 20, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -774,7 +774,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_c2"),
             expressionLatex: "4x - 2x = 11 - 3",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -786,7 +786,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_c3"),
             expressionLatex: "2x + 6 = 14, \\quad x = 4",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
           {
@@ -798,7 +798,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_c4"),
             expressionLatex: "\\frac{x}{3} = 3, \\quad x = 9",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 9, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 9, unit: "" }],
             correctLatex: "x = 9",
           },
           {
@@ -810,7 +810,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_c5"),
             expressionLatex: "-2x = -4, \\quad x = 2",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 2, unit: "" }],
             correctLatex: "x = 2",
           },
         ],
@@ -824,7 +824,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_a1"),
             expressionLatex: "3x - 6 + 2x = 19, \\quad 5x = 25",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -836,7 +836,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_a2"),
             expressionLatex: "2x + 2 = 3x - 6, \\quad x = 8",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "x = 8",
           },
           {
@@ -848,7 +848,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_a3"),
             expressionLatex: "\\frac{5x}{6} = 10, \\quad x = 12",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 12, unit: "" }],
             correctLatex: "x = 12",
           },
           {
@@ -860,7 +860,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_a4"),
             expressionLatex: "0.5x + 2 = 3.5, \\quad x = 3",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
           {
@@ -872,7 +872,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_a5"),
             expressionLatex: "5x - 2x + 6 = 18, \\quad 3x = 12",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x = 4",
           },
         ],
@@ -886,7 +886,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_e1"),
             expressionLatex: "3(x - 1) = 15, \\quad x = 6",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 6, unit: "" }],
             correctLatex: "x = 6",
           },
           {
@@ -898,7 +898,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_e2"),
             expressionLatex: "\\frac{5x}{12} = 5, \\quad x = 12",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 12, unit: "" }],
             correctLatex: "x = 12",
           },
           {
@@ -910,7 +910,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_e3"),
             expressionLatex: "6x - 2 - 3x - 6 = 7, \\quad 3x = 15",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -922,7 +922,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_e4"),
             expressionLatex: "2(2x + 1) = 3(x - 2), \\quad x = -8",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.minus_x"), expected: -8, unit: "" }],
             correctLatex: "x = -8",
           },
           {
@@ -934,7 +934,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.tra_e5"),
             expressionLatex: "2x - 1 + \\frac{x}{3} = 7, \\quad x = 3.6",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 3.6, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x_dot_x"), expected: 3.6, unit: "" }],
             correctLatex: "x = 3.6",
           },
         ],
@@ -950,7 +950,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_b1"),
             expressionLatex: "x + 2 = 5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "CHF" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "CHF" }],
             correctLatex: `x = 3 \\text{ ${tObj.labels.currency}}`,
           },
           {
@@ -962,7 +962,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_b2"),
             expressionLatex: "2x = 10",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "min" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 5, unit: "min" }],
             correctLatex: `x = 5 \\text{ ${tObj.labels.min}}`,
           },
           {
@@ -974,7 +974,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_b3"),
             expressionLatex: "x + 5 = 12",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7, unit: "years" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 7, unit: "years" }],
             correctLatex: `x = 7 \\text{ ${tObj.labels.years}}`,
           },
           {
@@ -986,7 +986,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_b4"),
             expressionLatex: "\\frac{x}{2} = 6",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "km" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 12, unit: "km" }],
             correctLatex: `x = 12 \\text{ ${tObj.labels.km}}`,
           },
           {
@@ -998,7 +998,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_b5"),
             expressionLatex: "x - 10 = 40",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 50, unit: "CHF" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 50, unit: "CHF" }],
             correctLatex: `x = 50 \\text{ ${tObj.labels.currency}}`,
           },
         ],
@@ -1012,7 +1012,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_c1"),
             expressionLatex: "3x + 2 \\times 2 = 13",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "CHF" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "CHF" }],
             correctLatex: `x = 3 \\text{ ${tObj.labels.currency}}`,
           },
           {
@@ -1024,7 +1024,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_c2"),
             expressionLatex: "5x + 10 = 60",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 10, unit: "" }],
             correctLatex: `x = 10 \\text{ ${tObj.labels.samples}}`,
           },
           {
@@ -1036,7 +1036,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.s_age"),
             expressionLatex: "x + (x + 30) = 50",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "years" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 10, unit: "years" }],
             correctLatex: `x = 10 \\text{ ${tObj.labels.years}}`,
           },
           {
@@ -1048,7 +1048,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_c4"),
             expressionLatex: "2(x + 8) = 28",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 6, unit: "m" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 6, unit: "m" }],
             correctLatex: `x = 6 \\text{ ${tObj.labels.m}}`,
           },
           {
@@ -1060,7 +1060,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_c5"),
             expressionLatex: "2x = 80",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 40, unit: "km/h" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 40, unit: "km/h" }],
             correctLatex: `x = 40 \\text{ ${tObj.labels.speed_unit}}`,
           },
         ],
@@ -1074,7 +1074,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_a1"),
             expressionLatex: "0.5x + 0.3 \\times 100 = 0.4 \\times 150",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 60, unit: "%" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 60, unit: "%" }],
             correctLatex: "x = 60\\%",
           },
           {
@@ -1086,7 +1086,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_a2"),
             expressionLatex: "x + (x + 1) + (x + 2) = 48",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 15, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 15, unit: "" }],
             correctLatex: "x = 15",
           },
           {
@@ -1098,7 +1098,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_a3"),
             expressionLatex: "\\frac{1}{x} + \\frac{1}{6} = \\frac{1}{2}",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "hours" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 3, unit: "hours" }],
             correctLatex: `x = 3 \\text{ ${tObj.labels.hours}}`,
           },
           {
@@ -1110,7 +1110,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_a4"),
             expressionLatex: "0.2x + 0.5 \\times 10 = 0.3(x + 10)",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 20, unit: "L" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 20, unit: "L" }],
             correctLatex: `x = 20 \\text{ ${tObj.labels.liters}}`,
           },
           {
@@ -1122,7 +1122,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_a5"),
             expressionLatex: "x + 0.05x = 2100",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xxxx", expected: 2000, unit: "CHF" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xxxx"), expected: 2000, unit: "CHF" }],
             correctLatex: `x = 2000 \\text{ ${tObj.labels.currency}}`,
           },
         ],
@@ -1136,7 +1136,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_e1"),
             expressionLatex: "80x + 100x = 360",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "hours" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.x"), expected: 2, unit: "hours" }],
             correctLatex: `x = 2 \\text{ ${tObj.labels.hours}}`,
           },
           {
@@ -1148,7 +1148,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_e2"),
             expressionLatex: "\\frac{x + 5}{2x + 5} = \\frac{2}{3}",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "years" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 10, unit: "years" }],
             correctLatex: `x = 10 \\text{ ${tObj.labels.years}}`,
           },
           {
@@ -1160,7 +1160,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_e3"),
             expressionLatex: "x + 0.3 \\times 20 = 0.5(x + 20)",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 12, unit: "L" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 12, unit: "L" }],
             correctLatex: `x = 12 \\text{ ${tObj.labels.liters}}`,
           },
           {
@@ -1172,7 +1172,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_e4"),
             expressionLatex: "\\frac{30}{x + 2} + \\frac{30}{x - 2} = 5",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xx", expected: 10, unit: "km/h" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xx"), expected: 10, unit: "km/h" }],
             correctLatex: `x = 10 \\text{ ${tObj.labels.speed_unit}}`,
           },
           {
@@ -1184,7 +1184,7 @@ export default function SM104Page() {
             promptLatex: t("sm1_04.prompts.app_e5"),
             expressionLatex: "1.2x - 0.9x = 60",
             targetLatex: "x",
-            slots: [{ id: "x", labelLatex: "x", placeholder: "xxx", expected: 200, unit: "CHF" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_04.placeholders.xxx"), expected: 200, unit: "CHF" }],
             correctLatex: `x = 200 \\text{ ${tObj.labels.currency}}`,
           },
         ],

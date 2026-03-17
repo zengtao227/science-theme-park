@@ -183,7 +183,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.si_unit", { measurement: u.measurement }),
                         expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
                         targetLatex: u.unit,
-                        slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: "...", expected: u.unit }],
+                        slots: [{ id: "ans", labelLatex: "\\text{SI Unit}", placeholder: t("sp3_01.placeholders.ellipsis"), expected: u.unit }],
                         correctLatex: `\\text{${u.unit}} \\text{ (${u.name})}`,
                         hintLatex: [`\\text{The base unit for ${u.measurement} is ${u.name}}`]
                     });
@@ -199,7 +199,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.si_unit", { measurement: d.quantity }),
                         expressionLatex: `\\text{${d.quantity}} = ${d.formula}`,
                         targetLatex: d.unit,
-                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.unit"), placeholder: "...", expected: d.unit }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.unit"), placeholder: t("sp3_01.placeholders.ellipsis"), expected: d.unit }],
                         correctLatex: `\\text{${d.unit}}`,
                         hintLatex: [`\\text{${d.formula}}`]
                     });
@@ -218,7 +218,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: t("sp3_01.placeholders.ellipsis"), expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
                         hintLatex: [t("sp3_01.hints.use_metric_prefixes")]
                     });
@@ -234,7 +234,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.equivalent_unit", { expr: c.expr }),
                         expressionLatex: `${c.expr} = \\text{?}`,
                         targetLatex: c.unit,
-                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.unit"), placeholder: "...", expected: c.unit }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.unit"), placeholder: t("sp3_01.placeholders.ellipsis"), expected: c.unit }],
                         correctLatex: `\\text{${c.unit} (${c.name})}`,
                         hintLatex: [t("sp3_01.hints.simplify_base_units")]
                     });
@@ -265,7 +265,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: result,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: result }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: t("sp3_01.placeholders.ellipsis"), expected: result }],
                         correctLatex: `${result}\\,\\text{${c.to}}`,
                         hintLatex: [`\\text{Factor: ${c.factor}}`]
                     });
@@ -293,7 +293,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: t("sp3_01.placeholders.ellipsis"), expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
                         hintLatex: [t("sp3_01.hints.multiple_steps_needed")]
                     });
@@ -321,7 +321,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: t("sp3_01.placeholders.ellipsis"), expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
                         hintLatex: [t("sp3_01.hints.square_or_cube_factor")]
                     });
@@ -349,7 +349,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: `\\text{${c.to}}`, placeholder: t("sp3_01.placeholders.ellipsis"), expected: c.answer }],
                         correctLatex: `${c.answer}\\,\\text{${c.to}}`,
                         hintLatex: [t("sp3_01.hints.convert_num_denom")]
                     });
@@ -376,7 +376,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.sigfigs", { value: p.value }),
                         expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
                         targetLatex: p.sigfigs,
-                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.sig_figs"), placeholder: "...", expected: p.sigfigs }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.sig_figs"), placeholder: t("sp3_01.placeholders.ellipsis"), expected: p.sigfigs }],
                         correctLatex: `${p.sigfigs}\\text{ significant figures}`,
                         hintLatex: [t("sp3_01.hints.count_sig_figs")]
                     });
@@ -401,7 +401,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.round_sigfigs", { value: r.value, sigfigs: r.sigfigs }),
                         expressionLatex: `${r.value} \\rightarrow ${r.sigfigs}\\text{ sig figs}`,
                         targetLatex: r.answer,
-                        slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: r.answer }],
+                        slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: t("sp3_01.placeholders.ellipsis"), expected: r.answer }],
                         correctLatex: `${r.answer}`,
                         hintLatex: [`\\text{Round at the ${r.sigfigs}th significant digit}`]
                     });
@@ -426,7 +426,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.calculate_with_sigfigs", { expr: c.expr }),
                         expressionLatex: `${c.expr}`,
                         targetLatex: c.answer,
-                        slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: c.answer }],
+                        slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: t("sp3_01.placeholders.ellipsis"), expected: c.answer }],
                         correctLatex: `${c.answer}`,
                         hintLatex: [`\\text{Use ${c.rule} rule}`]
                     });
@@ -451,7 +451,7 @@ export default function SP301Page() {
                         promptLatex: t("sp3_01.prompts.percent_uncertainty", { measurement: u.measurement, unit: u.unit }),
                         expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\%`,
                         targetLatex: u.percent,
-                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.percent"), placeholder: "...", expected: u.percent }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_01.labels.percent"), placeholder: t("sp3_01.placeholders.ellipsis"), expected: u.percent }],
                         correctLatex: `${u.percent}\\%`,
                         hintLatex: [t("sp3_01.hints.divide_uncertainty")]
                     });

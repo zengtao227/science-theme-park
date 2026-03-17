@@ -126,7 +126,7 @@ export default function GC302Page() {
             value={inputs["ans"] || ""}
             onChange={(e) => setInputs({ ans: e.target.value })}
             className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
-            placeholder="..."
+            placeholder={t("gc3_02.placeholders.ellipsis")}
           />
         </div>
 

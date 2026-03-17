@@ -186,7 +186,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         expressionLatex: `\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\quad | \\quad \\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
         targetLatex: `x`,
         correctLatex: `x=${x}`,
-        slots: [{ id: "x", labelLatex: "x", placeholder: "Distance (km)", expected: x }],
+        slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_03.placeholders.distance_km"), expected: x }],
       });
     });
   } else {
@@ -210,7 +210,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         expressionLatex: `\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\quad | \\quad \\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
         targetLatex: `x`,
         correctLatex: `x=${x}`,
-        slots: [{ id: "x", labelLatex: "x", placeholder: "Threshold (km)", expected: x }],
+        slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_03.placeholders.threshold_km"), expected: x }],
       });
     });
   }

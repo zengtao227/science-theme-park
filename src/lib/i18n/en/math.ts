@@ -114,7 +114,38 @@ export const enMath = {
         
             pythagoras: "pythagoras",
             linearly: "linearly",
-            reduces: "reduces",}
+            reduces: "reduces",            v_10: "10",
+            v_9: "9",
+            v_6_dot_5: "6.5",
+            v_0_dot_5: "0.5",
+            v_8_dot_5: "8.5",
+            v_90: "90",
+            v_30: "30",
+            v_20: "20",
+            v_4: "4",
+            v_8: "8",
+            v_1: "1",
+            v_1_dot_585: "1.585",
+            v_1_dot_618: "1.618",
+            v_6: "6",
+            v_2_dot_5: "2.5",
+            v_1_dot_5: "1.5",
+            v_2: "2",
+            v_17_dot_32: "17.32",
+            v_7: "7",
+            v_7_dot_32: "7.32",
+            v_40000: "40000",
+            k_2: "k^{2}",
+            v_0_dot_75: "0.75",
+            v_1000: "1000",
+            v_5_dot_77: "5.77",
+            v_57_dot_7: "57.7",
+            v_5: "5",
+            v_100: "100",
+            v_0_dot_732: "0.732",
+            v_45: "45",
+            v_1_dot_57: "1.57",
+}
     },
     em2_01: {
         back: "Back to Nexus",
@@ -141,7 +172,8 @@ export const enMath = {
             volume_scale: "Volume Scale",
         placeholders: {
             det: "det",
-        },
+                    v_0: "0",
+},
             formulas: "FORMULAS",
             angle: "ROTATION ANGLE (θ)",
             scale_x: "SCALE X-AXIS",
@@ -321,6 +353,9 @@ export const enMath = {
         }
     },
     gm1_01_advanced: {
+        placeholders: {
+            v_0_dot_00: "0.00",
+        },
         back: "Back to Nexus",
         title: "GM1.01-ADV // ADVANCED CALCULUS",
         monitor_title: "GM1.01_ADVANCED_MONITOR",
@@ -856,6 +891,11 @@ export const enMath = {
         },
     },
     sm1_02: {
+        placeholders: {
+            question: "?",
+            hash: "#",
+            x: "x",
+        },
         back: "Back to Nexus",
         title: "ALGEBRA QUEST",
         next: "Execute Next Sequence",
@@ -916,6 +956,20 @@ export const enMath = {
         }
     },
     sm1_03: {
+        placeholders: {
+            minus_x: "-x",
+            x: "x",
+            xx: "xx",
+            v_0_dot_x: "0.x",
+            minus_0_dot_x: "-0.x",
+            x_dot_x: "x.x",
+            minus_x_dot_x: "-x.x",
+            v_0_dot_xx: "0.xx",
+            minus_0_dot_xx: "-0.xx",
+            y: "y",
+            v_1_minus_4: "1-4",
+            minus_y: "-y",
+        },
         back: "Back to Nexus",
         title: "BELOW ZERO",
         difficulty: {
@@ -1071,6 +1125,15 @@ export const enMath = {
     }
 ,
     sm1_04: {
+        placeholders: {
+            x: "x",
+            minus_x: "-x",
+            x_dot_x: "x.x",
+            xx: "xx",
+            x_dot_xx: "x.xx",
+            xxxx: "xxxx",
+            xxx: "xxx",
+        },
         back: "Back to Nexus",
         title: "EQUATION BALANCE",
         difficulty: {
@@ -1320,6 +1383,10 @@ export const enMath = {
         }
     },
     sm1_05: {
+        placeholders: {
+            question: "?",
+            hash: "#",
+        },
         back: "Back to Nexus",
         title: "RATIO LAB",
         difficulty: {
@@ -1360,7 +1427,8 @@ export const enMath = {
             target_batch: "Target Batch",
             water: "Water",
             capacity: "Capacity",
-            logic_framework: "Logical Framework"
+            logic_framework: "Logical Framework",
+            data_ref: "DATA_REF"
         },
         prompts: {
             // RECIPES STAGE
@@ -1558,7 +1626,9 @@ export const enMath = {
             v_squared: "V²",
             by: "by",
             question: "?",
-        },
+                    v_1: "1",
+            x: "x",
+},
         decomposition_pattern: "Decomposition Pattern: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
         expand: "Expand",
@@ -1584,6 +1654,9 @@ export const enMath = {
         }
     },
     sm2_02: {
+        placeholders: {
+            question: "?",
+        },
         back: "Back to Nexus",
         title: "PYTHAGORAS & ROOTS",
         tabs: {
@@ -1758,7 +1831,9 @@ export const enMath = {
         placeholders: {
             question: "?",
             total_price: "Total Price (CHF)",
-        },
+                    distance_km: "Distance (km)",
+            threshold_km: "Threshold (km)",
+},
         laser: {
             axis_km: "km",
             axis_chf: "CHF",
@@ -1848,7 +1923,10 @@ export const enMath = {
             k: "k",
             w: "w",
             v: "v",
-            h: "H",},
+            h: "H",            x: "x",
+            y: "y",
+            z: "z",
+},
         formulas: {
             old_value: "\\text{Old}",
             new_value: "\\text{New}",
@@ -2036,7 +2114,19 @@ export const enMath = {
             factory: "factorY",
             valuea: "valueA",
             valueb: "valueB",
-        },
+                    x: "x",
+            y: "y",
+            speed1: "speed1",
+            speed2: "speed2",
+            time1: "time1",
+            time2: "time2",
+            price1: "price1",
+            price2: "price2",
+            var1: "var1",
+            var2: "var2",
+            coeff1: "coeff1",
+            coeff2: "coeff2",
+},
     },
     sm2_07: {
         back: "Back to Nexus",
@@ -2101,9 +2191,23 @@ export const enMath = {
         placeholders: {
             slope: "slope",
             distance: "distance",
-        }
+                    question: "?",
+            x: "x",
+            y: "y",
+}
     },
     sm2_08: {
+        placeholders: {
+            v_0_dot_x: "0.x",
+            v_0_dot_xxx: "0.xxx",
+            v_0_dot_xx: "0.xx",
+            v_0_dot_xxxx: "0.xxxx",
+            xx_dot_x: "xx.x",
+            xx: "xx",
+            xxx: "xxx",
+            x: "x",
+            v_1_or_minus_1: "1 or -1",
+        },
         back: "Back to Nexus",
         title: "PROBABILITY BASICS",
         difficulty: {
@@ -2370,6 +2474,9 @@ export const enMath = {
         }
     },
     sm3_01: {
+        placeholders: {
+            question: "?",
+        },
         back: "Back to Nexus",
         title: "QUADRATIC EQUATIONS",
         difficulty: {
@@ -2772,7 +2879,25 @@ export const enMath = {
             linear: "linear",
             determination: "determination",
         
-            b: "B",},
+            b: "B",            v_6: "6",
+            v_3: "3",
+            v_20: "20",
+            v_10: "10",
+            v_12: "12",
+            v_8: "8",
+            v_35: "35",
+            v_25: "25",
+            x: "x",
+            v_81: "81",
+            minus_1: "-1",
+            v_1: "1",
+            v_0: "0",
+            v_0_dot_138: "0.138",
+            v_1_dot_52: "1.52",
+            v_179: "179",
+            v_0_dot_096: "0.096",
+            v_9_dot_34: "9.34",
+},
         formula_phrases: {
             no_correlation: "No correlation",
             strong_positive: "Strong positive",
@@ -3160,9 +3285,56 @@ export const enMath = {
             parabola: "parabola",
             hyperbola: "hyperbola",
             hexagon: "hexagon",
-            circles: "circles",}
+            circles: "circles",            v_427200: "427200",
+            v_125: "125",
+            v_480: "480",
+            v_600: "600",
+            v_2400: "2400",
+            v_74182: "74182",
+            v_502: "502",
+            v_226: "226",
+            v_1570: "1570",
+            v_628: "628",
+            v_430500: "430500",
+            v_500: "500",
+            v_452: "452",
+            v_1256: "1256",
+            v_32000: "32000",
+            v_200: "200",
+            v_2093: "2093",
+            v_1780: "1780",
+            v_904: "904",
+            v_394: "394",
+            v_16: "16",
+            v_6: "6",
+            v_79: "79",
+            v_48: "48",
+            v_8: "8",
+            v_34: "34",
+            v_113: "113",
+            v_523: "523",
+            v_283: "283",
+            v_151: "151",
+            v_150_dot_7: "150.7",
+            v_616: "616",
+            v_204: "204",
+            v_377: "377",
+            v_603: "603",
+            v_9_dot_42: "9.42",
+            v_254: "254",
+            v_1420: "1420",
+            v_251: "251",
+            v_576: "576",
+            v_1877: "1877",
+            v_1206: "1206",
+            v_2111: "2111",
+            v_770: "770",
+}
     },
     sm2_11: {
+        placeholders: {
+            ellipsis: "...",
+        },
         title: "SEQUENCES & SERIES",
         back: "Back to Nexus",
         check: "Verify",
@@ -3217,6 +3389,10 @@ export const enMath = {
         }
     },
     sm2_12: {
+        placeholders: {
+            ellipsis: "...",
+            v_0_dot_xxx: "0.xxx",
+        },
         title: "COMBINATORICS",
         back: "Back to Nexus",
         check: "Verify",
@@ -3385,9 +3561,44 @@ export const enMath = {
             joule: "Joule",
             path: "path",
             nb: "nb",
-        },
+                    v_70: "70",
+            v_50: "50",
+            minus: "-",
+            v_40: "40",
+            minus_100: "-100",
+            v_300: "300",
+            v_0: "0",
+            v_125: "125",
+            minus_200: "-200",
+            v_2_dot_5: "2.5",
+            v_1_dot_59: "1.59",
+            v_7483: "7483",
+            v_1247: "1247",
+            v_2: "2",
+            v_8314: "8314",
+            v_12471: "12471",
+            v_1250: "1250",
+            minus_2000: "-2000",
+            v_0_dot_5: "0.5",
+            v_1_dot_5: "1.5",
+            v_9: "9",
+            v_3: "3",
+            v_1_dot_67: "1.67",
+            v_200: "200",
+            v_500: "500",
+            v_400: "400",
+            minus_300: "-300",
+            plus: "+",
+            v_2494: "2494",
+            v_60: "60",
+            v_83_dot_1: "83.1",
+            v_75: "75",
+},
     },
     sc3_04: {
+        placeholders: {
+            ellipsis: "...",
+        },
         hints: {
             look_for_group: "\\text{Look for the characteristic group in } {formula}",
             characteristic_ending: "\\text{Characteristic ending: -oic acid, -al, or -one}",

@@ -6,6 +6,9 @@
 
 export const enChemistry = {
     gc3_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Back to Nexus",
         title: "GC3.01 // EQUILIBRIUM MASTER",
         difficulty: {
@@ -111,6 +114,9 @@ export const enChemistry = {
         }
     },
     gc3_02: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Back to Nexus",
         title: "GC3.02 // CRYSTAL PALACE",
         difficulty: {
@@ -173,6 +179,9 @@ export const enChemistry = {
         }
     },
     gc1_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Back to Nexus",
         title: "GC1.01 // REDOX TITAN",
         difficulty: {
@@ -236,6 +245,9 @@ export const enChemistry = {
         }
     },
     gc2_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Back to Nexus",
         title: "GC2.01 // CARBON KINGDOM",
         difficulty: {
@@ -548,7 +560,10 @@ export const enChemistry = {
         },
         placeholders: {
             k: "K",
-        },
+                    xx: "xx",
+            x: "x",
+            xx_dot_x: "xx.x",
+},
         prompts: {
             build_mass_number: "A",
             build_charge: "q",
@@ -607,6 +622,11 @@ export const enChemistry = {
         }
     },
     sc1_04: {
+        placeholders: {
+            xx: "xx",
+            x: "x",
+            v_1: "1",
+        },
         back: "Back to Nexus",
         title: "SC1.04 // PERIODIC PUZZLE",
         difficulty: {
@@ -663,6 +683,13 @@ export const enChemistry = {
         }
     },
     sc1_05: {
+        placeholders: {
+            v_1: "1",
+            v_2: "2",
+            v_0: "0",
+            v_3: "3",
+            v_12: "12",
+        },
         back: "Back to Nexus",
         title: "SC1.05 // BONDING BRIDGE",
         check: "Verify",
@@ -714,6 +741,9 @@ export const enChemistry = {
         }
     },
     sc2_01: {
+        placeholders: {
+            question: "?",
+        },
         back: "Back to Nexus",
         title: "C2.01 // CHEMICAL KINETICS",
         difficulty: {
@@ -909,7 +939,8 @@ export const enChemistry = {
         },
         placeholders: {
             ml: "mL",
-        },
+                    ellipsis: "...",
+},
         prompts: {
             curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
             find_eq: "If Va=50mL, Ca=0.1M, Cb=0.2M. Find Vb for equivalence.",
@@ -1140,7 +1171,10 @@ export const enChemistry = {
             question_mark: "?",
             name: "name",
         
-            cxhyoz: "CxHyOz",},
+            cxhyoz: "CxHyOz",            x_to_y: "x:y",
+            v_0: "0",
+            percent: "%",
+},
         hints: {
             carbon_is_black: "\\text{Carbon is black.}",
             hydrogen_is_white: "\\text{Hydrogen is white.}",
@@ -1236,7 +1270,8 @@ export const enChemistry = {
         },
         placeholders: {
             cxhy: "CxHy",
-        },
+                    ellipsis: "...",
+},
         prompts: {
             name_formula: "What is the molecular formula for {name}?",
             functional_group: "What is the functional group in {name}?",
@@ -1311,6 +1346,10 @@ export const enChemistry = {
         }
     },
     sc3_05: {
+        placeholders: {
+            ellipsis: "...",
+            v_0: "0",
+        },
         back: "Back to Nexus",
         title: "SC3.05 // MOLECULAR FORGE",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -1461,6 +1500,9 @@ export const enChemistry = {
         }
     },
     sc2_05: {
+        placeholders: {
+            question: "?",
+        },
         back: "Back to Nexus",
         title: "SC2.05 // ACID-BASE CHEMISTRY",
         difficulty: {
@@ -1648,7 +1690,9 @@ export const enChemistry = {
             n: "n",
             v: "V",
             g: "g",
-        },
+                    plus_minus_n: "±n",
+            ellipsis: "...",
+},
         scenarios: {
             oxidation_state: "Novartis Drug Synthesis Oxidation Control: You are a synthetic chemist at Novartis Basel, working on a complex pharmaceutical synthesis. The active ingredient requires precise oxidation state control of a transition metal catalyst. In your current reaction, manganese cycles between +4 and +7 oxidation states to facilitate C-H bond activation. You must track oxidation state changes through each step to prevent unwanted side reactions. Using spectroscopic analysis, you monitor the purple color of permanganate (Mn^7^+) converting to brown manganese dioxide (Mn^{4}^+). A single electron miscalculation could lead to toxic byproducts, making the entire batch unusable. This oxidation state tracking is crucial for producing safe, effective medications for patients across Switzerland. Understanding oxidation states is like tracking bank account balances—you need to know exactly how many electrons each atom has gained or lost.",
             electron_transfer: "Roche Battery Technology Development: You are a materials scientist at Roche's energy research division in Basel, developing next-generation lithium-ion batteries for medical devices. The battery's cathode material (LiCoO_2) undergoes reversible electron transfer during charging and discharging cycles. Cobalt alternates between +3 and +4 oxidation states as lithium ions shuttle in and out. You must balance the redox equations to optimize energy density and cycle life. Each battery cell must deliver exactly 3.7V for 500+ charge cycles to power portable insulin pumps and cardiac monitors reliably. Electron transfer efficiency directly impacts patient safety—a failing battery in a critical medical device could be life-threatening. This is similar to a rechargeable phone battery, but with medical-grade precision and reliability requirements.",

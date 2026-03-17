@@ -133,7 +133,7 @@ export default function SM103Page() {
             expressionLatex: "-3",
             targetLatex: "x",
             value: -3,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -3, unit: "" }],
             correctLatex: "x = -3",
           },
           {
@@ -146,7 +146,7 @@ export default function SM103Page() {
             expressionLatex: "5",
             targetLatex: "x",
             value: 5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 5, unit: "" }],
             correctLatex: "x = 5",
           },
           {
@@ -159,7 +159,7 @@ export default function SM103Page() {
             expressionLatex: "-2^\\circ\\text{C}",
             targetLatex: "T",
             value: -2,
-            slots: [{ id: "T", labelLatex: "T", placeholder: "-x", expected: -2, unit: "°C" }],
+            slots: [{ id: "T", labelLatex: "T", placeholder: t("sm1_03.placeholders.minus_x"), expected: -2, unit: "°C" }],
             correctLatex: "T = -2^\\circ\\text{C}",
           },
           {
@@ -172,7 +172,7 @@ export default function SM103Page() {
             expressionLatex: "-4\\text{m}",
             targetLatex: "d",
             value: -4,
-            slots: [{ id: "d", labelLatex: "d", placeholder: "-x", expected: -4, unit: "m" }],
+            slots: [{ id: "d", labelLatex: "d", placeholder: t("sm1_03.placeholders.minus_x"), expected: -4, unit: "m" }],
             correctLatex: "d = -4\\text{m}",
           },
           {
@@ -185,7 +185,7 @@ export default function SM103Page() {
             expressionLatex: "0",
             targetLatex: "x",
             value: 0,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 0, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 0, unit: "" }],
             correctLatex: "x = 0",
           },
         ],
@@ -200,7 +200,7 @@ export default function SM103Page() {
             expressionLatex: "-5 < -2",
             targetLatex: "x",
             value: -5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -5, unit: "" }],
             correctLatex: "x = -5 \\text{ (colder)}",
           },
           {
@@ -213,7 +213,7 @@ export default function SM103Page() {
             expressionLatex: "-3 < 1",
             targetLatex: "x",
             value: -3,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -3, unit: "" }],
             correctLatex: "x = -3",
           },
           {
@@ -226,7 +226,7 @@ export default function SM103Page() {
             expressionLatex: "-4, 0, 3",
             targetLatex: "x",
             value: 0,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 0, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 0, unit: "" }],
             correctLatex: "x = 0",
           },
           {
@@ -239,7 +239,7 @@ export default function SM103Page() {
             expressionLatex: "5 - 8 = -3",
             targetLatex: "L",
             value: -3,
-            slots: [{ id: "L", labelLatex: "L", placeholder: "-x", expected: -3, unit: "m" }],
+            slots: [{ id: "L", labelLatex: "L", placeholder: t("sm1_03.placeholders.minus_x"), expected: -3, unit: "m" }],
             correctLatex: "L = -3\\text{m}",
           },
           {
@@ -252,7 +252,7 @@ export default function SM103Page() {
             expressionLatex: "2 - 7 = -5",
             targetLatex: "T",
             value: -5,
-            slots: [{ id: "T", labelLatex: "T", placeholder: "-x", expected: -5, unit: "°C" }],
+            slots: [{ id: "T", labelLatex: "T", placeholder: t("sm1_03.placeholders.minus_x"), expected: -5, unit: "°C" }],
             correctLatex: "T = -5^\\circ\\text{C}",
           },
         ],
@@ -267,7 +267,7 @@ export default function SM103Page() {
             expressionLatex: "|-5 - 2| = 7",
             targetLatex: "d",
             value: 7,
-            slots: [{ id: "d", labelLatex: "d", placeholder: "x", expected: 7, unit: "" }],
+            slots: [{ id: "d", labelLatex: "d", placeholder: t("sm1_03.placeholders.x"), expected: 7, unit: "" }],
             correctLatex: "d = 7",
           },
           {
@@ -280,7 +280,7 @@ export default function SM103Page() {
             expressionLatex: "|-8| = 8",
             targetLatex: "x",
             value: 8,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "|x| = 8",
           },
           {
@@ -293,7 +293,7 @@ export default function SM103Page() {
             expressionLatex: "|-7 - (-3)| = 4",
             targetLatex: "d",
             value: 4,
-            slots: [{ id: "d", labelLatex: "d", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "d", labelLatex: "d", placeholder: t("sm1_03.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "d = 4",
           },
           {
@@ -306,7 +306,7 @@ export default function SM103Page() {
             expressionLatex: "\\frac{-6 + 4}{2} = -1",
             targetLatex: "m",
             value: -1,
-            slots: [{ id: "m", labelLatex: "m", placeholder: "-x", expected: -1, unit: "" }],
+            slots: [{ id: "m", labelLatex: "m", placeholder: t("sm1_03.placeholders.minus_x"), expected: -1, unit: "" }],
             correctLatex: "m = -1",
           },
           {
@@ -319,7 +319,7 @@ export default function SM103Page() {
             expressionLatex: "|5 - (-8)| = 13",
             targetLatex: "R",
             value: 13,
-            slots: [{ id: "R", labelLatex: "R", placeholder: "xx", expected: 13, unit: "°C" }],
+            slots: [{ id: "R", labelLatex: "R", placeholder: t("sm1_03.placeholders.xx"), expected: 13, unit: "°C" }],
             correctLatex: "R = 13^\\circ\\text{C}",
           },
         ],
@@ -334,7 +334,7 @@ export default function SM103Page() {
             expressionLatex: "-5 + 3 = -2",
             targetLatex: "x",
             value: -2,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -2, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -2, unit: "" }],
             correctLatex: "x = -2",
           },
           {
@@ -347,7 +347,7 @@ export default function SM103Page() {
             expressionLatex: "-3 - 4 = -7",
             targetLatex: "x",
             value: -7,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -7, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -7, unit: "" }],
             correctLatex: "x = -7",
           },
           {
@@ -360,7 +360,7 @@ export default function SM103Page() {
             expressionLatex: "-4 \\times 2 = -8",
             targetLatex: "x",
             value: -8,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -8, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -8, unit: "" }],
             correctLatex: "x = -8",
           },
           {
@@ -373,7 +373,7 @@ export default function SM103Page() {
             expressionLatex: "-6 + 8 - 5 = -3",
             targetLatex: "x",
             value: -3,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -3, unit: "" }],
             correctLatex: "x = -3",
           },
           {
@@ -386,7 +386,7 @@ export default function SM103Page() {
             expressionLatex: "(-2 + 5) - (3 - 7) = 7",
             targetLatex: "x",
             value: 7,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 7, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 7, unit: "" }],
             correctLatex: "x = 7",
           },
         ],
@@ -403,7 +403,7 @@ export default function SM103Page() {
             expressionLatex: "0.5",
             targetLatex: "x",
             value: 0.5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "0.x", expected: 0.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.v_0_dot_x"), expected: 0.5, unit: "" }],
             correctLatex: "x = 0.5",
           },
           {
@@ -416,7 +416,7 @@ export default function SM103Page() {
             expressionLatex: "-0.5",
             targetLatex: "x",
             value: -0.5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-0.x", expected: -0.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_0_dot_x"), expected: -0.5, unit: "" }],
             correctLatex: "x = -0.5",
           },
           {
@@ -429,7 +429,7 @@ export default function SM103Page() {
             expressionLatex: "1.5",
             targetLatex: "x",
             value: 1.5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x.x", expected: 1.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x_dot_x"), expected: 1.5, unit: "" }],
             correctLatex: "x = 1.5",
           },
           {
@@ -442,7 +442,7 @@ export default function SM103Page() {
             expressionLatex: "-2.5",
             targetLatex: "x",
             value: -2.5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x.x", expected: -2.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x_dot_x"), expected: -2.5, unit: "" }],
             correctLatex: "x = -2.5",
           },
           {
@@ -455,7 +455,7 @@ export default function SM103Page() {
             expressionLatex: "\\frac{1}{3} \\approx 0.33",
             targetLatex: "x",
             value: 0.33,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "0.xx", expected: 0.33, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.v_0_dot_xx"), expected: 0.33, unit: "" }],
             correctLatex: "x \\approx 0.33",
           },
         ],
@@ -470,7 +470,7 @@ export default function SM103Page() {
             expressionLatex: "-\\frac{1}{2} > -\\frac{1}{3}",
             targetLatex: "x",
             value: -0.33,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-0.xx", expected: -0.33, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_0_dot_xx"), expected: -0.33, unit: "" }],
             correctLatex: "x = -\\frac{1}{3} \\approx -0.33",
           },
           {
@@ -483,7 +483,7 @@ export default function SM103Page() {
             expressionLatex: "-0.75 < -0.5",
             targetLatex: "x",
             value: -0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-0.xx", expected: -0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_0_dot_xx"), expected: -0.75, unit: "" }],
             correctLatex: "x = -0.75",
           },
           {
@@ -496,7 +496,7 @@ export default function SM103Page() {
             expressionLatex: "-1.5, -0.5, 0.5",
             targetLatex: "x",
             value: -1.5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x.x", expected: -1.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x_dot_x"), expected: -1.5, unit: "" }],
             correctLatex: "x = -1.5",
           },
           {
@@ -509,7 +509,7 @@ export default function SM103Page() {
             expressionLatex: "0.5 + 0.25 = 0.75",
             targetLatex: "x",
             value: 0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "0.xx", expected: 0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.v_0_dot_xx"), expected: 0.75, unit: "" }],
             correctLatex: "x = 0.75",
           },
           {
@@ -522,7 +522,7 @@ export default function SM103Page() {
             expressionLatex: "1.5 - 2.25 = -0.75",
             targetLatex: "x",
             value: -0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-0.xx", expected: -0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_0_dot_xx"), expected: -0.75, unit: "" }],
             correctLatex: "x = -0.75",
           },
         ],
@@ -537,7 +537,7 @@ export default function SM103Page() {
             expressionLatex: "-0.75 < -0.8",
             targetLatex: "T",
             value: -0.8,
-            slots: [{ id: "T", labelLatex: "T", placeholder: "-0.x", expected: -0.8, unit: "°C" }],
+            slots: [{ id: "T", labelLatex: "T", placeholder: t("sm1_03.placeholders.minus_0_dot_x"), expected: -0.8, unit: "°C" }],
             correctLatex: "T = -0.8^\\circ\\text{C}",
           },
           {
@@ -550,7 +550,7 @@ export default function SM103Page() {
             expressionLatex: "-\\frac{3}{4} = -0.75",
             targetLatex: "x",
             value: -0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-0.xx", expected: -0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_0_dot_xx"), expected: -0.75, unit: "" }],
             correctLatex: "x = -0.75",
           },
           {
@@ -563,7 +563,7 @@ export default function SM103Page() {
             expressionLatex: "0.5 \\times 1.5 = 0.75",
             targetLatex: "x",
             value: 0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "0.xx", expected: 0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.v_0_dot_xx"), expected: 0.75, unit: "" }],
             correctLatex: "x = 0.75",
           },
           {
@@ -576,7 +576,7 @@ export default function SM103Page() {
             expressionLatex: "1.5 \\div 0.5 = 3",
             targetLatex: "x",
             value: 3,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "x = 3",
           },
           {
@@ -589,7 +589,7 @@ export default function SM103Page() {
             expressionLatex: "0.5 + 1.25 - 0.75 = 1",
             targetLatex: "x",
             value: 1,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 1, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 1, unit: "" }],
             correctLatex: "x = 1",
           },
         ],
@@ -604,7 +604,7 @@ export default function SM103Page() {
             expressionLatex: "-1.5, -\\frac{3}{2}, 0, 1.2",
             targetLatex: "x_1",
             value: -1.5,
-            slots: [{ id: "x1", labelLatex: "x_1", placeholder: "-x.x", expected: -1.5, unit: "" }],
+            slots: [{ id: "x1", labelLatex: "x_1", placeholder: t("sm1_03.placeholders.minus_x_dot_x"), expected: -1.5, unit: "" }],
             correctLatex: "x_1 = -1.5 = -\\frac{3}{2}",
           },
           {
@@ -617,7 +617,7 @@ export default function SM103Page() {
             expressionLatex: "\\frac{1}{2} + \\frac{1}{4} = \\frac{3}{4}",
             targetLatex: "x",
             value: 0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "0.xx", expected: 0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.v_0_dot_xx"), expected: 0.75, unit: "" }],
             correctLatex: "x = 0.75",
           },
           {
@@ -630,7 +630,7 @@ export default function SM103Page() {
             expressionLatex: "-\\frac{1}{2} - \\frac{1}{4} = -\\frac{3}{4}",
             targetLatex: "x",
             value: -0.75,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-0.xx", expected: -0.75, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_0_dot_xx"), expected: -0.75, unit: "" }],
             correctLatex: "x = -0.75",
           },
           {
@@ -643,7 +643,7 @@ export default function SM103Page() {
             expressionLatex: "(0.5 - 1.25) \\times 2 = -1.5",
             targetLatex: "x",
             value: -1.5,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x.x", expected: -1.5, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x_dot_x"), expected: -1.5, unit: "" }],
             correctLatex: "x = -1.5",
           },
           {
@@ -656,7 +656,7 @@ export default function SM103Page() {
             expressionLatex: "\\frac{2}{3} \\approx 0.67",
             targetLatex: "x",
             value: 0.67,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "0.xx", expected: 0.67, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.v_0_dot_xx"), expected: 0.67, unit: "" }],
             correctLatex: "x \\approx 0.67",
           },
         ],
@@ -674,7 +674,7 @@ export default function SM103Page() {
             targetLatex: "x",
             x: 2,
             y: 3,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 2, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 2, unit: "" }],
             correctLatex: "x = 2",
           },
           {
@@ -688,7 +688,7 @@ export default function SM103Page() {
             targetLatex: "y",
             x: 3,
             y: 4,
-            slots: [{ id: "y", labelLatex: "y", placeholder: "y", expected: 4, unit: "" }],
+            slots: [{ id: "y", labelLatex: "y", placeholder: t("sm1_03.placeholders.y"), expected: 4, unit: "" }],
             correctLatex: "y = 4",
           },
           {
@@ -702,7 +702,7 @@ export default function SM103Page() {
             targetLatex: "x",
             x: 1,
             y: 2,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 1, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 1, unit: "" }],
             correctLatex: "(1, 2)",
           },
           {
@@ -716,7 +716,7 @@ export default function SM103Page() {
             targetLatex: "x",
             x: 0,
             y: 0,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "x", expected: 0, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.x"), expected: 0, unit: "" }],
             correctLatex: "x = 0",
           },
           {
@@ -730,7 +730,7 @@ export default function SM103Page() {
             targetLatex: "y",
             x: 3,
             y: 0,
-            slots: [{ id: "y", labelLatex: "y", placeholder: "y", expected: 0, unit: "" }],
+            slots: [{ id: "y", labelLatex: "y", placeholder: t("sm1_03.placeholders.y"), expected: 0, unit: "" }],
             correctLatex: "y = 0",
           },
         ],
@@ -746,7 +746,7 @@ export default function SM103Page() {
             targetLatex: "Q",
             x: -2,
             y: 5,
-            slots: [{ id: "Q", labelLatex: "Q", placeholder: "1-4", expected: 2, unit: "" }],
+            slots: [{ id: "Q", labelLatex: "Q", placeholder: t("sm1_03.placeholders.v_1_minus_4"), expected: 2, unit: "" }],
             correctLatex: "Q = 2",
           },
           {
@@ -760,7 +760,7 @@ export default function SM103Page() {
             targetLatex: "Q",
             x: -3,
             y: -4,
-            slots: [{ id: "Q", labelLatex: "Q", placeholder: "1-4", expected: 3, unit: "" }],
+            slots: [{ id: "Q", labelLatex: "Q", placeholder: t("sm1_03.placeholders.v_1_minus_4"), expected: 3, unit: "" }],
             correctLatex: "Q = 3",
           },
           {
@@ -774,7 +774,7 @@ export default function SM103Page() {
             targetLatex: "Q",
             x: 4,
             y: -2,
-            slots: [{ id: "Q", labelLatex: "Q", placeholder: "1-4", expected: 4, unit: "" }],
+            slots: [{ id: "Q", labelLatex: "Q", placeholder: t("sm1_03.placeholders.v_1_minus_4"), expected: 4, unit: "" }],
             correctLatex: "Q = 4",
           },
           {
@@ -788,7 +788,7 @@ export default function SM103Page() {
             targetLatex: "x",
             x: -3,
             y: 2,
-            slots: [{ id: "x", labelLatex: "x", placeholder: "-x", expected: -3, unit: "" }],
+            slots: [{ id: "x", labelLatex: "x", placeholder: t("sm1_03.placeholders.minus_x"), expected: -3, unit: "" }],
             correctLatex: "x = -3",
           },
           {
@@ -802,7 +802,7 @@ export default function SM103Page() {
             targetLatex: "d",
             x: 5,
             y: 0,
-            slots: [{ id: "d", labelLatex: "d", placeholder: "x", expected: 3, unit: "" }],
+            slots: [{ id: "d", labelLatex: "d", placeholder: t("sm1_03.placeholders.x"), expected: 3, unit: "" }],
             correctLatex: "d = 3",
           },
         ],
@@ -818,7 +818,7 @@ export default function SM103Page() {
             targetLatex: "y'",
             x: 3,
             y: -4,
-            slots: [{ id: "yp", labelLatex: "y'", placeholder: "-y", expected: -4, unit: "" }],
+            slots: [{ id: "yp", labelLatex: "y'", placeholder: t("sm1_03.placeholders.minus_y"), expected: -4, unit: "" }],
             correctLatex: "y' = -4",
           },
           {
@@ -832,7 +832,7 @@ export default function SM103Page() {
             targetLatex: "x'",
             x: -5,
             y: 2,
-            slots: [{ id: "xp", labelLatex: "x'", placeholder: "-x", expected: -5, unit: "" }],
+            slots: [{ id: "xp", labelLatex: "x'", placeholder: t("sm1_03.placeholders.minus_x"), expected: -5, unit: "" }],
             correctLatex: "x' = -5",
           },
           {
@@ -846,7 +846,7 @@ export default function SM103Page() {
             targetLatex: "x'",
             x: -3,
             y: -4,
-            slots: [{ id: "xp", labelLatex: "x'", placeholder: "-x", expected: -3, unit: "" }],
+            slots: [{ id: "xp", labelLatex: "x'", placeholder: t("sm1_03.placeholders.minus_x"), expected: -3, unit: "" }],
             correctLatex: "x' = -3",
           },
           {
@@ -860,7 +860,7 @@ export default function SM103Page() {
             targetLatex: "x'",
             x: 6,
             y: 3,
-            slots: [{ id: "xp", labelLatex: "x'", placeholder: "x", expected: 6, unit: "" }],
+            slots: [{ id: "xp", labelLatex: "x'", placeholder: t("sm1_03.placeholders.x"), expected: 6, unit: "" }],
             correctLatex: "x' = 6",
           },
           {
@@ -874,7 +874,7 @@ export default function SM103Page() {
             targetLatex: "x_m",
             x: 4,
             y: 3,
-            slots: [{ id: "xm", labelLatex: "x_m", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "xm", labelLatex: "x_m", placeholder: t("sm1_03.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x_m = 4",
           },
         ],
@@ -890,7 +890,7 @@ export default function SM103Page() {
             targetLatex: "d",
             x: 0,
             y: 5,
-            slots: [{ id: "d", labelLatex: "d", placeholder: "x", expected: 8, unit: "" }],
+            slots: [{ id: "d", labelLatex: "d", placeholder: t("sm1_03.placeholders.x"), expected: 8, unit: "" }],
             correctLatex: "d = 8",
           },
           {
@@ -904,7 +904,7 @@ export default function SM103Page() {
             targetLatex: "P",
             x: 4,
             y: 3,
-            slots: [{ id: "P", labelLatex: "P", placeholder: "xx", expected: 14, unit: "" }],
+            slots: [{ id: "P", labelLatex: "P", placeholder: t("sm1_03.placeholders.xx"), expected: 14, unit: "" }],
             correctLatex: "P = 14",
           },
           {
@@ -918,7 +918,7 @@ export default function SM103Page() {
             targetLatex: "A",
             x: 4,
             y: 3,
-            slots: [{ id: "A", labelLatex: "A", placeholder: "xx", expected: 12, unit: "" }],
+            slots: [{ id: "A", labelLatex: "A", placeholder: t("sm1_03.placeholders.xx"), expected: 12, unit: "" }],
             correctLatex: "A = 12",
           },
           {
@@ -932,7 +932,7 @@ export default function SM103Page() {
             targetLatex: "d_x",
             x: 6,
             y: 5,
-            slots: [{ id: "dx", labelLatex: "d_x", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "dx", labelLatex: "d_x", placeholder: t("sm1_03.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "d_x = 4",
           },
           {
@@ -946,7 +946,7 @@ export default function SM103Page() {
             targetLatex: "x'",
             x: 4,
             y: 5,
-            slots: [{ id: "xp", labelLatex: "x'", placeholder: "x", expected: 4, unit: "" }],
+            slots: [{ id: "xp", labelLatex: "x'", placeholder: t("sm1_03.placeholders.x"), expected: 4, unit: "" }],
             correctLatex: "x' = 4",
           },
         ],

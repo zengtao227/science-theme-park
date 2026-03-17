@@ -59,22 +59,22 @@ export default function SC105Page() {
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): BondQuest[] => {
         const bank: Record<Stage, Record<Difficulty, BondQuest[]>> = {
             IONIC: {
-                BASIC: [{ id: "I-B-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_charge_product"), expressionLatex: "Na^+,\\;Cl^-", targetLatex: "|q_1q_2|", slots: [{ id: "q", labelLatex: "|q_1q_2|", placeholder: "1", expected: 1 }], correctLatex: "|q_1q_2|=1" }],
-                CORE: [{ id: "I-C-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_subscript"), expressionLatex: "Mg^{2+},\\;Cl^-", targetLatex: "x", slots: [{ id: "x", labelLatex: "x", placeholder: "2", expected: 2 }], correctLatex: "MgCl_2" }],
-                ADVANCED: [{ id: "I-A-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_total_charge"), expressionLatex: "Al^{3+}+3Cl^-", targetLatex: "Q", slots: [{ id: "Q", labelLatex: "Q", placeholder: "0", expected: 0 }], correctLatex: "Q=0" }],
-                ELITE: [{ id: "I-E-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_ratio_n"), expressionLatex: "Ca^{2+},\\;F^-", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: "2", expected: 2 }], correctLatex: "CaF_2" }],
+                BASIC: [{ id: "I-B-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_charge_product"), expressionLatex: "Na^+,\\;Cl^-", targetLatex: "|q_1q_2|", slots: [{ id: "q", labelLatex: "|q_1q_2|", placeholder: t("sc1_05.placeholders.v_1"), expected: 1 }], correctLatex: "|q_1q_2|=1" }],
+                CORE: [{ id: "I-C-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_subscript"), expressionLatex: "Mg^{2+},\\;Cl^-", targetLatex: "x", slots: [{ id: "x", labelLatex: "x", placeholder: t("sc1_05.placeholders.v_2"), expected: 2 }], correctLatex: "MgCl_2" }],
+                ADVANCED: [{ id: "I-A-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_total_charge"), expressionLatex: "Al^{3+}+3Cl^-", targetLatex: "Q", slots: [{ id: "Q", labelLatex: "Q", placeholder: t("sc1_05.placeholders.v_0"), expected: 0 }], correctLatex: "Q=0" }],
+                ELITE: [{ id: "I-E-1", difficulty, stage, promptLatex: t("sc1_05.prompts.ionic_ratio_n"), expressionLatex: "Ca^{2+},\\;F^-", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_05.placeholders.v_2"), expected: 2 }], correctLatex: "CaF_2" }],
             },
             COVALENT: {
-                BASIC: [{ id: "C-B-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bond_order"), expressionLatex: "H_2", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: "1", expected: 1 }], correctLatex: "n=1" }],
-                CORE: [{ id: "C-C-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bond_order"), expressionLatex: "O_2", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: "2", expected: 2 }], correctLatex: "n=2" }],
-                ADVANCED: [{ id: "C-A-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bond_order"), expressionLatex: "N_2", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: "3", expected: 3 }], correctLatex: "n=3" }],
-                ELITE: [{ id: "C-E-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bonds_count"), expressionLatex: "CO_2\\;(O=C=O)", targetLatex: "b", slots: [{ id: "b", labelLatex: "b", placeholder: "2", expected: 2 }], correctLatex: "b=2" }],
+                BASIC: [{ id: "C-B-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bond_order"), expressionLatex: "H_2", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_05.placeholders.v_1"), expected: 1 }], correctLatex: "n=1" }],
+                CORE: [{ id: "C-C-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bond_order"), expressionLatex: "O_2", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_05.placeholders.v_2"), expected: 2 }], correctLatex: "n=2" }],
+                ADVANCED: [{ id: "C-A-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bond_order"), expressionLatex: "N_2", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_05.placeholders.v_3"), expected: 3 }], correctLatex: "n=3" }],
+                ELITE: [{ id: "C-E-1", difficulty, stage, promptLatex: t("sc1_05.prompts.covalent_bonds_count"), expressionLatex: "CO_2\\;(O=C=O)", targetLatex: "b", slots: [{ id: "b", labelLatex: "b", placeholder: t("sc1_05.placeholders.v_2"), expected: 2 }], correctLatex: "b=2" }],
             },
             METALLIC: {
-                BASIC: [{ id: "M-B-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_valence"), expressionLatex: "Na", targetLatex: "v", slots: [{ id: "v", labelLatex: "v", placeholder: "1", expected: 1 }], correctLatex: "v=1" }],
-                CORE: [{ id: "M-C-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_valence"), expressionLatex: "Mg", targetLatex: "v", slots: [{ id: "v", labelLatex: "v", placeholder: "2", expected: 2 }], correctLatex: "v=2" }],
-                ADVANCED: [{ id: "M-A-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_coordination_number"), expressionLatex: "4\\times 3", targetLatex: "N", slots: [{ id: "N", labelLatex: "N", placeholder: "12", expected: 12 }], correctLatex: "N=12" }],
-                ELITE: [{ id: "M-E-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_ratio"), expressionLatex: "\\frac{3}{1}", targetLatex: "r", slots: [{ id: "r", labelLatex: "r", placeholder: "3", expected: 3 }], correctLatex: "r=3" }],
+                BASIC: [{ id: "M-B-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_valence"), expressionLatex: "Na", targetLatex: "v", slots: [{ id: "v", labelLatex: "v", placeholder: t("sc1_05.placeholders.v_1"), expected: 1 }], correctLatex: "v=1" }],
+                CORE: [{ id: "M-C-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_valence"), expressionLatex: "Mg", targetLatex: "v", slots: [{ id: "v", labelLatex: "v", placeholder: t("sc1_05.placeholders.v_2"), expected: 2 }], correctLatex: "v=2" }],
+                ADVANCED: [{ id: "M-A-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_coordination_number"), expressionLatex: "4\\times 3", targetLatex: "N", slots: [{ id: "N", labelLatex: "N", placeholder: t("sc1_05.placeholders.v_12"), expected: 12 }], correctLatex: "N=12" }],
+                ELITE: [{ id: "M-E-1", difficulty, stage, promptLatex: t("sc1_05.prompts.metallic_ratio"), expressionLatex: "\\frac{3}{1}", targetLatex: "r", slots: [{ id: "r", labelLatex: "r", placeholder: t("sc1_05.placeholders.v_3"), expected: 3 }], correctLatex: "r=3" }],
             },
         };
 

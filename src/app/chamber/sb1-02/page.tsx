@@ -71,7 +71,7 @@ export default function SB102Page() {
                     promptLatex: t(`sb1_02.prompts.eq_${item.q}`),
                     expressionLatex: item.equation,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: t("sb1_02.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_02.prompts.hint_${item.q}`)]
                 });
@@ -121,7 +121,7 @@ export default function SB102Page() {
                     promptLatex: t(`sb1_02.prompts.factor_${item.factor}`),
                     expressionLatex: `\\text{${item.factor.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.effect"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.effect"), placeholder: t("sb1_02.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_02.prompts.hint_factor_${item.factor}`)]
                 });
@@ -171,7 +171,7 @@ export default function SB102Page() {
                     promptLatex: t(`sb1_02.prompts.struct_${item.name}`),
                     expressionLatex: `\\text{${item.function}} \\rightarrow ?`,
                     targetLatex: item.name,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.structure"), placeholder: "...", expected: item.name }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.structure"), placeholder: t("sb1_02.placeholders.ellipsis"), expected: item.name }],
                     correctLatex: item.name,
                     hintLatex: [t(`sb1_02.prompts.hint_struct_${item.name}`)]
                 });

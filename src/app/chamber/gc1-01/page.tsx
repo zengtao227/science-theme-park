@@ -128,7 +128,7 @@ export default function GC101Page() {
                         value={inputs["ans"] || ""}
                         onChange={(e) => setInputs({ ans: e.target.value })}
                         className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white text-white font-black text-2xl"
-                        placeholder="..."
+                        placeholder={t("gc1_01.placeholders.ellipsis")}
                     />
                 </div>
 

@@ -133,7 +133,7 @@ export default function SM211Page() {
           promptLatex: t("sm2_11.prompts.find_nth_term"),
           expressionLatex: `a_1 = ${data.a1}, \\; d = ${data.d}, \\; n = ${data.n}`,
           targetLatex: `a_{${data.n}}`,
-          slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: "...", expected: data.answer }],
+          slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: t("sm2_11.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `a_{${data.n}} = ${data.answer}`,
           hintLatex: [t("sm2_11.hints.arithmetic_formula")],
         });
@@ -146,7 +146,7 @@ export default function SM211Page() {
           promptLatex: t("sm2_11.prompts.find_nth_term"),
           expressionLatex: `a_1 = ${data.a1}, \\; r = ${data.r}, \\; n = ${data.n}`,
           targetLatex: `a_{${data.n}}`,
-          slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: "...", expected: data.answer }],
+          slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: t("sm2_11.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `a_{${data.n}} = ${data.answer}`,
           hintLatex: [t("sm2_11.hints.geometric_formula")],
         });
@@ -159,7 +159,7 @@ export default function SM211Page() {
           promptLatex: t("sm2_11.prompts.find_sum"),
           expressionLatex: `a_1 = ${data.a1}, \\; d = ${data.d}, \\; n = ${data.n}`,
           targetLatex: `S_{${data.n}}`,
-          slots: [{ id: "ans", labelLatex: `S_{${data.n}}`, placeholder: "...", expected: data.answer }],
+          slots: [{ id: "ans", labelLatex: `S_{${data.n}}`, placeholder: t("sm2_11.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `S_{${data.n}} = ${data.answer}`,
           hintLatex: [t("sm2_11.hints.series_formula")],
         });

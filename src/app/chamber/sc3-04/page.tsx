@@ -69,7 +69,7 @@ export default function SC304Page() {
                     promptLatex: t("sc3_04.prompts.identify_group", { molecule: m.name }),
                     expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
                     targetLatex: m.expected,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.functional_group"), placeholder: "...", expected: m.expected.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.functional_group"), placeholder: t("sc3_04.placeholders.ellipsis"), expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
                     hintLatex: [t("sc3_04.hints.look_for_group", { formula: m.formula })]
                 });
@@ -116,7 +116,7 @@ export default function SC304Page() {
                     promptLatex: t("sc3_04.prompts.identify_group", { molecule: m.name }),
                     expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
                     targetLatex: m.expected,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.functional_group"), placeholder: "...", expected: m.expected.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.functional_group"), placeholder: t("sc3_04.placeholders.ellipsis"), expected: m.expected.toLowerCase() }],
                     correctLatex: m.expected,
                     hintLatex: [t("sc3_04.hints.characteristic_ending")]
                 });
@@ -164,7 +164,7 @@ export default function SC304Page() {
                     promptLatex: c.q.replace('{a}', c.a).replace('{b}', c.b),
                     expressionLatex: `\\text{A: } ${c.a} \\text{ vs B: } ${c.b}`,
                     targetLatex: c.expected,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: "...", expected: c.expected.toLowerCase() }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.result"), placeholder: t("sc3_04.placeholders.ellipsis"), expected: c.expected.toLowerCase() }],
                     correctLatex: c.expected,
                     hintLatex: [t("sc3_04.hints.hydrogen_bonding")]
                 });

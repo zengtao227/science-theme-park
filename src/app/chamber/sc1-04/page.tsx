@@ -43,22 +43,22 @@ export default function SC104Page() {
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): PeriodicQuest[] => {
     const bank: Record<Stage, Record<Difficulty, PeriodicQuest[]>> = {
       build: {
-        BASIC: [{ id: "B-B-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_mass_number"), expressionLatex: "p=6,\\;n=6,\\;A=p+n", targetLatex: "A", slots: [{ id: "A", labelLatex: "A", placeholder: "xx", expected: 12 }], correctLatex: "A=12" }],
-        CORE: [{ id: "B-C-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_charge"), expressionLatex: "p=12,\\;e=10,\\;q=p-e", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: "x", expected: 2 }], correctLatex: "q=+2" }],
-        ADVANCED: [{ id: "B-A-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_electrons"), expressionLatex: "Z=17", targetLatex: "e", slots: [{ id: "e", labelLatex: "e", placeholder: "xx", expected: 17 }], correctLatex: "e=17" }],
-        ELITE: [{ id: "B-E-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_neutrons"), expressionLatex: "A=40,\\;Z=20,\\;n=A-Z", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: "xx", expected: 20 }], correctLatex: "n=20" }],
+        BASIC: [{ id: "B-B-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_mass_number"), expressionLatex: "p=6,\\;n=6,\\;A=p+n", targetLatex: "A", slots: [{ id: "A", labelLatex: "A", placeholder: t("sc1_04.placeholders.xx"), expected: 12 }], correctLatex: "A=12" }],
+        CORE: [{ id: "B-C-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_charge"), expressionLatex: "p=12,\\;e=10,\\;q=p-e", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: t("sc1_04.placeholders.x"), expected: 2 }], correctLatex: "q=+2" }],
+        ADVANCED: [{ id: "B-A-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_electrons"), expressionLatex: "Z=17", targetLatex: "e", slots: [{ id: "e", labelLatex: "e", placeholder: t("sc1_04.placeholders.xx"), expected: 17 }], correctLatex: "e=17" }],
+        ELITE: [{ id: "B-E-1", difficulty, stage, promptLatex: t("sc1_04.prompts.build_neutrons"), expressionLatex: "A=40,\\;Z=20,\\;n=A-Z", targetLatex: "n", slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_04.placeholders.xx"), expected: 20 }], correctLatex: "n=20" }],
       },
       periodic: {
-        BASIC: [{ id: "P-B-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_atomic_number"), expressionLatex: "\\mathrm{Na}", targetLatex: "Z", slots: [{ id: "Z", labelLatex: "Z", placeholder: "xx", expected: 11 }], correctLatex: "Z=11" }],
-        CORE: [{ id: "P-C-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_period"), expressionLatex: "\\mathrm{Cl}", targetLatex: "P", slots: [{ id: "period", labelLatex: "P", placeholder: "x", expected: 3 }], correctLatex: "P=3" }],
-        ADVANCED: [{ id: "P-A-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_group"), expressionLatex: "\\mathrm{O}", targetLatex: "G", slots: [{ id: "group", labelLatex: "G", placeholder: "xx", expected: 16 }], correctLatex: "G=16" }],
-        ELITE: [{ id: "P-E-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_valence"), expressionLatex: "\\mathrm{Ar}", targetLatex: "v", slots: [{ id: "v", labelLatex: "v", placeholder: "x", expected: 8 }], correctLatex: "v=8" }],
+        BASIC: [{ id: "P-B-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_atomic_number"), expressionLatex: "\\mathrm{Na}", targetLatex: "Z", slots: [{ id: "Z", labelLatex: "Z", placeholder: t("sc1_04.placeholders.xx"), expected: 11 }], correctLatex: "Z=11" }],
+        CORE: [{ id: "P-C-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_period"), expressionLatex: "\\mathrm{Cl}", targetLatex: "P", slots: [{ id: "period", labelLatex: "P", placeholder: t("sc1_04.placeholders.x"), expected: 3 }], correctLatex: "P=3" }],
+        ADVANCED: [{ id: "P-A-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_group"), expressionLatex: "\\mathrm{O}", targetLatex: "G", slots: [{ id: "group", labelLatex: "G", placeholder: t("sc1_04.placeholders.xx"), expected: 16 }], correctLatex: "G=16" }],
+        ELITE: [{ id: "P-E-1", difficulty, stage, promptLatex: t("sc1_04.prompts.periodic_valence"), expressionLatex: "\\mathrm{Ar}", targetLatex: "v", slots: [{ id: "v", labelLatex: "v", placeholder: t("sc1_04.placeholders.x"), expected: 8 }], correctLatex: "v=8" }],
       },
       groups: {
-        BASIC: [{ id: "G-B-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_group_number"), expressionLatex: "\\mathrm{Li}", targetLatex: "g", slots: [{ id: "g", labelLatex: "g", placeholder: "x", expected: 1 }], correctLatex: "g=1" }],
-        CORE: [{ id: "G-C-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_same_group"), expressionLatex: "\\mathrm{Na},\\;\\mathrm{K}", targetLatex: "1", slots: [{ id: "sg", labelLatex: "1/0", placeholder: "1", expected: 1 }], correctLatex: "1" }],
-        ADVANCED: [{ id: "G-A-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_delta_z"), expressionLatex: "\\mathrm{Ne}(Z=10)\\rightarrow\\mathrm{Ar}(Z=18)", targetLatex: "\\Delta Z", slots: [{ id: "dz", labelLatex: "\\Delta Z", placeholder: "x", expected: 8 }], correctLatex: "\\Delta Z=8" }],
-        ELITE: [{ id: "G-E-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_delta_period"), expressionLatex: "\\mathrm{Mg}(P2)\\rightarrow\\mathrm{Ca}(P4)", targetLatex: "\\Delta P", slots: [{ id: "dp", labelLatex: "\\Delta P", placeholder: "x", expected: 2 }], correctLatex: "\\Delta P=2" }],
+        BASIC: [{ id: "G-B-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_group_number"), expressionLatex: "\\mathrm{Li}", targetLatex: "g", slots: [{ id: "g", labelLatex: "g", placeholder: t("sc1_04.placeholders.x"), expected: 1 }], correctLatex: "g=1" }],
+        CORE: [{ id: "G-C-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_same_group"), expressionLatex: "\\mathrm{Na},\\;\\mathrm{K}", targetLatex: "1", slots: [{ id: "sg", labelLatex: "1/0", placeholder: t("sc1_04.placeholders.v_1"), expected: 1 }], correctLatex: "1" }],
+        ADVANCED: [{ id: "G-A-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_delta_z"), expressionLatex: "\\mathrm{Ne}(Z=10)\\rightarrow\\mathrm{Ar}(Z=18)", targetLatex: "\\Delta Z", slots: [{ id: "dz", labelLatex: "\\Delta Z", placeholder: t("sc1_04.placeholders.x"), expected: 8 }], correctLatex: "\\Delta Z=8" }],
+        ELITE: [{ id: "G-E-1", difficulty, stage, promptLatex: t("sc1_04.prompts.groups_delta_period"), expressionLatex: "\\mathrm{Mg}(P2)\\rightarrow\\mathrm{Ca}(P4)", targetLatex: "\\Delta P", slots: [{ id: "dp", labelLatex: "\\Delta P", placeholder: t("sc1_04.placeholders.x"), expected: 2 }], correctLatex: "\\Delta P=2" }],
       },
     };
 

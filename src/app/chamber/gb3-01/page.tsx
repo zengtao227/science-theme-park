@@ -147,7 +147,7 @@ export default function GB301Page() {
                     promptLatex: t("gb3_01.prompts.pairing_prompt", { base }),
                     expressionLatex: t("gb3_01.prompts.pairing_target", { base }),
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.pairing_target", { base }), placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.pairing_target", { base }), placeholder: t("gb3_01.placeholders.ellipsis"), expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [base === "A" || base === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
                 });
@@ -163,7 +163,7 @@ export default function GB301Page() {
                     promptLatex: t("gb3_01.prompts.bonds_prompt", { b1, b2 }),
                     expressionLatex: t("gb3_01.prompts.bonds_target"),
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: "n_{H}", placeholder: "2-3", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: "n_{H}", placeholder: t("gb3_01.placeholders.v_2_minus_3"), expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [b1 === "A" || b1 === "T" ? t("gb3_01.prompts.hint_at") : t("gb3_01.prompts.hint_gc")]
                 });
@@ -177,7 +177,7 @@ export default function GB301Page() {
                     promptLatex: t("gb3_01.prompts.sequence_prompt", { seq }),
                     expressionLatex: t("gb3_01.prompts.sequence_target"),
                     targetLatex: data.expected,
-                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.sequence_label"), placeholder: "...", expected: data.expected }],
+                    slots: [{ id: "ans", labelLatex: t("gb3_01.prompts.sequence_label"), placeholder: t("gb3_01.placeholders.ellipsis"), expected: data.expected }],
                     correctLatex: data.expected,
                     hintLatex: [t("gb3_01.prompts.hint_sequence")]
                 });

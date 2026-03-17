@@ -26,7 +26,34 @@ export const cnBiology = {
         placeholders: {
             yes: "yes",
             positive: "positive",
-        },
+                    question: "?",
+            v_0_dot_0125: "0.0125",
+            v_0_dot_995: "0.995",
+            v_0_dot_286: "0.286",
+            v_0_dot_01: "0.01",
+            v_0_dot_1: "0.1",
+            v_1: "1",
+            v_0_dot_002: "0.002",
+            v_100: "100",
+            v_0_dot_005: "0.005",
+            v_0_dot_001: "0.001",
+            v_0_dot_95: "0.95",
+            v_200: "200",
+            v_0_dot_25: "0.25",
+            v_0_dot_2: "0.2",
+            v_2: "2",
+            v_4_dot_5: "4.5",
+            v_3_dot_75: "3.75",
+            v_5730: "5730",
+            v_4: "4",
+            v_0_dot_0001: "0.0001",
+            v_0_dot_368: "0.368",
+            v_173: "173",
+            v_0_dot_693: "0.693",
+            v_1100: "1100",
+            v_0_dot_3: "0.3",
+            v_95: "95",
+},
         prompts: {
             natural_selection: "在{initial}只雀鸟的种群中，{survival}只在干旱中存活。计算适应度。",
             speciation: "经过{generations}代，突变率为{rate}，计算遗传分化度。",
@@ -96,6 +123,10 @@ export const cnBiology = {
         }
     },
     gb2_01: {
+        placeholders: {
+            ellipsis: "...",
+            v_0: "0",
+        },
         back: "返回枢纽",
         title: "GB2.01 // 神经生物学",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -153,6 +184,10 @@ export const cnBiology = {
         }
     },
     gb3_01: {
+        placeholders: {
+            ellipsis: "...",
+            v_2_minus_3: "2-3",
+        },
         back: "返回枢纽",
         title: "GB3.01 // DNA 熔炉",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -215,6 +250,9 @@ export const cnBiology = {
         }
     },
     gb3_02: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "返回枢纽",
         title: "GB3.02 // 免疫学实验室",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -262,6 +300,9 @@ export const cnBiology = {
         }
     },
     gb2_02: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "返回枢纽",
         title: "GB2.02 // 内分泌系统",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -289,6 +330,9 @@ export const cnBiology = {
         }
     },
     sb1_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "返回枢纽",
         title: "SB1.01 // 细胞工厂",
         difficulty: {
@@ -450,7 +494,8 @@ export const cnBiology = {
         },
         placeholders: {
             enter_leave_stable: "enter/leave/stable",
-        },
+                    ellipsis: "...",
+},
         prompts: {
             osmosis_prompt: "细胞处于{status}环境（{desc}）中。水分会如何移动？",
             respiration_prompt: "完成呼吸作用反应物：C_6H_1_2O_6 + 6{reactant} → ...",
@@ -552,6 +597,9 @@ export const cnBiology = {
         }
     },
     sb1_02: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "返回枢纽",
         title: "SB1.02 // 光合作用实验室",
         difficulty: { basic: "基础", core: "核心", advanced: "高级", elite: "精英" },
@@ -609,6 +657,9 @@ export const cnBiology = {
         }
     },
     sb1_03: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "返回枢纽",
         title: "SB1.03 // 细胞分裂",
         check: "验证",
@@ -1289,9 +1340,31 @@ export const cnBiology = {
             vibration: "vibration",
             collapse: "collapse",
             airflow: "airflow",
-            rbc: "RBC",}
+            rbc: "RBC",            v_7: "7",
+            v_500000000: "500000000",
+            v_3: "3",
+            co2: "CO2",
+            v_4: "4",
+            v_120_slash_80: "120/80",
+            v_5: "5",
+            o2: "O2",
+            v_70: "70",
+            v_7_dot_5: "7.5",
+            v_50: "50",
+}
     },
     sb3_01: {
+        placeholders: {
+            ellipsis: "...",
+            v_0: "0",
+            v_10: "10",
+            v_1_dot_28: "1.28",
+            v_0_dot_036: "0.036",
+            v_100: "100",
+            v_6_dot_8: "6.8",
+            v_2414: "2414",
+            v_0_dot_62: "0.62",
+        },
         back: "返回枢纽",
         title: "SB3.01 // 生态系统动力学",
         difficulty: {
@@ -1385,6 +1458,11 @@ export const cnBiology = {
         }
     },
     sb2_03: {
+        placeholders: {
+            x_to_y_upper: "X:Y",
+            x_percent: "X%",
+            v_0_dot_xx: "0.XX",
+        },
         back: "返回枢纽",
         title: "SB2.03 // 遗传变异",
         difficulty: {

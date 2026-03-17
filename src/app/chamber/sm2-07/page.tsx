@@ -39,7 +39,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(0,0), B(3,y)",
           targetLatex: "y",
-          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
+          slots: [{ id: "y", labelLatex: "y", placeholder: t("sm2_07.placeholders.question"), expected: 4 }],
           correctLatex: "y=4"
         },
         {
@@ -48,7 +48,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(1,1), B(x,5)",
           targetLatex: "x",
-          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 4 }],
+          slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_07.placeholders.question"), expected: 4 }],
           correctLatex: "x=4"
         },
         {
@@ -57,7 +57,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(0,0), B(5,y)",
           targetLatex: "y",
-          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 12 }],
+          slots: [{ id: "y", labelLatex: "y", placeholder: t("sm2_07.placeholders.question"), expected: 12 }],
           correctLatex: "y=12"
         },
         {
@@ -66,7 +66,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(2,1), B(x,7)",
           targetLatex: "x",
-          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 10 }],
+          slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_07.placeholders.question"), expected: 10 }],
           correctLatex: "x=10"
         },
         {
@@ -75,7 +75,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.distance_prompt_latex"),
           expressionLatex: "A(-1,-1), B(2,y)",
           targetLatex: "y",
-          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 3 }],
+          slots: [{ id: "y", labelLatex: "y", placeholder: t("sm2_07.placeholders.question"), expected: 3 }],
           correctLatex: "y=3"
         }
       ];
@@ -150,8 +150,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         expressionLatex: `A(${item.A[0]},${item.A[1]}),\\; M(${item.M[0]},${item.M[1]})`,
         targetLatex: "B(x,y)",
         slots: [
-          { id: "bx", labelLatex: "x_B", placeholder: "x", expected: item.B[0] },
-          { id: "by", labelLatex: "y_B", placeholder: "y", expected: item.B[1] }
+          { id: "bx", labelLatex: "x_B", placeholder: t("sm2_07.placeholders.x"), expected: item.B[0] },
+          { id: "by", labelLatex: "y_B", placeholder: t("sm2_07.placeholders.y"), expected: item.B[1] }
         ],
         correctLatex: `B(${item.B[0]},${item.B[1]})`
       }));
@@ -192,8 +192,8 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
         expressionLatex: `A(${x1}, ${y1}), \\; B(${x2}, ${y2})`,
         targetLatex: `M(x, y)`,
         slots: [
-          { id: "mx", labelLatex: "x", placeholder: "x", expected: mx },
-          { id: "my", labelLatex: "y", placeholder: "y", expected: my },
+          { id: "mx", labelLatex: "x", placeholder: t("sm2_07.placeholders.x"), expected: mx },
+          { id: "my", labelLatex: "y", placeholder: t("sm2_07.placeholders.y"), expected: my },
         ],
         correctLatex: `M(${mx},${my})`,
       };
@@ -210,7 +210,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(0,0), B(1,2), C(2,y)",
           targetLatex: "y",
-          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 4 }],
+          slots: [{ id: "y", labelLatex: "y", placeholder: t("sm2_07.placeholders.question"), expected: 4 }],
           correctLatex: "y=4"
         },
         {
@@ -219,7 +219,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(1,3), B(3,7), C(x,11)",
           targetLatex: "x",
-          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 5 }],
+          slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_07.placeholders.question"), expected: 5 }],
           correctLatex: "x=5"
         },
         {
@@ -228,7 +228,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(2,1), B(4,5), C(6,y)",
           targetLatex: "y",
-          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 9 }],
+          slots: [{ id: "y", labelLatex: "y", placeholder: t("sm2_07.placeholders.question"), expected: 9 }],
           correctLatex: "y=9"
         },
         {
@@ -237,7 +237,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(-1,-2), B(1,2), C(x,6)",
           targetLatex: "x",
-          slots: [{ id: "x", labelLatex: "x", placeholder: "?", expected: 3 }],
+          slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_07.placeholders.question"), expected: 3 }],
           correctLatex: "x=3"
         },
         {
@@ -246,7 +246,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
           promptLatex: t("sm2_07.stages.slope_prompt_latex"),
           expressionLatex: "A(0,3), B(2,5), C(4,y)",
           targetLatex: "y",
-          slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: 7 }],
+          slots: [{ id: "y", labelLatex: "y", placeholder: t("sm2_07.placeholders.question"), expected: 7 }],
           correctLatex: "y=7"
         }
       ];

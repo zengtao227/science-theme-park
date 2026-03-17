@@ -115,7 +115,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 targetLatex,
                 visualMode: 'CONTAINERS',
                 visualData,
-                slots: [{ id: "ans", labelLatex: `\\text{${sm1_02_t.labels.value}}`, placeholder: "?", expected: answer }],
+                slots: [{ id: "ans", labelLatex: `\\text{${sm1_02_t.labels.value}}`, placeholder: sm1_02_t.placeholders.question, expected: answer }],
                 correctLatex: String(answer),
                 hintLatex,
             });
@@ -185,8 +185,8 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
             const slots = isMultiVar
                 ? [{ id: "res", labelLatex: `\\text{${sm1_02_t.labels.result}}`, placeholder: answerStr, expected: answerStr }]
                 : [
-                    { id: "coef", labelLatex: `\\text{${sm1_02_t.labels.coefficient}}`, placeholder: "#", expected: String(parseInt(answerStr) || 0) },
-                    { id: "var", labelLatex: `\\text{${sm1_02_t.labels.variable}}`, placeholder: "x", expected: answerStr.replace(/[0-9-]/g, '') }
+                    { id: "coef", labelLatex: `\\text{${sm1_02_t.labels.coefficient}}`, placeholder: sm1_02_t.placeholders.hash, expected: String(parseInt(answerStr) || 0) },
+                    { id: "var", labelLatex: `\\text{${sm1_02_t.labels.variable}}`, placeholder: sm1_02_t.placeholders.x, expected: answerStr.replace(/[0-9-]/g, '') }
                 ];
 
             quests.push({
@@ -244,7 +244,7 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 targetLatex: String(answer),
                 visualMode: 'MACHINE',
                 visualData: { inputValue: val, formula: expr },
-                slots: [{ id: "ans", labelLatex: `\\text{${sm1_02_t.labels.output}}`, placeholder: "?", expected: answer }],
+                slots: [{ id: "ans", labelLatex: `\\text{${sm1_02_t.labels.output}}`, placeholder: sm1_02_t.placeholders.question, expected: answer }],
                 correctLatex: String(answer),
                 hintLatex: [`\\text{${sm1_02_t.prompts.substitute_and_evaluate}}`],
             });
@@ -305,6 +305,11 @@ export default function SM102Page() {
             processing_core: t("sm1_02.labels.processing_core") || "Processing Core",
             holds_value: t("sm1_02.labels.holds_value"),
             remove: t("sm1_02.labels.remove")
+        },
+        placeholders: {
+            question: t("sm1_02.placeholders.question"),
+            hash: t("sm1_02.placeholders.hash"),
+            x: t("sm1_02.placeholders.x"),
         },
         monitor_title: t("sm1_02.monitor_title") || t("sm1_02.title") || "",
         objective_title: t("sm1_02.objective_title") || "MISSION OBJECTIVE",

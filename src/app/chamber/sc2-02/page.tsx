@@ -443,7 +443,7 @@ export default function SC202Page() {
                             value={inputs["ans"] || ""}
                             onChange={(e) => setInputs({ ans: e.target.value })}
                             className="w-full bg-black/50 border-2 border-neon-purple p-4 text-center outline-none focus:border-white placeholder:text-white/20 font-black text-2xl text-white transition-all shadow-[0_0_30px_rgba(255,0,255,0.05)]"
-                            placeholder="..."
+                            placeholder={t("sc2_02.placeholders.ellipsis")}
                         />
                     </div>
 

@@ -32,7 +32,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b1"),
                         expressionLatex: `v = f \\times \\lambda \\Rightarrow \\lambda = \\frac{v}{f}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "wavelength", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "0.5", expected: 0.5 }],
+                        slots: [{ id: "wavelength", labelLatex: `\\lambda\\text{ (m)}`, placeholder: t("sp3_06.placeholders.v_0_dot_5"), expected: 0.5 }],
                         correctLatex: `0.5\\text{ m}`,
                         hintLatex: [`343 \\div 686 = 0.5`]
                     },
@@ -41,7 +41,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b2"),
                         expressionLatex: `f = \\frac{v}{\\lambda}`,
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "680", expected: 680 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_680"), expected: 680 }],
                         correctLatex: `680\\text{ Hz}`,
                         hintLatex: [`340 \\div 0.5 = 680`]
                     },
@@ -59,7 +59,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_b4"),
                         expressionLatex: `v = \\frac{2d}{t}`,
                         targetLatex: `v`,
-                        slots: [{ id: "speed", labelLatex: `v\\text{ (m/s)}`, placeholder: "343", expected: 343 }],
+                        slots: [{ id: "speed", labelLatex: `v\\text{ (m/s)}`, placeholder: t("sp3_06.placeholders.v_343"), expected: 343 }],
                         correctLatex: `343\\text{ m/s}`,
                         hintLatex: [t("sp3_06.hints.sw_b4")]
                     },
@@ -81,7 +81,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_c1"),
                         expressionLatex: `\\lambda = \\frac{v}{f}`,
                         targetLatex: `\\lambda`,
-                        slots: [{ id: "wavelength", labelLatex: `\\lambda\\text{ (m)}`, placeholder: "2", expected: 2 }],
+                        slots: [{ id: "wavelength", labelLatex: `\\lambda\\text{ (m)}`, placeholder: t("sp3_06.placeholders.v_2"), expected: 2 }],
                         correctLatex: `2\\text{ m}`,
                         hintLatex: [`1480 \\div 740 = 2`]
                     },
@@ -90,7 +90,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_c2"),
                         expressionLatex: `d = v \\times t`,
                         targetLatex: `d`,
-                        slots: [{ id: "dist", labelLatex: `d\\text{ (m)}`, placeholder: "1029", expected: 1029 }],
+                        slots: [{ id: "dist", labelLatex: `d\\text{ (m)}`, placeholder: t("sp3_06.placeholders.v_1029"), expected: 1029 }],
                         correctLatex: `1029\\text{ m} \\approx 1\\text{ km}`,
                         hintLatex: [`343 \\times 3 = 1029`]
                     },
@@ -99,7 +99,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_c3"),
                         expressionLatex: `f = \\frac{v}{\\lambda}`,
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "2980", expected: 2980 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_2980"), expected: 2980 }],
                         correctLatex: `2980\\text{ Hz}`,
                         hintLatex: [`5960 \\div 2 = 2980`]
                     },
@@ -108,7 +108,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_c4"),
                         expressionLatex: `t = \\frac{2d}{v}`,
                         targetLatex: `t`,
-                        slots: [{ id: "time", labelLatex: `t\\text{ (s)}`, placeholder: "1", expected: 1 }],
+                        slots: [{ id: "time", labelLatex: `t\\text{ (s)}`, placeholder: t("sp3_06.placeholders.v_1"), expected: 1 }],
                         correctLatex: `1\\text{ s}`,
                         hintLatex: [`2 \\times 171.5 \\div 343 = 1`]
                     },
@@ -117,7 +117,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_c5"),
                         expressionLatex: t("sp3_06.expressions.sw_c5"),
                         targetLatex: t("sp3_06.labels.label_ratio"),
-                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "17", expected: 17 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: t("sp3_06.placeholders.v_17"), expected: 17 }],
                         correctLatex: t("sp3_06.corrects.sw_c5"),
                         hintLatex: [`5960 \\div 343 \\approx 17.4`]
                     }
@@ -166,7 +166,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a5"),
                         expressionLatex: t("sp3_06.expressions.sw_a5"),
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "512", expected: 512 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_512"), expected: 512 }],
                         correctLatex: `512\\text{ Hz}`,
                         hintLatex: [t("sp3_06.hints.sw_a5")]
                     }
@@ -179,7 +179,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e1"),
                         expressionLatex: `f_{\\text{beat}} = |f_1 - f_2|`,
                         targetLatex: `f_{\\text{beat}}`,
-                        slots: [{ id: "beat", labelLatex: `f_{\\text{beat}}\\text{ (Hz)}`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "beat", labelLatex: `f_{\\text{beat}}\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_4"), expected: 4 }],
                         correctLatex: `4\\text{ Hz}`,
                         hintLatex: [`|440 - 444| = 4`]
                     },
@@ -188,7 +188,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e2"),
                         expressionLatex: `f = \\frac{v}{4L}`,
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "170", expected: 170 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_170"), expected: 170 }],
                         correctLatex: `170\\text{ Hz}`,
                         hintLatex: [`340 \\div (4 \\times 0.5) = 170`]
                     },
@@ -197,7 +197,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e3"),
                         expressionLatex: `f = \\frac{v}{2L}`,
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "170", expected: 170 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_170"), expected: 170 }],
                         correctLatex: `170\\text{ Hz}`,
                         hintLatex: [`340 \\div (2 \\times 1) = 170`]
                     },
@@ -231,7 +231,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b1"),
                         expressionLatex: t("sp3_06.expressions.fp_b1"),
                         targetLatex: `f_{\\text{max}}`,
-                        slots: [{ id: "freq", labelLatex: `f_{\\text{max}}\\text{ (Hz)}`, placeholder: "20000", expected: 20000 }],
+                        slots: [{ id: "freq", labelLatex: `f_{\\text{max}}\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_20000"), expected: 20000 }],
                         correctLatex: `20{,}000\\text{ Hz}`,
                         hintLatex: [t("sp3_06.hints.fp_b1")]
                     },
@@ -249,7 +249,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b3"),
                         expressionLatex: t("sp3_06.expressions.fp_b3"),
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "880", expected: 880 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_880"), expected: 880 }],
                         correctLatex: `880\\text{ Hz}`,
                         hintLatex: [`440 \\times 2 = 880`]
                     },
@@ -280,7 +280,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_c1"),
                         expressionLatex: `f_{\\text{octave}} = 2f`,
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "524", expected: 524 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_524"), expected: 524 }],
                         correctLatex: `524\\text{ Hz}`,
                         hintLatex: [`262 \\times 2 = 524`]
                     },
@@ -289,7 +289,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_c2"),
                         expressionLatex: `f_{\\text{semitone}} = f \\times 2^{1/12}`,
                         targetLatex: `f`,
-                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: "466", expected: 466 }],
+                        slots: [{ id: "freq", labelLatex: `f\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_466"), expected: 466 }],
                         correctLatex: `466\\text{ Hz}`,
                         hintLatex: [`440 \\times 1.0595 \\approx 466`]
                     },
@@ -298,7 +298,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_c3"),
                         expressionLatex: `f_2 = 2f_1`,
                         targetLatex: `f_2`,
-                        slots: [{ id: "freq", labelLatex: `f_2\\text{ (Hz)}`, placeholder: "880", expected: 880 }],
+                        slots: [{ id: "freq", labelLatex: `f_2\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_880"), expected: 880 }],
                         correctLatex: `880\\text{ Hz}`,
                         hintLatex: [t("sp3_06.hints.fp_c3")]
                     },
@@ -316,7 +316,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_c5"),
                         expressionLatex: `f_3 = 3f_1`,
                         targetLatex: `f_3`,
-                        slots: [{ id: "freq", labelLatex: `f_3\\text{ (Hz)}`, placeholder: "600", expected: 600 }],
+                        slots: [{ id: "freq", labelLatex: `f_3\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_600"), expected: 600 }],
                         correctLatex: `600\\text{ Hz}`,
                         hintLatex: [`200 \\times 3 = 600`]
                     }
@@ -329,7 +329,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a1"),
                         expressionLatex: `f_G = \\frac{3}{2} \\times f_C`,
                         targetLatex: `f_G`,
-                        slots: [{ id: "freq", labelLatex: `f_G\\text{ (Hz)}`, placeholder: "393", expected: 393 }],
+                        slots: [{ id: "freq", labelLatex: `f_G\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_393"), expected: 393 }],
                         correctLatex: `393\\text{ Hz}`,
                         hintLatex: [`262 \\times 1.5 = 393`]
                     },
@@ -378,7 +378,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e1"),
                         expressionLatex: `r = 2^{1/12}`,
                         targetLatex: `r`,
-                        slots: [{ id: "ratio", labelLatex: `r`, placeholder: "1.06", expected: 1.06 }],
+                        slots: [{ id: "ratio", labelLatex: `r`, placeholder: t("sp3_06.placeholders.v_1_dot_06"), expected: 1.06 }],
                         correctLatex: `1.0595`,
                         hintLatex: [`2^{1/12} \\approx 1.0595`]
                     },
@@ -405,7 +405,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e4"),
                         expressionLatex: t("sp3_06.expressions.fp_e4"),
                         targetLatex: `f_0`,
-                        slots: [{ id: "freq", labelLatex: `f_0\\text{ (Hz)}`, placeholder: "200", expected: 200 }],
+                        slots: [{ id: "freq", labelLatex: `f_0\\text{ (Hz)}`, placeholder: t("sp3_06.placeholders.v_200"), expected: 200 }],
                         correctLatex: t("sp3_06.corrects.fp_e4"),
                         hintLatex: [`\\text{GCD}(400, 600, 800) = 200`]
                     },
@@ -430,7 +430,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b1"),
                         expressionLatex: `\\Delta L = 30 \\text{ dB} \\Rightarrow 10^{3} = 1000\\times`,
                         targetLatex: t("sp3_06.labels.label_ratio"),
-                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "1000", expected: 1000 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: t("sp3_06.placeholders.v_1000"), expected: 1000 }],
                         correctLatex: `1000\\times`,
                         hintLatex: [`10 \\text{ dB} = 10\\times, \\quad 30 \\text{ dB} = 10^{3} = 1000\\times`]
                     },
@@ -439,7 +439,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b2"),
                         expressionLatex: `I_0 = 10^{-12} \\text{ W/m}^{2}`,
                         targetLatex: `I_0`,
-                        slots: [{ id: "intensity", labelLatex: `I_0\\text{ (W/m}^{2}\\text{)}`, placeholder: "1e-12", expected: 1e-12 }],
+                        slots: [{ id: "intensity", labelLatex: `I_0\\text{ (W/m}^{2}\\text{)}`, placeholder: t("sp3_06.placeholders.v_1e_minus_12"), expected: 1e-12 }],
                         correctLatex: `10^{-12}\\text{ W/m}^{2}`,
                         hintLatex: [t("sp3_06.hints.li_b2")]
                     },
@@ -457,7 +457,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_b4"),
                         expressionLatex: `\\Delta L = 10 \\log_{10}(1/4) \\approx -6 \\text{ dB}`,
                         targetLatex: `\\Delta L`,
-                        slots: [{ id: "change", labelLatex: `\\Delta L\\text{ (dB)}`, placeholder: "-6", expected: -6 }],
+                        slots: [{ id: "change", labelLatex: `\\Delta L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.minus_6"), expected: -6 }],
                         correctLatex: `-6\\text{ dB}`,
                         hintLatex: [t("sp3_06.hints.li_b4")]
                     },
@@ -479,7 +479,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c1"),
                         expressionLatex: `\\Delta L = 10 \\text{ dB} \\Rightarrow 10\\times`,
                         targetLatex: t("sp3_06.labels.label_ratio"),
-                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "10", expected: 10 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: t("sp3_06.placeholders.v_10"), expected: 10 }],
                         correctLatex: `10\\times`,
                         hintLatex: [t("sp3_06.hints.li_c1")]
                     },
@@ -488,7 +488,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c2"),
                         expressionLatex: `L = 10 \\log_{10}(I/I_0)`,
                         targetLatex: `L`,
-                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "20", expected: 20 }],
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.v_20"), expected: 20 }],
                         correctLatex: `20\\text{ dB}`,
                         hintLatex: [`10 \\log_{10}(10^{-10}/10^{-12}) = 10 \\log_{10}(100) = 20`]
                     },
@@ -497,7 +497,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c3"),
                         expressionLatex: t("sp3_06.expressions.li_c3"),
                         targetLatex: `L`,
-                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "74", expected: 74 }],
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.v_74"), expected: 74 }],
                         correctLatex: `74\\text{ dB}`,
                         hintLatex: [`80 - 6 = 74`]
                     },
@@ -506,7 +506,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c4"),
                         expressionLatex: `\\Delta L = 40 \\text{ dB} \\Rightarrow 10^{4} = 10{,}000\\times`,
                         targetLatex: t("sp3_06.labels.label_ratio"),
-                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "10000", expected: 10000 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: t("sp3_06.placeholders.v_10000"), expected: 10000 }],
                         correctLatex: `10{,}000\\times`,
                         hintLatex: [`40 \\text{ dB} = 10^{4} = 10{,}000\\times`]
                     },
@@ -515,7 +515,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_c5"),
                         expressionLatex: `I = I_0 \\times 10^{L/10}`,
                         targetLatex: `I`,
-                        slots: [{ id: "intensity", labelLatex: `I\\text{ (W/m}^{2}\\text{)}`, placeholder: "1e-9", expected: 1e-9 }],
+                        slots: [{ id: "intensity", labelLatex: `I\\text{ (W/m}^{2}\\text{)}`, placeholder: t("sp3_06.placeholders.v_1e_minus_9"), expected: 1e-9 }],
                         correctLatex: `10^{-9}\\text{ W/m}^{2}`,
                         hintLatex: [`10^{-12} \\times 10^{30/10} = 10^{-12} \\times 10^{3} = 10^{-9}`]
                     }
@@ -528,7 +528,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a1"),
                         expressionLatex: t("sp3_06.expressions.li_a1"),
                         targetLatex: `L`,
-                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "40", expected: 40 }],
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.v_40"), expected: 40 }],
                         correctLatex: `40\\text{ dB}`,
                         hintLatex: [t("sp3_06.hints.li_a1")]
                     },
@@ -537,7 +537,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a2"),
                         expressionLatex: t("sp3_06.expressions.li_a2"),
                         targetLatex: `L`,
-                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "63", expected: 63 }],
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.v_63"), expected: 63 }],
                         correctLatex: `63\\text{ dB}`,
                         hintLatex: [`10 \\log_{10}(2) \\approx 3 \\text{ dB}`]
                     },
@@ -546,7 +546,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a3"),
                         expressionLatex: `\\Delta L = 10 \\log_{10}(1/2) \\approx -3 \\text{ dB}`,
                         targetLatex: `\\Delta L`,
-                        slots: [{ id: "change", labelLatex: `\\Delta L\\text{ (dB)}`, placeholder: "-3", expected: -3 }],
+                        slots: [{ id: "change", labelLatex: `\\Delta L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.minus_3"), expected: -3 }],
                         correctLatex: `-3\\text{ dB}`,
                         hintLatex: [`10 \\log_{10}(0.5) \\approx -3`]
                     },
@@ -555,7 +555,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a4"),
                         expressionLatex: t("sp3_06.expressions.li_a1"),
                         targetLatex: `L`,
-                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "110", expected: 110 }],
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.v_110"), expected: 110 }],
                         correctLatex: `110\\text{ dB}`,
                         hintLatex: [`130 - 20 = 110`]
                     },
@@ -564,7 +564,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_a5"),
                         expressionLatex: t("sp3_06.expressions.li_a5"),
                         targetLatex: `L`,
-                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: "56", expected: 56 }],
+                        slots: [{ id: "loudness", labelLatex: `L\\text{ (dB)}`, placeholder: t("sp3_06.placeholders.v_56"), expected: 56 }],
                         correctLatex: `56\\text{ dB}`,
                         hintLatex: [`10 \\log_{10}(4) \\approx 6 \\text{ dB}`]
                     }
@@ -586,7 +586,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e2"),
                         expressionLatex: t("sp3_06.expressions.li_e2"),
                         targetLatex: t("sp3_06.labels.label_ratio"),
-                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: "2", expected: 2 }],
+                        slots: [{ id: "ratio", labelLatex: t("sp3_06.labels.label_ratio"), placeholder: t("sp3_06.placeholders.v_2"), expected: 2 }],
                         correctLatex: t("sp3_06.corrects.li_e2"),
                         hintLatex: [t("sp3_06.hints.li_e2")]
                     },
@@ -604,7 +604,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e4"),
                         expressionLatex: t("sp3_06.expressions.li_e4"),
                         targetLatex: t("sp3_06.labels.label_dose"),
-                        slots: [{ id: "dose", labelLatex: t("sp3_06.labels.label_dose"), placeholder: "100", expected: 100 }],
+                        slots: [{ id: "dose", labelLatex: t("sp3_06.labels.label_dose"), placeholder: t("sp3_06.placeholders.v_100"), expected: 100 }],
                         correctLatex: `100\\%`,
                         hintLatex: [t("sp3_06.hints.li_e4")]
                     },

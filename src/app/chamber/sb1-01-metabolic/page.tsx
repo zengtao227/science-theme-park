@@ -123,7 +123,7 @@ export default function SB101MetabolicPage() {
                     promptLatex: t(`sb1_01_metabolic.prompts.resp_${item.q}`),
                     expressionLatex: item.equation,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: t("sb1_01_metabolic.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_01_metabolic.prompts.hint_${item.q}`)]
                 });
@@ -172,7 +172,7 @@ export default function SB101MetabolicPage() {
                     promptLatex: t(`sb1_01_metabolic.prompts.home_${item.q}`),
                     expressionLatex: `\\text{${item.q.replace(/_/g, ' ')}}`,
                     targetLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.value"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.value"), placeholder: t("sb1_01_metabolic.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: `${item.answer}${item.unit ? ' \\, \\text{' + item.unit + '}' : ''}`,
                     hintLatex: [t(`sb1_01_metabolic.prompts.hint_${item.q}`)]
                 });

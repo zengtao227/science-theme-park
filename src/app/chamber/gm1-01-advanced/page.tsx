@@ -36,7 +36,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x2,
       expressionLatex: "f(x) = (2x^{2} + 3x) \\cdot \\sin(x), \\; x=2",
       targetLatex: "f'(2)",
-      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((4*2 + 3) * Math.sin(2) + (2*4 + 6) * Math.cos(2)) }],
+      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((4*2 + 3) * Math.sin(2) + (2*4 + 6) * Math.cos(2)) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -51,7 +51,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1,
       expressionLatex: "f(x) = \\frac{x^{2} + 1}{\\sin(x)}, \\; x=1",
       targetLatex: "f'(1)",
-      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 * Math.sin(1) - (1 + 1) * Math.cos(1)) / (Math.sin(1) * Math.sin(1))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*1 * Math.sin(1) - (1 + 1) * Math.cos(1)) / (Math.sin(1) * Math.sin(1))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
@@ -66,7 +66,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1,
       expressionLatex: "f(x) = (x^{2} - x) \\cdot \\cos(x), \\; x=1",
       targetLatex: "f'(1)",
-      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 - 1) * Math.cos(1) + (1*1 - 1) * (-Math.sin(1))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*1 - 1) * Math.cos(1) + (1*1 - 1) * (-Math.sin(1))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -81,7 +81,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1,
       expressionLatex: "f(x) = (x^{2} + 2x) \\cdot \\sin(x), \\; x=1",
       targetLatex: "f'(1)",
-      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((2*1 + 2) * Math.sin(1) + (1 + 2) * Math.cos(1)) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*1 + 2) * Math.sin(1) + (1 + 2) * Math.cos(1)) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -96,7 +96,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x2,
       expressionLatex: "f(x) = \\frac{x^2}{\\sin(x)}, \\; x=2",
       targetLatex: "f'(2)",
-      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 * Math.sin(2) - 4 * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*2 * Math.sin(2) - 4 * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     }
@@ -114,7 +114,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1,
       expressionLatex: "f(x) = (x^{3} - 2x) \\cdot \\cos(x), \\; x=1",
       targetLatex: "f'(1)",
-      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((3*1*1 - 2) * Math.cos(1) + (1*1*1 - 2*1) * (-Math.sin(1))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((3*1*1 - 2) * Math.cos(1) + (1*1*1 - 2*1) * (-Math.sin(1))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -129,7 +129,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1_5,
       expressionLatex: "f(x) = (2x^{2} + 3x) \\cdot \\sin(x), \\; x=1.5",
       targetLatex: "f'(1.5)",
-      slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: "0.00", expected: round2((4*1.5 + 3) * Math.sin(1.5) + (2*1.5*1.5 + 3*1.5) * Math.cos(1.5)) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((4*1.5 + 3) * Math.sin(1.5) + (2*1.5*1.5 + 3*1.5) * Math.cos(1.5)) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -144,7 +144,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1_5,
       expressionLatex: "f(x) = \\frac{x^3}{\\sin(x)}, \\; x=1.5",
       targetLatex: "f'(1.5)",
-      slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: "0.00", expected: round2((3*1.5*1.5 * Math.sin(1.5) - 1.5*1.5*1.5 * Math.cos(1.5)) / (Math.sin(1.5) * Math.sin(1.5))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((3*1.5*1.5 * Math.sin(1.5) - 1.5*1.5*1.5 * Math.cos(1.5)) / (Math.sin(1.5) * Math.sin(1.5))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
@@ -159,7 +159,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x2,
       expressionLatex: "f(x) = (x^{2} + x) \\cdot \\cos(x), \\; x=2",
       targetLatex: "f'(2)",
-      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 + 1) * Math.cos(2) + (4 + 2) * (-Math.sin(2))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*2 + 1) * Math.cos(2) + (4 + 2) * (-Math.sin(2))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     }
@@ -177,7 +177,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x2,
       expressionLatex: "f(x) = \\frac{x^{2} + 1}{\\sin(x)}, \\; x=2",
       targetLatex: "f'(2)",
-      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: "0.00", expected: round2((2*2 * Math.sin(2) - (4 + 1) * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*2 * Math.sin(2) - (4 + 1) * Math.cos(2)) / (Math.sin(2) * Math.sin(2))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
@@ -192,7 +192,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x0_5,
       expressionLatex: "f(x) = (x^{3} - 2x) \\cdot \\cos(x), \\; x=0.5",
       targetLatex: "f'(0.5)",
-      slots: [{ id: "derivative", labelLatex: "f'(0.5)", placeholder: "0.00", expected: round2((3*0.5*0.5 - 2) * Math.cos(0.5) + (0.5*0.5*0.5 - 2*0.5) * (-Math.sin(0.5))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(0.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((3*0.5*0.5 - 2) * Math.cos(0.5) + (0.5*0.5*0.5 - 2*0.5) * (-Math.sin(0.5))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -207,7 +207,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1_2,
       expressionLatex: "f(x) = (3x^{2} - x) \\cdot \\sin(x), \\; x=1.2",
       targetLatex: "f'(1.2)",
-      slots: [{ id: "derivative", labelLatex: "f'(1.2)", placeholder: "0.00", expected: round2((6*1.2 - 1) * Math.sin(1.2) + (3*1.2*1.2 - 1.2) * Math.cos(1.2)) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1.2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((6*1.2 - 1) * Math.sin(1.2) + (3*1.2*1.2 - 1.2) * Math.cos(1.2)) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -222,7 +222,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x1,
       expressionLatex: "f(x) = \\frac{2x^{2} + 1}{\\cos(x)}, \\; x=1",
       targetLatex: "f'(1)",
-      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: "0.00", expected: round2((4*1 * Math.cos(1) - (2*1 + 1) * (-Math.sin(1))) / (Math.cos(1) * Math.cos(1))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((4*1 * Math.cos(1) - (2*1 + 1) * (-Math.sin(1))) / (Math.cos(1) * Math.cos(1))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     }
@@ -240,7 +240,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x_pi_2,
       expressionLatex: "f(x) = (2x^{2} + 3x) \\cdot \\sin(x), \\; x=\\pi/2",
       targetLatex: "f'(\\pi/2)",
-      slots: [{ id: "derivative", labelLatex: "f'(\\pi/2)", placeholder: "0.00", expected: round2((4*Math.PI/2 + 3) * Math.sin(Math.PI/2) + (2*(Math.PI/2)*(Math.PI/2) + 3*Math.PI/2) * Math.cos(Math.PI/2)) }],
+      slots: [{ id: "derivative", labelLatex: "f'(\\pi/2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((4*Math.PI/2 + 3) * Math.sin(Math.PI/2) + (2*(Math.PI/2)*(Math.PI/2) + 3*Math.PI/2) * Math.cos(Math.PI/2)) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -255,7 +255,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x_pi_4,
       expressionLatex: "f(x) = \\frac{x^{2} + 1}{\\sin(x)}, \\; x=\\pi/4",
       targetLatex: "f'(\\pi/4)",
-      slots: [{ id: "derivative", labelLatex: "f'(\\pi/4)", placeholder: "0.00", expected: round2((2*Math.PI/4 * Math.sin(Math.PI/4) - ((Math.PI/4)*(Math.PI/4) + 1) * Math.cos(Math.PI/4)) / (Math.sin(Math.PI/4) * Math.sin(Math.PI/4))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(\\pi/4)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((2*Math.PI/4 * Math.sin(Math.PI/4) - ((Math.PI/4)*(Math.PI/4) + 1) * Math.cos(Math.PI/4)) / (Math.sin(Math.PI/4) * Math.sin(Math.PI/4))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     },
@@ -270,7 +270,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x_pi_3,
       expressionLatex: "f(x) = (x^{3} + x^{2}) \\cdot \\cos(x), \\; x=\\pi/3",
       targetLatex: "f'(\\pi/3)",
-      slots: [{ id: "derivative", labelLatex: "f'(\\pi/3)", placeholder: "0.00", expected: round2((3*(Math.PI/3)*(Math.PI/3) + 2*Math.PI/3) * Math.cos(Math.PI/3) + ((Math.PI/3)*(Math.PI/3)*(Math.PI/3) + (Math.PI/3)*(Math.PI/3)) * (-Math.sin(Math.PI/3))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(\\pi/3)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2((3*(Math.PI/3)*(Math.PI/3) + 2*Math.PI/3) * Math.cos(Math.PI/3) + ((Math.PI/3)*(Math.PI/3)*(Math.PI/3) + (Math.PI/3)*(Math.PI/3)) * (-Math.sin(Math.PI/3))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_product_rule
     },
@@ -285,7 +285,7 @@ function buildCompositeProblems(gm1_01_advanced_t: any, difficulty: Difficulty):
       promptLatex: gm1_01_advanced_t.prompts.find_derivative_x_pi_6,
       expressionLatex: "f(x) = \\frac{x^{3} - x}{\\sin(x)}, \\; x=\\pi/6",
       targetLatex: "f'(\\pi/6)",
-      slots: [{ id: "derivative", labelLatex: "f'(\\pi/6)", placeholder: "0.00", expected: round2(((3*(Math.PI/6)*(Math.PI/6) - 1) * Math.sin(Math.PI/6) - ((Math.PI/6)*(Math.PI/6)*(Math.PI/6) - Math.PI/6) * Math.cos(Math.PI/6)) / (Math.sin(Math.PI/6) * Math.sin(Math.PI/6))) }],
+      slots: [{ id: "derivative", labelLatex: "f'(\\pi/6)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(((3*(Math.PI/6)*(Math.PI/6) - 1) * Math.sin(Math.PI/6) - ((Math.PI/6)*(Math.PI/6)*(Math.PI/6) - Math.PI/6) * Math.cos(Math.PI/6)) / (Math.sin(Math.PI/6) * Math.sin(Math.PI/6))) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.use_quotient_rule
     }
@@ -311,7 +311,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t3,
       expressionLatex: "s(t) = 2t^{3} - 3t^{2} + 5t, \\; t=3",
       targetLatex: "v(3)",
-      slots: [{ id: "velocity", labelLatex: "v(3)", placeholder: "0.00", expected: round2(6*9 - 6*3 + 5) }],
+      slots: [{ id: "velocity", labelLatex: "v(3)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*9 - 6*3 + 5) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -326,7 +326,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t2,
       expressionLatex: "h(t) = -5t^{2} + 20t + 2, \\; t=2",
       targetLatex: "v(2)",
-      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(-10*2 + 20) }],
+      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(-10*2 + 20) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -341,7 +341,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t2,
       expressionLatex: "s(t) = t^{3} + 2t^{2} + t, \\; t=2",
       targetLatex: "v(2)",
-      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(3*4 + 4*2 + 1) }],
+      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(3*4 + 4*2 + 1) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -356,7 +356,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t1,
       expressionLatex: "h(t) = -4t^{2} + 16t + 5, \\; t=1",
       targetLatex: "v(1)",
-      slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: "0.00", expected: round2(-8*1 + 16) }],
+      slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(-8*1 + 16) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -371,7 +371,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t2,
       expressionLatex: "s(t) = 3t^{2} + 4t, \\; t=2",
       targetLatex: "v(2)",
-      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(6*2 + 4) }],
+      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*2 + 4) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     }
@@ -389,7 +389,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t2,
       expressionLatex: "s(t) = 2t^{3} - 3t^{2} + 5t, \\; t=2",
       targetLatex: "v(2)",
-      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: "0.00", expected: round2(6*4 - 6*2 + 5) }],
+      slots: [{ id: "velocity", labelLatex: "v(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*4 - 6*2 + 5) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -404,7 +404,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t1,
       expressionLatex: "h(t) = -5t^{2} + 20t + 2, \\; t=1",
       targetLatex: "v(1)",
-      slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: "0.00", expected: round2(-10*1 + 20) }],
+      slots: [{ id: "velocity", labelLatex: "v(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(-10*1 + 20) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -419,7 +419,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t1_5,
       expressionLatex: "s(t) = t^{3} - 4t^{2} + 6t, \\; t=1.5",
       targetLatex: "v(1.5)",
-      slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: "0.00", expected: round2(3*1.5*1.5 - 8*1.5 + 6) }],
+      slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(3*1.5*1.5 - 8*1.5 + 6) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     },
@@ -434,7 +434,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_velocity_t1_5,
       expressionLatex: "h(t) = -3t^{2} + 12t + 8, \\; t=1.5",
       targetLatex: "v(1.5)",
-      slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: "0.00", expected: round2(-6*1.5 + 12) }],
+      slots: [{ id: "velocity", labelLatex: "v(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(-6*1.5 + 12) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_first_derivative
     }
@@ -452,7 +452,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t3,
       expressionLatex: "s(t) = 2t^{3} - 3t^{2} + 5t, \\; t=3",
       targetLatex: "a(3)",
-      slots: [{ id: "acceleration", labelLatex: "a(3)", placeholder: "0.00", expected: round2(12*3 - 6) }],
+      slots: [{ id: "acceleration", labelLatex: "a(3)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(12*3 - 6) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -467,7 +467,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t2,
       expressionLatex: "h(t) = -5t^{2} + 20t + 2, \\; t=2",
       targetLatex: "a(2)",
-      slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: "0.00", expected: -10 }],
+      slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: -10 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -482,7 +482,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t2,
       expressionLatex: "s(t) = t^{3} + 3t^{2} - 2t, \\; t=2",
       targetLatex: "a(2)",
-      slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: "0.00", expected: round2(6*2 + 6) }],
+      slots: [{ id: "acceleration", labelLatex: "a(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*2 + 6) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -497,7 +497,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t1_5,
       expressionLatex: "h(t) = -4t^{2} + 16t + 3, \\; t=1.5",
       targetLatex: "a(1.5)",
-      slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: "0.00", expected: -8 }],
+      slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: -8 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     }
@@ -515,7 +515,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t1_5,
       expressionLatex: "s(t) = 2t^{3} - 3t^{2} + 5t, \\; t=1.5",
       targetLatex: "a(1.5)",
-      slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: "0.00", expected: round2(12*1.5 - 6) }],
+      slots: [{ id: "acceleration", labelLatex: "a(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(12*1.5 - 6) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -530,7 +530,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t0_5,
       expressionLatex: "h(t) = -5t^{2} + 20t + 2, \\; t=0.5",
       targetLatex: "a(0.5)",
-      slots: [{ id: "acceleration", labelLatex: "a(0.5)", placeholder: "0.00", expected: -10 }],
+      slots: [{ id: "acceleration", labelLatex: "a(0.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: -10 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -545,7 +545,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t2_5,
       expressionLatex: "s(t) = 3t^{3} - 6t^{2} + 4t, \\; t=2.5",
       targetLatex: "a(2.5)",
-      slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: "0.00", expected: round2(18*2.5 - 12) }],
+      slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(18*2.5 - 12) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -560,7 +560,7 @@ function buildModelingProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_t2_5,
       expressionLatex: "h(t) = -6t^{2} + 18t + 10, \\; t=2.5",
       targetLatex: "a(2.5)",
-      slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: "0.00", expected: -12 }],
+      slots: [{ id: "acceleration", labelLatex: "a(2.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: -12 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     }
@@ -586,7 +586,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_critical_point,
       expressionLatex: "A(x) = x(10 - x) = 10x - x^{2}",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 5 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 5 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -601,7 +601,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum,
       expressionLatex: "P(x) = -2x^{2} + 12x - 10",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 3 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -616,7 +616,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_critical_point,
       expressionLatex: "A(x) = x(8 - x) = 8x - x^{2}",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 4 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 4 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -631,7 +631,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum,
       expressionLatex: "P(x) = -x^{2} + 10x - 15",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 5 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 5 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
@@ -649,7 +649,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_area,
       expressionLatex: "A(x) = x(10 - x) = 10x - x^{2}",
       targetLatex: "A_{max}",
-      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 25 }],
+      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 25 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -664,7 +664,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_profit,
       expressionLatex: "P(x) = -2x^{2} + 12x - 10",
       targetLatex: "P_{max}",
-      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 8 }],
+      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 8 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -679,7 +679,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_area,
       expressionLatex: "A(x) = x(12 - x) = 12x - x^{2}",
       targetLatex: "A_{max}",
-      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 36 }],
+      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 36 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -694,7 +694,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_profit,
       expressionLatex: "P(x) = -x^{2} + 8x - 12",
       targetLatex: "P_{max}",
-      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 4 }],
+      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 4 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
@@ -712,7 +712,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_critical_point,
       expressionLatex: "A(x) = x(12 - 2x) = 12x - 2x^{2}",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 3 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -727,7 +727,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum,
       expressionLatex: "P(x) = -3x^{2} + 18x - 15",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 3 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -742,7 +742,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_critical_point,
       expressionLatex: "A(x) = x(15 - 2x) = 15x - 2x^{2}",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 3.75 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 3.75 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -757,7 +757,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum,
       expressionLatex: "P(x) = -2x^{2} + 16x - 20",
       targetLatex: "x",
-      slots: [{ id: "x_value", labelLatex: "x", placeholder: "0.00", expected: 4 }],
+      slots: [{ id: "x_value", labelLatex: "x", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 4 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
@@ -775,7 +775,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_area,
       expressionLatex: "A(x) = x(15 - 3x) = 15x - 3x^{2}",
       targetLatex: "A_{max}",
-      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 18.75 }],
+      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 18.75 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -790,7 +790,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_profit,
       expressionLatex: "P(x) = -x^{2} + 8x - 12",
       targetLatex: "P_{max}",
-      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 4 }],
+      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 4 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -805,7 +805,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_area,
       expressionLatex: "A(x) = x(20 - 4x) = 20x - 4x^{2}",
       targetLatex: "A_{max}",
-      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: "0.00", expected: 25 }],
+      slots: [{ id: "area_max", labelLatex: "A_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 25 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     },
@@ -820,7 +820,7 @@ function buildOptimizationProblems(gm1_01_advanced_t: any, difficulty: Difficult
       promptLatex: gm1_01_advanced_t.prompts.find_maximum_profit,
       expressionLatex: "P(x) = -2x^{2} + 20x - 30",
       targetLatex: "P_{max}",
-      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: "0.00", expected: 20 }],
+      slots: [{ id: "profit_max", labelLatex: "P_{max}", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 20 }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
     }
@@ -847,8 +847,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 3x^{2} + 2",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 0 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 0 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 2 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -864,7 +864,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x1,
       expressionLatex: "f(x) = 2x^{3} - 6x + 1, \\; x=1",
       targetLatex: "f''(1)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(1)", placeholder: "0.00", expected: round2(12*1) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(1)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(12*1) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -880,8 +880,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 6x + 5",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: -1.41 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 1.41 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: -1.41 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 1.41 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -897,7 +897,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x2,
       expressionLatex: "f(x) = x^{3} - 3x + 2, \\; x=2",
       targetLatex: "f''(2)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(6*2) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*2) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     }
@@ -916,8 +916,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 6x^{2} + 9x",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 1 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 3 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 1 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 3 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -933,7 +933,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x2,
       expressionLatex: "f(x) = 2x^{3} - 6x + 1, \\; x=2",
       targetLatex: "f''(2)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(12*2) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(12*2) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -949,8 +949,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 9x^{2} + 15x",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 1 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 5 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 1 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 5 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -966,7 +966,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x1_5,
       expressionLatex: "f(x) = x^{3} - 6x + 3, \\; x=1.5",
       targetLatex: "f''(1.5)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(6*1.5) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*1.5) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     }
@@ -985,8 +985,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 9x^{2} + 24x",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 2 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 4 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 2 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 4 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -1002,7 +1002,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x1_5,
       expressionLatex: "f(x) = x^{3} - 3x^{2} + 2x, \\; x=1.5",
       targetLatex: "f''(1.5)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(6*1.5 - 6) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*1.5 - 6) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -1018,8 +1018,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 12x^{2} + 36x",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 2 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 6 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 2 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 6 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -1035,7 +1035,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x2,
       expressionLatex: "f(x) = 2x^{3} - 9x^{2} + 12x, \\; x=2",
       targetLatex: "f''(2)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: "0.00", expected: round2(12*2 - 18) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(2)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(12*2 - 18) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     }
@@ -1054,8 +1054,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = 2x^{3} - 9x^{2} + 12x",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 1 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 1 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 2 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -1071,7 +1071,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x0_5,
       expressionLatex: "f(x) = x^{3} - 3x^{2} + 2x, \\; x=0.5",
       targetLatex: "f''(0.5)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(0.5)", placeholder: "0.00", expected: round2(6*0.5 - 6) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(0.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(6*0.5 - 6) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     },
@@ -1087,8 +1087,8 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       expressionLatex: "f(x) = x^{3} - 6x^{2} + 12x",
       targetLatex: "x_1, x_2",
       slots: [
-        { id: "x1", labelLatex: "x_1", placeholder: "0.00", expected: 2 },
-        { id: "x2", labelLatex: "x_2", placeholder: "0.00", expected: 2 }
+        { id: "x1", labelLatex: "x_1", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 2 },
+        { id: "x2", labelLatex: "x_2", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: 2 }
       ],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.set_derivative_zero
@@ -1104,7 +1104,7 @@ function buildAnalysisProblems(gm1_01_advanced_t: any, difficulty: Difficulty): 
       promptLatex: gm1_01_advanced_t.prompts.find_acceleration_x1_5,
       expressionLatex: "f(x) = 3x^{3} - 9x^{2} + 6x, \\; x=1.5",
       targetLatex: "f''(1.5)",
-      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: "0.00", expected: round2(18*1.5 - 18) }],
+      slots: [{ id: "second_derivative", labelLatex: "f''(1.5)", placeholder: gm1_01_advanced_t.placeholders.v_0_dot_00, expected: round2(18*1.5 - 18) }],
       correctLatex: "",
       hint: gm1_01_advanced_t.hints.take_second_derivative
     }
@@ -1227,6 +1227,9 @@ export default function G101AdvancedPage() {
       y_label: t("gm1_01_advanced.visualization.y_label"),
       function_label: t("gm1_01_advanced.visualization.function_label"),
       point_label: t("gm1_01_advanced.visualization.point_label"),
+    },
+    placeholders: {
+      v_0_dot_00: t("gm1_01_advanced.placeholders.v_0_dot_00"),
     },
   };
 

@@ -91,7 +91,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           formula: `(x + ${vb})^{2}`, promptLatex: t.scenarios.architect_mission,
           expressionLatex: `(x + ${vb})^{2}`, targetLatex: `x^{2} + ${2 * vb}x + ${vb ** 2}`,
           slots: [
-            { id: "a2", labelLatex: "x^{2}", placeholder: "1", expected: 1 },
+            { id: "a2", labelLatex: "x^{2}", placeholder: t("sm2_01.placeholders.v_1"), expected: 1 },
             { id: "ab", labelLatex: "x", placeholder: t.ui.coeff, expected: 2 * vb },
             { id: "b2", labelLatex: t.ui.const, placeholder: t.ui.const, expected: vb ** 2 },
           ],
@@ -118,9 +118,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           expressionLatex: `x^2 + ${2 * vb}x + ${vb ** 2}`,
           targetLatex: `x^{2} + 2(x)(${vb}) + ${vb}^{2}`,
           slots: [
-            { id: "a_root", labelLatex: "a", placeholder: "x", expected: "x" },
+            { id: "a_root", labelLatex: "a", placeholder: t("sm2_01.placeholders.x"), expected: "x" },
             { id: "b_root", labelLatex: "b", placeholder: t("sm2_01.placeholders.b"), expected: vb.toString() },
-            { id: "a_mid", labelLatex: "a", placeholder: "x", expected: "x" },
+            { id: "a_mid", labelLatex: "a", placeholder: t("sm2_01.placeholders.x"), expected: "x" },
             { id: "b_mid", labelLatex: "b", placeholder: t("sm2_01.placeholders.b"), expected: vb.toString() },
           ],
           correctLatex: `x^2 + ${2 * vb}x + ${vb ** 2} = (x + ${vb})^2`,
@@ -262,7 +262,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         targetLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
         slots: isFact
           ? [{ id: "a", labelLatex: "a", placeholder: t("sm2_01.placeholders.ax"), expected: aT }, { id: "b", labelLatex: "b", placeholder: vB ? "by" : "b", expected: bT }]
-          : [{ id: "part1", labelLatex: "a^{2}", placeholder: "a²", expected: ca ** 2 }, { id: "part2", labelLatex: "b^{2}", placeholder: "b²", expected: vb ** 2 }],
+          : [{ id: "part1", labelLatex: "a^{2}", placeholder: t("sm2_01.placeholders.a_squared"), expected: ca ** 2 }, { id: "part2", labelLatex: "b^{2}", placeholder: t("sm2_01.placeholders.b_squared"), expected: vb ** 2 }],
         correctLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
       };
     });
@@ -815,7 +815,7 @@ export default function S201Page() {
                       value={inputs.part1 || ""}
                       onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder="a²"
+                      placeholder={sm2_01_t.placeholders?.a_squared}
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
@@ -904,7 +904,7 @@ export default function S201Page() {
                         value={inputs.const_term || ""}
                         onChange={(e) => setInputs({ ...inputs, const_term: e.target.value })}
                         className="w-32 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder="V²"
+                        placeholder={sm2_01_t.placeholders?.v_squared}
                       />
                     </div>
                   </div>

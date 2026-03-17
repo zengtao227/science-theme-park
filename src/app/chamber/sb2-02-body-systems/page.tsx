@@ -69,7 +69,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_b5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.organs_7")}}`,
                         targetLatex: `n`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "7", expected: 7 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_7"), expected: 7 }],
                         correctLatex: `n = 7`,
                         hintLatex: [t("sb2_02.hints.digestive_b5")]
                     }
@@ -131,7 +131,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_a1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.pancreas")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.ph_increase")}}`,
-                        slots: [{ id: "ph", labelLatex: `\text{pH}`, placeholder: "7", expected: 7 }],
+                        slots: [{ id: "ph", labelLatex: `\text{pH}`, placeholder: t("sb2_02.placeholders.v_7"), expected: 7 }],
                         correctLatex: `\\text{pH} \\approx 7`,
                         hintLatex: [t("sb2_02.hints.digestive_a1")]
                     },
@@ -198,7 +198,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_e3"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.enteric_nervous")}}`,
                         targetLatex: `n`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "500000000", expected: 500000000 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_500000000"), expected: 500000000 }],
                         correctLatex: `n \\approx 500 \\text{ million}`,
                         hintLatex: [t("sb2_02.hints.digestive_e3")]
                     },
@@ -250,7 +250,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_b3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}, ${t("sb2_02.organs.arteries")}, ${t("sb2_02.organs.veins")}`,
                         targetLatex: `n`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "3", expected: 3 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_3"), expected: 3 }],
                         correctLatex: `n = 3`,
                         hintLatex: [t("sb2_02.hints.circulatory_b3")]
                     },
@@ -259,7 +259,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_b4"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.gas_exchange")}}`,
                         targetLatex: `\\text{CO}_2`,
-                        slots: [{ id: "gas", labelLatex: `\\text{${t("sb2_02.labels.gas")}}`, placeholder: "CO2", expected: "CO2" }],
+                        slots: [{ id: "gas", labelLatex: `\\text{${t("sb2_02.labels.gas")}}`, placeholder: t("sb2_02.placeholders.co2"), expected: "CO2" }],
                         correctLatex: t("sb2_02.corrects.carbon_dioxide"),
                         hintLatex: [t("sb2_02.hints.circulatory_b4")]
                     },
@@ -268,7 +268,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_b5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.atria_ventricles")}}`,
                         targetLatex: `n`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_4"), expected: 4 }],
                         correctLatex: `n = 4`,
                         hintLatex: [t("sb2_02.hints.circulatory_b5")]
                     }
@@ -308,7 +308,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_c4"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.blood_pressure")}}`,
                         targetLatex: `\\text{120/80}`,
-                        slots: [{ id: "bp", labelLatex: `\\text{${t("sb2_02.labels.bp")}}`, placeholder: "120/80", expected: "120/80" }],
+                        slots: [{ id: "bp", labelLatex: `\\text{${t("sb2_02.labels.bp")}}`, placeholder: t("sb2_02.placeholders.v_120_slash_80"), expected: "120/80" }],
                         correctLatex: `\\text{120/80 mmHg}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c4")]
                     },
@@ -330,7 +330,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_a1"),
                         expressionLatex: `\\text{HR} = 70 \\text{ bpm, SV} = 70 \\text{ mL}`,
                         targetLatex: `\\text{CO}`,
-                        slots: [{ id: "co", labelLatex: `\\text{${t("sb2_02.labels.co_l_min")}}`, placeholder: "5", expected: 5 }],
+                        slots: [{ id: "co", labelLatex: `\\text{${t("sb2_02.labels.co_l_min")}}`, placeholder: t("sb2_02.placeholders.v_5"), expected: 5 }],
                         correctLatex: `\\text{CO} = 5 \\text{ L/min}`,
                         hintLatex: [t("sb2_02.hints.circulatory_a1")]
                     },
@@ -357,7 +357,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_a4"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.hemoglobin")}}`,
                         targetLatex: `n`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "4", expected: 4 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_4"), expected: 4 }],
                         correctLatex: `n = 4`,
                         hintLatex: [t("sb2_02.hints.circulatory_a4")]
                     },
@@ -397,7 +397,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_e3"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.bp_regulation")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.mechanisms")}}`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "3", expected: 3 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_3"), expected: 3 }],
                         correctLatex: t("sb2_02.corrects.baroreceptors_raas_anp"),
                         hintLatex: [t("sb2_02.hints.circulatory_e3")]
                     },
@@ -415,7 +415,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_e5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.rest_exercise_co")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.increase")}}`,
-                        slots: [{ id: "factor", labelLatex: `\\text{${t("sb2_02.labels.factor")}}`, placeholder: "5", expected: 5 }],
+                        slots: [{ id: "factor", labelLatex: `\\text{${t("sb2_02.labels.factor")}}`, placeholder: t("sb2_02.placeholders.v_5"), expected: 5 }],
                         correctLatex: `5\\times \\text{ increase}`,
                         hintLatex: [t("sb2_02.hints.circulatory_e5")]
                     }
@@ -440,7 +440,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_b2"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.gas_exchange")}}`,
                         targetLatex: `\\text{O}_2`,
-                        slots: [{ id: "gas", labelLatex: `\\text{${t("sb2_02.labels.gas")}}`, placeholder: "O2", expected: "O2" }],
+                        slots: [{ id: "gas", labelLatex: `\\text{${t("sb2_02.labels.gas")}}`, placeholder: t("sb2_02.placeholders.o2"), expected: "O2" }],
                         correctLatex: t("sb2_02.corrects.oxygen"),
                         hintLatex: [t("sb2_02.hints.respiratory_b2")]
                     },
@@ -449,7 +449,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_b3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.nose")}}, ${t("sb2_02.organs.pharynx")}, ${t("sb2_02.organs.larynx")}, ${t("sb2_02.organs.trachea")}, ${t("sb2_02.organs.lungs")}`,
                         targetLatex: `n`,
-                        slots: [{ id: "count", labelLatex: `n`, placeholder: "5", expected: 5 }],
+                        slots: [{ id: "count", labelLatex: `n`, placeholder: t("sb2_02.placeholders.v_5"), expected: 5 }],
                         correctLatex: `n = 5`,
                         hintLatex: [t("sb2_02.hints.respiratory_b3")]
                     },
@@ -529,7 +529,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_a1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.area")}}`,
-                        slots: [{ id: "area", labelLatex: t("sb2_02.labels.area_m2"), placeholder: "70", expected: 70 }],
+                        slots: [{ id: "area", labelLatex: t("sb2_02.labels.area_m2"), placeholder: t("sb2_02.placeholders.v_70"), expected: 70 }],
                         correctLatex: `\\approx 70 \\text{ m}^{2}`,
                         hintLatex: [t("sb2_02.hints.respiratory_a1")]
                     },
@@ -538,7 +538,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_a2"),
                         expressionLatex: `\\text{TV} = 500 \\text{ mL, RR} = 15 \\text{ breaths/min}`,
                         targetLatex: `\\text{MV}`,
-                        slots: [{ id: "mv", labelLatex: `\\text{${t("sb2_02.labels.mv_l_min")}}`, placeholder: "7.5", expected: 7.5 }],
+                        slots: [{ id: "mv", labelLatex: `\\text{${t("sb2_02.labels.mv_l_min")}}`, placeholder: t("sb2_02.placeholders.v_7_dot_5"), expected: 7.5 }],
                         correctLatex: `\\text{MV} = 7.5 \\text{ L/min}`,
                         hintLatex: [t("sb2_02.hints.respiratory_a2")]
                     },
@@ -596,7 +596,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_e3"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.ph_regulation")}}`,
                         targetLatex: `\\text{CO}_2`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.factor")}}`, placeholder: "CO2", expected: "CO2" }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.factor")}}`, placeholder: t("sb2_02.placeholders.co2"), expected: "CO2" }],
                         correctLatex: `\\text{CO}_2 \\leftrightarrow \\text{H}^+ + \\text{HCO}_3^-`,
                         hintLatex: [t("sb2_02.hints.respiratory_e3")]
                     },
@@ -614,7 +614,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_e5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.pneumonia")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.reduction")}}`,
-                        slots: [{ id: "percentage", labelLatex: `\\text{\\%}`, placeholder: "50", expected: 50 }],
+                        slots: [{ id: "percentage", labelLatex: `\\text{\\%}`, placeholder: t("sb2_02.placeholders.v_50"), expected: 50 }],
                         correctLatex: `\\approx 50\\% \\text{ reduction}`,
                         hintLatex: [t("sb2_02.hints.respiratory_e5")]
                     }

@@ -92,7 +92,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e \\times d_e = F_l \\times d_l`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: lever.effort.toString() }],
                         correctLatex: `${lever.effort}\\,\\text{N}`,
                         hintLatex: [`\\text{MA} = d_e/d_l = ${lever.effortArm}/${lever.loadArm}`]
                     });
@@ -123,7 +123,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = F_l \\times \\frac{d_l}{d_e}`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: lever.effort.toString() }],
                         correctLatex: `${lever.effort}\\,\\text{N}`,
                         hintLatex: [`\\text{Class ${lever.class}: fulcrum position varies}`]
                     });
@@ -153,7 +153,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = \\frac{F_l}{MA \\times \\eta}`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: lever.effort.toString() }],
                         correctLatex: `${lever.effort}\\,\\text{N}`,
                         hintLatex: [t("sp3_05.hints.for_friction_losses")]
                     });
@@ -182,7 +182,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = \\frac{F_l}{MA_1 \\times MA_2}`,
                         targetLatex: lever.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: lever.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: lever.effort.toString() }],
                         correctLatex: `${lever.effort}\\,\\text{N}`,
                         hintLatex: [`\\text{Compound MA} = MA_1 \\times MA_2`]
                     });
@@ -213,7 +213,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = \\frac{F_l}{n}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
                         hintLatex: [`\\text{MA} = n \\text{ (number of strands)}`]
                     });
@@ -243,7 +243,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `\\text{MA} = 2 \\times n_{movable}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
                         hintLatex: [t("sp3_05.hints.pulleys_double_ma")]
                     });
@@ -273,7 +273,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = \\frac{F_l}{n \\times \\eta}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
                         hintLatex: [t("sp3_05.hints.for_friction")]
                     });
@@ -303,7 +303,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = \\frac{F_l}{n}`,
                         targetLatex: pulley.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: pulley.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: pulley.effort.toString() }],
                         correctLatex: `${pulley.effort}\\,\\text{N}`,
                         hintLatex: [t("sp3_05.hints.all_supporting_strands")]
                     });
@@ -335,7 +335,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = F_l \\times \\frac{h}{l}`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: plane.effort.toString() }],
                         correctLatex: `${plane.effort}\\,\\text{N}`,
                         hintLatex: [`\\text{MA} = l/h`]
                     });
@@ -364,7 +364,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = F_l \\times \\sin(\\theta)`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: plane.effort.toString() }],
                         correctLatex: `${plane.effort}\\,\\text{N}`,
                         hintLatex: [`\\text{Use } \\sin(${plane.angle}°)`]
                     });
@@ -395,7 +395,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = F_l(\\frac{h}{l} + \\mu)`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: plane.effort.toString() }],
                         correctLatex: `${plane.effort}\\,\\text{N}`,
                         hintLatex: [t("sp3_05.hints.friction_component")]
                     });
@@ -425,7 +425,7 @@ export default function SP305Page() {
                         }),
                         expressionLatex: `F_e = F_l \\times \\frac{p}{2\\pi r}`,
                         targetLatex: plane.effort.toString(),
-                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: "...", expected: plane.effort.toString() }],
+                        slots: [{ id: "ans", labelLatex: "F_e\\text{ (N)}", placeholder: t("sp3_05.placeholders.ellipsis"), expected: plane.effort.toString() }],
                         correctLatex: `${plane.effort}\\,\\text{N}`,
                         hintLatex: [t("sp3_05.hints.is_inclined_plane_wrapped_around_cylinder")]
                     });

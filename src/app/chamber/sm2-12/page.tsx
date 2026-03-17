@@ -144,7 +144,7 @@ export default function SM212Page() {
           promptLatex: t("sm2_12.prompts.calculate_permutation"),
           expressionLatex: `P(${data.n}, ${data.r}) = \\frac{${data.n}!}{(${data.n}-${data.r})!}`,
           targetLatex: `P(${data.n}, ${data.r})`,
-          slots: [{ id: "ans", labelLatex: `P(${data.n}, ${data.r})`, placeholder: "...", expected: data.answer }],
+          slots: [{ id: "ans", labelLatex: `P(${data.n}, ${data.r})`, placeholder: t("sm2_12.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `P(${data.n}, ${data.r}) = ${data.answer}`,
           hintLatex: [t("sm2_12.hints.permutation_formula")],
         });
@@ -157,7 +157,7 @@ export default function SM212Page() {
           promptLatex: t("sm2_12.prompts.calculate_combination"),
           expressionLatex: `C(${data.n}, ${data.r}) = \\frac{${data.n}!}{${data.r}!(${data.n}-${data.r})!}`,
           targetLatex: `C(${data.n}, ${data.r})`,
-          slots: [{ id: "ans", labelLatex: `C(${data.n}, ${data.r})`, placeholder: "...", expected: data.answer }],
+          slots: [{ id: "ans", labelLatex: `C(${data.n}, ${data.r})`, placeholder: t("sm2_12.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `C(${data.n}, ${data.r}) = ${data.answer}`,
           hintLatex: [t("sm2_12.hints.combination_formula")],
         });
@@ -170,7 +170,7 @@ export default function SM212Page() {
           promptLatex: t("sm2_12.prompts.calculate_probability"),
           expressionLatex: `n = ${data.n}, \\; r = ${data.r}`,
           targetLatex: "P",
-          slots: [{ id: "ans", labelLatex: "P", placeholder: "0.xxx", expected: data.answer }],
+          slots: [{ id: "ans", labelLatex: "P", placeholder: t("sm2_12.placeholders.v_0_dot_xxx"), expected: data.answer }],
           correctLatex: `P = ${data.answer}`,
           hintLatex: [t("sm2_12.hints.probability_formula")],
         });

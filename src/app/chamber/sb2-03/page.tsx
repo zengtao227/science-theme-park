@@ -135,19 +135,19 @@ export default function SB203Page() {
             if (data.type === "ratio") {
                 promptLatex = t("sb2_03.prompts.monohybrid_ratio", { p1: data.p1, p2: data.p2 });
                 expressionLatex = t("sb2_03.prompts.ratio_target");
-                placeholder = "X:Y";
+                placeholder = t("sb2_03.placeholders.x_to_y_upper");
                 labelLatex = `\\text{${t("sb2_03.expressions.ratio_label")}}`;
             } else if (data.type === "percent") {
                 promptLatex = t("sb2_03.prompts.monohybrid_percent", { p1: data.p1, p2: data.p2 });
                 expressionLatex = t("sb2_03.prompts.percent_target");
-                placeholder = "X%";
+                placeholder = t("sb2_03.placeholders.x_percent");
                 labelLatex = `\\text{${t("sb2_03.expressions.percentage_label")}}`;
                 if (!targetLatex.includes("%")) targetLatex += "\\%";
             } else if (data.type === "prob") {
                 const genotype = data.p1.includes("R") ? "rr" : (data.p1.includes("A") ? "aa" : "bb");
                 promptLatex = t("sb2_03.prompts.prob_genotype", { p1: data.p1, p2: data.p2, genotype });
                 expressionLatex = t("sb2_03.prompts.prob_target", { genotype });
-                placeholder = "0.XX";
+                placeholder = t("sb2_03.placeholders.v_0_dot_xx");
                 labelLatex = "P";
             }
 

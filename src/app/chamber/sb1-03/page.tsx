@@ -72,7 +72,7 @@ export default function SB103Page() {
                     promptLatex: t(`sb1_03.prompts.mit_${item.phase.toLowerCase()}`, { desc: item.desc }),
                     expressionLatex: `\\text{${item.phase.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: t("sb1_03.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_03.prompts.hint_mit_${item.phase.toLowerCase()}`)]
                 });
@@ -124,7 +124,7 @@ export default function SB103Page() {
                     promptLatex: t(`sb1_03.prompts.mei1_${item.phase.toLowerCase()}`, { desc: item.desc }),
                     expressionLatex: `\\text{${item.phase.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: t("sb1_03.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_03.prompts.hint_mei1_${item.phase.toLowerCase()}`)]
                 });
@@ -176,7 +176,7 @@ export default function SB103Page() {
                     promptLatex: t(`sb1_03.prompts.mei2_${item.phase.toLowerCase()}`, { desc: item.desc }),
                     expressionLatex: `\\text{${item.phase.replace(/_/g, ' ')}} \\rightarrow ?`,
                     targetLatex: item.answer,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: "...", expected: item.answer }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.answer"), placeholder: t("sb1_03.placeholders.ellipsis"), expected: item.answer }],
                     correctLatex: item.answer,
                     hintLatex: [t(`sb1_03.prompts.hint_mei2_${item.phase.toLowerCase()}`)]
                 });

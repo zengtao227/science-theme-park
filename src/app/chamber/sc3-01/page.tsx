@@ -90,7 +90,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-RATIO1`, promptLatex: t("sc3_01.prompts.co_ratio", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}:O_{${config.o}}`,
-          slots: [{ id: "ratio", labelLatex: t("common.labels.ratio"), placeholder: "x:y", expected: `${config.c}:${config.o}` }],
+          slots: [{ id: "ratio", labelLatex: t("common.labels.ratio"), placeholder: t("sc3_01.placeholders.x_to_y"), expected: `${config.c}:${config.o}` }],
           hintLatex: [t("sc3_01.hints.simplify_if_possible")]
         },
         {
@@ -105,17 +105,17 @@ export default function SC301Page() {
           id: `${currentStage}-FULL1`, promptLatex: t("sc3_01.prompts.complete_formula", { molecule: config.name }),
           expressionLatex: `C_xH_y${config.n > 0 ? "N_z" : ""}O_w`,
           slots: [
-            { id: "c", labelLatex: "x (C)", placeholder: "0", expected: config.c.toString() },
-            { id: "h", labelLatex: "y (H)", placeholder: "0", expected: config.h.toString() },
-            ...(config.n > 0 ? [{ id: "n", labelLatex: "z (N)", placeholder: "0", expected: config.n.toString() } as any] : []),
-            { id: "o", labelLatex: "w (O)", placeholder: "0", expected: config.o.toString() }
+            { id: "c", labelLatex: "x (C)", placeholder: t("sc3_01.placeholders.v_0"), expected: config.c.toString() },
+            { id: "h", labelLatex: "y (H)", placeholder: t("sc3_01.placeholders.v_0"), expected: config.h.toString() },
+            ...(config.n > 0 ? [{ id: "n", labelLatex: "z (N)", placeholder: t("sc3_01.placeholders.v_0"), expected: config.n.toString() } as any] : []),
+            { id: "o", labelLatex: "w (O)", placeholder: t("sc3_01.placeholders.v_0"), expected: config.o.toString() }
           ],
           hintLatex: [t("sc3_01.hints.add_all_atoms")]
         },
         {
           id: `${currentStage}-PERCENT1`, promptLatex: t("sc3_01.prompts.carbon_percentage", { molecule: config.name }),
           expressionLatex: `\\frac{C_{${config.c}}}{\\text{${t("sc3_01.labels.total_word")}}}\\times 100`,
-          slots: [{ id: "percent", labelLatex: t("sc3_01.labels.percent"), placeholder: "%", expected: ((config.c / (config.c + config.h + config.o + config.n)) * 100).toFixed(1) }],
+          slots: [{ id: "percent", labelLatex: t("sc3_01.labels.percent"), placeholder: t("sc3_01.placeholders.percent"), expected: ((config.c / (config.c + config.h + config.o + config.n)) * 100).toFixed(1) }],
           hintLatex: [t("sc3_01.hints.carbon_over_total")]
         },
         {
@@ -142,17 +142,17 @@ export default function SC301Page() {
           id: `${currentStage}-FULL2`, promptLatex: t("sc3_01.prompts.identify_formula_precisely", { molecule: config.name }),
           expressionLatex: `C_xH_y${config.n > 0 ? "N_z" : ""}O_w`,
           slots: [
-            { id: "c", labelLatex: "x", placeholder: "0", expected: config.c.toString() },
-            { id: "h", labelLatex: "y", placeholder: "0", expected: config.h.toString() },
-            ...(config.n > 0 ? [{ id: "n", labelLatex: "z", placeholder: "0", expected: config.n.toString() } as any] : []),
-            { id: "o", labelLatex: "w", placeholder: "0", expected: config.o.toString() }
+            { id: "c", labelLatex: "x", placeholder: t("sc3_01.placeholders.v_0"), expected: config.c.toString() },
+            { id: "h", labelLatex: "y", placeholder: t("sc3_01.placeholders.v_0"), expected: config.h.toString() },
+            ...(config.n > 0 ? [{ id: "n", labelLatex: "z", placeholder: t("sc3_01.placeholders.v_0"), expected: config.n.toString() } as any] : []),
+            { id: "o", labelLatex: "w", placeholder: t("sc3_01.placeholders.v_0"), expected: config.o.toString() }
           ],
           hintLatex: [t("sc3_01.hints.exact_count_required")]
         },
         {
           id: `${currentStage}-COMPOSITION1`, promptLatex: t("sc3_01.prompts.mass_percent_c", { molecule: config.name }),
           expressionLatex: `\\frac{m_C}{M_{total}}\\times 100`,
-          slots: [{ id: "percent", labelLatex: t("sc3_01.labels.percent"), placeholder: "%", expected: ((config.c * 12.01) / (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01) * 100).toFixed(2) }],
+          slots: [{ id: "percent", labelLatex: t("sc3_01.labels.percent"), placeholder: t("sc3_01.placeholders.percent"), expected: ((config.c * 12.01) / (config.c * 12.01 + config.h * 1.008 + config.o * 16.00 + config.n * 14.01) * 100).toFixed(2) }],
           hintLatex: [t("sc3_01.hints.mass_of_c_over_total")]
         },
         {

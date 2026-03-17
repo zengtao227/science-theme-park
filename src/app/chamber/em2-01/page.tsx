@@ -53,10 +53,10 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
       }];
     } else if (type === "calculate_matrix") {
       slots = [
-        { id: "a11", labelLatex: "a_{11}", placeholder: "0", expected: 0 },
-        { id: "a12", labelLatex: "a_{12}", placeholder: "0", expected: 0 },
-        { id: "a21", labelLatex: "a_{21}", placeholder: "0", expected: 0 },
-        { id: "a22", labelLatex: "a_{22}", placeholder: "0", expected: 0 },
+        { id: "a11", labelLatex: "a_{11}", placeholder: t("em2_01.placeholders.v_0"), expected: 0 },
+        { id: "a12", labelLatex: "a_{12}", placeholder: t("em2_01.placeholders.v_0"), expected: 0 },
+        { id: "a21", labelLatex: "a_{21}", placeholder: t("em2_01.placeholders.v_0"), expected: 0 },
+        { id: "a22", labelLatex: "a_{22}", placeholder: t("em2_01.placeholders.v_0"), expected: 0 },
       ];
     }
 
