@@ -2696,6 +2696,15 @@ export const enMath = {
             cause_q: "Cause?",
             predict_q: "Predict?"
         },
+        placeholders: {
+            yes: "yes",
+            no: "no",
+            right: "right",
+            positive: "positive",
+            negative: "negative",
+            nonlinear: "nonlinear",
+            distance: "distance"
+        },
         formula_phrases: {
             no_correlation: "No correlation",
             strong_positive: "Strong positive",

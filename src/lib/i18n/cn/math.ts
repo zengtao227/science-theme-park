@@ -2691,6 +2691,15 @@ export const cnMath = {
             cause_q: "原因？",
             predict_q: "可预测？"
         },
+        placeholders: {
+            yes: "是",
+            no: "否",
+            right: "右偏",
+            positive: "正相关",
+            negative: "负相关",
+            nonlinear: "非线性",
+            distance: "距离"
+        },
         formula_phrases: {
             no_correlation: "无相关性",
             strong_positive: "强正相关",

@@ -2675,6 +2675,15 @@ export const deMath = {
             cause_q: "Ursache?",
             predict_q: "Vorhersagen?"
         },
+        placeholders: {
+            yes: "ja",
+            no: "nein",
+            right: "rechts",
+            positive: "positiv",
+            negative: "negativ",
+            nonlinear: "nichtlinear",
+            distance: "Abstand"
+        },
         formula_phrases: {
             no_correlation: "Keine Korrelation",
             strong_positive: "Stark positiv",
