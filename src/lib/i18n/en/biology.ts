@@ -1340,7 +1340,17 @@ export const enBiology = {
                 evap: "Evap",
                 fix: "Fix",
                 nitrate: "Nitrate",
-                denit: "Denit"
+                denit: "Denit",
+                algae: "Algae",
+                zooplankton: "Zooplankton",
+                fish: "Fish",
+                bird: "Bird",
+                primary: "Primary",
+                secondary: "Secondary",
+                tertiary: "Tertiary",
+                carbon_cycle_title: "Carbon Cycle",
+                energy_unit: "kJ",
+                energy_transfer: "10%"
             }
         },
         prompts: {

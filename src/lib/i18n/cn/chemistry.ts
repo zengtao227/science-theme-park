@@ -1417,7 +1417,12 @@ export const cnChemistry = {
             current: "电流强度 (I)",
             mass_deposited: "析出质量",
             time: "持续时间 (s)",
-            power_status: "电源状态"
+            power_status: "电源状态",
+            canvas: {
+                anode: "阳极 (+)",
+                cathode: "阴极 (-)",
+                dc: "直流"
+            }
         },
         prompts: {
             calc_mass: "计算 {current}A 电流在 {time}s 内析出 {metal} 的质量。",

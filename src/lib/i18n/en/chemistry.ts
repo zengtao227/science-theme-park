@@ -1417,7 +1417,12 @@ export const enChemistry = {
             current: "Current Intensity (I)",
             mass_deposited: "Mass Deposited",
             time: "Duration (s)",
-            power_status: "Power Supply Status"
+            power_status: "Power Supply Status",
+            canvas: {
+                anode: "ANODE (+)",
+                cathode: "CATHODE (-)",
+                dc: "DC"
+            }
         },
         prompts: {
             calc_mass: "Calculate mass of {metal} deposited by {current}A in {time}s.",

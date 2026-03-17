@@ -6,7 +6,27 @@ interface EcosystemCanvasProps {
     stage: "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES";
     selectedLevel: number;
     showEnergyFlow: boolean;
-    translations: any;
+    translations: {
+        labels: {
+            viz: {
+                algae: string;
+                zooplankton: string;
+                fish: string;
+                bird: string;
+                producers: string;
+                primary: string;
+                secondary: string;
+                tertiary: string;
+                energy_unit: string;
+                energy_transfer: string;
+                co2_air: string;
+                plants: string;
+                animals: string;
+                decomposers: string;
+                carbon_cycle_title: string;
+            };
+        };
+    };
 }
 
 export default function EcosystemCanvas({
@@ -15,16 +35,15 @@ export default function EcosystemCanvas({
     showEnergyFlow,
     translations
 }: EcosystemCanvasProps) {
-    void translations;
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const drawFoodChain = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number) => {
         // Rhine River Food Chain
         const levels = [
-            { name: "Algae", y: h * 0.8, color: "#00ff00" },
-            { name: "Zooplankton", y: h * 0.6, color: "#00ffff" },
-            { name: "Fish", y: h * 0.4, color: "#ff00ff" },
-            { name: "Bird", y: h * 0.2, color: "#ffff00" }
+            { name: translations.labels.viz.algae, y: h * 0.8, color: "#00ff00" },
+            { name: translations.labels.viz.zooplankton, y: h * 0.6, color: "#00ffff" },
+            { name: translations.labels.viz.fish, y: h * 0.4, color: "#ff00ff" },
+            { name: translations.labels.viz.bird, y: h * 0.2, color: "#ffff00" }
         ];
 
         levels.forEach((level, i) => {
@@ -63,7 +82,7 @@ export default function EcosystemCanvas({
             ctx.lineTo(w, h * 0.85 + i * 5);
             ctx.stroke();
         }
-    }, []);
+    }, [translations]);
 
     const drawEnergyPyramid = useCallback((
         ctx: CanvasRenderingContext2D,
@@ -73,10 +92,10 @@ export default function EcosystemCanvas({
         showFlow: boolean
     ) => {
         const pyramidLevels = [
-            { name: "Producers", energy: 10000, width: 0.8, color: "#00ff00" },
-            { name: "Primary", energy: 1000, width: 0.6, color: "#00ffff" },
-            { name: "Secondary", energy: 100, width: 0.4, color: "#ff00ff" },
-            { name: "Tertiary", energy: 10, width: 0.2, color: "#ffff00" }
+            { name: translations.labels.viz.producers, energy: 10000, width: 0.8, color: "#00ff00" },
+            { name: translations.labels.viz.primary, energy: 1000, width: 0.6, color: "#00ffff" },
+            { name: translations.labels.viz.secondary, energy: 100, width: 0.4, color: "#ff00ff" },
+            { name: translations.labels.viz.tertiary, energy: 10, width: 0.2, color: "#ffff00" }
         ];
 
         pyramidLevels.forEach((lvl, i) => {
@@ -102,7 +121,7 @@ export default function EcosystemCanvas({
 
             if (showFlow) {
                 ctx.font = "12px monospace";
-                ctx.fillText(`${lvl.energy} kJ`, w / 2, y + 40);
+                ctx.fillText(`${lvl.energy} ${translations.labels.viz.energy_unit}`, w / 2, y + 40);
             }
         });
 
@@ -123,9 +142,9 @@ export default function EcosystemCanvas({
             ctx.fillStyle = "#00ff00";
             ctx.font = "bold 12px monospace";
             ctx.textAlign = "left";
-            ctx.fillText("10%", w * 0.87, (fromY + toY) / 2);
+            ctx.fillText(translations.labels.viz.energy_transfer, w * 0.87, (fromY + toY) / 2);
         }
-    }, []);
+    }, [translations]);
 
     const drawBiogeochemicalCycle = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number) => {
         const centerX = w / 2;
@@ -133,10 +152,10 @@ export default function EcosystemCanvas({
         const radius = Math.min(w, h) * 0.3;
 
         const nodes = [
-            { name: "CO_2", angle: 0, color: "#ff0000" },
-            { name: "Plants", angle: Math.PI / 2, color: "#00ff00" },
-            { name: "Animals", angle: Math.PI, color: "#00ffff" },
-            { name: "Decomposers", angle: (3 * Math.PI) / 2, color: "#ffff00" }
+            { name: translations.labels.viz.co2_air, angle: 0, color: "#ff0000" },
+            { name: translations.labels.viz.plants, angle: Math.PI / 2, color: "#00ff00" },
+            { name: translations.labels.viz.animals, angle: Math.PI, color: "#00ffff" },
+            { name: translations.labels.viz.decomposers, angle: (3 * Math.PI) / 2, color: "#ffff00" }
         ];
 
         nodes.forEach((node, i) => {
@@ -189,8 +208,8 @@ export default function EcosystemCanvas({
         ctx.fillStyle = "#fff";
         ctx.font = "bold 16px monospace";
         ctx.textAlign = "center";
-        ctx.fillText("Carbon Cycle", centerX, centerY);
-    }, []);
+        ctx.fillText(translations.labels.viz.carbon_cycle_title, centerX, centerY);
+    }, [translations]);
 
     useEffect(() => {
         const canvas = canvasRef.current;

@@ -1410,7 +1410,12 @@ export const deChemistry = {
             current: "Stromstärke (I)",
             mass_deposited: "Abschiedene Masse",
             time: "Dauer (s)",
-            power_status: "Stromversorgungsstatus"
+            power_status: "Stromversorgungsstatus",
+            canvas: {
+                anode: "ANODE (+)",
+                cathode: "KATHODE (-)",
+                dc: "DC"
+            }
         },
         prompts: {
             calc_mass: "Berechnen Sie die Masse von {metal}, die bei {current}A in {time}s abgeschieden wird.",

@@ -104,6 +104,7 @@ export default function GC102Page() {
                                 electrolyte={currentQuest?.solution || "CuSO4"}
                                 activeStage={stage}
                                 showIons={true}
+                                translations={t("gc1_02")}
                             />
                         )}
                     </div>

@@ -1280,7 +1280,17 @@ export const cnBiology = {
                 evap: "蒸发",
                 fix: "固氮",
                 nitrate: "硝酸盐",
-                denit: "反硝化"
+                denit: "反硝化",
+                algae: "藻类",
+                zooplankton: "浮游动物",
+                fish: "鱼类",
+                bird: "鸟类",
+                primary: "初级",
+                secondary: "次级",
+                tertiary: "三级",
+                carbon_cycle_title: "碳循环",
+                energy_unit: "kJ",
+                energy_transfer: "10%"
             }
         },
         prompts: {

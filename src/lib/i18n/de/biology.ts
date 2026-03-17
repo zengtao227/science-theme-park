@@ -1280,7 +1280,17 @@ export const deBiology = {
                 evap: "Verdunstung",
                 fix: "Fixierung",
                 nitrate: "Nitrat",
-                denit: "Denitrifizierung"
+                denit: "Denitrifizierung",
+                algae: "Algen",
+                zooplankton: "Zooplankton",
+                fish: "Fische",
+                bird: "Vogel",
+                primary: "Primär",
+                secondary: "Sekundär",
+                tertiary: "Tertiär",
+                carbon_cycle_title: "Kohlenstoffkreislauf",
+                energy_unit: "kJ",
+                energy_transfer: "10%"
             }
         },
         prompts: {
