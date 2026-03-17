@@ -216,7 +216,7 @@ export default function SP203ElectricPower() {
                     {
                         id: "answer",
                         labelLatex: "Answer",
-                        placeholder: "type value",
+                        placeholder: t("sp2_03.placeholders.type_value"),
                         expected: typeof item.power === 'string' ? item.power :
                             typeof item.current === 'string' ? item.current : item.voltage
                     }
@@ -277,7 +277,7 @@ export default function SP203ElectricPower() {
                         id: "answer",
                         labelLatex: difficulty === "BASIC" ? "Energy (Wh)" :
                             difficulty === "CORE" ? "Energy (kWh)" : "Cost (CHF)",
-                        placeholder: "type value",
+                        placeholder: t("sp2_03.placeholders.type_value"),
                         expected: ('energy' in item ? item.energy : undefined) ||
                             ('answer' in item ? item.answer : undefined) || "0"
                     }
@@ -335,7 +335,7 @@ export default function SP203ElectricPower() {
                         labelLatex: difficulty === "BASIC" ? "Efficiency (%)" :
                             difficulty === "CORE" ? (('output' in item && typeof item.output === 'string') ? "Output (W)" : "Input (W)") :
                                 difficulty === "ADVANCED" ? "Power Loss (W)" : "Efficiency (%)",
-                        placeholder: "type value",
+                        placeholder: t("sp2_03.placeholders.type_value"),
                         expected: ('efficiency' in item ? item.efficiency : undefined) ||
                             ('output' in item ? item.output : undefined) ||
                             ('input' in item ? item.input : undefined) ||

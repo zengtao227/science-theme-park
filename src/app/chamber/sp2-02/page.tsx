@@ -138,7 +138,7 @@ export default function SP202OhmsLaw() {
                     {
                         id: "answer",
                         labelLatex: "Answer",
-                        placeholder: "type value",
+                        placeholder: t("sp2_02.placeholders.type_value"),
                         expected: typeof item.current === 'string' ? item.current : 
                                  typeof item.voltage === 'string' ? item.voltage : item.resistance
                     }
@@ -200,7 +200,7 @@ export default function SP202OhmsLaw() {
                     {
                         id: "answer",
                         labelLatex: "Current (A)",
-                        placeholder: "type value",
+                        placeholder: t("sp2_02.placeholders.type_value"),
                         expected: item.answer
                     }
                 ],
@@ -259,7 +259,7 @@ export default function SP202OhmsLaw() {
                     {
                         id: "answer",
                         labelLatex: "Total Current (A)",
-                        placeholder: "type value",
+                        placeholder: t("sp2_02.placeholders.type_value"),
                         expected: item.answer
                     }
                 ],

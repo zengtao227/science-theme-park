@@ -231,7 +231,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cube_parallel"),
                         expressionLatex: t("sm3_05.expr.parallel_cut_same"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.square"), expected: "square" }],
                         correctLatex: t("sm3_05.labels.correct_square"),
                         hintLatex: [t("sm3_05.hints.cube_faces_squares")]
                     },
@@ -240,7 +240,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_sphere_any"),
                         expressionLatex: t("sm3_05.expr.sphere_always_circular"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.circle"), expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
                         hintLatex: [t("sm3_05.hints.sphere_cross_circles")]
                     },
@@ -249,7 +249,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cyl_perp"),
                         expressionLatex: t("sm3_05.expr.perp_axis_circle"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.circle"), expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
                         hintLatex: [t("sm3_05.hints.perp_cut_circular")]
                     },
@@ -258,7 +258,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cyl_parallel"),
                         expressionLatex: t("sm3_05.expr.parallel_axis_rectangle"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.rectangle"), expected: "rectangle" }],
                         correctLatex: t("sm3_05.labels.correct_rectangle"),
                         hintLatex: [t("sm3_05.hints.parallel_cut_side")]
                     },
@@ -267,7 +267,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cone_perp"),
                         expressionLatex: t("sm3_05.expr.perp_circle"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.circle"), expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle"),
                         hintLatex: [t("sm3_05.hints.horiz_cut_cone_circular")]
                     }
@@ -280,7 +280,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cube_diagonal"),
                         expressionLatex: t("sm3_05.expr.diagonal_rectangle"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "rectangle", expected: "rectangle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.rectangle"), expected: "rectangle" }],
                         correctLatex: t("sm3_05.labels.correct_rectangle"),
                         hintLatex: [t("sm3_05.hints.diagonal_cut_rectangle")]
                     },
@@ -289,7 +289,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cylinder_angle"),
                         expressionLatex: t("sm3_05.expr.angled_ellipse"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "ellipse", expected: "ellipse" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.ellipse"), expected: "ellipse" }],
                         correctLatex: t("sm3_05.labels.correct_ellipse"),
                         hintLatex: [t("sm3_05.hints.angled_cut_ellipse")]
                     },
@@ -298,7 +298,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cone_parallel_base"),
                         expressionLatex: t("sm3_05.expr.parallel_base_circle"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circle", expected: "circle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.circle"), expected: "circle" }],
                         correctLatex: t("sm3_05.labels.correct_circle_smaller"),
                         hintLatex: [t("sm3_05.hints.parallel_cut_smaller")]
                     },
@@ -307,7 +307,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_pyramid_parallel"),
                         expressionLatex: t("sm3_05.expr.parallel_similar"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "square", expected: "square" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.square"), expected: "square" }],
                         correctLatex: t("sm3_05.labels.correct_square_smaller"),
                         hintLatex: [t("sm3_05.hints.parallel_cut_square")]
                     },
@@ -316,7 +316,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_prism_perp"),
                         expressionLatex: t("sm3_05.expr.perp_base_shape"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "triangle", expected: "triangle" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.triangle"), expected: "triangle" }],
                         correctLatex: t("sm3_05.labels.correct_triangle"),
                         hintLatex: [t("sm3_05.hints.shows_triangular_base")]
                     }
@@ -329,7 +329,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cone_slant"),
                         expressionLatex: t("sm3_05.expr.parallel_edge_parabola"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "parabola", expected: "parabola" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.parabola"), expected: "parabola" }],
                         correctLatex: t("sm3_05.labels.correct_parabola"),
                         hintLatex: [t("sm3_05.hints.slant_cut_parabola")]
                     },
@@ -338,7 +338,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cone_axis"),
                         expressionLatex: t("sm3_05.expr.parallel_axis_hyperbola"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hyperbola", expected: "hyperbola" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.hyperbola"), expected: "hyperbola" }],
                         correctLatex: t("sm3_05.labels.correct_hyperbola"),
                         hintLatex: [t("sm3_05.hints.steep_cut_hyperbola")]
                     },
@@ -347,7 +347,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_cube_midpoints"),
                         expressionLatex: t("sm3_05.expr.midpoints_hexagon"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "hexagon", expected: "hexagon" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.hexagon"), expected: "hexagon" }],
                         correctLatex: t("sm3_05.labels.correct_regular_hexagon"),
                         hintLatex: [t("sm3_05.hints.diagonal_cut_hexagon")]
                     },
@@ -405,7 +405,7 @@ export default function SM305Page() {
                         promptLatex: t("sm3_05.prompts.cross_torus"),
                         expressionLatex: t("sm3_05.expr.torus_cross"),
                         targetLatex: t("sm3_05.labels.shape"),
-                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: "circles", expected: "circles" }],
+                        slots: [{ id: "shape", labelLatex: t("sm3_05.labels.shape"), placeholder: t("sm3_05.placeholders.circles"), expected: "circles" }],
                         correctLatex: t("sm3_05.labels.correct_two_circles"),
                         hintLatex: [t("sm3_05.hints.cut_two_tubes")]
                     },

@@ -23,6 +23,10 @@ export const cnBiology = {
             evolution_display: "进化显示",
             input_terminal: "输入终端"
         },
+        placeholders: {
+            yes: "yes",
+            positive: "positive",
+        },
         prompts: {
             natural_selection: "在{initial}只雀鸟的种群中，{survival}只在干旱中存活。计算适应度。",
             speciation: "经过{generations}代，突变率为{rate}，计算遗传分化度。",
@@ -444,6 +448,9 @@ export const cnBiology = {
             invalid_desc: "检测到细胞压力。请纠正代谢流。",
             next: "下一平衡"
         },
+        placeholders: {
+            enter_leave_stable: "enter/leave/stable",
+        },
         prompts: {
             osmosis_prompt: "细胞处于{status}环境（{desc}）中。水分会如何移动？",
             respiration_prompt: "完成呼吸作用反应物：C_6H_1_2O_6 + 6{reactant} → ...",
@@ -668,6 +675,9 @@ export const cnBiology = {
             water_transport: "水分运输",
             nutrient_transport: "养分运输"
         },
+        placeholders: {
+            type_answer: "type answer",
+        },
         scenarios: {
             plant_structure: "巴塞尔植物园 - 植物解剖学研究：你是巴塞尔大学植物园的植物学家，这是瑞士最古老的植物园之一（建于1589年），正在研究植物结构和功能。植物有三个主要器官系统：根（固定植物，从土壤中吸收水分和矿物质，储存养分），茎（提供结构支撑，在根和叶之间运输水分和养分，可能储存养分），叶（光合作用的主要场所，通过气孔进行气体交换，蒸腾作用）。每个器官都有专门的组织：表皮组织（具有角质层的表皮用于保护，根毛用于吸收），维管组织（木质部向上运输水分，韧皮部双向运输糖分），基本组织（薄壁组织用于储存和光合作用，厚角组织用于柔性支撑，厚壁组织用于刚性支撑）。理解植物结构对巴塞尔的农业研究、莱茵河沿岸的城市林业以及罗氏和诺华的药用植物学至关重要，许多药物都来源于植物化合物。巴塞尔植物园维护着超过7500种植物用于研究和教育。",
             water_transport: "瑞士联邦森林、雪和景观研究所 - 树木生理学实验室：你正在巴塞尔附近的WSL研究站研究植物中的水分运输，分析莱茵河沿岸的树木如何管理水分吸收和蒸腾作用。水分通过木质部导管从根部移动到叶片，通过三种机制：根压（矿物质主动运输到根部产生渗透压向上推动水分），毛细作用（水分子附着在木质部壁上并相互粘附，形成连续的水柱），蒸腾拉力（叶片气孔的水分蒸发产生负压，从根部向上拉水）。这种内聚力-张力理论解释了像巴塞尔梧桐树这样的高大树木如何将水分运输到30米以上的高度。蒸腾速率受温度、湿度、风和光照强度的影响。理解水分运输对管理巴塞尔的城市森林、预测瑞士农业中的干旱胁迫以及开发适应气候变化的抗旱作物至关重要。",
@@ -708,6 +718,9 @@ export const cnBiology = {
             animal_classification: "动物分类",
             adaptations: "适应性",
             behavior_evolution: "行为与进化"
+        },
+        placeholders: {
+            type_answer: "type answer",
         },
         scenarios: {
             basel_zoo: "巴塞尔动物园生物多样性之旅：你是巴塞尔动物园（Zolli）的学生导游，正在准备关于动物分类的教育之旅。动物园拥有来自所有主要动物群的600多种物种。你的任务是为游客创建分类指南。今天你专注于非洲草原展区，包括狮子（Panthera leo）、斑马（Equus quagga）和鸵鸟（Struthio camelus）。你需要解释这些动物尽管生活在同一栖息地，但如何被分类到不同的群体。动物园的教育计划强调理解分类是基于进化关系和共同特征，而不仅仅是动物生活的地方。这有助于游客欣赏生物多样性和保护工作的重要性。你的任务：将每种动物分类到正确的纲（哺乳纲、鸟纲或爬行纲）并解释定义每个群体的关键特征。这些知识帮助动物园游客理解为什么保护策略必须根据每个物种基于其分类的独特生物需求来考虑。",
@@ -1237,8 +1250,46 @@ export const cnBiology = {
         placeholders: {
             gradient: "梯度",
             pressure: "压力",
-            rate: "速率"
-        }
+            rate: "速率",
+        
+            stomach: "stomach",
+            digestion: "digestion",
+            absorption: "absorption",
+            bile: "bile",
+            pancreas: "pancreas",
+            acid: "acid",
+            dehydration: "dehydration",
+            peristalsis: "peristalsis",
+            surface_area: "surface area",
+            more_time: "more time",
+            infection: "infection",
+            metabolism: "metabolism",
+            intestines: "intestines",
+            lactase: "lactase",
+            malabsorption: "malabsorption",
+            mechanical: "mechanical",
+            pump: "pump",
+            return: "return",
+            pulmonary: "pulmonary",
+            body: "body",
+            exchange: "exchange",
+            heart_rate: "heart rate",
+            elastic: "elastic",
+            varicose: "varicose",
+            sa: "SA",
+            heart_attack: "heart attack",
+            stretch: "stretch",
+            hypertrophy: "hypertrophy",
+            alveoli: "alveoli",
+            breathing: "breathing",
+            larynx: "larynx",
+            support: "support",
+            tree: "tree",
+            diffusion: "diffusion",
+            vibration: "vibration",
+            collapse: "collapse",
+            airflow: "airflow",
+            rbc: "RBC",}
     },
     sb3_01: {
         back: "返回枢纽",

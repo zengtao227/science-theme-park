@@ -130,7 +130,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a1"),
                         expressionLatex: t("sp3_06.expressions.sw_a1"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: t("sp3_06.placeholders.higher"), expected: "higher" }],
                         correctLatex: t("sp3_06.corrects.sw_a1"),
                         hintLatex: [t("sp3_06.hints.sw_a1")]
                     },
@@ -139,7 +139,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a2"),
                         expressionLatex: t("sp3_06.expressions.sw_a2"),
                         targetLatex: t("sp3_06.labels.label_type"),
-                        slots: [{ id: "type", labelLatex: t("sp3_06.labels.label_type"), placeholder: "destructive", expected: "destructive" }],
+                        slots: [{ id: "type", labelLatex: t("sp3_06.labels.label_type"), placeholder: t("sp3_06.placeholders.destructive"), expected: "destructive" }],
                         correctLatex: t("sp3_06.corrects.sw_a2"),
                         hintLatex: [t("sp3_06.hints.sw_a2")]
                     },
@@ -148,7 +148,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a3"),
                         expressionLatex: t("sp3_06.expressions.sw_a3"),
                         targetLatex: t("sp3_06.targets.phenomenon"),
-                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "refraction", expected: "refraction" }],
+                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: t("sp3_06.placeholders.refraction"), expected: "refraction" }],
                         correctLatex: t("sp3_06.corrects.sw_a3"),
                         hintLatex: [t("sp3_06.hints.sw_a3")]
                     },
@@ -157,7 +157,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_a4"),
                         expressionLatex: t("sp3_06.expressions.sw_a4"),
                         targetLatex: t("sp3_06.targets.phenomenon"),
-                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "diffraction", expected: "diffraction" }],
+                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: t("sp3_06.placeholders.diffraction"), expected: "diffraction" }],
                         correctLatex: t("sp3_06.corrects.sw_a4"),
                         hintLatex: [t("sp3_06.hints.sw_a4")]
                     },
@@ -206,7 +206,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e4"),
                         expressionLatex: t("sp3_06.expressions.sw_e4"),
                         targetLatex: t("sp3_06.targets.phenomenon"),
-                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: "sonic boom", expected: "sonic boom" }],
+                        slots: [{ id: "phenom", labelLatex: t("sp3_06.labels.label_name"), placeholder: t("sp3_06.placeholders.sonic_boom"), expected: "sonic boom" }],
                         correctLatex: t("sp3_06.corrects.sw_e4"),
                         hintLatex: [t("sp3_06.hints.sw_e4")]
                     },
@@ -215,7 +215,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.sound_waves_e5"),
                         expressionLatex: t("sp3_06.expressions.sw_e5"),
                         targetLatex: t("sp3_06.labels.label_reason"),
-                        slots: [{ id: "reason", labelLatex: t("sp3_06.labels.label_reason"), placeholder: "impedance", expected: "impedance" }],
+                        slots: [{ id: "reason", labelLatex: t("sp3_06.labels.label_reason"), placeholder: t("sp3_06.placeholders.impedance"), expected: "impedance" }],
                         correctLatex: t("sp3_06.corrects.sw_e5"),
                         hintLatex: [t("sp3_06.hints.sw_e5")]
                     }
@@ -240,7 +240,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_b2"),
                         expressionLatex: t("sp3_06.expressions.fp_b2"),
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: "higher", expected: "higher" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_hl"), placeholder: t("sp3_06.placeholders.higher"), expected: "higher" }],
                         correctLatex: t("sp3_06.corrects.fp_b2"),
                         hintLatex: [t("sp3_06.hints.fp_b2")]
                     },
@@ -338,7 +338,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a2"),
                         expressionLatex: t("sp3_06.expressions.fp_a2"),
                         targetLatex: t("sp3_06.labels.label_property"),
-                        slots: [{ id: "prop", labelLatex: t("sp3_06.labels.label_property"), placeholder: "timbre", expected: "timbre" }],
+                        slots: [{ id: "prop", labelLatex: t("sp3_06.labels.label_property"), placeholder: t("sp3_06.placeholders.timbre"), expected: "timbre" }],
                         correctLatex: t("sp3_06.corrects.fp_a2"),
                         hintLatex: [t("sp3_06.hints.fp_a2")]
                     },
@@ -347,7 +347,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_a3"),
                         expressionLatex: `\\text{MHz} = 10^6 \\text{ Hz} >> 20{,}000 \\text{ Hz}`,
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_above_below"), placeholder: "above", expected: "above" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_above_below"), placeholder: t("sp3_06.placeholders.above"), expected: "above" }],
                         correctLatex: t("sp3_06.corrects.fp_a3"),
                         hintLatex: [`2 \\text{ MHz} = 2{,}000{,}000 \\text{ Hz}`]
                     },
@@ -387,7 +387,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e2"),
                         expressionLatex: `\\frac{3}{2} = 1.5, \\quad 2^{7/12} \\approx 1.498`,
                         targetLatex: t("sp3_06.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_just_equal"), placeholder: "just", expected: "just" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_06.labels.label_just_equal"), placeholder: t("sp3_06.placeholders.just"), expected: "just" }],
                         correctLatex: t("sp3_06.corrects.fp_e2"),
                         hintLatex: [`1.5 > 1.498`]
                     },
@@ -396,7 +396,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e3"),
                         expressionLatex: t("sp3_06.expressions.fp_e3"),
                         targetLatex: t("sp3_06.labels.label_term"),
-                        slots: [{ id: "term", labelLatex: t("sp3_06.labels.label_term"), placeholder: "formants", expected: "formants" }],
+                        slots: [{ id: "term", labelLatex: t("sp3_06.labels.label_term"), placeholder: t("sp3_06.placeholders.formants"), expected: "formants" }],
                         correctLatex: t("sp3_06.corrects.fp_e3"),
                         hintLatex: [t("sp3_06.hints.fp_e3")]
                     },
@@ -414,7 +414,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.frequency_pitch_e5"),
                         expressionLatex: t("sp3_06.expressions.fp_e5"),
                         targetLatex: t("sp3_06.labels.label_effect"),
-                        slots: [{ id: "effect", labelLatex: t("sp3_06.labels.label_effect"), placeholder: "masking", expected: "masking" }],
+                        slots: [{ id: "effect", labelLatex: t("sp3_06.labels.label_effect"), placeholder: t("sp3_06.placeholders.masking"), expected: "masking" }],
                         correctLatex: t("sp3_06.corrects.fp_e5"),
                         hintLatex: [t("sp3_06.hints.fp_e5")]
                     }
@@ -577,7 +577,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e1"),
                         expressionLatex: t("sp3_06.expressions.li_e1"),
                         targetLatex: t("sp3_06.labels.label_unit"),
-                        slots: [{ id: "unit", labelLatex: t("sp3_06.labels.label_unit"), placeholder: "phon", expected: "phon" }],
+                        slots: [{ id: "unit", labelLatex: t("sp3_06.labels.label_unit"), placeholder: t("sp3_06.placeholders.phon"), expected: "phon" }],
                         correctLatex: t("sp3_06.corrects.li_e1"),
                         hintLatex: [t("sp3_06.hints.li_e1")]
                     },
@@ -595,7 +595,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e3"),
                         expressionLatex: t("sp3_06.expressions.li_e3"),
                         targetLatex: t("sp3_06.labels.label_symbol"),
-                        slots: [{ id: "symbol", labelLatex: t("sp3_06.labels.label_symbol"), placeholder: "dBA", expected: "dBA" }],
+                        slots: [{ id: "symbol", labelLatex: t("sp3_06.labels.label_symbol"), placeholder: t("sp3_06.placeholders.dba"), expected: "dBA" }],
                         correctLatex: t("sp3_06.corrects.li_e3"),
                         hintLatex: [t("sp3_06.hints.li_e3")]
                     },
@@ -613,7 +613,7 @@ export default function SP306Page() {
                         promptLatex: t("sp3_06.prompts.loudness_intensity_e5"),
                         expressionLatex: t("sp3_06.expressions.li_e5"),
                         targetLatex: t("sp3_06.labels.label_application"),
-                        slots: [{ id: "app", labelLatex: t("sp3_06.labels.label_application"), placeholder: "noise", expected: "noise" }],
+                        slots: [{ id: "app", labelLatex: t("sp3_06.labels.label_application"), placeholder: t("sp3_06.placeholders.noise"), expected: "noise" }],
                         correctLatex: t("sp3_06.corrects.li_e5"),
                         hintLatex: [t("sp3_06.hints.li_e5")]
                     }

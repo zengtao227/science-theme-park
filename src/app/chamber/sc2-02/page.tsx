@@ -133,7 +133,7 @@ function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): Titrat
                 promptLatex: q.prompt,
                 expressionLatex: `V_a C_a = V_b C_b,\\; C_a=${q.acidConc}\\text{M},\\; C_b=${q.baseConc}\\text{M}`,
                 targetLatex: "V_b\\\\text{ (mL)}",
-                slots: [{ id: "ans", labelLatex: "Volume (mL)", placeholder: "mL", expected: q.expected }],
+                slots: [{ id: "ans", labelLatex: "Volume (mL)", placeholder: tObj.placeholders?.ml || "mL", expected: q.expected }],
                 correctLatex: `${q.expected}\\text{ mL}`,
                 simConfig: {
                     acidType: "strong",
@@ -218,6 +218,9 @@ export default function SC202Page() {
         next: t("sc2_02.next"),
         correct: t("sc2_02.correct"),
         incorrect: t("sc2_02.incorrect"),
+        placeholders: {
+            ml: t("sc2_02.placeholders.ml"),
+        },
         ready: t("sc2_02.ready"),
         stages: {
             curves: t("sc2_02.stages.curves"),

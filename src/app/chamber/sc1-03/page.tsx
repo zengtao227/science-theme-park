@@ -105,7 +105,7 @@ export default function SC1_03_AtomsForge() {
                     promptLatex: t("sc1_03.prompts.elements_symbol_from_z"),
                     expressionLatex: "Z=19",
                     targetLatex: "X",
-                    slots: [{ id: "sym", labelLatex: "X", placeholder: "K", expected: "K" }],
+                    slots: [{ id: "sym", labelLatex: "X", placeholder: t("sc1_03.placeholders.k"), expected: "K" }],
                     correctLatex: "X=K",
                 }],
                 ELITE: [{

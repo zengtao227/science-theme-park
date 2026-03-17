@@ -33,7 +33,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_b1"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
                         targetLatex: `\\text{${t("sb2_02.organs.stomach")}}`,
-                        slots: [{ id: "organ", labelLatex: `\\text{${t("sb2_02.labels.organ")}}`, placeholder: "stomach", expected: "stomach" }],
+                        slots: [{ id: "organ", labelLatex: `\\text{${t("sb2_02.labels.organ")}}`, placeholder: t("sb2_02.placeholders.stomach"), expected: "stomach" }],
                         correctLatex: `\\text{${t("sb2_02.organs.stomach")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_b1")]
                     },
@@ -42,7 +42,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_b2"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.digestion")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "digestion", expected: "digestion" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.digestion"), expected: "digestion" }],
                         correctLatex: `\\text{${t("sb2_02.functions.digestion")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_b2")]
                     },
@@ -51,7 +51,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_b3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.small_intestine")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.absorption")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "absorption", expected: "absorption" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.absorption"), expected: "absorption" }],
                         correctLatex: `\\text{${t("sb2_02.functions.absorption")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_b3")]
                     },
@@ -60,7 +60,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_b4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.liver")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.bile_production")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "bile", expected: "bile" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.bile"), expected: "bile" }],
                         correctLatex: `\\text{${t("sb2_02.functions.bile_production")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_b4")]
                     },
@@ -82,7 +82,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_c1"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
                         targetLatex: `\\text{${t("sb2_02.organs.pancreas")}}`,
-                        slots: [{ id: "organ", labelLatex: `\\text{${t("sb2_02.labels.organ")}}`, placeholder: "pancreas", expected: t("sb2_02.organs.pancreas") }],
+                        slots: [{ id: "organ", labelLatex: `\\text{${t("sb2_02.labels.organ")}}`, placeholder: t("sb2_02.placeholders.pancreas"), expected: t("sb2_02.organs.pancreas") }],
                         correctLatex: `\\text{${t("sb2_02.organs.pancreas")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c1")]
                     },
@@ -91,7 +91,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_c2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.stomach")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.acid_production")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "acid", expected: t("sb2_02.labels.acid_production") || "acid" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.acid"), expected: t("sb2_02.labels.acid_production") || "acid" }],
                         correctLatex: `\\text{${t("sb2_02.functions.acid_production")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c2")]
                     },
@@ -100,7 +100,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_c3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.small_intestine")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.absorption")}}`,
-                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: "absorption", expected: t("sb2_02.functions.absorption") }],
+                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: t("sb2_02.placeholders.absorption"), expected: t("sb2_02.functions.absorption") }],
                         correctLatex: `\\text{${t("sb2_02.functions.absorption")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c3")]
                     },
@@ -109,7 +109,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_c4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.large_intestine")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.dehydration")}}`,
-                        slots: [{ id: "result", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: "dehydration", expected: t("sb2_02.labels.dehydration") }],
+                        slots: [{ id: "result", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: t("sb2_02.placeholders.dehydration"), expected: t("sb2_02.labels.dehydration") }],
                         correctLatex: `\\text{${t("sb2_02.labels.dehydration")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c4")]
                     },
@@ -118,7 +118,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_c5"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.peristalsis")}}`,
-                        slots: [{ id: "process", labelLatex: `\\text{${t("sb2_02.labels.process")}}`, placeholder: "peristalsis", expected: t("sb2_02.labels.peristalsis") }],
+                        slots: [{ id: "process", labelLatex: `\\text{${t("sb2_02.labels.process")}}`, placeholder: t("sb2_02.placeholders.peristalsis"), expected: t("sb2_02.labels.peristalsis") }],
                         correctLatex: `\\text{${t("sb2_02.labels.peristalsis")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c5")]
                     }
@@ -140,7 +140,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_a2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.liver")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.surface_area")}}`,
-                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: "surface area", expected: t("sb2_02.labels.surface_area") }],
+                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: t("sb2_02.placeholders.surface_area"), expected: t("sb2_02.labels.surface_area") }],
                         correctLatex: `\\text{${t("sb2_02.labels.surface_area")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_a2")]
                     },
@@ -149,7 +149,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_a3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.small_intestine")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.efficiency")}}`,
-                        slots: [{ id: "effect", labelLatex: `\\text{${t("sb2_02.labels.effect")}}`, placeholder: "more time", expected: "more time" }],
+                        slots: [{ id: "effect", labelLatex: `\\text{${t("sb2_02.labels.effect")}}`, placeholder: t("sb2_02.placeholders.more_time"), expected: "more time" }],
                         correctLatex: `\\text{${t("sb2_02.answers.more_time_absorption")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_a3")]
                     },
@@ -158,7 +158,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_a4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.stomach")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.infection_risk")}}`,
-                        slots: [{ id: "risk", labelLatex: `\\text{${t("sb2_02.labels.risk")}}`, placeholder: "infection", expected: "infection" }],
+                        slots: [{ id: "risk", labelLatex: `\\text{${t("sb2_02.labels.risk")}}`, placeholder: t("sb2_02.placeholders.infection"), expected: "infection" }],
                         correctLatex: `\\text{${t("sb2_02.answers.bacterial_infection")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_a4")]
                     },
@@ -167,7 +167,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_a5"),
                         expressionLatex: `\\text{${t("sb2_02.organs.liver")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.metabolism")}}`,
-                        slots: [{ id: "process", labelLatex: `\\text{${t("sb2_02.labels.process")}}`, placeholder: "metabolism", expected: "metabolism" }],
+                        slots: [{ id: "process", labelLatex: `\\text{${t("sb2_02.labels.process")}}`, placeholder: t("sb2_02.placeholders.metabolism"), expected: "metabolism" }],
                         correctLatex: `\\text{${t("sb2_02.answers.metabolism")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_a5")]
                     }
@@ -180,7 +180,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_e1"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.crohns")}}`,
                         targetLatex: `\\text{${t("sb2_02.organs.intestines")}}`,
-                        slots: [{ id: "organs", labelLatex: `\\text{${t("sb2_02.labels.organs")}}`, placeholder: "intestines", expected: "intestines" }],
+                        slots: [{ id: "organs", labelLatex: `\\text{${t("sb2_02.labels.organs")}}`, placeholder: t("sb2_02.placeholders.intestines"), expected: "intestines" }],
                         correctLatex: `\\text{${t("sb2_02.organs.intestines")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_e1")]
                     },
@@ -189,7 +189,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_e2"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.lactose_intolerance")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.lactase")}}`,
-                        slots: [{ id: "enzyme", labelLatex: `\\text{${t("sb2_02.labels.enzyme")}}`, placeholder: "lactase", expected: "lactase" }],
+                        slots: [{ id: "enzyme", labelLatex: `\\text{${t("sb2_02.labels.enzyme")}}`, placeholder: t("sb2_02.placeholders.lactase"), expected: "lactase" }],
                         correctLatex: `\\text{${t("sb2_02.answers.lactase")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_e2")]
                     },
@@ -207,7 +207,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_e4"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.celiac")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.malabsorption")}}`,
-                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: "malabsorption", expected: "malabsorption" }],
+                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: t("sb2_02.placeholders.malabsorption"), expected: "malabsorption" }],
                         correctLatex: `\\text{${t("sb2_02.answers.malabsorption")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_e4")]
                     },
@@ -216,7 +216,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_e5"),
                         expressionLatex: `\\text{${t("sb2_02.systems.digestive")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.comparison")}}`,
-                        slots: [{ id: "comparison", labelLatex: `\\text{${t("sb2_02.labels.type")}}`, placeholder: "mechanical", expected: "mechanical" }],
+                        slots: [{ id: "comparison", labelLatex: `\\text{${t("sb2_02.labels.type")}}`, placeholder: t("sb2_02.placeholders.mechanical"), expected: "mechanical" }],
                         correctLatex: `\\text{${t("sb2_02.answers.mechanical_chemical")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_e5")]
                     }
@@ -232,7 +232,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_b1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.pump_blood")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "pump", expected: "pump" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.pump"), expected: "pump" }],
                         correctLatex: `\\text{${t("sb2_02.functions.pump_blood")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_b1")]
                     },
@@ -241,7 +241,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_b2"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.blood_vessels")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.return_blood")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "return", expected: "return" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.return"), expected: "return" }],
                         correctLatex: `\\text{${t("sb2_02.functions.return_blood")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_b2")]
                     },
@@ -281,7 +281,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_c1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.pulmonary")}}`,
-                        slots: [{ id: "circulation", labelLatex: `\\text{${t("sb2_02.labels.type")}}`, placeholder: "pulmonary", expected: "pulmonary" }],
+                        slots: [{ id: "circulation", labelLatex: `\\text{${t("sb2_02.labels.type")}}`, placeholder: t("sb2_02.placeholders.pulmonary"), expected: "pulmonary" }],
                         correctLatex: `\\text{${t("sb2_02.answers.pulmonary_circulation")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c1")]
                     },
@@ -290,7 +290,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_c2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.reason")}}`,
-                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: "body", expected: t("sb2_02.labels.body") }],
+                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: t("sb2_02.placeholders.body"), expected: t("sb2_02.labels.body") }],
                         correctLatex: `\\text{${t("sb2_02.labels.body")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c2")]
                     },
@@ -299,7 +299,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_c3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.capillaries")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.gas_exchange")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "exchange", expected: "exchange" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.exchange"), expected: "exchange" }],
                         correctLatex: `\\text{${t("sb2_02.functions.gas_exchange")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c3")]
                     },
@@ -317,7 +317,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_c5"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.heart_rate")}}`,
-                        slots: [{ id: "term", labelLatex: `\\text{${t("sb2_02.labels.term")}}`, placeholder: "heart rate", expected: "heart rate" }],
+                        slots: [{ id: "term", labelLatex: `\\text{${t("sb2_02.labels.term")}}`, placeholder: t("sb2_02.placeholders.heart_rate"), expected: "heart rate" }],
                         correctLatex: `\\text{${t("sb2_02.answers.heart_rate")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_c5")]
                     }
@@ -339,7 +339,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_a2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.arteries")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.elasticity")}}`,
-                        slots: [{ id: "property", labelLatex: `\\text{${t("sb2_02.labels.property")}}`, placeholder: "elastic", expected: "elastic" }],
+                        slots: [{ id: "property", labelLatex: `\\text{${t("sb2_02.labels.property")}}`, placeholder: t("sb2_02.placeholders.elastic"), expected: "elastic" }],
                         correctLatex: `\\text{${t("sb2_02.answers.elastic_walls")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_a2")]
                     },
@@ -348,7 +348,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_a3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.veins")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.varicose_veins")}}`,
-                        slots: [{ id: "condition", labelLatex: `\\text{${t("sb2_02.labels.condition")}}`, placeholder: "varicose", expected: "varicose" }],
+                        slots: [{ id: "condition", labelLatex: `\\text{${t("sb2_02.labels.condition")}}`, placeholder: t("sb2_02.placeholders.varicose"), expected: "varicose" }],
                         correctLatex: `\\text{${t("sb2_02.answers.varicose_veins")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_a3")]
                     },
@@ -366,7 +366,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_a5"),
                         expressionLatex: `\\text{${t("sb2_02.organs.heart")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.sa_node")}}`,
-                        slots: [{ id: "node", labelLatex: `\\text{${t("sb2_02.labels.node")}}`, placeholder: "SA", expected: "SA" }],
+                        slots: [{ id: "node", labelLatex: `\\text{${t("sb2_02.labels.node")}}`, placeholder: t("sb2_02.placeholders.sa"), expected: "SA" }],
                         correctLatex: `\\text{${t("sb2_02.answers.sa_node_full")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_a5")]
                     }
@@ -379,7 +379,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_e1"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.atherosclerosis")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.heart_attack")}}`,
-                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.risk")}}`, placeholder: "heart attack", expected: "heart attack" }],
+                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.risk")}}`, placeholder: t("sb2_02.placeholders.heart_attack"), expected: "heart attack" }],
                         correctLatex: `\\text{${t("sb2_02.answers.heart_attack_stroke")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_e1")]
                     },
@@ -388,7 +388,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_e2"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.frank_starling")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.stretch")}}`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.factor")}}`, placeholder: "stretch", expected: "stretch" }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.factor")}}`, placeholder: t("sb2_02.placeholders.stretch"), expected: "stretch" }],
                         correctLatex: `\\text{${t("sb2_02.answers.increased_stretch")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_e2")]
                     },
@@ -406,7 +406,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.circulatory_e4"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.heart_failure")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.compensation")}}`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.response")}}`, placeholder: "hypertrophy", expected: "hypertrophy" }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.response")}}`, placeholder: t("sb2_02.placeholders.hypertrophy"), expected: "hypertrophy" }],
                         correctLatex: `\\text{${t("sb2_02.answers.cardiac_hypertrophy")}}`,
                         hintLatex: [t("sb2_02.hints.circulatory_e4")]
                     },
@@ -431,7 +431,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_b1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.lungs")}}`,
                         targetLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
-                        slots: [{ id: "struct", labelLatex: `\\text{${t("sb2_02.labels.structure")}}`, placeholder: "alveoli", expected: "alveoli" }],
+                        slots: [{ id: "struct", labelLatex: `\\text{${t("sb2_02.labels.structure")}}`, placeholder: t("sb2_02.placeholders.alveoli"), expected: "alveoli" }],
                         correctLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_b1")]
                     },
@@ -458,7 +458,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_b4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.diaphragm")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.breathing")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: "breathing", expected: "breathing" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.breathing"), expected: "breathing" }],
                         correctLatex: `\\text{${t("sb2_02.functions.breathing")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_b4")]
                     },
@@ -467,7 +467,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_b5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.respiratory_pathway")}}`,
                         targetLatex: `\\text{${t("sb2_02.organs.larynx")}}`,
-                        slots: [{ id: "organ", labelLatex: `\\text{${t("sb2_02.labels.organ")}}`, placeholder: "larynx", expected: "larynx" }],
+                        slots: [{ id: "organ", labelLatex: `\\text{${t("sb2_02.labels.organ")}}`, placeholder: t("sb2_02.placeholders.larynx"), expected: "larynx" }],
                         correctLatex: `\\text{${t("sb2_02.organs.larynx")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_b5")]
                     }
@@ -480,7 +480,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_c1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.trachea")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.support")}}`,
-                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: "support", expected: t("sb2_02.labels.support") }],
+                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: t("sb2_02.placeholders.support"), expected: t("sb2_02.labels.support") }],
                         correctLatex: `\\text{${t("sb2_02.labels.support")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c1")]
                     },
@@ -489,7 +489,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_c2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.bronchi")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.tree")}}`,
-                        slots: [{ id: "structure", labelLatex: `\\text{${t("sb2_02.labels.structure")}}`, placeholder: "tree", expected: t("sb2_02.labels.tree") }],
+                        slots: [{ id: "structure", labelLatex: `\\text{${t("sb2_02.labels.structure")}}`, placeholder: t("sb2_02.placeholders.tree"), expected: t("sb2_02.labels.tree") }],
                         correctLatex: `\\text{${t("sb2_02.labels.tree")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c2")]
                     },
@@ -498,7 +498,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_c3"),
                         expressionLatex: `\\text{${t("sb2_02.organs.alveoli")}}`,
                         targetLatex: `\\text{${t("sb2_02.labels.diffusion")}}`,
-                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: "diffusion", expected: t("sb2_02.labels.diffusion") }],
+                        slots: [{ id: "reason", labelLatex: `\\text{${t("sb2_02.labels.reason")}}`, placeholder: t("sb2_02.placeholders.diffusion"), expected: t("sb2_02.labels.diffusion") }],
                         correctLatex: `\\text{${t("sb2_02.labels.diffusion")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_c3")]
                     },
@@ -556,7 +556,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_a4"),
                         expressionLatex: `\\text{${t("sb2_02.organs.larynx")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.vibration")}}`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: "vibration", expected: "vibration" }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.mechanism")}}`, placeholder: t("sb2_02.placeholders.vibration"), expected: "vibration" }],
                         correctLatex: `\\text{${t("sb2_02.answers.vocal_cord_vibration")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_a4")]
                     },
@@ -565,7 +565,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_a5"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.surfactant")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.collapse")}}`,
-                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: "collapse", expected: "collapse" }],
+                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: t("sb2_02.placeholders.collapse"), expected: "collapse" }],
                         correctLatex: `\\text{${t("sb2_02.answers.alveolar_collapse")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_a5")]
                     }
@@ -578,7 +578,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_e1"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.asthma")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.reduced_airflow")}}`,
-                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: "airflow", expected: "airflow" }],
+                        slots: [{ id: "consequence", labelLatex: `\\text{${t("sb2_02.labels.result")}}`, placeholder: t("sb2_02.placeholders.airflow"), expected: "airflow" }],
                         correctLatex: `\\text{${t("sb2_02.answers.reduced_airflow_hypoxia")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_e1")]
                     },
@@ -587,7 +587,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_e2"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.copd")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.compensation")}}`,
-                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.response")}}`, placeholder: "breathing", expected: "breathing" }],
+                        slots: [{ id: "mechanism", labelLatex: `\\text{${t("sb2_02.labels.response")}}`, placeholder: t("sb2_02.placeholders.breathing"), expected: "breathing" }],
                         correctLatex: `\\text{${t("sb2_02.answers.increased_breathing_rate")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_e2")]
                     },
@@ -605,7 +605,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.respiratory_e4"),
                         expressionLatex: `\\text{${t("sb2_02.expressions.high_altitude")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.adaptation")}}`,
-                        slots: [{ id: "adaptation", labelLatex: `\\text{${t("sb2_02.labels.response")}}`, placeholder: "RBC", expected: "RBC" }],
+                        slots: [{ id: "adaptation", labelLatex: `\\text{${t("sb2_02.labels.response")}}`, placeholder: t("sb2_02.placeholders.rbc"), expected: "RBC" }],
                         correctLatex: `\\text{${t("sb2_02.answers.increased_rbc")}}`,
                         hintLatex: [t("sb2_02.hints.respiratory_e4")]
                     },

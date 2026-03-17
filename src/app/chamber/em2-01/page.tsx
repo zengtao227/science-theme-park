@@ -48,7 +48,7 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
       slots = [{
         id: "det",
         labelLatex: "det(A)",
-        placeholder: "det",
+        placeholder: t("em2_01.placeholders.det"),
         expected: answer as number,
       }];
     } else if (type === "calculate_matrix") {

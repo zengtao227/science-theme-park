@@ -538,6 +538,9 @@ export const deChemistry = {
             elements_desc: "Erkunden Sie die ersten 20 Elemente des Periodensystems",
             isotopes_desc: "Studieren Sie Isotope: gleiche Protonenzahl, unterschiedliche Neutronenzahl"
         },
+        placeholders: {
+            k: "K",
+        },
         prompts: {
             build_mass_number: "A",
             build_charge: "q",
@@ -896,6 +899,9 @@ export const deChemistry = {
             ph_range: "pH-Bereich",
             case_study_label: "Regionale Fallstudie // Basel-Knoten"
         },
+        placeholders: {
+            ml: "mL",
+        },
         prompts: {
             curve_type: "Der pH-Wert ist {ph}. Säuretyp? (Stark=1, Schwach=2).",
             find_eq: "Va=50mL, Ca=0.1M, Cb=0.2M. Finde Vb am Äquivalenzpunkt.",
@@ -1125,7 +1131,8 @@ export const deChemistry = {
         placeholders: {
             question_mark: "?",
             name: "Name",
-        },
+        
+            cxhyoz: "CxHyOz",},
         hints: {
             carbon_is_black: "\\text{Kohlenstoff ist schwarz.}",
             hydrogen_is_white: "\\text{Wasserstoff ist weiß.}",
@@ -1218,6 +1225,9 @@ export const deChemistry = {
             input_terminal: "Eingabeterminal",
             view_3d: "3D-Ansicht",
             organic_mastery: "Organische Meisterschaft"
+        },
+        placeholders: {
+            cxhy: "CxHy",
         },
         prompts: {
             name_formula: "Was ist die Summenformel für {name}?",
@@ -1626,6 +1636,12 @@ export const deChemistry = {
             electron_transfer: "ELEKTRONENTRANSFER",
             electrochemistry: "ELEKTROCHEMIE"
         },
+        placeholders: {
+            formula: "Formula",
+            n: "n",
+            v: "V",
+            g: "g",
+        },
         scenarios: {
             oxidation_state: "Novartis Arzneimittelsynthese Oxidationskontrolle: Sie sind synthetischer Chemiker bei Novartis Basel und arbeiten an einer komplexen pharmazeutischen Synthese. Der Wirkstoff erfordert eine präzise Oxidationsstufenkontrolle eines Übergangsmetallkatalysators. In Ihrer aktuellen Reaktion wechselt Mangan zwischen +4 und +7 Oxidationsstufen, um die C-H-Bindungsaktivierung zu erleichtern. Sie müssen Oxidationsstufenänderungen durch jeden Schritt verfolgen, um unerwünschte Nebenreaktionen zu verhindern. Mit spektroskopischer Analyse überwachen Sie die violette Farbe von Permanganat (Mn^7^+), die sich in braunes Mangandioxid (Mn^{4}^+) umwandelt. Eine einzige Elektronenfehlberechnung könnte zu toxischen Nebenprodukten führen und die gesamte Charge unbrauchbar machen. Diese Oxidationsstufenverfolgung ist entscheidend für die Herstellung sicherer, wirksamer Medikamente für Patienten in der ganzen Schweiz. Das Verständnis von Oxidationsstufen ist wie das Verfolgen von Bankkontoguthaben – Sie müssen genau wissen, wie viele Elektronen jedes Atom gewonnen oder verloren hat.",
             electron_transfer: "Roche Batterietechnologieentwicklung: Sie sind Materialwissenschaftler in der Energieforschungsabteilung von Roche in Basel und entwickeln Lithium-Ionen-Batterien der nächsten Generation für medizinische Geräte. Das Kathodenmaterial der Batterie (LiCoO_2) durchläuft während der Lade- und Entladezyklen reversiblen Elektronentransfer. Kobalt wechselt zwischen +3 und +4 Oxidationsstufen, während Lithiumionen ein- und ausströmen. Sie müssen die Redoxgleichungen ausgleichen, um Energiedichte und Zykluslebensdauer zu optimieren. Jede Batteriezelle muss genau 3,7 V für über 500 Ladezyklen liefern, um tragbare Insulinpumpen und Herzmonitore zuverlässig mit Strom zu versorgen. Die Effizienz des Elektronentransfers wirkt sich direkt auf die Patientensicherheit aus – eine ausfallende Batterie in einem kritischen medizinischen Gerät könnte lebensbedrohlich sein. Dies ähnelt einer wiederaufladbaren Telefonbatterie, jedoch mit medizinischer Präzision und Zuverlässigkeitsanforderungen.",
@@ -2019,7 +2035,7 @@ export const deChemistry = {
         placeholders: {
             material: "Eingeben",
             percent: "%",
-            stage: "Name"
+            stage: "Name",
         },
         prompts: {
             sc1_07_q1: "Identifizieren Sie diesen recycelbaren Kunststoff (Abkürzung).",

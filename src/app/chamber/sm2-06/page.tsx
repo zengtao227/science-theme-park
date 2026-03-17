@@ -717,8 +717,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 6.67, y: 3.33 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.apples")}}`, placeholder: "apples", expected: 6.67 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.oranges")}}`, placeholder: "oranges", expected: 3.33 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.apples")}}`, placeholder: t("sm2_06.placeholders.apples"), expected: 6.67 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.oranges")}}`, placeholder: t("sm2_06.placeholders.oranges"), expected: 3.33 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.apples")}}=6.67, \\text{${t("sm2_06.mission.oranges")}}=3.33`,
         },
@@ -733,8 +733,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 10, y: 5 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.adult")}}`, placeholder: "adult", expected: 10 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.child")}}`, placeholder: "child", expected: 5 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.adult")}}`, placeholder: t("sm2_06.placeholders.adult"), expected: 10 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.child")}}`, placeholder: t("sm2_06.placeholders.child"), expected: 5 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.adult")}}=10, \\text{${t("sm2_06.mission.child")}}=5`,
         },
@@ -749,8 +749,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 15, y: 5 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.pens")}}`, placeholder: "pens", expected: 15 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.pencils")}}`, placeholder: "pencils", expected: 5 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.pens")}}`, placeholder: t("sm2_06.placeholders.pens"), expected: 15 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.pencils")}}`, placeholder: t("sm2_06.placeholders.pencils"), expected: 5 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.pens")}}=15, \\text{${t("sm2_06.mission.pencils")}}=5`,
         },
@@ -765,8 +765,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 9, y: 3 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.dogs")}}`, placeholder: "dogs", expected: 9 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.cats")}}`, placeholder: "cats", expected: 3 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.dogs")}}`, placeholder: t("sm2_06.placeholders.dogs"), expected: 9 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.cats")}}`, placeholder: t("sm2_06.placeholders.cats"), expected: 3 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.dogs")}}=9, \\text{${t("sm2_06.mission.cats")}}=3`,
         },
@@ -781,8 +781,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 12, y: 6 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.large")}}`, placeholder: "large", expected: 12 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.small")}}`, placeholder: "small", expected: 6 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.large")}}`, placeholder: t("sm2_06.placeholders.large"), expected: 12 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.small")}}`, placeholder: t("sm2_06.placeholders.small"), expected: 6 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.large")}}=12, \\text{${t("sm2_06.mission.small")}}=6`,
         },
@@ -802,8 +802,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 4, y: 5 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.coffee")}}`, placeholder: "coffee", expected: 4 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.tea")}}`, placeholder: "tea", expected: 5 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.coffee")}}`, placeholder: t("sm2_06.placeholders.coffee"), expected: 4 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.tea")}}`, placeholder: t("sm2_06.placeholders.tea"), expected: 5 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.coffee")}}=4, \\text{${t("sm2_06.mission.tea")}}=5`,
         },
@@ -818,8 +818,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 6, y: 4 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.hours")}}`, placeholder: "hours", expected: 6 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.days")}}`, placeholder: "days", expected: 4 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.hours")}}`, placeholder: t("sm2_06.placeholders.hours"), expected: 6 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.days")}}`, placeholder: t("sm2_06.placeholders.days"), expected: 4 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.hours")}}=6, \\text{${t("sm2_06.mission.days")}}=4`,
         },
@@ -834,8 +834,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 4, y: 6 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.books")}}`, placeholder: "books", expected: 4 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.magazines")}}`, placeholder: "magazines", expected: 6 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.books")}}`, placeholder: t("sm2_06.placeholders.books"), expected: 4 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.magazines")}}`, placeholder: t("sm2_06.placeholders.magazines"), expected: 6 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.books")}}=4, \\text{${t("sm2_06.mission.magazines")}}=6`,
         },
@@ -850,8 +850,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 5, y: 3 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.chairs")}}`, placeholder: "chairs", expected: 5 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.tables")}}`, placeholder: "tables", expected: 3 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.chairs")}}`, placeholder: t("sm2_06.placeholders.chairs"), expected: 5 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.tables")}}`, placeholder: t("sm2_06.placeholders.tables"), expected: 3 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.chairs")}}=5, \\text{${t("sm2_06.mission.tables")}}=3`,
         },
@@ -866,8 +866,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 5, y: 4 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.red")}}`, placeholder: "red", expected: 5 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.blue")}}`, placeholder: "blue", expected: 4 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.red")}}`, placeholder: t("sm2_06.placeholders.red"), expected: 5 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.blue")}}`, placeholder: t("sm2_06.placeholders.blue"), expected: 4 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.red")}}=5, \\text{${t("sm2_06.mission.blue")}}=4`,
         },
@@ -903,8 +903,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 5.5, y: 4 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.rate")}}_{A}`, placeholder: "rateA", expected: 5.5 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.rate")}}_{B}`, placeholder: "rateB", expected: 4 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.rate")}}_{A}`, placeholder: t("sm2_06.placeholders.ratea"), expected: 5.5 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.rate")}}_{B}`, placeholder: t("sm2_06.placeholders.rateb"), expected: 4 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.rate")}}_{A}=5.5, \\text{${t("sm2_06.mission.rate")}}_{B}=4`,
         },
@@ -935,8 +935,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
             intersect: { x: 5.33, y: 5.4 }
           },
           slots: [
-            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.cost")}}_{A}`, placeholder: "costA", expected: 5.33 },
-            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.cost")}}_{B}`, placeholder: "costB", expected: 5.4 }
+            { id: "x", labelLatex: `\\text{${t("sm2_06.mission.cost")}}_{A}`, placeholder: t("sm2_06.placeholders.costa"), expected: 5.33 },
+            { id: "y", labelLatex: `\\text{${t("sm2_06.mission.cost")}}_{B}`, placeholder: t("sm2_06.placeholders.costb"), expected: 5.4 }
           ],
           correctLatex: `\\text{${t("sm2_06.mission.cost")}}_{A}=5.33, \\text{${t("sm2_06.mission.cost")}}_{B}=5.4`,
         },
@@ -988,8 +988,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
           intersect: { x: 5.67, y: 5.54 }
         },
         slots: [
-          { id: "x", labelLatex: `\\text{${t("sm2_06.mission.param")}}_{A}`, placeholder: "paramA", expected: 5.67 },
-          { id: "y", labelLatex: `\\text{${t("sm2_06.mission.param")}}_{B}`, placeholder: "paramB", expected: 5.54 }
+          { id: "x", labelLatex: `\\text{${t("sm2_06.mission.param")}}_{A}`, placeholder: t("sm2_06.placeholders.parama"), expected: 5.67 },
+          { id: "y", labelLatex: `\\text{${t("sm2_06.mission.param")}}_{B}`, placeholder: t("sm2_06.placeholders.paramb"), expected: 5.54 }
         ],
         correctLatex: `\\text{${t("sm2_06.mission.param")}}_{A}=5.67, \\text{${t("sm2_06.mission.param")}}_{B}=5.54`,
       },
@@ -1004,8 +1004,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
           intersect: { x: 5.71, y: 5.64 }
         },
         slots: [
-          { id: "x", labelLatex: `\\text{${t("sm2_06.mission.factor")}}_{X}`, placeholder: "factorX", expected: 5.71 },
-          { id: "y", labelLatex: `\\text{${t("sm2_06.mission.factor")}}_{Y}`, placeholder: "factorY", expected: 5.64 }
+          { id: "x", labelLatex: `\\text{${t("sm2_06.mission.factor")}}_{X}`, placeholder: t("sm2_06.placeholders.factorx"), expected: 5.71 },
+          { id: "y", labelLatex: `\\text{${t("sm2_06.mission.factor")}}_{Y}`, placeholder: t("sm2_06.placeholders.factory"), expected: 5.64 }
         ],
         correctLatex: `\\text{${t("sm2_06.mission.factor")}}_{X}=5.71, \\text{${t("sm2_06.mission.factor")}}_{Y}=5.64`,
       },
@@ -1036,8 +1036,8 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
           intersect: { x: 5.86, y: 5.76 }
         },
         slots: [
-          { id: "x", labelLatex: `\\text{${t("sm2_06.mission.value")}}_{A}`, placeholder: "valueA", expected: 5.86 },
-          { id: "y", labelLatex: `\\text{${t("sm2_06.mission.value")}}_{B}`, placeholder: "valueB", expected: 5.76 }
+          { id: "x", labelLatex: `\\text{${t("sm2_06.mission.value")}}_{A}`, placeholder: t("sm2_06.placeholders.valuea"), expected: 5.86 },
+          { id: "y", labelLatex: `\\text{${t("sm2_06.mission.value")}}_{B}`, placeholder: t("sm2_06.placeholders.valueb"), expected: 5.76 }
         ],
         correctLatex: `\\text{${t("sm2_06.mission.value")}}_{A}=5.86, \\text{${t("sm2_06.mission.value")}}_{B}=5.76`,
       },

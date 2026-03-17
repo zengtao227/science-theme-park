@@ -74,7 +74,7 @@ export default function SB101MetabolicPage() {
                     promptLatex: t("sb1_01_metabolic.prompts.osmosis_prompt", { status: statusLabel, desc: s.desc }),
                     expressionLatex: `\\text{${s.desc}}`,
                     targetLatex: s.target,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.water_flow"), placeholder: "enter/leave/stable", expected: s.target }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.water_flow"), placeholder: t("sb1_01_metabolic.placeholders.enter_leave_stable"), expected: s.target }],
                     correctLatex: s.target,
                     hintLatex: [t(`sb1_01_metabolic.prompts.hint_${s.status === "hypertonic" ? "hyper" : s.status === "hypotonic" ? "hypo" : "iso"}`)]
                 });

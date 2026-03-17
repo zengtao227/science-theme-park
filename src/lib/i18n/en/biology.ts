@@ -23,6 +23,10 @@ export const enBiology = {
             evolution_display: "Evolution Display",
             input_terminal: "Input Terminal"
         },
+        placeholders: {
+            yes: "yes",
+            positive: "positive",
+        },
         prompts: {
             natural_selection: "In a population of {initial} finches, {survival} survive drought. Calculate fitness.",
             speciation: "After {generations} generations with mutation rate {rate}, calculate genetic divergence.",
@@ -504,6 +508,9 @@ export const enBiology = {
             invalid_desc: "Cellular stress detected. Correct metabolic flux.",
             next: "Next Equilibrium"
         },
+        placeholders: {
+            enter_leave_stable: "enter/leave/stable",
+        },
         prompts: {
             osmosis_prompt: "The cell is in a {status} environment ({desc}). What happens to the water?",
             respiration_prompt: "Complete the respiration reactant: C_6H_1_2O_6 + 6{reactant} → ...",
@@ -728,6 +735,9 @@ export const enBiology = {
             water_transport: "WATER TRANSPORT",
             nutrient_transport: "NUTRIENT TRANSPORT"
         },
+        placeholders: {
+            type_answer: "type answer",
+        },
         scenarios: {
             plant_structure: "Basel Botanical Garden - Plant Anatomy Research: You are a botanist at the University of Basel's Botanical Garden, one of Switzerland's oldest botanical gardens (founded 1589), studying plant structure and function. Plants have three main organ systems: roots (anchor the plant, absorb water and minerals from soil, store nutrients), stems (provide structural support, transport water and nutrients between roots and leaves, may store nutrients), and leaves (primary site of photosynthesis, gas exchange through stomata, transpiration). Each organ has specialized tissues: dermal tissue (epidermis with cuticle for protection, root hairs for absorption), vascular tissue (xylem transports water upward, phloem transports sugars bidirectionally), and ground tissue (parenchyma for storage and photosynthesis, collenchyma for flexible support, sclerenchyma for rigid support). Understanding plant structure is essential for Basel's agricultural research, urban forestry along the Rhine River, and pharmaceutical botany at Roche and Novartis, where many drugs are derived from plant compounds. The Basel Botanical Garden maintains over 7,500 plant species for research and education.",
             water_transport: "Swiss Federal Institute for Forest, Snow and Landscape Research - Tree Physiology Lab: You are studying water transport in plants at the WSL research station near Basel, analyzing how trees along the Rhine River manage water uptake and transpiration. Water moves from roots to leaves through xylem vessels via three mechanisms: root pressure (active transport of minerals into roots creates osmotic pressure pushing water upward), capillary action (water molecules adhere to xylem walls and cohere to each other, creating continuous water columns), and transpiration pull (evaporation of water from leaf stomata creates negative pressure that pulls water upward from roots). This cohesion-tension theory explains how tall trees like the Basel plane trees can transport water over 30 meters high. The rate of transpiration is affected by temperature, humidity, wind, and light intensity. Understanding water transport is crucial for managing Basel's urban forests, predicting drought stress in Swiss agriculture, and developing drought-resistant crops for climate change adaptation.",
@@ -768,6 +778,9 @@ export const enBiology = {
             animal_classification: "ANIMAL CLASSIFICATION",
             adaptations: "ADAPTATIONS",
             behavior_evolution: "BEHAVIOR & EVOLUTION"
+        },
+        placeholders: {
+            type_answer: "type answer",
         },
         scenarios: {
             basel_zoo: "Basel Zoo Biodiversity Tour: You are a student guide at Basel Zoo (Zolli), preparing an educational tour about animal classification. The zoo houses over 600 species from all major animal groups. Your task is to create a classification guide for visitors. Today you're focusing on the African Savanna exhibit, which includes lions (Panthera leo), zebras (Equus quagga), and ostriches (Struthio camelus). You need to explain how these animals are classified into different groups despite living in the same habitat. The zoo's education program emphasizes understanding that classification is based on evolutionary relationships and shared characteristics, not just where animals live. This helps visitors appreciate biodiversity and the importance of conservation efforts. Your task: Classify each animal into its correct class (Mammalia, Aves, or Reptilia) and explain the key characteristics that define each group. This knowledge helps zoo visitors understand why conservation strategies must consider each species' unique biological needs based on their classification.",
@@ -1297,8 +1310,46 @@ export const enBiology = {
         placeholders: {
             gradient: "gradient",
             pressure: "pressure",
-            rate: "rate"
-        }
+            rate: "rate",
+        
+            stomach: "stomach",
+            digestion: "digestion",
+            absorption: "absorption",
+            bile: "bile",
+            pancreas: "pancreas",
+            acid: "acid",
+            dehydration: "dehydration",
+            peristalsis: "peristalsis",
+            surface_area: "surface area",
+            more_time: "more time",
+            infection: "infection",
+            metabolism: "metabolism",
+            intestines: "intestines",
+            lactase: "lactase",
+            malabsorption: "malabsorption",
+            mechanical: "mechanical",
+            pump: "pump",
+            return: "return",
+            pulmonary: "pulmonary",
+            body: "body",
+            exchange: "exchange",
+            heart_rate: "heart rate",
+            elastic: "elastic",
+            varicose: "varicose",
+            sa: "SA",
+            heart_attack: "heart attack",
+            stretch: "stretch",
+            hypertrophy: "hypertrophy",
+            alveoli: "alveoli",
+            breathing: "breathing",
+            larynx: "larynx",
+            support: "support",
+            tree: "tree",
+            diffusion: "diffusion",
+            vibration: "vibration",
+            collapse: "collapse",
+            airflow: "airflow",
+            rbc: "RBC",}
     },
     sb3_01: {
         back: "Return to Nexus",

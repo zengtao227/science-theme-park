@@ -287,7 +287,7 @@ export default function SP304Page() {
                         promptLatex: t("sp3_04.prompts.buoyancy_core_1"),
                         expressionLatex: `\\rho_{wood} = m/V = 10/0.02 = 500 < 1000`,
                         targetLatex: t("sp3_04.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_04.labels.float_q"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_04.labels.float_q"), placeholder: t("sp3_04.placeholders.yes"), expected: "yes" }],
                         correctLatex: t("sp3_04.corrects.yes_density_less_water"),
                         hintLatex: [t("sp3_04.hints.compare_densities")]
                     },
@@ -396,7 +396,7 @@ export default function SP304Page() {
                         promptLatex: t("sp3_04.prompts.buoyancy_elite_2"),
                         expressionLatex: `V = \\frac{4}{3}\\pi(R^{3} - r^{3}), \\rho_{avg} = m/V`,
                         targetLatex: t("sp3_04.targets.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sp3_04.labels.float_q"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("sp3_04.labels.float_q"), placeholder: t("sp3_04.placeholders.yes"), expected: "yes" }],
                         correctLatex: t("sp3_04.corrects.yes_rho_avg_less_1000"),
                         hintLatex: [`V \\approx 0.0196 \\text{ m}^{3}, \\rho \\approx 510 \\text{ kg/m}^{3}`]
                     },

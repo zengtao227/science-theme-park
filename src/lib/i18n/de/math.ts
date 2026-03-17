@@ -32,6 +32,12 @@ export const deMath = {
             measure: "MESSEN",
             survey: "VERMESSUNG"
         },
+        placeholders: {
+            yes: "yes",
+            pythagoras: "pythagoras",
+            linearly: "linearly",
+            reduces: "reduces",
+        },
         prompts: {
             sim_ratio: "Dreieckseiten {a}, {b}, {c}. Ähnliches Dreieck hat kürzeste Seite {s}. Finde die längste.",
             sim_missing: "Dreiecke ABC und DEF sind ähnlich. AB={ab}, DE={de}, AC={ac}. Finde DF.",
@@ -133,6 +139,9 @@ export const deMath = {
             properties: "EIGENSCHAFTEN",
             determinant: "Determinante",
             volume_scale: "Volumenskalierung",
+        placeholders: {
+            det: "det",
+        },
             formulas: "FORMELN",
             angle: "ROTATIONSWINKEL (θ)",
             scale_x: "X-ACHSE SKALIEREN",
@@ -1565,7 +1574,7 @@ export const deMath = {
             two_cvxy: "2CVxy",
             v_squared: "V²",
             by: "by",
-            question: "?"
+            question: "?",
         },
         decomposition_pattern: "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
@@ -1766,7 +1775,7 @@ export const deMath = {
         },
         placeholders: {
             question: "?",
-            total_price: "Gesamtpreis (CHF)"
+            total_price: "Gesamtpreis (CHF)",
         },
         laser: {
             axis_km: "km",
@@ -1853,8 +1862,12 @@ export const deMath = {
         },
         placeholders: {
             width: "Breite",
-            value: "Wert"
-        },
+            value: "Wert",
+        
+            k: "k",
+            w: "w",
+            v: "v",
+            h: "H",},
         formulas: {
             old_value: "\\text{alt}",
             new_value: "\\text{Neu}",
@@ -1909,7 +1922,7 @@ export const deMath = {
         placeholders: {
             value: "Wert",
             x: "x",
-            n: "n"
+            n: "n",
         }
     },
     sm2_06: {
@@ -2009,7 +2022,40 @@ export const deMath = {
             cursor: "Ziel-Cursor",
             locked: "GESPERRT",
             view: "ANSICHT: ORTHOGONAL_2D"
-        }
+        },
+    
+        placeholders: {
+            apples: "apples",
+            oranges: "oranges",
+            adult: "adult",
+            child: "child",
+            pens: "pens",
+            pencils: "pencils",
+            dogs: "dogs",
+            cats: "cats",
+            large: "large",
+            small: "small",
+            coffee: "coffee",
+            tea: "tea",
+            hours: "hours",
+            days: "days",
+            books: "books",
+            magazines: "magazines",
+            chairs: "chairs",
+            tables: "tables",
+            red: "red",
+            blue: "blue",
+            ratea: "rateA",
+            rateb: "rateB",
+            costa: "costA",
+            costb: "costB",
+            parama: "paramA",
+            paramb: "paramB",
+            factorx: "factorX",
+            factory: "factorY",
+            valuea: "valueA",
+            valueb: "valueB",
+        },
     },
     sm2_07: {
         back: "Zurück zum Nexus",
@@ -2073,7 +2119,7 @@ export const deMath = {
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
         placeholders: {
             slope: "Steigung",
-            distance: "Abstand"
+            distance: "Abstand",
         }
     },
     sm2_08: {
@@ -2547,7 +2593,7 @@ export const deMath = {
             db_reduction: "dB-Reduktion",
             decibels: "Dezibel",
             magnitude_diff: "Magnituden-Differenz",
-            magnitude: "Magnitude"
+            magnitude: "Magnitude",
         },
         mission: {
             title: "LOGARITHMISCHES MESSLABOR",
@@ -2706,8 +2752,9 @@ export const deMath = {
             spurious: "Scheinkorrelation",
             pearson: "Pearson",
             linear: "linear",
-            determination: "Bestimmtheitsmass"
-        },
+            determination: "Bestimmtheitsmass",
+        
+            b: "B",},
         formula_phrases: {
             no_correlation: "Keine Korrelation",
             strong_positive: "Stark positiv",
@@ -3085,8 +3132,17 @@ export const deMath = {
             right: "rechts",
             positive: "positiv",
             negative: "negativ",
-            nonlinear: "nichtlinear"
-        }
+            nonlinear: "nichtlinear",
+        
+            square: "square",
+            circle: "circle",
+            rectangle: "rectangle",
+            ellipse: "ellipse",
+            triangle: "triangle",
+            parabola: "parabola",
+            hyperbola: "hyperbola",
+            hexagon: "hexagon",
+            circles: "circles",}
     },
     sm2_11: {
         title: "FOLGEN & REIHEN",
@@ -3299,7 +3355,19 @@ export const deMath = {
             label_yn: "J/N",
             label_symbol: "Symbol",
             label_ps: "P/S"
-        }
+        },
+    
+        placeholders: {
+            yes: "yes",
+            q: "q",
+            n: "n",
+            forces: "forces",
+            p: "P",
+            w: "W",
+            joule: "Joule",
+            path: "path",
+            nb: "nb",
+        },
     },
     sc3_04: {
         hints: {

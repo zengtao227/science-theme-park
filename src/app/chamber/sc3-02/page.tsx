@@ -71,7 +71,7 @@ export default function SC302Page() {
                     promptLatex: t("sc3_02.prompts.name_formula", { name: hc.name }),
                     expressionLatex: `\\text{${hc.name}} \\rightarrow \\text{?}`,
                     targetLatex: hc.formula,
-                    slots: [{ id: "ans", labelLatex: t("common.labels.formula"), placeholder: "CxHy", expected: hc.formula }],
+                    slots: [{ id: "ans", labelLatex: t("common.labels.formula"), placeholder: t("sc3_02.placeholders.cxhy"), expected: hc.formula }],
                     correctLatex: hc.formula,
                     hintLatex: [t("sc3_02.prompts.hint_carbons", { count: hc.carbons })]
                 });

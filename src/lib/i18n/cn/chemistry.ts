@@ -546,6 +546,9 @@ export const cnChemistry = {
             elements_desc: "探索元素周期表前 20 号元素",
             isotopes_desc: "研究同位素：相同质子数，不同中子数"
         },
+        placeholders: {
+            k: "K",
+        },
         prompts: {
             build_mass_number: "A",
             build_charge: "q",
@@ -904,6 +907,9 @@ export const cnChemistry = {
             ph_range: "pH 范围",
             case_study_label: "区域案例研究 // 巴塞尔节点"
         },
+        placeholders: {
+            ml: "mL",
+        },
         prompts: {
             curve_type: "初始 pH 为 {ph}。识别酸类型（强酸=1，弱酸=2）。",
             find_eq: "若 Va=50mL, Ca=0.1M, Cb=0.2M。求等当点时的 Vb。",
@@ -1133,7 +1139,8 @@ export const cnChemistry = {
         placeholders: {
             question_mark: "?",
             name: "名称",
-        },
+        
+            cxhyoz: "CxHyOz",},
         hints: {
             carbon_is_black: "\\text{碳原子为黑色。}",
             hydrogen_is_white: "\\text{氢原子为白色。}",
@@ -1226,6 +1233,9 @@ export const cnChemistry = {
             input_terminal: "输入终端",
             view_3d: "3D视图",
             organic_mastery: "有机化学掌握度"
+        },
+        placeholders: {
+            cxhy: "CxHy",
         },
         prompts: {
             name_formula: "{name}的分子式是什么？",
@@ -1633,6 +1643,12 @@ export const cnChemistry = {
             electron_transfer: "电子转移",
             electrochemistry: "电化学"
         },
+        placeholders: {
+            formula: "Formula",
+            n: "n",
+            v: "V",
+            g: "g",
+        },
         scenarios: {
             oxidation_state: "诺华药物合成氧化控制：您是诺华巴塞尔的合成化学家，从事复杂的药物合成工作。活性成分需要对过渡金属催化剂进行精确的氧化态控制。在您当前的反应中，锰在 +4 和 +7 氧化态之间循环，以促进 C-H 键活化。您必须跟踪每个步骤的氧化态变化，以防止不需要的副反应。使用光谱分析，您监测高锰酸盐（Mn^7^+）的紫色转化为棕色二氧化锰（Mn^{4}^+）。单个电子计算错误可能导致有毒副产物，使整批产品无法使用。这种氧化态跟踪对于为瑞士各地的患者生产安全有效的药物至关重要。理解氧化态就像跟踪银行账户余额——您需要确切知道每个原子获得或失去了多少电子。",
             electron_transfer: "罗氏电池技术开发：您是罗氏巴塞尔能源研究部门的材料科学家，为医疗设备开发下一代锂离子电池。电池的正极材料（LiCoO_2）在充放电循环期间经历可逆电子转移。随着锂离子进出，钴在 +3 和 +4 氧化态之间交替。您必须平衡氧化还原方程以优化能量密度和循环寿命。每个电池单元必须在 500 多个充电周期中精确提供 3.7V，以可靠地为便携式胰岛素泵和心脏监护仪供电。电子转移效率直接影响患者安全——关键医疗设备中的电池故障可能危及生命。这类似于可充电手机电池，但具有医疗级精度和可靠性要求。",
@@ -2025,7 +2041,7 @@ export const cnChemistry = {
         placeholders: {
             material: "输入类型",
             percent: "%",
-            stage: "名称"
+            stage: "名称",
         },
         prompts: {
             sc1_07_q1: "识别此类可回收塑料（缩写）。",

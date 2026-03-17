@@ -93,7 +93,7 @@ export default function SB104PlantStructure() {
                 slots: [{
                     id: "answer",
                     labelLatex: "Function",
-                    placeholder: "type answer",
+                    placeholder: t("sb1_04.placeholders.type_answer"),
                     expected: item.function
                 }],
                 correctLatex: `${t("common.answer_prefix")} ${item.function}`,
@@ -143,7 +143,7 @@ export default function SB104PlantStructure() {
                 slots: [{
                     id: "answer",
                     labelLatex: "Answer",
-                    placeholder: "type answer",
+                    placeholder: t("sb1_04.placeholders.type_answer"),
                     expected: ('location' in item ? item.location : undefined) || 
                              ('tissue' in item ? item.tissue : undefined) || 
                              ('structure' in item ? item.structure : undefined) || 
@@ -214,7 +214,7 @@ export default function SB104PlantStructure() {
                 slots: [{
                     id: "answer",
                     labelLatex: "Answer",
-                    placeholder: "type answer",
+                    placeholder: t("sb1_04.placeholders.type_answer"),
                     expected: ('tissue' in item ? item.tissue : undefined) || 
                              ('product' in item ? item.product : undefined) || 
                              ('use' in item ? item.use : undefined) || 

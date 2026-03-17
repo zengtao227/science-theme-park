@@ -1097,6 +1097,9 @@ export const cnPhysics = {
             series_circuits: "串联电路",
             parallel_circuits: "并联电路"
         },
+        placeholders: {
+            type_value: "type value",
+        },
         scenarios: {
             ohms_law: "巴塞尔大学电气工程实验室：你是一名一年级电气工程专业学生，正在学习电路基础知识。今天的实验重点是欧姆定律（U = I × R），这是所有电路分析的基础。你的任务是计算简单电路中的电压、电流或电阻。施密特教授强调：'理解欧姆定律就像学习字母表——它是后续所有内容的基础。'你将使用数字万用表测量真实电路并验证你的计算。这些知识对于设计从智能手机电路到巴塞尔有轨电车电气系统的一切都至关重要。",
             series_circuits: "诺华制药设备设计：你正在与诺华巴塞尔的电气工程团队合作，为新实验室设备设计配电系统。在串联电路中，元件共享相同的电流，但电压在它们之间分配。你的任务是计算总电阻（R_总 = R_1 + R_2 + ...）和电流。这对于确保敏感的分析仪器接收正确的电压水平至关重要。计算错误可能会损坏价值数百万瑞士法郎的设备或影响药物质量测试结果。",
@@ -1130,6 +1133,9 @@ export const cnPhysics = {
             power_basics: "功率基础",
             energy_consumption: "能量消耗",
             efficiency: "效率"
+        },
+        placeholders: {
+            type_value: "type value",
         },
         scenarios: {
             power_basics: "巴塞尔家庭用电：你正在帮助巴塞尔的能源咨询公司为居民客户计算用电功率。电功率（P = U × I）决定了设备每秒消耗多少能量，单位为瓦特。你的任务是计算各种家用电器的功率。理解这一点有助于家庭减少电费和碳足迹。例如，一个典型的巴塞尔家庭每年使用约4,500千瓦时，按0.25瑞士法郎/千瓦时计算，费用约为1,125瑞士法郎。准确的功率计算有助于识别浪费能源的设备。",
@@ -1418,6 +1424,9 @@ export const cnPhysics = {
             buoyancy: "浮力",
             hydraulics: "液压"
         },
+        placeholders: {
+            yes: "yes",
+        },
         prompts: {
             pressure_depth: "莱茵河中潜水员下潜到 {depth} m，计算总压强。",
             buoyant_force: "体积为 {volume} m^{3} 的物体浸没在莱茵河中，计算浮力。",
@@ -1628,6 +1637,13 @@ export const cnPhysics = {
         mission: {
             title: "莱茵河横渡任务",
             description: "驾驶巴塞尔莱茵河渡轮横渡莱茵河。掌握矢量合成，利用缆索角度和渡轮速度补偿河流流速。"
+        },
+        placeholders: {
+            m_s: "m/s",
+            deg: "deg",
+            s: "s",
+            m: "m",
+            j: "J",
         },
         prompts: {
             c_b1: "\\text{渡轮：}2\\text{ m/s 向北，河流：}1\\text{ m/s 向北。合速度？}",
@@ -1960,8 +1976,22 @@ export const cnPhysics = {
         placeholders: {
             true: "正确",
             no: "否",
-            yes: "是"
-        },
+            yes: "是",
+        
+            higher: "higher",
+            destructive: "destructive",
+            refraction: "refraction",
+            diffraction: "diffraction",
+            sonic_boom: "sonic boom",
+            impedance: "impedance",
+            timbre: "timbre",
+            above: "above",
+            just: "just",
+            formants: "formants",
+            masking: "masking",
+            phon: "phon",
+            dba: "dBA",
+            noise: "noise",},
     },
 
     // SP3.08: 几何光学 (映射自原 sp1_08)
@@ -2090,8 +2120,9 @@ export const cnPhysics = {
         placeholders: {
             temperature: "温度",
             pressure: "压强",
-            charles: "查理"
-        }
+            charles: "查理",
+        
+            high: "high",}
     }
 ,
     gp2_02: {
@@ -2176,7 +2207,7 @@ export const cnPhysics = {
         placeholders: {
             isothermal: "等温",
             constant: "常数",
-            state: "状态"
+            state: "状态",
         }
     },
     gp2_03: {
@@ -2364,8 +2395,16 @@ export const cnPhysics = {
             blaze_angle_efficiency: "\\text{闪耀角} \\rightarrow \\text{最大效率}"
         },
         placeholders: {
-            yes: "是"
-        }
+            yes: "是",
+        
+            higher: "higher",
+            lower: "lower",
+            both: "both",
+            constructive: "constructive",
+            green: "green",
+            tir: "TIR",
+            dispersion: "dispersion",
+            efficiency: "efficiency",}
     },
 
     // GP3.02: 电磁学基础

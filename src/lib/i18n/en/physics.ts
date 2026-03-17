@@ -1394,6 +1394,9 @@ export const enPhysics = {
                 footer_left: "SP3.04_FLUID_MECHANICS // NODE: RHINE",
                 objective_title: "Active Mission Objective",
                 stages: { pressure: "PRESSURE", buoyancy: "BUOYANCY", hydraulics: "HYDRAULICS" },
+            placeholders: {
+                yes: "yes",
+            },
                 prompts: {
                         pressure_depth: "A swimmer dives to {depth} m in the Rhine. Calculate total pressure.",
                         buoyant_force: "An object with {volume} m^{3} is submerged in the Rhine. Calculate buoyancy.",
@@ -1612,6 +1615,13 @@ export const enPhysics = {
                         title: "RHINE CROSSING MISSION",
                         description: "Navigate the Basel Rhine ferry across the Rhine River. Master vector addition to compensate for the river's current using cable angles and ferry speed."
                 },
+            placeholders: {
+                m_s: "m/s",
+                deg: "deg",
+                s: "s",
+                m: "m",
+                j: "J",
+            },
                 prompts: {
                         // COMPOSITION - BASIC (5 questions)
                         c_b1: "\\text{Ferry: } 2\\text{ m/s north, River: } 1\\text{ m/s north. Net speed?}",
@@ -1958,8 +1968,22 @@ export const enPhysics = {
                 placeholders: {
                         true: "true",
                         no: "no",
-                        yes: "yes"
-                },
+                        yes: "yes",
+                
+                    higher: "higher",
+                    destructive: "destructive",
+                    refraction: "refraction",
+                    diffraction: "diffraction",
+                    sonic_boom: "sonic boom",
+                    impedance: "impedance",
+                    timbre: "timbre",
+                    above: "above",
+                    just: "just",
+                    formants: "formants",
+                    masking: "masking",
+                    phon: "phon",
+                    dba: "dBA",
+                    noise: "noise",},
         },
 
         // SP3.08: Geometrical Optics (from sp1_08)
@@ -2032,6 +2056,9 @@ export const enPhysics = {
                         series_circuits: "SERIES CIRCUITS",
                         parallel_circuits: "PARALLEL CIRCUITS"
                 },
+            placeholders: {
+                type_value: "type value",
+            },
                 scenarios: {
                         ohms_law: "Basel Electrical Engineering Lab at University of Basel: You are a first-year electrical engineering student learning circuit fundamentals. Today's lab focuses on Ohm's Law (U = I × R), the foundation of all circuit analysis. Your task is to calculate voltage, current, or resistance in simple circuits. Professor Schmidt emphasizes: 'Understanding Ohm's Law is like learning the alphabet - it's essential for everything that follows.' You'll use digital multimeters to measure real circuits and verify your calculations. This knowledge is crucial for designing everything from smartphone circuits to Basel's tram electrical systems.",
                         series_circuits: "Novartis Pharmaceutical Equipment Design: You are working with the electrical engineering team at Novartis Basel, designing power distribution for new laboratory equipment. In series circuits, components share the same current, but voltage divides across them. Your task is to calculate total resistance (R_total = R_1 + R_2 + ...) and current flow. This is critical for ensuring that sensitive analytical instruments receive correct voltage levels. A miscalculation could damage equipment worth millions of Swiss Francs or compromise drug quality testing results.",
@@ -2066,6 +2093,9 @@ export const enPhysics = {
                         energy_consumption: "ENERGY CONSUMPTION",
                         efficiency: "EFFICIENCY"
                 },
+            placeholders: {
+                type_value: "type value",
+            },
                 scenarios: {
                         power_basics: "Basel Household Electricity: You are helping Basel's energy consulting company calculate power consumption for residential customers. Electric power (P = U × I) determines how much energy devices use per second, measured in Watts. Your task is to calculate power for various household appliances. Understanding this helps families reduce electricity bills and carbon footprint. For example, a typical Basel household uses about 4,500 kWh per year, costing around 1,125 CHF at 0.25 CHF/kWh. Accurate power calculations help identify energy-wasting devices.",
                         energy_consumption: "IWB Basel Energy Management: You work for IWB (Industrielle Werke Basel), Basel's main electricity provider. Your task is to calculate energy consumption (E = P × t) and costs for commercial customers. Energy is measured in kilowatt-hours (kWh), and Basel's electricity rate is approximately 0.25 CHF/kWh for households and 0.20 CHF/kWh for businesses. You're analyzing a Novartis laboratory that runs equipment 24/7. Accurate calculations ensure correct billing and help customers optimize energy usage to reduce costs and environmental impact.",
@@ -2170,8 +2200,9 @@ export const enPhysics = {
                 placeholders: {
                         temperature: "temperature",
                         pressure: "pressure",
-                        charles: "charles"
-                }
+                        charles: "charles",
+                
+                    high: "high",}
         }
 ,
         gp2_02: {
@@ -2271,7 +2302,7 @@ export const enPhysics = {
                         isothermal: "isothermal",
                         constant: "constant",
                         state: "state",
-                        yes: "yes"
+                        yes: "yes",
                 }
         },
         gp2_03: {
@@ -2454,8 +2485,16 @@ export const enPhysics = {
                         maximize_efficiency: "\\text{Maximize efficiency}"
                 },
                 placeholders: {
-                        yes: "yes"
-                },
+                        yes: "yes",
+                
+                    higher: "higher",
+                    lower: "lower",
+                    both: "both",
+                    constructive: "constructive",
+                    green: "green",
+                    tir: "TIR",
+                    dispersion: "dispersion",
+                    efficiency: "efficiency",},
                 expr: {
                         same_phase_constructive: "\\text{Same phase} \\rightarrow \\text{constructive}",
                         blaze_angle_efficiency: "\\text{Blaze angle} \\rightarrow \\text{max efficiency}"

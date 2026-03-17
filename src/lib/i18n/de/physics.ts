@@ -1162,6 +1162,9 @@ export const dePhysics = {
                         series_circuits: "REIHENSCHALTUNG",
                         parallel_circuits: "PARALLELSCHALTUNG"
                 },
+            placeholders: {
+                type_value: "type value",
+            },
                 scenarios: {
                         ohms_law: "Elektrotechnik-Labor an der Universität Basel: Sie sind Elektrotechnik-Student im ersten Jahr und lernen Schaltungsgrundlagen. Das heutige Labor konzentriert sich auf das Ohmsche Gesetz (U = I × R), die Grundlage aller Schaltungsanalysen. Ihre Aufgabe ist es, Spannung, Strom oder Widerstand in einfachen Schaltungen zu berechnen. Professor Schmidt betont: 'Das Ohmsche Gesetz zu verstehen ist wie das Alphabet zu lernen - es ist essentiell für alles, was folgt.' Sie werden digitale Multimeter verwenden, um echte Schaltungen zu messen und Ihre Berechnungen zu verifizieren. Dieses Wissen ist entscheidend für die Entwicklung von allem, von Smartphone-Schaltungen bis zu Basels Straßenbahn-Elektrosystemen.",
                         series_circuits: "Novartis Pharma-Gerätedesign: Sie arbeiten mit dem Elektrotechnik-Team bei Novartis Basel und entwerfen die Stromverteilung für neue Laborgeräte. In Reihenschaltungen teilen sich Komponenten denselben Strom, aber die Spannung teilt sich auf sie auf. Ihre Aufgabe ist es, den Gesamtwiderstand (R_gesamt = R_1 + R_2 + ...) und den Stromfluss zu berechnen. Dies ist kritisch, um sicherzustellen, dass empfindliche Analysegeräte die korrekten Spannungspegel erhalten. Eine Fehlberechnung könnte Geräte im Wert von Millionen Schweizer Franken beschädigen oder Arzneimittel-Qualitätstestergebnisse gefährden.",
@@ -1196,6 +1199,9 @@ export const dePhysics = {
                         energy_consumption: "ENERGIEVERBRAUCH",
                         efficiency: "WIRKUNGSGRAD"
                 },
+            placeholders: {
+                type_value: "type value",
+            },
                 scenarios: {
                         power_basics: "Basler Haushalts-Elektrizität: Sie helfen einem Basler Energieberatungsunternehmen, den Stromverbrauch für Privatkunden zu berechnen. Die elektrische Leistung (P = U × I) bestimmt, wie viel Energie Geräte pro Sekunde verbrauchen, gemessen in Watt. Ihre Aufgabe ist es, die Leistung verschiedener Haushaltsgeräte zu berechnen. Dies hilft Familien, Stromrechnungen und CO_2-Fußabdruck zu reduzieren. Ein typischer Basler Haushalt verbraucht etwa 4.500 kWh pro Jahr, was bei 0,25 CHF/kWh etwa 1.125 CHF kostet. Genaue Leistungsberechnungen helfen, energieverschwendende Geräte zu identifizieren.",
                         energy_consumption: "IWB Basel Energiemanagement: Sie arbeiten für IWB (Industrielle Werke Basel), Basels Hauptstromversorger. Ihre Aufgabe ist es, Energieverbrauch (E = P × t) und Kosten für Geschäftskunden zu berechnen. Energie wird in Kilowattstunden (kWh) gemessen, und Basels Stromtarif beträgt etwa 0,25 CHF/kWh für Haushalte und 0,20 CHF/kWh für Unternehmen. Sie analysieren ein Novartis-Labor, das Geräte rund um die Uhr betreibt. Genaue Berechnungen gewährleisten korrekte Abrechnung und helfen Kunden, den Energieverbrauch zu optimieren, um Kosten und Umweltauswirkungen zu reduzieren.",
@@ -1475,6 +1481,9 @@ export const dePhysics = {
                 footer_left: "SP3.04_FLUIDMECHANIK // KNOTEN: RHEIN",
                 objective_title: "Aktives Missionsziel",
                 stages: { pressure: "DRUCK", buoyancy: "AUFTRIEB", hydraulics: "HYDRAULIK" },
+            placeholders: {
+                yes: "yes",
+            },
                 prompts: {
                         pressure_depth: "Ein Schwimmer taucht auf {depth} m im Rhein. Berechnen Sie den Gesamtdruck.",
                         buoyant_force: "Ein Objekt mit {volume} m^{3} ist im Rhein untergetaucht. Berechnen Sie den Auftrieb.",
@@ -1681,6 +1690,13 @@ export const dePhysics = {
                         title: "RHEIN-ÜBERQUERUNG",
                         description: "Steuern Sie die Basler Rheinfähre über den Rhein. Meistern Sie die Vektoraddition, um die Flussströmung mit Seilwinkeln und Fährengeschwindigkeit zu kompensieren."
                 },
+            placeholders: {
+                m_s: "m/s",
+                deg: "deg",
+                s: "s",
+                m: "m",
+                j: "J",
+            },
                 prompts: {
                         c_b1: "\\text{Fähre: }2\\text{ m/s Nord, Fluss: }1\\text{ m/s Nord. Netto-Geschwindigkeit?}",
                         c_b2: "\\text{Fähre: }1.5\\text{ m/s Süd, Fluss: }1.5\\text{ m/s Nord. Netto-Geschwindigkeit?}",
@@ -2012,8 +2028,22 @@ export const dePhysics = {
                 placeholders: {
                         true: "wahr",
                         no: "nein",
-                        yes: "ja"
-                },
+                        yes: "ja",
+                
+                    higher: "higher",
+                    destructive: "destructive",
+                    refraction: "refraction",
+                    diffraction: "diffraction",
+                    sonic_boom: "sonic boom",
+                    impedance: "impedance",
+                    timbre: "timbre",
+                    above: "above",
+                    just: "just",
+                    formants: "formants",
+                    masking: "masking",
+                    phon: "phon",
+                    dba: "dBA",
+                    noise: "noise",},
         },
 
         // 8. OPTIK (Wellenlehre II)
@@ -2142,8 +2172,9 @@ export const dePhysics = {
                 placeholders: {
                         temperature: "Temperatur",
                         pressure: "Druck",
-                        charles: "Charles"
-                }
+                        charles: "Charles",
+                
+                    high: "high",}
         }
 ,
         gp2_02: {
@@ -2228,7 +2259,7 @@ export const dePhysics = {
                 placeholders: {
                         isothermal: "isotherm",
                         constant: "Konstante",
-                        state: "Zustand"
+                        state: "Zustand",
                 }
         },
         gp2_03: {
@@ -2411,8 +2442,16 @@ export const dePhysics = {
                         blaze_angle_efficiency: "\\text{Blazewinkel} \\rightarrow \\text{maximale Effizienz}"
                 },
                 placeholders: {
-                        yes: "Ja"
-                }
+                        yes: "Ja",
+                
+                    higher: "higher",
+                    lower: "lower",
+                    both: "both",
+                    constructive: "constructive",
+                    green: "green",
+                    tir: "TIR",
+                    dispersion: "dispersion",
+                    efficiency: "efficiency",}
         },
 
         // GP3.02: Elektromagnetismus Grundlagen

@@ -119,9 +119,9 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
           targetLatex: `x^{2} + 2(x)(${vb}) + ${vb}^{2}`,
           slots: [
             { id: "a_root", labelLatex: "a", placeholder: "x", expected: "x" },
-            { id: "b_root", labelLatex: "b", placeholder: "b", expected: vb.toString() },
+            { id: "b_root", labelLatex: "b", placeholder: t("sm2_01.placeholders.b"), expected: vb.toString() },
             { id: "a_mid", labelLatex: "a", placeholder: "x", expected: "x" },
-            { id: "b_mid", labelLatex: "b", placeholder: "b", expected: vb.toString() },
+            { id: "b_mid", labelLatex: "b", placeholder: t("sm2_01.placeholders.b"), expected: vb.toString() },
           ],
           correctLatex: `x^2 + ${2 * vb}x + ${vb ** 2} = (x + ${vb})^2`,
         };
@@ -233,7 +233,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         targetLatex: `(${aTerm} - ${V})^{2} + ${2 * C * V}${vA} - ${2 * V ** 2}`,
         slots: [
           { id: "base", labelLatex: "a", placeholder: vA.toUpperCase(), expected: aTerm },
-          { id: "sub", labelLatex: "b", placeholder: "V", expected: V.toString() },
+          { id: "sub", labelLatex: "b", placeholder: t("sm2_01.placeholders.v"), expected: V.toString() },
           { id: "add_term", labelLatex: "2ab", placeholder: t.ui.linear, expected: `${2 * C * V}${vA}` },
           { id: "const_term", labelLatex: "b^{2}", placeholder: t.ui.const, expected: (2 * V ** 2).toString() },
         ],
@@ -261,7 +261,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
         promptLatex: t.scenarios.voyager_mission, expressionLatex: expr,
         targetLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
         slots: isFact
-          ? [{ id: "a", labelLatex: "a", placeholder: "ax", expected: aT }, { id: "b", labelLatex: "b", placeholder: vB ? "by" : "b", expected: bT }]
+          ? [{ id: "a", labelLatex: "a", placeholder: t("sm2_01.placeholders.ax"), expected: aT }, { id: "b", labelLatex: "b", placeholder: vB ? "by" : "b", expected: bT }]
           : [{ id: "part1", labelLatex: "a^{2}", placeholder: "a²", expected: ca ** 2 }, { id: "part2", labelLatex: "b^{2}", placeholder: "b²", expected: vb ** 2 }],
         correctLatex: isFact ? `(${aT} + ${bT})(${aT} - ${bT})` : `${ca ** 2}x^{2} - ${vb ** 2}${vB ? "y^{2}" : ""}`,
       };

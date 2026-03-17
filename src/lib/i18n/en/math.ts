@@ -110,8 +110,11 @@ export const enMath = {
             description: "Measure the tower height using Thales' theorem and shadow ratios."
         },
         placeholders: {
-            yes: "yes"
-        }
+            yes: "yes",
+        
+            pythagoras: "pythagoras",
+            linearly: "linearly",
+            reduces: "reduces",}
     },
     em2_01: {
         back: "Back to Nexus",
@@ -136,6 +139,9 @@ export const enMath = {
             properties: "PROPERTIES",
             determinant: "Determinant",
             volume_scale: "Volume Scale",
+        placeholders: {
+            det: "det",
+        },
             formulas: "FORMULAS",
             angle: "ROTATION ANGLE (θ)",
             scale_x: "SCALE X-AXIS",
@@ -1551,7 +1557,7 @@ export const enMath = {
             two_cvxy: "2CVxy",
             v_squared: "V²",
             by: "by",
-            question: "?"
+            question: "?",
         },
         decomposition_pattern: "Decomposition Pattern: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
@@ -1751,7 +1757,7 @@ export const enMath = {
         },
         placeholders: {
             question: "?",
-            total_price: "Total Price (CHF)"
+            total_price: "Total Price (CHF)",
         },
         laser: {
             axis_km: "km",
@@ -1837,8 +1843,12 @@ export const enMath = {
         },
         placeholders: {
             value: "value",
-            width: "width"
-        },
+            width: "width",
+        
+            k: "k",
+            w: "w",
+            v: "v",
+            h: "H",},
         formulas: {
             old_value: "\\text{Old}",
             new_value: "\\text{New}",
@@ -1893,7 +1903,7 @@ export const enMath = {
         placeholders: {
             value: "value",
             x: "x",
-            n: "n"
+            n: "n",
         }
     },
     sm2_06: {
@@ -1993,7 +2003,40 @@ export const enMath = {
             cursor: "Target Cursor",
             locked: "LOCKED",
             view: "VIEW: ORTHOGRAPHIC_2D"
-        }
+        },
+    
+        placeholders: {
+            apples: "apples",
+            oranges: "oranges",
+            adult: "adult",
+            child: "child",
+            pens: "pens",
+            pencils: "pencils",
+            dogs: "dogs",
+            cats: "cats",
+            large: "large",
+            small: "small",
+            coffee: "coffee",
+            tea: "tea",
+            hours: "hours",
+            days: "days",
+            books: "books",
+            magazines: "magazines",
+            chairs: "chairs",
+            tables: "tables",
+            red: "red",
+            blue: "blue",
+            ratea: "rateA",
+            rateb: "rateB",
+            costa: "costA",
+            costb: "costB",
+            parama: "paramA",
+            paramb: "paramB",
+            factorx: "factorX",
+            factory: "factorY",
+            valuea: "valueA",
+            valueb: "valueB",
+        },
     },
     sm2_07: {
         back: "Back to Nexus",
@@ -2057,7 +2100,7 @@ export const enMath = {
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
         placeholders: {
             slope: "slope",
-            distance: "distance"
+            distance: "distance",
         }
     },
     sm2_08: {
@@ -2568,7 +2611,7 @@ export const enMath = {
             db_reduction: "dB reduction",
             decibels: "decibels",
             magnitude_diff: "magnitude diff",
-            magnitude: "magnitude"
+            magnitude: "magnitude",
         },
         mission: {
             title: "LOGARITHMIC MEASUREMENT LAB",
@@ -2727,8 +2770,9 @@ export const enMath = {
             spurious: "spurious",
             pearson: "pearson",
             linear: "linear",
-            determination: "determination"
-        },
+            determination: "determination",
+        
+            b: "B",},
         formula_phrases: {
             no_correlation: "No correlation",
             strong_positive: "Strong positive",
@@ -3106,8 +3150,17 @@ export const enMath = {
             right: "right",
             positive: "positive",
             negative: "negative",
-            nonlinear: "nonlinear"
-        }
+            nonlinear: "nonlinear",
+        
+            square: "square",
+            circle: "circle",
+            rectangle: "rectangle",
+            ellipse: "ellipse",
+            triangle: "triangle",
+            parabola: "parabola",
+            hyperbola: "hyperbola",
+            hexagon: "hexagon",
+            circles: "circles",}
     },
     sm2_11: {
         title: "SEQUENCES & SERIES",
@@ -3320,7 +3373,19 @@ export const enMath = {
             label_yn: "Y/N",
             label_symbol: "Symbol",
             label_ps: "P/S"
-        }
+        },
+    
+        placeholders: {
+            yes: "yes",
+            q: "q",
+            n: "n",
+            forces: "forces",
+            p: "P",
+            w: "W",
+            joule: "Joule",
+            path: "path",
+            nb: "nb",
+        },
     },
     sc3_04: {
         hints: {

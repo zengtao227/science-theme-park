@@ -205,7 +205,7 @@ export default function SM210Page() {
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a4"),
                         expressionLatex: t("sm2_10.formulas.larger_iqr_more_spread"),
                         targetLatex: t("sm2_10.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.dataset"), placeholder: "B", expected: "B" }],
+                        slots: [{ id: "ans", labelLatex: t("sm2_10.labels.dataset"), placeholder: t("sm2_10.placeholders.b"), expected: "B" }],
                         correctLatex: t("sm2_10.answers.dataset_b"),
                         hintLatex: [t("sm2_10.hints.larger_iqr_more_variability")]
                     },

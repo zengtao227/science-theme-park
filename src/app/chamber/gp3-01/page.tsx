@@ -149,7 +149,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.doppler_approach"),
                         expressionLatex: `f' = f \\times \\frac{v}{v - v_s}`,
                         targetLatex: `\\text{higher/lower}`,
-                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: "higher", expected: "higher" }],
+                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: t("gp3_01.placeholders.higher"), expected: "higher" }],
                         correctLatex: t("gp3_01.labels.higher"),
                         hintLatex: [t("gp3_01.hints.doppler_effect")]
                     },
@@ -159,7 +159,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.doppler_recede"),
                         expressionLatex: `f' = f \\times \\frac{v}{v + v_s}`,
                         targetLatex: `\\text{higher/lower}`,
-                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: "lower", expected: "lower" }],
+                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: t("gp3_01.placeholders.lower"), expected: "lower" }],
                         correctLatex: t("gp3_01.labels.lower"),
                         hintLatex: [t("gp3_01.hints.doppler_recede")]
                     },
@@ -212,7 +212,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.wave_particle_duality"),
                         expressionLatex: `E = h f = \\frac{hc}{\\lambda}`,
                         targetLatex: t("gp3_01.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: "both", expected: "both" }],
+                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: t("gp3_01.placeholders.both"), expected: "both" }],
                         correctLatex: t("gp3_01.labels.both_wave_particle"),
                         hintLatex: [t("gp3_01.hints.duality")]
                     },
@@ -239,7 +239,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.uncertainty"),
                         expressionLatex: `\\Delta x \\Delta p \\geq \\frac{h}{4\\pi}`,
                         targetLatex: t("gp3_01.labels.answer"),
-                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: "yes", expected: "yes" }],
+                        slots: [{ id: "ans", labelLatex: t("gp3_01.labels.answer"), placeholder: t("gp3_01.placeholders.yes"), expected: "yes" }],
                         correctLatex: t("gp3_01.labels.yes_heisenberg"),
                         hintLatex: [t("gp3_01.hints.uncertainty")]
                     }
@@ -297,7 +297,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.interference_type"),
                         expressionLatex: t("gp3_01.expr.same_phase_constructive"),
                         targetLatex: t("gp3_01.labels.type"),
-                        slots: [{ id: "type", labelLatex: t("gp3_01.labels.type"), placeholder: "constructive", expected: "constructive" }],
+                        slots: [{ id: "type", labelLatex: t("gp3_01.labels.type"), placeholder: t("gp3_01.placeholders.constructive"), expected: "constructive" }],
                         correctLatex: t("gp3_01.labels.constructive"),
                         hintLatex: [t("gp3_01.hints.interference_types")]
                     }
@@ -452,7 +452,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.soap_bubble"),
                         expressionLatex: `2nt = m\\lambda`,
                         targetLatex: `\\text{color}`,
-                        slots: [{ id: "color", labelLatex: t("gp3_01.labels.color"), placeholder: "green", expected: "green" }],
+                        slots: [{ id: "color", labelLatex: t("gp3_01.labels.color"), placeholder: t("gp3_01.placeholders.green"), expected: "green" }],
                         correctLatex: t("gp3_01.labels.green_500nm"),
                         hintLatex: [t("gp3_01.hints.soap_colors")]
                     },
@@ -547,7 +547,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.fiber_optics"),
                         expressionLatex: `\\text{TIR} \\rightarrow \\text{light trapped}`,
                         targetLatex: t("gp3_01.labels.principle"),
-                        slots: [{ id: "principle", labelLatex: t("gp3_01.labels.principle"), placeholder: "TIR", expected: "TIR" }],
+                        slots: [{ id: "principle", labelLatex: t("gp3_01.labels.principle"), placeholder: t("gp3_01.placeholders.tir"), expected: "TIR" }],
                         correctLatex: t("gp3_01.labels.total_internal_reflection"),
                         hintLatex: [t("gp3_01.hints.fiber_principle")]
                     },
@@ -556,7 +556,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.prism_dispersion"),
                         expressionLatex: `n(\\lambda) \\rightarrow \\text{different angles}`,
                         targetLatex: t("gp3_01.labels.effect"),
-                        slots: [{ id: "effect", labelLatex: t("gp3_01.labels.effect"), placeholder: "dispersion", expected: "dispersion" }],
+                        slots: [{ id: "effect", labelLatex: t("gp3_01.labels.effect"), placeholder: t("gp3_01.placeholders.dispersion"), expected: "dispersion" }],
                         correctLatex: t("gp3_01.labels.dispersion"),
                         hintLatex: [t("gp3_01.hints.dispersion")]
                     },
@@ -675,7 +675,7 @@ export default function GP301Page() {
                         promptLatex: t("gp3_01.prompts.blazed_grating"),
                         expressionLatex: t("gp3_01.expr.blaze_angle_efficiency"),
                         targetLatex: t("gp3_01.labels.purpose"),
-                        slots: [{ id: "purpose", labelLatex: t("gp3_01.labels.purpose"), placeholder: "efficiency", expected: "efficiency" }],
+                        slots: [{ id: "purpose", labelLatex: t("gp3_01.labels.purpose"), placeholder: t("gp3_01.placeholders.efficiency"), expected: "efficiency" }],
                         correctLatex: t("gp3_01.labels.maximize_efficiency"),
                         hintLatex: [t("gp3_01.hints.blaze_angle")]
                     }

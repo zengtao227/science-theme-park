@@ -546,6 +546,9 @@ export const enChemistry = {
             elements_desc: "Explore the first 20 elements of the periodic table",
             isotopes_desc: "Study isotopes: same protons, different neutrons"
         },
+        placeholders: {
+            k: "K",
+        },
         prompts: {
             build_mass_number: "A",
             build_charge: "q",
@@ -904,6 +907,9 @@ export const enChemistry = {
             ph_range: "pH range",
             case_study_label: "Regional Case Study // Basel Node"
         },
+        placeholders: {
+            ml: "mL",
+        },
         prompts: {
             curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
             find_eq: "If Va=50mL, Ca=0.1M, Cb=0.2M. Find Vb for equivalence.",
@@ -1133,7 +1139,8 @@ export const enChemistry = {
         placeholders: {
             question_mark: "?",
             name: "name",
-        },
+        
+            cxhyoz: "CxHyOz",},
         hints: {
             carbon_is_black: "\\text{Carbon is black.}",
             hydrogen_is_white: "\\text{Hydrogen is white.}",
@@ -1226,6 +1233,9 @@ export const enChemistry = {
             input_terminal: "Input Terminal",
             view_3d: "3D View",
             organic_mastery: "Organic Mastery"
+        },
+        placeholders: {
+            cxhy: "CxHy",
         },
         prompts: {
             name_formula: "What is the molecular formula for {name}?",
@@ -1633,6 +1643,12 @@ export const enChemistry = {
             electron_transfer: "ELECTRON TRANSFER",
             electrochemistry: "ELECTROCHEMISTRY"
         },
+        placeholders: {
+            formula: "Formula",
+            n: "n",
+            v: "V",
+            g: "g",
+        },
         scenarios: {
             oxidation_state: "Novartis Drug Synthesis Oxidation Control: You are a synthetic chemist at Novartis Basel, working on a complex pharmaceutical synthesis. The active ingredient requires precise oxidation state control of a transition metal catalyst. In your current reaction, manganese cycles between +4 and +7 oxidation states to facilitate C-H bond activation. You must track oxidation state changes through each step to prevent unwanted side reactions. Using spectroscopic analysis, you monitor the purple color of permanganate (Mn^7^+) converting to brown manganese dioxide (Mn^{4}^+). A single electron miscalculation could lead to toxic byproducts, making the entire batch unusable. This oxidation state tracking is crucial for producing safe, effective medications for patients across Switzerland. Understanding oxidation states is like tracking bank account balances—you need to know exactly how many electrons each atom has gained or lost.",
             electron_transfer: "Roche Battery Technology Development: You are a materials scientist at Roche's energy research division in Basel, developing next-generation lithium-ion batteries for medical devices. The battery's cathode material (LiCoO_2) undergoes reversible electron transfer during charging and discharging cycles. Cobalt alternates between +3 and +4 oxidation states as lithium ions shuttle in and out. You must balance the redox equations to optimize energy density and cycle life. Each battery cell must deliver exactly 3.7V for 500+ charge cycles to power portable insulin pumps and cardiac monitors reliably. Electron transfer efficiency directly impacts patient safety—a failing battery in a critical medical device could be life-threatening. This is similar to a rechargeable phone battery, but with medical-grade precision and reliability requirements.",
@@ -1887,7 +1903,7 @@ export const enChemistry = {
             hint_increase_reactants: "Try increasing the coefficient for a reactant containing {element}"
         },
         placeholders: {
-            Formula: "Formula"
+            Formula: "Formula",
         }
     },
     sc2_07: {
@@ -2028,7 +2044,7 @@ export const enChemistry = {
         placeholders: {
             material: "Type",
             percent: "%",
-            stage: "Name"
+            stage: "Name",
         },
         prompts: {
             sc1_07_q1: "Identify this recyclable plastic (abbreviation).",

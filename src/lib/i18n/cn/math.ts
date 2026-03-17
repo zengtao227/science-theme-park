@@ -32,6 +32,12 @@ export const cnMath = {
             measure: "测量",
             survey: "勘测"
         },
+        placeholders: {
+            yes: "yes",
+            pythagoras: "pythagoras",
+            linearly: "linearly",
+            reduces: "reduces",
+        },
         prompts: {
             sim_ratio: "三角形边长 {a}, {b}, {c}. 相似三角形最短边为 {s}. 求最长边.",
             sim_missing: "三角形 ABC 与 DEF 相似. AB={ab}, DE={de}, AC={ac}. 求 DF.",
@@ -133,6 +139,9 @@ export const cnMath = {
             properties: "属性",
             determinant: "行列式",
             volume_scale: "体积缩放",
+        placeholders: {
+            det: "det",
+        },
             formulas: "公式",
             angle: "旋转角度 (θ)",
             scale_x: "X轴缩放",
@@ -1532,7 +1541,7 @@ export const cnMath = {
             two_cvxy: "2CVxy",
             v_squared: "V²",
             by: "by",
-            question: "?"
+            question: "?",
         },
         decomposition_pattern: "分解模式：$a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
@@ -1732,7 +1741,7 @@ export const cnMath = {
         },
         placeholders: {
             question: "?",
-            total_price: "总价 (CHF)"
+            total_price: "总价 (CHF)",
         },
         laser: {
             axis_km: "km",
@@ -1819,8 +1828,12 @@ export const cnMath = {
         },
         placeholders: {
             width: "宽度",
-            value: "数值"
-        },
+            value: "数值",
+        
+            k: "k",
+            w: "w",
+            v: "v",
+            h: "H",},
         formulas: {
             old_value: "\\text{旧值}",
             new_value: "\\text{新值}",
@@ -1875,7 +1888,7 @@ export const cnMath = {
         placeholders: {
             value: "数值",
             x: "x",
-            n: "n"
+            n: "n",
         }
     },
     sm2_06: {
@@ -1975,7 +1988,40 @@ export const cnMath = {
             cursor: "目标光标",
             locked: "已锁定",
             view: "视图: 2D正交坐标系"
-        }
+        },
+    
+        placeholders: {
+            apples: "apples",
+            oranges: "oranges",
+            adult: "adult",
+            child: "child",
+            pens: "pens",
+            pencils: "pencils",
+            dogs: "dogs",
+            cats: "cats",
+            large: "large",
+            small: "small",
+            coffee: "coffee",
+            tea: "tea",
+            hours: "hours",
+            days: "days",
+            books: "books",
+            magazines: "magazines",
+            chairs: "chairs",
+            tables: "tables",
+            red: "red",
+            blue: "blue",
+            ratea: "rateA",
+            rateb: "rateB",
+            costa: "costA",
+            costb: "costB",
+            parama: "paramA",
+            paramb: "paramB",
+            factorx: "factorX",
+            factory: "factorY",
+            valuea: "valueA",
+            valueb: "valueB",
+        },
     },
     sm2_07: {
         back: "返回枢纽",
@@ -2039,7 +2085,7 @@ export const cnMath = {
         input_tip_2dp: "提示：保留 2 位小数。",
         placeholders: {
             slope: "斜率",
-            distance: "距离"
+            distance: "距离",
         }
     },
     sm2_08: {
@@ -2563,7 +2609,7 @@ export const cnMath = {
             db_reduction: "分贝差值",
             decibels: "分贝",
             magnitude_diff: "震级差值",
-            magnitude: "震级"
+            magnitude: "震级",
         },
         mission: {
             title: "对数测量实验室",
@@ -2722,8 +2768,9 @@ export const cnMath = {
             spurious: "虚假相关",
             pearson: "皮尔逊",
             linear: "线性",
-            determination: "决定系数"
-        },
+            determination: "决定系数",
+        
+            b: "B",},
         formula_phrases: {
             no_correlation: "无相关性",
             strong_positive: "强正相关",
@@ -3101,8 +3148,17 @@ export const cnMath = {
             right: "右",
             positive: "正",
             negative: "负",
-            nonlinear: "非线性"
-        }
+            nonlinear: "非线性",
+        
+            square: "square",
+            circle: "circle",
+            rectangle: "rectangle",
+            ellipse: "ellipse",
+            triangle: "triangle",
+            parabola: "parabola",
+            hyperbola: "hyperbola",
+            hexagon: "hexagon",
+            circles: "circles",}
     },
     sm2_11: {
         title: "数列与级数",
@@ -3315,7 +3371,19 @@ export const cnMath = {
             label_yn: "是/否",
             label_symbol: "符号",
             label_ps: "P/S"
-        }
+        },
+    
+        placeholders: {
+            yes: "yes",
+            q: "q",
+            n: "n",
+            forces: "forces",
+            p: "P",
+            w: "W",
+            joule: "Joule",
+            path: "path",
+            nb: "nb",
+        },
     },
     sc3_04: {
         hints: {

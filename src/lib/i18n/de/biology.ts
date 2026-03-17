@@ -23,6 +23,10 @@ export const deBiology = {
             evolution_display: "Evolutions-Anzeige",
             input_terminal: "Eingabe-Terminal"
         },
+        placeholders: {
+            yes: "yes",
+            positive: "positive",
+        },
         prompts: {
             natural_selection: "In einer Population von {initial} Finken überleben {survival} die Dürre. Berechne die Fitness.",
             speciation: "Nach {generations} Generationen mit Mutationsrate {rate}, berechne die genetische Divergenz.",
@@ -444,6 +448,9 @@ export const deBiology = {
             invalid_desc: "Zellulärer Stress erkannt. Stoffwechselfluss korrigieren.",
             next: "Nächstes Gleichgewicht"
         },
+        placeholders: {
+            enter_leave_stable: "enter/leave/stable",
+        },
         prompts: {
             osmosis_prompt: "Die Zelle befindet sich in einer {status} Umgebung ({desc}). Was passiert mit dem Wasser?",
             respiration_prompt: "Vervollständigen Sie den Reaktanten: C_6H_1_2O_6 + 6{reactant} → ...",
@@ -668,6 +675,9 @@ export const deBiology = {
             water_transport: "WASSERTRANSPORT",
             nutrient_transport: "NÄHRSTOFFTRANSPORT"
         },
+        placeholders: {
+            type_answer: "type answer",
+        },
         scenarios: {
             plant_structure: "Botanischer Garten Basel - Pflanzenanatomieforschung: Sie sind Botaniker am Botanischen Garten der Universität Basel, einem der ältesten botanischen Gärten der Schweiz (gegründet 1589), und studieren Pflanzenstruktur und -funktion. Pflanzen haben drei Hauptorgansysteme: Wurzeln (verankern die Pflanze, absorbieren Wasser und Mineralien aus dem Boden, speichern Nährstoffe), Stängel (bieten strukturelle Unterstützung, transportieren Wasser und Nährstoffe zwischen Wurzeln und Blättern, können Nährstoffe speichern) und Blätter (Hauptort der Photosynthese, Gasaustausch durch Stomata, Transpiration). Jedes Organ hat spezialisierte Gewebe: Hautgewebe (Epidermis mit Kutikula zum Schutz, Wurzelhaare zur Absorption), Leitgewebe (Xylem transportiert Wasser aufwärts, Phloem transportiert Zucker bidirektional) und Grundgewebe (Parenchym für Speicherung und Photosynthese, Kollenchym für flexible Unterstützung, Sklerenchym für starre Unterstützung). Das Verständnis der Pflanzenstruktur ist essentiell für Basels Agrarforschung, städtische Forstwirtschaft entlang des Rheins und pharmazeutische Botanik bei Roche und Novartis, wo viele Medikamente aus Pflanzenverbindungen gewonnen werden. Der Botanische Garten Basel pflegt über 7.500 Pflanzenarten für Forschung und Bildung.",
             water_transport: "Eidgenössische Forschungsanstalt für Wald, Schnee und Landschaft - Baumphysiologielabor: Sie studieren Wassertransport in Pflanzen an der WSL-Forschungsstation bei Basel und analysieren, wie Bäume entlang des Rheins Wasseraufnahme und Transpiration managen. Wasser bewegt sich von Wurzeln zu Blättern durch Xylemgefäße über drei Mechanismen: Wurzeldruck (aktiver Transport von Mineralien in Wurzeln erzeugt osmotischen Druck, der Wasser nach oben drückt), Kapillarwirkung (Wassermoleküle haften an Xylemwänden und kohärieren miteinander, wodurch kontinuierliche Wassersäulen entstehen) und Transpirationssog (Verdunstung von Wasser aus Blattstomata erzeugt Unterdruck, der Wasser von Wurzeln nach oben zieht). Diese Kohäsions-Spannungs-Theorie erklärt, wie hohe Bäume wie Basler Platanen Wasser über 30 Meter hoch transportieren können. Die Transpirationsrate wird von Temperatur, Luftfeuchtigkeit, Wind und Lichtintensität beeinflusst. Das Verständnis des Wassertransports ist entscheidend für die Verwaltung von Basels Stadtwäldern, die Vorhersage von Trockenstress in der Schweizer Landwirtschaft und die Entwicklung dürreresistenter Pflanzen für die Klimaanpassung.",
@@ -708,6 +718,9 @@ export const deBiology = {
             animal_classification: "TIERKLASSIFIKATION",
             adaptations: "ANPASSUNGEN",
             behavior_evolution: "VERHALTEN & EVOLUTION"
+        },
+        placeholders: {
+            type_answer: "type answer",
         },
         scenarios: {
             basel_zoo: "Zoo Basel Biodiversitätstour: Sie sind Studentenführer im Zoo Basel (Zolli) und bereiten eine Bildungstour über Tierklassifikation vor. Der Zoo beherbergt über 600 Arten aus allen wichtigen Tiergruppen. Ihre Aufgabe ist es, einen Klassifikationsleitfaden für Besucher zu erstellen. Heute konzentrieren Sie sich auf die Afrikanische Savanne, die Löwen (Panthera leo), Zebras (Equus quagga) und Strauße (Struthio camelus) umfasst. Sie müssen erklären, wie diese Tiere trotz des gleichen Lebensraums in verschiedene Gruppen klassifiziert werden. Das Bildungsprogramm des Zoos betont das Verständnis, dass Klassifikation auf evolutionären Beziehungen und gemeinsamen Merkmalen basiert, nicht nur darauf, wo Tiere leben. Dies hilft Besuchern, die Biodiversität und die Bedeutung von Naturschutzbemühungen zu schätzen. Ihre Aufgabe: Klassifizieren Sie jedes Tier in seine richtige Klasse (Mammalia, Aves oder Reptilia) und erklären Sie die Schlüsselmerkmale, die jede Gruppe definieren. Dieses Wissen hilft Zoobesuchern zu verstehen, warum Naturschutzstrategien die einzigartigen biologischen Bedürfnisse jeder Art basierend auf ihrer Klassifikation berücksichtigen müssen.",
@@ -1237,8 +1250,46 @@ export const deBiology = {
         placeholders: {
             gradient: "Gradient",
             pressure: "Druck",
-            rate: "Rate"
-        }
+            rate: "Rate",
+        
+            stomach: "stomach",
+            digestion: "digestion",
+            absorption: "absorption",
+            bile: "bile",
+            pancreas: "pancreas",
+            acid: "acid",
+            dehydration: "dehydration",
+            peristalsis: "peristalsis",
+            surface_area: "surface area",
+            more_time: "more time",
+            infection: "infection",
+            metabolism: "metabolism",
+            intestines: "intestines",
+            lactase: "lactase",
+            malabsorption: "malabsorption",
+            mechanical: "mechanical",
+            pump: "pump",
+            return: "return",
+            pulmonary: "pulmonary",
+            body: "body",
+            exchange: "exchange",
+            heart_rate: "heart rate",
+            elastic: "elastic",
+            varicose: "varicose",
+            sa: "SA",
+            heart_attack: "heart attack",
+            stretch: "stretch",
+            hypertrophy: "hypertrophy",
+            alveoli: "alveoli",
+            breathing: "breathing",
+            larynx: "larynx",
+            support: "support",
+            tree: "tree",
+            diffusion: "diffusion",
+            vibration: "vibration",
+            collapse: "collapse",
+            airflow: "airflow",
+            rbc: "RBC",}
     },
     sb3_01: {
         back: "Zurück zum Nexus",

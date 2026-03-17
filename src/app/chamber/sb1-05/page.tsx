@@ -103,7 +103,7 @@ export default function SB105AnimalClassification() {
                 slots: [{
                     id: "answer",
                     labelLatex: "Classification",
-                    placeholder: "type answer",
+                    placeholder: t("sb1_05.placeholders.type_answer"),
                     expected: item.answer
                 }],
                 correctLatex: `${t("common.answer_prefix")} ${item.answer}`,
@@ -159,7 +159,7 @@ export default function SB105AnimalClassification() {
                 slots: [{
                     id: "answer",
                     labelLatex: "Adaptation",
-                    placeholder: "type answer",
+                    placeholder: t("sb1_05.placeholders.type_answer"),
                     expected: item.answer
                 }],
                 correctLatex: `${t("common.answer_prefix")} ${item.answer}`,
@@ -210,7 +210,7 @@ export default function SB105AnimalClassification() {
                 slots: [{
                     id: "answer",
                     labelLatex: "Behavior",
-                    placeholder: "type answer",
+                    placeholder: t("sb1_05.placeholders.type_answer"),
                     expected: item.answer
                 }],
                 correctLatex: `${t("common.answer_prefix")} ${item.answer}`,

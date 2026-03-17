@@ -105,11 +105,11 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
             );
         } else { // ELITE
             quests.push(
-                { id: `SP-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e1"), expressionLatex: "\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Ns<1"] },
+                { id: `SP-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e1"), expressionLatex: "\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: t("gb1_01.placeholders.yes"), expected: "yes" }], correctLatex: "Yes", hintLatex: ["Ns<1"] },
                 { id: `SP-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e2"), expressionLatex: "0.5^{2}", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: "0.25", expected: 0.25 }], correctLatex: "0.25", hintLatex: ["Sample"] },
                 { id: `SP-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e3"), expressionLatex: "0.1/0.5", targetLatex: "Fst", slots: [{ id: "f", labelLatex: "F", placeholder: "0.2", expected: 0.2 }], correctLatex: "0.2", hintLatex: ["Structure"] },
                 { id: `SP-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e4"), expressionLatex: "4N/2 = 2N", targetLatex: "\\text{Coef}", slots: [{ id: "c", labelLatex: "C", placeholder: "2", expected: 2 }], correctLatex: "2N", hintLatex: ["Pairwise"] },
-                { id: `SP-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e5"), expressionLatex: "\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["k = u"] }
+                { id: `SP-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e5"), expressionLatex: "\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: t("gb1_01.placeholders.yes"), expected: "yes" }], correctLatex: "Yes", hintLatex: ["k = u"] }
             );
         }
     }
@@ -143,8 +143,8 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
             quests.push(
                 { id: `EV-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e1"), expressionLatex: "0.3", targetLatex: "K", slots: [{ id: "k", labelLatex: "K", placeholder: "0.3", expected: 0.3 }], correctLatex: "~0.3", hintLatex: ["Formula"] },
                 { id: `EV-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e2"), expressionLatex: "2", targetLatex: "R", slots: [{ id: "r", labelLatex: "R", placeholder: "2", expected: 2 }], correctLatex: "2", hintLatex: ["Def"] },
-                { id: `EV-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e3"), expressionLatex: "\\text{Positive}", targetLatex: "Type", slots: [{ id: "t", labelLatex: "Pos/Neg", placeholder: "positive", expected: "positive" }], correctLatex: "Positive", hintLatex: ["Adaptive"] },
-                { id: `EV-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e4"), expressionLatex: "Yes", targetLatex: "Y/N", slots: [{ id: "y", labelLatex: "Y/N", placeholder: "yes", expected: "yes" }], correctLatex: "Yes", hintLatex: ["Occam"] },
+                { id: `EV-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e3"), expressionLatex: "\\text{Positive}", targetLatex: "Type", slots: [{ id: "t", labelLatex: "Pos/Neg", placeholder: t("gb1_01.placeholders.positive"), expected: "positive" }], correctLatex: "Positive", hintLatex: ["Adaptive"] },
+                { id: `EV-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e4"), expressionLatex: "Yes", targetLatex: "Y/N", slots: [{ id: "y", labelLatex: "Y/N", placeholder: t("gb1_01.placeholders.yes"), expected: "yes" }], correctLatex: "Yes", hintLatex: ["Occam"] },
                 { id: `EV-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e5"), expressionLatex: "95\\%", targetLatex: "C", slots: [{ id: "c", labelLatex: "C", placeholder: "95", expected: 95 }], correctLatex: "95%", hintLatex: ["Percentage"] }
             );
         }

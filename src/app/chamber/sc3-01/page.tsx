@@ -127,7 +127,7 @@ export default function SC301Page() {
         {
           id: `${currentStage}-EMPIRICAL1`, promptLatex: t("sc3_01.prompts.simplest_ratio", { molecule: config.name }),
           expressionLatex: `C_{${config.c}}H_{${config.h}}${config.n > 0 ? `N_{${config.n}}` : ""}O_{${config.o}}`,
-          slots: [{ id: "empirical", labelLatex: t("common.labels.formula"), placeholder: "CxHyOz", expected: config.formula.replace(/_/g, "").replace(/\{|\}/g, "") }],
+          slots: [{ id: "empirical", labelLatex: t("common.labels.formula"), placeholder: t("sc3_01.placeholders.cxhyoz"), expected: config.formula.replace(/_/g, "").replace(/\{|\}/g, "") }],
           hintLatex: [t("sc3_01.hints.already_simplified")]
         },
         {

@@ -270,7 +270,7 @@ function buildStagePool(
                     promptLatex: t("gp2_01.prompts.boyle_condition"),
                     expressionLatex: "PV = k",
                     targetLatex: t("gp2_01.labels.constant"),
-                    slots: [{ id: "c", labelLatex: "T", placeholder: "temperature", expected: "temperature" }],
+                    slots: [{ id: "c", labelLatex: "T", placeholder: t("gp2_01.placeholders.temperature"), expected: "temperature" }],
                     correctLatex: "Temperature",
                     hintLatex: ["Isothermal"]
                 }
@@ -336,7 +336,7 @@ function buildStagePool(
             quests.push(
                 { id: "B-E1", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_isothermal_work"), expressionLatex: "W = 1000 \\ln(2)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: "693", expected: 693 }], correctLatex: "\\approx 693 \\text{ J}", hintLatex: ["ln(2)=0.693"] },
                 { id: "B-E2", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_compress_v3"), expressionLatex: "W = -P_1 V_1 \\ln(1/3)", targetLatex: "\\text{Sign}", slots: [{ id: "s", labelLatex: "+/-", placeholder: "+", expected: "+" }], correctLatex: "Positive work on gas", hintLatex: ["Compression"] },
-                { id: "B-E3", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_real_gas_limit"), expressionLatex: "\\text{High P, Low T}", targetLatex: "\\text{Conditions}", slots: [{ id: "c", labelLatex: "P is", placeholder: "high", expected: "high" }], correctLatex: "High Pressure", hintLatex: ["Intermolecular forces dominate"] },
+                { id: "B-E3", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_real_gas_limit"), expressionLatex: "\\text{High P, Low T}", targetLatex: "\\text{Conditions}", slots: [{ id: "c", labelLatex: "P is", placeholder: t("gp2_01.placeholders.high"), expected: "high" }], correctLatex: "High Pressure", hintLatex: ["Intermolecular forces dominate"] },
                 { id: "B-E4", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_compress_atm"), expressionLatex: "1(10) = 10(V_2)", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: "1", expected: 1 }], correctLatex: "1 L", hintLatex: ["Ratio 10"] },
                 { id: "B-E5", difficulty, stage, lawType: "boyle", promptLatex: t("gp2_01.prompts.boyle_two_bulbs"), expressionLatex: "P_f (V_1+V_2) = P_1 V_1", targetLatex: "P_f", slots: [{ id: "p", labelLatex: "P", placeholder: "1", expected: 1 }], correctLatex: "1", hintLatex: ["Total Volume = 2"] }
             );
