@@ -7,7 +7,7 @@ interface ElectrolysisCanvasProps {
     electrolyte: string;
     activeStage: string;
     showIons: boolean;
-    translations?: {
+    translations: {
         labels?: {
             canvas?: {
                 anode: string;
@@ -55,13 +55,13 @@ export default function ElectrolysisCanvas({ voltage, electrolyte, activeStage, 
             ctx.fillRect(width * 0.35, height * 0.2, 20, height * 0.4);
             ctx.fillStyle = "#fff";
             ctx.font = "bold 12px Mono";
-            ctx.fillText(translations?.labels?.canvas?.anode || "ANODE (+)", width * 0.35 - 10, height * 0.18);
+            ctx.fillText(translations.labels?.canvas?.anode ?? "", width * 0.35 - 10, height * 0.18);
 
             // Cathode (-)
             ctx.fillStyle = "#448aff";
             ctx.fillRect(width * 0.6, height * 0.2, 20, height * 0.4);
             ctx.fillStyle = "#fff";
-            ctx.fillText(translations?.labels?.canvas?.cathode || "CATHODE (-)", width * 0.6 - 10, height * 0.18);
+            ctx.fillText(translations.labels?.canvas?.cathode ?? "", width * 0.6 - 10, height * 0.18);
 
             // Power Supply
             ctx.strokeStyle = "#fff";
@@ -85,7 +85,7 @@ export default function ElectrolysisCanvas({ voltage, electrolyte, activeStage, 
             ctx.strokeRect(width * 0.45, height * 0.05, 50, 40);
             ctx.fillStyle = "#00e5ff";
             ctx.font = "10px Mono";
-            ctx.fillText(translations?.labels?.canvas?.dc || "DC", width * 0.45 + 15, height * 0.05 + 15);
+            ctx.fillText(translations.labels?.canvas?.dc ?? "", width * 0.45 + 15, height * 0.05 + 15);
             ctx.fillText(`${voltage.toFixed(1)}V`, width * 0.45 + 10, height * 0.05 + 30);
 
             // Ions and Electrons

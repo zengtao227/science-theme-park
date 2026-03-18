@@ -111,11 +111,11 @@ export default function PhysiologyVisualization({
       ctx.fillStyle = "#00ff00";
       ctx.font = "10px monospace";
       ctx.textAlign = "center";
-      ctx.fillText(translations.mouth || "MOUTH", centerX, h * 0.12);
-      ctx.fillText(translations.stomach || "STOMACH", centerX - 10, h * 0.42);
-      ctx.fillText(translations.liver || "LIVER", centerX - 35, h * 0.26);
-      ctx.fillText(translations.pancreas || "PANCREAS", centerX + 20, h * 0.45);
-      ctx.fillText(translations.intestines || "INTESTINES", centerX, h * 0.75);
+      ctx.fillText(translations.mouth, centerX, h * 0.12);
+      ctx.fillText(translations.stomach, centerX - 10, h * 0.42);
+      ctx.fillText(translations.liver, centerX - 35, h * 0.26);
+      ctx.fillText(translations.pancreas, centerX + 20, h * 0.45);
+      ctx.fillText(translations.intestines, centerX, h * 0.75);
     },
     [translations]
   );
@@ -196,10 +196,10 @@ export default function PhysiologyVisualization({
       ctx.fillStyle = "#00ffff";
       ctx.font = "10px monospace";
       ctx.textAlign = "center";
-      ctx.fillText(translations.nose || "NOSE", centerX, h * 0.08);
-      ctx.fillText(translations.trachea || "TRACHEA", centerX + 25, h * 0.25);
-      ctx.fillText(translations.lungs || "LUNGS", centerX, h * 0.52);
-      ctx.fillText(translations.diaphragm || "DIAPHRAGM", centerX, h * 0.73);
+      ctx.fillText(translations.nose, centerX, h * 0.08);
+      ctx.fillText(translations.trachea, centerX + 25, h * 0.25);
+      ctx.fillText(translations.lungs, centerX, h * 0.52);
+      ctx.fillText(translations.diaphragm, centerX, h * 0.73);
     },
     [translations]
   );
@@ -277,12 +277,12 @@ export default function PhysiologyVisualization({
       ctx.fillStyle = "#ff0000";
       ctx.font = "10px monospace";
       ctx.textAlign = "center";
-      ctx.fillText(translations.heart || "HEART", centerX, h * 0.42);
-      ctx.fillText(translations.arteries || "ARTERIES", centerX - 50, h * 0.12);
+      ctx.fillText(translations.heart, centerX, h * 0.42);
+      ctx.fillText(translations.arteries, centerX - 50, h * 0.12);
       ctx.fillStyle = "#0000ff";
-      ctx.fillText(translations.veins || "VEINS", centerX + 60, h * 0.12);
+      ctx.fillText(translations.veins, centerX + 60, h * 0.12);
       ctx.fillStyle = "#ff00ff";
-      ctx.fillText(translations.capillaries || "CAPILLARIES", centerX, h * 0.68);
+      ctx.fillText(translations.capillaries, centerX, h * 0.68);
     },
     [translations]
   );
@@ -353,10 +353,10 @@ export default function PhysiologyVisualization({
       ctx.fillStyle = "#ffff00";
       ctx.font = "10px monospace";
       ctx.textAlign = "center";
-      ctx.fillText(translations.kidneys || "KIDNEYS", centerX, h * 0.35);
-      ctx.fillText(translations.ureters || "URETERS", centerX - 30, h * 0.58);
-      ctx.fillText(translations.bladder || "BLADDER", centerX, h * 0.72);
-      ctx.fillText(translations.urethra || "URETHRA", centerX + 30, h * 0.78);
+      ctx.fillText(translations.kidneys, centerX, h * 0.35);
+      ctx.fillText(translations.ureters, centerX - 30, h * 0.58);
+      ctx.fillText(translations.bladder, centerX, h * 0.72);
+      ctx.fillText(translations.urethra, centerX + 30, h * 0.78);
     },
     [translations]
   );

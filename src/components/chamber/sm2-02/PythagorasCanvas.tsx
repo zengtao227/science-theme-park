@@ -568,7 +568,7 @@ export interface S202CanvasProps {
     p1?: { x: number; y: number; z?: number };
     p2?: { x: number; y: number; z?: number };
   };
-  translations?: {
+  translations: {
     voxel_proof: string;
     elite_space_diagonal: string;
     distance_formula_3d: string;
@@ -577,12 +577,7 @@ export interface S202CanvasProps {
 }
 
 export default function S202PythagorasCanvas({ visual, translations }: S202CanvasProps) {
-  const currentTranslations = {
-    voxel_proof: translations?.voxel_proof || "Voxel Pythagorean Proof",
-    elite_space_diagonal: translations?.elite_space_diagonal || "Elite Space Diagonal",
-    distance_formula_3d: translations?.distance_formula_3d || "Distance Formula 3D",
-    no_viz: translations?.no_viz || "No visualization available"
-  };
+  const currentTranslations = translations;
 
   const triangleScale = visual.kind === "triangle" && visual.a !== undefined && visual.b !== undefined && visual.c !== undefined
     ? Math.max(6, visual.a, visual.b, visual.c)
