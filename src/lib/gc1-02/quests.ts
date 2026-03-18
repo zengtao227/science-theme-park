@@ -46,7 +46,7 @@ export function generatePrinciplesQuests(t: any, difficulty: Difficulty): GC102Q
             }),
             expressionLatex: "m = (I \\cdot t \\cdot M) / (z \\cdot F)",
             targetLatex: "m (g)",
-            slots: [{ id: "mass", labelLatex: "m", placeholder: "0.000", expected }],
+            slots: [{ id: "mass", labelLatex: "m", placeholder: t("gc1_02.placeholders.decimal_mass"), expected }],
             correctLatex: `${expected}g`,
         });
     }
@@ -64,7 +64,7 @@ export function generatePlatingQuests(t: any, difficulty: Difficulty): GC102Ques
             promptLatex: t("gc1_02.prompts.plating_setup"),
             expressionLatex: "Cathode or Anode?",
             targetLatex: "1:Anode, 2:Cathode",
-            slots: [{ id: "ans", labelLatex: "Pos", placeholder: "1 or 2", expected: 2 }],
+            slots: [{ id: "ans", labelLatex: "Pos", placeholder: t("gc1_02.placeholders.one_or_two"), expected: 2 }],
             correctLatex: "Cathode",
         });
     }
@@ -82,7 +82,7 @@ export function generateCorrosionQuests(t: any, difficulty: Difficulty): GC102Qu
             promptLatex: t("gc1_02.prompts.corrosion_protection", { metal: "Iron" }),
             expressionLatex: "Select: 1:Mg, 2:Au",
             targetLatex: "Ans",
-            slots: [{ id: "ans", labelLatex: "Choice", placeholder: "1 or 2", expected: 1 }],
+            slots: [{ id: "ans", labelLatex: "Choice", placeholder: t("gc1_02.placeholders.one_or_two"), expected: 1 }],
             correctLatex: "Magnesium",
         });
     }

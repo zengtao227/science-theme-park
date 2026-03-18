@@ -14,7 +14,7 @@ export const QUEST_DATA: SC107Quest[] = [
         promptLatex: "sc1_07_q1",
         expressionLatex: "Material = \\square",
         targetLatex: "PET",
-        slots: [{ id: "m1", labelLatex: "Material", placeholder: "Type", expected: "PET" }],
+        slots: [{ id: "m1", labelLatex: "Material", placeholder: "", expected: "PET" }],
         correctLatex: "PET"
     },
     {
@@ -24,7 +24,7 @@ export const QUEST_DATA: SC107Quest[] = [
         promptLatex: "sc1_07_q2",
         expressionLatex: "AE = \\square \\%",
         targetLatex: "100",
-        slots: [{ id: "a1", labelLatex: "AE", placeholder: "%", expected: "100" }],
+        slots: [{ id: "a1", labelLatex: "AE", placeholder: "", expected: "100" }],
         correctLatex: "100\\%"
     },
     {
@@ -34,7 +34,7 @@ export const QUEST_DATA: SC107Quest[] = [
         promptLatex: "sc1_07_q3",
         expressionLatex: "Stage = \\square",
         targetLatex: "Cradle",
-        slots: [{ id: "s1", labelLatex: "Stage", placeholder: "Name", expected: "Cradle" }],
+        slots: [{ id: "s1", labelLatex: "Stage", placeholder: "", expected: "Cradle" }],
         correctLatex: "Cradle"
     }
 ];

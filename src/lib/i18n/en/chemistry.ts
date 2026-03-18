@@ -332,6 +332,9 @@ export const enChemistry = {
         }
     },
     sc1_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Back to Nexus",
         title: "SC1.01 // MYSTERY LAB",
         difficulty: {
@@ -473,6 +476,11 @@ export const enChemistry = {
         }
     },
     sc1_02: {
+        placeholders: {
+            g_per_mol: "g/mol",
+            mol: "mol",
+            g: "g",
+        },
         back: "Back to Nexus",
         title: "C1.02 // MOLE MASTER",
         difficulty: {
@@ -1018,6 +1026,11 @@ export const enChemistry = {
         }
     },
     sc2_03: {
+        placeholders: {
+            pressure_bar: "bar",
+            volume_l: "L",
+            value: "value",
+        },
         back: "Back to Nexus",
         title: "SC2.03 // AERO LAB",
         difficulty: {
@@ -1078,6 +1091,10 @@ export const enChemistry = {
         }
     },
     sc2_04: {
+        placeholders: {
+            g_per_100ml: "g/100mL",
+            g: "g",
+        },
         back: "Back to Nexus",
         title: "SC2.04 // SOLUBILITY LAB",
         difficulty: {
@@ -1448,6 +1465,10 @@ export const enChemistry = {
         }
     },
     gc1_02: {
+        placeholders: {
+            decimal_mass: "0.000",
+            one_or_two: "1 or 2",
+        },
         back: "Return to Nexus",
         title: "GC1.02 // ELECTROLYSIS LAB",
         difficulty: {

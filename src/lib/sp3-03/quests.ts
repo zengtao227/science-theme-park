@@ -75,7 +75,7 @@ export function generatePotentialQuests(t: any, difficulty: Difficulty): SP303Qu
             promptLatex: t(`sp3_03.prompts.${scen}`, { m, h, v: 10, g: 9.8 }),
             expressionLatex: "E_p = mgh",
             targetLatex: "E_p",
-            slots: [{ id: "ans", labelLatex: "E_p \\text{ (J)}", placeholder: "Joules", expected: expected.toString() }],
+            slots: [{ id: "ans", labelLatex: "E_p \\text{ (J)}", placeholder: t("sp3_03.placeholders.joules"), expected: expected.toString() }],
             correctLatex: `E_p = ${expected} \\text{ J}`,
         });
     }
@@ -121,7 +121,7 @@ export function generateKineticQuests(t: any, difficulty: Difficulty): SP303Ques
             promptLatex: t(`sp3_03.prompts.${scen}`, { m, v, h: 20, f: 10, d: 50 }),
             expressionLatex: "E_k = \\frac{1}{2}mv^{2}",
             targetLatex: expected > 50 ? (scen === "velocity_at_bottom" ? "v" : "E_k") : "E_k",
-            slots: [{ id: "ans", labelLatex: "Result", placeholder: "val", expected: expected.toString() }],
+            slots: [{ id: "ans", labelLatex: "Result", placeholder: t("sp3_03.placeholders.value"), expected: expected.toString() }],
             correctLatex: `Result = ${expected}`,
         });
     }
@@ -166,7 +166,7 @@ export function generatePowerQuests(t: any, difficulty: Difficulty): SP303Quest[
             promptLatex: t(`sp3_03.prompts.${scen}`, { f, d, t: time, m: 10, h: 20 }),
             expressionLatex: "W = Fd, P = W/t",
             targetLatex: scen === "basic_work" ? "W" : "P",
-            slots: [{ id: "ans", labelLatex: "Value", placeholder: "J or W", expected: expected.toString() }],
+            slots: [{ id: "ans", labelLatex: "Value", placeholder: t("sp3_03.placeholders.j_or_w"), expected: expected.toString() }],
             correctLatex: `Result = ${expected}`,
         });
     }

@@ -78,7 +78,7 @@ export function generateFirstLawQuests(t: any, difficulty: Difficulty): SP102Que
             promptLatex: prompt,
             expressionLatex: "\\vec{F}_{net} = 0 \\Rightarrow \\vec{v} = \\text{const}",
             targetLatex: "F_{net}",
-            slots: [{ id: "answer", labelLatex: "F", placeholder: "val", expected }],
+            slots: [{ id: "answer", labelLatex: "F", placeholder: t("sp1_02.placeholders.value"), expected }],
             correctLatex: `F = ${expected}`,
         });
     }
@@ -120,7 +120,7 @@ export function generateSecondLawQuests(t: any, difficulty: Difficulty): SP102Qu
             promptLatex: t("sp1_02.prompts.second_law", { m, f, friction }),
             expressionLatex: "F_{net} = ma \\Rightarrow (F_{applied} - F_{friction}) = ma",
             targetLatex: "a",
-            slots: [{ id: "answer", labelLatex: "a", placeholder: "m/s²", expected: round2(a) }],
+            slots: [{ id: "answer", labelLatex: "a", placeholder: t("sp1_02.placeholders.acceleration_ms2"), expected: round2(a) }],
             correctLatex: `a = ${round2(a)} \\text{ m/s}^{2}`,
         });
     }
@@ -152,7 +152,7 @@ export function generateThirdLawQuests(t: any, difficulty: Difficulty): SP102Que
             promptLatex: t("sp1_02.prompts.third_law", { f1 }),
             expressionLatex: "\\vec{F}_{AB} = -\\vec{F}_{BA}",
             targetLatex: "F_{reaction}",
-            slots: [{ id: "answer", labelLatex: "F_{reac}", placeholder: "N", expected: f1 }],
+            slots: [{ id: "answer", labelLatex: "F_{reac}", placeholder: t("sp1_02.placeholders.force_n"), expected: f1 }],
             correctLatex: `F_{reac} = ${f1} \\text{ N}`,
         });
     }

@@ -26,7 +26,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
       {
         id: "type",
         labelLatex: "Hormone type:",
-        placeholder: "Select hormone type...",
+        placeholder: "",
         type: "select",
         options: ["peptide", "steroid", "amino_acid_derived"],
         expected: "peptide"
@@ -44,7 +44,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
       {
         id: "type",
         labelLatex: "Hormone type:",
-        placeholder: "Select hormone type...",
+        placeholder: "",
         type: "select",
         options: ["peptide", "steroid", "amino_acid_derived"],
         expected: "steroid"
@@ -62,7 +62,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
       {
         id: "type",
         labelLatex: "Hormone type:",
-        placeholder: "Select hormone type...",
+        placeholder: "",
         type: "select",
         options: ["peptide", "steroid", "amino_acid_derived"],
         expected: "amino_acid_derived"
@@ -80,7 +80,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
       {
         id: "gland",
         labelLatex: "Producing gland:",
-        placeholder: "Select gland...",
+        placeholder: "",
         type: "select",
         options: ["pancreas", "pituitary", "thyroid", "adrenal cortex"],
         expected: "pancreas"
@@ -98,7 +98,7 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
       {
         id: "type",
         labelLatex: "Hormone type:",
-        placeholder: "Select hormone type...",
+        placeholder: "",
         type: "select",
         options: ["peptide", "steroid", "amino_acid_derived"],
         expected: "amino_acid_derived"

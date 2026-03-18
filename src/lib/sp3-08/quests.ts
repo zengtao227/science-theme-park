@@ -62,7 +62,7 @@ export function generateReflectionQuests(t: any, difficulty: Difficulty): SP308Q
             promptLatex: t("sp3_08.prompts.reflection_law", { angle }),
             expressionLatex: "\\theta_i = \\theta_r",
             targetLatex: "\\theta_r",
-            slots: [{ id: "theta_r", labelLatex: "\\theta_r", placeholder: "deg", expected: angle }],
+            slots: [{ id: "theta_r", labelLatex: "\\theta_r", placeholder: t("sp3_08.placeholders.deg"), expected: angle }],
             correctLatex: `\\theta_r = ${angle}^\\circ`,
         });
     }
@@ -106,7 +106,7 @@ export function generateRefractionQuests(t: any, difficulty: Difficulty): SP308Q
             promptLatex: t("sp3_08.prompts.refraction_setup", { material: mat.name, n1: mat.n1, n2: mat.n2, theta1 }),
             expressionLatex: "n_1\\sin\\theta_1 = n_2\\sin\\theta_2",
             targetLatex: "\\theta_2",
-            slots: [{ id: "theta_2", labelLatex: "\\theta_2", placeholder: "deg", expected: round1(theta2) }],
+            slots: [{ id: "theta_2", labelLatex: "\\theta_2", placeholder: t("sp3_08.placeholders.deg"), expected: round1(theta2) }],
             correctLatex: `\\theta_2 = ${round1(theta2)}^\\circ`,
         });
     }
@@ -141,8 +141,8 @@ export function generateLensQuests(t: any, difficulty: Difficulty): SP308Quest[]
             expressionLatex: "\\frac{1}{f} = \\frac{1}{u} + \\frac{1}{v}",
             targetLatex: "v",
             slots: [
-                { id: "v", labelLatex: "v", placeholder: "mm", expected: round1(v) },
-                { id: "m", labelLatex: "m", placeholder: "mag", expected: round2(-v / u) },
+                { id: "v", labelLatex: "v", placeholder: t("sp3_08.placeholders.mm"), expected: round1(v) },
+                { id: "m", labelLatex: "m", placeholder: t("sp3_08.placeholders.mag"), expected: round2(-v / u) },
             ],
             correctLatex: `v = ${round1(v)}\\text{mm},\\; m = ${round2(-v / u)}`,
         });

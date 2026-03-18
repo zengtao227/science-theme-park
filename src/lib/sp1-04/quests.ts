@@ -14,7 +14,7 @@ export const QUEST_DATA: SP104Quest[] = [
         promptLatex: "sp1_04_q1",
         expressionLatex: "Planet = \\square",
         targetLatex: "Jupiter",
-        slots: [{ id: "p1", labelLatex: "Planet", placeholder: "Name", expected: "Jupiter" }],
+        slots: [{ id: "p1", labelLatex: "Planet", placeholder: "", expected: "Jupiter" }],
         correctLatex: "Jupiter"
     },
     {
@@ -24,7 +24,7 @@ export const QUEST_DATA: SP104Quest[] = [
         promptLatex: "sp1_04_q2",
         expressionLatex: "Phase = \\square",
         targetLatex: "Full",
-        slots: [{ id: "m1", labelLatex: "Phase", placeholder: "Name", expected: "Full" }],
+        slots: [{ id: "m1", labelLatex: "Phase", placeholder: "", expected: "Full" }],
         correctLatex: "Full Moon"
     },
     {
@@ -34,22 +34,34 @@ export const QUEST_DATA: SP104Quest[] = [
         promptLatex: "sp1_04_q3",
         expressionLatex: "\\theta = \\square^\\circ",
         targetLatex: "23.5",
-        slots: [{ id: "t1", labelLatex: "\\theta", placeholder: "Degrees", expected: "23.5" }],
+        slots: [{ id: "t1", labelLatex: "\\theta", placeholder: "", expected: "23.5" }],
         correctLatex: "23.5"
     }
 ];
 
 export const generateSolarSystemQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "SOLAR_SYSTEM" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex }));
+        .map(q => ({
+            ...q,
+            promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex,
+            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_04.placeholders.name") || slot.placeholder })),
+        }));
 };
 
 export const generateMoonPhasesQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "MOON_PHASES" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex }));
+        .map(q => ({
+            ...q,
+            promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex,
+            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_04.placeholders.name") || slot.placeholder })),
+        }));
 };
 
 export const generateSeasonsQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "SEASONS" && q.difficulty === difficulty)
-        .map(q => ({ ...q, promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex }));
+        .map(q => ({
+            ...q,
+            promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex,
+            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_04.placeholders.degrees") || slot.placeholder })),
+        }));
 };

@@ -40,7 +40,7 @@ export function generateCrystalQuests(t: any, difficulty: Difficulty, stage: Sta
             promptLatex: t(`gc3_02.prompts.${key}`),
             expressionLatex: "",
             targetLatex: "\\text{Result}",
-            slots: [{ id: "ans", labelLatex: "Answer", placeholder: "...", expected }],
+            slots: [{ id: "ans", labelLatex: "Answer", placeholder: t("gc3_02.placeholders.ellipsis"), expected }],
             correctLatex: `${expected}`,
             simConfig: { latticeType: stage, showVoids: key.includes("void") }
         });

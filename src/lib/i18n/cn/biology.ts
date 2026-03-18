@@ -302,6 +302,10 @@ export const cnBiology = {
     gb2_02: {
         placeholders: {
             ellipsis: "...",
+            select: "请选择...",
+            answer: "输入答案...",
+            hormone_type: "选择激素类型...",
+            gland: "选择腺体...",
         },
         back: "返回枢纽",
         title: "GB2.02 // 内分泌系统",

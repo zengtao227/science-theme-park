@@ -302,6 +302,10 @@ export const deBiology = {
     gb2_02: {
         placeholders: {
             ellipsis: "...",
+            select: "Auswählen...",
+            answer: "Antwort eingeben...",
+            hormone_type: "Hormontyp wählen...",
+            gland: "Drüse wählen...",
         },
         back: "Zurück zum Nexus",
         title: "GB2.02 // ENDOKRINES SYSTEM",

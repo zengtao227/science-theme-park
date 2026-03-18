@@ -302,6 +302,10 @@ export const enBiology = {
     gb2_02: {
         placeholders: {
             ellipsis: "...",
+            select: "Select...",
+            answer: "Enter answer...",
+            hormone_type: "Select hormone type...",
+            gland: "Select gland...",
         },
         back: "Back to Nexus",
         title: "GB2.02 // ENDOCRINE SYSTEM",

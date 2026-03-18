@@ -32,7 +32,7 @@ export function generateSolubilityQuests(t: any, difficulty: Difficulty, stage: 
             promptLatex: t.prompts.solubility_given.replace("{temp}", String(temp)),
             expressionLatex: "S = f(T)",
             targetLatex: "S",
-            slots: [{ id: "ans", labelLatex: "S", placeholder: "g/100mL", expected: roundedS }],
+            slots: [{ id: "ans", labelLatex: "S", placeholder: t.placeholders.g_per_100ml, expected: roundedS }],
             correctLatex: `S = ${roundedS}`,
         });
     }
@@ -49,7 +49,7 @@ export function generateEliteQuests(t: any, difficulty: Difficulty): SC204Quest[
             promptLatex: t.prompts.elite_rhine_sample,
             expressionLatex: "S = m_{solute} / m_{water}",
             targetLatex: "S",
-            slots: [{ id: "ans", labelLatex: "S", placeholder: "g", expected: 0.2 }],
+            slots: [{ id: "ans", labelLatex: "S", placeholder: t.placeholders.g, expected: 0.2 }],
             correctLatex: "0.2 g/100g",
         });
     }

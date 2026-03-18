@@ -39,13 +39,13 @@ export function buildSP101Pool(difficulty: Difficulty, stage: Stage, t: any): an
             slots: q.type === 'MULTIPLE_CHOICE' ? [{
                 id: "answer",
                 labelLatex: `\\\\text{${t("sp1_01.labels.select") || "Select"}}`,
-                placeholder: "...",
+                placeholder: t("sp1_01.placeholders.ellipsis") || "...",
                 expected: correctValue,
                 options: options.map(o => o.text)
             }] : [{
                 id: "answer",
                 labelLatex: `\\\\text{${t("sp1_01.labels.value") || "Value"}}`,
-                placeholder: "0.0",
+                placeholder: t("sp1_01.placeholders.decimal") || "0.0",
                 expected: correctValue,
                 unit: unit
             }]

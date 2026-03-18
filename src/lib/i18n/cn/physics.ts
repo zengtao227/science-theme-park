@@ -30,6 +30,10 @@ export const cnPhysics = {
             "previous": "上一项",
             "skip": "跳过"
         },
+        "placeholders": {
+            "ellipsis": "...",
+            "decimal": "0.0"
+        },
         "check": "验证检测",
         "next": "下一个任务",
         "correct": "验证通过 - 系统稳定",
@@ -913,6 +917,11 @@ export const cnPhysics = {
             second_law: "第二定律（F=ma）",
             third_law: "第三定律（作用-反作用）"
         },
+        placeholders: {
+            value: "数值",
+            acceleration_ms2: "m/s²",
+            force_n: "N"
+        },
 
         prompts: {
             first_law_basic: "巴塞尔惯性检查：物体速度为 {v} m/s，合力为 0。任务：写出 F_net。",
@@ -1071,6 +1080,13 @@ export const cnPhysics = {
             components: "元件识别",
             simple_circuits: "简单电路",
             circuit_diagrams: "电路图"
+        },
+        placeholders: {
+            type_name: "输入名称",
+            describe_function: "描述功能",
+            select_symbol: "选择符号",
+            type_answer: "输入答案",
+            identify_fault: "识别故障"
         },
         scenarios: {
             components: "巴塞尔家庭电气安全：你是巴塞尔职业学校（Gewerbeschule Basel）的电工学徒。今天你要学习识别家庭电气安装中的电路元件。理解每个元件的功能对安全至关重要——错误识别元件可能导致火灾或触电。在巴塞尔的历史建筑中，电气系统必须符合严格的瑞士安全标准（NIV 2020）。你将学习电池（提供电压的电源）、灯泡（将电能转换为光能）、开关（控制电流）、导线（传导电流）和电阻器（限制电流）。每个元件在保护家庭和确保可靠供电方面都有特定作用。这些知识对巴塞尔17万居民每天依赖的安全电气系统至关重要。",
@@ -1277,6 +1293,10 @@ export const cnPhysics = {
             newton_2: "牛顿第二定律 (F=ma)",
             friction: "摩擦力分析"
         },
+        placeholders: {
+            force_n: "N",
+            acceleration_ms2: "m/s²"
+        },
         labels: {
             input: "力学参数",
             mass: "质量 (m)",
@@ -1395,6 +1415,11 @@ export const cnPhysics = {
         monitor_title: "SP3.03_能量中枢",
         footer_left: "SP3.03_力学 // 节点：巴塞尔",
         stages: { potential: "重力势能", kinetic: "动能", work: "功率输出" },
+        placeholders: {
+            joules: "焦耳",
+            value: "数值",
+            j_or_w: "J 或 W"
+        },
         scenarios: {
             rhein_hydro: "莱茵河水电站：巴塞尔电站利用莱茵河的水流将势能转化为源源不断的清洁电力。",
             tram_braking: "巴塞尔电车能量回收：BVB 电车在刹车时利用再生制动将动能回馈至城市电网。",
@@ -2126,6 +2151,11 @@ export const cnPhysics = {
             advanced: "进阶",
             elite: "精英"
         },
+        placeholders: {
+            deg: "度",
+            mm: "毫米",
+            mag: "放大率"
+        },
         stages: {
             reflection: "反射",
             refraction: "折射",
@@ -2732,6 +2762,11 @@ export const cnPhysics = {
         title: "SP1.03 // 天气与气候",
         back: "返回",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        placeholders: {
+            name: "名称",
+            hpa: "hPa",
+            formula: "化学式"
+        },
         stages: {
             atmosphere: "大气层",
             weather: "天气现象",
@@ -2755,6 +2790,10 @@ export const cnPhysics = {
         title: "SP1.04 // 基础天文学",
         back: "返回",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
+        placeholders: {
+            name: "名称",
+            degrees: "度"
+        },
         stages: {
             solar_system: "太阳系",
             moon_phases: "月相与潮汐",

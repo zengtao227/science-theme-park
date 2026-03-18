@@ -39,7 +39,7 @@ export function generateEquilibriumQuests(t: any, difficulty: Difficulty, stage:
             promptLatex: t(`gc3_01.prompts.${key}`),
             expressionLatex: "",
             targetLatex: "\\text{Effect}",
-            slots: [{ id: "ans", labelLatex: "Result", placeholder: "...", expected }],
+            slots: [{ id: "ans", labelLatex: "Result", placeholder: t("gc3_01.placeholders.ellipsis"), expected }],
             correctLatex: `${expected}`,
             simConfig: { temp: 50, pressure: 50, concA: 50 }
         });

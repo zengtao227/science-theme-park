@@ -37,6 +37,10 @@ export const enPhysics = {
                         "previous": "Previous",
                         "skip": "Skip"
                 },
+                "placeholders": {
+                        "ellipsis": "...",
+                        "decimal": "0.0"
+                },
                 "SP1.01.001": {
                         "prompt": "What is a force?",
                         "feedback": {
@@ -979,6 +983,11 @@ export const enPhysics = {
                         second_law: "SECOND LAW (F=ma)",
                         third_law: "THIRD LAW (ACTION-REACTION)"
                 },
+                placeholders: {
+                        value: "value",
+                        acceleration_ms2: "m/s^2",
+                        force_n: "N"
+                },
 
                 prompts: {
                         first_law_basic: "Basel inertia check: object speed is {v} m/s and net force is zero. Task: state F_net.",
@@ -1138,6 +1147,13 @@ export const enPhysics = {
                         simple_circuits: "SIMPLE CIRCUITS",
                         circuit_diagrams: "CIRCUIT DIAGRAMS"
                 },
+                placeholders: {
+                        type_name: "type name",
+                        describe_function: "describe function",
+                        select_symbol: "select symbol",
+                        type_answer: "type answer",
+                        identify_fault: "identify fault"
+                },
                 scenarios: {
                         components: "Basel Home Electrical Safety: You are a trainee electrician at Basel's vocational school (Gewerbeschule Basel). Today you're learning to identify circuit components for home electrical installations. Understanding each component's function is critical for safety - a misidentified component could cause fires or electrical shocks. In Basel's historic buildings, electrical systems must meet strict Swiss safety standards (NIV 2020). You'll work with batteries (power sources providing voltage), bulbs (converting electrical energy to light), switches (controlling current flow), wires (conducting electricity), and resistors (limiting current). Each component has a specific role in protecting homes and ensuring reliable power delivery. This knowledge is essential for Basel's 170,000 residents who depend on safe electrical systems every day.",
                         simple_circuits: "Basel Christmas Light Installation: You're helping install Christmas lights along Basel's Freie Strasse shopping district. The city requires energy-efficient LED strings that can be controlled independently. You need to understand series circuits (where bulbs are in a single path - if one fails, all go dark) versus parallel circuits (where bulbs are in separate paths - each can be controlled independently). Series circuits are simpler but less reliable. Parallel circuits use more wire but provide redundancy. For Basel's 2km of Christmas lights, parallel circuits with individual switches allow sections to be turned off during the day to save energy. The Basel Christmas market uses over 50,000 LED bulbs, and proper circuit design ensures they operate safely at 230V AC while consuming minimal power.",
@@ -1254,6 +1270,10 @@ export const enPhysics = {
                         newton_1: "INERTIA",
                         newton_2: "F = ma",
                         friction: "FRICTIONAL FORCES"
+                },
+                placeholders: {
+                        force_n: "N",
+                        acceleration_ms2: "m/s^2"
                 },
                 labels: {
                         input: "FORCE PARAMETERS",
@@ -1373,6 +1393,11 @@ export const enPhysics = {
                 monitor_title: "SP3.03_ENERGY_HUB",
                 footer_left: "SP3.03_MECHANICS // NODE: BASEL",
                 stages: { potential: "POTENTIAL ENERGY", kinetic: "KINETIC ENERGY", work: "POWER OUTPUT" },
+                placeholders: {
+                        joules: "Joules",
+                        value: "value",
+                        j_or_w: "J or W"
+                },
                 scenarios: {
                         rhein_hydro: "Rhine Hydroelectric Power: The flow of the Rhine at the Basel power station converts potential energy into clean electricity for the city.",
                         tram_braking: "Basel Tram Energy Recovery: BVB trams use regenerative braking to feed kinetic energy back into the power grid."
@@ -2147,7 +2172,12 @@ export const enPhysics = {
                         refraction: "Light bends toward the normal when entering a denser medium (n_2 > n_1)"
                 },
                 snell: { title: "SNELL'S LAW", line_1: "n_1 sin(θ_1) = n_2 sin(θ_2)", line_2: "θ_c = arcsin(n_2/n_1)", line_3: "v = c/n" },
-                mission: { title: "MISSION: RAY OPTICS", description: "Master the physics of light refraction and reflection using Basel's laboratory models." }
+                mission: { title: "MISSION: RAY OPTICS", description: "Master the physics of light refraction and reflection using Basel's laboratory models." },
+                placeholders: {
+                        deg: "deg",
+                        mm: "mm",
+                        mag: "mag"
+                }
         },
 
         // SP2.02: Ohm's Law & Circuits
@@ -2825,6 +2855,11 @@ export const enPhysics = {
                 title: "SP1.03 // Weather & Climate",
                 back: "Back",
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+                placeholders: {
+                        name: "Name",
+                        hpa: "hPa",
+                        formula: "Formula"
+                },
                 stages: {
                         atmosphere: "ATMOSPHERE",
                         weather: "WEATHER",
@@ -2844,6 +2879,10 @@ export const enPhysics = {
                 title: "SP1.04 // Astronomy Basics",
                 back: "Back",
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
+                placeholders: {
+                        name: "Name",
+                        degrees: "Degrees"
+                },
                 stages: {
                         solar_system: "SOLAR SYSTEM",
                         moon_phases: "MOON PHASES",

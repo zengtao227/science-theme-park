@@ -57,9 +57,9 @@ export function generateIdentifyQuests(t: any, difficulty: Difficulty): SC101Que
             expressionLatex: `\\text{${t("sc1_01.prompts.use_tools")}}`,
             targetLatex: "\\text{A, B, C}",
             slots: [
-                { id: "A", labelLatex: "\\text{A}", placeholder: "...", expected: arrangement[0] },
-                { id: "B", labelLatex: "\\text{B}", placeholder: "...", expected: arrangement[1] },
-                { id: "C", labelLatex: "\\text{C}", placeholder: "...", expected: arrangement[2] },
+                { id: "A", labelLatex: "\\text{A}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: arrangement[0] },
+                { id: "B", labelLatex: "\\text{B}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: arrangement[1] },
+                { id: "C", labelLatex: "\\text{C}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: arrangement[2] },
             ],
             correctLatex: `\\text{A=${arrangement[0]}, B=${arrangement[1]}, C=${arrangement[2]}}`,
         });
@@ -97,7 +97,7 @@ export function generatePropertiesQuests(t: any, difficulty: Difficulty): SC101Q
             promptLatex: t(`sc1_01.properties_q.${p.key}`),
             expressionLatex: `\\text{${t("sc1_01.prompts.test_observe")}}`,
             targetLatex: "\\text{Substance}",
-            slots: [{ id: "answer", labelLatex: "\\text{Subst}", placeholder: "...", expected: p.answer }],
+            slots: [{ id: "answer", labelLatex: "\\text{Subst}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: p.answer }],
             correctLatex: `\\text{${p.answer}}`,
         });
     }
@@ -127,7 +127,7 @@ export function generateReactionsQuests(t: any, difficulty: Difficulty): SC101Qu
             promptLatex: t(`sc1_01.reactions_q.${r.key}`),
             expressionLatex: `\\text{Reaction Sequence}`,
             targetLatex: "\\text{Product}",
-            slots: [{ id: "product", labelLatex: "\\text{Prod}", placeholder: "...", expected: r.product.toLowerCase() }],
+            slots: [{ id: "product", labelLatex: "\\text{Prod}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: r.product.toLowerCase() }],
             correctLatex: `\\text{${r.product}}`,
         });
     }

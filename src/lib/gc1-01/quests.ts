@@ -40,7 +40,7 @@ export function generateRedoxQuests(t: any, difficulty: Difficulty, stage: Stage
             promptLatex: t(`gc1_01.prompts.${key}`),
             expressionLatex: "",
             targetLatex: "\\text{Ans}",
-            slots: [{ id: "ans", labelLatex: "Ans", placeholder: "...", expected }],
+            slots: [{ id: "ans", labelLatex: "Ans", placeholder: t("gc1_01.placeholders.ellipsis"), expected }],
             correctLatex: `${expected}`,
             simConfig: { znConc: 1.0, cuConc: 1.0, temp: 298 }
         });

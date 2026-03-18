@@ -324,6 +324,9 @@ export const deChemistry = {
         }
     },
     sc1_01: {
+        placeholders: {
+            ellipsis: "...",
+        },
         back: "Zurück zum Nexus",
         title: "SC1.01 // GEHEIM LABOR",
         difficulty: {
@@ -465,6 +468,11 @@ export const deChemistry = {
         }
     },
     sc1_02: {
+        placeholders: {
+            g_per_mol: "g/mol",
+            mol: "mol",
+            g: "g",
+        },
         back: "Zurück zum Nexus",
         title: "C1.02 // MOL-MEISTER",
         difficulty: {
@@ -1010,6 +1018,11 @@ export const deChemistry = {
         }
     },
     sc2_03: {
+        placeholders: {
+            pressure_bar: "bar",
+            volume_l: "L",
+            value: "Wert",
+        },
         back: "Zurück zum Nexus",
         title: "SC2.03 // AERO LABOR",
         difficulty: {
@@ -1070,6 +1083,10 @@ export const deChemistry = {
         }
     },
     sc2_04: {
+        placeholders: {
+            g_per_100ml: "g/100mL",
+            g: "g",
+        },
         back: "Zurück zum Nexus",
         title: "SC2.04 // LÖSLICHKEITSLABOR",
         difficulty: {
@@ -1441,6 +1458,10 @@ export const deChemistry = {
         }
     },
     gc1_02: {
+        placeholders: {
+            decimal_mass: "0.000",
+            one_or_two: "1 oder 2",
+        },
         back: "Zurück zum Nexus",
         title: "GC1.02 // ELEKTROLYSE-LABOR",
         difficulty: {

@@ -15,6 +15,7 @@ import { CLINICAL_CASES } from './gb2-02-clinical-data';
  * Helper function to create a slot with default placeholder
  */
 function createSlot(
+  t: any,
   id: string,
   labelLatex: string,
   type: "select" | "input" | "multiselect",
@@ -24,7 +25,9 @@ function createSlot(
   return {
     id,
     labelLatex,
-    placeholder: type === "select" ? "Select..." : "Enter answer...",
+    placeholder: type === "select"
+      ? (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select..."
+      : (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
     type,
     expected,
     options
@@ -102,7 +105,7 @@ function buildHormoneIdentificationQuests(
         expressionLatex: "\\text{Insulin}",
         targetLatex: "\\text{Type: ?}",
         correctLatex: "\\text{peptide}",
-        slots: [createSlot("type", "Hormone type:", "select", "peptide", ["peptide", "steroid", "amino_acid_derived"])],
+        slots: [createSlot(t, "type", "Hormone type:", "select", "peptide", ["peptide", "steroid", "amino_acid_derived"])],
         baselContext: "At Roche Diagnostics Basel, researchers develop advanced blood glucose monitoring systems...",
         title: "Hormone Classification",
         description: "Identify hormone types",
@@ -122,7 +125,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "type",
           labelLatex: "Hormone type:",
-          placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "steroid"
@@ -146,7 +149,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "type",
           labelLatex: "Hormone type:",
-          placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "amino_acid_derived"
@@ -170,7 +173,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "gland",
           labelLatex: "Producing gland:",
-          placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["pancreas", "pituitary", "thyroid", "adrenal cortex"],
           expected: "pancreas"
@@ -194,7 +197,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "type",
           labelLatex: "Hormone type:",
-          placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "amino_acid_derived"
@@ -229,7 +232,7 @@ function buildHormoneIdentificationQuests(
           slots: [{
             id: "function",
             labelLatex: "Primary function:",
-            placeholder: "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: hormones[i]!.primaryFunction
           }],
@@ -263,7 +266,7 @@ function buildHormoneIdentificationQuests(
           slots: [{
             id: "hypothalamic",
             labelLatex: "Hypothalamic hormone:",
-            placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
             type: "select",
             options: ["TRH", "CRH", "GHRH", "GnRH", "dopamine"],
             expected: pituitaryHormones[i].hypothalamic
@@ -298,7 +301,7 @@ function buildHormoneIdentificationQuests(
           slots: [{
             id: "therapy",
             labelLatex: "Hormone therapy:",
-            placeholder: "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: pharmaceuticalHormones[i].name
           }],
@@ -340,7 +343,7 @@ function buildFeedbackMechanismsQuests(
           slots: [{
             id: "feedback_type",
             labelLatex: "Feedback type:",
-            placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
             type: "select",
             options: ["negative", "positive"],
             expected: "negative"
@@ -369,7 +372,7 @@ function buildFeedbackMechanismsQuests(
           slots: [{
             id: "analysis",
             labelLatex: "Mechanism:",
-            placeholder: "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: "feedback analysis"
           }],
@@ -411,7 +414,7 @@ function buildClinicalApplicationsQuests(
           slots: [{
             id: "diagnosis",
             labelLatex: "Diagnosis:",
-            placeholder: "select" === "select" ? "Select..." : "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
             type: "select",
             options: ["diabetes mellitus", "hypothyroidism", "hyperthyroidism", "Addison's disease"],
             expected: basicCases[i].expectedDiagnosis
@@ -435,7 +438,7 @@ function buildClinicalApplicationsQuests(
           slots: [{
             id: "diagnosis",
             labelLatex: "Diagnosis:",
-            placeholder: "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: "disorder name"
           }],
@@ -463,7 +466,7 @@ function buildClinicalApplicationsQuests(
           slots: [{
             id: "diagnosis",
             labelLatex: "Diagnosis:",
-            placeholder: "Enter answer...",
+            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: "diagnosis"
           }],

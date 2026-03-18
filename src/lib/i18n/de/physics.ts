@@ -36,6 +36,10 @@ export const dePhysics = {
                         "previous": "Zurück",
                         "skip": "Überspringen"
                 },
+                "placeholders": {
+                        "ellipsis": "...",
+                        "decimal": "0.0"
+                },
                 "SP1.01.001": {
                         "prompt": "Was ist eine Kraft?",
                         "feedback": {
@@ -978,6 +982,11 @@ export const dePhysics = {
                         second_law: "ZWEITES GESETZ (F=ma)",
                         third_law: "DRITTES GESETZ (AKTION-REAKTION)"
                 },
+                placeholders: {
+                        value: "Wert",
+                        acceleration_ms2: "m/s²",
+                        force_n: "N"
+                },
 
                 prompts: {
                         first_law_basic: "Trägheitscheck in Basel: Objektgeschwindigkeit {v} m/s bei Nettokraft 0. Aufgabe: F_net angeben.",
@@ -1136,6 +1145,13 @@ export const dePhysics = {
                         components: "BAUTEILE",
                         simple_circuits: "EINFACHE STROMKREISE",
                         circuit_diagrams: "SCHALTPLÄNE"
+                },
+                placeholders: {
+                        type_name: "Name eingeben",
+                        describe_function: "Funktion beschreiben",
+                        select_symbol: "Symbol wählen",
+                        type_answer: "Antwort eingeben",
+                        identify_fault: "Fehler erkennen"
                 },
                 scenarios: {
                         components: "Basler Elektrische Sicherheit im Haushalt: Sie sind Auszubildender Elektriker an der Gewerbeschule Basel. Heute lernen Sie, Stromkreiskomponenten für Hausinstallationen zu identifizieren. Das Verständnis der Funktion jeder Komponente ist sicherheitskritisch - eine falsch identifizierte Komponente könnte Brände oder Stromschläge verursachen. In Basels historischen Gebäuden müssen elektrische Systeme strenge Schweizer Sicherheitsstandards (NIV 2020) erfüllen. Sie arbeiten mit Batterien (Stromquellen, die Spannung liefern), Glühbirnen (wandeln elektrische Energie in Licht um), Schaltern (steuern den Stromfluss), Drähten (leiten Elektrizität) und Widerständen (begrenzen den Strom). Jede Komponente hat eine spezifische Rolle beim Schutz von Häusern und der Gewährleistung zuverlässiger Stromversorgung. Dieses Wissen ist für Basels 170.000 Einwohner, die täglich auf sichere elektrische Systeme angewiesen sind, unerlässlich.",
@@ -1342,6 +1358,10 @@ export const dePhysics = {
                         newton_2: "F = ma",
                         friction: "REIBUNGSKRÄFTE"
                 },
+                placeholders: {
+                        force_n: "N",
+                        acceleration_ms2: "m/s²"
+                },
                 labels: {
                         input: "KRAFTPARAMETER",
                         mass: "Masse (m)",
@@ -1460,6 +1480,11 @@ export const dePhysics = {
                 monitor_title: "SP3.03_ENERGIE_HUB",
                 footer_left: "SP3.03_MECHANIK // KNOTEN: BASEL",
                 stages: { potential: "POTENTIELLE ENERGIE", kinetic: "KINETISCHE ENERGIE", work: "LEISTUNG" },
+                placeholders: {
+                        joules: "Joule",
+                        value: "Wert",
+                        j_or_w: "J oder W"
+                },
                 scenarios: {
                         rhein_hydro: "Rhinstromkraftwerk: Das Wasser des Rheins im Basler Kraftwerk wandelt potentielle Energie in sauberen Strom für die Stadt um.",
                         tram_braking: "BVB Tram Rekuperation: Die Basler Trams nutzen kinetische Energie beim Bremsen, um Strom ins Netz zurückzuspeisen."
@@ -2178,6 +2203,11 @@ export const dePhysics = {
                         advanced: "ERWEITERT",
                         elite: "ELITE"
                 },
+                placeholders: {
+                        deg: "Grad",
+                        mm: "mm",
+                        mag: "Vergr."
+                },
                 stages: {
                         reflection: "REFLEXION",
                         refraction: "BRECHUNG",
@@ -2779,6 +2809,11 @@ export const dePhysics = {
                 title: "SP1.03 // WETTER & KLIMA",
                 back: "Zurück",
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                placeholders: {
+                        name: "Name",
+                        hpa: "hPa",
+                        formula: "Formel"
+                },
                 stages: {
                         atmosphere: "ATMOSPHÄRE",
                         weather: "WETTERPHÄNOMENE",
@@ -2802,6 +2837,10 @@ export const dePhysics = {
                 title: "SP1.04 // ASTRONOMIE GRUNDLAGEN",
                 back: "Zurück",
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
+                placeholders: {
+                        name: "Name",
+                        degrees: "Grad"
+                },
                 stages: {
                         solar_system: "SONNENSYSTEM",
                         moon_phases: "MONDPHASEN",

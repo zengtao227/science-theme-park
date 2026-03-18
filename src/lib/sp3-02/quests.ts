@@ -83,7 +83,7 @@ export function generateNewton1Quests(t: any, difficulty: Difficulty): SP302Ques
             promptLatex: t(`sp3_02.prompts.${scen}`, { m, f, theta, mu }),
             expressionLatex: "\\sum \\vec{F} = 0",
             targetLatex: "F_{req}",
-            slots: [{ id: "ans", labelLatex: "F", placeholder: "N", expected: expected.toString() }],
+            slots: [{ id: "ans", labelLatex: "F", placeholder: t("sp3_02.placeholders.force_n"), expected: expected.toString() }],
             correctLatex: `F = ${expected} \\text{ N}`,
         });
     }
@@ -130,7 +130,7 @@ export function generateNewton2Quests(t: any, difficulty: Difficulty): SP302Ques
             promptLatex: t(`sp3_02.prompts.${scen}`, { m, f, a, mu }),
             expressionLatex: "F = ma",
             targetLatex: "a",
-            slots: [{ id: "ans", labelLatex: "a", placeholder: "m/s²", expected: a.toString() }],
+            slots: [{ id: "ans", labelLatex: "a", placeholder: t("sp3_02.placeholders.acceleration_ms2"), expected: a.toString() }],
             correctLatex: `a = ${a} \\text{ m/s}^{2}`,
         });
     }
@@ -176,7 +176,7 @@ export function generateFrictionQuests(t: any, difficulty: Difficulty): SP302Que
             promptLatex: t(`sp3_02.prompts.${scen}`, { m, mu, theta, f }),
             expressionLatex: "f = \\mu N",
             targetLatex: "f",
-            slots: [{ id: "ans", labelLatex: "f", placeholder: "N", expected: expected.toString() }],
+            slots: [{ id: "ans", labelLatex: "f", placeholder: t("sp3_02.placeholders.force_n"), expected: expected.toString() }],
             correctLatex: `f = ${expected} \\text{ N}`,
         });
     }

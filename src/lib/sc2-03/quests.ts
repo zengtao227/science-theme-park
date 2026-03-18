@@ -30,7 +30,7 @@ export function generateBoyleQuests(t: any, difficulty: Difficulty): SC203Quest[
             promptLatex: t.prompts.boyle_given,
             expressionLatex: "P_1 V_1 = P_2 V_2",
             targetLatex: "P_2",
-            slots: [{ id: "ans", labelLatex: "P_2", placeholder: "bar", expected: P2 }],
+            slots: [{ id: "ans", labelLatex: "P_2", placeholder: t.placeholders.pressure_bar, expected: P2 }],
             correctLatex: `P_2 = ${P2} bar`,
         });
     }
@@ -48,7 +48,7 @@ export function generateCharlesQuests(t: any, difficulty: Difficulty): SC203Ques
             promptLatex: t.prompts.charles_given,
             expressionLatex: "V_1/T_1 = V_2/T_2",
             targetLatex: "V_2",
-            slots: [{ id: "ans", labelLatex: "V_2", placeholder: "L", expected: V2 }],
+            slots: [{ id: "ans", labelLatex: "V_2", placeholder: t.placeholders.volume_l, expected: V2 }],
             correctLatex: `V_2 = ${V2} L`,
         });
     }
@@ -66,7 +66,7 @@ export function generateCombinedQuests(t: any, difficulty: Difficulty): SC203Que
             promptLatex: t.prompts.combined_given,
             expressionLatex: "P_1 V_1 / T_1 = P_2 V_2 / T_2",
             targetLatex: "V_2",
-            slots: [{ id: "ans", labelLatex: "V_2", placeholder: "L", expected: V2 }],
+            slots: [{ id: "ans", labelLatex: "V_2", placeholder: t.placeholders.volume_l, expected: V2 }],
             correctLatex: `V_2 = ${V2} L`,
         });
     }
@@ -91,7 +91,7 @@ export function generateEliteQuests(t: any, difficulty: Difficulty): SC203Quest[
             promptLatex: t(`sc2_03.prompts.${key}`, { V: 100, P: 1, V2: 20, t1: 300, p1: 100, t2: 270, p2: 50, v1: 20, r: 50 }),
             expressionLatex: "Ideal Gas Law Application",
             targetLatex: "Result",
-            slots: [{ id: "ans", labelLatex: "Val", placeholder: "...", expected }],
+            slots: [{ id: "ans", labelLatex: "Val", placeholder: t("sc2_03.placeholders.value"), expected }],
             correctLatex: `${expected}`,
         });
     }

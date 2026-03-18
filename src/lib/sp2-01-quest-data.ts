@@ -117,7 +117,7 @@ export function buildStagePool(
         slots: [{
           id: "answer",
           labelLatex: "Component Name",
-          placeholder: "type name",
+          placeholder: t("sp2_01.placeholders.type_name"),
           expected: info.name.en
         }],
         correctLatex: `\\\\text{${info.name.en}}`,
@@ -146,7 +146,7 @@ export function buildStagePool(
         slots: [{
           id: "answer",
           labelLatex: "Function",
-          placeholder: "describe function",
+          placeholder: t("sp2_01.placeholders.describe_function"),
           expected: info.function.en
         }],
         correctLatex: `\\\\text{${info.function.en}}`,
@@ -170,7 +170,7 @@ export function buildStagePool(
         slots: [{
           id: "answer",
           labelLatex: "Symbol",
-          placeholder: "select symbol",
+          placeholder: t("sp2_01.placeholders.select_symbol"),
           expected: info.symbol
         }],
         correctLatex: `\\\\text{${info.symbol}}`,
@@ -208,7 +208,7 @@ export function buildStagePool(
         slots: [{
           id: "answer",
           labelLatex: "Answer",
-          placeholder: "type answer",
+          placeholder: t("sp2_01.placeholders.type_answer"),
           expected: terminalAnswers[componentType]
         }],
         correctLatex: `\\\\text{${terminalAnswers[componentType]}}`,
@@ -398,7 +398,7 @@ export function buildStagePool(
         slots: [{
           id: "fault",
           labelLatex: "Fault Type",
-          placeholder: "identify fault",
+          placeholder: t("sp2_01.placeholders.identify_fault"),
           expected: fault
         }],
         correctLatex: `\\\\text{Fault: ${fault.replace(/_/g, " ")}}`,
