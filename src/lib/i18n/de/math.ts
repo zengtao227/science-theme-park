@@ -431,7 +431,11 @@ export const deMath = {
             x_label: "x",
             y_label: "f(x)",
             function_label: "FUNKTION",
-            point_label: "PUNKT"
+            point_label: "PUNKT",
+            no_data: "Keine Daten",
+            derivative_verified: "ABLEITUNG VERIFIZIERT",
+            check_calculation: "BERECHNUNG PRÜFEN",
+            ready_to_analyze: "BEREIT ZUR ANALYSE"
         },
         prompts: {
             find_derivative_x2: "\\text{Kurven-Check: berechne } f'(x) \\text{ bei } x=2",
@@ -798,6 +802,7 @@ export const deMath = {
             magnitude: "Betrag |z|",
             argument: "Argument arg(z)",
             power: "Potenz",
+            no_data: "Keine Daten",
             verified: "VERIFIZIERT",
             mismatch: "FEHLANPASSUNG",
             geometric_meaning: "Geometrische Bedeutung: Beträge multiplizieren, Winkel addieren",
@@ -1256,6 +1261,16 @@ export const deMath = {
             liters_solution: "Liter der Lösung",
             principal_amount: "Kapitalbetrag",
             time_to_meet: "Zeit bis zum Treffen"
+        },
+        visualization: {
+            no_data: "Keine Daten",
+            left: "LINKE SEITE",
+            right: "RECHTE SEITE",
+            balanced: "AUSGEGLICHEN",
+            unbalanced: "NICHT AUSGEGLICHEN",
+            equation_solved: "GLEICHUNG GELÖST",
+            try_again: "NOCH EINMAL",
+            solve_for_x: "NACH x LÖSEN"
         },
         prompts: {
             s_age: "Alter des Sohnes",
@@ -2307,6 +2322,14 @@ export const deMath = {
             frequency: "Häufigkeitsdaten",
             combined: "Kombinierte Ereignisse",
             weekdays: ["Mo", "Di", "Mi", "Do", "Fr"],
+        },
+        geometry_visualization: {
+            width: "Breite",
+            height: "Höhe",
+            no_data: "Keine Daten",
+            geometry_verified: "GEOMETRIE VERIFIZIERT",
+            check_calculation: "BERECHNUNG PRÜFEN",
+            analyze_shape: "FORM ANALYSIEREN"
         },
         scenarios: {
             bus_punctuality: "Du fährst jeden Morgen mit dem Bus #8 in Basel zur Schule. Laut Aufzeichnungen kam der Bus in den letzten 20 Schultagen 16 Mal pünktlich. Berechne die Wahrscheinlichkeit für morgen, um zu entscheiden, ob du 10 Minuten früher losfahren solltest.",

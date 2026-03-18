@@ -21,22 +21,7 @@ interface ComplexVisualizationProps {
 
 function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; language?: Language }) {
   const canvasSize = 500;
-  const safeLanguage = language || "EN";
-  const t = translations[safeLanguage]?.gm4_01?.visualization || {
-    pythagorean: "PYTHAGOREAN THEOREM",
-    vector_addition: "VECTOR ADDITION",
-    complex_multiplication: "COMPLEX MULTIPLICATION",
-    polar_power: "POLAR FORM POWER",
-    complex_data: "COMPLEX NUMBER DATA",
-    magnitude: "Magnitude |z|",
-    argument: "Argument arg(z)",
-    power: "Power",
-    verified: "VERIFIED",
-    mismatch: "MISMATCH",
-    geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
-    polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
-    parallelogram_rule: "Parallelogram rule: from origin to z_1, then translate z_2 from z_1"
-  };
+  const t = translations[language]?.gm4_01?.visualization;
   void t;
   
   // Calculate bounds based on the complex numbers
@@ -697,30 +682,15 @@ function ComplexPlane2D({ quest, language = "EN" }: { quest: ComplexQuest; langu
 
 
 export default function ComplexVisualization({ quest, checkStatus, language = "EN" }: ComplexVisualizationProps) {
+  const t = translations[language]?.gm4_01?.visualization;
+
   if (!quest || !quest.z1) {
     return (
       <div className="w-full h-[600px] bg-black rounded-xl border border-white/10 flex items-center justify-center">
-        <div className="text-white/40 text-sm font-mono">NO DATA</div>
+        <div className="text-white/40 text-sm font-mono">{t.no_data}</div>
       </div>
     );
   }
-
-  const safeLanguage = language || "EN";
-  const t = translations[safeLanguage]?.gm4_01?.visualization || {
-    pythagorean: "PYTHAGOREAN THEOREM",
-    vector_addition: "VECTOR ADDITION",
-    complex_multiplication: "COMPLEX MULTIPLICATION",
-    polar_power: "POLAR FORM POWER",
-    complex_data: "COMPLEX NUMBER DATA",
-    magnitude: "Magnitude |z|",
-    argument: "Argument arg(z)",
-    power: "Power",
-    verified: "VERIFIED",
-    mismatch: "MISMATCH",
-    geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
-    polar_meaning: "Magnitude becomes r^n, angle becomes n·θ",
-    parallelogram_rule: "Parallelogram rule: from origin to z_1, then translate z_2 from z_1"
-  };
   const r = Math.sqrt(quest.z1.re * quest.z1.re + quest.z1.im * quest.z1.im);
   const theta = Math.atan2(quest.z1.im, quest.z1.re);
   const thetaDeg = (theta * 180 / Math.PI).toFixed(1);

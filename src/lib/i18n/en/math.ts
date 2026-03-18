@@ -431,7 +431,11 @@ export const enMath = {
             x_label: "x",
             y_label: "f(x)",
             function_label: "FUNCTION",
-            point_label: "POINT"
+            point_label: "POINT",
+            no_data: "No data",
+            derivative_verified: "DERIVATIVE VERIFIED",
+            check_calculation: "CHECK CALCULATION",
+            ready_to_analyze: "READY TO ANALYZE"
         },
         prompts: {
             find_derivative_x2: "\\text{Composite curve check: compute } f'(x) \\text{ at } x=2",
@@ -788,6 +792,7 @@ export const enMath = {
             magnitude: "Magnitude |z|",
             argument: "Argument arg(z)",
             power: "Power",
+            no_data: "NO DATA",
             verified: "VERIFIED",
             mismatch: "MISMATCH",
             geometric_meaning: "Geometric meaning: magnitudes multiply, angles add",
@@ -1245,6 +1250,16 @@ export const enMath = {
             liters_solution: "Liters of solution",
             principal_amount: "Principal amount",
             time_to_meet: "Time to meet"
+        },
+        visualization: {
+            no_data: "No data",
+            left: "LEFT",
+            right: "RIGHT",
+            balanced: "BALANCED",
+            unbalanced: "UNBALANCED",
+            equation_solved: "EQUATION SOLVED",
+            try_again: "TRY AGAIN",
+            solve_for_x: "SOLVE FOR X"
         },
         prompts: {
             s_age: "Son's age",
@@ -2294,6 +2309,14 @@ export const enMath = {
             frequency: "Frequency Data",
             combined: "Combined Events",
             weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        },
+        geometry_visualization: {
+            width: "width",
+            height: "height",
+            no_data: "No data",
+            geometry_verified: "GEOMETRY VERIFIED",
+            check_calculation: "CHECK CALCULATION",
+            analyze_shape: "ANALYZE SHAPE"
         },
         scenarios: {
             bus_punctuality: "You take Bus #8 in Basel to school every morning. Track records show the bus arrived on time 16 out of 20 school days. Calculate the probability of the bus being on time tomorrow to decide whether you need to leave 10 minutes earlier as a safety buffer.",

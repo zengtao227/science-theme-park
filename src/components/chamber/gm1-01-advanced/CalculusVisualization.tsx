@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface CalculusVisualizationProps {
   quest: any;
@@ -14,7 +15,19 @@ export default function CalculusVisualization({
   inputs,
   checkStatus,
 }: CalculusVisualizationProps) {
+  const { t } = useLanguage();
   void inputs;
+  const copy = t("gm1_01_advanced.visualization") as {
+    title: string;
+    x_label: string;
+    y_label: string;
+    function_label: string;
+    point_label: string;
+    no_data: string;
+    derivative_verified: string;
+    check_calculation: string;
+    ready_to_analyze: string;
+  };
   // Parse function from LaTeX
   const functionData = useMemo(() => {
     if (!quest?.functionLatex) return null;
@@ -56,7 +69,7 @@ export default function CalculusVisualization({
   if (!quest) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white/60 text-sm">
-        No data
+        {copy.no_data}
       </div>
     );
   }
@@ -118,20 +131,20 @@ export default function CalculusVisualization({
           )}
           
           {/* Labels */}
-          <text x={540} y={205} fill="#00e5ff" fontSize="14" fontFamily="monospace">x</text>
-          <text x={305} y={60} fill="#00e5ff" fontSize="14" fontFamily="monospace">y</text>
+          <text x={540} y={205} fill="#00e5ff" fontSize="14" fontFamily="monospace">{copy.x_label}</text>
+          <text x={305} y={60} fill="#00e5ff" fontSize="14" fontFamily="monospace">{copy.y_label}</text>
         </svg>
       </div>
       
       <div className="text-xs text-white/60 font-mono text-center">
         {checkStatus ? (
           checkStatus.ok ? (
-            <span className="text-green-400">✓ DERIVATIVE VERIFIED</span>
+            <span className="text-green-400">✓ {copy.derivative_verified}</span>
           ) : (
-            <span className="text-pink-400">✗ CHECK CALCULATION</span>
+            <span className="text-pink-400">✗ {copy.check_calculation}</span>
           )
         ) : (
-          "READY TO ANALYZE"
+          copy.ready_to_analyze
         )}
       </div>
     </div>

@@ -432,7 +432,11 @@ export const cnMath = {
             x_label: "x",
             y_label: "f(x)",
             function_label: "函数",
-            point_label: "点"
+            point_label: "点",
+            no_data: "暂无数据",
+            derivative_verified: "导数验证成功",
+            check_calculation: "检查计算",
+            ready_to_analyze: "准备分析"
         },
         prompts: {
             find_derivative_x2: "\\text{曲线校准任务：求 } f'(x) \\text{ 在 } x=2 \\text{ 处的值}",
@@ -769,6 +773,7 @@ export const cnMath = {
             magnitude: "模长 |z|",
             argument: "辐角 arg(z)",
             power: "幂次",
+            no_data: "暂无数据",
             verified: "验证成功",
             mismatch: "答案错误",
             geometric_meaning: "几何意义：模长相乘，角度相加",
@@ -1231,6 +1236,16 @@ export const cnMath = {
             liters_solution: "溶液升数",
             principal_amount: "本金金额",
             time_to_meet: "相遇时间"
+        },
+        visualization: {
+            no_data: "暂无数据",
+            left: "左侧",
+            right: "右侧",
+            balanced: "已平衡",
+            unbalanced: "未平衡",
+            equation_solved: "方程已解出",
+            try_again: "再试一次",
+            solve_for_x: "求解 x"
         },
         prompts: {
             s_age: "儿子的年龄",
@@ -2275,6 +2290,14 @@ export const cnMath = {
             frequency: "频率数据",
             combined: "组合事件",
             weekdays: ["周一", "周二", "周三", "周四", "周五"],
+        },
+        geometry_visualization: {
+            width: "宽",
+            height: "高",
+            no_data: "暂无数据",
+            geometry_verified: "几何验证成功",
+            check_calculation: "检查计算",
+            analyze_shape: "分析图形"
         },
         scenarios: {
             bus_punctuality: "你每天乘坐巴塞尔8路公交车上学。追踪记录显示，过去20个上学日中公交车有16天准时到达。计算明天准时到达的概率，以决定是否需要提前10分钟出发作为安全余量。",

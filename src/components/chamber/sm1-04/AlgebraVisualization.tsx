@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface AlgebraVisualizationProps {
   quest: any;
@@ -14,7 +15,18 @@ export default function AlgebraVisualization({
   inputs,
   checkStatus,
 }: AlgebraVisualizationProps) {
+  const { t } = useLanguage();
   void inputs;
+  const copy = t("sm1_04.visualization") as {
+    no_data: string;
+    left: string;
+    right: string;
+    balanced: string;
+    unbalanced: string;
+    equation_solved: string;
+    try_again: string;
+    solve_for_x: string;
+  };
   const balanceState = useMemo(() => {
     if (!quest?.equation) return { left: 0, right: 0 };
     
@@ -34,7 +46,7 @@ export default function AlgebraVisualization({
   if (!quest) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white/60 text-sm">
-        No data
+        {copy.no_data}
       </div>
     );
   }
@@ -63,7 +75,7 @@ export default function AlgebraVisualization({
               >
                 <div className="text-center">
                   <div className="text-2xl font-bold text-cyan-300">{balanceState.left}</div>
-                  <div className="text-xs text-cyan-400">LEFT</div>
+                  <div className="text-xs text-cyan-400">{copy.left}</div>
                 </div>
               </motion.div>
 
@@ -76,7 +88,7 @@ export default function AlgebraVisualization({
               >
                 <div className="text-center">
                   <div className="text-2xl font-bold text-purple-300">{balanceState.right}</div>
-                  <div className="text-xs text-purple-400">RIGHT</div>
+                  <div className="text-xs text-purple-400">{copy.right}</div>
                 </div>
               </motion.div>
 
@@ -105,9 +117,9 @@ export default function AlgebraVisualization({
             transition={{ delay: 0.5 }}
           >
             {isBalanced ? (
-              <div className="text-green-400 font-bold text-lg">⚖️ BALANCED</div>
+              <div className="text-green-400 font-bold text-lg">⚖️ {copy.balanced}</div>
             ) : (
-              <div className="text-amber-400 font-bold text-lg">⚠️ UNBALANCED</div>
+              <div className="text-amber-400 font-bold text-lg">⚠️ {copy.unbalanced}</div>
             )}
           </motion.div>
         </div>
@@ -116,12 +128,12 @@ export default function AlgebraVisualization({
       <div className="text-xs text-white/60 font-mono text-center">
         {checkStatus ? (
           checkStatus.ok ? (
-            <span className="text-green-400">✓ EQUATION SOLVED</span>
+            <span className="text-green-400">✓ {copy.equation_solved}</span>
           ) : (
-            <span className="text-pink-400">✗ TRY AGAIN</span>
+            <span className="text-pink-400">✗ {copy.try_again}</span>
           )
         ) : (
-          "SOLVE FOR X"
+          copy.solve_for_x
         )}
       </div>
     </div>

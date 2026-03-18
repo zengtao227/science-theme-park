@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface GeometryVisualizationProps {
   quest: any;
@@ -14,7 +15,16 @@ export default function GeometryVisualization({
   inputs,
   checkStatus,
 }: GeometryVisualizationProps) {
+  const { t } = useLanguage();
   void inputs;
+  const copy = t("sm2_08.geometry_visualization") as {
+    width: string;
+    height: string;
+    no_data: string;
+    geometry_verified: string;
+    check_calculation: string;
+    analyze_shape: string;
+  };
   const shapeData = useMemo(() => {
     if (!quest) return null;
     
@@ -77,8 +87,8 @@ export default function GeometryVisualization({
             <line x1="470" y1="100" x2="470" y2="300" stroke="#39ff14" strokeWidth="2" />
             
             {/* Labels */}
-            <text x="300" y="340" fill="#39ff14" fontSize="14" textAnchor="middle">width</text>
-            <text x="490" y="200" fill="#39ff14" fontSize="14" textAnchor="middle">height</text>
+            <text x="300" y="340" fill="#39ff14" fontSize="14" textAnchor="middle">{copy.width}</text>
+            <text x="490" y="200" fill="#39ff14" fontSize="14" textAnchor="middle">{copy.height}</text>
           </motion.g>
         );
 
@@ -114,7 +124,7 @@ export default function GeometryVisualization({
   if (!quest) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white/60 text-sm">
-        No data
+        {copy.no_data}
       </div>
     );
   }
@@ -170,12 +180,12 @@ export default function GeometryVisualization({
       <div className="text-xs text-white/60 font-mono text-center">
         {checkStatus ? (
           checkStatus.ok ? (
-            <span className="text-green-400">✓ GEOMETRY VERIFIED</span>
+            <span className="text-green-400">✓ {copy.geometry_verified}</span>
           ) : (
-            <span className="text-pink-400">✗ CHECK CALCULATION</span>
+            <span className="text-pink-400">✗ {copy.check_calculation}</span>
           )
         ) : (
-          "ANALYZE SHAPE"
+          copy.analyze_shape
         )}
       </div>
     </div>
