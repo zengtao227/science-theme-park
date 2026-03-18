@@ -1536,6 +1536,10 @@ export const deBiology = {
                 energy_transfer: "10%"
             }
         },
+        monitor: {
+            tracker_title: "RHEIN-LACHS-TRACKER",
+            active: "AKTUELL"
+        },
         prompts: {
             food_chain: "Im Rhein-Ökosystem wird {producer} von {consumer} gefressen. Was kommt als Nächstes?",
             energy_transfer: "Wenn {level}-Konsumenten {energy} kJ Energie haben, wie viel erreicht die nächste Ebene?",

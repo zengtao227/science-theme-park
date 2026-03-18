@@ -1536,6 +1536,10 @@ export const cnBiology = {
                 energy_transfer: "10%"
             }
         },
+        monitor: {
+            tracker_title: "莱茵河鲑鱼追踪器",
+            active: "当前"
+        },
         prompts: {
             food_chain: "在莱茵河生态系统中，{producer} 被 {consumer} 吃掉。下一级是什么？",
             energy_transfer: "如果 {level} 消费者有 {energy} kJ 的能量，有多少能量传递到下一级？",

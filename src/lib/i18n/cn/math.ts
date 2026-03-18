@@ -1523,6 +1523,7 @@ export const cnMath = {
         back: "← 返回枢纽",
         back_short: "返回枢纽",
         title: "二项式工厂",
+        ready: "就绪",
         difficulty: {
             basic: "初级",
             core: "核心",

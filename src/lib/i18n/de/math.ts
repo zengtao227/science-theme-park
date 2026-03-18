@@ -1555,6 +1555,7 @@ export const deMath = {
         back: "← Zurück zum Nexus",
         back_short: "Zurück zum Nexus",
         title: "BINOMISCHE FORMELN",
+        ready: "Bereit",
         difficulty: {
             basic: "BASIS",
             core: "KERN",

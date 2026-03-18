@@ -1539,6 +1539,7 @@ export const enMath = {
         back: "← Back to Nexus",
         back_short: "Back to Nexus",
         title: "BINOMIAL FACTORY",
+        ready: "Ready",
         difficulty: {
             basic: "BASIC",
             core: "CORE",

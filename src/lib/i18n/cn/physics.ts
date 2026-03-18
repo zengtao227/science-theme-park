@@ -1947,6 +1947,39 @@ export const cnPhysics = {
         correct: "频率匹配正确",
         incorrect: "偏调或错误",
         stages: { sound_waves: "声波传播", frequency_pitch: "频率与音调", loudness_intensity: "响度与强度" },
+        visualization: {
+            sound_waves: {
+                title: "声波",
+                compression: "压缩",
+                rarefaction: "稀疏",
+                speed_frequency_wavelength: "速度 = 频率 × 波长",
+                medium_speeds: "空气：343 m/s | 水：1480 m/s"
+            },
+            frequency_pitch: {
+                title: "频率与音调",
+                low_frequency: "低频",
+                low_frequency_detail: "220 Hz（低音）",
+                high_frequency: "高频",
+                high_frequency_detail: "880 Hz（高音）",
+                musical_notes: "音符示例",
+                a4: "A4：440 Hz",
+                a5: "A5：880 Hz（高八度）",
+                human_range: "人类：20-20,000 Hz"
+            },
+            loudness_intensity: {
+                title: "声强（dB）",
+                threshold_of_hearing: "听阈",
+                whisper: "耳语",
+                conversation: "交谈",
+                safety_limit: "安全上限",
+                rock_concert: "摇滚演唱会",
+                jet_engine: "喷气发动机（痛阈）",
+                distance_effect: "距离效应：",
+                double_distance: "距离变为 2× → -6 dB",
+                tenfold_distance: "距离变为 10× → -20 dB",
+                inverse_square_law: "（平方反比定律）"
+            }
+        },
         scenarios: {
             stadtcasino_basel: "巴塞尔交响乐团：你在巴塞尔赌场音乐厅工作，那里拥有全欧洲最顶级的声学设计，能够完美反射乐器的声音。",
             euroairport_noise: "巴塞尔机场噪音管控：在 EuroAirport 监测起降分贝，通过声学屏障保护周边居民社区。"

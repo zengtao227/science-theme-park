@@ -1926,6 +1926,39 @@ export const enPhysics = {
                 correct: "Correct",
                 incorrect: "Incorrect",
                 stages: { sound_waves: "SOUND WAVES", frequency_pitch: "FREQUENCY & PITCH", loudness_intensity: "LOUDNESS & INTENSITY" },
+                visualization: {
+                        sound_waves: {
+                                title: "Sound Wave",
+                                compression: "Compression",
+                                rarefaction: "Rarefaction",
+                                speed_frequency_wavelength: "Speed = Frequency × Wavelength",
+                                medium_speeds: "Air: 343 m/s | Water: 1480 m/s"
+                        },
+                        frequency_pitch: {
+                                title: "Frequency & Pitch",
+                                low_frequency: "Low Frequency",
+                                low_frequency_detail: "220 Hz (Low Pitch)",
+                                high_frequency: "High Frequency",
+                                high_frequency_detail: "880 Hz (High Pitch)",
+                                musical_notes: "Musical Notes",
+                                a4: "A4: 440 Hz",
+                                a5: "A5: 880 Hz (octave)",
+                                human_range: "Human: 20-20,000 Hz"
+                        },
+                        loudness_intensity: {
+                                title: "Sound Intensity (dB)",
+                                threshold_of_hearing: "Threshold of hearing",
+                                whisper: "Whisper",
+                                conversation: "Conversation",
+                                safety_limit: "Safety limit",
+                                rock_concert: "Rock concert",
+                                jet_engine: "Jet engine (pain)",
+                                distance_effect: "Distance Effect:",
+                                double_distance: "2× distance → -6 dB",
+                                tenfold_distance: "10× distance → -20 dB",
+                                inverse_square_law: "(Inverse square law)"
+                        }
+                },
                 scenarios: {
                         stadtcasino_basel: "Basel Symphony Orchestra - Sound Wave Physics: You are working at the Stadtcasino Basel, one of Europe's finest concert halls, known for its perfect sound reflection.",
                         euroairport_noise: "Basel Airport - Sound Intensity: Monitoring decibel levels at EuroAirport Basel-Mulhouse to protect the surrounding neighborhoods."

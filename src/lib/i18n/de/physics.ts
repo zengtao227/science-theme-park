@@ -1999,6 +1999,39 @@ export const dePhysics = {
                 correct: "Richtig",
                 incorrect: "Falsch",
                 stages: { sound_waves: "SCHALLWELLEN", frequency_pitch: "FREQUENZ & TONHÖHE", loudness_intensity: "LAUTSTÄRKE & INTENSITÄT" },
+                visualization: {
+                        sound_waves: {
+                                title: "Schallwelle",
+                                compression: "Verdichtung",
+                                rarefaction: "Verdünnung",
+                                speed_frequency_wavelength: "Geschwindigkeit = Frequenz × Wellenlänge",
+                                medium_speeds: "Luft: 343 m/s | Wasser: 1480 m/s"
+                        },
+                        frequency_pitch: {
+                                title: "Frequenz & Tonhöhe",
+                                low_frequency: "Niedrige Frequenz",
+                                low_frequency_detail: "220 Hz (tiefe Tonhöhe)",
+                                high_frequency: "Hohe Frequenz",
+                                high_frequency_detail: "880 Hz (hohe Tonhöhe)",
+                                musical_notes: "Musikalische Noten",
+                                a4: "A4: 440 Hz",
+                                a5: "A5: 880 Hz (Oktave)",
+                                human_range: "Mensch: 20-20.000 Hz"
+                        },
+                        loudness_intensity: {
+                                title: "Schallintensität (dB)",
+                                threshold_of_hearing: "Hörschwelle",
+                                whisper: "Flüstern",
+                                conversation: "Gespräch",
+                                safety_limit: "Sicherheitsgrenze",
+                                rock_concert: "Rockkonzert",
+                                jet_engine: "Düsentriebwerk (Schmerzgrenze)",
+                                distance_effect: "Entfernungseffekt:",
+                                double_distance: "2× Abstand → -6 dB",
+                                tenfold_distance: "10× Abstand → -20 dB",
+                                inverse_square_law: "(Umgekehrtes Quadratgesetz)"
+                        }
+                },
                 scenarios: {
                         stadtcasino_basel: "Stadtcasino Basel: Einer der besten Konzertsäle Europas, berühmt für seine perfekte Akustik und Schallreflexion.",
                         euroairport_noise: "Flughafen Basel-Mulhouse: Überwachung der Dezibel-Werte zum Schutz der umliegenden Gemeinden."

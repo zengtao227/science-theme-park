@@ -520,7 +520,7 @@ export default function S201Page() {
         next: sm2_01_t.ui?.execute_next_sequence ?? "NEXT",
         correct: sm2_01_t.solve_success ?? "VERIFIED",
         incorrect: sm2_01_t.solve_fail || "INCORRECT",
-        ready: "READY",
+        ready: t("sm2_01.ready"),
         monitor_title: sm2_01_t.ui?.visual_reference_position ?? "",
         difficulty: {
           basic: sm2_01_t.difficulty?.basic ?? "BASIC",

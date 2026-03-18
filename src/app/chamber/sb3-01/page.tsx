@@ -365,10 +365,10 @@ export default function SB301Page() {
                     />
 
                     <DataTracker
-                        title="RHINE_SALMON_TRACKER"
+                        title={t("sb3_01.monitor.tracker_title")}
                         reference="BSL_ECO_2026"
                         data={[2, 5, 8, 12, 18, 25, 35, 42, 60, 85].map((v, i) => ({ label: i, value: v }))}
-                        xAxisLabels={["1990", "2010", "2020", "ACTIVE"]}
+                        xAxisLabels={["1990", "2010", "2020", t("sb3_01.monitor.active")]}
                         color="bg-green-500"
                     />
                     <div className="mt-auto pt-4 border-t border-white/5">

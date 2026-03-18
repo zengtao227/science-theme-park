@@ -1596,6 +1596,10 @@ export const enBiology = {
                 energy_transfer: "10%"
             }
         },
+        monitor: {
+            tracker_title: "RHINE SALMON TRACKER",
+            active: "ACTIVE"
+        },
         prompts: {
             food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
             energy_transfer: "If {level} consumers have {energy} kJ of energy, how much reaches the next level?",
