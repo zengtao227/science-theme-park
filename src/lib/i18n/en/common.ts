@@ -77,6 +77,47 @@ export const enCommon = {
         placeholders: {
             user_name: "Enter name...",
             room_code: "Room Code"
+        },
+        user_switcher: {
+            switch_user: "Switch User",
+            add_user: "Add User",
+            settings_ai: "Settings & AI",
+            new_user: "New User",
+            create: "Create",
+            cancel: "Cancel"
+        },
+        coop: {
+            copy_code: "Copy code",
+            you: "You",
+            partner: "Partner",
+            guest: "Guest",
+            coop: "Co-op",
+            live: "Live",
+            title: "Co-op Mode",
+            invite: "Invite a classmate to solve questions together in real time. No account needed!",
+            create_room_host: "Create Room (Host)",
+            or: "or",
+            join: "Join",
+            setting_up_room: "Setting up room...",
+            share_code: "Share this code with your classmate",
+            waiting_for_guest: "Waiting for guest...",
+            connecting_to_host: "Connecting to host...",
+            connected: "Connected",
+            room: "Room",
+            host: "Host",
+            partner_status: "Partner Status",
+            partner_has_not_typed: "Partner hasn't typed yet...",
+            partner_correct: "Partner got it right!",
+            partner_wrong: "Partner was wrong",
+            sync_quest: "Sync Quest to Partner",
+            notify_partner: "Notify Partner of Result",
+            round_complete: "Round complete!",
+            disconnect: "Disconnect",
+            connection_lost: "Connection lost",
+            dismiss: "Dismiss",
+            connection_error: "Connection Error",
+            try_again: "Try Again",
+            cancel: "Cancel"
         }
     },
     home: {

@@ -13,6 +13,14 @@ export default function UserSwitcher() {
   const [showNewUser, setShowNewUser] = useState(false);
   const [newUsername, setNewUsername] = useState('');
   const users = getUserList();
+  const userSwitcherT = {
+    switchUser: t('common.user_switcher.switch_user'),
+    addUser: t('common.user_switcher.add_user'),
+    settingsAi: t('common.user_switcher.settings_ai'),
+    newUser: t('common.user_switcher.new_user'),
+    create: t('common.user_switcher.create'),
+    cancel: t('common.user_switcher.cancel'),
+  };
 
   const handleCreateUser = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +60,7 @@ export default function UserSwitcher() {
               <>
                 <div className="p-2 border-b border-white/10">
                   <div className="text-[10px] text-white/90 font-mono uppercase tracking-wider px-2 py-1">
-                    Switch User
+                    {userSwitcherT.switchUser}
                   </div>
                 </div>
                 <div className="max-h-[300px] overflow-y-auto">
@@ -79,20 +87,20 @@ export default function UserSwitcher() {
                   className="w-full px-4 py-3 text-left border-t border-white/10 text-neon-green hover:bg-neon-green/10 transition-colors flex items-center gap-2"
                 >
                   <Plus className="w-3 h-3" />
-                  <span className="text-sm font-mono">Add User</span>
+                  <span className="text-sm font-mono">{userSwitcherT.addUser}</span>
                 </button>
                 <Link
                   href="/profile"
                   className="w-full px-4 py-3 text-left border-t border-white/10 text-neon-cyan hover:bg-neon-cyan/10 transition-colors flex items-center gap-2"
                 >
                   <Settings className="w-3 h-3" />
-                  <span className="text-sm font-mono">Settings & AI</span>
+                  <span className="text-sm font-mono">{userSwitcherT.settingsAi}</span>
                 </Link>
               </>
             ) : (
               <form onSubmit={handleCreateUser} className="p-4">
                 <div className="text-[10px] text-white/90 font-mono uppercase tracking-wider mb-3">
-                  New User
+                  {userSwitcherT.newUser}
                 </div>
                 <input
                   type="text"
@@ -109,7 +117,7 @@ export default function UserSwitcher() {
                     disabled={!newUsername.trim()}
                     className="flex-1 px-3 py-2 bg-neon-green text-black text-xs font-black hover:bg-neon-green/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    CREATE
+                    {userSwitcherT.create}
                   </button>
                   <button
                     type="button"
@@ -119,7 +127,7 @@ export default function UserSwitcher() {
                     }}
                     className="px-3 py-2 border border-white/60 text-white text-xs hover:bg-white/10 transition-colors"
                   >
-                    CANCEL
+                    {userSwitcherT.cancel}
                   </button>
                 </div>
               </form>

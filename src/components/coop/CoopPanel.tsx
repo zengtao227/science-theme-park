@@ -33,7 +33,41 @@ interface CoopPanelProps {
     lastCheckCorrect?: boolean | null;
 }
 
-function RoomCodeDisplay({ code }: { code: string }) {
+interface CoopTranslations {
+    copyCode: string;
+    you: string;
+    partner: string;
+    guest: string;
+    coop: string;
+    live: string;
+    title: string;
+    invite: string;
+    createRoomHost: string;
+    or: string;
+    join: string;
+    settingUpRoom: string;
+    shareCode: string;
+    waitingForGuest: string;
+    cancel: string;
+    connectingToHost: string;
+    connected: string;
+    room: string;
+    host: string;
+    partnerStatus: string;
+    partnerHasNotTyped: string;
+    partnerCorrect: string;
+    partnerWrong: string;
+    syncQuest: string;
+    notifyPartner: string;
+    roundComplete: string;
+    disconnect: string;
+    connectionLost: string;
+    dismiss: string;
+    connectionError: string;
+    tryAgain: string;
+}
+
+function RoomCodeDisplay({ code, title }: { code: string; title: string }) {
     const [copied, setCopied] = useState(false);
 
     const copy = () => {
@@ -58,7 +92,7 @@ function RoomCodeDisplay({ code }: { code: string }) {
             <button
                 onClick={copy}
                 className="ml-2 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors"
-                title="Copy code"
+                title={title}
             >
                 {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4 text-white/60" />}
             </button>
@@ -66,20 +100,30 @@ function RoomCodeDisplay({ code }: { code: string }) {
     );
 }
 
-function ScoreBoard({ myScore, partnerScore, role }: { myScore: number; partnerScore: number; role: string }) {
+function ScoreBoard({
+    myScore,
+    partnerScore,
+    role,
+    translations,
+}: {
+    myScore: number;
+    partnerScore: number;
+    role: string;
+    translations: Pick<CoopTranslations, "you" | "partner" | "guest">;
+}) {
     return (
         <div className="flex items-center gap-4 bg-black/30 border border-white/10 rounded-xl px-4 py-2">
             <div className="flex flex-col items-center">
                 <div className="text-[8px] text-neon-purple font-black uppercase tracking-widest flex items-center gap-1">
                     <Crown className="w-3 h-3" />
-                    {role === "host" ? "You" : "Partner"}
+                    {role === "host" ? translations.you : translations.partner}
                 </div>
                 <div className="text-2xl font-black text-white">{role === "host" ? myScore : partnerScore}</div>
             </div>
             <Swords className="w-5 h-5 text-white/30" />
             <div className="flex flex-col items-center">
                 <div className="text-[8px] text-white/50 font-black uppercase tracking-widest">
-                    {role === "host" ? "Guest" : "You"}
+                    {role === "host" ? translations.guest : translations.you}
                 </div>
                 <div className="text-2xl font-black text-white">{role === "host" ? partnerScore : myScore}</div>
             </div>
@@ -111,6 +155,39 @@ export default function CoopPanel({
 
     const [joinCode, setJoinCode] = useState("");
     const [panelOpen, setPanelOpen] = useState(false);
+    const coopT: CoopTranslations = {
+        copyCode: t("common.coop.copy_code"),
+        you: t("common.coop.you"),
+        partner: t("common.coop.partner"),
+        guest: t("common.coop.guest"),
+        coop: t("common.coop.coop"),
+        live: t("common.coop.live"),
+        title: t("common.coop.title"),
+        invite: t("common.coop.invite"),
+        createRoomHost: t("common.coop.create_room_host"),
+        or: t("common.coop.or"),
+        join: t("common.coop.join"),
+        settingUpRoom: t("common.coop.setting_up_room"),
+        shareCode: t("common.coop.share_code"),
+        waitingForGuest: t("common.coop.waiting_for_guest"),
+        cancel: t("common.coop.cancel"),
+        connectingToHost: t("common.coop.connecting_to_host"),
+        connected: t("common.coop.connected"),
+        room: t("common.coop.room"),
+        host: t("common.coop.host"),
+        partnerStatus: t("common.coop.partner_status"),
+        partnerHasNotTyped: t("common.coop.partner_has_not_typed"),
+        partnerCorrect: t("common.coop.partner_correct"),
+        partnerWrong: t("common.coop.partner_wrong"),
+        syncQuest: t("common.coop.sync_quest"),
+        notifyPartner: t("common.coop.notify_partner"),
+        roundComplete: t("common.coop.round_complete"),
+        disconnect: t("common.coop.disconnect"),
+        connectionLost: t("common.coop.connection_lost"),
+        dismiss: t("common.coop.dismiss"),
+        connectionError: t("common.coop.connection_error"),
+        tryAgain: t("common.coop.try_again"),
+    };
 
     const {
         phase,
@@ -156,10 +233,10 @@ export default function CoopPanel({
             >
                 <StatusDot isConnected={isConnected} phase={phase} />
                 <Users className="w-4 h-4" />
-                Coop
+                {coopT.coop}
                 {isConnected && (
                     <span className="ml-1 bg-green-400 text-black text-[8px] px-1.5 py-0.5 rounded-full font-black">
-                        LIVE
+                        {coopT.live}
                     </span>
                 )}
             </button>
@@ -178,7 +255,7 @@ export default function CoopPanel({
                         <div className="flex items-center justify-between p-4 border-b border-white/10">
                             <div className="flex items-center gap-2">
                                 <Users className="w-4 h-4 text-neon-purple" />
-                                <span className="text-xs font-black uppercase tracking-widest text-white/80">Co-op Mode</span>
+                                <span className="text-xs font-black uppercase tracking-widest text-white/80">{coopT.title}</span>
                             </div>
                             <button onClick={() => setPanelOpen(false)} className="p-1 hover:bg-white/10 rounded">
                                 <X className="w-4 h-4 text-white/40" />
@@ -190,17 +267,17 @@ export default function CoopPanel({
                             {phase === "idle" && (
                                 <div className="space-y-3">
                                     <p className="text-xs text-white/50 leading-relaxed">
-                                        Invite a classmate to solve questions together in real time. No account needed!
+                                        {coopT.invite}
                                     </p>
                                     <button
                                         onClick={createRoom}
                                         className="w-full py-3 bg-neon-purple/20 border border-neon-purple/40 text-neon-purple text-xs font-black uppercase tracking-widest rounded-xl hover:bg-neon-purple/30 transition-colors flex items-center justify-center gap-2"
                                     >
-                                        <Crown className="w-4 h-4" /> Create Room (Host)
+                                        <Crown className="w-4 h-4" /> {coopT.createRoomHost}
                                     </button>
                                     <div className="relative flex items-center">
                                         <div className="flex-1 border-t border-white/10" />
-                                        <span className="px-3 text-[10px] text-white/30 uppercase tracking-widest">or</span>
+                                        <span className="px-3 text-[10px] text-white/30 uppercase tracking-widest">{coopT.or}</span>
                                         <div className="flex-1 border-t border-white/10" />
                                     </div>
                                     <div className="flex gap-2">
@@ -216,7 +293,7 @@ export default function CoopPanel({
                                             disabled={joinCode.length !== 6}
                                             className="px-3 py-2 bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-xs font-black rounded-lg hover:bg-cyan-500/30 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                                         >
-                                            Join
+                                            {coopT.join}
                                         </button>
                                     </div>
                                 </div>
@@ -226,7 +303,7 @@ export default function CoopPanel({
                             {phase === "creating" && (
                                 <div className="flex items-center gap-3 py-4 justify-center">
                                     <Loader2 className="w-5 h-5 text-neon-purple animate-spin" />
-                                    <span className="text-xs text-white/60">Setting up room...</span>
+                                    <span className="text-xs text-white/60">{coopT.settingUpRoom}</span>
                                 </div>
                             )}
 
@@ -234,17 +311,17 @@ export default function CoopPanel({
                             {phase === "waiting_guest" && (
                                 <div className="space-y-4 py-2">
                                     <div className="text-[10px] uppercase tracking-widest text-white/50 text-center font-black">
-                                        Share this code with your classmate
+                                        {coopT.shareCode}
                                     </div>
                                     <div className="flex justify-center">
-                                        <RoomCodeDisplay code={roomCode} />
+                                        <RoomCodeDisplay code={roomCode} title={coopT.copyCode} />
                                     </div>
                                     <div className="flex items-center justify-center gap-2">
                                         <Loader2 className="w-4 h-4 text-yellow-400 animate-spin" />
-                                        <span className="text-xs text-yellow-400 font-mono">Waiting for guest...</span>
+                                        <span className="text-xs text-yellow-400 font-mono">{coopT.waitingForGuest}</span>
                                     </div>
                                     <button onClick={disconnect} className="w-full py-2 text-xs text-white/40 hover:text-white/60 transition-colors">
-                                        Cancel
+                                        {coopT.cancel}
                                     </button>
                                 </div>
                             )}
@@ -253,7 +330,7 @@ export default function CoopPanel({
                             {phase === "joining" && (
                                 <div className="flex items-center gap-3 py-4 justify-center">
                                     <Loader2 className="w-5 h-5 text-cyan-400 animate-spin" />
-                                    <span className="text-xs text-white/60">Connecting to host...</span>
+                                    <span className="text-xs text-white/60">{coopT.connectingToHost}</span>
                                 </div>
                             )}
 
@@ -264,19 +341,19 @@ export default function CoopPanel({
                                     <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-xl px-3 py-2">
                                         <Wifi className="w-4 h-4 text-green-400" />
                                         <div>
-                                            <div className="text-[9px] uppercase font-black text-green-400 tracking-widest">Connected</div>
-                                            <div className="text-[10px] text-white/60 font-mono">Room: {roomCode} · {role === "host" ? "👑 Host" : "🎮 Guest"}</div>
+                                            <div className="text-[9px] uppercase font-black text-green-400 tracking-widest">{coopT.connected}</div>
+                                            <div className="text-[10px] text-white/60 font-mono">{coopT.room}: {roomCode} · {role === "host" ? `👑 ${coopT.host}` : `🎮 ${coopT.guest}`}</div>
                                         </div>
                                     </div>
 
                                     {/* Scoreboard */}
                                     <div className="flex justify-center">
-                                        <ScoreBoard myScore={myScore} partnerScore={partnerScore} role={role || "host"} />
+                                        <ScoreBoard myScore={myScore} partnerScore={partnerScore} role={role || "host"} translations={coopT} />
                                     </div>
 
                                     {/* Partner status */}
                                     <div className="bg-white/5 border border-white/10 rounded-xl p-3 space-y-2">
-                                        <div className="text-[9px] uppercase tracking-widest text-white/40 font-black">Partner Status</div>
+                                        <div className="text-[9px] uppercase tracking-widest text-white/40 font-black">{coopT.partnerStatus}</div>
                                         {Object.keys(partnerState.answers).length > 0 ? (
                                             <div className="space-y-1">
                                                 {Object.entries(partnerState.answers).map(([slotId, val]) => (
@@ -289,11 +366,11 @@ export default function CoopPanel({
                                                 ))}
                                             </div>
                                         ) : (
-                                            <div className="text-xs text-white/30 italic">Partner hasn&apos;t typed yet...</div>
+                                            <div className="text-xs text-white/30 italic">{coopT.partnerHasNotTyped}</div>
                                         )}
                                         {partnerState.submitted && (
                                             <div className={clsx("text-xs font-black flex items-center gap-1", partnerState.correct ? "text-green-400" : "text-orange-400")}>
-                                                {partnerState.correct ? "✓ Partner got it right!" : "✗ Partner was wrong"}
+                                                {partnerState.correct ? `✓ ${coopT.partnerCorrect}` : `✗ ${coopT.partnerWrong}`}
                                             </div>
                                         )}
                                     </div>
@@ -302,30 +379,30 @@ export default function CoopPanel({
                                     {role === "host" && currentQuestToSync && (
                                         <div className="space-y-2">
                                             <button
-                                                onClick={syncQuest}
-                                                className="w-full py-2.5 bg-neon-purple/10 border border-neon-purple/30 text-neon-purple text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-neon-purple/20 transition-colors flex items-center justify-center gap-2"
-                                            >
-                                                <Play className="w-3 h-3" /> Sync Quest to Partner
-                                            </button>
-                                        </div>
-                                    )}
+                                            onClick={syncQuest}
+                                            className="w-full py-2.5 bg-neon-purple/10 border border-neon-purple/30 text-neon-purple text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-neon-purple/20 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            <Play className="w-3 h-3" /> {coopT.syncQuest}
+                                        </button>
+                                    </div>
+                                )}
 
                                     {/* Submit notify button */}
                                     {lastCheckCorrect !== null && lastCheckCorrect !== undefined && (
                                         <button
-                                            onClick={handleSubmitNotify}
-                                            className="w-full py-2 bg-white/5 border border-white/10 text-white/60 text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-white/10 transition-colors"
-                                        >
-                                            📡 Notify Partner of Result
-                                        </button>
-                                    )}
+                                        onClick={handleSubmitNotify}
+                                        className="w-full py-2 bg-white/5 border border-white/10 text-white/60 text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-white/10 transition-colors"
+                                    >
+                                        📡 {coopT.notifyPartner}
+                                    </button>
+                                )}
 
                                     {/* Trophy if both submitted */}
                                     {partnerState.submitted && (
                                         <div className="flex items-center justify-center gap-2 py-1">
                                             <Trophy className="w-4 h-4 text-yellow-400" />
                                             <span className="text-xs text-yellow-400 font-black uppercase tracking-widest">
-                                                Round complete!
+                                                {coopT.roundComplete}
                                             </span>
                                         </div>
                                     )}
@@ -334,7 +411,7 @@ export default function CoopPanel({
                                         onClick={disconnect}
                                         className="w-full py-2 text-xs text-white/30 hover:text-red-400 transition-colors flex items-center justify-center gap-1"
                                     >
-                                        <WifiOff className="w-3 h-3" /> Disconnect
+                                        <WifiOff className="w-3 h-3" /> {coopT.disconnect}
                                     </button>
                                 </div>
                             )}
@@ -343,12 +420,12 @@ export default function CoopPanel({
                             {phase === "disconnected" && (
                                 <div className="space-y-4 py-2 text-center">
                                     <WifiOff className="w-8 h-8 text-red-400 mx-auto" />
-                                    <div className="text-xs text-white/60">Connection lost</div>
+                                    <div className="text-xs text-white/60">{coopT.connectionLost}</div>
                                     <button
                                         onClick={disconnect}
                                         className="px-4 py-2 bg-white/5 border border-white/10 text-xs text-white/60 rounded-lg hover:bg-white/10 transition-colors"
                                     >
-                                        Dismiss
+                                        {coopT.dismiss}
                                     </button>
                                 </div>
                             )}
@@ -357,14 +434,14 @@ export default function CoopPanel({
                             {phase === "error" && (
                                 <div className="space-y-4 py-2">
                                     <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3">
-                                        <div className="text-[9px] uppercase font-black text-red-400 tracking-widest mb-1">Connection Error</div>
+                                        <div className="text-[9px] uppercase font-black text-red-400 tracking-widest mb-1">{coopT.connectionError}</div>
                                         <div className="text-xs text-white/60">{error}</div>
                                     </div>
                                     <button
                                         onClick={disconnect}
                                         className="w-full py-2 bg-white/5 border border-white/10 text-xs text-white/60 rounded-lg hover:bg-white/10 transition-colors"
                                     >
-                                        Try Again
+                                        {coopT.tryAgain}
                                     </button>
                                 </div>
                             )}

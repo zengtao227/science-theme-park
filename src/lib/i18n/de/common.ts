@@ -77,6 +77,47 @@ export const deCommon = {
         placeholders: {
             user_name: "Name eingeben...",
             room_code: "Raumcode"
+        },
+        user_switcher: {
+            switch_user: "Benutzer wechseln",
+            add_user: "Benutzer hinzufügen",
+            settings_ai: "Einstellungen & KI",
+            new_user: "Neuer Benutzer",
+            create: "Erstellen",
+            cancel: "Abbrechen"
+        },
+        coop: {
+            copy_code: "Code kopieren",
+            you: "Du",
+            partner: "Partner",
+            guest: "Gast",
+            coop: "Koop",
+            live: "Live",
+            title: "Koop-Modus",
+            invite: "Lade eine Mitschülerin oder einen Mitschüler ein, Aufgaben in Echtzeit gemeinsam zu lösen. Kein Konto nötig!",
+            create_room_host: "Raum erstellen (Host)",
+            or: "oder",
+            join: "Beitreten",
+            setting_up_room: "Raum wird eingerichtet...",
+            share_code: "Teile diesen Code mit deiner Mitschülerin oder deinem Mitschüler",
+            waiting_for_guest: "Warte auf den Gast...",
+            connecting_to_host: "Verbindung zum Host wird hergestellt...",
+            connected: "Verbunden",
+            room: "Raum",
+            host: "Host",
+            partner_status: "Partnerstatus",
+            partner_has_not_typed: "Der Partner hat noch nichts eingegeben...",
+            partner_correct: "Der Partner hatte recht!",
+            partner_wrong: "Der Partner lag falsch",
+            sync_quest: "Aufgabe mit Partner synchronisieren",
+            notify_partner: "Partner über Ergebnis informieren",
+            round_complete: "Runde abgeschlossen!",
+            disconnect: "Trennen",
+            connection_lost: "Verbindung verloren",
+            dismiss: "Schließen",
+            connection_error: "Verbindungsfehler",
+            try_again: "Erneut versuchen",
+            cancel: "Abbrechen"
         }
     },
     home: {

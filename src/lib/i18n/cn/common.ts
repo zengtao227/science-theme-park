@@ -77,6 +77,47 @@ export const cnCommon = {
         placeholders: {
             user_name: "输入名字...",
             room_code: "房间码"
+        },
+        user_switcher: {
+            switch_user: "切换用户",
+            add_user: "添加用户",
+            settings_ai: "设置与 AI",
+            new_user: "新用户",
+            create: "创建",
+            cancel: "取消"
+        },
+        coop: {
+            copy_code: "复制房间码",
+            you: "你",
+            partner: "伙伴",
+            guest: "访客",
+            coop: "协作",
+            live: "实时",
+            title: "协作模式",
+            invite: "邀请同学实时一起解题，无需账号。",
+            create_room_host: "创建房间（主机）",
+            or: "或",
+            join: "加入",
+            setting_up_room: "正在创建房间...",
+            share_code: "把这个房间码发给你的同学",
+            waiting_for_guest: "正在等待伙伴加入...",
+            connecting_to_host: "正在连接主机...",
+            connected: "已连接",
+            room: "房间",
+            host: "主机",
+            partner_status: "伙伴状态",
+            partner_has_not_typed: "伙伴还没有开始输入...",
+            partner_correct: "伙伴答对了！",
+            partner_wrong: "伙伴答错了",
+            sync_quest: "同步题目给伙伴",
+            notify_partner: "通知伙伴本题结果",
+            round_complete: "本轮完成！",
+            disconnect: "断开连接",
+            connection_lost: "连接已断开",
+            dismiss: "关闭",
+            connection_error: "连接错误",
+            try_again: "重试",
+            cancel: "取消"
         }
     },
     home: {
