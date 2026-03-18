@@ -29,8 +29,6 @@ interface S204_SimilarityCanvasProps {
         tower_shadow?: string;
         stick?: string;
         stick_shadow?: string;
-        sim_matrix?: string;
-        k_scale_active?: string;
     };
 }
 
@@ -38,12 +36,14 @@ function NeonShape({
     scale = 1,
     position = [0, 0, 0],
     color = "#00e5ff",
-    label = ""
+    label = "",
+    labelSize = 0.32,
 }: {
     scale?: number | [number, number, number],
     position?: [number, number, number],
     color?: string,
-    label?: string
+    label?: string,
+    labelSize?: number,
 }) {
     return (
         <group position={position}>
@@ -61,7 +61,7 @@ function NeonShape({
             {label && (
                 <Text
                     position={[0, -1, 0]}
-                    fontSize={0.25}
+                    fontSize={labelSize}
                     color={color}
                 >
                     {label}
@@ -167,11 +167,11 @@ function InitialCamera({ kind }: { kind: SimilarityVisual["kind"] }) {
         pos = [0, 10, 24]; // Look down from further away to see everything
         fov = 45;
     } else if (kind === "rect-scale") {
-        pos = [0, 1, 10];
-        fov = 35;
+        pos = [0, 1.2, 8.2];
+        fov = 30;
     } else if (kind === "tri-sim") {
-        pos = [0, 1, 16]; // Lifted y slightly to center better
-        fov = 40;
+        pos = [0, 1.2, 13];
+        fov = 34;
     } else if (kind === "ring") {
         pos = [0, 0, 10];
         fov = 45;
@@ -184,7 +184,7 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
     if (!visual) return null;
 
     return (
-        <div className="relative w-full aspect-[2/1] min-h-[300px] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
+        <div className="relative w-full aspect-[4/3] min-h-[360px] sm:min-h-[430px] lg:min-h-[520px] bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden">
             <Canvas shadows className="w-full h-full" dpr={[1, 2]}>
                 <color attach="background" args={["#050505"]} />
                 <InitialCamera kind={visual.kind} />
@@ -192,16 +192,17 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
 
                 <Suspense fallback={null}>
                     {visual.kind === "rect-scale" && (
-                        <group position={[0, -0.5, 0]}>
+                        <group position={[0, -0.2, 0]}>
                             <NeonShape
-                                position={[-2.5, 0, 0]}
+                                position={[-3, 0, 0]}
                                 scale={[1.2, 0.6, 1]}
                                 color="rgba(255,255,255,0.4)"
                                 label="k=1"
+                                labelSize={0.4}
                             />
 
                             <Line
-                                points={[new THREE.Vector3(-1.5, 0, 0), new THREE.Vector3(1, 0, 0)]}
+                                points={[new THREE.Vector3(-1.8, 0, 0), new THREE.Vector3(1.2, 0, 0)]}
                                 color="#fff"
                                 opacity={0.1}
                                 transparent
@@ -210,13 +211,14 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
 
                             <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
                                 <NeonShape
-                                    position={[2, 0, 0]}
+                                    position={[2.8, 0, 0]}
                                     scale={[1.2 * (visual.k ?? 1.5), 0.6 * (visual.k ?? 1.5), visual.k ?? 1.5]}
                                     color="#00e5ff"
                                     label={`k=${visual.k ?? 1.5}`}
+                                    labelSize={0.42}
                                 />
                             </Float>
-                            <Text position={[0, 1, 0]} fontSize={0.3} color="white">
+                            <Text position={[0, 1.45, 0]} fontSize={0.42} color="white">
                                 {`k = ${visual.k ?? 1.5}`}
                             </Text>
                         </group>
@@ -290,16 +292,6 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
                     />
                 </Suspense>
             </Canvas>
-
-            {/* HUD Overlay */}
-            <div className="absolute top-3 left-4 flex gap-2 items-center pointer-events-none">
-                <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
-                <span className="text-[8px] font-mono text-white/70 tracking-[0.3em] uppercase">{labels?.sim_matrix}</span>
-            </div>
-
-            <div className="absolute bottom-3 left-4 text-[7px] font-mono text-white/10 uppercase tracking-widest">
-                {labels?.k_scale_active}
-            </div>
         </div>
     );
 }

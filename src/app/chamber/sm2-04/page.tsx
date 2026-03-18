@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
@@ -11,6 +11,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S204_SimilarityCanvas, { SimilarityVisual } from "@/components/chamber/sm2-04/SimilarityCanvas";
+import { buildQuestPrintSections } from "@/components/print/QuestPrintSections";
 
 type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
 
@@ -18,6 +19,8 @@ interface S204Quest extends Quest {
     stage: Stage;
     visual?: SimilarityVisual;
 }
+
+const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
 
 function buildStagePool(t: (path: string, params?: Record<string, string | number>) => any, difficulty: Difficulty, stage: Stage): S204Quest[] {
     if (stage === "SCALE_FACTOR") {
@@ -725,18 +728,27 @@ export default function S204Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    const stages = [
+    const stages = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "SCALE_FACTOR", label: t("sm2_04.stages.scale_factor") },
         { id: "SIMILAR_TRIANGLES", label: t("sm2_04.stages.similar_triangles") },
         { id: "MISSION", label: t("sm2_04.mission.title") || t("sm2_04.stages.application") },
-    ];
-    const difficultyLabelMap: Record<Difficulty, string> = {
+    ], [t]);
+    const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
         BASIC: t("sm2_04.difficulty.basic"),
         CORE: t("sm2_04.difficulty.core"),
         ADVANCED: t("sm2_04.difficulty.advanced"),
         ELITE: t("sm2_04.difficulty.elite"),
-    };
+    }), [t]);
     const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
+    const printSections = useMemo(() => buildQuestPrintSections<S204Quest, Stage>({
+        moduleTitle: t("sm2_04.title"),
+        stages,
+        difficultyOrder: PRINT_DIFFICULTY_ORDER,
+        difficultyLabels: difficultyLabelMap,
+        buildPool,
+        showHints: true,
+        maxHints: 1,
+    }), [buildPool, difficultyLabelMap, stages, t]);
 
     return (
         <ChamberLayout
@@ -755,6 +767,7 @@ export default function S204Page() {
             onNext={next}
             successRate={successRate}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={{
                 back: t("sm2_04.back"),
                 check: t("sm2_04.check"),
@@ -778,8 +791,6 @@ export default function S204Page() {
                             tower_shadow: t("sm2_04.mission.labels.tower_shadow"),
                             stick: t("sm2_04.mission.labels.stick"),
                             stick_shadow: t("sm2_04.mission.labels.stick_shadow"),
-                            sim_matrix: t("sm2_04.canvas_labels.sim_matrix"),
-                            k_scale_active: t("sm2_04.canvas_labels.k_scale_active")
                         }}
                     />
 

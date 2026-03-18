@@ -1962,10 +1962,6 @@ export const deMath = {
                 calculate_height: "Turmhöhe berechnen"
             }
         },
-        canvas_labels: {
-            sim_matrix: "SIM-MATRIX",
-            k_scale_active: "K-SKALIERUNG AKTIV"
-        },
         placeholders: {
             width: "Breite",
             value: "Wert",

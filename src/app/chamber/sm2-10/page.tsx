@@ -9,6 +9,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DataVisualization from "@/components/chamber/sm2-10/DataVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections } from "@/components/print/QuestPrintSections";
 
 type Stage = "BOX_PLOTS" | "SCATTER_PLOTS" | "CORRELATION" | "ELITE";
 
@@ -19,53 +20,6 @@ interface SM210Quest extends Quest {
 
 const PRINT_STAGE_ORDER: Stage[] = ["BOX_PLOTS", "SCATTER_PLOTS", "CORRELATION", "ELITE"];
 const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
-
-function PrintableSM210Section({
-    moduleTitle,
-    stageLabel,
-    groups,
-}: {
-    moduleTitle: string;
-    stageLabel: string;
-    groups: { difficultyLabel: string; quests: SM210Quest[] }[];
-}) {
-    return (
-        <article className="text-black bg-white px-8 py-6 space-y-6">
-            <header className="border-b-2 border-black pb-3">
-                <h2 className="text-2xl font-black tracking-wide">{moduleTitle}</h2>
-                <p className="text-sm font-semibold mt-1">{stageLabel}</p>
-            </header>
-
-            {groups.map((group) => (
-                <section key={group.difficultyLabel} className="space-y-4">
-                    <h3 className="text-lg font-black border-l-4 border-black pl-3">{group.difficultyLabel}</h3>
-                    <div className="space-y-5">
-                        {group.quests.map((quest, index) => (
-                            <div key={quest.id} className="border border-black/30 p-4 space-y-3">
-                                <div className="text-sm font-bold">
-                                    {index + 1}. {renderMixedText(quest.promptLatex)}
-                                </div>
-                                <div className="text-black">
-                                    <BlockMath math={quest.expressionLatex} />
-                                </div>
-                                <div className="space-y-2 pt-1">
-                                    {quest.slots.map((slot) => (
-                                        <div key={slot.id} className="space-y-1">
-                                            <div className="text-sm">
-                                                <InlineMath math={slot.labelLatex} />
-                                            </div>
-                                            <div className="h-7 border-b border-black" />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            ))}
-        </article>
-    );
-}
 
 export default function SM210Page() {
     const { completeStage } = useAppStore();
@@ -780,37 +734,21 @@ export default function SM210Page() {
     ], [t]);
 
     const printSections = useMemo(() => {
-        const stageLabels: Record<Stage, string> = {
-            BOX_PLOTS: t("sm2_10.stages.box_plots"),
-            SCATTER_PLOTS: t("sm2_10.stages.scatter_plots"),
-            CORRELATION: t("sm2_10.stages.correlation"),
-            ELITE: t("sm2_10.stages.elite"),
+        const difficultyLabels: Record<Difficulty, string> = {
+            BASIC: t("sm2_10.difficulty.basic"),
+            CORE: t("sm2_10.difficulty.core"),
+            ADVANCED: t("sm2_10.difficulty.advanced"),
+            ELITE: t("sm2_10.difficulty.elite"),
         };
 
-        return PRINT_STAGE_ORDER.map((stageId) => {
-            const groups = PRINT_DIFFICULTY_ORDER
-                .map((diff) => {
-                    const key = diff.toLowerCase();
-                    return {
-                        difficultyLabel: t(`sm2_10.difficulty.${key}`),
-                        quests: buildStagePool(diff, stageId),
-                    };
-                })
-                .filter((group) => group.quests.length > 0);
-
-            return {
-                id: stageId,
-                label: stageLabels[stageId],
-                content: (
-                    <PrintableSM210Section
-                        moduleTitle={t("sm2_10.title")}
-                        stageLabel={stageLabels[stageId]}
-                        groups={groups}
-                    />
-                ),
-            };
+        return buildQuestPrintSections<SM210Quest, Stage>({
+            moduleTitle: t("sm2_10.title"),
+            stages: stagesProps,
+            difficultyOrder: PRINT_DIFFICULTY_ORDER,
+            difficultyLabels,
+            buildPool: buildStagePool,
         });
-    }, [buildStagePool, t]);
+    }, [buildStagePool, stagesProps, t]);
 
     if (!currentQuest) {
         return (

@@ -1949,10 +1949,6 @@ export const enMath = {
                 calculate_height: "Calculate Tower Height"
             }
         },
-        canvas_labels: {
-            sim_matrix: "SIM-MATRIX",
-            k_scale_active: "K-SCALE ACTIVE"
-        },
         placeholders: {
             value: "value",
             width: "width",

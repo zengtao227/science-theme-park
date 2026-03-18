@@ -11,6 +11,7 @@ import { StepBySolver } from "@/components/chamber/sm2-09/StepBySolver";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { SM209Quest, Stage, SolutionStep } from "@/lib/sm2-09-types";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections } from "@/components/print/QuestPrintSections";
 import {
   inequalityBasicsBasic,
   inequalityBasicsCore,
@@ -43,49 +44,6 @@ function formatExpressionForPrompt(expression: string, andConnector: string): st
 function formatExpressionForLatex(expression: string): string {
   return normalizeExpressionSpacing(
     expression.replace(/\s*AND\s*/gi, " \\land ")
-  );
-}
-
-function PrintableSM209Section({
-  moduleTitle,
-  stageLabel,
-  groups,
-  answerLabel,
-}: {
-  moduleTitle: string;
-  stageLabel: string;
-  groups: { difficultyLabel: string; quests: SM209Quest[] }[];
-  answerLabel: string;
-}) {
-  return (
-    <article className="text-black bg-white px-8 py-6 space-y-6">
-      <header className="border-b-2 border-black pb-3">
-        <h2 className="text-2xl font-black tracking-wide">{moduleTitle}</h2>
-        <p className="text-sm font-semibold mt-1">{stageLabel}</p>
-      </header>
-
-      {groups.map((group) => (
-        <section key={group.difficultyLabel} className="space-y-4">
-          <h3 className="text-lg font-black border-l-4 border-black pl-3">{group.difficultyLabel}</h3>
-          <div className="space-y-5">
-            {group.quests.map((quest, index) => (
-              <div key={quest.id} className="border border-black/30 p-4 space-y-3">
-                <div className="text-sm font-bold">
-                  {index + 1}. {renderMixedText(quest.promptLatex)}
-                </div>
-                <div className="text-black">
-                  <BlockMath math={quest.expressionLatex} />
-                </div>
-                <div className="pt-2">
-                  <div className="text-xs font-semibold mb-2">{answerLabel}</div>
-                  <div className="h-7 border-b border-black" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ))}
-    </article>
   );
 }
 
@@ -340,35 +298,23 @@ export default function SM209Page() {
   }, [currentQuest, sm2_09_t.basel_scenarios]);
 
   const printableSections = useMemo(() => {
-    const stageLabels: Record<Stage, string> = {
-      INEQUALITY_BASICS: sm2_09_t.stages.inequality_basics,
-      SYSTEMS: sm2_09_t.stages.systems,
-      ABSOLUTE_VALUE: sm2_09_t.stages.absolute_value,
+    const difficultyLabels: Record<Difficulty, string> = {
+      BASIC: sm2_09_t.difficulty.basic,
+      CORE: sm2_09_t.difficulty.core,
+      ADVANCED: sm2_09_t.difficulty.advanced,
+      ELITE: sm2_09_t.difficulty.elite,
     };
 
-    return PRINT_STAGE_ORDER.map((stageId) => {
-      const groups = PRINT_DIFFICULTY_ORDER
-        .map((diff) => {
-          const key = diff.toLowerCase() as keyof typeof sm2_09_t.difficulty;
-          return {
-            difficultyLabel: sm2_09_t.difficulty[key],
-            quests: buildStagePool(sm2_09_t, diff, stageId),
-          };
-        })
-        .filter((group) => group.quests.length > 0);
-
-      return {
-        id: stageId,
-        label: stageLabels[stageId],
-        content: (
-          <PrintableSM209Section
-            moduleTitle={sm2_09_t.title}
-            stageLabel={stageLabels[stageId]}
-            groups={groups}
-            answerLabel={sm2_09_t.solution_title}
-          />
-        ),
-      };
+    return buildQuestPrintSections<SM209Quest, Stage>({
+      moduleTitle: sm2_09_t.title,
+      stages: [
+        { id: "INEQUALITY_BASICS", label: sm2_09_t.stages.inequality_basics },
+        { id: "SYSTEMS", label: sm2_09_t.stages.systems },
+        { id: "ABSOLUTE_VALUE", label: sm2_09_t.stages.absolute_value },
+      ],
+      difficultyOrder: PRINT_DIFFICULTY_ORDER,
+      difficultyLabels,
+      buildPool: (difficulty, stageId) => buildStagePool(sm2_09_t, difficulty, stageId),
     });
   }, [buildStagePool, sm2_09_t]);
 

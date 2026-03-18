@@ -1930,10 +1930,6 @@ export const cnMath = {
                 calculate_height: "计算钟楼高度"
             }
         },
-        canvas_labels: {
-            sim_matrix: "相似矩阵",
-            k_scale_active: "K-缩放激活"
-        },
         placeholders: {
             width: "宽度",
             value: "数值",
