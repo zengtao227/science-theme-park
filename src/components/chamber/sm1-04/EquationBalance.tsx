@@ -43,7 +43,9 @@ export default function EquationBalance({
     problems: "BASEL REAL-WORLD PROBLEMS"
   }
 }: EquationBalanceProps) {
-  const canvasSize = 400;
+  const canvasWidth = 460;
+  const panFormulaWidth = 150;
+  const panFormulaHeight = 40;
 
   const t = translations;
 
@@ -57,19 +59,22 @@ export default function EquationBalance({
       const right = typeof quest?.right === "string" ? quest.right : (equationSides?.[1] ?? "");
 
       return (
-        <svg width={canvasSize} height={250} className="mx-auto bg-black/50 rounded-xl border border-white/10">
+        <svg
+          viewBox={`0 0 ${canvasWidth} 250`}
+          className="mx-auto w-full max-w-[460px] h-auto bg-black/50 rounded-xl border border-white/10 overflow-visible"
+        >
           {/* Beam */}
-          <line x1="80" y1="150" x2="320" y2="150" stroke="#ffffff" strokeWidth="4" />
+          <line x1="100" y1="150" x2="360" y2="150" stroke="#ffffff" strokeWidth="4" />
 
           {/* Fulcrum (triangle) */}
-          <polygon points="200,150 180,180 220,180" fill="#00e5ff" stroke="#ffffff" strokeWidth="2" />
+          <polygon points="230,150 210,180 250,180" fill="#00e5ff" stroke="#ffffff" strokeWidth="2" />
 
           {/* Left pan */}
           <g>
-            <line x1="120" y1="150" x2="120" y2="120" stroke="#ffffff" strokeWidth="2" />
-            <rect x="80" y="120" width="80" height="60" fill="#ff2d7d" fillOpacity="0.3" stroke="#ff2d7d" strokeWidth="2" rx="5" />
-            <foreignObject x="70" y="88" width="100" height="28">
-              <div className="w-full h-full flex items-center justify-center text-white bg-black/60 rounded-md text-sm">
+            <line x1="140" y1="150" x2="140" y2="120" stroke="#ffffff" strokeWidth="2" />
+            <rect x="95" y="120" width="90" height="60" fill="#ff2d7d" fillOpacity="0.3" stroke="#ff2d7d" strokeWidth="2" rx="5" />
+            <foreignObject x="65" y="76" width={panFormulaWidth} height={panFormulaHeight}>
+              <div className="w-full h-full flex items-center justify-center px-2 text-white bg-black/60 rounded-md text-[11px] leading-none whitespace-nowrap overflow-visible">
                 <InlineMath math={left} />
               </div>
             </foreignObject>
@@ -77,26 +82,26 @@ export default function EquationBalance({
 
           {/* Right pan */}
           <g>
-            <line x1="280" y1="150" x2="280" y2="120" stroke="#ffffff" strokeWidth="2" />
-            <rect x="240" y="120" width="80" height="60" fill="#39ff14" fillOpacity="0.3" stroke="#39ff14" strokeWidth="2" rx="5" />
-            <foreignObject x="230" y="88" width="100" height="28">
-              <div className="w-full h-full flex items-center justify-center text-white bg-black/60 rounded-md text-sm">
+            <line x1="320" y1="150" x2="320" y2="120" stroke="#ffffff" strokeWidth="2" />
+            <rect x="275" y="120" width="90" height="60" fill="#39ff14" fillOpacity="0.3" stroke="#39ff14" strokeWidth="2" rx="5" />
+            <foreignObject x="245" y="76" width={panFormulaWidth} height={panFormulaHeight}>
+              <div className="w-full h-full flex items-center justify-center px-2 text-white bg-black/60 rounded-md text-[11px] leading-none whitespace-nowrap overflow-visible">
                 <InlineMath math={right} />
               </div>
             </foreignObject>
           </g>
 
           {/* Labels */}
-          <text x="120" y="210" textAnchor="middle" fill="#ff2d7d" fontSize="14">
+          <text x="140" y="210" textAnchor="middle" fill="#ff2d7d" fontSize="14">
             {t.left}
           </text>
-          <text x="280" y="210" textAnchor="middle" fill="#39ff14" fontSize="14">
+          <text x="320" y="210" textAnchor="middle" fill="#39ff14" fontSize="14">
             {t.right}
           </text>
 
           {/* Operation hint */}
           {quest?.operation && (
-            <text x="200" y="250" textAnchor="middle" fill="#00e5ff" fontSize="16" fontWeight="bold">
+            <text x="230" y="244" textAnchor="middle" fill="#00e5ff" fontSize="16" fontWeight="bold">
               {t.operation}: {quest.operation}
             </text>
           )}
@@ -112,7 +117,10 @@ export default function EquationBalance({
       ];
 
       return (
-        <svg width={canvasSize} height={250} className="mx-auto bg-black/50 rounded-xl border border-white/10">
+        <svg
+          viewBox={`0 0 ${canvasWidth} 250`}
+          className="mx-auto w-full max-w-[460px] h-auto bg-black/50 rounded-xl border border-white/10"
+        >
           {steps.map((item, i) => {
             const y = 50 + i * 70;
             return (
@@ -133,7 +141,10 @@ export default function EquationBalance({
 
     const renderApplication = () => {
       return (
-        <svg width={canvasSize} height={250} className="mx-auto bg-black/50 rounded-xl border border-white/10">
+        <svg
+          viewBox={`0 0 ${canvasWidth} 250`}
+          className="mx-auto w-full max-w-[460px] h-auto bg-black/50 rounded-xl border border-white/10"
+        >
           {/* Basel scene illustration */}
           <g>
             {/* Bus */}
