@@ -1048,8 +1048,10 @@ export const cnMath = {
             plot_point: "绘制点",
             x_coord: "x 坐标",
             y_coord: "y 坐标",
+            result: "结果",
             midpoint: "中点",
-            order_smallest: "按从小到大排序"
+            order_smallest: "按从小到大排序",
+            unit_celsius: "°C"
         },
         prompts: {
             distance: "水平距离",

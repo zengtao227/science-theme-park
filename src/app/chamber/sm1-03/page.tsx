@@ -43,11 +43,11 @@ export default function SM103Page() {
       plot_point: t("sm1_03.labels.plot_point"),
       x_coord: t("sm1_03.labels.x_coord"),
       y_coord: t("sm1_03.labels.y_coord"),
-      result: t("sm1_03.labels.result") || "Result",
-      quadrant: t("sm1_03.labels.quadrant") || "Quadrant",
-      midpoint: t("sm1_03.labels.midpoint") || "Midpoint",
-      order_smallest: t("sm1_03.labels.order_smallest") || "Order from smallest",
-      unit_celsius: t("sm1_03.labels.unit_celsius") || "°C"
+      result: t("sm1_03.labels.result"),
+      quadrant: t("sm1_03.labels.quadrant"),
+      midpoint: t("sm1_03.labels.midpoint"),
+      order_smallest: t("sm1_03.labels.order_smallest"),
+      unit_celsius: t("sm1_03.labels.unit_celsius")
     },
     objective_title: t("sm1_03.objective_title"),
     scenarios: {

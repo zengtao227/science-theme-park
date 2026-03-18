@@ -24,6 +24,8 @@ export const cnCommon = {
         mastery: "正确率",
         attempts: "尝试次数",
         failed_attempts: "失败尝试",
+        check: "检查",
+        none: "无",
         achievements_title: "成就",
         achievement_unlocked: "成就解锁",
         notification: {

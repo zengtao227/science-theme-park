@@ -278,7 +278,7 @@ export default function SB101Page() {
                         <div className="p-3 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center">
                             <div className="text-[8px] uppercase text-white/40 tracking-widest">{t("sb1_01.labels.selected")}</div>
                             <div className="text-xs font-mono text-neon-cyan truncate uppercase">
-                                {selectedOrganelle || "NONE"}
+                                {selectedOrganelle || t("common.none")}
                             </div>
                         </div>
                     </div>

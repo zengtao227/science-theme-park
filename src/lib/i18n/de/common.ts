@@ -24,6 +24,8 @@ export const deCommon = {
         mastery: "Meisterschaft",
         attempts: "Versuche",
         failed_attempts: "Versuche",
+        check: "Prüfen",
+        none: "Keine",
         achievements_title: "Errungenschaften",
         achievement_unlocked: "Errungenschaft freigeschaltet",
         notification: {

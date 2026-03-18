@@ -1002,7 +1002,7 @@ export default function S202Page() {
                     value={inputs[slot.id] || ""}
                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
                     className="w-full bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-2xl text-white"
-                    placeholder={sm2_02_t.placeholders?.question ?? "?"}
+                    placeholder={sm2_02_t.placeholders.question}
                     inputMode="numeric"
                   />
                 )}
@@ -1023,8 +1023,8 @@ export default function S202Page() {
                       }
                     })()}
                     onChange={(v) => setInputs({ ...inputs, [slot.id]: JSON.stringify(v) })}
-                    labelK={sm2_02_t.input_k || "k"}
-                    labelM={sm2_02_t.input_m || "m"}
+                    labelK={sm2_02_t.input_k}
+                    labelM={sm2_02_t.input_m}
                   />
                 )}
 

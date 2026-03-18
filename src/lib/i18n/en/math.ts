@@ -1063,6 +1063,7 @@ export const enMath = {
             plot_point: "Plot point",
             x_coord: "x-coordinate",
             y_coord: "y-coordinate",
+            result: "Result",
             midpoint: "Midpoint",
             order_smallest: "Order from smallest",
             unit_celsius: "°C"

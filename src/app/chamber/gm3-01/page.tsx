@@ -64,7 +64,7 @@ export default function G301Page() {
     labels: {
       input: t("gm3_01.labels.input"),
       hints: t("gm3_01.labels.hints"),
-      problem_tag: t("gm3_01.labels.problem_tag") || "PROBLEM",
+      problem_tag: t("gm3_01.labels.problem_tag"),
     },
     placeholders: {
       probability_4dp: t("gm3_01.placeholders.probability_4dp"),

@@ -5,7 +5,7 @@ import { useMemo } from "react";
 interface IntegerCanvasProps {
   stage: string;
   quest: any;
-  translations?: {
+  translations: {
     integer_number_line: string;
     rational_number_line: string;
     coordinate_plane: string;
@@ -16,12 +16,7 @@ interface IntegerCanvasProps {
 export default function IntegerCanvas({
   stage,
   quest,
-  translations = {
-    integer_number_line: "Integer Number Line",
-    rational_number_line: "Rational Number Line",
-    coordinate_plane: "Coordinate Plane",
-    unit_celsius: "°C"
-  }
+  translations
 }: IntegerCanvasProps) {
   const canvasSize = 400;
 

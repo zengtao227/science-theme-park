@@ -1074,6 +1074,7 @@ export const deMath = {
             plot_point: "Punkt zeichnen",
             x_coord: "x-Koordinate",
             y_coord: "y-Koordinate",
+            result: "Ergebnis",
             midpoint: "Mittelpunkt",
             order_smallest: "Von kleinsten ordnen",
             unit_celsius: "°C"

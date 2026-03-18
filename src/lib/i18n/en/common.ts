@@ -24,6 +24,8 @@ export const enCommon = {
         mastery: "Mastery",
         attempts: "Attempts",
         failed_attempts: "Attempts",
+        check: "Check",
+        none: "None",
         achievements_title: "Achievements",
         achievement_unlocked: "Achievement Unlocked",
         notification: {

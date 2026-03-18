@@ -186,9 +186,9 @@ export default function EM101Page() {
   }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
-    { id: "BASICS" as Stage, label: t.stages.basics || "BASICS" },
-    { id: "MEASURE" as Stage, label: t.stages.measure || "MEASURE" },
-    { id: "SURVEY" as Stage, label: t.stages.survey || "SURVEY" },
+    { id: "BASICS" as Stage, label: t.stages.basics },
+    { id: "MEASURE" as Stage, label: t.stages.measure },
+    { id: "SURVEY" as Stage, label: t.stages.survey },
   ], [t.stages]);
 
   // Fallback if translations not loaded
