@@ -399,7 +399,7 @@ export default function S301Page() {
             {stage === "FACTORIZE" && currentQuest?.slots.some((s) => s.id === "A") && currentQuest?.slots.some((s) => s.id === "B") && (
               <div className="text-[10px] uppercase tracking-[0.35em] text-white/90 font-black">
                 <InlineMath
-                  math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || "A"})(x${parseNumberLike(inputs.B ?? "") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || "B"})`}
+                  math={`\\text{Preview: }(x${parseNumberLike(inputs.A ?? "") !== null && Number((inputs.A ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.A ?? "").trim() || t("sm3_01.placeholders.factor_a")})(x${parseNumberLike(inputs.B ?? "") !== null && Number((inputs.B ?? "").replace(/,/g, ".")) >= 0 ? "+" : ""}${(inputs.B ?? "").trim() || t("sm3_01.placeholders.factor_b")})`}
                 />
               </div>
             )}

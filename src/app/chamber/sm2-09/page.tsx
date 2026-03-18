@@ -179,22 +179,29 @@ export default function SM209Page() {
         const rawExpression = q.expression || "";
         const displayExpression = formatExpressionForPrompt(rawExpression, sm2_09_t.and_connector);
         const expressionLatex = formatExpressionForLatex(rawExpression);
+        const inequalityType = q.inequalityType;
+        const variable = q.variable;
+        const solutionType = q.solutionType;
+
+        if (!inequalityType || !variable || !solutionType) {
+          throw new Error(`SM2.09 quest is missing structural fields: ${q.id ?? `${stage}_${difficulty}_${index + 1}`}`);
+        }
 
         const quest: SM209Quest = {
           id: q.id || `${stage}_${difficulty}_${index + 1}`,
           difficulty: difficulty,
           stage: stage,
-          inequalityType: q.inequalityType || "LINEAR",
+          inequalityType,
           expression: rawExpression,
-          variable: q.variable || "x",
+          variable,
           coefficients: q.coefficients,
           constants: q.constants,
           systemInequalities: q.systemInequalities,
           absoluteValueExpression: q.absoluteValueExpression,
           promptLatex: t("sm2_09.prompts.solve_expression", { expression: displayExpression }),
           expressionLatex: expressionLatex,
-          targetLatex: q.variable || "x",
-          solutionType: q.solutionType || "INTERVAL",
+          targetLatex: variable,
+          solutionType,
           solutionInterval: q.solutionInterval,
           solutionSet: q.solutionSet,
           steps: q.steps || generateSteps(q),

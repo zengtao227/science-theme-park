@@ -791,6 +791,7 @@ export const absoluteValueCore: Partial<SM209Quest>[] = [
         id: "ABSOLUTE_VALUE_CORE_5",
         difficulty: "CORE",
         stage: "ABSOLUTE_VALUE",
+        inequalityType: "ABSOLUTE_VALUE",
         expression: "|x - 5| < 3",
         variable: "x",
         absoluteValueExpression: "x - 5",

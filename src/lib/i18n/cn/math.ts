@@ -2559,6 +2559,8 @@ export const cnMath = {
     sm3_01: {
         placeholders: {
             question: "?",
+            factor_a: "甲",
+            factor_b: "乙",
         },
         back: "返回枢纽",
         title: "一元二次方程",

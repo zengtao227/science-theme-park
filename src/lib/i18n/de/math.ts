@@ -2536,6 +2536,8 @@ export const deMath = {
     sm3_01: {
         placeholders: {
             question: "?",
+            factor_a: "A",
+            factor_b: "B",
         },
         back: "Zurück zum Nexus",
         title: "QUADRATISCHE GLEICHUNGEN",

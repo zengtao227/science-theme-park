@@ -2565,6 +2565,8 @@ export const enMath = {
     sm3_01: {
         placeholders: {
             question: "?",
+            factor_a: "A",
+            factor_b: "B",
         },
         back: "Back to Nexus",
         title: "QUADRATIC EQUATIONS",
