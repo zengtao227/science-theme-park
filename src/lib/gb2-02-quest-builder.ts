@@ -34,6 +34,54 @@ function createSlot(
   };
 }
 
+function textValue(
+  t: any,
+  path: string,
+  params?: Record<string, string | number>
+): string {
+  if (typeof t === "function") {
+    const translated = t(path, params);
+    return typeof translated === "string" ? translated : path;
+  }
+
+  const parts = path.split(".");
+  let current = t;
+  for (const part of parts) {
+    current = current?.[part];
+  }
+
+  if (typeof current === "string") {
+    return interpolate(current, params);
+  }
+
+  return path;
+}
+
+function builderText(
+  t: any,
+  key: string,
+  params?: Record<string, string | number>
+): string {
+  return textValue(t, `gb2_02.builder.${key}`, params);
+}
+
+function latexBuilderText(
+  t: any,
+  key: string,
+  params?: Record<string, string | number>
+): string {
+  return `\\text{${builderText(t, key, params)}}`;
+}
+
+function diagnosisOptionId(diagnosis: string): string {
+  const normalized = diagnosis.toLowerCase();
+  if (normalized === "diabetes mellitus") return "diabetes_mellitus";
+  if (normalized === "hypothyroidism") return "hypothyroidism";
+  if (normalized === "hyperthyroidism") return "hyperthyroidism";
+  if (normalized === "addison's disease") return "addisons_disease";
+  return normalized.replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+}
+
 function interpolate(template: string, params?: Record<string, string | number>): string {
   if (!params) return template;
   return Object.entries(params).reduce(
@@ -47,17 +95,7 @@ function promptText(
   key: string,
   params?: Record<string, string | number>
 ): string {
-  const path = `gb2_02.prompts.${key}`;
-  if (typeof t === "function") {
-    const translated = t(path, params);
-    return typeof translated === "string" ? translated : path;
-  }
-
-  const template = t?.prompts?.[key];
-  if (typeof template === "string") {
-    return interpolate(template, params);
-  }
-  return path;
+  return textValue(t, `gb2_02.prompts.${key}`, params);
 }
 
 /**
@@ -103,13 +141,13 @@ function buildHormoneIdentificationQuests(
         hormone: HORMONES.find(h => h.name === "insulin")!,
         promptLatex: promptText(t, "classify_hormone_structure", { hormone: "insulin" }),
         expressionLatex: "\\text{Insulin}",
-        targetLatex: "\\text{Type: ?}",
-        correctLatex: "\\text{peptide}",
-        slots: [createSlot(t, "type", "Hormone type:", "select", "peptide", ["peptide", "steroid", "amino_acid_derived"])],
-        baselContext: "At Roche Diagnostics Basel, researchers develop advanced blood glucose monitoring systems...",
-        title: "Hormone Classification",
-        description: "Identify hormone types",
-        concept: "Endocrine System"
+        targetLatex: latexBuilderText(t, "formulas.type_target"),
+        correctLatex: latexBuilderText(t, "answers.peptide"),
+        slots: [createSlot(t, "type", builderText(t, "labels.slot_hormone_type"), "select", "peptide", ["peptide", "steroid", "amino_acid_derived"])],
+        baselContext: builderText(t, "contexts.roche_diagnostics_basel"),
+        title: builderText(t, "quest_meta.titles.hormone_classification"),
+        description: builderText(t, "quest_meta.descriptions.identify_hormone_types"),
+        concept: builderText(t, "quest_meta.concepts.endocrine_system")
       } as GB202Quest);
       
       // Quest 2: Cortisol type classification
@@ -120,20 +158,20 @@ function buildHormoneIdentificationQuests(
         hormone: HORMONES.find(h => h.name === "cortisol")!,
         promptLatex: promptText(t, "classify_hormone_structure", { hormone: "cortisol" }),
         expressionLatex: "\\text{Cortisol}",
-        targetLatex: "\\text{Type: ?}",
-        correctLatex: "\\text{steroid}",
+        targetLatex: latexBuilderText(t, "formulas.type_target"),
+        correctLatex: latexBuilderText(t, "answers.steroid"),
         slots: [{
           id: "type",
-          labelLatex: "Hormone type:",
+          labelLatex: builderText(t, "labels.slot_hormone_type"),
           placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "steroid"
         }],
-        baselContext: "In Novartis's Endocrinology Research Laboratory in Basel...",
-        title: "Hormone Classification",
-        description: "Identify hormone types",
-        concept: "Endocrine System"
+        baselContext: builderText(t, "contexts.novartis_endocrinology_lab_basel"),
+        title: builderText(t, "quest_meta.titles.hormone_classification"),
+        description: builderText(t, "quest_meta.descriptions.identify_hormone_types"),
+        concept: builderText(t, "quest_meta.concepts.endocrine_system")
       } as GB202Quest);
       
       // Quest 3: Thyroxine type classification
@@ -144,20 +182,20 @@ function buildHormoneIdentificationQuests(
         hormone: HORMONES.find(h => h.name === "thyroxine")!,
         promptLatex: promptText(t, "classify_hormone_structure", { hormone: "thyroxine (T_4)" }),
         expressionLatex: "T_4",
-        targetLatex: "\\text{Type: ?}",
-        correctLatex: "\\text{amino acid-derived}",
+        targetLatex: latexBuilderText(t, "formulas.type_target"),
+        correctLatex: latexBuilderText(t, "answers.amino_acid_derived"),
         slots: [{
           id: "type",
-          labelLatex: "Hormone type:",
+          labelLatex: builderText(t, "labels.slot_hormone_type"),
           placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "amino_acid_derived"
         }],
-        baselContext: "At Basel University Hospital's Thyroid Clinic...",
-        title: "Hormone Classification",
-        description: "Identify hormone types",
-        concept: "Endocrine System"
+        baselContext: builderText(t, "contexts.basel_thyroid_clinic"),
+        title: builderText(t, "quest_meta.titles.hormone_classification"),
+        description: builderText(t, "quest_meta.descriptions.identify_hormone_types"),
+        concept: builderText(t, "quest_meta.concepts.endocrine_system")
       } as GB202Quest);
       
       // Quest 4: Insulin gland identification
@@ -168,20 +206,20 @@ function buildHormoneIdentificationQuests(
         hormone: HORMONES.find(h => h.name === "insulin")!,
         promptLatex: promptText(t, "identify_insulin_gland"),
         expressionLatex: "\\text{Insulin}",
-        targetLatex: "\\text{Gland: ?}",
-        correctLatex: "\\text{pancreas}",
+        targetLatex: latexBuilderText(t, "formulas.gland_target"),
+        correctLatex: latexBuilderText(t, "answers.pancreas"),
         slots: [{
           id: "gland",
-          labelLatex: "Producing gland:",
+          labelLatex: builderText(t, "labels.slot_producing_gland"),
           placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
-          options: ["pancreas", "pituitary", "thyroid", "adrenal cortex"],
+          options: ["pancreas", "pituitary", "thyroid", "adrenal_cortex"],
           expected: "pancreas"
         }],
-        baselContext: "At Basel University Hospital's Diabetes Center...",
-        title: "Gland Identification",
-        description: "Identify hormone-producing glands",
-        concept: "Endocrine System"
+        baselContext: builderText(t, "contexts.basel_diabetes_center"),
+        title: builderText(t, "quest_meta.titles.gland_identification"),
+        description: builderText(t, "quest_meta.descriptions.identify_hormone_producing_glands"),
+        concept: builderText(t, "quest_meta.concepts.endocrine_system")
       } as GB202Quest);
       
       // Quest 5: Adrenaline type classification
@@ -192,20 +230,20 @@ function buildHormoneIdentificationQuests(
         hormone: HORMONES.find(h => h.name === "adrenaline")!,
         promptLatex: promptText(t, "classify_hormone_structure", { hormone: "adrenaline (epinephrine)" }),
         expressionLatex: "\\text{Adrenaline}",
-        targetLatex: "\\text{Type: ?}",
-        correctLatex: "\\text{amino acid-derived}",
+        targetLatex: latexBuilderText(t, "formulas.type_target"),
+        correctLatex: latexBuilderText(t, "answers.amino_acid_derived"),
         slots: [{
           id: "type",
-          labelLatex: "Hormone type:",
+          labelLatex: builderText(t, "labels.slot_hormone_type"),
           placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "amino_acid_derived"
         }],
-        baselContext: "In Basel's Emergency Medicine Research Center...",
-        title: "Hormone Classification",
-        description: "Identify hormone types",
-        concept: "Endocrine System"
+        baselContext: builderText(t, "contexts.basel_emergency_medicine_research"),
+        title: builderText(t, "quest_meta.titles.hormone_classification"),
+        description: builderText(t, "quest_meta.descriptions.identify_hormone_types"),
+        concept: builderText(t, "quest_meta.concepts.endocrine_system")
       } as GB202Quest);
       break;
       
@@ -227,19 +265,19 @@ function buildHormoneIdentificationQuests(
           hormone: hormones[i]!,
           promptLatex: promptText(t, "primary_function_of", { hormone: hormones[i]!.name }),
           expressionLatex: `\\text{${hormones[i]!.name}}`,
-          targetLatex: "\\text{Function: ?}",
+          targetLatex: latexBuilderText(t, "formulas.function_target"),
           correctLatex: `\\text{${hormones[i]!.primaryFunction}}`,
           slots: [{
             id: "function",
-            labelLatex: "Primary function:",
+            labelLatex: builderText(t, "labels.slot_primary_function"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: hormones[i]!.primaryFunction
           }],
-          baselContext: "At Basel University Hospital Endocrinology Clinic...",
-          title: "Hormone Function",
-          description: "Identify hormone functions",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_endocrinology_clinic"),
+          title: builderText(t, "quest_meta.titles.hormone_function"),
+          description: builderText(t, "quest_meta.descriptions.identify_hormone_functions"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;
@@ -261,20 +299,20 @@ function buildHormoneIdentificationQuests(
           stage: "HORMONE_IDENTIFICATION",
           promptLatex: promptText(t, "regulates_secretion_of", { hormone: pituitaryHormones[i].name }),
           expressionLatex: `\\text{${pituitaryHormones[i].name}}`,
-          targetLatex: "\\text{Hypothalamic hormone: ?}",
+          targetLatex: latexBuilderText(t, "formulas.hypothalamic_hormone_target"),
           correctLatex: `\\text{${pituitaryHormones[i].hypothalamic}}`,
           slots: [{
             id: "hypothalamic",
-            labelLatex: "Hypothalamic hormone:",
+            labelLatex: builderText(t, "labels.slot_hypothalamic_hormone"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
             type: "select",
             options: ["TRH", "CRH", "GHRH", "GnRH", "dopamine"],
             expected: pituitaryHormones[i].hypothalamic
           }],
-          baselContext: "At Basel University Hospital's Neuroendocrinology Unit...",
-          title: "Hypothalamic-Pituitary Axis",
-          description: "Understand hormone regulation",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_neuroendocrinology_unit"),
+          title: builderText(t, "quest_meta.titles.hypothalamic_pituitary_axis"),
+          description: builderText(t, "quest_meta.descriptions.understand_hormone_regulation"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;
@@ -296,19 +334,24 @@ function buildHormoneIdentificationQuests(
           stage: "HORMONE_IDENTIFICATION",
           promptLatex: promptText(t, "therapy_for_disorder", { disorder: pharmaceuticalHormones[i].disorder }),
           expressionLatex: `\\text{${pharmaceuticalHormones[i].disorder}}`,
-          targetLatex: "\\text{Therapy: ?}",
+          targetLatex: latexBuilderText(t, "formulas.therapy_target"),
           correctLatex: `\\text{${pharmaceuticalHormones[i].name}}`,
           slots: [{
             id: "therapy",
-            labelLatex: "Hormone therapy:",
+            labelLatex: builderText(t, "labels.slot_hormone_therapy"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
             expected: pharmaceuticalHormones[i].name
           }],
-          baselContext: `At ${pharmaceuticalHormones[i].company} Basel pharmaceutical production facility...`,
-          title: "Hormone Therapy",
-          description: "Pharmaceutical applications",
-          concept: "Endocrine System"
+          baselContext: builderText(
+            t,
+            pharmaceuticalHormones[i].company === "Roche"
+              ? "contexts.roche_basel_pharmaceutical_production"
+              : "contexts.novartis_basel_pharmaceutical_production"
+          ),
+          title: builderText(t, "quest_meta.titles.hormone_therapy"),
+          description: builderText(t, "quest_meta.descriptions.pharmaceutical_applications"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;
@@ -331,27 +374,28 @@ function buildFeedbackMechanismsQuests(
       // Simple negative feedback loops
       for (let i = 0; i < 5; i++) {
         const loops = NEGATIVE_FEEDBACK_LOOPS.slice(0, 5);
+        const loopDescription = builderText(t, `feedback_descriptions.${loops[i].description}`);
         quests.push({
           id: `FEEDBACK_BASIC_${i + 1}`,
           difficulty,
           stage: "FEEDBACK_MECHANISMS",
           feedbackLoop: loops[i],
-          promptLatex: promptText(t, "identify_feedback_type", { description: loops[i].description }),
-          expressionLatex: `\\text{${loops[i].description}}`,
-          targetLatex: "\\text{Feedback type: ?}",
-          correctLatex: "\\text{negative}",
+          promptLatex: promptText(t, "identify_feedback_type", { description: loopDescription }),
+          expressionLatex: `\\text{${loopDescription}}`,
+          targetLatex: latexBuilderText(t, "formulas.feedback_type_target"),
+          correctLatex: latexBuilderText(t, "answers.negative"),
           slots: [{
             id: "feedback_type",
-            labelLatex: "Feedback type:",
+            labelLatex: builderText(t, "labels.slot_feedback_type"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
             type: "select",
             options: ["negative", "positive"],
             expected: "negative"
           }],
-          baselContext: "At Basel Endocrinology Research Institute...",
-          title: "Feedback Mechanisms",
-          description: "Identify feedback types",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_endocrinology_research_institute"),
+          title: builderText(t, "quest_meta.titles.feedback_mechanisms"),
+          description: builderText(t, "quest_meta.descriptions.identify_feedback_types"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;
@@ -366,20 +410,20 @@ function buildFeedbackMechanismsQuests(
           difficulty,
           stage: "FEEDBACK_MECHANISMS",
           promptLatex: promptText(t, "analyze_feedback_mechanism"),
-          expressionLatex: "\\text{Feedback Loop}",
-          targetLatex: "\\text{Analysis: ?}",
-          correctLatex: "\\text{feedback analysis}",
+          expressionLatex: latexBuilderText(t, "formulas.feedback_loop"),
+          targetLatex: latexBuilderText(t, "formulas.analysis_target"),
+          correctLatex: latexBuilderText(t, "answers.feedback_analysis"),
           slots: [{
             id: "analysis",
-            labelLatex: "Mechanism:",
+            labelLatex: builderText(t, "labels.slot_mechanism"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
-            expected: "feedback analysis"
+            expected: builderText(t, "answers.feedback_analysis")
           }],
-          baselContext: "At Basel University Hospital...",
-          title: "Feedback Analysis",
-          description: "Analyze feedback loops",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_university_hospital"),
+          title: builderText(t, "quest_meta.titles.feedback_analysis"),
+          description: builderText(t, "quest_meta.descriptions.analyze_feedback_loops"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;
@@ -408,21 +452,21 @@ function buildClinicalApplicationsQuests(
           stage: "CLINICAL_APPLICATIONS",
           clinicalCase: basicCases[i],
           promptLatex: promptText(t, "clinical_diagnosis_from_case"),
-          expressionLatex: "\\text{Clinical Case}",
-          targetLatex: "\\text{Diagnosis: ?}",
+          expressionLatex: latexBuilderText(t, "formulas.clinical_case"),
+          targetLatex: latexBuilderText(t, "formulas.diagnosis_target"),
           correctLatex: `\\text{${basicCases[i].expectedDiagnosis}}`,
           slots: [{
             id: "diagnosis",
-            labelLatex: "Diagnosis:",
+            labelLatex: builderText(t, "labels.slot_diagnosis"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
             type: "select",
-            options: ["diabetes mellitus", "hypothyroidism", "hyperthyroidism", "Addison's disease"],
-            expected: basicCases[i].expectedDiagnosis
+            options: ["diabetes_mellitus", "hypothyroidism", "hyperthyroidism", "addisons_disease"],
+            expected: diagnosisOptionId(basicCases[i].expectedDiagnosis)
           }],
-          baselContext: basicCases[i].baselContext,
-          title: "Clinical Diagnosis",
-          description: "Diagnose endocrine disorders",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_university_hospital"),
+          title: builderText(t, "quest_meta.titles.clinical_diagnosis"),
+          description: builderText(t, "quest_meta.descriptions.diagnose_endocrine_disorders"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       // Add 2 more basic quests
@@ -432,20 +476,20 @@ function buildClinicalApplicationsQuests(
           difficulty,
           stage: "CLINICAL_APPLICATIONS",
           promptLatex: promptText(t, "identify_endocrine_disorder"),
-          expressionLatex: "\\text{Disorder}",
-          targetLatex: "\\text{Diagnosis: ?}",
-          correctLatex: "\\text{disorder name}",
+          expressionLatex: latexBuilderText(t, "formulas.disorder"),
+          targetLatex: latexBuilderText(t, "formulas.diagnosis_target"),
+          correctLatex: latexBuilderText(t, "answers.disorder_name"),
           slots: [{
             id: "diagnosis",
-            labelLatex: "Diagnosis:",
+            labelLatex: builderText(t, "labels.slot_diagnosis"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
-            expected: "disorder name"
+            expected: builderText(t, "answers.disorder_name")
           }],
-          baselContext: "At Basel University Hospital...",
-          title: "Clinical Diagnosis",
-          description: "Diagnose endocrine disorders",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_university_hospital"),
+          title: builderText(t, "quest_meta.titles.clinical_diagnosis"),
+          description: builderText(t, "quest_meta.descriptions.diagnose_endocrine_disorders"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;
@@ -460,20 +504,20 @@ function buildClinicalApplicationsQuests(
           difficulty,
           stage: "CLINICAL_APPLICATIONS",
           promptLatex: promptText(t, "analyze_clinical_case"),
-          expressionLatex: "\\text{Clinical Case}",
-          targetLatex: "\\text{Diagnosis: ?}",
-          correctLatex: "\\text{diagnosis}",
+          expressionLatex: latexBuilderText(t, "formulas.clinical_case"),
+          targetLatex: latexBuilderText(t, "formulas.diagnosis_target"),
+          correctLatex: latexBuilderText(t, "answers.diagnosis"),
           slots: [{
             id: "diagnosis",
-            labelLatex: "Diagnosis:",
+            labelLatex: builderText(t, "labels.slot_diagnosis"),
             placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
             type: "input",
-            expected: "diagnosis"
+            expected: builderText(t, "answers.diagnosis")
           }],
-          baselContext: "At Basel University Hospital Advanced Endocrinology Unit...",
-          title: "Clinical Analysis",
-          description: "Complex case analysis",
-          concept: "Endocrine System"
+          baselContext: builderText(t, "contexts.basel_advanced_endocrinology_unit"),
+          title: builderText(t, "quest_meta.titles.clinical_analysis"),
+          description: builderText(t, "quest_meta.descriptions.complex_case_analysis"),
+          concept: builderText(t, "quest_meta.concepts.endocrine_system")
         } as GB202Quest);
       }
       break;

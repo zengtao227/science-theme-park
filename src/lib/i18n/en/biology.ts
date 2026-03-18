@@ -320,6 +320,32 @@ export const enBiology = {
             feedback_mechanisms: "FEEDBACK MECHANISMS",
             clinical_applications: "CLINICAL APPLICATIONS"
         },
+        labels: {
+            objective: "OBJECTIVE:",
+            slot_hormone_type: "Hormone type:",
+            slot_producing_gland: "Producing gland:",
+            slot_primary_function: "Primary function:",
+            slot_hypothalamic_hormone: "Hypothalamic hormone:",
+            slot_hormone_therapy: "Hormone therapy:",
+            slot_feedback_type: "Feedback type:",
+            slot_mechanism: "Mechanism:",
+            slot_diagnosis: "Diagnosis:"
+        },
+        options: {
+            peptide: "Peptide",
+            steroid: "Steroid",
+            amino_acid_derived: "Amino acid-derived",
+            pancreas: "Pancreas",
+            pituitary: "Pituitary",
+            thyroid: "Thyroid",
+            adrenal_cortex: "Adrenal cortex",
+            negative: "Negative",
+            positive: "Positive",
+            diabetes_mellitus: "Diabetes mellitus",
+            hypothyroidism: "Hypothyroidism",
+            hyperthyroidism: "Hyperthyroidism",
+            addisons_disease: "Addison's disease"
+        },
         prompts: {
             classify_hormone_structure: "At University Hospital Basel, a lab card lists hormone {hormone}. Classify its chemical structure so the team can choose the correct receptor pathway and next test.",
             identify_insulin_gland: "In a Basel diabetes intake, you must confirm the source of insulin. Identify the producing gland so treatment planning stays accurate.",
@@ -331,6 +357,84 @@ export const enBiology = {
             clinical_diagnosis_from_case: "A Basel patient case includes symptoms and lab values. Determine the most likely diagnosis so treatment can begin without delay.",
             identify_endocrine_disorder: "From the endocrine case summary, identify the disorder so the physician can order confirmatory tests and targeted therapy.",
             analyze_clinical_case: "Analyze the full clinical case and provide the key endocrine conclusion used for immediate management."
+        },
+        builder: {
+            default_scenario_title: "Basel Endocrinology Research",
+            default_scenario_description: "Explore the endocrine system through Basel's pharmaceutical and medical research context.",
+            quest_meta: {
+                titles: {
+                    hormone_classification: "Hormone Classification",
+                    gland_identification: "Gland Identification",
+                    hormone_function: "Hormone Function",
+                    hypothalamic_pituitary_axis: "Hypothalamic-Pituitary Axis",
+                    hormone_therapy: "Hormone Therapy",
+                    feedback_mechanisms: "Feedback Mechanisms",
+                    feedback_analysis: "Feedback Analysis",
+                    clinical_diagnosis: "Clinical Diagnosis",
+                    clinical_analysis: "Clinical Analysis"
+                },
+                descriptions: {
+                    identify_hormone_types: "Identify hormone types",
+                    identify_hormone_producing_glands: "Identify hormone-producing glands",
+                    identify_hormone_functions: "Identify hormone functions",
+                    understand_hormone_regulation: "Understand hormone regulation",
+                    pharmaceutical_applications: "Pharmaceutical applications",
+                    identify_feedback_types: "Identify feedback types",
+                    analyze_feedback_loops: "Analyze feedback loops",
+                    diagnose_endocrine_disorders: "Diagnose endocrine disorders",
+                    complex_case_analysis: "Complex case analysis"
+                },
+                concepts: {
+                    endocrine_system: "Endocrine System"
+                }
+            },
+            contexts: {
+                roche_diagnostics_basel: "At Roche Diagnostics Basel, researchers develop advanced blood glucose monitoring systems for endocrine care.",
+                novartis_endocrinology_lab_basel: "In Novartis's endocrinology research laboratory in Basel, hormone classification guides receptor-pathway drug development.",
+                basel_thyroid_clinic: "At Basel University Hospital's thyroid clinic, hormone identity determines diagnostic interpretation and treatment.",
+                basel_diabetes_center: "At Basel University Hospital's diabetes center, gland identification supports accurate insulin management.",
+                basel_emergency_medicine_research: "In Basel's emergency medicine research center, rapid hormone recognition helps explain acute stress responses.",
+                basel_endocrinology_clinic: "At Basel University Hospital endocrinology clinic, hormone functions are reviewed to connect symptoms with physiology.",
+                basel_neuroendocrinology_unit: "At Basel University Hospital's neuroendocrinology unit, hypothalamic control pathways are mapped to locate regulation failures.",
+                roche_basel_pharmaceutical_production: "At Roche Basel pharmaceutical production facility, endocrine therapies are matched to the disorders they treat.",
+                novartis_basel_pharmaceutical_production: "At Novartis Basel pharmaceutical production facility, endocrine therapies are selected for precise clinical indications.",
+                basel_endocrinology_research_institute: "At Basel Endocrinology Research Institute, feedback loops are modeled to predict hormonal stability.",
+                basel_university_hospital: "At Basel University Hospital, endocrine cases combine symptoms, lab values, and regulatory logic for diagnosis.",
+                basel_advanced_endocrinology_unit: "At Basel University Hospital Advanced Endocrinology Unit, complex cases require integrated endocrine analysis."
+            },
+            formulas: {
+                type_target: "Type: ?",
+                gland_target: "Gland: ?",
+                function_target: "Function: ?",
+                hypothalamic_hormone_target: "Hypothalamic hormone: ?",
+                therapy_target: "Therapy: ?",
+                feedback_type_target: "Feedback type: ?",
+                analysis_target: "Analysis: ?",
+                diagnosis_target: "Diagnosis: ?",
+                clinical_case: "Clinical Case",
+                feedback_loop: "Feedback Loop",
+                disorder: "Disorder"
+            },
+            answers: {
+                peptide: "peptide",
+                steroid: "steroid",
+                amino_acid_derived: "amino acid-derived",
+                pancreas: "pancreas",
+                negative: "negative",
+                feedback_analysis: "feedback analysis",
+                disorder_name: "disorder name",
+                diagnosis: "diagnosis"
+            },
+            feedback_descriptions: {
+                blood_glucose_regulation_insulin: "Blood glucose regulation via insulin",
+                blood_glucose_regulation_glucagon: "Blood glucose regulation via glucagon",
+                thyroid_hormone_regulation_hpt_axis: "Thyroid hormone regulation via hypothalamic-pituitary-thyroid axis",
+                stress_response_hpa_axis: "Stress response via hypothalamic-pituitary-adrenal axis",
+                calcium_regulation_parathyroid_hormone: "Calcium regulation via parathyroid hormone",
+                water_balance_regulation_adh: "Water balance regulation via ADH",
+                oxytocin_positive_feedback_childbirth: "Oxytocin positive feedback during childbirth",
+                lh_surge_positive_feedback_ovulation: "LH surge positive feedback during ovulation"
+            }
         }
     },
     sb1_01: {

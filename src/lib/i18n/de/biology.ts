@@ -320,6 +320,32 @@ export const deBiology = {
             feedback_mechanisms: "RÜCKKOPPLUNGSMECHANISMEN",
             clinical_applications: "KLINISCHE ANWENDUNGEN"
         },
+        labels: {
+            objective: "ZIEL:",
+            slot_hormone_type: "Hormontyp:",
+            slot_producing_gland: "Produzierende Drüse:",
+            slot_primary_function: "Hauptfunktion:",
+            slot_hypothalamic_hormone: "Hypothalamisches Hormon:",
+            slot_hormone_therapy: "Hormontherapie:",
+            slot_feedback_type: "Rückkopplungstyp:",
+            slot_mechanism: "Mechanismus:",
+            slot_diagnosis: "Diagnose:"
+        },
+        options: {
+            peptide: "Peptid",
+            steroid: "Steroid",
+            amino_acid_derived: "Aminosäure-abgeleitet",
+            pancreas: "Pankreas",
+            pituitary: "Hypophyse",
+            thyroid: "Schilddrüse",
+            adrenal_cortex: "Nebennierenrinde",
+            negative: "Negativ",
+            positive: "Positiv",
+            diabetes_mellitus: "Diabetes mellitus",
+            hypothyroidism: "Hypothyreose",
+            hyperthyroidism: "Hyperthyreose",
+            addisons_disease: "Morbus Addison"
+        },
         prompts: {
             classify_hormone_structure: "Im Universitätsspital Basel steht auf einer Labor-Karte das Hormon {hormone}. Klassifizieren Sie seine chemische Struktur, damit das Team den richtigen Rezeptorweg und den nächsten Test wählen kann.",
             identify_insulin_gland: "Bei einer Basler Diabetes-Abklärung muss die Insulinquelle bestätigt werden. Bestimmen Sie die produzierende Drüse, damit die Therapieplanung korrekt bleibt.",
@@ -331,6 +357,84 @@ export const deBiology = {
             clinical_diagnosis_from_case: "Ein Basler Patientenfall enthält Symptome und Laborwerte. Bestimmen Sie die wahrscheinlichste Diagnose, damit die Behandlung ohne Verzögerung beginnen kann.",
             identify_endocrine_disorder: "Identifizieren Sie anhand der endokrinen Fallzusammenfassung die Störung, damit der Arzt Bestätigungstests und zielgerichtete Therapie einleiten kann.",
             analyze_clinical_case: "Analysieren Sie den vollständigen klinischen Fall und liefern Sie die zentrale endokrine Schlussfolgerung für das unmittelbare Management."
+        },
+        builder: {
+            default_scenario_title: "Basler Endokrinologie-Forschung",
+            default_scenario_description: "Erkunden Sie das endokrine System im Kontext von Basels pharmazeutischer und medizinischer Forschung.",
+            quest_meta: {
+                titles: {
+                    hormone_classification: "Hormonklassifikation",
+                    gland_identification: "Drüsenidentifikation",
+                    hormone_function: "Hormonfunktion",
+                    hypothalamic_pituitary_axis: "Hypothalamus-Hypophysen-Achse",
+                    hormone_therapy: "Hormontherapie",
+                    feedback_mechanisms: "Rückkopplungsmechanismen",
+                    feedback_analysis: "Rückkopplungsanalyse",
+                    clinical_diagnosis: "Klinische Diagnose",
+                    clinical_analysis: "Klinische Analyse"
+                },
+                descriptions: {
+                    identify_hormone_types: "Hormontypen identifizieren",
+                    identify_hormone_producing_glands: "Hormonproduzierende Drüsen identifizieren",
+                    identify_hormone_functions: "Hormonfunktionen identifizieren",
+                    understand_hormone_regulation: "Hormonregulation verstehen",
+                    pharmaceutical_applications: "Pharmazeutische Anwendungen",
+                    identify_feedback_types: "Rückkopplungstypen identifizieren",
+                    analyze_feedback_loops: "Rückkopplungsschleifen analysieren",
+                    diagnose_endocrine_disorders: "Endokrine Störungen diagnostizieren",
+                    complex_case_analysis: "Analyse komplexer Fälle"
+                },
+                concepts: {
+                    endocrine_system: "Endokrines System"
+                }
+            },
+            contexts: {
+                roche_diagnostics_basel: "Bei Roche Diagnostics Basel entwickeln Forschende fortschrittliche Blutzucker-Monitoringsysteme für die endokrine Versorgung.",
+                novartis_endocrinology_lab_basel: "Im endokrinologischen Forschungslabor von Novartis in Basel steuert die Hormonklassifikation die Entwicklung von Rezeptorweg-Therapien.",
+                basel_thyroid_clinic: "In der Schilddrüsenklinik des Universitätsspitals Basel bestimmt die Hormonidentität die diagnostische Einordnung und Therapie.",
+                basel_diabetes_center: "Im Diabeteszentrum des Universitätsspitals Basel unterstützt die Identifikation der produzierenden Drüse ein präzises Insulinmanagement.",
+                basel_emergency_medicine_research: "Im Basler Zentrum für Notfallmedizin-Forschung hilft die schnelle Hormonerkennung, akute Stressreaktionen zu erklären.",
+                basel_endocrinology_clinic: "In der endokrinologischen Klinik des Universitätsspitals Basel werden Hormonfunktionen genutzt, um Symptome mit der Physiologie zu verknüpfen.",
+                basel_neuroendocrinology_unit: "In der neuroendokrinologischen Einheit des Universitätsspitals Basel werden hypothalamische Steuerwege kartiert, um Regulationsfehler zu lokalisieren.",
+                roche_basel_pharmaceutical_production: "In der pharmazeutischen Produktionsanlage von Roche Basel werden endokrine Therapien den passenden Erkrankungen zugeordnet.",
+                novartis_basel_pharmaceutical_production: "In der pharmazeutischen Produktionsanlage von Novartis Basel werden endokrine Therapien gezielt nach klinischer Indikation ausgewählt.",
+                basel_endocrinology_research_institute: "Am Basler Institut für Endokrinologie-Forschung werden Rückkopplungsschleifen modelliert, um hormonelle Stabilität vorherzusagen.",
+                basel_university_hospital: "Am Universitätsspital Basel verbinden endokrine Fälle Symptome, Laborwerte und Regulationslogik zur Diagnose.",
+                basel_advanced_endocrinology_unit: "In der erweiterten Endokrinologie-Einheit des Universitätsspitals Basel erfordern komplexe Fälle eine integrierte Analyse."
+            },
+            formulas: {
+                type_target: "Typ: ?",
+                gland_target: "Drüse: ?",
+                function_target: "Funktion: ?",
+                hypothalamic_hormone_target: "Hypothalamisches Hormon: ?",
+                therapy_target: "Therapie: ?",
+                feedback_type_target: "Rückkopplungstyp: ?",
+                analysis_target: "Analyse: ?",
+                diagnosis_target: "Diagnose: ?",
+                clinical_case: "Klinischer Fall",
+                feedback_loop: "Rückkopplungsschleife",
+                disorder: "Störung"
+            },
+            answers: {
+                peptide: "Peptid",
+                steroid: "Steroid",
+                amino_acid_derived: "aminosäure-abgeleitet",
+                pancreas: "Pankreas",
+                negative: "negativ",
+                feedback_analysis: "Rückkopplungsanalyse",
+                disorder_name: "Name der Störung",
+                diagnosis: "Diagnose"
+            },
+            feedback_descriptions: {
+                blood_glucose_regulation_insulin: "Blutzuckerregulation über Insulin",
+                blood_glucose_regulation_glucagon: "Blutzuckerregulation über Glukagon",
+                thyroid_hormone_regulation_hpt_axis: "Schilddrüsenhormon-Regulation über die Hypothalamus-Hypophysen-Schilddrüsen-Achse",
+                stress_response_hpa_axis: "Stressreaktion über die Hypothalamus-Hypophysen-Nebennieren-Achse",
+                calcium_regulation_parathyroid_hormone: "Kalziumregulation über Parathormon",
+                water_balance_regulation_adh: "Wasserhaushaltsregulation über ADH",
+                oxytocin_positive_feedback_childbirth: "Oxytocin-Positive-Rückkopplung während der Geburt",
+                lh_surge_positive_feedback_ovulation: "Positive Rückkopplung des LH-Anstiegs während des Eisprungs"
+            }
         }
     },
     sb1_01: {

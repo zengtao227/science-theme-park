@@ -514,6 +514,7 @@ export const enChemistry = {
             atoms: "Atomic Weights",
             reaction: "Reaction",
             given: "Given",
+            reactant: "Reactant",
             amount: "Amount (n)",
             mass: "Mass (m)",
             molar: "Molar Mass (M)"

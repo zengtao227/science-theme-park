@@ -53,7 +53,7 @@ export function generateMolarMassQuests(t: any, difficulty: Difficulty): SC102Qu
             targetLatex: "\\text{M}",
             slots: [{ id: "M", labelLatex: "\\text{M}", placeholder: t("sc1_02.placeholders.g_per_mol"), expected: mass }],
             correctLatex: `M = ${mass}\\;\\text{g/mol}`,
-            reagents: [{ label: "Formula", value: item.l }],
+            reagents: [{ label: t("sc1_02.labels.formula"), value: item.l }],
             scaleReading: `${mass}\\;\\text{g/mol}`,
         });
     }
@@ -75,7 +75,7 @@ export function generateStoichiometryQuests(t: any, difficulty: Difficulty): SC1
             targetLatex: "n(H_2O)",
             slots: [{ id: "n", labelLatex: "n", placeholder: t("sc1_02.placeholders.mol"), expected: result }],
             correctLatex: `n = ${result}\\;\\text{mol}`,
-            reagents: [{ label: "Given", value: `${moles}\\;\\text{mol } H_2` }],
+            reagents: [{ label: t("sc1_02.labels.given"), value: `${moles}\\;\\text{mol } H_2` }],
             scaleReading: `${result}\\;\\text{mol}`,
         });
     }
@@ -97,7 +97,7 @@ export function generateYieldQuests(t: any, difficulty: Difficulty): SC102Quest[
             targetLatex: "m(NH_3)",
             slots: [{ id: "m", labelLatex: "m", placeholder: t("sc1_02.placeholders.g"), expected: yield_val }],
             correctLatex: `m = ${yield_val}\\;\\text{g}`,
-            reagents: [{ label: "Reactant", value: `${mass}\\;\\text{g } N_2` }],
+            reagents: [{ label: t("sc1_02.labels.reactant"), value: `${mass}\\;\\text{g } N_2` }],
             scaleReading: `${yield_val}\\;\\text{g}`,
         });
     }

@@ -514,6 +514,7 @@ export const cnChemistry = {
             atoms: "原子量",
             reaction: "化学反应",
             given: "已知条件",
+            reactant: "反应物",
             amount: "物质的量",
             mass: "质量",
             molar: "摩尔质量"

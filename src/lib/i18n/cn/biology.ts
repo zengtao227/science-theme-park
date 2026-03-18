@@ -320,6 +320,32 @@ export const cnBiology = {
             feedback_mechanisms: "反馈机制",
             clinical_applications: "临床应用"
         },
+        labels: {
+            objective: "目标：",
+            slot_hormone_type: "激素类型：",
+            slot_producing_gland: "分泌腺体：",
+            slot_primary_function: "主要功能：",
+            slot_hypothalamic_hormone: "下丘脑激素：",
+            slot_hormone_therapy: "激素治疗：",
+            slot_feedback_type: "反馈类型：",
+            slot_mechanism: "机制：",
+            slot_diagnosis: "诊断："
+        },
+        options: {
+            peptide: "肽类",
+            steroid: "类固醇",
+            amino_acid_derived: "氨基酸衍生类",
+            pancreas: "胰腺",
+            pituitary: "垂体",
+            thyroid: "甲状腺",
+            adrenal_cortex: "肾上腺皮质",
+            negative: "负反馈",
+            positive: "正反馈",
+            diabetes_mellitus: "糖尿病",
+            hypothyroidism: "甲状腺功能减退",
+            hyperthyroidism: "甲状腺功能亢进",
+            addisons_disease: "阿迪森病"
+        },
         prompts: {
             classify_hormone_structure: "在巴塞尔大学医院内分泌化验单中，记录了激素 {hormone}。请按化学结构分类，以便团队选择正确受体通路和后续检测。",
             identify_insulin_gland: "在巴塞尔糖尿病门诊评估中，需要确认胰岛素来源。请识别产生胰岛素的腺体，以保证治疗方案准确。",
@@ -331,6 +357,84 @@ export const cnBiology = {
             clinical_diagnosis_from_case: "巴塞尔患者病例给出了症状与化验值。请确定最可能诊断，以便尽快开始治疗。",
             identify_endocrine_disorder: "根据该内分泌病例摘要，识别具体疾病，以便医生安排确证检查和靶向治疗。",
             analyze_clinical_case: "请完整分析该临床病例，并给出用于即时处置的关键内分泌结论。"
+        },
+        builder: {
+            default_scenario_title: "巴塞尔内分泌研究",
+            default_scenario_description: "通过巴塞尔的制药与医学研究背景探索内分泌系统。",
+            quest_meta: {
+                titles: {
+                    hormone_classification: "激素分类",
+                    gland_identification: "腺体识别",
+                    hormone_function: "激素功能",
+                    hypothalamic_pituitary_axis: "下丘脑-垂体轴",
+                    hormone_therapy: "激素治疗",
+                    feedback_mechanisms: "反馈机制",
+                    feedback_analysis: "反馈分析",
+                    clinical_diagnosis: "临床诊断",
+                    clinical_analysis: "临床分析"
+                },
+                descriptions: {
+                    identify_hormone_types: "识别激素类型",
+                    identify_hormone_producing_glands: "识别分泌激素的腺体",
+                    identify_hormone_functions: "识别激素功能",
+                    understand_hormone_regulation: "理解激素调节",
+                    pharmaceutical_applications: "药物应用",
+                    identify_feedback_types: "识别反馈类型",
+                    analyze_feedback_loops: "分析反馈回路",
+                    diagnose_endocrine_disorders: "诊断内分泌疾病",
+                    complex_case_analysis: "复杂病例分析"
+                },
+                concepts: {
+                    endocrine_system: "内分泌系统"
+                }
+            },
+            contexts: {
+                roche_diagnostics_basel: "在罗氏巴塞尔诊断中心，研究人员正在开发用于内分泌护理的先进血糖监测系统。",
+                novartis_endocrinology_lab_basel: "在诺华巴塞尔内分泌研究实验室，激素分类用于指导受体通路药物开发。",
+                basel_thyroid_clinic: "在巴塞尔大学医院甲状腺门诊，激素识别决定诊断解读与治疗选择。",
+                basel_diabetes_center: "在巴塞尔大学医院糖尿病中心，识别激素来源腺体有助于准确管理胰岛素治疗。",
+                basel_emergency_medicine_research: "在巴塞尔急诊医学研究中心，快速识别激素有助于解释急性应激反应。",
+                basel_endocrinology_clinic: "在巴塞尔大学医院内分泌门诊，医生通过激素功能将症状与生理机制对应起来。",
+                basel_neuroendocrinology_unit: "在巴塞尔大学医院神经内分泌单元，研究人员通过下丘脑调控通路定位调节故障。",
+                roche_basel_pharmaceutical_production: "在罗氏巴塞尔制药生产基地，内分泌治疗方案会与其对应疾病精准匹配。",
+                novartis_basel_pharmaceutical_production: "在诺华巴塞尔制药生产基地，内分泌治疗方案按具体临床适应证进行选择。",
+                basel_endocrinology_research_institute: "在巴塞尔内分泌研究所，研究人员建立反馈回路模型以预测激素稳态。",
+                basel_university_hospital: "在巴塞尔大学医院，内分泌病例需要综合症状、化验值和调节逻辑完成诊断。",
+                basel_advanced_endocrinology_unit: "在巴塞尔大学医院高级内分泌单元，复杂病例需要整合性的内分泌分析。"
+            },
+            formulas: {
+                type_target: "类型：？",
+                gland_target: "腺体：？",
+                function_target: "功能：？",
+                hypothalamic_hormone_target: "下丘脑激素：？",
+                therapy_target: "治疗：？",
+                feedback_type_target: "反馈类型：？",
+                analysis_target: "分析：？",
+                diagnosis_target: "诊断：？",
+                clinical_case: "临床病例",
+                feedback_loop: "反馈回路",
+                disorder: "疾病"
+            },
+            answers: {
+                peptide: "肽类",
+                steroid: "类固醇",
+                amino_acid_derived: "氨基酸衍生类",
+                pancreas: "胰腺",
+                negative: "负反馈",
+                feedback_analysis: "反馈分析",
+                disorder_name: "疾病名称",
+                diagnosis: "诊断"
+            },
+            feedback_descriptions: {
+                blood_glucose_regulation_insulin: "通过胰岛素进行血糖调节",
+                blood_glucose_regulation_glucagon: "通过胰高血糖素进行血糖调节",
+                thyroid_hormone_regulation_hpt_axis: "通过下丘脑-垂体-甲状腺轴调节甲状腺激素",
+                stress_response_hpa_axis: "通过下丘脑-垂体-肾上腺轴进行应激反应调节",
+                calcium_regulation_parathyroid_hormone: "通过甲状旁腺激素调节钙平衡",
+                water_balance_regulation_adh: "通过抗利尿激素调节水分平衡",
+                oxytocin_positive_feedback_childbirth: "分娩过程中催产素的正反馈调节",
+                lh_surge_positive_feedback_ovulation: "排卵过程中黄体生成素激增的正反馈调节"
+            }
         }
     },
     sb1_01: {

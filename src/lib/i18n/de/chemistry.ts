@@ -506,6 +506,7 @@ export const deChemistry = {
             atoms: "Atomgewichte",
             reaction: "Reaktion",
             given: "Gegeben",
+            reactant: "Edukt",
             amount: "Menge (n)",
             mass: "Masse (m)",
             molar: "Molare Masse (M)"

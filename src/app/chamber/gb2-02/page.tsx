@@ -13,21 +13,43 @@ import { renderMixedText } from "@/lib/latex-utils";
 export default function GB202Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const optionLabelMap: Record<string, string> = {
+    peptide: t("gb2_02.options.peptide"),
+    steroid: t("gb2_02.options.steroid"),
+    amino_acid_derived: t("gb2_02.options.amino_acid_derived"),
+    pancreas: t("gb2_02.options.pancreas"),
+    pituitary: t("gb2_02.options.pituitary"),
+    thyroid: t("gb2_02.options.thyroid"),
+    adrenal_cortex: t("gb2_02.options.adrenal_cortex"),
+    negative: t("gb2_02.options.negative"),
+    positive: t("gb2_02.options.positive"),
+    diabetes_mellitus: t("gb2_02.options.diabetes_mellitus"),
+    hypothyroidism: t("gb2_02.options.hypothyroidism"),
+    hyperthyroidism: t("gb2_02.options.hyperthyroidism"),
+    addisons_disease: t("gb2_02.options.addisons_disease"),
+  };
+
+  const translateOption = (option: string) => optionLabelMap[option] || option;
 
   // Load translations
   const gb2_02_t = {
-    title: t("gb2_02.title") || "GB2.02 // ENDOCRINE SYSTEM",
-    check: t("gb2_02.check") || "Verify",
-    next: t("gb2_02.next") || "Next Quest",
-    correct: t("gb2_02.correct") || "Correct",
-    incorrect: t("gb2_02.incorrect") || "Incorrect",
-    hormone_identification: t("gb2_02.stages.hormone_identification") || "HORMONE IDENTIFICATION",
-    feedback_mechanisms: t("gb2_02.stages.feedback_mechanisms") || "FEEDBACK MECHANISMS",
-    clinical_applications: t("gb2_02.stages.clinical_applications") || "CLINICAL APPLICATIONS",
-    basic: t("gb2_02.difficulty.basic") || "BASIC",
-    core: t("gb2_02.difficulty.core") || "CORE",
-    advanced: t("gb2_02.difficulty.advanced") || "ADVANCED",
-    elite: t("gb2_02.difficulty.elite") || "ELITE",
+    title: t("gb2_02.title"),
+    back: t("gb2_02.back"),
+    check: t("gb2_02.check"),
+    next: t("gb2_02.next"),
+    correct: t("gb2_02.correct"),
+    incorrect: t("gb2_02.incorrect"),
+    hormone_identification: t("gb2_02.stages.hormone_identification"),
+    feedback_mechanisms: t("gb2_02.stages.feedback_mechanisms"),
+    clinical_applications: t("gb2_02.stages.clinical_applications"),
+    basic: t("gb2_02.difficulty.basic"),
+    core: t("gb2_02.difficulty.core"),
+    advanced: t("gb2_02.difficulty.advanced"),
+    elite: t("gb2_02.difficulty.elite"),
+    objective: t("gb2_02.labels.objective"),
+    default_scenario_title: t("gb2_02.builder.default_scenario_title"),
+    default_scenario_description: t("gb2_02.builder.default_scenario_description"),
+    select: t("gb2_02.placeholders.select"),
   };
 
   const {
@@ -81,8 +103,8 @@ export default function GB202Page() {
     }
     
     return {
-      title: "Basel Endocrinology Research",
-      description: "Explore the endocrine system through Basel's pharmaceutical and medical research context."
+      title: gb2_02_t.default_scenario_title,
+      description: gb2_02_t.default_scenario_description
     };
   };
 
@@ -106,7 +128,7 @@ export default function GB202Page() {
       onDifficultyChange={handleDifficultyChange}
       onStageChange={(s) => handleStageChange(s as Stage)}
       translations={{
-        back: "Back to Nexus",
+        back: gb2_02_t.back,
         check: gb2_02_t.check,
         next: gb2_02_t.next,
         correct: gb2_02_t.correct,
@@ -132,7 +154,7 @@ export default function GB202Page() {
         <div className="space-y-6">
           {/* Quest Prompt */}
           <div className="bg-gray-800/50 p-4 rounded-lg border border-cyan-500/30">
-            <div className="text-cyan-400 font-mono text-sm mb-2">OBJECTIVE:</div>
+            <div className="text-cyan-400 font-mono text-sm mb-2">{gb2_02_t.objective}</div>
             <div className="text-white">
               {renderMixedText(currentQuest?.promptLatex || "")}
             </div>
@@ -151,10 +173,10 @@ export default function GB202Page() {
                   onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
                   className="w-full bg-gray-900 border border-cyan-500/30 rounded px-4 py-2 text-white focus:outline-none focus:border-cyan-500"
                 >
-                  <option value="">Select...</option>
+                  <option value="">{gb2_02_t.select}</option>
                   {slot.options.map((option) => (
                     <option key={option} value={option}>
-                      {option}
+                      {translateOption(option)}
                     </option>
                   ))}
                 </select>
