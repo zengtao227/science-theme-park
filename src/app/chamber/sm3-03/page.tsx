@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ExponentialChart from "@/components/chamber/sm3-03/ExponentialChart";
 import { clsx } from "clsx";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS";
 
@@ -321,11 +322,26 @@ export default function S303Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
-  const stages = [
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "EXPONENTIAL", label: sm3_03_t.stages.exponential },
     { id: "LOGARITHM", label: sm3_03_t.stages.logarithm },
     { id: "APPLICATIONS", label: sm3_03_t.stages.applications },
-  ];
+  ], [sm3_03_t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: sm3_03_t.difficulty.basic,
+    CORE: sm3_03_t.difficulty.core,
+    ADVANCED: sm3_03_t.difficulty.advanced,
+    ELITE: sm3_03_t.difficulty.elite,
+  }), [sm3_03_t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S303Quest, Stage>({
+    moduleTitle: sm3_03_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, sm3_03_t.title, stages]);
 
   const chartMode = useMemo(() => {
     if (currentQuest?.chartMode) return currentQuest?.chartMode;
@@ -352,6 +368,7 @@ export default function S303Page() {
       onNext={next}
       onVerify={verify}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={sm3_03_t}
       monitorContent={
         <div className="space-y-6">

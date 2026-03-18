@@ -3,13 +3,14 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useMemo, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import dynamic from "next/dynamic";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 const TrigCanvas = dynamic(() => import("@/components/chamber/sm3-02/TrigCanvas"), {
     ssr: false,
@@ -261,11 +262,26 @@ export default function S302Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    const stages = [
+    const stages = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "UNIT_CIRCLE", label: t("sm3_02.stages.unit_circle") },
         { id: "PROJECTIONS", label: t("sm3_02.stages.projections") },
         { id: "WAVES", label: t("sm3_02.stages.waves") },
-    ];
+    ], [t]);
+    const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+        BASIC: t("sm3_02.difficulty.basic"),
+        CORE: t("sm3_02.difficulty.core"),
+        ADVANCED: t("sm3_02.difficulty.advanced"),
+        ELITE: t("sm3_02.difficulty.elite"),
+    }), [t]);
+    const printSections = useMemo(() => buildQuestPrintSections<S302Quest, Stage>({
+        moduleTitle: t("sm3_02.title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: difficultyLabelMap,
+        buildPool,
+        showHints: true,
+        maxHints: 1,
+    }), [buildPool, difficultyLabelMap, stages, t]);
 
     return (
         <ChamberLayout
@@ -284,6 +300,7 @@ export default function S302Page() {
             onNext={next}
             onVerify={verify}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={{
                 back: t("sm3_02.back"),
                 check: t("sm3_02.check"),
@@ -292,10 +309,10 @@ export default function S302Page() {
                 incorrect: t("sm3_02.incorrect"),
                 monitor_title: t("sm3_02.monitor_title"),
                 difficulty: {
-                    basic: t("sm3_02.difficulty.basic"),
-                    core: t("sm3_02.difficulty.core"),
-                    advanced: t("sm3_02.difficulty.advanced"),
-                    elite: t("sm3_02.difficulty.elite"),
+                    basic: difficultyLabelMap.BASIC,
+                    core: difficultyLabelMap.CORE,
+                    advanced: difficultyLabelMap.ADVANCED,
+                    elite: difficultyLabelMap.ELITE,
                 },
             }}
             monitorContent={

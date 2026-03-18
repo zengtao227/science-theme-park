@@ -15,6 +15,7 @@ import PythagorasAreaProof from "@/components/chamber/sm2-02/PythagorasAreaProof
 import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalInput";
 import { renderMixedText, normalizeInlineMath } from "@/lib/latex-utils";
 import { formatRadicalLatex, simplifyRadical, toRadical } from "@/lib/math";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage =
   | "EXPLORER"
@@ -707,6 +708,34 @@ export default function S202Page() {
   ];
 
   const currentStages = isPythagorasTab ? pythagorasStages : sqrtStages;
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: sm2_02_t.difficulty.basic,
+    CORE: sm2_02_t.difficulty.core,
+    ADVANCED: sm2_02_t.difficulty.advanced,
+    ELITE: sm2_02_t.difficulty.elite,
+  }), [sm2_02_t]);
+  const printStages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "SOLVE_HYP", label: sm2_02_t.pythagoras.solve_hyp },
+    { id: "SOLVE_LEG", label: sm2_02_t.pythagoras.solve_leg },
+    { id: "CHECK_RIGHT", label: sm2_02_t.pythagoras.check_right },
+    { id: "MISSION", label: sm2_02_t.mission.title },
+    { id: "MENTAL", label: sm2_02_t.mental.title },
+    { id: "CHAIN", label: sm2_02_t.mental.chain },
+    { id: "DISTANCE", label: sm2_02_t.pythagoras.distance },
+    { id: "ELITE_SPACE", label: sm2_02_t.pythagoras.elite_space },
+    { id: "PERFECT", label: sm2_02_t.sqrt.perfect },
+    { id: "SIMPLIFY", label: sm2_02_t.sqrt.simplify },
+    { id: "ESTIMATE", label: sm2_02_t.sqrt.estimate },
+  ], [sm2_02_t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S202Quest, Stage>({
+    moduleTitle: sm2_02_t.title,
+    stages: printStages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, printStages, sm2_02_t.title]);
   const is3DVisual =
     currentQuest?.visual.kind === "space" ||
     currentQuest?.visual.kind === "box" ||
@@ -744,6 +773,7 @@ export default function S202Page() {
       onVerify={verify}
       onNext={next}
       successRate={successRate}
+      printSections={printSections}
       translations={{
         back: sm2_02_t.back,
         check: sm2_02_t.check,
@@ -752,10 +782,10 @@ export default function S202Page() {
         incorrect: sm2_02_t.incorrect,
         monitor_title: sm2_02_t.monitor_title,
         difficulty: {
-          basic: sm2_02_t.difficulty.basic,
-          core: sm2_02_t.difficulty.core,
-          advanced: sm2_02_t.difficulty.advanced,
-          elite: sm2_02_t.difficulty.elite,
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

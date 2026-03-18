@@ -2,7 +2,7 @@
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Stage, SM213Quest, buildStagePool } from "@/lib/sm2-13-quest-data";
 import { InlineMath, BlockMath } from "react-katex";
@@ -12,6 +12,7 @@ import React from "react";
 import clsx from "clsx";
 import { HelpCircle, BrainCircuit } from "lucide-react";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type MonitorPoint = { x: number; y: number };
 
@@ -184,6 +185,27 @@ export default function SM213Page() {
     }, [lastCheck, stage, completeStage]);
 
     const hint = getHint();
+    const stages = React.useMemo<{ id: Stage; label: string }[]>(() => [
+        { id: "reflection", label: sm2_13_t.stages.reflection },
+        { id: "translation", label: sm2_13_t.stages.translation },
+        { id: "rotation", label: sm2_13_t.stages.rotation },
+        { id: "composition", label: sm2_13_t.stages.composition }
+    ], [sm2_13_t]);
+    const difficultyLabelMap = React.useMemo<Record<Difficulty, string>>(() => ({
+        BASIC: sm2_13_t.translations.difficulty.basic,
+        CORE: sm2_13_t.translations.difficulty.core,
+        ADVANCED: sm2_13_t.translations.difficulty.advanced,
+        ELITE: sm2_13_t.translations.difficulty.elite,
+    }), [sm2_13_t]);
+    const printSections = React.useMemo(() => buildQuestPrintSections<SM213Quest, Stage>({
+        moduleTitle: sm2_13_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: difficultyLabelMap,
+        buildPool: (diff, s) => buildStagePool(diff, s, t),
+        showHints: true,
+        maxHints: 1,
+    }), [difficultyLabelMap, stages, sm2_13_t.title, t]);
 
     return (
         <ChamberLayout
@@ -191,17 +213,13 @@ export default function SM213Page() {
             moduleCode={sm2_13_t.moduleCode}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "reflection", label: sm2_13_t.stages.reflection },
-                { id: "translation", label: sm2_13_t.stages.translation },
-                { id: "rotation", label: sm2_13_t.stages.rotation },
-                { id: "composition", label: sm2_13_t.stages.composition }
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={sm2_13_t.translations}
             monitorContent={
                 <TransformationMonitor

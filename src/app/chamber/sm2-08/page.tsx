@@ -9,6 +9,7 @@ import { renderMixedText } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ProbabilityVisualizer from "@/components/chamber/sm2-08/ProbabilityVisualizer";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "BASIC_PROB" | "LOTTERY" | "COMBINED" | "DATA_STATS";
 type ProbQuest = Quest & { stage: Stage; context?: string; scenario?: string };
@@ -1167,6 +1168,28 @@ export default function SM208Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "BASIC_PROB", label: t("sm2_08.stages.basic_prob") },
+    { id: "LOTTERY", label: t("sm2_08.stages.lottery") },
+    { id: "COMBINED", label: t("sm2_08.stages.combined") },
+    { id: "DATA_STATS", label: t("sm2_08.stages.data_stats") },
+  ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm2_08.difficulty.basic"),
+    CORE: t("sm2_08.difficulty.core"),
+    ADVANCED: t("sm2_08.difficulty.advanced"),
+    ELITE: t("sm2_08.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<ProbQuest, Stage>({
+    moduleTitle: t("sm2_08.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -1177,17 +1200,13 @@ export default function SM208Page() {
       moduleCode="SM2.08"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "BASIC_PROB", label: t("sm2_08.stages.basic_prob") },
-        { id: "LOTTERY", label: t("sm2_08.stages.lottery") },
-        { id: "COMBINED", label: t("sm2_08.stages.combined") },
-        { id: "DATA_STATS", label: t("sm2_08.stages.data_stats") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm2_08.back"),
         check: t("sm2_08.check"),
@@ -1196,10 +1215,10 @@ export default function SM208Page() {
         incorrect: t("sm2_08.incorrect"),
         monitor_title: t("sm2_08.monitor_title"),
         difficulty: {
-          basic: t("sm2_08.difficulty.basic"),
-          core: t("sm2_08.difficulty.core"),
-          advanced: t("sm2_08.difficulty.advanced"),
-          elite: t("sm2_08.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

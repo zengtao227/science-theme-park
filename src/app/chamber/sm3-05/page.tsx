@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeometryVisualization from "@/components/chamber/sm3-05/GeometryVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "BASEL_ARCH" | "CROSS_SECTIONS" | "CURVED_SOLIDS";
 
@@ -658,6 +659,21 @@ export default function SM305Page() {
         { id: "CROSS_SECTIONS" as Stage, label: t("sm3_05.stages.cross_sections") },
         { id: "CURVED_SOLIDS" as Stage, label: t("sm3_05.stages.curved_solids") },
     ], [t]);
+    const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+        BASIC: t("sm3_05.difficulty.basic"),
+        CORE: t("sm3_05.difficulty.core"),
+        ADVANCED: t("sm3_05.difficulty.advanced"),
+        ELITE: t("sm3_05.difficulty.elite"),
+    }), [t]);
+    const printSections = useMemo(() => buildQuestPrintSections<SM305Quest, Stage>({
+        moduleTitle: t("sm3_05.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: difficultyLabelMap,
+        buildPool,
+        showHints: true,
+        maxHints: 1,
+    }), [buildPool, difficultyLabelMap, stagesProps, t]);
 
     if (!currentQuest) {
         return (
@@ -673,6 +689,7 @@ export default function SM305Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
+                printSections={printSections}
                 translations={{
                     back: t("sm3_05.back"),
                     check: t("sm3_05.check"),
@@ -680,10 +697,10 @@ export default function SM305Page() {
                     correct: t("sm3_05.correct"),
                     incorrect: t("sm3_05.incorrect"),
                     difficulty: {
-                        basic: t("sm3_05.difficulty.basic"),
-                        core: t("sm3_05.difficulty.core"),
-                        advanced: t("sm3_05.difficulty.advanced"),
-                        elite: t("sm3_05.difficulty.elite"),
+                        basic: difficultyLabelMap.BASIC,
+                        core: difficultyLabelMap.CORE,
+                        advanced: difficultyLabelMap.ADVANCED,
+                        elite: difficultyLabelMap.ELITE,
                     },
                 }}
                 monitorContent={<GeometryVisualization stage={stage} />}
@@ -709,6 +726,7 @@ export default function SM305Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={{
                 back: t("sm3_05.back"),
                 check: t("sm3_05.check"),
@@ -716,10 +734,10 @@ export default function SM305Page() {
                 correct: t("sm3_05.correct"),
                 incorrect: t("sm3_05.incorrect"),
                 difficulty: {
-                    basic: t("sm3_05.difficulty.basic"),
-                    core: t("sm3_05.difficulty.core"),
-                    advanced: t("sm3_05.difficulty.advanced"),
-                    elite: t("sm3_05.difficulty.elite"),
+                    basic: difficultyLabelMap.BASIC,
+                    core: difficultyLabelMap.CORE,
+                    advanced: difficultyLabelMap.ADVANCED,
+                    elite: difficultyLabelMap.ELITE,
                 },
             }}
             monitorContent={<GeometryVisualization stage={stage} />}

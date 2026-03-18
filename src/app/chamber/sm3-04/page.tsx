@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
@@ -16,6 +16,7 @@ import {
     generateRichterQuests,
 } from "@/lib/sm3-04/quests";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 function buildStagePool(t: ReturnType<typeof useLanguage>["t"], difficulty: Difficulty, stage: Stage): S304Quest[] {
     if (stage === "PH") return generatePhQuests(t, difficulty);
@@ -55,6 +56,27 @@ export default function S304Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "PH", label: t("sm3_04.stages.ph") },
+    { id: "DECIBEL", label: t("sm3_04.stages.decibel") },
+    { id: "RICHTER", label: t("sm3_04.stages.richter") },
+  ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm3_04.difficulty.basic"),
+    CORE: t("sm3_04.difficulty.core"),
+    ADVANCED: t("sm3_04.difficulty.advanced"),
+    ELITE: t("sm3_04.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S304Quest, Stage>({
+    moduleTitle: t("sm3_04.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool: (d, s) => buildStagePool(t, d, s),
+    showHints: true,
+    maxHints: 1,
+  }), [difficultyLabelMap, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -65,16 +87,13 @@ export default function S304Page() {
       moduleCode="SM3.04"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "PH", label: t("sm3_04.stages.ph") },
-        { id: "DECIBEL", label: t("sm3_04.stages.decibel") },
-        { id: "RICHTER", label: t("sm3_04.stages.richter") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm3_04.back"),
         check: t("sm3_04.check"),
@@ -83,10 +102,10 @@ export default function S304Page() {
         incorrect: t("sm3_04.incorrect"),
         monitor_title: t("sm3_04.monitor_title"),
         difficulty: {
-          basic: t("sm3_04.difficulty.basic"),
-          core: t("sm3_04.difficulty.core"),
-          advanced: t("sm3_04.difficulty.advanced"),
-          elite: t("sm3_04.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

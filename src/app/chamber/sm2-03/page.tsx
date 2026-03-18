@@ -9,6 +9,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import LaserCanvas from "@/components/chamber/sm2-03/LaserCanvas";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "LEVEL1" | "LEVEL2" | "LEVEL3";
 
@@ -186,7 +187,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         expressionLatex: `\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\quad | \\quad \\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
         targetLatex: `x`,
         correctLatex: `x=${x}`,
-        slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_03.placeholders.distance_km"), expected: x }],
+        slots: [{ id: "x", labelLatex: "x", placeholder: t.placeholders.distance_km, expected: x }],
       });
     });
   } else {
@@ -210,7 +211,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
         expressionLatex: `\\text{Plan A: } y = ${data.m1}x + ${data.c1} \\quad | \\quad \\text{Plan B: } y = ${data.m2}x + ${data.c2}`,
         targetLatex: `x`,
         correctLatex: `x=${x}`,
-        slots: [{ id: "x", labelLatex: "x", placeholder: t("sm2_03.placeholders.threshold_km"), expected: x }],
+        slots: [{ id: "x", labelLatex: "x", placeholder: t.placeholders.threshold_km, expected: x }],
       });
     });
   }
@@ -250,6 +251,8 @@ export default function S203Page() {
     },
     placeholders: {
       total_price: t("sm2_03.placeholders.total_price"),
+      distance_km: t("sm2_03.placeholders.distance_km"),
+      threshold_km: t("sm2_03.placeholders.threshold_km"),
     },
     labels: {
       hints: t("sm2_03.labels.hints"),
@@ -301,6 +304,26 @@ export default function S203Page() {
   }, [lastCheck, completeStage, stage]);
 
   const level = stage === "LEVEL1" ? 1 : stage === "LEVEL2" ? 2 : 3;
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "LEVEL1", label: sm2_03_t.stages.level1 },
+    { id: "LEVEL2", label: sm2_03_t.stages.level2 },
+    { id: "LEVEL3", label: sm2_03_t.stages.level3 },
+  ], [sm2_03_t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: sm2_03_t.difficulty.basic,
+    CORE: sm2_03_t.difficulty.core,
+    ADVANCED: sm2_03_t.difficulty.advanced,
+    ELITE: sm2_03_t.difficulty.elite,
+  }), [sm2_03_t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S203Quest, Stage>({
+    moduleTitle: sm2_03_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stages, sm2_03_t.title]);
 
   return (
     <ChamberLayout
@@ -312,17 +335,14 @@ export default function S203Page() {
       moduleCode="SM2.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "LEVEL1", label: sm2_03_t.stages.level1 },
-        { id: "LEVEL2", label: sm2_03_t.stages.level2 },
-        { id: "LEVEL3", label: sm2_03_t.stages.level3 },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
       successRate={successRate}
+      printSections={printSections}
       translations={{
         back: sm2_03_t.back,
         check: sm2_03_t.check,
@@ -331,10 +351,10 @@ export default function S203Page() {
         incorrect: sm2_03_t.incorrect,
         monitor_title: sm2_03_t.monitor_title,
         difficulty: {
-          basic: sm2_03_t.difficulty.basic,
-          core: sm2_03_t.difficulty.core,
-          advanced: sm2_03_t.difficulty.advanced,
-          elite: sm2_03_t.difficulty.elite,
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

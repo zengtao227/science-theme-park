@@ -2,13 +2,14 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useMemo, useState } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S205_PowerCanvas, { type PowerVisual } from "@/components/chamber/sm2-05/PowerCanvas";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "RULES" | "NEGATIVE" | "SCIENTIFIC";
 
@@ -681,6 +682,27 @@ export default function S205Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
+    const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+        { id: "RULES", label: t("sm2_05.stages.rules") },
+        { id: "NEGATIVE", label: t("sm2_05.stages.negative") },
+        { id: "SCIENTIFIC", label: t("sm2_05.stages.scientific") },
+    ], [t]);
+    const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+        BASIC: t("sm2_05.difficulty.basic"),
+        CORE: t("sm2_05.difficulty.core"),
+        ADVANCED: t("sm2_05.difficulty.advanced"),
+        ELITE: t("sm2_05.difficulty.elite"),
+    }), [t]);
+    const printSections = useMemo(() => buildQuestPrintSections<S205Quest, Stage>({
+        moduleTitle: t("sm2_05.title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: difficultyLabelMap,
+        buildPool,
+        showHints: true,
+        maxHints: 1,
+    }), [buildPool, difficultyLabelMap, stages, t]);
+
     return (
         <ChamberLayout
             adaptiveRecommendation={adaptiveRecommendation}
@@ -691,17 +713,14 @@ export default function S205Page() {
             moduleCode="SM2.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "RULES", label: t("sm2_05.stages.rules") },
-                { id: "NEGATIVE", label: t("sm2_05.stages.negative") },
-                { id: "SCIENTIFIC", label: t("sm2_05.stages.scientific") },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
             onVerify={verify}
             onNext={next}
             successRate={successRate}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={{
                 back: t("sm2_05.back"),
                 check: t("sm2_05.check"),
@@ -710,10 +729,10 @@ export default function S205Page() {
                 incorrect: t("sm2_05.incorrect"),
                 monitor_title: t("sm2_05.monitor_title"),
                 difficulty: {
-                    basic: t("sm2_05.difficulty.basic"),
-                    core: t("sm2_05.difficulty.core"),
-                    advanced: t("sm2_05.difficulty.advanced"),
-                    elite: t("sm2_05.difficulty.elite")
+                    basic: difficultyLabelMap.BASIC,
+                    core: difficultyLabelMap.CORE,
+                    advanced: difficultyLabelMap.ADVANCED,
+                    elite: difficultyLabelMap.ELITE
                 },
             }}
             monitorContent={
