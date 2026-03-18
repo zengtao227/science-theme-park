@@ -14,6 +14,12 @@ import { renderMixedText } from "@/lib/latex-utils";
 
 export default function OlympiadChallenge() {
     const { t } = useLanguage();
+    const categoryLabelMap: Record<OlympiadQuest["category"], string> = {
+        logic: t("em3_01.categories.logic"),
+        geometry: t("em3_01.categories.geometry"),
+        arithmetic: t("em3_01.categories.arithmetic"),
+        combinatorics: t("em3_01.categories.combinatorics"),
+    };
     const buildPool = useCallback((difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELITE", stage: string) => {
         return buildOlympiadPool(t, difficulty, stage);
     }, [t]);
@@ -48,10 +54,10 @@ export default function OlympiadChallenge() {
         correct: t("common.correct"),
         incorrect: t("common.incorrect"),
         difficulty: {
-            BASIC: "TRAINING",
-            CORE: "COMPETITION",
-            ADVANCED: "OLYMPIAD",
-            ELITE: "LEGENDARY",
+            BASIC: t("em3_01.difficulty.basic"),
+            CORE: t("em3_01.difficulty.core"),
+            ADVANCED: t("em3_01.difficulty.advanced"),
+            ELITE: t("em3_01.difficulty.elite"),
         }
     };
 
@@ -63,7 +69,7 @@ export default function OlympiadChallenge() {
             moduleCode="EM3.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[{ id: "logic", label: "Logic & Induction" }]}
+            stages={[{ id: "logic", label: t("em3_01.stages.logic") }]}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as "logic")}
             onVerify={verify}
@@ -85,7 +91,7 @@ export default function OlympiadChallenge() {
                                 {/* Category Badge */}
                                 <div className="flex items-center gap-3 no-print">
                                     <div className="px-3 py-1 bg-neon-purple/10 border border-neon-purple/30 rounded-full text-[10px] font-black tracking-widest text-neon-purple uppercase">
-                                        {currentQuest.category} Challenge
+                                        {categoryLabelMap[currentQuest.category]} {t("em3_01.ui.challenge")}
                                     </div>
                                     <div className="h-px flex-1 bg-white/10" />
                                     <div className="text-[10px] font-mono text-white/40 uppercase">
@@ -102,7 +108,7 @@ export default function OlympiadChallenge() {
                                     <div className="p-8 bg-white/[0.03] border border-white/10 rounded-2xl relative group overflow-hidden no-print">
                                         <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan" />
                                         <div className="text-xs font-black tracking-widest text-neon-cyan uppercase mb-4 opacity-50">
-                                            Logical Context
+                                            {t("em3_01.ui.logical_context")}
                                         </div>
                                         <div className="text-xl font-mono text-white/60 group-hover:text-white/80 transition-colors">
                                             <BlockMath math={currentQuest.expressionLatex} />
@@ -117,7 +123,7 @@ export default function OlympiadChallenge() {
                                             <BrainCircuit className="w-5 h-5 text-white/60" />
                                         </div>
                                         <h3 className="text-xs font-black tracking-[0.3em] uppercase text-white/40">
-                                            Formal Solution Entry
+                                            {t("em3_01.ui.formal_solution_entry")}
                                         </h3>
                                     </div>
 
@@ -159,7 +165,7 @@ export default function OlympiadChallenge() {
                                     >
                                         <div className="flex items-center gap-2 mb-2">
                                             <HelpCircle className="w-4 h-4 text-neon-amber" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-neon-amber">Technical Insight</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-neon-amber">{t("em3_01.ui.technical_insight")}</span>
                                         </div>
                                         <div className="text-white/70 font-mono text-sm leading-relaxed">
                                             <InlineMath math={hint} />
@@ -171,7 +177,7 @@ export default function OlympiadChallenge() {
                     ) : (
                         <div className="h-full flex items-center justify-center">
                             <div className="text-white/40 font-mono text-sm animate-pulse uppercase tracking-widest">
-                                Loading Simulation sequence...
+                                {t("em3_01.ui.loading_sequence")}
                             </div>
                         </div>
                     )}
@@ -199,7 +205,7 @@ export default function OlympiadChallenge() {
 
                         <div className="flex-1 space-y-2">
                             <div className="flex justify-between text-[10px] font-black tracking-widest text-white/40 uppercase">
-                                <span>Sequence Progress</span>
+                                <span>{t("em3_01.ui.sequence_progress")}</span>
                                 <span>{Math.round(progress)}%</span>
                             </div>
                             <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
@@ -213,8 +219,8 @@ export default function OlympiadChallenge() {
 
                         <div className="hidden md:flex items-center gap-4">
                             <div className="text-right">
-                                <div className="text-[10px] font-black tracking-widest text-white/40 uppercase mb-1">Status</div>
-                                <div className="text-xs font-mono text-white/80">READY_FOR_DEPLOYMENT</div>
+                                <div className="text-[10px] font-black tracking-widest text-white/40 uppercase mb-1">{t("em3_01.ui.status")}</div>
+                                <div className="text-xs font-mono text-white/80">{t("em3_01.ui.ready_for_deployment")}</div>
                             </div>
                             <div className="w-10 h-10 rounded-lg bg-neon-green/10 border border-neon-green/30 flex items-center justify-center">
                                 <Sparkles className="w-5 h-5 text-neon-green" />

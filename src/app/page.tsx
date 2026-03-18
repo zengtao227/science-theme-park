@@ -105,11 +105,11 @@ export default function Home() {
     { code: "SM3.05", title: t("home.sm3_05_title"), desc: t("home.sm3_05_subtitle"), color: "neon-cyan", href: "/chamber/sm3-05", tags: ["math"] },
     // Gymnasium Track
     { code: "GM1.01", title: t("home.gm1_01_title"), desc: t("home.gm1_01_subtitle"), color: "neon-purple", href: "/chamber/gm1-01", tags: ["math"] },
-    { code: "GM1.01-ADV", title: t("home.gm1_01_title") + " Advanced", desc: "Advanced calculus with optimization and curve sketching", color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
+    { code: "GM1.01-ADV", title: t("home.gm1_01_adv_title"), desc: t("home.gm1_01_adv_subtitle"), color: "neon-purple", href: "/chamber/gm1-01-advanced", tags: ["math"] },
     { code: "GM1.02", title: t("home.gm1_02_title"), desc: t("home.gm1_02_subtitle"), color: "neon-green", href: "/chamber/gm1-02", tags: ["math"] },
     { code: "GM1.03", title: t("home.gm1_03_title"), desc: t("home.gm1_03_subtitle"), color: "neon-cyan", href: "/chamber/gm1-03", tags: ["math"] },
     { code: "GM2.01", title: t("home.gm2_01_title"), desc: t("home.gm2_01_subtitle"), color: "neon-cyan", href: "/chamber/gm2-01", tags: ["math"] },
-    { code: "GM2.02", title: "GM2.02 // ANALYTICAL GEOMETRY", desc: "Lines, planes, and spatial relationships in 2D and 3D", color: "neon-green", href: "/chamber/gm2-02", tags: ["math"] },
+    { code: "GM2.02", title: t("home.gm2_02_title"), desc: t("home.gm2_02_subtitle"), color: "neon-green", href: "/chamber/gm2-02", tags: ["math"] },
     { code: "GM3.01", title: t("home.gm3_01_title"), desc: t("home.gm3_01_subtitle"), color: "neon-purple", href: "/chamber/gm3-01", tags: ["math"] },
     { code: "GM4.01", title: t("home.gm4_01_title"), desc: t("home.gm4_01_subtitle"), color: "neon-purple", href: "/chamber/gm4-01", tags: ["math"] },
   ]), [t]);
@@ -153,7 +153,7 @@ export default function Home() {
     // Year 1
     { code: "SC1.01", title: t("home.sc1_01_title"), desc: t("home.sc1_01_subtitle"), color: "neon-purple", href: "/chamber/sc1-01", tags: ["chemistry"] },
     { code: "SC1.02", title: t("home.sc1_02_title"), desc: t("home.sc1_02_subtitle"), color: "neon-purple", href: "/chamber/sc1-02", tags: ["chemistry"] },
-    { code: "SC1.03", title: t("home.sc1_03_title") || "SC1.03 // ATOMS FORGE", desc: t("home.sc1_03_subtitle") || "Build isotopes and understand atomic orbitals in 3D.", color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
+    { code: "SC1.03", title: t("home.sc1_03_title"), desc: t("home.sc1_03_subtitle"), color: "neon-purple", href: "/chamber/sc1-03", tags: ["chemistry"] },
     { code: "SC1.04", title: t("home.sc1_04_title"), desc: t("home.sc1_04_subtitle"), color: "neon-cyan", href: "/chamber/sc1-04", tags: ["chemistry"] },
     { code: "SC1.05", title: t("home.sc1_05_title"), desc: t("home.sc1_05_subtitle"), color: "neon-purple", href: "/chamber/sc1-05", tags: ["chemistry"] },
     { code: "SC1.06", title: t("home.sc1_06_title"), desc: t("home.sc1_06_subtitle"), color: "neon-purple", href: "/chamber/sc1-06", tags: ["chemistry"] },
@@ -290,7 +290,7 @@ export default function Home() {
               <Link
                 href="/profile"
                 className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-white/20 text-white/70 bg-white/5 hover:bg-white/10 transition-all"
-                title="Settings & AI Configuration"
+                title={t("common.user_switcher.settings_ai")}
               >
                 <Settings className="w-4 h-4" />
               </Link>
@@ -343,7 +343,7 @@ export default function Home() {
               }}
             />
             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-neon-purple text-black text-[8px] px-1.5 py-0.5 rounded-full font-black uppercase tracking-tighter shadow-lg">
-              EXPAND VIEW ⬡
+              {t("home.expand_view")}
             </div>
           </Link>
         </div>
@@ -373,7 +373,7 @@ export default function Home() {
 
         <div className="space-y-20">{filteredMath.length > 0 && (
           <Sector
-            title="MATHEMATICS SECTOR"
+            title={t("home.sectors.math")}
             color="neon-cyan"
             progress={mathProgress}
             icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
@@ -407,7 +407,7 @@ export default function Home() {
 
           {filteredPhysics.length > 0 && (
             <Sector
-              title="PHYSICS SECTOR"
+              title={t("home.sectors.physics")}
               color="neon-green"
               progress={physicsProgress}
               icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
@@ -441,7 +441,7 @@ export default function Home() {
 
           {filteredChemistry.length > 0 && (
             <Sector
-              title="CHEMISTRY SECTOR"
+              title={t("home.sectors.chemistry")}
               color="neon-purple"
               progress={chemistryProgress}
               icon={<FlaskConical className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
@@ -477,7 +477,7 @@ export default function Home() {
 
           {filteredBiology.length > 0 && (
             <Sector
-              title="BIOLOGY SECTOR"
+              title={t("home.sectors.biology")}
               color="neon-green"
               progress={0}
               icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
@@ -511,7 +511,7 @@ export default function Home() {
 
           {filteredEnrichment.length > 0 && (
             <Sector
-              title="ENRICHMENT & ADVANCED TOPICS"
+              title={t("home.sectors.enrichment")}
               color="neon-purple"
               progress={0}
               icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}

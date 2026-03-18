@@ -163,10 +163,14 @@ export const cnCommon = {
         sm2_04_subtitle: "训练相似比、缩放因子及比例推理应用。",
         gm1_01_title: "GM1.01 // 微积分初步",
         gm1_01_subtitle: "探索导数与切线斜率。在抛物线上计算割线和切线的斜率。",
+        gm1_01_adv_title: "GM1.01 // 微积分初步 进阶",
+        gm1_01_adv_subtitle: "进阶微积分训练，包含最优化与曲线分析。",
         gm1_02_title: "GM1.02 // 积分微积分",
         gm1_02_subtitle: "掌握积分：不定积分、定积分和面积计算。",
         gm2_01_title: "GM2.01 // 矢量飞行员 3D",
         gm2_01_subtitle: "用三维向量、点积与模长训练无人机导航。",
+        gm2_02_title: "GM2.02 // 解析几何",
+        gm2_02_subtitle: "训练二维与三维中的直线、平面和空间关系。",
         gm1_03_title: "GM1.03 // 矢量分析 II",
         gm1_03_subtitle: "在复杂流体力学中掌握矢量场、梯度与散度运算。",
         gm3_01_title: "GM3.01 // 概率金库",
@@ -344,6 +348,7 @@ export const cnCommon = {
         filter_tags_label: "学科标签",
         filter_clear: "清除筛选",
         filter_empty: "没有模块符合当前筛选条件。",
+        expand_view: "展开视图 ⬡",
         filter_tags: {
             physics: "物理",
             math: "数学",
@@ -351,6 +356,34 @@ export const cnCommon = {
             biology: "生物"
         },
         completed_badge: "已完成",
+        sectors: {
+            math: "数学领域",
+            physics: "物理领域",
+            chemistry: "化学领域",
+            biology: "生物领域",
+            enrichment: "拓展与高阶主题"
+        }
+    },
+    nexus: {
+        title: "科学成就中心",
+        hub_label: "⬡ 核心枢纽",
+        unlocked_on: "解锁于",
+        stats: {
+            attempts: "尝试次数",
+            accuracy: "正确率",
+            modules: "模块数",
+            best_streak: "最佳连胜",
+            study_time: "学习时长",
+            badges: "徽章"
+        },
+        domain_mastery_radar: "学科掌握雷达",
+        domain_breakdown: "学科拆解",
+        modules_short: "模块",
+        achievement_vault: "成就库",
+        unlocked: "已解锁",
+        recent_activity: "最近活动",
+        no_activity_yet: "还没有活动记录",
+        no_activity_cta: "开始解题，建立你的学术档案"
     },
     profile: {
         title: "科学家档案",
@@ -381,6 +414,31 @@ export const cnCommon = {
         }
     },
     em3_01: {
+        difficulty: {
+            basic: "训练",
+            core: "竞赛",
+            advanced: "奥赛",
+            elite: "传奇"
+        },
+        stages: {
+            logic: "逻辑与归纳"
+        },
+        categories: {
+            logic: "逻辑",
+            geometry: "几何",
+            arithmetic: "算术",
+            combinatorics: "组合"
+        },
+        ui: {
+            challenge: "挑战",
+            logical_context: "逻辑背景",
+            formal_solution_entry: "正式作答区",
+            technical_insight: "技术洞察",
+            loading_sequence: "正在加载模拟序列...",
+            sequence_progress: "序列进度",
+            status: "状态",
+            ready_for_deployment: "已准备就绪"
+        },
         placeholders: {
             name: "姓名",
             position: "名次",
@@ -408,6 +466,48 @@ export const cnCommon = {
             weighings: "称量次数",
             volume: "体积",
             digit: "个位数"
+        },
+        questions: {
+            B01: { prompt: "In a race, Alice finished before Bob but after Charlie. David finished after Bob. Who came first?", expression: "C \\rightarrow A \\rightarrow B \\rightarrow D", label: "\\text{Winner}", expected: "Charlie", correct: "\\text{Charlie}", hint: "\\text{Order: Charlie, Alice, Bob, David}" },
+            B02: { prompt: "10 people stand in a line. You are 4th from the front. What is your position from the back?", expression: "10 - 4 + 1 = ?", correct: "7", hint: "n_{\\text{back}} = N - n_{\\text{front}} + 1" },
+            B03: { prompt: "Anna, Bella, Cora have colors Red, Blue, Green. Anna: 'Not Red'. Bella: 'Blue'. Cora: 'Anna likes Red'. Only one tells the truth. What is Anna's color?", expression: "\\text{Truth Table: exactly 1 statement is true}", label: "\\text{Color}", expected: "Red", correct: "\\text{Red}", hint: "\\text{If Anna lies, her color is Red. Then check who else is truthful.}" },
+            B04: { prompt: "What is the sum of all whole numbers from 1 to 20?", expression: "1 + 2 + 3 + \\cdots + 20 = ?", correct: "\\frac{20 \\times 21}{2} = 210", hint: "S = \\frac{n(n+1)}{2}" },
+            B05: { prompt: "How many squares can you count in a 2×2 grid?", expression: "\\text{Count all squares, including the large one}", correct: "4 + 1 = 5", hint: "\\text{4 small (1×1) + 1 large (2×2)}" },
+            B06: { prompt: "You have 3 shirts and 2 pants. How many different outfits can you make?", expression: "3 \\times 2 = ?", correct: "6", hint: "\\text{Multiply: shirts} \\times \\text{pants}" },
+            B07: { prompt: "If today is Wednesday, what day of the week is it 100 days from now?", expression: "100 \\div 7 = 14 \\text{ R } ?", label: "\\text{Day}", expected: "Friday", correct: "\\text{Friday (remainder 2, Wed + 2 = Fri)}", hint: "100 \\mod 7 = 2" },
+            B08: { prompt: "A snail climbs 3 m up a wall during the day but slips 2 m at night. The wall is 10 m high. How many days does it take to reach the top?", expression: "\\text{Net progress per day} = 1\\text{ m}", correct: "8 \\text{ days (after 7 days at 7 m, day 8 climbs to 10 m)}", hint: "\\text{On the last day, it reaches the top before slipping}" },
+            B09: { prompt: "A rectangle has perimeter 20 cm. If its length is 7 cm, what is its area?", expression: "2(l + w) = 20,\\; l = 7", correct: "w = 3,\\; A = 7 \\times 3 = 21", hint: "w = \\frac{20}{2} - 7 = 3" },
+            B10: { prompt: "How many handshakes occur if 5 people all shake hands with each other?", expression: "\\binom{5}{2} = ?", correct: "\\frac{5 \\times 4}{2} = 10", hint: "\\binom{n}{2} = \\frac{n(n-1)}{2}" },
+            C01: { prompt: "A digital clock shows 12:34. How many minutes until all four digits are the same?", expression: "12:34 \\rightarrow \\text{next } hh{:}mm \\text{ with 4 same digits}", correct: "22:22 \\text{ is 588 min after 12:34}", hint: "\\text{22:22 is 9 h 48 min after 12:34}" },
+            C02: { prompt: "A 3 cm cube is painted red, then cut into 1 cm cubes. How many small cubes have exactly 2 red faces?", expression: "12 \\times (n-2) \\text{ edge cubes}", correct: "12 \\text{ (12 edges, each with 1 middle piece)}", hint: "\\text{Edge cubes, not corners, have exactly 2 painted faces}" },
+            C03: { prompt: "The product of three different positive integers is 30. What is the maximum possible sum?", expression: "abc = 30,\\; a < b < c", correct: "1 + 2 + 15 = 18", hint: "\\text{Try all factorizations into 3 different integers}" },
+            C04: { prompt: "In how many ways can you arrange the letters of the word MOON?", expression: "\\frac{4!}{2!} = ?", correct: "\\frac{24}{2} = 12", hint: "\\text{4 letters, with O repeated twice}" },
+            C05: { prompt: "On an island, knights always tell the truth and knaves always lie. A says: 'We are both knaves.' What are A and B?", expression: "\\text{Analyze A's statement logically}", label: "\\text{A is a}", expected: "knave", correct: "\\text{A = knave, B = knight}", hint: "\\text{If A were a knight, the statement would make A a knave. Contradiction.}" },
+            C06: { prompt: "What is the sum of interior angles of a regular hexagon?", expression: "(n-2) \\times 180°", correct: "(6-2) \\times 180 = 720°", hint: "\\text{Formula: } (n-2) \\times 180°" },
+            C07: { prompt: "Find the last two digits of 7^{100}.", expression: "7^{100} \\pmod{100}", correct: "01 \\text{ because } 7^{4} = 2401 \\equiv 01 \\pmod{100}", hint: "7^{4} = 2401 \\equiv 01 \\pmod{100}" },
+            C08: { prompt: "A fair die is rolled twice. What is the probability that the sum is 7?", expression: "P(S = 7) = ?", correct: "\\frac{6}{36} = \\frac{1}{6}", hint: "\\text{There are 6 favorable ordered pairs out of 36}" },
+            C09: { prompt: "There are 100 lockers in a row, all closed. 100 students pass by. Student 1 opens every locker. Student 2 toggles every 2nd locker. Student 3 every 3rd, and so on. How many lockers are open at the end?", expression: "\\text{Locker } k \\text{ is toggled by the divisors of } k", correct: "10 \\text{ (the perfect squares)}", hint: "\\text{A locker stays open iff it has an odd number of divisors}" },
+            C10: { prompt: "In triangle ABC, angle A = 40° and angle B = 70°. What is angle C?", expression: "A + B + C = 180°", correct: "180 - 40 - 70 = 70°", hint: "\\text{Angles in a triangle sum to } 180°" },
+            A01: { prompt: "In a family of 4 children, at least 2 are girls. What is the probability that at least 3 are girls?", expression: "P(G \\ge 3 \\mid G \\ge 2)", correct: "\\frac{5}{11}", hint: "P(G \\ge 2) = 11/16,\\; P(G \\ge 3) = 5/16" },
+            A02: { prompt: "What is the remainder when 2^{2024} is divided by 7?", expression: "2^{3} \\equiv 1 \\pmod{7}", correct: "2024 = 3 \\times 674 + 2 \\Rightarrow 2^{2024} \\equiv 4 \\pmod{7}", hint: "2024 \\mod 3 = 2" },
+            A03: { prompt: "In a circle of radius 10, a chord is 16 cm long. What is the distance from the center to the chord?", expression: "r^{2} = d^{2} + (c/2)^{2}", correct: "d = \\sqrt{10^{2} - 8^{2}} = 6", hint: "\\text{Half the chord is } 8" },
+            A04: { prompt: "How many ways can you climb a staircase of 10 steps, taking 1 or 2 steps at a time?", expression: "f(n) = f(n-1) + f(n-2),\\; f(1) = 1,\\; f(2) = 2", correct: "f(10) = 89", hint: "1, 2, 3, 5, 8, 13, 21, 34, 55, 89" },
+            A05: { prompt: "A, B, C are suspects. Exactly one committed the crime. A says: 'B did it.' B says: 'I didn't do it.' C says: 'I didn't do it.' Exactly one person is lying. Who did it?", expression: "\\text{Exactly 1 liar among 3}", label: "\\text{Who?}", expected: "C", correct: "\\text{C}", hint: "\\text{Test each suspect and count liars carefully}" },
+            A06: { prompt: "Find the sum of all divisors of 360.", expression: "360 = 2^{3} \\times 3^{2} \\times 5^{1}", correct: "\\sigma = (1+2+4+8)(1+3+9)(1+5) = 1170", hint: "\\sigma(p^{a} q^{b}) = \\sigma(p^{a}) \\cdot \\sigma(q^{b})" },
+            A07: { prompt: "The diagonals of a rhombus are 10 and 24. What is its area?", expression: "A = \\frac{d_1 \\cdot d_2}{2}", correct: "A = \\frac{10 \\times 24}{2} = 120", hint: "\\text{Rhombus area} = \\frac{1}{2} d_1 d_2" },
+            A08: { prompt: "A committee of 3 is chosen from 4 men and 3 women. What is the probability of at least 1 woman?", expression: "1 - P(\\text{all men})", correct: "1 - \\frac{\\binom{4}{3}}{\\binom{7}{3}} = \\frac{31}{35}", hint: "\\binom{7}{3} = 35,\\; \\binom{4}{3} = 4" },
+            A09: { prompt: "What is the units digit of 3^{2025}?", expression: "3^{1}=3,\\; 3^{2}=9,\\; 3^{3}=27,\\; 3^{4}=81,\\; \\text{cycle: 3,9,7,1}", correct: "2025 \\mod 4 = 1 \\Rightarrow \\text{units digit} = 3", hint: "\\text{Units digits of powers of 3 repeat every 4 steps}" },
+            A10: { prompt: "There are 25 horses. You can race 5 at a time. What is the minimum number of races needed to find the top 3?", expression: "\\text{No stopwatch available}", correct: "7", hint: "\\text{5 heats + 1 winners' race + 1 final race for places 2 and 3}" },
+            E01: { prompt: "Find the smallest positive integer n ending in 6 such that moving the 6 to the front gives 4n.", expression: "10x + 6 \\rightarrow 6 \\cdot 10^{k} + x = 4(10x + 6)", correct: "153846", hint: "6 \\cdot 10^{k} + x = 40x + 24 \\Rightarrow x = \\frac{6 \\cdot 10^{k} - 24}{39}" },
+            E02: { prompt: "In triangle ABC with sides 13, 14, 15, what is the area?", expression: "s = \\frac{13 + 14 + 15}{2} = 21", correct: "\\sqrt{21 \\cdot 8 \\cdot 7 \\cdot 6} = 84", hint: "\\text{Use Heron's formula}" },
+            E03: { prompt: "How many paths exist from (0,0) to (5,5) on a grid, moving only right or up, that never go above the diagonal?", expression: "C_n = \\frac{1}{n+1}\\binom{2n}{n}", correct: "C_5 = \\frac{1}{6}\\binom{10}{5} = 42", hint: "\\text{This is the 5th Catalan number}" },
+            E04: { prompt: "What is the sum \\sum_{k=1}^{100} \\lfloor \\sqrt{k} \\rfloor ?", expression: "\\lfloor \\sqrt{1} \\rfloor + \\lfloor \\sqrt{2} \\rfloor + \\cdots + \\lfloor \\sqrt{100} \\rfloor", correct: "\\sum_{m=1}^{9} m(2m+1) + 10 = 615", hint: "\\lfloor \\sqrt{k} \\rfloor = m \\text{ for } m^{2} \\le k < (m+1)^{2}" },
+            E05: { prompt: "100 prisoners each guess their own hat color, red or blue. They may plan a strategy in advance. At most how many can guarantee survival?", expression: "\\text{Each sees all hats except their own}", correct: "99", hint: "\\text{Use parity so only the first prisoner's outcome is uncertain}" },
+            E06: { prompt: "What is the area of the largest rectangle that can be inscribed in a semicircle of radius 10?", expression: "A = 2x \\sqrt{r^{2} - x^{2}}", correct: "A_{\\max} = r^{2} = 100", hint: "\\text{Maximum at } x = \\frac{r}{\\sqrt{2}}" },
+            E07: { prompt: "In how many ways can 8 rooks be placed on an 8×8 chessboard so that no two attack each other?", expression: "\\text{One per row, one per column}", correct: "8! = 40320", hint: "\\text{Choose a permutation of columns}" },
+            E08: { prompt: "Find the last 3 digits of 2^{1000}.", expression: "2^{1000} \\pmod{1000}", correct: "2^{1000} \\equiv 376 \\pmod{1000}", hint: "2^{10} = 1024 \\equiv 24 \\pmod{1000}" },
+            E09: { prompt: "12 identical-looking balls contain one odd ball that is either heavier or lighter. Using a balance scale, what is the minimum number of weighings needed to identify it?", expression: "3^{n} \\ge 2 \\times 12 + 1 = 25", correct: "3 \\text{ weighings}", hint: "3^{3} = 27 \\ge 25" },
+            E10: { prompt: "A regular tetrahedron has edge length 6. What is its volume?", expression: "V = \\frac{a^{3}}{6\\sqrt{2}}", correct: "V = \\frac{216}{6\\sqrt{2}} = \\frac{36}{\\sqrt{2}} \\approx 25.46", hint: "V = \\frac{a^{3}\\sqrt{2}}{12}" }
         }
     },
     protocol: {

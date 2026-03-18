@@ -18,25 +18,25 @@ export default function CellDivisionLab() {
             difficulty={difficulty}
             onDifficultyChange={setDifficulty}
             stages={[
-                { id: "mitosis", label: "MITOSIS" },
-                { id: "meiosis_i", label: "MEIOSIS I" },
-                { id: "meiosis_ii", label: "MEIOSIS II" }
+                { id: "mitosis", label: t("sb1_03.stages.mitosis") },
+                { id: "meiosis_i", label: t("sb1_03.stages.meiosis_i") },
+                { id: "meiosis_ii", label: t("sb1_03.stages.meiosis_ii") }
             ]}
             currentStage={currentStage}
             onStageChange={setCurrentStage}
             translations={{
-                back: t("sb1_03.back") || "Back",
-                check: t("sb1_03.check") || "Verify",
-                next: t("sb1_03.next") || "Next",
-                correct: t("sb1_03.correct") || "Correct",
-                incorrect: t("sb1_03.incorrect") || "Incorrect",
-                ready: t("sb1_03.ready") || "Ready",
-                monitor_title: t("sb1_03.monitor_title") || "Cell Monitor",
+                back: t("sb1_03.back"),
+                check: t("sb1_03.check"),
+                next: t("sb1_03.next"),
+                correct: t("sb1_03.correct"),
+                incorrect: t("sb1_03.incorrect"),
+                ready: t("sb1_03.ready"),
+                monitor_title: t("sb1_03.monitor_title"),
                 difficulty: {
-                    basic: t("sb1_03.difficulty.basic") || "Basic",
-                    core: t("sb1_03.difficulty.core") || "Core",
-                    advanced: t("sb1_03.difficulty.advanced") || "Advanced",
-                    elite: t("sb1_03.difficulty.elite") || "Elite"
+                    basic: t("sb1_03.difficulty.basic"),
+                    core: t("sb1_03.difficulty.core"),
+                    advanced: t("sb1_03.difficulty.advanced"),
+                    elite: t("sb1_03.difficulty.elite")
                 }
             }}
         >

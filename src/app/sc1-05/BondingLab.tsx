@@ -30,24 +30,24 @@ export const BondingLab: React.FC = () => {
             difficulty={difficulty}
             onDifficultyChange={setDifficulty}
             translations={{
-                back: t("sc1_05.back") || "Back",
-                check: t("sc1_05.check") || "Verify",
-                next: t("sc1_05.next") || "Next",
-                correct: t("sc1_05.correct") || "Correct",
-                incorrect: t("sc1_05.incorrect") || "Incorrect",
-                ready: t("sc1_05.ready") || "Ready",
-                monitor_title: t("sc1_05.monitor_title") || "Mission Control",
+                back: t("sc1_05.back"),
+                check: t("sc1_05.check"),
+                next: t("sc1_05.next"),
+                correct: t("sc1_05.correct"),
+                incorrect: t("sc1_05.incorrect"),
+                ready: t("sc1_05.ready"),
+                monitor_title: t("sc1_05.monitor_title"),
                 difficulty: {
-                    basic: t("sc1_05.difficulty.basic") || "Basic",
-                    core: t("sc1_05.difficulty.core") || "Core",
-                    advanced: t("sc1_05.difficulty.advanced") || "Advanced",
-                    elite: t("sc1_05.difficulty.elite") || "Elite"
+                    basic: t("sc1_05.difficulty.basic"),
+                    core: t("sc1_05.difficulty.core"),
+                    advanced: t("sc1_05.difficulty.advanced"),
+                    elite: t("sc1_05.difficulty.elite")
                 }
             }}
             stages={[
-                { id: "basic", label: "IONIC" },
-                { id: "core", label: "COVALENT" },
-                { id: "advanced", label: "LEWIS" }, // Renaming elite/advanced? Sticking to standard stages for now
+                { id: "basic", label: t("sc1_05.stages.ionic") },
+                { id: "core", label: t("sc1_05.stages.covalent") },
+                { id: "advanced", label: t("sc1_05.stages.lewis") },
             ]}
             currentStage={currentLayoutStage}
             onStageChange={handleStageChange}

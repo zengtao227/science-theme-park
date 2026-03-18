@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useAppStore } from "@/lib/store";
+import { useLanguage } from "@/lib/i18n";
 import { ACHIEVEMENTS, computeStats, formatStudyTime } from "@/lib/achievements";
 import { clsx } from "clsx";
 import { ArrowLeft, Zap, Target, Clock, TrendingUp, Award, BookOpen, Star } from "lucide-react";
@@ -22,6 +23,7 @@ function AchievementCard({ def, unlocked, timestamp }: {
 }) {
     const styles = RARITY_STYLES[def.rarity];
     const { currentLanguage } = useAppStore();
+    const { t } = useLanguage();
     const lang = currentLanguage as "EN" | "CN" | "DE";
 
     return (
@@ -54,7 +56,7 @@ function AchievementCard({ def, unlocked, timestamp }: {
                     </div>
                     {unlocked && timestamp && (
                         <div className="text-[9px] font-mono text-white/30 mt-2 uppercase tracking-widest">
-                            Unlocked {new Date(timestamp).toLocaleDateString()}
+                            {t("nexus.unlocked_on")} {new Date(timestamp).toLocaleDateString()}
                         </div>
                     )}
                 </div>
@@ -153,8 +155,15 @@ function StatCard({ icon: Icon, label, value, color }: { icon: React.ComponentTy
 
 export default function NexusHubPage() {
     const { history, progress, achievements } = useAppStore();
+    const { t } = useLanguage();
 
     const stats = useMemo(() => computeStats(history, progress), [history, progress]);
+    const domainLabelMap: Record<string, string> = {
+        physics: t("home.filter_tags.physics"),
+        math: t("home.filter_tags.math"),
+        chemistry: t("home.filter_tags.chemistry"),
+        biology: t("home.filter_tags.biology"),
+    };
 
     const unlockedCount = Object.values(achievements).filter((a) => a.unlocked).length;
     const totalCount = ACHIEVEMENTS.length;
@@ -165,13 +174,13 @@ export default function NexusHubPage() {
             <header className="sticky top-0 z-30 border-b border-white/10 bg-black/80 backdrop-blur-xl px-6 py-4 flex items-center gap-6">
                 <Link href="/" className="flex items-center gap-2 text-white/50 hover:text-white transition-colors group">
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    <span className="text-xs font-black tracking-[0.2em] uppercase">Nexus</span>
+                    <span className="text-xs font-black tracking-[0.2em] uppercase">{t("home.nexus")}</span>
                 </Link>
                 <div className="flex-1 text-center">
                     <div className="text-xs font-black tracking-[0.5em] uppercase text-white/40">
-                        ⬡ NEXUS HUB
+                        {t("nexus.hub_label")}
                     </div>
-                    <div className="text-xl font-black tracking-[0.2em] uppercase">Scientific Achievement Centre</div>
+                    <div className="text-xl font-black tracking-[0.2em] uppercase">{t("nexus.title")}</div>
                 </div>
                 <div className="w-20" />
             </header>
@@ -181,31 +190,31 @@ export default function NexusHubPage() {
                 {/* ── HERO STATS ── */}
                 <section>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                        <StatCard icon={Zap} label="Attempts" value={String(stats.totalAttempts)} color="#00f2ff" />
-                        <StatCard icon={Target} label="Accuracy" value={`${stats.accuracy.toFixed(0)}%`} color="#39ff14" />
-                        <StatCard icon={BookOpen} label="Modules" value={String(stats.uniqueModules)} color="#ffd166" />
-                        <StatCard icon={TrendingUp} label="Best Streak" value={String(stats.bestStreak)} color="#a855f7" />
-                        <StatCard icon={Clock} label="Study Time" value={formatStudyTime(stats.totalStudyMs)} color="#ff6b6b" />
-                        <StatCard icon={Award} label="Badges" value={`${unlockedCount}/${totalCount}`} color="#ff2d7d" />
+                        <StatCard icon={Zap} label={t("nexus.stats.attempts")} value={String(stats.totalAttempts)} color="#00f2ff" />
+                        <StatCard icon={Target} label={t("nexus.stats.accuracy")} value={`${stats.accuracy.toFixed(0)}%`} color="#39ff14" />
+                        <StatCard icon={BookOpen} label={t("nexus.stats.modules")} value={String(stats.uniqueModules)} color="#ffd166" />
+                        <StatCard icon={TrendingUp} label={t("nexus.stats.best_streak")} value={String(stats.bestStreak)} color="#a855f7" />
+                        <StatCard icon={Clock} label={t("nexus.stats.study_time")} value={formatStudyTime(stats.totalStudyMs)} color="#ff6b6b" />
+                        <StatCard icon={Award} label={t("nexus.stats.badges")} value={`${unlockedCount}/${totalCount}`} color="#ff2d7d" />
                     </div>
                 </section>
 
                 {/* ── DOMAIN RADAR ── */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="border border-white/10 bg-white/[0.02] rounded-2xl p-6">
-                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black mb-6">Domain Mastery Radar</div>
+                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black mb-6">{t("nexus.domain_mastery_radar")}</div>
                         <DomainRadar domains={stats.domains} />
                     </div>
 
                     <div className="border border-white/10 bg-white/[0.02] rounded-2xl p-6 flex flex-col gap-4">
-                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black mb-2">Domain Breakdown</div>
+                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black mb-2">{t("nexus.domain_breakdown")}</div>
                         {Object.entries(stats.domains).map(([name, d]) => {
                             const pct = d.attempts === 0 ? 0 : Math.round((d.correct / d.attempts) * 100);
                             return (
                                 <div key={name} className="space-y-1">
                                     <div className="flex justify-between text-xs">
-                                        <span className="font-black text-white/80">{name}</span>
-                                        <span className="text-white/50 font-mono">{d.modules.size} mod · {pct}%</span>
+                                        <span className="font-black text-white/80">{domainLabelMap[name] || name}</span>
+                                        <span className="text-white/50 font-mono">{d.modules.size} {t("nexus.modules_short")} · {pct}%</span>
                                     </div>
                                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                                         <motion.div
@@ -226,8 +235,8 @@ export default function NexusHubPage() {
                 <section>
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">Achievement Vault</div>
-                            <div className="text-lg font-black mt-1">{unlockedCount} / {totalCount} Unlocked</div>
+                            <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">{t("nexus.achievement_vault")}</div>
+                            <div className="text-lg font-black mt-1">{unlockedCount} / {totalCount} {t("nexus.unlocked")}</div>
                         </div>
                         <div className="flex gap-1">
                             {ACHIEVEMENTS.map((a) => (
@@ -257,7 +266,7 @@ export default function NexusHubPage() {
                 {/* ── RECENT ACTIVITY ── */}
                 {history.length > 0 && (
                     <section>
-                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black mb-4">Recent Activity</div>
+                        <div className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black mb-4">{t("nexus.recent_activity")}</div>
                         <div className="border border-white/10 bg-white/[0.02] rounded-2xl overflow-hidden divide-y divide-white/5">
                             {history.slice(0, 8).map((entry) => (
                                 <div key={entry.id} className="flex items-center gap-4 px-5 py-3 hover:bg-white/[0.03] transition-colors">
@@ -279,8 +288,8 @@ export default function NexusHubPage() {
                 {history.length === 0 && (
                     <div className="text-center py-20 text-white/20">
                         <Star className="w-12 h-12 mx-auto mb-4 opacity-30" />
-                        <div className="text-sm font-black uppercase tracking-widest">No activity yet</div>
-                        <div className="text-xs mt-2">Start solving quests to build your academic record</div>
+                        <div className="text-sm font-black uppercase tracking-widest">{t("nexus.no_activity_yet")}</div>
+                        <div className="text-xs mt-2">{t("nexus.no_activity_cta")}</div>
                     </div>
                 )}
             </div>
