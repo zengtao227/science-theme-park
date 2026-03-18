@@ -338,7 +338,6 @@ export default function GB101Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath math={slot.labelLatex ?? ""} />
-                                                <span className="text-neon-cyan/30 font-mono">{getT("common.reference")}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input

@@ -432,7 +432,6 @@ export default function SB301Page() {
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath math={slot.labelLatex ?? ""} />
-                                                <span className="text-green-500/30 font-mono">{t("common.reference")}</span>
                                             </div>
                                             <div className="relative group">
                                                 <input
