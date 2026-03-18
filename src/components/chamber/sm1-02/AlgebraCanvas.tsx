@@ -106,7 +106,7 @@ export default function AlgebraCanvas({
                     <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
                     <div className="text-white/50 text-[10px] uppercase tracking-[0.2em] mb-4">{translations.processing_core}</div>
                     <div className="text-3xl font-black text-neon-green">
-                        <InlineMath math={data.formula || "f(x)"} />
+                        {typeof data.formula === "string" ? <InlineMath math={data.formula} /> : null}
                     </div>
                     {/* Gears decoration (css animation usually) */}
                     <div className="absolute bottom-2 right-2 flex gap-1 animate-pulse">

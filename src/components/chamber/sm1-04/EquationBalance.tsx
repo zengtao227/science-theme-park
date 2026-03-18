@@ -49,8 +49,12 @@ export default function EquationBalance({
 
   const visualization = useMemo(() => {
     const renderBalance = () => {
-      const left = quest?.left ?? "x + 2";
-      const right = quest?.right ?? "5";
+      const equationSides =
+        typeof quest?.equation === "string" && quest.equation.includes("=")
+          ? quest.equation.split("=").map((part: string) => part.trim())
+          : null;
+      const left = typeof quest?.left === "string" ? quest.left : (equationSides?.[0] ?? "");
+      const right = typeof quest?.right === "string" ? quest.right : (equationSides?.[1] ?? "");
 
       return (
         <svg width={canvasSize} height={250} className="mx-auto bg-black/50 rounded-xl border border-white/10">

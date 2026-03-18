@@ -1300,7 +1300,7 @@ export default function G101AdvancedPage() {
       monitorContent={
         <div className="space-y-4">
           <DerivativeVisualization
-            functionLatex={currentQuest?.functionLatex || "f(x) = x^{2}"}
+            functionLatex={currentQuest?.functionLatex ?? ""}
             xPosition={2}
             translations={{
               title: gm1_01_advanced_t.visualization.title,
