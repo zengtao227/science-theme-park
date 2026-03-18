@@ -153,11 +153,12 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
                 <text x={padding - 15} y={padding + aw + bw / 2} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw + bw / 2})`}>{hideRoots ? "b" : b}</text>
                 </svg>
 
-                <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
-                    {translations.ui.geometry_proof}<br />
-                    {translations.ui.binomial_formula}<br />
-                    {translations.ui.node_zurich}
-                </div>
+            </div>
+
+            <div className="mt-3 text-[8px] font-mono text-white/60 text-right uppercase shrink-0">
+                {translations.ui.geometry_proof}<br />
+                {translations.ui.binomial_formula}<br />
+                {translations.ui.node_zurich}
             </div>
         </div>
     );
