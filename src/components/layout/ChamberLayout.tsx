@@ -750,13 +750,14 @@ export default function ChamberLayout({
                 ))}
             </div>
 
-            <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-between tracking-[0.4em] text-white/80 uppercase">
-                <span>{footerLeft}</span>
-                <span className="flex items-center gap-2">
-                    <Sigma className="w-3 h-3 text-white" />
-                    {checkStatus ? (checkStatus.ok ? translations.correct : translations.incorrect) : (translations.ready || "SYSTEM READY")}
-                </span>
-            </footer>
+            {checkStatus && (
+                <footer className="p-3 border-t-2 border-white bg-black text-[10px] font-black flex justify-end tracking-[0.4em] text-white/80 uppercase">
+                    <span className="flex items-center gap-2">
+                        <Sigma className="w-3 h-3 text-white" />
+                        {checkStatus.ok ? translations.correct : translations.incorrect}
+                    </span>
+                </footer>
+            )}
 
             <style jsx global>{`
                 @media print {

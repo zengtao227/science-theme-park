@@ -177,7 +177,6 @@ export default function GP1_02_RelativityLab() {
                         {t("gp1_02.back")}
                     </Link>
                 </div>
-                <div className="text-sm text-cyan-300/70">{t("gp1_02.footer_left")}</div>
             </div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">

@@ -225,7 +225,6 @@ export default function GP1_01_AtomicCore() {
                         {t("gp1_01.back")}
                     </Link>
                 </div>
-                <div className="text-sm text-cyan-300/70">{t("gp1_01.footer_left")}</div>
             </div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
