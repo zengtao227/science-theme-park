@@ -3851,6 +3851,7 @@ export const cnMath = {
             relationship: "关系：",
             relationship_with_skew: "平行、垂直、相交或异面",
             relationship_basic: "平行、垂直或相交",
+            intersection: "交点",
             intersection_point: "交点：",
             point_3d_placeholder: "(x, y, z)"
         },

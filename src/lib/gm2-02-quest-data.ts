@@ -921,7 +921,7 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
           opacity: 0.3
         }],
         points: intersection ? [
-          { coordinates: [intersection.x, intersection.y, intersection.z], label: "Intersection", color: "red" }
+          { coordinates: [intersection.x, intersection.y, intersection.z], label: labelText(t, "intersection", "Intersection"), color: "red" }
         ] : []
       }
     });

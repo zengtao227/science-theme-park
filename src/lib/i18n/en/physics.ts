@@ -1417,6 +1417,19 @@ export const enPhysics = {
                 monitor_title: "SP3.03_ENERGY_HUB",
                 footer_left: "SP3.03_MECHANICS // NODE: BASEL",
                 stages: { potential: "POTENTIAL ENERGY", kinetic: "KINETIC ENERGY", work: "POWER OUTPUT" },
+                monitor: {
+                        title: "BASEL ENERGY AUDIT",
+                        hub_label: "IWB",
+                        sources: {
+                                solar: "SOLAR",
+                                hydro: "HYDRO",
+                                grid: "GRID"
+                        },
+                        meta: {
+                                efficiency: "Efficiency",
+                                grid_load: "Grid Load"
+                        }
+                },
                 placeholders: {
                         joules: "Joules",
                         value: "value",

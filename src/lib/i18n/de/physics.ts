@@ -1517,6 +1517,19 @@ export const dePhysics = {
                 monitor_title: "SP3.03_ENERGIE_HUB",
                 footer_left: "SP3.03_MECHANIK // KNOTEN: BASEL",
                 stages: { potential: "POTENTIELLE ENERGIE", kinetic: "KINETISCHE ENERGIE", work: "LEISTUNG" },
+                monitor: {
+                        title: "BASELER ENERGIEAUDIT",
+                        hub_label: "IWB",
+                        sources: {
+                                solar: "SOLAR",
+                                hydro: "WASSERKRAFT",
+                                grid: "NETZ"
+                        },
+                        meta: {
+                                efficiency: "Wirkungsgrad",
+                                grid_load: "Netzlast"
+                        }
+                },
                 placeholders: {
                         joules: "Joule",
                         value: "Wert",

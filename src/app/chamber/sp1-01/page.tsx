@@ -83,8 +83,8 @@ export default function SP101_ForcesBasics() {
         next: t("sp1_01.next"),
         correct: t("sp1_01.correct"),
         incorrect: t("sp1_01.incorrect"),
-        ready: "FORCE_SYSTEM_OK",
-        monitor_title: "VECTOR_SCAN_V1"
+        ready: t("sp1_01.ready"),
+        monitor_title: t("sp1_01.monitor_title")
       }}
       monitorContent={
         <div className="flex flex-col items-center justify-center h-full w-full">

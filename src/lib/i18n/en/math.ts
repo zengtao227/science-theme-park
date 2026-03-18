@@ -3853,6 +3853,7 @@ export const enMath = {
             relationship: "Relationship:",
             relationship_with_skew: "parallel, perpendicular, intersecting, or skew",
             relationship_basic: "parallel, perpendicular, or intersecting",
+            intersection: "Intersection",
             intersection_point: "Intersection point:",
             point_3d_placeholder: "(x, y, z)"
         },

@@ -95,16 +95,16 @@ export default function SP303Page() {
       }}
       monitorContent={
         <FlowMonitor
-          title="BASEL_ENERGY_AUDIT"
-          hubLabel="IWB"
+          title={t("sp3_03.monitor.title")}
+          hubLabel={t("sp3_03.monitor.hub_label")}
           sources={[
-            { label: "SOLAR", value: 45, color: "bg-yellow-400" },
-            { label: "HYDRO", value: 30, color: "bg-blue-400" },
-            { label: "GRID", value: 25, color: "bg-purple-400" }
+            { label: t("sp3_03.monitor.sources.solar"), value: 45, color: "bg-yellow-400" },
+            { label: t("sp3_03.monitor.sources.hydro"), value: 30, color: "bg-blue-400" },
+            { label: t("sp3_03.monitor.sources.grid"), value: 25, color: "bg-purple-400" }
           ]}
           meta={[
-            { label: "Efficiency", value: "92.4%", color: "text-green-400" },
-            { label: "Grid_Load", value: "1.2 GW", color: "text-cyan-400" }
+            { label: t("sp3_03.monitor.meta.efficiency"), value: "92.4%", color: "text-green-400" },
+            { label: t("sp3_03.monitor.meta.grid_load"), value: "1.2 GW", color: "text-cyan-400" }
           ]}
         />
       }

@@ -1452,6 +1452,19 @@ export const cnPhysics = {
         monitor_title: "SP3.03_能量中枢",
         footer_left: "SP3.03_力学 // 节点：巴塞尔",
         stages: { potential: "重力势能", kinetic: "动能", work: "功率输出" },
+        monitor: {
+            title: "巴塞尔能源审计",
+            hub_label: "IWB",
+            sources: {
+                solar: "太阳能",
+                hydro: "水电",
+                grid: "电网"
+            },
+            meta: {
+                efficiency: "效率",
+                grid_load: "电网负载"
+            }
+        },
         placeholders: {
             joules: "焦耳",
             value: "数值",

@@ -3834,6 +3834,7 @@ export const deMath = {
             relationship: "Beziehung:",
             relationship_with_skew: "parallel, senkrecht, schneidend oder windschief",
             relationship_basic: "parallel, senkrecht oder schneidend",
+            intersection: "Schnittpunkt",
             intersection_point: "Schnittpunkt:",
             point_3d_placeholder: "(x, y, z)"
         },
