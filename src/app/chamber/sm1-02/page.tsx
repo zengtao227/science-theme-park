@@ -9,6 +9,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlgebraCanvas, { type AlgebraVisualMode } from "@/components/chamber/sm1-02/AlgebraCanvas";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "VARIABLES" | "TERMS" | "SUBSTITUTION";
 
@@ -299,6 +300,27 @@ export default function SM102Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
+    const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+        { id: "VARIABLES", label: sm1_02_t.stages.variables },
+        { id: "TERMS", label: sm1_02_t.stages.terms },
+        { id: "SUBSTITUTION", label: sm1_02_t.stages.substitution },
+    ], [sm1_02_t]);
+    const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+        BASIC: sm1_02_t.difficulty.basic,
+        CORE: sm1_02_t.difficulty.core,
+        ADVANCED: sm1_02_t.difficulty.advanced,
+        ELITE: sm1_02_t.difficulty.elite,
+    }), [sm1_02_t]);
+    const printSections = useMemo(() => buildQuestPrintSections<S102Quest, Stage>({
+        moduleTitle: sm1_02_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: difficultyLabelMap,
+        buildPool,
+        showHints: true,
+        maxHints: 1,
+    }), [buildPool, difficultyLabelMap, sm1_02_t.title, stages]);
+
     // Format Visual Data for component
     const visualProps = currentQuest ? {
         mode: currentQuest?.visualMode,
@@ -316,21 +338,18 @@ export default function SM102Page() {
             moduleCode="SM1.02" // ensure uniform capital case
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "VARIABLES", label: sm1_02_t.stages.variables },
-                { id: "TERMS", label: sm1_02_t.stages.terms },
-                { id: "SUBSTITUTION", label: sm1_02_t.stages.substitution },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
             onVerify={verify}
             onNext={next}
             successRate={successRate}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={{
                 back: sm1_02_t.back, check: sm1_02_t.check, next: sm1_02_t.next, correct: sm1_02_t.correct, incorrect: sm1_02_t.incorrect,
                 monitor_title: sm1_02_t.monitor_title,
-                difficulty: { basic: sm1_02_t.difficulty.basic, core: sm1_02_t.difficulty.core, advanced: sm1_02_t.difficulty.advanced, elite: sm1_02_t.difficulty.elite },
+                difficulty: { basic: difficultyLabelMap.BASIC, core: difficultyLabelMap.CORE, advanced: difficultyLabelMap.ADVANCED, elite: difficultyLabelMap.ELITE },
             }}
             monitorContent={
                 <div className="w-full h-full flex items-center justify-center">

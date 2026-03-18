@@ -5,6 +5,8 @@ import { BlockMath, InlineMath } from "react-katex";
 import type { Difficulty, Quest } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 
+export const DEFAULT_PRINT_DIFFICULTIES: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
+
 export type PrintSection = {
     id: string;
     label: string;

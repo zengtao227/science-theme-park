@@ -2,13 +2,14 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlchemistCanvas, { type SystemsVisual } from "@/components/chamber/sm2-06/AlchemistCanvas";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "SUBSTITUTION" | "ELIMINATION" | "MISSION";
 
@@ -1082,6 +1083,27 @@ export default function S206Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "SUBSTITUTION", label: t("sm2_06.stages.substitution") },
+    { id: "ELIMINATION", label: t("sm2_06.stages.elimination") },
+    { id: "MISSION", label: t("sm2_06.stages.mission") },
+  ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm2_06.difficulty.basic"),
+    CORE: t("sm2_06.difficulty.core"),
+    ADVANCED: t("sm2_06.difficulty.advanced"),
+    ELITE: t("sm2_06.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S206Quest, Stage>({
+    moduleTitle: t("sm2_06.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -1092,17 +1114,14 @@ export default function S206Page() {
       moduleCode="SM2.06"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "SUBSTITUTION", label: t("sm2_06.stages.substitution") },
-        { id: "ELIMINATION", label: t("sm2_06.stages.elimination") },
-        { id: "MISSION", label: t("sm2_06.stages.mission") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       successRate={successRate}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm2_06.back"),
         check: t("sm2_06.check"),
@@ -1111,10 +1130,10 @@ export default function S206Page() {
         incorrect: t("sm2_06.incorrect"),
         monitor_title: t("sm2_06.monitor_title"),
         difficulty: {
-          basic: t("sm2_06.difficulty.basic"),
-          core: t("sm2_06.difficulty.core"),
-          advanced: t("sm2_06.difficulty.advanced"),
-          elite: t("sm2_06.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

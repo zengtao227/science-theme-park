@@ -10,6 +10,7 @@ import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "RECIPES" | "PERCENT" | "MIXTURES";
 
@@ -584,11 +585,26 @@ export default function SM105Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    const stagesProps = useMemo(() => [
+    const stagesProps = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "RECIPES", label: sm1_05_t.stages.recipes },
         { id: "PERCENT", label: sm1_05_t.stages.percent },
         { id: "MIXTURES", label: sm1_05_t.stages.mixtures },
     ], [sm1_05_t]);
+    const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+        BASIC: sm1_05_t.difficulty.basic,
+        CORE: sm1_05_t.difficulty.core,
+        ADVANCED: sm1_05_t.difficulty.advanced,
+        ELITE: sm1_05_t.difficulty.elite,
+    }), [sm1_05_t]);
+    const printSections = useMemo(() => buildQuestPrintSections<S105Quest, Stage>({
+        moduleTitle: sm1_05_t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: difficultyLabelMap,
+        buildPool,
+        showHints: true,
+        maxHints: 1,
+    }), [buildPool, difficultyLabelMap, sm1_05_t.title, stagesProps]);
 
     const hint = getHint();
 
@@ -608,6 +624,7 @@ export default function SM105Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
+            printSections={printSections}
             translations={{
                 back: sm1_05_t.back,
                 check: sm1_05_t.check,
@@ -616,10 +633,10 @@ export default function SM105Page() {
                 incorrect: sm1_05_t.incorrect,
                 monitor_title: sm1_05_t.monitor_title,
                 difficulty: {
-                    basic: sm1_05_t.difficulty.basic,
-                    core: sm1_05_t.difficulty.core,
-                    advanced: sm1_05_t.difficulty.advanced,
-                    elite: sm1_05_t.difficulty.elite,
+                    basic: difficultyLabelMap.BASIC,
+                    core: difficultyLabelMap.CORE,
+                    advanced: difficultyLabelMap.ADVANCED,
+                    elite: difficultyLabelMap.ELITE,
                 },
             }}
             monitorContent={
@@ -677,7 +694,7 @@ export default function SM105Page() {
                                         <input
                                             value={inputs[slot.id] || ""}
                                             onChange={(e) => setInputs((prev) => ({ ...prev, [slot.id]: e.target.value }))}
-                                            className="w-full bg-black border-2 border-white/10 group-focus-within:border-neon-cyan p-5 text-center outline-none transition-all font-black text-3xl text-white rounded-2xl shadow-2xl placeholder:text-white/10"
+                                            className="w-full bg-black border-2 border-white/10 group-focus-within:border-neon-cyan p-5 text-center outline-none transition-all font-black text-3xl text-white rounded-2xl shadow-2xl placeholder:text-white/35"
                                             placeholder={slot.placeholder}
                                             onKeyDown={(e) => e.key === "Enter" && verify()}
                                         />

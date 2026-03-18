@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import SequenceVisualization from "@/components/chamber/sm2-11/SequenceVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "ARITHMETIC" | "GEOMETRIC" | "SERIES";
 type SequenceQuest = Quest & { stage: Stage; context?: string; scenario?: string };
@@ -205,6 +206,21 @@ export default function SM211Page() {
     { id: "GEOMETRIC" as Stage, label: t("sm2_11.stages.geometric") },
     { id: "SERIES" as Stage, label: t("sm2_11.stages.series") },
   ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm2_11.difficulty.basic"),
+    CORE: t("sm2_11.difficulty.core"),
+    ADVANCED: t("sm2_11.difficulty.advanced"),
+    ELITE: t("sm2_11.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<SequenceQuest, Stage>({
+    moduleTitle: t("sm2_11.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stagesProps, t]);
 
   const hint = getHint();
 
@@ -224,6 +240,7 @@ export default function SM211Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm2_11.back"),
         check: t("sm2_11.check"),
@@ -232,10 +249,10 @@ export default function SM211Page() {
         incorrect: t("sm2_11.incorrect"),
         monitor_title: t("sm2_11.monitor_title"),
         difficulty: {
-          basic: t("sm2_11.difficulty.basic"),
-          core: t("sm2_11.difficulty.core"),
-          advanced: t("sm2_11.difficulty.advanced"),
-          elite: t("sm2_11.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

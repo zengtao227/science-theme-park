@@ -7,6 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquationBalance from "@/components/chamber/sm1-04/EquationBalance";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 
@@ -1224,6 +1225,28 @@ export default function SM104Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "BALANCE", label: t("sm1_04.stages.balance") },
+    { id: "SOLVE", label: t("sm1_04.stages.solve") },
+    { id: "TRANSFORM", label: t("sm1_04.stages.transform") },
+    { id: "APPLICATIONS", label: t("sm1_04.stages.applications") },
+  ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm1_04.difficulty.basic"),
+    CORE: t("sm1_04.difficulty.core"),
+    ADVANCED: t("sm1_04.difficulty.advanced"),
+    ELITE: t("sm1_04.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<EquationQuest, Stage>({
+    moduleTitle: t("sm1_04.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -1234,17 +1257,13 @@ export default function SM104Page() {
       moduleCode="SM1.04"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "BALANCE", label: t("sm1_04.stages.balance") },
-        { id: "SOLVE", label: t("sm1_04.stages.solve") },
-        { id: "TRANSFORM", label: t("sm1_04.stages.transform") },
-        { id: "APPLICATIONS", label: t("sm1_04.stages.applications") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm1_04.back"),
         check: t("sm1_04.check"),
@@ -1253,10 +1272,10 @@ export default function SM104Page() {
         incorrect: t("sm1_04.incorrect"),
         monitor_title: t("sm1_04.monitor_title"),
         difficulty: {
-          basic: t("sm1_04.difficulty.basic"),
-          core: t("sm1_04.difficulty.core"),
-          advanced: t("sm1_04.difficulty.advanced"),
-          elite: t("sm1_04.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

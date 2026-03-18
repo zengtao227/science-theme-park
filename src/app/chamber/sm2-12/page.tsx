@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import CombinatoricsVisualization from "@/components/chamber/sm2-12/CombinatoricsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "PERMUTATIONS" | "COMBINATIONS" | "PROBABILITY";
 type ComboQuest = Quest & { stage: Stage; context?: string; scenario?: string };
@@ -216,6 +217,21 @@ export default function SM212Page() {
     { id: "COMBINATIONS" as Stage, label: t("sm2_12.stages.combinations") },
     { id: "PROBABILITY" as Stage, label: t("sm2_12.stages.probability") },
   ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm2_12.difficulty.basic"),
+    CORE: t("sm2_12.difficulty.core"),
+    ADVANCED: t("sm2_12.difficulty.advanced"),
+    ELITE: t("sm2_12.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<ComboQuest, Stage>({
+    moduleTitle: t("sm2_12.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stagesProps, t]);
 
   const hint = getHint();
 
@@ -235,6 +251,7 @@ export default function SM212Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm2_12.back"),
         check: t("sm2_12.check"),
@@ -243,10 +260,10 @@ export default function SM212Page() {
         incorrect: t("sm2_12.incorrect"),
         monitor_title: t("sm2_12.monitor_title"),
         difficulty: {
-          basic: t("sm2_12.difficulty.basic"),
-          core: t("sm2_12.difficulty.core"),
-          advanced: t("sm2_12.difficulty.advanced"),
-          elite: t("sm2_12.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

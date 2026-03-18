@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BinomialSquare2D from "@/components/chamber/sm2-01/BinomialSquare2D";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
@@ -427,14 +428,29 @@ export default function S201Page() {
     initialStage: questMode,
   });
 
-  const stages = [
+  const stages = useMemo<{ id: QuestMode; label: string }[]>(() => [
     { id: "EXPLORE", label: sm2_01_t.tabs?.explore },
     { id: "ARCHITECT", label: sm2_01_t.tabs?.architect },
     { id: "SCRAPPER", label: sm2_01_t.tabs?.scrapper },
     { id: "SPEEDSTER", label: sm2_01_t.tabs?.speedster },
     { id: "VOYAGER", label: sm2_01_t.tabs?.voyager },
     { id: "ELITE", label: sm2_01_t.tabs?.elite },
-  ];
+  ], [sm2_01_t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: sm2_01_t.difficulty?.basic,
+    CORE: sm2_01_t.difficulty?.core,
+    ADVANCED: sm2_01_t.difficulty?.advanced,
+    ELITE: sm2_01_t.difficulty?.elite,
+  }), [sm2_01_t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S201Quest, QuestMode>({
+    moduleTitle: sm2_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, sm2_01_t.title, stages]);
 
   const handleModeChange = (mode: string) => {
     setQuestMode(mode as QuestMode);
@@ -512,6 +528,7 @@ export default function S201Page() {
       onVerify={verify}
       onNext={next}
       successRate={successRate}
+      printSections={printSections}
       translations={{
         back: sm2_01_t.back,
         check: sm2_01_t.check,
@@ -520,10 +537,10 @@ export default function S201Page() {
         incorrect: sm2_01_t.solve_fail,
         monitor_title: sm2_01_t.ui?.visual_reference_position ?? "",
         difficulty: {
-          basic: sm2_01_t.difficulty?.basic,
-          core: sm2_01_t.difficulty?.core,
-          advanced: sm2_01_t.difficulty?.advanced,
-          elite: sm2_01_t.difficulty?.elite,
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

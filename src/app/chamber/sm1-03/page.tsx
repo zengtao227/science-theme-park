@@ -6,6 +6,7 @@ import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import IntegerCanvas from "@/components/chamber/sm1-03/IntegerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
@@ -986,6 +987,27 @@ export default function SM103Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "NUMBER_LINE", label: t("sm1_03.stages.number_line") },
+    { id: "RATIONALS", label: t("sm1_03.stages.rationals") },
+    { id: "QUADRANTS", label: t("sm1_03.stages.quadrants") },
+  ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm1_03.difficulty.basic"),
+    CORE: t("sm1_03.difficulty.core"),
+    ADVANCED: t("sm1_03.difficulty.advanced"),
+    ELITE: t("sm1_03.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<IntegerQuest, Stage>({
+    moduleTitle: t("sm1_03.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -996,16 +1018,13 @@ export default function SM103Page() {
       moduleCode="SM1.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "NUMBER_LINE", label: t("sm1_03.stages.number_line") },
-        { id: "RATIONALS", label: t("sm1_03.stages.rationals") },
-        { id: "QUADRANTS", label: t("sm1_03.stages.quadrants") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
+      printSections={printSections}
       translations={{
         back: t("sm1_03.back"),
         check: t("sm1_03.check"),
@@ -1014,10 +1033,10 @@ export default function SM103Page() {
         incorrect: t("sm1_03.incorrect"),
         monitor_title: t("sm1_03.monitor_title"),
         difficulty: {
-          basic: t("sm1_03.difficulty.basic"),
-          core: t("sm1_03.difficulty.core"),
-          advanced: t("sm1_03.difficulty.advanced"),
-          elite: t("sm1_03.difficulty.elite"),
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
         },
       }}
       monitorContent={

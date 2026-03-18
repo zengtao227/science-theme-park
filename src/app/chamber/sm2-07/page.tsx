@@ -2,13 +2,14 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CoordinateCanvas2D from "@/components/chamber/sm2-07/CoordinateCanvas2D";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "DISTANCE" | "MIDPOINT" | "SLOPE";
 
@@ -336,6 +337,27 @@ export default function S207Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
+  const stages = useMemo<{ id: Stage; label: string }[]>(() => [
+    { id: "DISTANCE", label: t("sm2_07.stages.distance") },
+    { id: "MIDPOINT", label: t("sm2_07.stages.midpoint") },
+    { id: "SLOPE", label: t("sm2_07.stages.slope") },
+  ], [t]);
+  const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
+    BASIC: t("sm2_07.difficulty.basic"),
+    CORE: t("sm2_07.difficulty.core"),
+    ADVANCED: t("sm2_07.difficulty.advanced"),
+    ELITE: t("sm2_07.difficulty.elite"),
+  }), [t]);
+  const printSections = useMemo(() => buildQuestPrintSections<S207Quest, Stage>({
+    moduleTitle: t("sm2_07.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: difficultyLabelMap,
+    buildPool,
+    showHints: true,
+    maxHints: 1,
+  }), [buildPool, difficultyLabelMap, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -346,17 +368,14 @@ export default function S207Page() {
       moduleCode="SM2.07"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "DISTANCE", label: t("sm2_07.stages.distance") },
-        { id: "MIDPOINT", label: t("sm2_07.stages.midpoint") },
-        { id: "SLOPE", label: t("sm2_07.stages.slope") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       successRate={successRate}
       checkStatus={lastCheck}
+      printSections={printSections}
       monitorContent={
         <div className="space-y-4">
           <CoordinateCanvas2D
@@ -386,7 +405,12 @@ export default function S207Page() {
         correct: t("sm2_07.correct"),
         incorrect: t("sm2_07.incorrect"),
         monitor_title: t("sm2_07.monitor_title"),
-        difficulty: t("sm2_07.difficulty")
+        difficulty: {
+          basic: difficultyLabelMap.BASIC,
+          core: difficultyLabelMap.CORE,
+          advanced: difficultyLabelMap.ADVANCED,
+          elite: difficultyLabelMap.ELITE,
+        }
       }}
     >
       <div className="space-y-10">
