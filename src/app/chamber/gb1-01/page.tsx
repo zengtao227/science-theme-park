@@ -227,14 +227,12 @@ export default function GB101Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
             translations={{
                 back: t.back,
                 check: t.check,
                 next: t.next,
                 correct: t.correct,
                 incorrect: t.incorrect,
-                ready: t.ready,
                 monitor_title: t.monitor_title,
                 difficulty: t.difficulty,
             }}

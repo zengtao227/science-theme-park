@@ -55,7 +55,6 @@ export default function SP202OhmsLaw() {
             series_circuits: t("sp2_02.scenarios.series_circuits"),
             parallel_circuits: t("sp2_02.scenarios.parallel_circuits")
         },
-        footer_left: t("sp2_02.footer_left"),
         check: t("sp2_02.check"),
         next: t("sp2_02.next"),
         correct: t("sp2_02.correct"),
@@ -327,7 +326,6 @@ export default function SP202OhmsLaw() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sp2_02_t.footer_left}
             translations={{
                 back: sp2_02_t.back,
                 difficulty: sp2_02_t.difficulty,

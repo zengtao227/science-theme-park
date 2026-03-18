@@ -34,12 +34,10 @@ export default function SP103WeatherClimate() {
             weather: t("sp1_03.stages.weather"),
             climate: t("sp1_03.stages.climate")
         },
-        footer_left: t("sp1_03.footer_left"),
         check: t("sp1_03.check"),
         next: t("sp1_03.next"),
         correct: t("sp1_03.correct"),
         incorrect: t("sp1_03.incorrect"),
-        ready: t("sp1_03.ready"),
         monitor_title: t("sp1_03.monitor_title"),
         loading: t("sp1_03.loading"),
         labels: {
@@ -95,7 +93,6 @@ export default function SP103WeatherClimate() {
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sp1_03_t.footer_left}
             translations={{
                 back: sp1_03_t.back,
                 difficulty: sp1_03_t.difficulty,
@@ -103,7 +100,6 @@ export default function SP103WeatherClimate() {
                 next: sp1_03_t.next,
                 correct: sp1_03_t.correct,
                 incorrect: sp1_03_t.incorrect,
-                ready: sp1_03_t.ready,
                 monitor_title: sp1_03_t.monitor_title
             }}
         >

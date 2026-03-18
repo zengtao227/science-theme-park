@@ -30,7 +30,6 @@ export default function CellDivisionLab() {
                 next: t("sb1_03.next"),
                 correct: t("sb1_03.correct"),
                 incorrect: t("sb1_03.incorrect"),
-                ready: t("sb1_03.ready"),
                 monitor_title: t("sb1_03.monitor_title"),
                 difficulty: {
                     basic: t("sb1_03.difficulty.basic"),

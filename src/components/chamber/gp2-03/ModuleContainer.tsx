@@ -43,11 +43,6 @@ export default function ModuleContainer({
       cn: "GP2.03 气体定律",
       de: "GP2.03 Gasgesetze",
     }[currentLanguage],
-    footerIntro: {
-      en: "Master the fundamental gas laws",
-      cn: "掌握基础气体定律",
-      de: "Beherrschen Sie die grundlegenden Gasgesetze",
-    }[currentLanguage],
     back: {
       en: "Back",
       cn: "返回",
@@ -237,7 +232,6 @@ export default function ModuleContainer({
         stages={stages}
         currentStage={currentStage}
         onStageChange={handleStageChange}
-        footerLeft={ui.footerIntro}
         translations={{
           back: ui.back,
           check: ui.check,
@@ -260,12 +254,6 @@ export default function ModuleContainer({
     );
   }
 
-  const localizedFooter = currentLanguage === "cn"
-    ? `任务 ${currentQuestIndex + 1}/${stageQuests.length}`
-    : currentLanguage === "de"
-      ? `Aufgabe ${currentQuestIndex + 1} von ${stageQuests.length}`
-      : `Quest ${currentQuestIndex + 1} of ${stageQuests.length}`;
-
   return (
     <ChamberLayout
       title={ui.title}
@@ -275,7 +263,6 @@ export default function ModuleContainer({
       stages={stages}
       currentStage={currentStage}
       onStageChange={handleStageChange}
-      footerLeft={localizedFooter}
       translations={{
         back: ui.back,
         check: ui.check,

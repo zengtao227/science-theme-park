@@ -121,7 +121,6 @@ export default function SM213Page() {
                 next: t("sm2_13.next"),
                 correct: t("sm2_13.correct"),
                 incorrect: t("sm2_13.incorrect"),
-                ready: t("sm2_13.ready"),
                 monitor_title: t("sm2_13.monitor_title"),
                 difficulty: {
                     basic: t("sm2_13.difficulty.basic"),
@@ -204,7 +203,6 @@ export default function SM213Page() {
             onNext={next}
             checkStatus={lastCheck}
             translations={sm2_13_t.translations}
-            footerLeft={t("sm2_13.footer_left")}
             monitorContent={
                 <TransformationMonitor
                     quest={currentQuest}

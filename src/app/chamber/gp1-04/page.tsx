@@ -39,9 +39,7 @@ export default function P104Page() {
     next: t("gp1_04.next"),
     correct: t("gp1_04.correct"),
     incorrect: t("gp1_04.incorrect"),
-    ready: t("gp1_04.ready"),
     monitor_title: t("gp1_04.monitor_title"),
-    footer_left: t("gp1_04.footer_left"),
     objective_title: t("gp1_04.objective_title"),
     target_title: t("gp1_04.target_title"),
     difficulty: {
@@ -309,14 +307,12 @@ export default function P104Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={gp1_04_t.footer_left}
       translations={{
         back: gp1_04_t.back,
         check: gp1_04_t.check,
         next: gp1_04_t.next,
         correct: gp1_04_t.correct,
         incorrect: gp1_04_t.incorrect,
-        ready: gp1_04_t.ready,
         monitor_title: gp1_04_t.monitor_title,
         difficulty: gp1_04_t.difficulty,
       }}

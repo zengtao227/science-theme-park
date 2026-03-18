@@ -560,7 +560,6 @@ export default function S202Page() {
     next: t("sm2_02.next"),
     correct: t("sm2_02.correct"),
     incorrect: t("sm2_02.incorrect"),
-    ready: t("sm2_02.ready"),
     yes: t("sm2_02.yes"),
     no: t("sm2_02.no"),
     monitor_title: t("sm2_02.monitor_title"),
@@ -751,7 +750,6 @@ export default function S202Page() {
         next: sm2_02_t.next,
         correct: sm2_02_t.correct,
         incorrect: sm2_02_t.incorrect,
-        ready: sm2_02_t.ready,
         monitor_title: sm2_02_t.monitor_title,
         difficulty: {
           basic: sm2_02_t.difficulty.basic,

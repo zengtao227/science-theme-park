@@ -689,7 +689,6 @@ export default function SP304Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sp3_04.footer_left")}
             translations={{
                 back: t("sp3_04.back"),
                 check: t("sp3_04.check"),
@@ -727,8 +726,7 @@ export default function SP304Page() {
                         next: t("sp3_04.next"),
                         correct: t("sp3_04.correct"),
                         incorrect: t("sp3_04.incorrect"),
-                        footer_left: t("sp3_04.footer_left"),
-                    }}
+                        }}
                 />
             }
         >

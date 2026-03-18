@@ -84,7 +84,6 @@ export default function SP303Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sp3_03.footer_left")}
       translations={{
         back: t("sp3_03.back"),
         check: t("sp3_03.check"),

@@ -111,9 +111,7 @@ export default function SM209Page() {
     hide_steps: t("sm2_09.hide_steps"),
     correct: t("sm2_09.correct"),
     incorrect: t("sm2_09.incorrect"),
-    ready: t("sm2_09.ready"),
     monitor_title: t("sm2_09.monitor_title"),
-    footer_left: t("sm2_09.footer_left"),
     scenario_title: t("sm2_09.labels.scenario_title"),
     problem_title: t("sm2_09.labels.problem_title"),
     solution_title: t("sm2_09.labels.solution_title"),
@@ -402,14 +400,12 @@ export default function SM209Page() {
         checkStatus={lastCheck}
         onVerify={handleVerify}
         onNext={handleNext}
-        footerLeft={sm2_09_t.footer_left}
         translations={{
           back: sm2_09_t.back,
           check: sm2_09_t.check,
           next: sm2_09_t.next,
           correct: sm2_09_t.correct,
           incorrect: sm2_09_t.incorrect,
-          ready: sm2_09_t.ready,
           difficulty: sm2_09_t.difficulty,
         }}
       >
@@ -444,7 +440,6 @@ export default function SM209Page() {
       ]}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChangeLocal(s as Stage)}
-      footerLeft={sm2_09_t.footer_left}
       printSections={printableSections}
       translations={{
         back: sm2_09_t.back,
@@ -452,7 +447,6 @@ export default function SM209Page() {
         next: sm2_09_t.next,
         correct: sm2_09_t.correct,
         incorrect: sm2_09_t.incorrect,
-        ready: sm2_09_t.ready,
         difficulty: sm2_09_t.difficulty,
       }}
     >

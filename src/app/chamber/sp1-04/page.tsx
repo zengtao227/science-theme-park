@@ -34,12 +34,10 @@ export default function SP104AstronomyBasics() {
             moon_phases: t("sp1_04.stages.moon_phases"),
             seasons: t("sp1_04.stages.seasons")
         },
-        footer_left: t("sp1_04.footer_left"),
         check: t("sp1_04.check"),
         next: t("sp1_04.next"),
         correct: t("sp1_04.correct"),
         incorrect: t("sp1_04.incorrect"),
-        ready: t("sp1_04.ready"),
         monitor_title: t("sp1_04.monitor_title"),
         loading: t("sp1_04.loading"),
         labels: {
@@ -95,7 +93,6 @@ export default function SP104AstronomyBasics() {
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sp1_04_t.footer_left}
             translations={{
                 back: sp1_04_t.back,
                 difficulty: sp1_04_t.difficulty,
@@ -103,7 +100,6 @@ export default function SP104AstronomyBasics() {
                 next: sp1_04_t.next,
                 correct: sp1_04_t.correct,
                 incorrect: sp1_04_t.incorrect,
-                ready: sp1_04_t.ready,
                 monitor_title: sp1_04_t.monitor_title
             }}
         >

@@ -7,7 +7,7 @@
 export const deChemistry = {
     gc3_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "GC3.01 // GLEICHGEWICHTSMEISTER",
@@ -23,9 +23,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "GC3.01_GLEICHGEWICHT_MONITOR",
-        footer_left: "GC3.01_GLEICHGEWICHTSMEISTER // KNOTEN: BASEL",
         labels: {
             reaction: "REVERSIBLE REAKTION",
             particle_count: "PARTIKELANZAHL",
@@ -41,7 +39,7 @@ export const deChemistry = {
             system_temperature: "SYSTEMTEMPERATUR",
             system_pressure: "SYSTEMDRUCK",
             input_answer: "Antwort eingeben",
-            placeholder: "Tippen Sie 1 oder 2",
+            placeholder: "Tippen Sie 1 oder 2"
         },
         mission: {
             title: "MISSION: CHEMISCHES GLEICHGEWICHT",
@@ -115,7 +113,7 @@ export const deChemistry = {
     },
     gc3_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "GC3.02 // KRISTALLPALAST",
@@ -131,9 +129,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "GC3.02_KRISTALL_MONITOR",
-        footer_left: "GC3.02_KRISTALLPALAST // KNOTEN: BASEL",
         labels: {
             lattice_type: "GITTERTYP",
             coordination: "KOORDINATIONSZAHL",
@@ -178,7 +174,7 @@ export const deChemistry = {
     },
     gc1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "GC1.01 // REDOX-TITAN",
@@ -194,9 +190,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "GC1.01_REDOX_MONITOR",
-        footer_left: "GC1.01_REDOX_TITAN // KNOTEN: BASEL",
         labels: {
             cell_potential: "ZELLPOTENTIAL",
             zn_concentration: "Zn^{2}^+-KONZENTRATION",
@@ -244,7 +238,7 @@ export const deChemistry = {
     },
     gc2_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "GC2.01 // KOHLENSTOFF-KÖNIGREICH",
@@ -255,9 +249,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "GC2.01_ORGANIK_MONITOR",
-        footer_left: "GC2.01_KOHLENSTOFF_KOENIGREICH // KNOTEN: BASEL",
         labels: {
             formula: "MOLEKÜLFORMEL",
             iupac_name: "IUPAC-NAME",
@@ -325,7 +317,7 @@ export const deChemistry = {
     },
     sc1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "SC1.01 // GEHEIM LABOR",
@@ -338,9 +330,7 @@ export const deChemistry = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SC1.01_LABOR_MONITOR",
-        footer_left: "SC1.01_GEHEIM_LABOR // KNOTEN: BASEL",
         lab_ui: {
             mystery_lab: "Geheimlabor",
             select_tool: "Werkzeug wählen",
@@ -471,7 +461,7 @@ export const deChemistry = {
         placeholders: {
             g_per_mol: "g/mol",
             mol: "mol",
-            g: "g",
+            g: "g"
         },
         back: "Zurück zum Nexus",
         title: "C1.02 // MOL-MEISTER",
@@ -487,9 +477,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "C1.02_WAAGE",
-        footer_left: "C1.02_MOL_MEISTER // KNOTEN: BASEL",
         input_tip_1dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 1 Dezimalstelle gerundet an.",
         stages: {
             molar_mass: "MOLMASSE",
@@ -543,9 +531,7 @@ export const deChemistry = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "SC1.03_ATOM_MONITOR",
-        footer_left: "SC1.03_ATOMSCHMIEDE // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -575,7 +561,7 @@ export const deChemistry = {
             k: "K",
                     xx: "xx",
             x: "x",
-            xx_dot_x: "xx.x",
+            xx_dot_x: "xx.x"
 },
         prompts: {
             build_mass_number: "A",
@@ -607,9 +593,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SC1.03_ORBITAL_MONITOR",
-        footer_left: "SC1.03_ATOMSCHMIEDE // KNOTEN: BASEL",
         labels: {
             selected_element: "AUSGEWÄHLTES ELEMENT",
             orbital_type: "ORBITALTYP",
@@ -638,7 +622,7 @@ export const deChemistry = {
         placeholders: {
             xx: "xx",
             x: "x",
-            v_1: "1",
+            v_1: "1"
         },
         back: "Zurück zum Nexus",
         title: "SC1.04 // PERIODISCHES PUZZLE",
@@ -654,9 +638,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SC1.04_ATOM_MONITOR",
-        footer_left: "SC1.04_PERIODISCHES_PUZZLE // KNOTEN: BASEL",
         labels: {
             element_info: "ELEMENTINFORMATIONEN",
             formulas: "FORMELN",
@@ -701,7 +683,7 @@ export const deChemistry = {
             v_2: "2",
             v_0: "0",
             v_3: "3",
-            v_12: "12",
+            v_12: "12"
         },
         back: "Zurück zum Nexus",
         title: "SC1.05 // CHEMISCHE BINDUNGEN",
@@ -709,7 +691,6 @@ export const deChemistry = {
         next: "Weiter",
         correct: "Bindung Verifiziert",
         incorrect: "Bindungsfehler",
-        ready: "Bereit",
         monitor_title: "SC1.05_BINDUNGSLABOR",
         difficulty: {
             basic: "BASIS",
@@ -755,7 +736,7 @@ export const deChemistry = {
     },
     sc2_01: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "Zurück zum Nexus",
         title: "C2.01 // CHEMISCHE KINETIK",
@@ -770,9 +751,7 @@ export const deChemistry = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "C2.01_KINETIK_MONITOR",
-        footer_left: "C2.01_CHEMISCHE_KINETIK // KNOTEN: BASEL",
         stages: {
             arrhenius: "ARRHENIUS",
             concentration: "GESCHWINDIGKEITSGESETZ",
@@ -850,7 +829,7 @@ export const deChemistry = {
             hl_e1: "Berechne das Alter aus Isotopendaten.",
             hl_e2: "Berechne das Verzweigungsverhaeltnis der Zerfallskanaele.",
             hl_e3: "Berechne das Aktivitaetsverhaeltnis A2 / A1.",
-            hl_e5: "Berechne das Expositionsalter aus kosmogenen Daten.",
+            hl_e5: "Berechne das Expositionsalter aus kosmogenen Daten."
         },
         problems: {
             arr_temp_300_ea_50: "Novartis-Reaktor bei T=300K, Aktivierungsenergie Ea=50 kJ/mol. Berechnen Sie relative Geschwindigkeitskonstante k.",
@@ -927,9 +906,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Titration akkurat",
         incorrect: "pH-Wert fehlerhaft",
-        ready: "Bereit",
         monitor_title: "SC2.02_TITRATIONS_MONITOR",
-        footer_left: "SC2.02_PH_SENTINEL // KNOTEN: BASEL",
         stages: {
             curves: "PH-KURVEN",
             equivalence: "ÄQUIVALENZ",
@@ -956,7 +933,7 @@ export const deChemistry = {
         },
         placeholders: {
             ml: "mL",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             curve_type: "Der pH-Wert ist {ph}. Säuretyp? (Stark=1, Schwach=2).",
@@ -1038,7 +1015,7 @@ export const deChemistry = {
         placeholders: {
             pressure_bar: "bar",
             volume_l: "L",
-            value: "Wert",
+            value: "Wert"
         },
         back: "Zurück zum Nexus",
         title: "SC2.03 // AERO LABOR",
@@ -1054,9 +1031,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SC2.03_GAS_MONITOR",
-        footer_left: "SC2.03_AERO_LABOR // KNOTEN: BASEL",
         labels: {
             pressure: "DRUCK",
             state_variables: "ZUSTANDSVARIABLEN",
@@ -1102,7 +1077,7 @@ export const deChemistry = {
     sc2_04: {
         placeholders: {
             g_per_100ml: "g/100mL",
-            g: "g",
+            g: "g"
         },
         back: "Zurück zum Nexus",
         title: "SC2.04 // LÖSLICHKEITSLABOR",
@@ -1118,9 +1093,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SC2.04_LÖSLICHKEITS_MONITOR",
-        footer_left: "SC2.04_LÖSLICHKEITSLABOR // KNOTEN: BASEL",
         labels: {
             solubility: "LÖSLICHKEIT",
             saturated: "GESÄTTIGT - Niederschlag bildet sich",
@@ -1171,9 +1144,7 @@ export const deChemistry = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "C3.01_MOLEKÜL_MONITOR",
-        footer_left: "C3.01_MOLEKULARER_ARCHITEKT // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -1191,7 +1162,7 @@ export const deChemistry = {
             groups: "\\text{Gruppen}",
             rings: "\\text{Ringe}",
             degree: "\\text{Grad}",
-            total_word: "Gesamt",
+            total_word: "Gesamt"
         },
         placeholders: {
             question_mark: "?",
@@ -1199,7 +1170,7 @@ export const deChemistry = {
         
             cxhyoz: "CxHyOz",            x_to_y: "x:y",
             v_0: "0",
-            percent: "%",
+            percent: "%"
 },
         hints: {
             carbon_is_black: "\\text{Kohlenstoff ist schwarz.}",
@@ -1220,12 +1191,12 @@ export const deChemistry = {
             look_for_o_n_patterns: "\\text{Nach O,N-Mustern suchen}",
             closed_carbon_chains: "\\text{Geschlossene Kohlenstoffketten}",
             use_formula: "\\text{Formel verwenden}",
-            relative_atomic_masses: "\\text{C=12, H=1, O=16, N=14}",
+            relative_atomic_masses: "\\text{C=12, H=1, O=16, N=14}"
         },
         expressions: {
             approximate: "\\text{Näherungswert}",
             identify: "\\text{Identifizieren}",
-            count: "\\text{Zählen}",
+            count: "\\text{Zählen}"
         },
         prompts: {
             find_carbon_count: "Bestimmen Sie die Anzahl der Kohlenstoffatome in {molecule}.",
@@ -1247,7 +1218,7 @@ export const deChemistry = {
             mass_percent_c: "Wie viel Massenprozent C enthält {molecule}?",
             functional_groups: "Welche funktionellen Gruppen hat {molecule}?",
             ring_structures: "Wie viele Ringsysteme hat {molecule}?",
-            degree_unsaturation: "Wie groß ist der Ungesättigungsgrad von {molecule}?",
+            degree_unsaturation: "Wie groß ist der Ungesättigungsgrad von {molecule}?"
         },
         mission: {
             title: "MOLEKÜL-MONTAGE-LABOR",
@@ -1273,9 +1244,7 @@ export const deChemistry = {
         next: "Weiter",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "SC3.02_ORGANIK_MONITOR",
-        footer_left: "SC3.02_ORGANISCHE_GRUNDLAGEN // KNOTEN: BASEL",
         objective_title: "Aktuelles Missionsziel",
         difficulty: {
             basic: "BASIS",
@@ -1296,7 +1265,7 @@ export const deChemistry = {
         },
         placeholders: {
             cxhy: "CxHy",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             name_formula: "Was ist die Summenformel für {name}?",
@@ -1332,9 +1301,7 @@ export const deChemistry = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "SC3.03_REAKTIONS_MONITOR",
-        footer_left: "SC3.03_ORGANISCHE_REAKTIONEN // KNOTEN: BASEL",
         objective_title: "Aktuelles Missionsziel",
         stages: {
             combustion: "VERBRENNUNG",
@@ -1350,7 +1317,7 @@ export const deChemistry = {
         },
         placeholders: {
             formula: "Formel",
-            ellipsis: "...",
+            ellipsis: "..."
         },
         prompts: {
             combustion: "Vollständige Verbrennung von {reactant} produziert CO_2 und H_2O. Wie viele CO_2-Moleküle?",
@@ -1375,19 +1342,17 @@ export const deChemistry = {
     sc3_05: {
         placeholders: {
             ellipsis: "...",
-            v_0: "0",
+            v_0: "0"
         },
         back: "Zurück zum Nexus",
         title: "SC3.05 // MOLEKULARE SCHMIEDE",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "Orbital-Stabilitätsmonitor",
-        footer_left: "SC3.05_BINDUNG // KNOTEN: BASEL",
         check: "Überprüfen",
         next: "Nächste Synthese",
         correct: "Geometrie optimiert",
         incorrect: "Bindungskonflikt",
-        ready: "Bereit",
         stages: {
             vsepr: "VSEPR-GEOMETRIE",
             hybridization: "ORBITAL-HYBRIDISIERUNG",
@@ -1440,9 +1405,7 @@ export const deChemistry = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SC3.04_FUNKTIONALE_MONITOR",
-        footer_left: "SC3.04_FUNKTIONALER_HORIZONT // KNOTEN: BASEL",
         objective_title: "Aktuelles Missionsziel",
         stages: {
             alcohols: "ALKOHOLE & ALDEHYDE",
@@ -1477,7 +1440,7 @@ export const deChemistry = {
     gc1_02: {
         placeholders: {
             decimal_mass: "0.000",
-            one_or_two: "1 oder 2",
+            one_or_two: "1 oder 2"
         },
         back: "Zurück zum Nexus",
         title: "GC1.02 // ELEKTROLYSE-LABOR",
@@ -1491,9 +1454,7 @@ export const deChemistry = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "GC1.02_ELEKTROLYSE_MONITOR",
-        footer_left: "GC1.02_ELEKTROLYSE-LABOR // KNOTEN: BASEL",
         objective_title: "Aktuelles Missionsziel",
         stages: {
             principles: "PRINZIPIEN",
@@ -1532,7 +1493,7 @@ export const deChemistry = {
     },
     sc2_05: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "Zurück zum Nexus",
         title: "SC2.05 // SÄURE-BASE-CHEMIE",
@@ -1612,7 +1573,7 @@ export const deChemistry = {
             TT_E2: "Präzise Analysemethode – Gran-Plot: Lineare Extrapolation der Gran-Funktion ergibt einen V-Achsenabschnitt bei 25,4 mL. Dieser Abschnitt ist das Äquivalenzvolumen für die Reinheitsberechnung.",
             TT_E3: "Kjeldahl-Methode (Roche-Labor): NH₃ aus 1 g Protein wird in 50 mL 0,1 M HCl absorbiert. Rücktitration des überschüssigen HCl benötigt 20 mL 0,1 M NaOH. Berechne die Mole Stickstoff in der Probe.",
             TT_E4: "Blutplasma-Titration: 10 mL Plasma benötigen 2,4 mL 0,1 M HCl zum Erreichen von pH 4,4 (Bicarbonatsendpunkt). Berechne [HCO₃⁻] in mmol/L zur Beurteilung des Säure-Basen-Haushalts des Patienten.",
-            TT_E5: "Standardisierung: KHP (Kaliumhydrogenphthalat, Mw = 204,22 g/mol) ist der Primärstandard. 0,5106 g KHP werden mit 25,00 mL NaOH neutralisiert. Berechne die genaue NaOH-Konzentration für Folgetitrationen.",
+            TT_E5: "Standardisierung: KHP (Kaliumhydrogenphthalat, Mw = 204,22 g/mol) ist der Primärstandard. 0,5106 g KHP werden mit 25,00 mL NaOH neutralisiert. Berechne die genaue NaOH-Konzentration für Folgetitrationen."
         },
         prompts: {
             calculate_ph: "Berechnen Sie den pH-Wert der Lösung.",
@@ -1679,7 +1640,7 @@ export const deChemistry = {
             tt_e2: "V_{\\\\text{eq}} = V_{\\\\text{intercept}}",
             tt_e3: "n_N = n_{HCl} - n_{NaOH}",
             tt_e4: "[HCO_3^-] = \\\\frac{C_{HCl}V_{HCl}}{V_{\\\\text{plasma}}}",
-            tt_e5: "C = \\\\frac{m/Mw}{V}",
+            tt_e5: "C = \\\\frac{m/Mw}{V}"
         },
         labels: {
             acid: "Säure",
@@ -1697,9 +1658,7 @@ export const deChemistry = {
         next: "Nächste Herausforderung",
         correct: "Reaktion verifiziert",
         incorrect: "Gleichgewicht prüfen",
-        ready: "Bereit",
         monitor_title: "SC2.05_SÄUREBASE_MONITOR",
-        footer_left: "SC2.05_SÄUREBASE // KNOTEN: BASEL",
         scenario_title: "BASEL-SZENARIO",
         objective_title: "PROBLEM",
         answer_title: "IHRE ANTWORT"
@@ -1724,7 +1683,7 @@ export const deChemistry = {
             v: "V",
             g: "g",
                     plus_minus_n: "±n",
-            ellipsis: "...",
+            ellipsis: "..."
 },
         scenarios: {
             oxidation_state: "Novartis Arzneimittelsynthese Oxidationskontrolle: Sie sind synthetischer Chemiker bei Novartis Basel und arbeiten an einer komplexen pharmazeutischen Synthese. Der Wirkstoff erfordert eine präzise Oxidationsstufenkontrolle eines Übergangsmetallkatalysators. In Ihrer aktuellen Reaktion wechselt Mangan zwischen +4 und +7 Oxidationsstufen, um die C-H-Bindungsaktivierung zu erleichtern. Sie müssen Oxidationsstufenänderungen durch jeden Schritt verfolgen, um unerwünschte Nebenreaktionen zu verhindern. Mit spektroskopischer Analyse überwachen Sie die violette Farbe von Permanganat (Mn^7^+), die sich in braunes Mangandioxid (Mn^{4}^+) umwandelt. Eine einzige Elektronenfehlberechnung könnte zu toxischen Nebenprodukten führen und die gesamte Charge unbrauchbar machen. Diese Oxidationsstufenverfolgung ist entscheidend für die Herstellung sicherer, wirksamer Medikamente für Patienten in der ganzen Schweiz. Das Verständnis von Oxidationsstufen ist wie das Verfolgen von Bankkontoguthaben – Sie müssen genau wissen, wie viele Elektronen jedes Atom gewonnen oder verloren hat.",
@@ -1770,9 +1729,7 @@ export const deChemistry = {
         next: "Nächste Herausforderung",
         correct: "Redox verifiziert",
         incorrect: "Elektronenbilanz prüfen",
-        ready: "Bereit",
-        monitor_title: "SC2.06_REDOX_MONITOR",
-        footer_left: "SC2.06_REDOX // KNOTEN: BASEL"
+        monitor_title: "SC2.06_REDOX_MONITOR"
     },
     sc1_06: {
         scenarios: {
@@ -1851,9 +1808,7 @@ export const deChemistry = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SC1.06_REAKTIONEN_MONITOR",
-        footer_left: "SC1.06_CHEMISCHE_REAKTIONEN // KNOTEN: BASEL",
         stages: {
             reaction_types: "REAKTIONSTYPEN",
             equation_balancing: "GLEICHUNGSAUSGLEICH",
@@ -1985,7 +1940,7 @@ export const deChemistry = {
             hint_increase_reactants: "Versuchen Sie, den Koeffizienten für einen Reaktanten mit {element} zu erhöhen"
         },
         placeholders: {
-            coefficient: "1",
+            coefficient: "1"
         }
     },
     sc2_07: {
@@ -2065,9 +2020,7 @@ export const deChemistry = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SC2.07_ENTHALPIE_MONITOR",
-        footer_left: "SC2.07_ENTHALPIE_ENERGETIK // KNOTEN: BASEL",
         stages: {
             energy_changes: "ENERGIEÄNDERUNGEN",
             hess_law: "HESS'SCHES GESETZ",
@@ -2149,12 +2102,10 @@ export const deChemistry = {
             green_chemistry: "GRÜNE CHEMIE",
             circular_economy: "KREISLAUFWIRTSCHAFT"
         },
-        footer_left: "SC1.07_NACHHALTIGKEIT // KNOTEN: BASEL",
         check: "Verifizieren",
         next: "Nächste Herausforderung",
         correct: "Nachhaltigkeitsdaten verifiziert",
         incorrect: "Parameter prüfen",
-        ready: "Bereit",
         monitor_title: "SC1.07_NACHHALTIGKEIT_MONITOR",
         loading: "Wird geladen...",
         labels: {
@@ -2169,7 +2120,7 @@ export const deChemistry = {
         placeholders: {
             material: "Eingeben",
             percent: "%",
-            stage: "Name",
+            stage: "Name"
         },
         prompts: {
             sc1_07_q1: "Identifizieren Sie diesen recycelbaren Kunststoff (Abkürzung).",

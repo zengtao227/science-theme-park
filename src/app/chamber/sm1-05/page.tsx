@@ -31,8 +31,6 @@ export default function SM105Page() {
         next: t("sm1_05.next"),
         correct: t("sm1_05.correct"),
         incorrect: t("sm1_05.incorrect"),
-        ready: t("sm1_05.ready"),
-        footer_left: t("sm1_05.footer_left"),
         monitor_title: t("sm1_05.monitor_title"),
         difficulty: {
             basic: t("sm1_05.difficulty.basic"),
@@ -610,14 +608,12 @@ export default function SM105Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sm1_05_t.footer_left}
             translations={{
                 back: sm1_05_t.back,
                 check: sm1_05_t.check,
                 next: sm1_05_t.next,
                 correct: sm1_05_t.correct,
                 incorrect: sm1_05_t.incorrect,
-                ready: sm1_05_t.ready,
                 monitor_title: sm1_05_t.monitor_title,
                 difficulty: {
                     basic: sm1_05_t.difficulty.basic,

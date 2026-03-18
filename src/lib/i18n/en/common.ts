@@ -29,7 +29,6 @@ export const enCommon = {
         next: "Next",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         reference: "Reference",
         none: "None",
         achievements_title: "Achievements",
@@ -541,7 +540,7 @@ export const enCommon = {
         warning_text: "WARNING: The world does not revolve around you... unless you understand the rules.",
         hold_instruction: "Enter Authorization Gate",
         hold_button: "[ ACCESS NEXUS ]",
-        secure_connection: "SECURE CONNECTION ESTABLISHED",
+        secure_connection: "SECURE CONNECTION ESTABLISHED"
     },
     labels: {
         mission_objective: "MISSION OBJECTIVE",
@@ -554,6 +553,6 @@ export const enCommon = {
         calculation_valid: "CALCULATION VALID",
         calculation_error: "CALCULATION ERROR",
         next_mission: "NEXT MISSION",
-        hint: "HINT",
-    },
+        hint: "HINT"
+    }
 };

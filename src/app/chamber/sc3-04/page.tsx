@@ -238,14 +238,12 @@ export default function SC304Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sc3_04.footer_left")}
             translations={{
                 back: t("sc3_04.back"),
                 check: t("sc3_04.check"),
                 next: t("sc3_04.next"),
                 correct: t("sc3_04.correct"),
                 incorrect: t("sc3_04.incorrect"),
-                ready: t("sc3_04.ready"),
                 monitor_title: t("sc3_04.monitor_title"),
                 difficulty: {
                     basic: t("sc3_04.difficulty.basic"),

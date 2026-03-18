@@ -98,7 +98,6 @@ export default function SC203Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
       translations={{
         back: t.back,
         check: t.check,

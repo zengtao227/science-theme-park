@@ -305,130 +305,131 @@ export default function S201BinomialCanvas({
   };
 
   return (
-    <div className="w-full h-[800px] relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-      <Canvas camera={{ position: [12, 12, 14], fov: 55 }} gl={{ antialias: true }}>
-        <color attach="background" args={["#000005"]} />
+    <div className="w-full h-[800px] bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
+      <div className="relative flex-1 min-h-0">
+        <Canvas camera={{ position: [12, 12, 14], fov: 55 }} gl={{ antialias: true }}>
+          <color attach="background" args={["#000005"]} />
 
-        {/* Lighting */}
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1.2} />
-        <pointLight position={[-10, -10, 10]} intensity={0.6} color="#00ffff" />
-        <pointLight position={[10, -10, -10]} intensity={0.5} color="#ff00ff" />
+          {/* Lighting */}
+          <ambientLight intensity={0.4} />
+          <pointLight position={[10, 10, 10]} intensity={1.2} />
+          <pointLight position={[-10, -10, 10]} intensity={0.6} color="#00ffff" />
+          <pointLight position={[10, -10, -10]} intensity={0.5} color="#ff00ff" />
 
-        {/* Controls - NO AUTO-ROTATION */}
-        <OrbitControls
-          ref={controlsRef}
-          enablePan={false}
-          minDistance={8}
-          maxDistance={30}
-          autoRotate={false}
+          {/* Controls - NO AUTO-ROTATION */}
+          <OrbitControls
+            ref={controlsRef}
+            enablePan={false}
+            minDistance={8}
+            maxDistance={30}
+            autoRotate={false}
+          />
+
+          {/* Grid floor */}
+          <Grid
+            args={[30, 30]}
+            cellSize={1}
+            cellThickness={0.5}
+            cellColor="#ffffff"
+            sectionSize={5}
+            sectionThickness={1}
+            sectionColor="#00ffff"
+            fadeDistance={35}
+            fadeStrength={1}
+            position={[0, -(a + b) / 2 - 2, 0]}
+          />
+
+          {/* Main cube */}
+          <BinomialCube3D a={a} b={b} exploded={exploded} />
+
+          {/* Legend */}
+          <Legend a={a} b={b} translations={translations} />
+
+          {/* Coordinate axes */}
+          <group>
+            <arrowHelper args={[new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 5, "#ff4444"]} />
+            <arrowHelper args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 5, "#44ff44"]} />
+            <arrowHelper args={[new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), 5, "#4444ff"]} />
+          </group>
+        </Canvas>
+
+        {/* 3D Controls */}
+        <Canvas3DControls
+          onReset={handleReset}
+          showInstructions={true}
+          instructionsText={translations.instructions}
         />
 
-        {/* Grid floor */}
-        <Grid
-          args={[30, 30]}
-          cellSize={1}
-          cellThickness={0.5}
-          cellColor="#ffffff"
-          sectionSize={5}
-          sectionThickness={1}
-          sectionColor="#00ffff"
-          fadeDistance={35}
-          fadeStrength={1}
-          position={[0, -(a + b) / 2 - 2, 0]}
-        />
+        {/* Expand/Collapse Buttons */}
+        <div className="absolute top-20 right-4 flex flex-col gap-2">
+          <button
+            onClick={() => setExploded(true)}
+            disabled={exploded}
+            className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            {translations.expand}
+          </button>
+          <button
+            onClick={() => setExploded(false)}
+            disabled={!exploded}
+            className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            {translations.collapse}
+          </button>
+        </div>
 
-        {/* Main cube */}
-        <BinomialCube3D a={a} b={b} exploded={exploded} />
+        {/* Fixed Formula Display - Does NOT rotate with 3D */}
+        <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
+          <div className="text-white font-mono text-sm space-y-2">
+            <div className="text-neon-cyan font-bold text-base">{translations.pattern_3d}</div>
+            <div className="text-white/60 text-xs">
+              {exploded ? translations.expanded_view : translations.assembled_view}
+            </div>
+          </div>
+        </div>
 
-        {/* Legend */}
-        <Legend a={a} b={b} translations={translations} />
+        {/* Color Legend - Fixed Position */}
+        <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
+          <div className="text-white/60 font-bold mb-2">{translations.color_coding}</div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
+            <span className="text-[#ff3131]">a³ = {a ** 3} {translations.unit_cubed}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
+            <span className="text-[#ffaa00]">3a²b = {3 * a * a * b} {translations.unit_cubed}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#4444ff] rounded"></div>
+            <span className="text-[#4444ff]">3ab² = {3 * a * b * b} {translations.unit_cubed}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
+            <span className="text-[#39ff14]">b³ = {b ** 3} {translations.unit_cubed}</span>
+          </div>
+          <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
+            {translations.total}: {(a + b) ** 3} {translations.unit_cubed}
+          </div>
+        </div>
 
-        {/* Coordinate axes */}
-        <group>
-          <arrowHelper args={[new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 5, "#ff4444"]} />
-          <arrowHelper args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 5, "#44ff44"]} />
-          <arrowHelper args={[new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), 5, "#4444ff"]} />
-        </group>
-      </Canvas>
-
-      {/* 3D Controls */}
-      <Canvas3DControls
-        onReset={handleReset}
-        showInstructions={true}
-        instructionsText={translations.instructions}
-      />
-
-      {/* Expand/Collapse Buttons */}
-      <div className="absolute top-20 right-4 flex flex-col gap-2">
-        <button
-          onClick={() => setExploded(true)}
-          disabled={exploded}
-          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          {translations.expand}
-        </button>
-        <button
-          onClick={() => setExploded(false)}
-          disabled={!exploded}
-          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          {translations.collapse}
-        </button>
-      </div>
-
-      {/* Fixed Formula Display - Does NOT rotate with 3D */}
-      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
-        <div className="text-white font-mono text-sm space-y-2">
-          <div className="text-neon-cyan font-bold text-base">{translations.pattern_3d}</div>
-          <div className="text-white/60 text-xs">
-            {exploded ? translations.expanded_view : translations.assembled_view}
+        {/* Volume conservation indicator */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+          <div className="text-[10px] font-mono text-white/60 uppercase tracking-wider text-center">
+            {translations.volume_conservation}
+          </div>
+          <div className="text-4xl font-black text-green-400 text-center">
+            ✓
+          </div>
+          <div className="text-[12px] font-mono text-white/70 text-center">
+            {a ** 3} + {3 * a * a * b} + {3 * a * b * b} + {b ** 3} = {(a + b) ** 3}
           </div>
         </div>
       </div>
 
-      {/* Color Legend - Fixed Position */}
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
-        <div className="text-white/60 font-bold mb-2">{translations.color_coding}</div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
-          <span className="text-[#ff3131]">a³ = {a ** 3} {translations.unit_cubed}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
-          <span className="text-[#ffaa00]">3a²b = {3 * a * a * b} {translations.unit_cubed}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#4444ff] rounded"></div>
-          <span className="text-[#4444ff]">3ab² = {3 * a * b * b} {translations.unit_cubed}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
-          <span className="text-[#39ff14]">b³ = {b ** 3} {translations.unit_cubed}</span>
-        </div>
-        <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
-          {translations.total}: {(a + b) ** 3} {translations.unit_cubed}
-        </div>
-      </div>
-
-      {/* Status Indicator */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
+      <div className="mt-3 px-4 pb-4 text-[8px] font-mono text-white/60 text-right uppercase shrink-0">
         CHAMBER // S2.01<br />
         {translations.volume_proof_3d}<br />
         {translations.status_mode}: {exploded ? translations.status_exploded : translations.status_assembled}
-      </div>
-
-      {/* Volume conservation indicator */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-        <div className="text-[10px] font-mono text-white/60 uppercase tracking-wider text-center">
-          {translations.volume_conservation}
-        </div>
-        <div className="text-4xl font-black text-green-400 text-center">
-          ✓
-        </div>
-        <div className="text-[12px] font-mono text-white/70 text-center">
-          {a ** 3} + {3 * a * a * b} + {3 * a * b * b} + {b ** 3} = {(a + b) ** 3}
-        </div>
       </div>
     </div>
   );

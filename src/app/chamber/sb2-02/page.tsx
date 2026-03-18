@@ -161,14 +161,12 @@ export default function SB202Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sb2_02.footer_left")}
             translations={{
                 back: t("sb2_02.back"),
                 check: t("sb2_02.check"),
                 next: t("sb2_02.next"),
                 correct: t("sb2_02.correct"),
                 incorrect: t("sb2_02.incorrect"),
-                ready: t("sb2_02.ready"),
                 monitor_title: t("sb2_02.monitor_title"),
                 difficulty: {
                     basic: t("sb2_02.difficulty.basic"),

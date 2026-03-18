@@ -233,7 +233,6 @@ export default function GB302Immunology() {
                 next: t("gb3_02.next"),
                 correct: t("gb3_02.correct"),
                 incorrect: t("gb3_02.incorrect"),
-                ready: t("gb3_02.ready"),
                 monitor_title: t("gb3_02.monitor_title"),
                 difficulty: {
                     basic: t("gb3_02.difficulty.basic"),
@@ -245,7 +244,6 @@ export default function GB302Immunology() {
             checkStatus={lastCheck}
             onVerify={verify}
             onNext={next}
-            footerLeft={t("gb3_02.footer_left")}
             monitorContent={[
                 <div key="stats" className="flex items-center gap-6">
                     <div className="flex flex-col items-end">

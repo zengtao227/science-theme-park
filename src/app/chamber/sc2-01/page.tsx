@@ -211,14 +211,12 @@ export default function SC201Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={sc2_01_t.footer_left}
       translations={{
         back: sc2_01_t.back,
         check: sc2_01_t.check,
         next: sc2_01_t.next,
         correct: sc2_01_t.correct,
         incorrect: sc2_01_t.incorrect,
-        ready: sc2_01_t.ready,
         monitor_title: sc2_01_t.monitor_title,
         difficulty: {
           basic: sc2_01_t.difficulty.basic,

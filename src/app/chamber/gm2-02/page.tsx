@@ -18,7 +18,6 @@ export default function GM202Page() {
 
   const gm2_02_t = {
     back: t("gm2_02.back"),
-    ready: t("gm2_02.ready"),
     monitor_title: t("gm2_02.monitor_title"),
     objective_title: t("gm2_02.objective_title"),
     input_tip_2dp: t("gm2_02.input_tip_2dp"),
@@ -131,14 +130,12 @@ export default function GM202Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={gm2_02_t.subtitle}
       translations={{
         back: gm2_02_t.back,
         check: gm2_02_t.check,
         next: gm2_02_t.next,
         correct: gm2_02_t.correct,
         incorrect: gm2_02_t.incorrect,
-        ready: gm2_02_t.ready,
         monitor_title: gm2_02_t.monitor_title,
         difficulty: {
           basic: gm2_02_t.basic,

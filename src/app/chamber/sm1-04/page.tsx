@@ -1245,14 +1245,12 @@ export default function SM104Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sm1_04.footer_left")}
       translations={{
         back: t("sm1_04.back"),
         check: t("sm1_04.check"),
         next: t("sm1_04.next"),
         correct: t("sm1_04.correct"),
         incorrect: t("sm1_04.incorrect"),
-        ready: t("sm1_04.ready"),
         monitor_title: t("sm1_04.monitor_title"),
         difficulty: {
           basic: t("sm1_04.difficulty.basic"),

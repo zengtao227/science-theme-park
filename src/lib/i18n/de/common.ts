@@ -29,7 +29,6 @@ export const deCommon = {
         next: "Weiter",
         correct: "Bestätigt",
         incorrect: "Abweichung",
-        ready: "Bereit",
         reference: "Referenz",
         none: "Keine",
         achievements_title: "Errungenschaften",
@@ -543,7 +542,7 @@ export const deCommon = {
         warning_text: "WARNUNG: Die Welt dreht sich nicht um dich... außer du verstehst die Regeln.",
         hold_instruction: "Autorisierung erforderlich",
         hold_button: "[ NEXUS BETRETEN ]",
-        secure_connection: "SICHERE VERBINDUNG HERGESTELLT",
+        secure_connection: "SICHERE VERBINDUNG HERGESTELLT"
     },
     labels: {
         mission_objective: "MISSIONSZIEL",
@@ -556,6 +555,6 @@ export const deCommon = {
         calculation_valid: "BERECHNUNG GÜLTIG",
         calculation_error: "BERECHNUNGSFEHLER",
         next_mission: "NÄCHSTE MISSION",
-        hint: "HINWEIS",
-    },
+        hint: "HINWEIS"
+    }
 };

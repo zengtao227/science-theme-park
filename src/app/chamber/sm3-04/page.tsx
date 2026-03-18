@@ -75,14 +75,12 @@ export default function S304Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sm3_04.footer_left")}
       translations={{
         back: t("sm3_04.back"),
         check: t("sm3_04.check"),
         next: t("sm3_04.next"),
         correct: t("sm3_04.correct"),
         incorrect: t("sm3_04.incorrect"),
-        ready: t("sm3_04.ready"),
         monitor_title: t("sm3_04.monitor_title"),
         difficulty: {
           basic: t("sm3_04.difficulty.basic"),

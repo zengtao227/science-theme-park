@@ -7,7 +7,7 @@
 export const enChemistry = {
     gc3_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "GC3.01 // EQUILIBRIUM MASTER",
@@ -23,9 +23,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GC3.01_EQUILIBRIUM_MONITOR",
-        footer_left: "GC3.01_EQUILIBRIUM_MASTER // NODE: BASEL",
         labels: {
             reaction: "REVERSIBLE REACTION",
             particle_count: "PARTICLE COUNT",
@@ -41,7 +39,7 @@ export const enChemistry = {
             system_temperature: "SYSTEM TEMPERATURE",
             system_pressure: "SYSTEM PRESSURE",
             input_answer: "Input Answer",
-            placeholder: "Type 1 or 2",
+            placeholder: "Type 1 or 2"
         },
         mission: {
             title: "MISSION: CHEMICAL EQUILIBRIUM",
@@ -115,7 +113,7 @@ export const enChemistry = {
     },
     gc3_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "GC3.02 // CRYSTAL PALACE",
@@ -131,9 +129,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GC3.02_CRYSTAL_MONITOR",
-        footer_left: "GC3.02_CRYSTAL_PALACE // NODE: BASEL",
         labels: {
             lattice_type: "LATTICE TYPE",
             properties: "PROPERTIES",
@@ -180,7 +176,7 @@ export const enChemistry = {
     },
     gc1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "GC1.01 // REDOX TITAN",
@@ -196,9 +192,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GC1.01_REDOX_MONITOR",
-        footer_left: "GC1.01_REDOX_TITAN // NODE: BASEL",
         labels: {
             cell_potential: "CELL POTENTIAL",
             zn_concentration: "Zn^{2}^+ CONCENTRATION",
@@ -246,7 +240,7 @@ export const enChemistry = {
     },
     gc2_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "GC2.01 // CARBON KINGDOM",
@@ -262,9 +256,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GC2.01_ORGANIC_MONITOR",
-        footer_left: "GC2.01_CARBON_KINGDOM // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -333,7 +325,7 @@ export const enChemistry = {
     },
     sc1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "SC1.01 // MYSTERY LAB",
@@ -346,9 +338,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC1.01_LAB_MONITOR",
-        footer_left: "SC1.01_MYSTERY_LAB // NODE: BASEL",
         lab_ui: {
             mystery_lab: "Mystery Lab",
             select_tool: "Select Tool",
@@ -479,7 +469,7 @@ export const enChemistry = {
         placeholders: {
             g_per_mol: "g/mol",
             mol: "mol",
-            g: "g",
+            g: "g"
         },
         back: "Back to Nexus",
         title: "C1.02 // MOLE MASTER",
@@ -495,9 +485,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "C1.02_SCALE",
-        footer_left: "C1.02_MOLE_MASTER // NODE: BASEL",
         input_tip_1dp: "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 1 decimal place.",
         stages: {
             molar_mass: "MOLAR MASS",
@@ -551,9 +539,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC1.03_ATOM_MONITOR",
-        footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -583,7 +569,7 @@ export const enChemistry = {
             k: "K",
                     xx: "xx",
             x: "x",
-            xx_dot_x: "xx.x",
+            xx_dot_x: "xx.x"
 },
         prompts: {
             build_mass_number: "A",
@@ -615,9 +601,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC1.03_ORBITAL_MONITOR",
-        footer_left: "SC1.03_ATOMS_FORGE // NODE: BASEL",
         labels: {
             selected_element: "SELECTED ELEMENT",
             orbital_type: "ORBITAL TYPE",
@@ -646,7 +630,7 @@ export const enChemistry = {
         placeholders: {
             xx: "xx",
             x: "x",
-            v_1: "1",
+            v_1: "1"
         },
         back: "Back to Nexus",
         title: "SC1.04 // PERIODIC PUZZLE",
@@ -662,9 +646,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC1.04_ATOM_MONITOR",
-        footer_left: "SC1.04_PERIODIC_PUZZLE // NODE: BASEL",
         labels: {
             element_info: "ELEMENT INFO",
             formulas: "FORMULAS",
@@ -709,7 +691,7 @@ export const enChemistry = {
             v_2: "2",
             v_0: "0",
             v_3: "3",
-            v_12: "12",
+            v_12: "12"
         },
         back: "Back to Nexus",
         title: "SC1.05 // BONDING BRIDGE",
@@ -717,7 +699,6 @@ export const enChemistry = {
         next: "Next",
         correct: "Bond Verified",
         incorrect: "Bond Failed",
-        ready: "Ready",
         monitor_title: "SC1.05_BOND_LAB",
         difficulty: {
             basic: "BASIC",
@@ -763,7 +744,7 @@ export const enChemistry = {
     },
     sc2_01: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "Back to Nexus",
         title: "C2.01 // CHEMICAL KINETICS",
@@ -778,9 +759,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "C2.01_KINETICS_MONITOR",
-        footer_left: "C2.01_CHEM_KINETICS // NODE: BASEL",
         stages: {
             arrhenius: "ARRHENIUS",
             concentration: "RATE LAW",
@@ -858,7 +837,7 @@ export const enChemistry = {
             hl_e1: "Calculate sample age from isotope data.",
             hl_e2: "Calculate branching ratio for the decay channels.",
             hl_e3: "Calculate activity ratio A2 over A1.",
-            hl_e5: "Calculate exposure age from cosmogenic data.",
+            hl_e5: "Calculate exposure age from cosmogenic data."
         },
         problems: {
             arr_temp_300_ea_50: "Novartis reactor at T=300K, activation energy Ea=50 kJ/mol. Calculate relative rate constant k.",
@@ -935,9 +914,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Titration Accurate",
         incorrect: "Invalid pH reading",
-        ready: "Ready",
         monitor_title: "SC2.02_TITRATION_MONITOR",
-        footer_left: "SC2.02_PH_SENTINEL // NODE: BASEL",
         stages: {
             curves: "PH CURVES",
             equivalence: "EQUIVALENCE",
@@ -964,7 +941,7 @@ export const enChemistry = {
         },
         placeholders: {
             ml: "mL",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             curve_type: "Initial pH is {ph}. Identify the acid type (Strong=1, Weak=2).",
@@ -1046,7 +1023,7 @@ export const enChemistry = {
         placeholders: {
             pressure_bar: "bar",
             volume_l: "L",
-            value: "value",
+            value: "value"
         },
         back: "Back to Nexus",
         title: "SC2.03 // AERO LAB",
@@ -1062,9 +1039,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC2.03_GAS_MONITOR",
-        footer_left: "SC2.03_AERO_LAB // NODE: BASEL",
         labels: {
             pressure: "PRESSURE",
             state_variables: "STATE VARIABLES",
@@ -1110,7 +1085,7 @@ export const enChemistry = {
     sc2_04: {
         placeholders: {
             g_per_100ml: "g/100mL",
-            g: "g",
+            g: "g"
         },
         back: "Back to Nexus",
         title: "SC2.04 // SOLUBILITY LAB",
@@ -1126,9 +1101,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC2.04_SOLUBILITY_MONITOR",
-        footer_left: "SC2.04_SOLUBILITY_LAB // NODE: BASEL",
         labels: {
             solubility: "SOLUBILITY",
             saturated: "SATURATED - Precipitate forming",
@@ -1179,9 +1152,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "C3.01_MOLECULE_MONITOR",
-        footer_left: "C3.01_MOLECULAR_ARCHITECT // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -1199,7 +1170,7 @@ export const enChemistry = {
             groups: "\\text{Groups}",
             rings: "\\text{Rings}",
             degree: "\\text{Degree}",
-            total_word: "Total",
+            total_word: "Total"
         },
         placeholders: {
             question_mark: "?",
@@ -1207,7 +1178,7 @@ export const enChemistry = {
         
             cxhyoz: "CxHyOz",            x_to_y: "x:y",
             v_0: "0",
-            percent: "%",
+            percent: "%"
 },
         hints: {
             carbon_is_black: "\\text{Carbon is black.}",
@@ -1228,12 +1199,12 @@ export const enChemistry = {
             look_for_o_n_patterns: "\\text{Look for O, N patterns}",
             closed_carbon_chains: "\\text{Closed carbon chains}",
             use_formula: "\\text{Use formula}",
-            relative_atomic_masses: "\\text{C=12, H=1, O=16, N=14}",
+            relative_atomic_masses: "\\text{C=12, H=1, O=16, N=14}"
         },
         expressions: {
             approximate: "\\text{Approximate}",
             identify: "\\text{Identify}",
-            count: "\\text{Count}",
+            count: "\\text{Count}"
         },
         prompts: {
             find_carbon_count: "Find Carbon count in {molecule}.",
@@ -1255,7 +1226,7 @@ export const enChemistry = {
             mass_percent_c: "Mass percent of C in {molecule}?",
             functional_groups: "Functional groups in {molecule}?",
             ring_structures: "Ring structures in {molecule}?",
-            degree_unsaturation: "Degree of unsaturation in {molecule}?",
+            degree_unsaturation: "Degree of unsaturation in {molecule}?"
         },
         mission: {
             title: "MOLECULAR ASSEMBLY LAB",
@@ -1281,9 +1252,7 @@ export const enChemistry = {
         next: "Next",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC3.02_ORGANIC_MONITOR",
-        footer_left: "SC3.02_ORGANIC_BASICS // NODE: BASEL",
         objective_title: "Active Mission Objective",
         difficulty: {
             basic: "BASIC",
@@ -1304,7 +1273,7 @@ export const enChemistry = {
         },
         placeholders: {
             cxhy: "CxHy",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             name_formula: "What is the molecular formula for {name}?",
@@ -1339,9 +1308,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC3.03_REACTION_MONITOR",
-        footer_left: "SC3.03_ORGANIC_REACTIONS // NODE: BASEL",
         objective_title: "Active Mission Objective",
         stages: {
             combustion: "COMBUSTION",
@@ -1357,7 +1324,7 @@ export const enChemistry = {
         },
         placeholders: {
             formula: "Formula",
-            ellipsis: "...",
+            ellipsis: "..."
         },
         prompts: {
             combustion: "Complete combustion of {reactant} produces CO_2 and H_2O. How many CO_2 molecules?",
@@ -1382,19 +1349,17 @@ export const enChemistry = {
     sc3_05: {
         placeholders: {
             ellipsis: "...",
-            v_0: "0",
+            v_0: "0"
         },
         back: "Back to Nexus",
         title: "SC3.05 // MOLECULAR FORGE",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Orbital Stability Monitor",
-        footer_left: "SC3.05_BONDING // NODE: BASEL",
         check: "Verify",
         next: "Next Synthesis",
         correct: "Geometry Optimized",
         incorrect: "Bond Mismatch",
-        ready: "Ready",
         stages: {
             vsepr: "VSEPR GEOMETRY",
             hybridization: "ORBITAL HYBRIDIZATION",
@@ -1447,9 +1412,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC3.04_FUNCTIONAL_MONITOR",
-        footer_left: "SC3.04_FUNCTIONAL_HORIZON // NODE: BASEL",
         objective_title: "Active Mission Objective",
         stages: {
             alcohols: "ALCOHOLS & ALDEHYDES",
@@ -1484,7 +1447,7 @@ export const enChemistry = {
     gc1_02: {
         placeholders: {
             decimal_mass: "0.000",
-            one_or_two: "1 or 2",
+            one_or_two: "1 or 2"
         },
         back: "Return to Nexus",
         title: "GC1.02 // ELECTROLYSIS LAB",
@@ -1498,9 +1461,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GC1.02_ELECTROLYSIS_MONITOR",
-        footer_left: "GC1.02_ELECTROLYSIS_LAB // NODE: BASEL",
         objective_title: "Active Mission Objective",
         stages: {
             principles: "PRINCIPLES",
@@ -1539,7 +1500,7 @@ export const enChemistry = {
     },
     sc2_05: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "Back to Nexus",
         title: "SC2.05 // ACID-BASE CHEMISTRY",
@@ -1619,7 +1580,7 @@ export const enChemistry = {
             TT_E2: "Precise Analytical Method – Gran Plot: Linear extrapolation of the Gran function gives an intercept on the V-axis at 25.4 mL. This intercept is the equivalence volume used to calculate drug purity.",
             TT_E3: "Kjeldahl Method (Roche Lab): NH₃ released from a 1 g protein sample is absorbed into 50 mL of 0.1 M HCl. Back-titration to neutralize excess HCl requires 20 mL of 0.1 M NaOH. Calculate moles of nitrogen in the sample.",
             TT_E4: "Blood Plasma Titration: 10 mL of plasma requires 2.4 mL of 0.1 M HCl to reach pH 4.4 (bicarbonate endpoint). Calculate [HCO₃⁻] in mmol/L to assess the patient's acid-base status.",
-            TT_E5: "Standardization: KHP (potassium hydrogen phthalate, Mw = 204.22 g/mol) is the primary standard. 0.5106 g of KHP requires 25.00 mL of NaOH. Calculate the exact NaOH concentration for use in subsequent titrations.",
+            TT_E5: "Standardization: KHP (potassium hydrogen phthalate, Mw = 204.22 g/mol) is the primary standard. 0.5106 g of KHP requires 25.00 mL of NaOH. Calculate the exact NaOH concentration for use in subsequent titrations."
         },
         prompts: {
             calculate_ph: "Calculate the pH of the solution.",
@@ -1686,7 +1647,7 @@ export const enChemistry = {
             tt_e2: "V_{\\\\text{eq}} = V_{\\\\text{intercept}}",
             tt_e3: "n_N = n_{HCl} - n_{NaOH}",
             tt_e4: "[HCO_3^-] = \\\\frac{C_{HCl}V_{HCl}}{V_{\\\\text{plasma}}}",
-            tt_e5: "C = \\\\frac{m/Mw}{V}",
+            tt_e5: "C = \\\\frac{m/Mw}{V}"
         },
         labels: {
             acid: "Acid",
@@ -1704,9 +1665,7 @@ export const enChemistry = {
         next: "Next Challenge",
         correct: "Reaction Verified",
         incorrect: "Check equilibrium",
-        ready: "Ready",
         monitor_title: "SC2.05_ACIDBASE_MONITOR",
-        footer_left: "SC2.05_ACIDBASE // NODE: BASEL",
         scenario_title: "BASEL SCENARIO",
         objective_title: "PROBLEM",
         answer_title: "YOUR ANSWER"
@@ -1731,7 +1690,7 @@ export const enChemistry = {
             v: "V",
             g: "g",
                     plus_minus_n: "±n",
-            ellipsis: "...",
+            ellipsis: "..."
 },
         scenarios: {
             oxidation_state: "Novartis Drug Synthesis Oxidation Control: You are a synthetic chemist at Novartis Basel, working on a complex pharmaceutical synthesis. The active ingredient requires precise oxidation state control of a transition metal catalyst. In your current reaction, manganese cycles between +4 and +7 oxidation states to facilitate C-H bond activation. You must track oxidation state changes through each step to prevent unwanted side reactions. Using spectroscopic analysis, you monitor the purple color of permanganate (Mn^7^+) converting to brown manganese dioxide (Mn^{4}^+). A single electron miscalculation could lead to toxic byproducts, making the entire batch unusable. This oxidation state tracking is crucial for producing safe, effective medications for patients across Switzerland. Understanding oxidation states is like tracking bank account balances—you need to know exactly how many electrons each atom has gained or lost.",
@@ -1777,9 +1736,7 @@ export const enChemistry = {
         next: "Next Challenge",
         correct: "Redox Verified",
         incorrect: "Check electron balance",
-        ready: "Ready",
-        monitor_title: "SC2.06_REDOX_MONITOR",
-        footer_left: "SC2.06_REDOX // NODE: BASEL"
+        monitor_title: "SC2.06_REDOX_MONITOR"
     },
     sc1_06: {
         scenarios: {
@@ -1858,9 +1815,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC1.06_REACTIONS_MONITOR",
-        footer_left: "SC1.06_CHEMICAL_REACTIONS // NODE: BASEL",
         stages: {
             reaction_types: "REACTION TYPES",
             equation_balancing: "EQUATION BALANCING",
@@ -1993,7 +1948,7 @@ export const enChemistry = {
         },
         placeholders: {
             Formula: "Formula",
-            coefficient: "1",
+            coefficient: "1"
         }
     },
     sc2_07: {
@@ -2073,9 +2028,7 @@ export const enChemistry = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SC2.07_ENTHALPY_MONITOR",
-        footer_left: "SC2.07_ENTHALPY_ENERGETICS // NODE: BASEL",
         stages: {
             energy_changes: "ENERGY CHANGES",
             hess_law: "HESS'S LAW",
@@ -2156,12 +2109,10 @@ export const enChemistry = {
             green_chemistry: "GREEN CHEMISTRY",
             circular_economy: "CIRCULAR ECONOMY"
         },
-        footer_left: "SC1.07_SUSTAINABILITY // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Sustainable Method Verified",
         incorrect: "Check lifecycle data",
-        ready: "Ready",
         monitor_title: "SC1.07_SUSTAINABILITY_MONITOR",
         loading: "Loading...",
         labels: {
@@ -2176,7 +2127,7 @@ export const enChemistry = {
         placeholders: {
             material: "Type",
             percent: "%",
-            stage: "Name",
+            stage: "Name"
         },
         prompts: {
             sc1_07_q1: "Identify this recyclable plastic (abbreviation).",

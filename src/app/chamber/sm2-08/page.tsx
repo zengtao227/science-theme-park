@@ -1188,14 +1188,12 @@ export default function SM208Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sm2_08.footer_left")}
       translations={{
         back: t("sm2_08.back"),
         check: t("sm2_08.check"),
         next: t("sm2_08.next"),
         correct: t("sm2_08.correct"),
         incorrect: t("sm2_08.incorrect"),
-        ready: t("sm2_08.ready"),
         monitor_title: t("sm2_08.monitor_title"),
         difficulty: {
           basic: t("sm2_08.difficulty.basic"),

@@ -237,14 +237,12 @@ export default function GB201Neurobiology() {
             onVerify={verify}
             onNext={lastCheck?.ok ? next : undefined}
             checkStatus={lastCheck}
-            footerLeft={gb2_01.footer_left}
             translations={{
                 back: gb2_01.back,
                 check: gb2_01.check,
                 next: gb2_01.next,
                 correct: gb2_01.correct,
                 incorrect: gb2_01.incorrect,
-                ready: gb2_01.ready,
                 monitor_title: gb2_01.monitor_title,
                 difficulty: {
                     basic: gb2_01.difficulty.basic,

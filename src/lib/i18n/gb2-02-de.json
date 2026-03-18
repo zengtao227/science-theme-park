@@ -9,12 +9,10 @@
   },
   "objective_title": "Aktives Missionsziel",
   "monitor_title": "Hormon-Monitor",
-  "footer_left": "GB2.02_ENDOKRIN // KNOTEN: BASEL",
   "check": "Überprüfen",
   "next": "Nächste Aufgabe",
   "correct": "Richtig",
   "incorrect": "Falsch",
-  "ready": "Bereit",
   "stages": {
     "hormone_identification": "HORMONIDENTIFIKATION",
     "feedback_mechanisms": "RÜCKKOPPLUNGSMECHANISMEN",

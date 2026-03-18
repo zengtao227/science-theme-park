@@ -839,14 +839,12 @@ export default function SC205Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={sc2_05_t.footer_left}
       translations={{
         back: sc2_05_t.back,
         check: sc2_05_t.check,
         next: sc2_05_t.next,
         correct: sc2_05_t.correct,
         incorrect: sc2_05_t.incorrect,
-        ready: sc2_05_t.ready,
         monitor_title: sc2_05_t.monitor_title,
         difficulty: {
           basic: sc2_05_t.difficulty.basic,

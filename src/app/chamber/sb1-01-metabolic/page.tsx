@@ -243,14 +243,12 @@ export default function SB101MetabolicPage() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sb1_01_metabolic.footer_left")}
             translations={{
                 back: t("sb1_01_metabolic.back"),
                 check: t("sb1_01_metabolic.check"),
                 next: t("sb1_01_metabolic.next"),
                 correct: t("sb1_01_metabolic.correct"),
                 incorrect: t("sb1_01_metabolic.incorrect"),
-                ready: t("sb1_01_metabolic.ready"),
                 monitor_title: t("sb1_01_metabolic.monitor_title"),
                 difficulty: {
                     basic: t("sb1_01_metabolic.difficulty.basic"),

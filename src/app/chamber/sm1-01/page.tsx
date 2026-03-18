@@ -774,11 +774,9 @@ export default function S101Page() {
         next: t("sm1_01.next"),
         correct: t("sm1_01.correct"),
         incorrect: t("sm1_01.incorrect"),
-        ready: t("sm1_01.ready"),
         monitor_title: t("sm1_01.monitor_title"),
         target_title: t("sm1_01.target_title"),
         objective_title: t("sm1_01.objective_title"),
-        footer_left: t("sm1_01.footer_left"),
         input_tip_2dp: t("sm1_01.input_tip_2dp"),
         difficulty: {
             basic: t("sm1_01.difficulty.basic"),
@@ -800,6 +798,7 @@ export default function S101Page() {
             radius: t("sm1_01.labels.radius"),
             area: t("sm1_01.labels.area"),
             volume: t("sm1_01.labels.volume"),
+            pending: t("sm1_01.labels.pending"),
             input: t("sm1_01.labels.input"),
             hints: t("sm1_01.labels.hints"),
             rectangle: t("sm1_01.labels.rectangle"),
@@ -940,7 +939,6 @@ export default function S101Page() {
             onVerify={verify}
             onNext={next}
             successRate={successRate}
-            footerLeft={sm1_01_t.footer_left}
             checkStatus={lastCheck}
             printContent={<PrintableQuestList t={sm1_01_t} />}
             translations={{
@@ -949,7 +947,6 @@ export default function S101Page() {
                 next: sm1_01_t.next,
                 correct: sm1_01_t.correct,
                 incorrect: sm1_01_t.incorrect,
-                ready: sm1_01_t.ready,
                 monitor_title: sm1_01_t.monitor_title,
                 difficulty: {
                     basic: sm1_01_t.difficulty.basic,
@@ -987,10 +984,10 @@ export default function S101Page() {
                                     geometry={currentQuest?.visualMeta}
                                     userAnswer={parsedAnswer}
                                     isVolumeMode={stage === 'VOLUMES'}
-                                    translations={{
+                                        translations={{
                                         area: sm1_01_t.labels.area,
                                         volume: sm1_01_t.labels.volume,
-                                        pending: sm1_01_t.ready,
+                                        pending: sm1_01_t.labels.pending,
                                         verified: sm1_01_t.correct,
                                         error: sm1_01_t.incorrect,
                                         length: sm1_01_t.labels.length,

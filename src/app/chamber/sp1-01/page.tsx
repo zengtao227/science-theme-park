@@ -83,7 +83,6 @@ export default function SP101_ForcesBasics() {
         next: t("sp1_01.next"),
         correct: t("sp1_01.correct"),
         incorrect: t("sp1_01.incorrect"),
-        ready: t("sp1_01.ready"),
         monitor_title: t("sp1_01.monitor_title")
       }}
       monitorContent={

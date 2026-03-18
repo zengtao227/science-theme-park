@@ -65,7 +65,6 @@ export default function SP203ElectricPower() {
             energy_consumption: t("sp2_03.scenarios.energy_consumption"),
             efficiency: t("sp2_03.scenarios.efficiency")
         },
-        footer_left: t("sp2_03.footer_left"),
         check: t("sp2_03.check"),
         next: t("sp2_03.next"),
         correct: t("sp2_03.correct"),
@@ -423,7 +422,6 @@ export default function SP203ElectricPower() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sp2_03_t.footer_left}
             translations={{
                 back: sp2_03_t.back,
                 difficulty: sp2_03_t.difficulty,

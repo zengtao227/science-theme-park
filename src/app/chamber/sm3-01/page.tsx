@@ -290,7 +290,6 @@ export default function S301Page() {
       onVerify={verify}
       onNext={next}
       successRate={successRate}
-      footerLeft={t("sm3_01.footer_left")}
       checkStatus={lastCheck}
       translations={{
         back: t("sm3_01.back"),
@@ -298,7 +297,6 @@ export default function S301Page() {
         next: t("sm3_01.next"),
         correct: t("sm3_01.correct"),
         incorrect: t("sm3_01.incorrect"),
-        ready: t("sm3_01.ready"),
         monitor_title: t("sm3_01.monitor_title"),
         difficulty: {
           basic: t("sm3_01.difficulty.basic"),

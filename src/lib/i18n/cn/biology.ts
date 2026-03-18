@@ -52,7 +52,7 @@ export const cnBiology = {
             v_0_dot_693: "0.693",
             v_1100: "1100",
             v_0_dot_3: "0.3",
-            v_95: "95",
+            v_95: "95"
 },
         prompts: {
             natural_selection: "在{initial}只雀鸟的种群中，{survival}只在干旱中存活。计算适应度。",
@@ -103,7 +103,7 @@ export const cnBiology = {
             ev_e2: "Kimura 双参数模型：转换/颠换比 R=2。偏差值？",
             ev_e3: "同义替换率 (dS) vs 非同义替换率 (dN)。dN/dS > 1。选择类型？",
             ev_e4: "最大简约法：树 A 最小变化数 10，树 B 为 12。选树 A？",
-            ev_e5: "Bootstrap 支持率：100 次重复中 95 次出现。置信值？",
+            ev_e5: "Bootstrap 支持率：100 次重复中 95 次出现。置信值？"
         },
         feedback: {
             correct: "自然选择已确认！",
@@ -113,8 +113,6 @@ export const cnBiology = {
         next: "下一代",
         correct: "正确",
         incorrect: "错误",
-        ready: "就绪",
-        footer_left: "GB1.01 // 进化实验室",
         scenarios: {
             galapagos_study: "巴塞尔自然历史博物馆 - 达尔文的遗产：你是巴塞尔自然历史博物馆的馆长，这里拥有瑞士最重要的生物标本收藏。你的任务是分析来自多个岛屿的历史数据，呼应查尔斯·达尔文在加拉帕戈斯群岛上进行的观察。通过根据极端环境变化期间的存活率计算不同鸟类种群的适应度，你帮助证明了自然选择的力量。在巴塞尔，科学家利用这些博物馆记录来了解当地物种——如甲虫和鸟类——在过去两个世纪中是如何应对城市化而进化的。这项工作就像揭开大自然的隐藏齿轮，观察微小的结构变化如何转化为巨大的生存优势。",
             genetic_drift: "巴塞尔大学生物中心 - 种群动态：作为巴塞尔大学生物中心 (Biozentrum) 的一名研究员，你正在调查附近汝拉山脉隔离种群的遗传组成。遗传漂变——等位基因频率的随机变化——可能在多个世代中导致小群体发生显著分化。通过模拟这些过程，你可以帮助预测瑞士边境地区的濒危物种如何应对栖息地破碎化。巴塞尔在遗传学研究方面的悠久历史，可以追溯到 19 世纪核酸的发现，为你的研究提供了世界级的一流环境。这就像观察一种语言在偏远山谷中的演变；随着时间的推移，基因组的“口音”发生了改变，直到出现了一种新的物种“方言”。",
@@ -125,19 +123,17 @@ export const cnBiology = {
     gb2_01: {
         placeholders: {
             ellipsis: "...",
-            v_0: "0",
+            v_0: "0"
         },
         back: "返回枢纽",
         title: "GB2.01 // 神经生物学",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "神经活动监视器",
-        footer_left: "GB2.01_神经生物学 // 节点：巴塞尔",
         check: "验证",
         next: "下一冲动",
         correct: "信号已传递",
         incorrect: "突触故障",
-        ready: "就绪",
         stages: {
             anatomy: "神经元解剖",
             potential: "动作电位",
@@ -186,7 +182,7 @@ export const cnBiology = {
     gb3_01: {
         placeholders: {
             ellipsis: "...",
-            v_2_minus_3: "2-3",
+            v_2_minus_3: "2-3"
         },
         back: "返回枢纽",
         title: "GB3.01 // DNA 熔炉",
@@ -197,9 +193,7 @@ export const cnBiology = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GB3.01_DNA_监视器",
-        footer_left: "GB3.01_DNA_熔炉 // 节点：巴赛尔",
         stages: {
             pairing: "碱基配对",
             bonds: "氢键计算",
@@ -251,19 +245,17 @@ export const cnBiology = {
     },
     gb3_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "GB3.02 // 免疫学实验室",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "免疫反应监视器",
-        footer_left: "GB3.02_免疫学 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "抗原已被中和",
         incorrect: "病原体逃逸",
-        ready: "就绪",
         stages: {
             innate: "先天性免疫",
             adaptive: "特异性免疫",
@@ -305,7 +297,7 @@ export const cnBiology = {
             select: "请选择...",
             answer: "输入答案...",
             hormone_type: "选择激素类型...",
-            gland: "选择腺体...",
+            gland: "选择腺体..."
         },
         back: "返回枢纽",
         title: "GB2.02 // 内分泌系统",
@@ -314,7 +306,6 @@ export const cnBiology = {
         next: "下一题",
         correct: "正确",
         incorrect: "错误",
-        ready: "就绪",
         stages: {
             hormone_identification: "激素识别",
             feedback_mechanisms: "反馈机制",
@@ -439,7 +430,7 @@ export const cnBiology = {
     },
     sb1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "SB1.01 // 细胞工厂",
@@ -452,9 +443,7 @@ export const cnBiology = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SB1.01_细胞监视器",
-        footer_left: "SB1.01_细胞工厂 // 节点：巴塞尔",
         stages: {
             identification: "结构识别",
             function: "功能匹配",
@@ -572,9 +561,7 @@ export const cnBiology = {
         check: "验证",
         correct: "稳态正常",
         incorrect: "代谢危机",
-        ready: "就绪",
         monitor_title: "SB1.01_代谢监视器",
-        footer_left: "SB1.01_细胞生物学 // 节点：巴赛尔",
         stages: {
             osmosis: "渗透作用",
             respiration: "细胞呼吸",
@@ -602,7 +589,7 @@ export const cnBiology = {
         },
         placeholders: {
             enter_leave_stable: "enter/leave/stable",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             osmosis_prompt: "细胞处于{status}环境（{desc}）中。水分会如何移动？",
@@ -706,7 +693,7 @@ export const cnBiology = {
     },
     sb1_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "SB1.02 // 光合作用实验室",
@@ -715,9 +702,7 @@ export const cnBiology = {
         next: "执行下一序列",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "准备就绪",
         monitor_title: "SB1.02_光合作用_监测器",
-        footer_left: "SB1.02_光合作用实验室 // 节点：巴塞尔",
         objective_title: "当前任务目标",
         stages: {
             equation: "反应方程式",
@@ -766,7 +751,7 @@ export const cnBiology = {
     },
     sb1_03: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "SB1.03 // 细胞分裂",
@@ -774,9 +759,7 @@ export const cnBiology = {
         next: "下一阶段",
         correct: "阶段完成",
         incorrect: "错位",
-        ready: "就绪",
         monitor_title: "SB1.03_复制中心",
-        footer_left: "SB1.03_细胞分裂 // 节点：巴塞尔",
         objective_title: "当前任务目标",
         difficulty: {
             basic: "基础",
@@ -835,7 +818,7 @@ export const cnBiology = {
             nutrient_transport: "养分运输"
         },
         placeholders: {
-            type_answer: "type answer",
+            type_answer: "type answer"
         },
         scenarios: {
             plant_structure: "巴塞尔植物园 - 植物解剖学研究：你是巴塞尔大学植物园的植物学家，这是瑞士最古老的植物园之一（建于1589年），正在研究植物结构和功能。植物有三个主要器官系统：根（固定植物，从土壤中吸收水分和矿物质，储存养分），茎（提供结构支撑，在根和叶之间运输水分和养分，可能储存养分），叶（光合作用的主要场所，通过气孔进行气体交换，蒸腾作用）。每个器官都有专门的组织：表皮组织（具有角质层的表皮用于保护，根毛用于吸收），维管组织（木质部向上运输水分，韧皮部双向运输糖分），基本组织（薄壁组织用于储存和光合作用，厚角组织用于柔性支撑，厚壁组织用于刚性支撑）。理解植物结构对巴塞尔的农业研究、莱茵河沿岸的城市林业以及罗氏和诺华的药用植物学至关重要，许多药物都来源于植物化合物。巴塞尔植物园维护着超过7500种植物用于研究和教育。",
@@ -848,9 +831,7 @@ export const cnBiology = {
         next: "下一挑战",
         correct: "结构验证成功",
         incorrect: "检查答案",
-        ready: "就绪",
         monitor_title: "SB1.04_植物监视器",
-        footer_left: "SB1.04_植物结构 // 节点：巴塞尔",
         expressions: {
             structure_label: "结构：",
             water_transport_title: "水分运输机制",
@@ -879,7 +860,7 @@ export const cnBiology = {
             behavior_evolution: "行为与进化"
         },
         placeholders: {
-            type_answer: "type answer",
+            type_answer: "type answer"
         },
         scenarios: {
             basel_zoo: "巴塞尔动物园生物多样性之旅：你是巴塞尔动物园（Zolli）的学生导游，正在准备关于动物分类的教育之旅。动物园拥有来自所有主要动物群的600多种物种。你的任务是为游客创建分类指南。今天你专注于非洲草原展区，包括狮子（Panthera leo）、斑马（Equus quagga）和鸵鸟（Struthio camelus）。你需要解释这些动物尽管生活在同一栖息地，但如何被分类到不同的群体。动物园的教育计划强调理解分类是基于进化关系和共同特征，而不仅仅是动物生活的地方。这有助于游客欣赏生物多样性和保护工作的重要性。你的任务：将每种动物分类到正确的纲（哺乳纲、鸟纲或爬行纲）并解释定义每个群体的关键特征。这些知识帮助动物园游客理解为什么保护策略必须根据每个物种基于其分类的独特生物需求来考虑。",
@@ -894,9 +875,7 @@ export const cnBiology = {
         correct: "分类验证成功",
         incorrect: "检查答案",
         loading: "加载中...",
-        ready: "就绪",
-        monitor_title: "SB1.05_动物监视器",
-        footer_left: "SB1.05_动物分类 // 节点：巴塞尔"
+        monitor_title: "SB1.05_动物监视器"
     },
 
     sb2_01_tissues: {
@@ -905,12 +884,10 @@ export const cnBiology = {
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "组织结构监视器",
-        footer_left: "SB2.01_组织器官 // 节点：巴塞尔",
         check: "验证",
         next: "下一层级",
         correct: "正确",
         incorrect: "错误",
-        ready: "就绪",
         stages: {
             tissues: "组织类型",
             organs: "器官组成",
@@ -1015,9 +992,7 @@ export const cnBiology = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SB2.01_遗传学监视器",
-        footer_left: "SB2.01_孟德尔花园 // 节点：巴塞尔",
         stages: {
             monohybrid: "单性状杂交",
             probability: "概率计算",
@@ -1074,9 +1049,7 @@ export const cnBiology = {
         next: "执行下一序列",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SB2.02_人体系统_监控",
-        footer_left: "SB2.02_人体系统 // 节点：巴塞尔",
         objective_title: "当前任务目标",
         stages: {
             digestive: "消化系统",
@@ -1152,7 +1125,7 @@ export const cnBiology = {
         corrects: {
             carbon_dioxide: "\\text{二氧化碳（CO}_2\\text{）}",
             baroreceptors_raas_anp: "\\text{压力感受器、RAAS、ANP}",
-            oxygen: "\\text{氧气（O}_2\\text{）}",
+            oxygen: "\\text{氧气（O}_2\\text{）}"
         },
         prompts: {
             // 消化系统 - 基础 (5题)
@@ -1459,7 +1432,7 @@ export const cnBiology = {
             o2: "O2",
             v_70: "70",
             v_7_dot_5: "7.5",
-            v_50: "50",
+            v_50: "50"
 }
     },
     sb3_02: {
@@ -1468,34 +1441,32 @@ export const cnBiology = {
         next: "下一个",
         correct: "正确！",
         incorrect: "不正确",
-        ready: "就绪",
         title: "SB3.02 生物多样性",
-        footer_left: "SB3.02_生物多样性 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
             advanced: "高级",
-            elite: "精英",
+            elite: "精英"
         },
         tabs: {
             quests: "任务",
             scenarios: "巴塞尔场景",
-            visualizations: "可视化",
+            visualizations: "可视化"
         },
         language_buttons: {
             english: "切换到英文",
             chinese: "切换到中文",
-            german: "切换到德文",
+            german: "切换到德文"
         },
         stats: {
             total_quests: "总任务数",
             completed: "已完成",
-            progress: "进度",
+            progress: "进度"
         },
         stage_view: {
             stage: "阶段 {order}",
             progress: "进度",
-            quests: "任务",
+            quests: "任务"
         },
         quest_card: {
             completed: "已完成",
@@ -1503,7 +1474,7 @@ export const cnBiology = {
             correct: "正确！",
             incorrect: "还不完全正确",
             try_again: "再试一次",
-            explanation: "解释",
+            explanation: "解释"
         },
         diversity_calculator: {
             title: "物种多样性计算器",
@@ -1519,14 +1490,14 @@ export const cnBiology = {
             formula_labels: {
                 shannon: "香农指数：",
                 simpson: "辛普森指数：",
-                evenness: "均匀度：",
-            },
+                evenness: "均匀度："
+            }
         },
         basel_scenarios: {
             related_concepts: "相关概念：",
             grid_title: "巴塞尔地区场景",
             grid_description: "通过巴塞尔当地案例探索生物多样性",
-            image_alt: "{title} - 图片 {index}",
+            image_alt: "{title} - 图片 {index}"
         },
         ecosystem_map: {
             title: "巴塞尔地区生态系统地图",
@@ -1537,7 +1508,7 @@ export const cnBiology = {
             ecosystem_type: "生态系统类型",
             ecosystems: "生态系统",
             avg_score: "平均评分",
-            total_threats: "总威胁",
+            total_threats: "总威胁"
         },
         conservation_planner: {
             title: "保护规划器",
@@ -1549,14 +1520,14 @@ export const cnBiology = {
             available_strategies: "可用策略",
             effectiveness: "有效性",
             over_budget: "超出预算！",
-            your_plan: "您的保护计划",
+            your_plan: "您的保护计划"
         },
         error_boundary: {
             title: "出了点问题",
             description: "加载此内容时发生错误。请重试。",
             retry: "重试",
-            details: "错误详情",
-        },
+            details: "错误详情"
+        }
     },
     sb3_01: {
         placeholders: {
@@ -1568,7 +1539,7 @@ export const cnBiology = {
             v_100: "100",
             v_6_dot_8: "6.8",
             v_2414: "2414",
-            v_0_dot_62: "0.62",
+            v_0_dot_62: "0.62"
         },
         back: "返回枢纽",
         title: "SB3.01 // 生态系统动力学",
@@ -1582,9 +1553,7 @@ export const cnBiology = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SB3.01_生态系统监控",
-        footer_left: "SB3.01_生态系统动力学 // 节点: 莱茵河",
         objective_title: "当前任务目标",
         stages: {
             food_chains: "食物链",
@@ -1670,7 +1639,7 @@ export const cnBiology = {
         placeholders: {
             x_to_y_upper: "X:Y",
             x_percent: "X%",
-            v_0_dot_xx: "0.XX",
+            v_0_dot_xx: "0.XX"
         },
         back: "返回枢纽",
         title: "SB2.03 // 遗传变异",
@@ -1683,9 +1652,7 @@ export const cnBiology = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SB2.03_变异监视器",
-        footer_left: "SB2.03_遗传变异 // 节点：巴塞尔",
         stages: {
             monohybrid: "单性状杂交",
             probability: "概率计算",
@@ -1741,12 +1708,10 @@ export const cnBiology = {
         difficulty: { basic: "基础", core: "核心", advanced: "高级", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "生理监测器",
-        footer_left: "SB2.04_人体生理学 // 节点：巴塞尔",
         check: "验证",
         next: "下一系统",
         correct: "系统正常",
         incorrect: "系统故障",
-        ready: "就绪",
         stages: {
             digestive_system: "消化系统",
             respiratory_system: "呼吸系统",

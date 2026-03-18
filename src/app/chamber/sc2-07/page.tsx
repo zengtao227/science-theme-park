@@ -140,14 +140,12 @@ export default function SC207Page() {
       onVerify={handleVerify}
       onNext={handleNext}
       checkStatus={feedback ? { ok: feedback.correct, correct: feedback.message } : null}
-      footerLeft={t('sc2_07.footer_left')}
       translations={{
         back: t('sc2_07.back'),
         check: t('sc2_07.check'),
         next: t('sc2_07.next'),
         correct: t('sc2_07.correct'),
         incorrect: t('sc2_07.incorrect'),
-        ready: t('sc2_07.ready'),
         monitor_title: t('sc2_07.monitor_title'),
         difficulty: {
           basic: t('sc2_07.difficulty.basic'),

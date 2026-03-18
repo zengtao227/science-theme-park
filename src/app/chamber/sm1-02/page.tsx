@@ -329,7 +329,7 @@ export default function SM102Page() {
             checkStatus={lastCheck}
             translations={{
                 back: sm1_02_t.back, check: sm1_02_t.check, next: sm1_02_t.next, correct: sm1_02_t.correct, incorrect: sm1_02_t.incorrect,
-                ready: sm1_02_t.ready, monitor_title: sm1_02_t.monitor_title,
+                monitor_title: sm1_02_t.monitor_title,
                 difficulty: { basic: sm1_02_t.difficulty.basic, core: sm1_02_t.difficulty.core, advanced: sm1_02_t.difficulty.advanced, elite: sm1_02_t.difficulty.elite },
             }}
             monitorContent={

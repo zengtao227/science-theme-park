@@ -64,9 +64,7 @@ export interface BiologyModuleTranslations {
   next: string;
   correct: string;
   incorrect: string;
-  ready: string;
   monitor_title: string;
-  footer_left: string;
   objective_title: string;
   difficulty: {
     basic: string;

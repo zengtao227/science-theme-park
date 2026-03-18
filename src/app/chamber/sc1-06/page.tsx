@@ -238,14 +238,12 @@ export default function SC106Page() {
       onNext={next}
       successRate={successRate}
       checkStatus={componentCompleted ? { ok: true, correct: '' } : lastCheck}
-      footerLeft={t('sc1_06.footer_left')}
       translations={{
         back: t('sc1_06.back'),
         check: t('sc1_06.check'),
         next: t('sc1_06.next'),
         correct: t('sc1_06.correct'),
         incorrect: t('sc1_06.incorrect'),
-        ready: t('sc1_06.ready'),
         monitor_title: t('sc1_06.monitor_title'),
         difficulty: {
           basic: t('sc1_06.difficulty.basic'),

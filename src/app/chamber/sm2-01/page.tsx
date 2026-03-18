@@ -365,7 +365,6 @@ export default function S201Page() {
       v_squared: t("sm2_01.placeholders.v_squared"),
     },
     ui: {
-      footer_left: t("sm2_01.ui.footer_left"),
       execute_next_sequence: t("sm2_01.ui.execute_next_sequence"),
       visual_reference_position: t("sm2_01.ui.visual_reference_position"),
       status_operational: t("sm2_01.ui.status_operational"),
@@ -509,7 +508,6 @@ export default function S201Page() {
       stages={stages}
       currentStage={questMode}
       onStageChange={handleModeChange}
-      footerLeft={sm2_01_t.ui?.footer_left}
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}
@@ -520,7 +518,6 @@ export default function S201Page() {
         next: sm2_01_t.ui?.execute_next_sequence,
         correct: sm2_01_t.solve_success,
         incorrect: sm2_01_t.solve_fail,
-        ready: t("sm2_01.ready"),
         monitor_title: sm2_01_t.ui?.visual_reference_position ?? "",
         difficulty: {
           basic: sm2_01_t.difficulty?.basic,

@@ -229,11 +229,9 @@ export default function S203Page() {
     next: t("sm2_03.next"),
     correct: t("sm2_03.correct"),
     incorrect: t("sm2_03.incorrect"),
-    ready: t("sm2_03.ready"),
     monitor_title: t("sm2_03.monitor_title"),
     target_title: t("sm2_03.target_title"),
     objective_title: t("sm2_03.objective_title"),
-    footer_left: t("sm2_03.footer_left"),
     difficulty: {
       basic: t("sm2_03.difficulty.basic"),
       core: t("sm2_03.difficulty.core"),
@@ -325,14 +323,12 @@ export default function S203Page() {
       onNext={next}
       checkStatus={lastCheck}
       successRate={successRate}
-      footerLeft={sm2_03_t.footer_left}
       translations={{
         back: sm2_03_t.back,
         check: sm2_03_t.check,
         next: sm2_03_t.next,
         correct: sm2_03_t.correct,
         incorrect: sm2_03_t.incorrect,
-        ready: sm2_03_t.ready,
         monitor_title: sm2_03_t.monitor_title,
         difficulty: {
           basic: sm2_03_t.difficulty.basic,

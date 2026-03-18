@@ -46,7 +46,6 @@ export default function SB104PlantStructure() {
             water_transport: t("sb1_04.scenarios.water_transport"),
             nutrient_transport: t("sb1_04.scenarios.nutrient_transport")
         },
-        footer_left: t("sb1_04.footer_left"),
         check: t("sb1_04.check"),
         next: t("sb1_04.next"),
         correct: t("sb1_04.correct"),
@@ -292,7 +291,6 @@ export default function SB104PlantStructure() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sb1_04_t.footer_left}
             translations={{
                 back: sb1_04_t.back,
                 difficulty: sb1_04_t.difficulty,

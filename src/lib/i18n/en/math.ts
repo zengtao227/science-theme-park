@@ -24,9 +24,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "EM1.01_THALES_MONITOR",
-        footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
             basics: "BASICS",
             measure: "MEASURE",
@@ -144,7 +142,7 @@ export const enMath = {
             v_100: "100",
             v_0_dot_732: "0.732",
             v_45: "45",
-            v_1_dot_57: "1.57",
+            v_1_dot_57: "1.57"
 }
     },
     em2_01: {
@@ -162,9 +160,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "EM2.01_MATRIX_MONITOR",
-        footer_left: "EM2.01_MATRIX_GEOMETRY // NODE: BASEL",
         labels: {
             matrix: "MATRIX A",
             properties: "PROPERTIES",
@@ -172,7 +168,7 @@ export const enMath = {
             volume_scale: "Volume Scale",
         placeholders: {
             det: "det",
-                    v_0: "0",
+                    v_0: "0"
 },
             formulas: "FORMULAS",
             angle: "ROTATION ANGLE (θ)",
@@ -217,7 +213,7 @@ export const enMath = {
             areaExpanded: "Area expanded (det > 1)",
             areaCompressed: "Area compressed (0 < det < 1)",
             orientationReversed: "Orientation reversed (det < 0)",
-            collapsedToLine: "Collapsed to line (det ≈ 0)",
+            collapsedToLine: "Collapsed to line (det ≈ 0)"
         },
         prompts: {
             identify_trans: "Roche symmetry audit: inspect the matrix and identify which geometric transformation it represents.",
@@ -272,7 +268,6 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -282,7 +277,6 @@ export const enMath = {
         hints_title: "Formula Reference",
         monitor_title: "GM1.01_VISUAL_MONITOR",
         status: "STATUS: OPERATIONAL",
-        footer_left: "GM1.01_CALCULUS // NODE: BASEL",
         footer_right: "DERIVATIVE_SIMULATOR",
         stages: {
             intro: "INTRO",
@@ -312,7 +306,7 @@ export const enMath = {
             hints: "HINTS"
         },
         placeholders: {
-            derivative: "derivative",
+            derivative: "derivative"
         },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
@@ -367,18 +361,16 @@ export const enMath = {
     },
     gm1_01_advanced: {
         placeholders: {
-            v_0_dot_00: "0.00",
+            v_0_dot_00: "0.00"
         },
         back: "Back to Nexus",
         title: "GM1.01-ADV // ADVANCED CALCULUS",
         monitor_title: "GM1.01_ADVANCED_MONITOR",
-        footer_left: "GM1.01_ADVANCED // NODE: BASEL",
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
         check: "Verify",
         next: "Next Challenge",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -464,7 +456,7 @@ export const enMath = {
             find_maximum: "\\text{Optimization task: find the maximizing value of the function}",
             find_maximum_area: "\\text{Optimization task: find the value that maximizes area}",
             find_maximum_profit: "\\text{Optimization task: find the value that maximizes profit}",
-            find_critical_points: "\\text{Analysis task: find all critical points where } f'(x)=0",
+            find_critical_points: "\\text{Analysis task: find all critical points where } f'(x)=0"
         },
         progress: "Progress"
     },
@@ -483,9 +475,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GM2.01_VECTOR_HUD",
-        footer_left: "GM2.01_VECTOR_PILOT // NODE: BASEL",
         stages: {
             navigation: "NAVIGATION",
             dot: "DOT PRODUCT",
@@ -512,7 +502,7 @@ export const enMath = {
             z: "z",
             magnitude: "magnitude",
             dot_product: "dot product",
-            dot: "dot",
+            dot: "dot"
         },
         mission: {
             title: "MISSION: RHINE AIRSPACE",
@@ -540,9 +530,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GM1.02_INTEGRAL_MONITOR",
-        footer_left: "GM1.02_INTEGRAL // NODE: BASEL",
         mission: {
             title: "INTEGRAL CALCULUS MISSION",
             description: "Master integration by calculating antiderivatives, definite integrals, and real-world applications. Integration is the inverse of differentiation."
@@ -566,7 +554,7 @@ export const enMath = {
             hint_area: "\\text{Area} = \\int_a^b f(x)dx\\text{ when }f(x)\\geq 0"
         },
         placeholders: {
-            value: "value",
+            value: "value"
         },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
     },
@@ -585,9 +573,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GM3.01_PROBABILITY_MONITOR",
-        footer_left: "GM3.01_PROBABILITY_VAULT // NODE: BASEL",
         stages: {
             basic_prob: "BASIC PROBABILITY",
             binomial: "BINOMIAL",
@@ -604,7 +590,7 @@ export const enMath = {
             problem_tag: "PROBLEM"
         },
         placeholders: {
-            probability_4dp: "0.0000",
+            probability_4dp: "0.0000"
         },
         viz: {
             sampleSpace: "Sample Space",
@@ -758,9 +744,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GM4.01_COMPLEX_MONITOR",
-        footer_left: "GM4.01_COMPLEX_HORIZON // NODE: BASEL",
         scenario_title: "BASEL ENGINEERING MISSION",
         scenarios: {
             basics: "Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.",
@@ -781,7 +765,7 @@ export const enMath = {
         },
         placeholders: {
             value: "value",
-            decimal_2dp: "0.00",
+            decimal_2dp: "0.00"
         },
         visualization: {
             pythagorean: "PYTHAGOREAN THEOREM",
@@ -815,9 +799,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "MONITOR",
-        footer_left: "GEOMETRY // NODE: BASEL",
         input_tip_2dp: "Tip: Enter result as a fraction (e.g. 4/3) or rounded to 2 decimal places.",
         base_twice_height: "base is twice the height",
         stages: {
@@ -846,6 +828,7 @@ export const enMath = {
             side: "Side",
             area: "Area",
             volume: "Volume",
+            pending: "Pending",
             calculate_area: "Calculate the area.",
             calculate_volume: "Calculate the volume.",
             rectangle: "Rectangle",
@@ -932,14 +915,14 @@ export const enMath = {
             space_diagonal: "space diagonal",
             lateral_area: "lateral area",
             volume_given: "volume",
-            area_given: "area",
-        },
+            area_given: "area"
+        }
     },
     sm1_02: {
         placeholders: {
             question: "?",
             hash: "#",
-            x: "x",
+            x: "x"
         },
         back: "Back to Nexus",
         title: "ALGEBRA QUEST",
@@ -947,9 +930,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "ALGEBRA_MONITOR",
-        footer_left: "ALGEBRA_QUEST // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1018,7 +999,7 @@ export const enMath = {
             minus_0_dot_xx: "-0.xx",
             y: "y",
             v_1_minus_4: "1-4",
-            minus_y: "-y",
+            minus_y: "-y"
         },
         back: "Back to Nexus",
         title: "BELOW ZERO",
@@ -1029,9 +1010,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "INTEGER_MONITOR",
-        footer_left: "BELOW_ZERO // NODE: BASEL",
         basel_scenario: "BASEL WINTER SCENARIO",
         scenario_title: "SCENARIO CONTEXT",
         objective_title: "MISSION OBJECTIVE",
@@ -1183,7 +1162,7 @@ export const enMath = {
             xx: "xx",
             x_dot_xx: "x.xx",
             xxxx: "xxxx",
-            xxx: "xxx",
+            xxx: "xxx"
         },
         back: "Back to Nexus",
         title: "EQUATION BALANCE",
@@ -1194,9 +1173,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "EQUATION_MONITOR",
-        footer_left: "EQUATION_BALANCE // NODE: BASEL",
         basel_scenario: "BASEL EQUATION SCENARIO",
         scenario_title: "SCENARIO CONTEXT",
         objective_title: "MISSION OBJECTIVE",
@@ -1341,7 +1318,7 @@ export const enMath = {
             app_e2: "Current age",
             app_e3: "Amount of pure acid",
             app_e4: "Boat speed",
-            app_e5: "Cost price",
+            app_e5: "Cost price"
         },
         canvas: {
             bus: "BUS",
@@ -1446,7 +1423,7 @@ export const enMath = {
     sm1_05: {
         placeholders: {
             question: "?",
-            hash: "#",
+            hash: "#"
         },
         back: "Back to Nexus",
         title: "RATIO LAB",
@@ -1457,9 +1434,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "RATIO_MONITOR",
-        footer_left: "RATIO_LAB // NODE: BASEL",
         stages: {
             recipes: "RECIPES",
             percent: "PERCENT",
@@ -1553,7 +1528,7 @@ export const enMath = {
             mix_evaporate: "A Novartis solution starts at 200 g with 10% concentration. The lab heats it and 100 g of water evaporates. What is the new concentration of the remaining solution?",
             mix_how_much_add: "A Roche lab has 50 g of concentrated 40% drug solution. The doctor needs a safer 10% solution. How many grams of water must be added to dilute it correctly?",
             mix_inverse: "A Novartis intern needs to produce a 10% solution by mixing X grams of pure water (0%) with 100 g of a 20% stock solution. How many grams of water (X) should she use?",
-            mix_final_challenge: "A Roche chemist starts with 200 g of a 20% solution, then adds 50 g of pure active compound (100%). What is the new concentration percentage?",
+            mix_final_challenge: "A Roche chemist starts with 200 g of a 20% solution, then adds 50 g of pure active compound (100%). What is the new concentration percentage?"
         },
         hints: {
             recipe_double: "Double the quantity, double the amount.",
@@ -1578,7 +1553,6 @@ export const enMath = {
         back: "← Back to Nexus",
         back_short: "Back to Nexus",
         title: "BINOMIAL FACTORY",
-        ready: "Ready",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -1600,7 +1574,7 @@ export const enMath = {
             b2: "b^{2}",
             ab: "ab",
             target_plus: "(a+b)^{2}",
-            target_minus: "$(a-b)^{2}$",
+            target_minus: "$(a-b)^{2}$"
         },
         scenarios: {
             architect_title: "Scenario A: Garden Extension",
@@ -1666,7 +1640,6 @@ export const enMath = {
             status_operational: "STATUS: OPERATIONAL",
             fps: "FPS",
             latency: "LATENCY",
-            footer_left: "SM2.01_ALGEBRA_SYNC // NODE: ZURICH",
             verified: "Verified",
             simulating: "Simulating",
             coeff: "Coeff",
@@ -1693,7 +1666,7 @@ export const enMath = {
             v: "V",
             two_cvxy: "2CVxy",
             v_squared: "V²",
-            question: "?",
+            question: "?"
         },
         decomposition_pattern: "Decomposition Pattern: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
@@ -1725,7 +1698,7 @@ export const enMath = {
     },
     sm2_02: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "Back to Nexus",
         title: "PYTHAGORAS & ROOTS",
@@ -1747,11 +1720,9 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         yes: "YES",
         no: "NO",
         monitor_title: "VISUAL_MONITOR",
-        footer_left: "SQRT_PYTHAGORAS // NODE: ZURICH",
         input_radical: "Answer as k√m",
         input_k: "k",
         input_m: "m",
@@ -1857,9 +1828,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "LASER_MONITOR",
-        footer_left: "LINE_NAVIGATOR // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -1902,7 +1871,7 @@ export const enMath = {
             question: "?",
             total_price: "Total Price (CHF)",
                     distance_km: "Distance (km)",
-            threshold_km: "Threshold (km)",
+            threshold_km: "Threshold (km)"
 },
         laser: {
             axis_km: "km",
@@ -1939,9 +1908,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "MONITOR",
-        footer_left: "SIMILARITY // NODE: BASEL",
         stages: {
             scale_factor: "SCALE",
             similar_triangles: "SIMILAR",
@@ -1952,7 +1919,7 @@ export const enMath = {
             input: "INPUT",
             hints: "HINTS",
             old_value: "Old",
-            new_value: "New",
+            new_value: "New"
         },
         hints: {
             rules: {
@@ -1995,7 +1962,7 @@ export const enMath = {
             v: "v",
             h: "H",            x: "x",
             y: "y",
-            z: "z",
+            z: "z"
 },
         formulas: {
             old_value: "\\text{Old}",
@@ -2021,9 +1988,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "MONITOR",
-        footer_left: "POWERS_ROOTS // NODE: BASEL",
         experimental: {
             show: "▸ Experimental (3D)",
             hide: "▾ Hide Experimental"
@@ -2051,7 +2016,7 @@ export const enMath = {
         placeholders: {
             value: "value",
             x: "x",
-            n: "n",
+            n: "n"
         }
     },
     sm2_06: {
@@ -2069,9 +2034,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "MONITOR",
-        footer_left: "LINEAR_SYSTEMS // NODE: BASEL",
         stages: {
             substitution: "SUBSTITUTION",
             elimination: "ELIMINATION",
@@ -2195,8 +2158,8 @@ export const enMath = {
             var1: "var1",
             var2: "var2",
             coeff1: "coeff1",
-            coeff2: "coeff2",
-},
+            coeff2: "coeff2"
+}
     },
     sm2_07: {
         back: "Back to Nexus",
@@ -2210,9 +2173,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "COORDINATE_MONITOR",
-        footer_left: "COORD_GEOM // NODE: ZURICH",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -2263,7 +2224,7 @@ export const enMath = {
             distance: "distance",
                     question: "?",
             x: "x",
-            y: "y",
+            y: "y"
 }
     },
     sm2_08: {
@@ -2276,7 +2237,7 @@ export const enMath = {
             xx: "xx",
             xxx: "xxx",
             x: "x",
-            v_1_or_minus_1: "1 or -1",
+            v_1_or_minus_1: "1 or -1"
         },
         back: "Back to Nexus",
         title: "PROBABILITY BASICS",
@@ -2287,9 +2248,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "PROBABILITY_MONITOR",
-        footer_left: "PROBABILITY // NODE: BASEL",
         formula_title: "PROBABILITY FORMULA",
         formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "PROBLEM",
@@ -2311,7 +2270,7 @@ export const enMath = {
             data_stats: "Data Statistics",
             frequency: "Frequency Data",
             combined: "Combined Events",
-            weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+            weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"]
         },
         geometry_visualization: {
             width: "width",
@@ -2347,7 +2306,7 @@ export const enMath = {
             two_coins: "In a classroom experiment, two independent fair coins are flipped simultaneously. Each coin shows heads with 50% probability. Calculate the probability that both coins land heads to verify the multiplication rule for independent events in your homework.",
             three_buses: "A Basel commuter takes three connecting bus lines each morning: Bus A (on-time rate: 80%), Bus B (75%), Bus C (90%). Calculate the probability that all three are on time on the same morning to decide whether a backup route is needed for an important appointment.",
             four_buses: "A logistics student analyses a delivery route requiring four connecting buses, each with 80% punctuality. Calculate the probability that all four buses run on time to check whether this route meets the minimum reliability threshold of 40% for daily deliveries.",
-            complex_event: "In an advanced probability unit, you calculate the probability that at least one of several independent events occurs — a technique used in insurance risk modelling and logistics planning. Apply the complement rule to find the combined probability and interpret it for a real decision.",
+            complex_event: "In an advanced probability unit, you calculate the probability that at least one of several independent events occurs — a technique used in insurance risk modelling and logistics planning. Apply the complement rule to find the combined probability and interpret it for a real decision."
         },
         prompts: {
             prompt_average: "Average",
@@ -2416,12 +2375,12 @@ export const enMath = {
             p_match: "P(\\text{match})",
             q1: "\\text{Q1}",
             iqr: "\\text{IQR}",
-            pct_change: "\\text{% Change}",
+            pct_change: "\\text{% Change}"
 },
         expr: {
             middle_value: "middle value",
             most_frequent: "most frequent",
-            p25: "25th percentile",
+            p25: "25th percentile"
         },
         problems: {
             bus_ontime_16_20: "In the past 20 days, the bus arrived on time 16 times. What is the probability it arrives on time tomorrow?",
@@ -2558,14 +2517,14 @@ export const enMath = {
             outlier_effect: "Data: 10, 12, 15, 18, 100. Calculate the mean. Notice how the outlier (100) affects it.",
             interquartile_range: "Data: 10, 15, 20, 25, 30. Q1=15, Q3=25. Calculate IQR = Q3 - Q1.",
             percentage_change: "Last month: CHF 100. This month: CHF 120. Calculate percentage change.",
-            correlation_direction: "As study time increases, test scores increase. Is the correlation positive (1) or negative (-1)?",
+            correlation_direction: "As study time increases, test scores increase. Is the correlation positive (1) or negative (-1)?"
         }
     },
     sm3_01: {
         placeholders: {
             question: "?",
             factor_a: "A",
-            factor_b: "B",
+            factor_b: "B"
         },
         back: "Back to Nexus",
         title: "QUADRATIC EQUATIONS",
@@ -2581,9 +2540,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "MONITOR",
-        footer_left: "QUADRATICS // NODE: ZURICH",
         stages: {
             terms: "TERMS",
             factorize: "FACTORIZE",
@@ -2671,9 +2628,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "TRIG_MONITOR",
-        footer_left: "TRIG_CIRCLE // NODE: BASEL",
         labels: {
             angle: "ANGLE (θ)",
             values: "TRIGONOMETRIC VALUES",
@@ -2701,7 +2656,7 @@ export const enMath = {
         },
         placeholders: {
             question: "?",
-            plus_minus: "+/-",
+            plus_minus: "+/-"
         },
         mission: {
             title: "MISSION: UNIT CIRCLE",
@@ -2737,9 +2692,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GROWTH_MONITOR",
-        footer_left: "EXPONENTIAL // NODE: BASEL",
         labels: {
             input: "INPUT",
             hints: "HINTS",
@@ -2822,9 +2775,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "LOG_MONITOR",
-        footer_left: "LOGARITHMS // NODE: BASEL",
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places.",
         labels: {
             input: "INPUT",
@@ -2838,7 +2789,7 @@ export const enMath = {
             db_reduction: "dB reduction",
             decibels: "decibels",
             magnitude_diff: "magnitude diff",
-            magnitude: "magnitude",
+            magnitude: "magnitude"
         },
         mission: {
             title: "LOGARITHMIC MEASUREMENT LAB",
@@ -2894,7 +2845,6 @@ export const enMath = {
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Data Analysis Monitor",
-        footer_left: "DATA_ANALYSIS // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Correct",
@@ -2937,7 +2887,7 @@ export const enMath = {
             eliteStep2: "2. Estimate CI: x̄ ± z*SE",
             eliteStep3: "3. Check confounders",
             eliteStep4: "4. Separate correlation from causation",
-            eliteGoal: "Goal: evidence -> decisions",
+            eliteGoal: "Goal: evidence -> decisions"
         },
         labels: {
             type: "Type",
@@ -3049,7 +2999,7 @@ export const enMath = {
             v_1_dot_52: "1.52",
             v_179: "179",
             v_0_dot_096: "0.096",
-            v_9_dot_34: "9.34",
+            v_9_dot_34: "9.34"
 },
         formula_phrases: {
             no_correlation: "No correlation",
@@ -3296,7 +3246,6 @@ export const enMath = {
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "3D Geometry Monitor",
-        footer_left: "3D_GEOMETRY // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Correct",
@@ -3350,7 +3299,7 @@ export const enMath = {
             skewLines: "Skew lines",
             skewDesc: "Non-parallel, non-intersecting",
             dihedralAngle: "Dihedral angle",
-            angleBetweenPlanes: "Angle between planes",
+            angleBetweenPlanes: "Angle between planes"
         },
         scenarios: {
             basel_arch: "Basel Architecture - Geometric Icons: You are an apprentice architect in Basel, analyzing the city's modern skyline. The Roche Tower (Building 1 and 2) can be modeled as a series of stacked trapezoidal prisms and cylinders. The Messeturm Basel is another landmark with its distinct rectangular and cylindrical sections. Your task is to calculate the volumes and surface areas of these iconic structures by abstracting them into basic geometric solids. For example, Stage 1 focuses on calculating the total volume of the Roche Tower complex by breaking it down into its constituent prisms. Understanding these relationships is vital for material planning (concrete, glass) and structural integrity.",
@@ -3417,7 +3366,7 @@ export const enMath = {
             curve_e2_hollow_sphere_volume: "Curved-solid task: A hollow sphere has outer radius 10cm and inner radius 8cm. Find the material volume. (pi ~= 3.14)",
             curve_e3_shell_volume: "Curved-solid task: A spherical shell has outer radius 12cm and thickness 2cm. Find the shell volume. (pi ~= 3.14)",
             curve_e4_frustum_volume: "Curved-solid task: A frustum has base radius 10cm, top radius 6cm, and height 12cm. Find the volume. (pi ~= 3.14)",
-            curve_e5_capsule_volume: "Curved-solid task: A capsule has cylinder radius 4cm and height 10cm with hemispheres at both ends. Find the total volume. (pi ~= 3.14)",
+            curve_e5_capsule_volume: "Curved-solid task: A capsule has cylinder radius 4cm and height 10cm with hemispheres at both ends. Find the total volume. (pi ~= 3.14)"
         },
         labels: {
             shape: "\\text{Shape}",
@@ -3527,12 +3476,12 @@ export const enMath = {
             v_1877: "1877",
             v_1206: "1206",
             v_2111: "2111",
-            v_770: "770",
+            v_770: "770"
 }
     },
     sm2_11: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         title: "SEQUENCES & SERIES",
         back: "Back to Nexus",
@@ -3540,9 +3489,7 @@ export const enMath = {
         next: "Next Challenge",
         correct: "Correct",
         incorrect: "Incorrect",
-        ready: "Ready",
         monitor_title: "Sequences & Series Monitor",
-        footer_left: "SEQUENCES_SERIES // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -3590,7 +3537,7 @@ export const enMath = {
     sm2_12: {
         placeholders: {
             ellipsis: "...",
-            v_0_dot_xxx: "0.xxx",
+            v_0_dot_xxx: "0.xxx"
         },
         title: "COMBINATORICS",
         back: "Back to Nexus",
@@ -3598,9 +3545,7 @@ export const enMath = {
         next: "Next Challenge",
         correct: "Correct",
         incorrect: "Incorrect",
-        ready: "Ready",
         monitor_title: "Combinatorics Monitor",
-        footer_left: "COMBINATORICS // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -3654,9 +3599,7 @@ export const enMath = {
         next: "Next",
         correct: "Correct",
         incorrect: "Incorrect",
-        ready: "Ready",
         monitor_title: "Transformation Monitor",
-        footer_left: "GEOMETRIC_TRANSFORMATIONS // NODE: BASEL",
         difficulty: {
             basic: "BASIC",
             core: "CORE",
@@ -3722,7 +3665,7 @@ export const enMath = {
             y: "y",
             b: "b",
             d: "d",
-            val: "val",
+            val: "val"
         }
     },
     gp3_03: {
@@ -3798,12 +3741,12 @@ export const enMath = {
             v_2494: "2494",
             v_60: "60",
             v_83_dot_1: "83.1",
-            v_75: "75",
-},
+            v_75: "75"
+}
     },
     sc3_04: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         hints: {
             look_for_group: "\\text{Look for the characteristic group in } {formula}",
@@ -3832,9 +3775,7 @@ export const enMath = {
         hide_steps: "Hide Steps",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "INEQUALITY_MONITOR",
-        footer_left: "INEQUALITIES // NODE: BASEL",
         labels: {
             scenario_title: "Basel Scenario",
             problem_title: "Problem",
@@ -3920,9 +3861,7 @@ export const enMath = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GM1.03_LIMITS_MONITOR",
-        footer_left: "GM1.03_LIMITS_CONTINUITY // NODE: BASEL",
         stages: {
             LIMIT_BASICS: "LIMIT BASICS",
             LIMIT_OPERATIONS: "LIMIT OPERATIONS",
@@ -3965,7 +3904,7 @@ export const enMath = {
         },
         placeholders: {
             value: "value",
-            yes_no: "yes/no",
+            yes_no: "yes/no"
         },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places. Use 'DNE' for does not exist.",
         visualization: {
@@ -3982,7 +3921,6 @@ export const enMath = {
     },
     gm2_02: {
         back: "Back to Nexus",
-        ready: "Ready",
         monitor_title: "Visualization",
         objective_title: "Objective",
         input_tip_2dp: "Enter your answer with precision to 2 decimal places.",
@@ -4077,8 +4015,8 @@ export const enMath = {
       count: "Count",
       ratio: "Ratio",
       type: "Type",
-      percentage: "Percentage",
+      percentage: "Percentage"
     },
-    answer_prefix: "Answer:",
-  },
+    answer_prefix: "Answer:"
+  }
 };

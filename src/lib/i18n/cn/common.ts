@@ -29,7 +29,6 @@ export const cnCommon = {
         next: "下一题",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         reference: "参考",
         none: "无",
         achievements_title: "成就",
@@ -540,7 +539,7 @@ export const cnCommon = {
         warning_text: "警告：世界不按你的意图转动……除非你真正理解规则。",
         hold_instruction: "进入授权通道",
         hold_button: "[ 访问核心枢纽 ]",
-        secure_connection: "安全连接已建立",
+        secure_connection: "安全连接已建立"
     },
     labels: {
         mission_objective: "任务目标",
@@ -553,6 +552,6 @@ export const cnCommon = {
         calculation_valid: "计算正常",
         calculation_error: "计算错误",
         next_mission: "下一任务",
-        hint: "提示",
-    },
+        hint: "提示"
+    }
 };

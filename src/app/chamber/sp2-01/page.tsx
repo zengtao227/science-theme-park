@@ -33,7 +33,6 @@ export default function SP201CircuitBasics() {
       simple_circuits: t("sp2_01.scenarios.simple_circuits"),
       circuit_diagrams: t("sp2_01.scenarios.circuit_diagrams")
     },
-    footer_left: t("sp2_01.footer_left"),
     check: t("sp2_01.check"),
     next: t("sp2_01.next"),
     correct: t("sp2_01.correct"),
@@ -106,7 +105,6 @@ export default function SP201CircuitBasics() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={sp2_01_t.footer_left}
       translations={{
         back: sp2_01_t.back,
         difficulty: sp2_01_t.difficulty,

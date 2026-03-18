@@ -13,7 +13,6 @@
     "check": "Verify",
     "next": "Next",
     "quest": "QUEST",
-    "ready": "READY",
     "monitor_title": "SCENARIO",
     "no_quests_available": "NO QUESTS AVAILABLE",
     "quest_pool_configuration": "Please check the quest pool configuration.",

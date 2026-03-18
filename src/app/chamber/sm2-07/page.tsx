@@ -357,7 +357,6 @@ export default function S207Page() {
       onNext={next}
       successRate={successRate}
       checkStatus={lastCheck}
-      footerLeft={t("sm2_07.footer_left")}
       monitorContent={
         <div className="space-y-4">
           <CoordinateCanvas2D
@@ -386,7 +385,6 @@ export default function S207Page() {
         next: t("sm2_07.next"),
         correct: t("sm2_07.correct"),
         incorrect: t("sm2_07.incorrect"),
-        ready: t("sm2_07.ready"),
         monitor_title: t("sm2_07.monitor_title"),
         difficulty: t("sm2_07.difficulty")
       }}

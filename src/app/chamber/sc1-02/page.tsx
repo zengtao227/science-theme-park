@@ -28,11 +28,9 @@ export default function C102Page() {
     next: t("sc1_02.next"),
     correct: t("sc1_02.correct"),
     incorrect: t("sc1_02.incorrect"),
-    ready: t("sc1_02.ready"),
     monitor_title: t("sc1_02.monitor_title"),
     target_title: t("sc1_02.target_title"),
     objective_title: t("sc1_02.objective_title"),
-    footer_left: t("sc1_02.footer_left"),
     input_tip_1dp: t("sc1_02.input_tip_1dp"),
     difficulty: {
       basic: t("sc1_02.difficulty.basic"),
@@ -129,14 +127,12 @@ export default function C102Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={sc1_02_t.footer_left}
       translations={{
         back: sc1_02_t.back,
         check: sc1_02_t.check,
         next: sc1_02_t.next,
         correct: sc1_02_t.correct,
         incorrect: sc1_02_t.incorrect,
-        ready: sc1_02_t.ready,
         monitor_title: sc1_02_t.monitor_title,
         difficulty: {
           basic: sc1_02_t.difficulty.basic,

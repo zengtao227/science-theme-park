@@ -290,7 +290,6 @@ export default function S302Page() {
                 next: t("sm3_02.next"),
                 correct: t("sm3_02.correct"),
                 incorrect: t("sm3_02.incorrect"),
-                ready: t("sm3_02.ready"),
                 monitor_title: t("sm3_02.monitor_title"),
                 difficulty: {
                     basic: t("sm3_02.difficulty.basic"),
@@ -299,7 +298,6 @@ export default function S302Page() {
                     elite: t("sm3_02.difficulty.elite"),
                 },
             }}
-            footerLeft={t("sm3_02.footer_left")}
             monitorContent={
                 <TrigMonitorPanel
                     angle={angle}

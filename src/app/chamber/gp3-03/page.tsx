@@ -40,7 +40,6 @@ export default function GP303Induction() {
             lenzs_law: t("gp3_03.scenarios.lenzs_law"),
             generators: t("gp3_03.scenarios.generators")
         },
-        footer_left: t("gp3_03.footer_left"),
         check: t("gp3_03.check"),
         next: t("gp3_03.next"),
         correct: t("gp3_03.correct"),
@@ -324,7 +323,6 @@ export default function GP303Induction() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={gp3_03_t.footer_left}
             translations={{
                 back: gp3_03_t.back,
                 difficulty: gp3_03_t.difficulty,

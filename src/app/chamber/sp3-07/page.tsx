@@ -578,14 +578,12 @@ export default function SP307Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sp3_07.footer_left")}
             translations={{
                 back: t("sp3_07.back"),
                 check: t("sp3_07.check"),
                 next: t("sp3_07.next"),
                 correct: t("sp3_07.correct"),
                 incorrect: t("sp3_07.incorrect"),
-                ready: t("sp3_07.ready"),
                 monitor_title: t("sp3_07.monitor_title"),
                 difficulty: {
                     basic: t("sp3_07.difficulty.basic"),

@@ -708,7 +708,6 @@ export default function S205Page() {
                 next: t("sm2_05.next"),
                 correct: t("sm2_05.correct"),
                 incorrect: t("sm2_05.incorrect"),
-                ready: t("sm2_05.ready"),
                 monitor_title: t("sm2_05.monitor_title"),
                 difficulty: {
                     basic: t("sm2_05.difficulty.basic"),

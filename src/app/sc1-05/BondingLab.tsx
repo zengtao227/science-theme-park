@@ -35,7 +35,6 @@ export const BondingLab: React.FC = () => {
                 next: t("sc1_05.next"),
                 correct: t("sc1_05.correct"),
                 incorrect: t("sc1_05.incorrect"),
-                ready: t("sc1_05.ready"),
                 monitor_title: t("sc1_05.monitor_title"),
                 difficulty: {
                     basic: t("sc1_05.difficulty.basic"),

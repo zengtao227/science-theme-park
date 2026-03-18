@@ -34,12 +34,10 @@ export default function SC107Sustainability() {
             green_chemistry: t("sc1_07.stages.green_chemistry"),
             circular_economy: t("sc1_07.stages.circular_economy")
         },
-        footer_left: t("sc1_07.footer_left"),
         check: t("sc1_07.check"),
         next: t("sc1_07.next"),
         correct: t("sc1_07.correct"),
         incorrect: t("sc1_07.incorrect"),
-        ready: t("sc1_07.ready"),
         monitor_title: t("sc1_07.monitor_title"),
         loading: t("sc1_07.loading"),
         labels: {
@@ -95,7 +93,6 @@ export default function SC107Sustainability() {
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sc1_07_t.footer_left}
             translations={{
                 back: sc1_07_t.back,
                 difficulty: sc1_07_t.difficulty,
@@ -103,7 +100,6 @@ export default function SC107Sustainability() {
                 next: sc1_07_t.next,
                 correct: sc1_07_t.correct,
                 incorrect: sc1_07_t.incorrect,
-                ready: sc1_07_t.ready,
                 monitor_title: sc1_07_t.monitor_title
             }}
         >

@@ -50,7 +50,6 @@ export default function GP302Electromagnetism() {
             magnetic_field: t("gp3_02.scenarios.magnetic_field"),
             particle_motion: t("gp3_02.scenarios.particle_motion")
         },
-        footer_left: t("gp3_02.footer_left"),
         check: t("gp3_02.check"),
         next: t("gp3_02.next"),
         correct: t("gp3_02.correct"),
@@ -361,7 +360,6 @@ export default function GP302Electromagnetism() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={gp3_02_t.footer_left}
             translations={{
                 back: gp3_02_t.back,
                 difficulty: gp3_02_t.difficulty,

@@ -75,7 +75,6 @@ export default function GC301Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("gc3_01.footer_left")}
       translations={{
         back: t("gc3_01.back"),
         check: t("gc3_01.check"),
@@ -88,7 +87,6 @@ export default function GC301Page() {
           ADVANCED: t("gc3_01.difficulty.advanced"),
           ELITE: t("gc3_01.difficulty.elite"),
         },
-        ready: t("gc3_01.ready"),
         monitor_title: t("gc3_01.monitor_title"),
       }}
       monitorContent={

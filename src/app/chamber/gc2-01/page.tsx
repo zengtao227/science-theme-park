@@ -147,7 +147,6 @@ export default function GC201Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("gc2_01.footer_left")}
             translations={{
                 back: t("gc2_01.back"),
                 check: t("gc2_01.check"),

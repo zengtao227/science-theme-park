@@ -9,12 +9,10 @@
   },
   "objective_title": "Active Mission Objective",
   "monitor_title": "Hormone Monitor",
-  "footer_left": "GB2.02_ENDOCRINE // NODE: BASEL",
   "check": "Verify",
   "next": "Next Quest",
   "correct": "Correct",
   "incorrect": "Incorrect",
-  "ready": "Ready",
   "stages": {
     "hormone_identification": "HORMONE IDENTIFICATION",
     "feedback_mechanisms": "FEEDBACK MECHANISMS",

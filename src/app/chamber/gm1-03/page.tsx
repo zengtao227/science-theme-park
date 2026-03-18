@@ -24,9 +24,7 @@ export default function GM103Page() {
     next: t("gm1_03.next"),
     correct: t("gm1_03.correct"),
     incorrect: t("gm1_03.incorrect"),
-    ready: t("gm1_03.ready"),
     monitor_title: t("gm1_03.monitor_title"),
-    footer_left: t("gm1_03.footer_left"),
     objective_title: t("gm1_03.objective_title"),
     target_title: t("gm1_03.target_title"),
     input_tip_2dp: t("gm1_03.input_tip_2dp"),
@@ -163,14 +161,12 @@ export default function GM103Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={gm1_03_t.footer_left}
       translations={{
         back: gm1_03_t.back,
         check: gm1_03_t.check,
         next: gm1_03_t.next,
         correct: gm1_03_t.correct,
         incorrect: gm1_03_t.incorrect,
-        ready: gm1_03_t.ready,
         monitor_title: gm1_03_t.monitor_title,
         difficulty: {
           basic: gm1_03_t.difficulty.basic,

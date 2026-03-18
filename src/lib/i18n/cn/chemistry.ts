@@ -7,7 +7,7 @@
 export const cnChemistry = {
     gc3_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "GC3.01 // 平衡大师",
@@ -23,9 +23,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "正确",
         incorrect: "错误",
-        ready: "准备就绪",
         monitor_title: "GC3.01_平衡监视器",
-        footer_left: "GC3.01_平衡大师 // 节点: 巴塞尔",
         labels: {
             reaction: "可逆反应",
             particle_count: "粒子计数",
@@ -41,7 +39,7 @@ export const cnChemistry = {
             system_temperature: "系统温度",
             system_pressure: "系统压强",
             input_answer: "输入答案",
-            placeholder: "输入 1 或 2",
+            placeholder: "输入 1 或 2"
         },
         mission: {
             title: "任务: 化学平衡",
@@ -115,7 +113,7 @@ export const cnChemistry = {
     },
     gc3_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "GC3.02 // 晶体宫殿",
@@ -131,9 +129,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GC3.02_晶体监视器",
-        footer_left: "GC3.02_晶体宫殿 // 节点：巴塞尔",
         labels: {
             lattice_type: "晶格类型",
             properties: "性质",
@@ -163,7 +159,7 @@ export const cnChemistry = {
             fcc_desc: "掌握面心立方（12配位）",
             sc_hint: "最低的堆积效率 (52%)",
             bcc_hint: "中等堆积 (68%)，如铁、铬等金属",
-            fcc_hint: "最高的堆积 (74%)，如铜、铝、金等金属",
+            fcc_hint: "最高的堆积 (74%)，如铜、铝、金等金属"
         },
         prompts: {
             atoms_per_cell: "计算该晶格每个晶胞的总原子数。",
@@ -180,7 +176,7 @@ export const cnChemistry = {
     },
     gc1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "GC1.01 // 氧化还原巨人",
@@ -196,9 +192,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GC1.01_氧化还原监视器",
-        footer_left: "GC1.01_氧化还原巨人 // 节点：巴塞尔",
         labels: {
             cell_potential: "电池电势",
             zn_concentration: "Zn^{2}^+ 浓度",
@@ -246,7 +240,7 @@ export const cnChemistry = {
     },
     gc2_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "GC2.01 // 碳世界",
@@ -262,9 +256,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GC2.01_有机监测器",
-        footer_left: "GC2.01_碳世界 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -333,7 +325,7 @@ export const cnChemistry = {
     },
     sc1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "SC1.01 // 神秘实验室",
@@ -346,9 +338,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "验证通过",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC1.01_实验室监控器",
-        footer_left: "SC1.01_神秘实验室 // 节点：巴塞尔",
         lab_ui: {
             mystery_lab: "神秘实验室",
             select_tool: "选择工具",
@@ -479,7 +469,7 @@ export const cnChemistry = {
         placeholders: {
             g_per_mol: "g/mol",
             mol: "mol",
-            g: "g",
+            g: "g"
         },
         back: "返回枢纽",
         title: "C1.02 // 摩尔大师",
@@ -495,9 +485,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "C1.02_称重监控",
-        footer_left: "C1.02_摩尔大师 // 节点：巴塞尔",
         input_tip_1dp: "提示：输入分数 (如 4/3) 或保留 1 位小数。",
         stages: {
             molar_mass: "摩尔质量",
@@ -551,9 +539,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC1.03_原子监视器",
-        footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -583,7 +569,7 @@ export const cnChemistry = {
             k: "K",
                     xx: "xx",
             x: "x",
-            xx_dot_x: "xx.x",
+            xx_dot_x: "xx.x"
 },
         prompts: {
             build_mass_number: "A",
@@ -615,9 +601,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC1.03_轨道监视器",
-        footer_left: "SC1.03_原子熔炉 // 节点：巴塞尔",
         labels: {
             selected_element: "选定元素",
             orbital_type: "轨道类型",
@@ -646,7 +630,7 @@ export const cnChemistry = {
         placeholders: {
             xx: "xx",
             x: "x",
-            v_1: "1",
+            v_1: "1"
         },
         back: "返回枢纽",
         title: "SC1.04 // 元素周期拼图",
@@ -662,9 +646,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC1.04_原子监视器",
-        footer_left: "SC1.04_元素周期拼图 // 节点：巴塞尔",
         labels: {
             element_info: "元素信息",
             formulas: "公式",
@@ -709,7 +691,7 @@ export const cnChemistry = {
             v_2: "2",
             v_0: "0",
             v_3: "3",
-            v_12: "12",
+            v_12: "12"
         },
         back: "返回中心实验室",
         title: "SC1.05 // 化学键桥",
@@ -717,7 +699,6 @@ export const cnChemistry = {
         next: "下一步",
         correct: "键合验证",
         incorrect: "键合失败",
-        ready: "就绪",
         monitor_title: "SC1.05_键合实验室",
         difficulty: {
             basic: "基础",
@@ -763,7 +744,7 @@ export const cnChemistry = {
     },
     sc2_01: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "返回枢纽",
         title: "C2.01 // 化学动力学",
@@ -778,9 +759,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "C2.01_动力学监视器",
-        footer_left: "C2.01_化学动力学 // 节点：巴塞尔",
         stages: {
             arrhenius: "阿伦尼乌斯",
             concentration: "速率定律",
@@ -858,7 +837,7 @@ export const cnChemistry = {
             hl_e1: "根据同位素数据计算样品年龄。",
             hl_e2: "计算各衰变通道的分支比。",
             hl_e3: "计算活度比A2 / A1。",
-            hl_e5: "根据宇宙成因数据计算暴露年龄。",
+            hl_e5: "根据宇宙成因数据计算暴露年龄。"
         },
         problems: {
             arr_temp_300_ea_50: "诺华反应器温度 T=300K，活化能 Ea=50 kJ/mol。计算相对速率常数 k。",
@@ -935,9 +914,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "滴定准确",
         incorrect: "pH 读取错误",
-        ready: "就绪",
         monitor_title: "SC2.02_滴定监控",
-        footer_left: "SC2.02_PH_哨兵 // 节点: 巴塞尔",
         stages: {
             curves: "PH 曲线",
             equivalence: "等当点",
@@ -964,7 +941,7 @@ export const cnChemistry = {
         },
         placeholders: {
             ml: "mL",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             curve_type: "初始 pH 为 {ph}。识别酸类型（强酸=1，弱酸=2）。",
@@ -1046,7 +1023,7 @@ export const cnChemistry = {
         placeholders: {
             pressure_bar: "bar",
             volume_l: "L",
-            value: "数值",
+            value: "数值"
         },
         back: "返回枢纽",
         title: "SC2.03 // 气体实验室",
@@ -1062,9 +1039,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC2.03_气体监视器",
-        footer_left: "SC2.03_气体实验室 // 节点：巴塞尔",
         labels: {
             pressure: "压力",
             state_variables: "状态变量",
@@ -1110,7 +1085,7 @@ export const cnChemistry = {
     sc2_04: {
         placeholders: {
             g_per_100ml: "g/100mL",
-            g: "g",
+            g: "g"
         },
         back: "返回枢纽",
         title: "SC2.04 // 溶解度实验室",
@@ -1126,9 +1101,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC2.04_溶解度监视器",
-        footer_left: "SC2.04_溶解度实验室 // 节点：巴塞尔",
         labels: {
             solubility: "溶解度",
             saturated: "饱和 - 正在形成沉淀",
@@ -1179,9 +1152,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "C3.01_分子监视器",
-        footer_left: "C3.01_分子建筑师 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -1199,7 +1170,7 @@ export const cnChemistry = {
             groups: "\\text{官能团}",
             rings: "\\text{环}",
             degree: "\\text{不饱和度}",
-            total_word: "合计",
+            total_word: "合计"
         },
         placeholders: {
             question_mark: "?",
@@ -1207,7 +1178,7 @@ export const cnChemistry = {
         
             cxhyoz: "CxHyOz",            x_to_y: "x:y",
             v_0: "0",
-            percent: "%",
+            percent: "%"
 },
         hints: {
             carbon_is_black: "\\text{碳原子为黑色。}",
@@ -1228,12 +1199,12 @@ export const cnChemistry = {
             look_for_o_n_patterns: "\\text{寻找 O、N 的规律}",
             closed_carbon_chains: "\\text{闭合碳链}",
             use_formula: "\\text{使用公式}",
-            relative_atomic_masses: "\\text{C=12, H=1, O=16, N=14}",
+            relative_atomic_masses: "\\text{C=12, H=1, O=16, N=14}"
         },
         expressions: {
             approximate: "\\text{近似值}",
             identify: "\\text{识别}",
-            count: "\\text{计数}",
+            count: "\\text{计数}"
         },
         prompts: {
             find_carbon_count: "求 {molecule} 中碳原子数。",
@@ -1255,7 +1226,7 @@ export const cnChemistry = {
             mass_percent_c: "{molecule} 中碳的质量分数是多少？",
             functional_groups: "{molecule} 含有哪些官能团？",
             ring_structures: "{molecule} 中有几个环结构？",
-            degree_unsaturation: "{molecule} 的不饱和度是多少？",
+            degree_unsaturation: "{molecule} 的不饱和度是多少？"
         },
         mission: {
             title: "分子组装实验室",
@@ -1281,9 +1252,7 @@ export const cnChemistry = {
         next: "下一个",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SC3.02_有机监控",
-        footer_left: "SC3.02_有机基础 // 节点：巴塞尔",
         objective_title: "当前任务目标",
         difficulty: {
             basic: "基础",
@@ -1304,7 +1273,7 @@ export const cnChemistry = {
         },
         placeholders: {
             cxhy: "CxHy",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             name_formula: "{name}的分子式是什么？",
@@ -1339,9 +1308,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SC3.03_反应监控",
-        footer_left: "SC3.03_有机化学反应 // 节点: 巴塞尔",
         objective_title: "当前任务目标",
         stages: {
             combustion: "燃烧反应",
@@ -1357,7 +1324,7 @@ export const cnChemistry = {
         },
         placeholders: {
             formula: "化学式",
-            ellipsis: "...",
+            ellipsis: "..."
         },
         prompts: {
             combustion: "{reactant} 的完全燃烧产生 CO_2 和 H_2O。产生多少个 CO_2 分子？",
@@ -1382,19 +1349,17 @@ export const cnChemistry = {
     sc3_05: {
         placeholders: {
             ellipsis: "...",
-            v_0: "0",
+            v_0: "0"
         },
         back: "返回枢纽",
         title: "SC3.05 // 分子熔炉",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "轨道稳定性监视器",
-        footer_left: "SC3.05_化学键 // 节点：巴塞尔",
         check: "验证",
         next: "下一合成",
         correct: "几何结构已优化",
         incorrect: "化学键不匹配",
-        ready: "就绪",
         stages: {
             vsepr: "VSEPR 几何构型",
             hybridization: "轨道杂化理论",
@@ -1447,9 +1412,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SC3.04_官能团监控",
-        footer_left: "SC3.04_官能团地平线 // 节点: 巴塞尔",
         objective_title: "当前任务目标",
         stages: {
             alcohols: "醇与醛",
@@ -1484,7 +1447,7 @@ export const cnChemistry = {
     gc1_02: {
         placeholders: {
             decimal_mass: "0.000",
-            one_or_two: "1 或 2",
+            one_or_two: "1 或 2"
         },
         back: "返回枢纽",
         title: "GC1.02 // 电解实验室",
@@ -1498,9 +1461,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "GC1.02_电解监控",
-        footer_left: "GC1.02_电解实验室 // 节点: 巴塞尔",
         objective_title: "当前任务目标",
         stages: {
             principles: "电解原理",
@@ -1539,7 +1500,7 @@ export const cnChemistry = {
     },
     sc2_05: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "返回主界面",
         title: "SC2.05 // 酸碱化学",
@@ -1619,7 +1580,7 @@ export const cnChemistry = {
             TT_E2: "精密分析法——Gran作图法：Gran函数线性外推后，V轴截距为25.4 mL，该截距即为等当点体积，用于计算药物纯度。",
             TT_E3: "凯氏定氮法（罗氏实验室）：1 g蛋白质样品释放的NH₃被吸收入50 mL 0.1 M HCl中。反滴定过量HCl需用20 mL 0.1 M NaOH。计算样品中氮的摩尔数。",
             TT_E4: "血浆滴定：10 mL血浆需2.4 mL 0.1 M HCl使pH降至4.4（碳酸氢盐终点）。计算血液中[HCO₃⁻]（mmol/L），以评估患者酸碱状态。",
-            TT_E5: "标定：苯二甲酸氢钾（KHP，Mw = 204.22 g/mol）为一级标准品。0.5106 g KHP需25.00 mL NaOH。计算NaOH的精确浓度，用于后续滴定。",
+            TT_E5: "标定：苯二甲酸氢钾（KHP，Mw = 204.22 g/mol）为一级标准品。0.5106 g KHP需25.00 mL NaOH。计算NaOH的精确浓度，用于后续滴定。"
         },
         prompts: {
             calculate_ph: "计算溶液的 pH 值。",
@@ -1686,7 +1647,7 @@ export const cnChemistry = {
             tt_e2: "V_{\\\\text{eq}} = V_{\\\\text{intercept}}",
             tt_e3: "n_N = n_{HCl} - n_{NaOH}",
             tt_e4: "[HCO_3^-] = \\\\frac{C_{HCl}V_{HCl}}{V_{\\\\text{plasma}}}",
-            tt_e5: "C = \\\\frac{m/Mw}{V}",
+            tt_e5: "C = \\\\frac{m/Mw}{V}"
         },
         labels: {
             acid: "酸",
@@ -1704,9 +1665,7 @@ export const cnChemistry = {
         next: "下一题",
         correct: "反应已验证",
         incorrect: "检查平衡",
-        ready: "就绪",
         monitor_title: "SC2.05_酸碱监控",
-        footer_left: "SC2.05_酸碱化学 // 节点: 巴塞尔",
         scenario_title: "巴塞尔场景",
         objective_title: "问题",
         answer_title: "您的答案"
@@ -1731,7 +1690,7 @@ export const cnChemistry = {
             v: "V",
             g: "g",
                     plus_minus_n: "±n",
-            ellipsis: "...",
+            ellipsis: "..."
 },
         scenarios: {
             oxidation_state: "诺华药物合成氧化控制：您是诺华巴塞尔的合成化学家，从事复杂的药物合成工作。活性成分需要对过渡金属催化剂进行精确的氧化态控制。在您当前的反应中，锰在 +4 和 +7 氧化态之间循环，以促进 C-H 键活化。您必须跟踪每个步骤的氧化态变化，以防止不需要的副反应。使用光谱分析，您监测高锰酸盐（Mn^7^+）的紫色转化为棕色二氧化锰（Mn^{4}^+）。单个电子计算错误可能导致有毒副产物，使整批产品无法使用。这种氧化态跟踪对于为瑞士各地的患者生产安全有效的药物至关重要。理解氧化态就像跟踪银行账户余额——您需要确切知道每个原子获得或失去了多少电子。",
@@ -1777,9 +1736,7 @@ export const cnChemistry = {
         next: "下一题",
         correct: "氧化还原已验证",
         incorrect: "检查电子平衡",
-        ready: "就绪",
-        monitor_title: "SC2.06_氧化还原监控",
-        footer_left: "SC2.06_氧化还原 // 节点: 巴塞尔"
+        monitor_title: "SC2.06_氧化还原监控"
     },
     sc1_06: {
         scenarios: {
@@ -1858,9 +1815,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "SC1.06_反应监视器",
-        footer_left: "SC1.06_化学反应 // 节点：巴塞尔",
         stages: {
             reaction_types: "反应类型",
             equation_balancing: "方程式配平",
@@ -1992,7 +1947,7 @@ export const cnChemistry = {
             hint_increase_reactants: "尝试增加包含 {element} 的反应物的系数"
         },
         placeholders: {
-            coefficient: "1",
+            coefficient: "1"
         }
     },
     sc2_07: {
@@ -2072,9 +2027,7 @@ export const cnChemistry = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SC2.07_焓监视器",
-        footer_left: "SC2.07_焓与能量学 // 节点：巴塞尔",
         stages: {
             energy_changes: "能量变化",
             hess_law: "赫斯定律",
@@ -2155,12 +2108,10 @@ export const cnChemistry = {
             green_chemistry: "绿色化学",
             circular_economy: "循环经济"
         },
-        footer_left: "SC1.07_可持续性 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "可持续方法已验证",
         incorrect: "检查生命周期数据",
-        ready: "就绪",
         monitor_title: "SC1.07_可持续性监视器",
         loading: "加载中...",
         labels: {
@@ -2175,7 +2126,7 @@ export const cnChemistry = {
         placeholders: {
             material: "输入类型",
             percent: "%",
-            stage: "名称",
+            stage: "名称"
         },
         prompts: {
             sc1_07_q1: "识别此类可回收塑料（缩写）。",

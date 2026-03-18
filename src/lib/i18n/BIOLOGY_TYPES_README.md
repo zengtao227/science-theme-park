@@ -17,9 +17,7 @@ interface BiologyModuleTranslations {
   next: string;                     // Next button text
   correct: string;                  // Correct answer feedback
   incorrect: string;                // Incorrect answer feedback
-  ready: string;                    // Ready state text
   monitor_title: string;            // Monitor display title
-  footer_left: string;              // Footer left text
   objective_title: string;          // Mission objective title
   
   // Difficulty levels

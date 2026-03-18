@@ -21,13 +21,11 @@ export default function SC305MolecularForge() {
     const { t } = useLanguage();
     const sc3_05_t = {
         title: t("sc3_05.title"),
-        footer_left: t("sc3_05.footer_left"),
         back: t("sc3_05.back"),
         check: t("sc3_05.check"),
         next: t("sc3_05.next"),
         correct: t("sc3_05.correct"),
         incorrect: t("sc3_05.incorrect"),
-        ready: t("sc3_05.ready"),
         monitor_title: t("sc3_05.monitor_title"),
         stages: {
             vsepr: t("sc3_05.stages.vsepr"),
@@ -165,7 +163,6 @@ export default function SC305MolecularForge() {
             checkStatus={lastCheck}
             onVerify={verify}
             onNext={next}
-            footerLeft={sc3_05_t.footer_left}
             monitorContent={
                 <div className="flex items-center gap-6">
                     <div className="flex flex-col items-end">

@@ -255,7 +255,6 @@ export default function SC301Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sc3_01.footer_left")}
       translations={{
         back: t("sc3_01.back"),
         check: t("sc3_01.check"),

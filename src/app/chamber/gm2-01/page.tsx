@@ -39,9 +39,7 @@ export default function G201Page() {
     next: t("gm2_01.next"),
     correct: t("gm2_01.correct"),
     incorrect: t("gm2_01.incorrect"),
-    ready: t("gm2_01.ready"),
     monitor_title: t("gm2_01.monitor_title"),
-    footer_left: t("gm2_01.footer_left"),
     objective_title: t("gm2_01.objective_title"),
     target_title: t("gm2_01.target_title"),
     stages: {
@@ -142,14 +140,12 @@ export default function G201Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={gm2_01_t.footer_left}
       translations={{
         back: gm2_01_t.back,
         check: gm2_01_t.check,
         next: gm2_01_t.next,
         correct: gm2_01_t.correct,
         incorrect: gm2_01_t.incorrect,
-        ready: gm2_01_t.ready,
         monitor_title: gm2_01_t.monitor_title,
         difficulty: {
           basic: gm2_01_t.difficulty.basic,

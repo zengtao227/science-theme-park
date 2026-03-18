@@ -129,14 +129,12 @@ export default function GM202AnalyticalGeometry() {
       checkStatus={checkStatus}
       onVerify={handleVerify}
       onNext={checkStatus?.ok ? handleNext : undefined}
-      footerLeft={`${t.quest} ${questIndex + 1}/${questPool.length}`}
       translations={{
         back: t.back,
         check: t.check,
         next: t.next,
         correct: t.correct,
         incorrect: t.incorrect,
-        ready: t.ready,
         monitor_title: t.monitor_title,
         difficulty: {
           basic: t.basic,

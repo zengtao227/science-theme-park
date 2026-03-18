@@ -208,7 +208,6 @@ export default function EM101Page() {
         stages={stagesProps}
         currentStage={stage}
         onStageChange={(s) => handleStageChange(s as Stage)}
-        footerLeft={t.footer_left}
         translations={{
           back: t.back,
           check: t.check,
@@ -240,7 +239,6 @@ export default function EM101Page() {
       onVerify={verify}
       onNext={handleNext}
       checkStatus={lastCheck}
-      footerLeft={t.footer_left}
       translations={{
         back: t.back,
         check: t.check,

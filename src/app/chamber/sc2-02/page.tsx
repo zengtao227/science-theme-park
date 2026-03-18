@@ -211,7 +211,6 @@ export default function SC202Page() {
     const sc2_02_t = {
         translate: t,
         title: t("sc2_02.title"),
-        footer_left: t("sc2_02.footer_left"),
         monitor_title: t("sc2_02.monitor_title"),
         back: t("sc2_02.back"),
         check: t("sc2_02.check"),
@@ -221,7 +220,6 @@ export default function SC202Page() {
         placeholders: {
             ml: t("sc2_02.placeholders.ml"),
         },
-        ready: t("sc2_02.ready"),
         stages: {
             curves: t("sc2_02.stages.curves"),
             equivalence: t("sc2_02.stages.equivalence"),
@@ -387,7 +385,6 @@ export default function SC202Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sc2_02_t.footer_left}
             translations={sc2_02_t}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">

@@ -417,14 +417,12 @@ export default function SC206Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sc2_06.footer_left")}
       translations={{
         back: t("sc2_06.back"),
         check: t("sc2_06.check"),
         next: t("sc2_06.next"),
         correct: t("sc2_06.correct"),
         incorrect: t("sc2_06.incorrect"),
-        ready: t("sc2_06.ready"),
         monitor_title: t("sc2_06.monitor_title"),
         difficulty: {
           basic: t("sc2_06.difficulty.basic"),

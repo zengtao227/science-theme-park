@@ -673,7 +673,6 @@ export default function SP306Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                footerLeft={t("sp3_06.footer_left")}
                 translations={{
                     back: t("sp3_06.back"),
                     check: t("sp3_06.check"),
@@ -705,7 +704,6 @@ export default function SP306Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sp3_06.footer_left")}
             translations={{
                 back: t("sp3_06.back"),
                 check: t("sp3_06.check"),

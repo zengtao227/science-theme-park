@@ -52,7 +52,7 @@ export const enBiology = {
             v_0_dot_693: "0.693",
             v_1100: "1100",
             v_0_dot_3: "0.3",
-            v_95: "95",
+            v_95: "95"
 },
         prompts: {
             natural_selection: "In a population of {initial} finches, {survival} survive drought. Calculate fitness.",
@@ -103,7 +103,7 @@ export const enBiology = {
             ev_e2: "Kimura 2-parameter model. Transition/transversion ratio R=2. Bias?",
             ev_e3: "Synonymous (dS) vs nonsynonymous (dN) rates. dN/dS > 1. Type of selection?",
             ev_e4: "Maximum parsimony. Min changes: tree A=10, tree B=12. Prefer tree A?",
-            ev_e5: "Bootstrap support: 95 of 100 replicate trees. Confidence value?",
+            ev_e5: "Bootstrap support: 95 of 100 replicate trees. Confidence value?"
         },
         feedback: {
             correct: "Natural selection confirmed!",
@@ -113,8 +113,6 @@ export const enBiology = {
         next: "Next Generation",
         correct: "Correct",
         incorrect: "Incorrect",
-        ready: "Ready",
-        footer_left: "GB1.01 // EVOLUTION LAB",
         scenarios: {
             galapagos_study: "Natural History Museum Basel - The Darwin Legacy: You are a curator at the Naturhistorisches Museum Basel, which houses one of the most significant collections of biological specimens in Switzerland. Your task is to analyze historical data from several islands, mirroring the observations Charles Darwin made on the Galapagos. By calculating the fitness of different bird populations based on survival rates during extreme environmental shifts, you help demonstrate the power of natural selection. In Basel, scientists use these museum records to understand how regional species, such as local beetles and birds, have evolved in response to urbanization over the last two centuries. This work is like uncovering the hidden gears of nature, seeing how small structural changes lead to massive survival advantages.",
             genetic_drift: "Biozentrum Basel - Population Dynamics: As a researcher at the University of Basel's Biozentrum, you are investigating the genetic makeup of isolated populations in the nearby Jura mountains. Genetic drift—the random change in allele frequencies—can lead to significant divergence in small groups over many generations. By modeling these processes, you help predict how endangered species in the Swiss borderlands might adapt to habitat fragmentation. Basel’s long history in genetic research, dating back to the 19th-century discovery of nucleic acids, provides a world-class environment for your study. It’s like watching a language evolve in a remote valley; over time, the 'accent' of the genome changes until a new species 'dialect' emerges.",
@@ -125,19 +123,17 @@ export const enBiology = {
     gb2_01: {
         placeholders: {
             ellipsis: "...",
-            v_0: "0",
+            v_0: "0"
         },
         back: "Back to Nexus",
         title: "GB2.01 // NEUROBIOLOGY",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Neural Activity Monitor",
-        footer_left: "GB2.01_NEUROBIOLOGY // NODE: BASEL",
         check: "Verify",
         next: "Next Impulse",
         correct: "Signal Transmitted",
         incorrect: "Synaptic Failure",
-        ready: "Ready",
         stages: {
             anatomy: "NEURON ANATOMY",
             potential: "ACTION POTENTIAL",
@@ -186,7 +182,7 @@ export const enBiology = {
     gb3_01: {
         placeholders: {
             ellipsis: "...",
-            v_2_minus_3: "2-3",
+            v_2_minus_3: "2-3"
         },
         back: "Back to Nexus",
         title: "GB3.01 // DNA FORGE",
@@ -197,9 +193,7 @@ export const enBiology = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "GB3.01_DNA_MONITOR",
-        footer_left: "GB3.01_DNA_FORGE // NODE: BASEL",
         stages: {
             pairing: "BASE PAIRING",
             bonds: "HYDROGEN BONDS",
@@ -251,19 +245,17 @@ export const enBiology = {
     },
     gb3_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "GB3.02 // IMMUNOLOGY LAB",
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Immune Response Monitor",
-        footer_left: "GB3.02_IMMUNOLOGY // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Antigen Neutralized",
         incorrect: "Pathogen Escape",
-        ready: "Ready",
         stages: {
             innate: "INNATE IMMUNITY",
             adaptive: "ADAPTIVE IMMUNITY",
@@ -305,7 +297,7 @@ export const enBiology = {
             select: "Select...",
             answer: "Enter answer...",
             hormone_type: "Select hormone type...",
-            gland: "Select gland...",
+            gland: "Select gland..."
         },
         back: "Back to Nexus",
         title: "GB2.02 // ENDOCRINE SYSTEM",
@@ -314,7 +306,6 @@ export const enBiology = {
         next: "Next Quest",
         correct: "Correct",
         incorrect: "Incorrect",
-        ready: "Ready",
         stages: {
             hormone_identification: "HORMONE IDENTIFICATION",
             feedback_mechanisms: "FEEDBACK MECHANISMS",
@@ -439,7 +430,7 @@ export const enBiology = {
     },
     sb1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "SB1.01 // CELL FACTORY",
@@ -452,9 +443,7 @@ export const enBiology = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SB1.01_CELL_MONITOR",
-        footer_left: "SB1.01_CELL_FACTORY // NODE: BASEL",
         stages: {
             identification: "IDENTIFICATION",
             function: "FUNCTION",
@@ -632,9 +621,7 @@ export const enBiology = {
         check: "Verify",
         correct: "Homeostasis Stable",
         incorrect: "Metabolic Crisis",
-        ready: "Ready",
         monitor_title: "SB1.01_METABOLIC_MONITOR",
-        footer_left: "SB1.01_CELL_BIOLOGY // NODE: BASEL",
         stages: {
             osmosis: "OSMOSIS",
             respiration: "RESPIRATION",
@@ -662,7 +649,7 @@ export const enBiology = {
         },
         placeholders: {
             enter_leave_stable: "enter/leave/stable",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             osmosis_prompt: "The cell is in a {status} environment ({desc}). What happens to the water?",
@@ -766,7 +753,7 @@ export const enBiology = {
     },
     sb1_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Return to Nexus",
         title: "SB1.02 // PHOTOSYNTHESIS LAB",
@@ -775,9 +762,7 @@ export const enBiology = {
         next: "Execute Next Sequence",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SB1.02_PHOTOSYNTHESIS_MONITOR",
-        footer_left: "SB1.02_PHOTOSYNTHESIS_LAB // NODE: BASEL",
         objective_title: "Active Mission Objective",
         stages: {
             equation: "REACTION EQUATION",
@@ -826,7 +811,7 @@ export const enBiology = {
     },
     sb1_03: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Back to Nexus",
         title: "SB1.03 // CELL DIVISION",
@@ -834,9 +819,7 @@ export const enBiology = {
         next: "Next Phase",
         correct: "Phase Clear",
         incorrect: "Misaligned",
-        ready: "Ready",
         monitor_title: "SB1.03_REPLICATION_HUB",
-        footer_left: "SB1.03_CELL_DIVISION // NODE: BASEL",
         objective_title: "Active Mission Objective",
         difficulty: {
             basic: "BASIC",
@@ -895,7 +878,7 @@ export const enBiology = {
             nutrient_transport: "NUTRIENT TRANSPORT"
         },
         placeholders: {
-            type_answer: "type answer",
+            type_answer: "type answer"
         },
         scenarios: {
             plant_structure: "Basel Botanical Garden - Plant Anatomy Research: You are a botanist at the University of Basel's Botanical Garden, one of Switzerland's oldest botanical gardens (founded 1589), studying plant structure and function. Plants have three main organ systems: roots (anchor the plant, absorb water and minerals from soil, store nutrients), stems (provide structural support, transport water and nutrients between roots and leaves, may store nutrients), and leaves (primary site of photosynthesis, gas exchange through stomata, transpiration). Each organ has specialized tissues: dermal tissue (epidermis with cuticle for protection, root hairs for absorption), vascular tissue (xylem transports water upward, phloem transports sugars bidirectionally), and ground tissue (parenchyma for storage and photosynthesis, collenchyma for flexible support, sclerenchyma for rigid support). Understanding plant structure is essential for Basel's agricultural research, urban forestry along the Rhine River, and pharmaceutical botany at Roche and Novartis, where many drugs are derived from plant compounds. The Basel Botanical Garden maintains over 7,500 plant species for research and education.",
@@ -908,9 +891,7 @@ export const enBiology = {
         next: "Next Challenge",
         correct: "Structure Verified",
         incorrect: "Check answer",
-        ready: "Ready",
         monitor_title: "SB1.04_PLANT_MONITOR",
-        footer_left: "SB1.04_PLANT_STRUCTURE // NODE: BASEL",
         expressions: {
             structure_label: "Structure:",
             water_transport_title: "Water Transport Mechanism",
@@ -939,7 +920,7 @@ export const enBiology = {
             behavior_evolution: "BEHAVIOR & EVOLUTION"
         },
         placeholders: {
-            type_answer: "type answer",
+            type_answer: "type answer"
         },
         scenarios: {
             basel_zoo: "Basel Zoo Biodiversity Tour: You are a student guide at Basel Zoo (Zolli), preparing an educational tour about animal classification. The zoo houses over 600 species from all major animal groups. Your task is to create a classification guide for visitors. Today you're focusing on the African Savanna exhibit, which includes lions (Panthera leo), zebras (Equus quagga), and ostriches (Struthio camelus). You need to explain how these animals are classified into different groups despite living in the same habitat. The zoo's education program emphasizes understanding that classification is based on evolutionary relationships and shared characteristics, not just where animals live. This helps visitors appreciate biodiversity and the importance of conservation efforts. Your task: Classify each animal into its correct class (Mammalia, Aves, or Reptilia) and explain the key characteristics that define each group. This knowledge helps zoo visitors understand why conservation strategies must consider each species' unique biological needs based on their classification.",
@@ -954,9 +935,7 @@ export const enBiology = {
         correct: "Classification Verified",
         incorrect: "Check answer",
         loading: "Loading...",
-        ready: "Ready",
-        monitor_title: "SB1.05_ANIMAL_MONITOR",
-        footer_left: "SB1.05_ANIMAL_CLASSIFICATION // NODE: BASEL"
+        monitor_title: "SB1.05_ANIMAL_MONITOR"
     },
 
     sb2_01_tissues: {
@@ -965,12 +944,10 @@ export const enBiology = {
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Tissue Organization Monitor",
-        footer_left: "SB2.01_TISSUES_ORGANS // NODE: BASEL",
         check: "Verify",
         next: "Next Level",
         correct: "Correct",
         incorrect: "Incorrect",
-        ready: "Ready",
         stages: {
             tissues: "TISSUE TYPES",
             organs: "ORGAN COMPOSITION",
@@ -1075,9 +1052,7 @@ export const enBiology = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SB2.01_GENETICS_MONITOR",
-        footer_left: "SB2.01_MENDELS_GARDEN // NODE: BASEL",
         stages: {
             monohybrid: "MONOHYBRID CROSS",
             probability: "PROBABILITY",
@@ -1134,9 +1109,7 @@ export const enBiology = {
         next: "Execute Next Sequence",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SB2.02_BODY_SYSTEMS_MONITOR",
-        footer_left: "SB2.02_HUMAN_BODY_SYSTEMS // NODE: BASEL",
         objective_title: "Active Mission Objective",
         stages: {
             digestive: "DIGESTIVE",
@@ -1212,7 +1185,7 @@ export const enBiology = {
         corrects: {
             carbon_dioxide: "\\text{Carbon dioxide (CO}_2\\text{)}",
             baroreceptors_raas_anp: "\\text{Baroreceptors, RAAS, ANP}",
-            oxygen: "\\text{Oxygen (O}_2\\text{)}",
+            oxygen: "\\text{Oxygen (O}_2\\text{)}"
         },
         prompts: {
             // DIGESTIVE STAGE - BASIC (5 questions)
@@ -1519,7 +1492,7 @@ export const enBiology = {
             o2: "O2",
             v_70: "70",
             v_7_dot_5: "7.5",
-            v_50: "50",
+            v_50: "50"
 }
     },
     sb3_02: {
@@ -1528,34 +1501,32 @@ export const enBiology = {
         next: "Next",
         correct: "Correct!",
         incorrect: "Incorrect",
-        ready: "Ready",
         title: "SB3.02 Biodiversity",
-        footer_left: "SB3.02_BIODIVERSITY // NODE: BASEL",
         difficulty: {
             basic: "Basic",
             core: "Core",
             advanced: "Advanced",
-            elite: "Elite",
+            elite: "Elite"
         },
         tabs: {
             quests: "Quests",
             scenarios: "Basel Scenarios",
-            visualizations: "Visualizations",
+            visualizations: "Visualizations"
         },
         language_buttons: {
             english: "Switch language to English",
             chinese: "Switch language to Chinese",
-            german: "Switch language to German",
+            german: "Switch language to German"
         },
         stats: {
             total_quests: "Total Quests",
             completed: "Completed",
-            progress: "Progress",
+            progress: "Progress"
         },
         stage_view: {
             stage: "Stage {order}",
             progress: "Progress",
-            quests: "Quests",
+            quests: "Quests"
         },
         quest_card: {
             completed: "Completed",
@@ -1563,7 +1534,7 @@ export const enBiology = {
             correct: "Correct!",
             incorrect: "Not quite right",
             try_again: "Try Again",
-            explanation: "Explanation",
+            explanation: "Explanation"
         },
         diversity_calculator: {
             title: "Species Diversity Calculator",
@@ -1579,14 +1550,14 @@ export const enBiology = {
             formula_labels: {
                 shannon: "Shannon Index:",
                 simpson: "Simpson Index:",
-                evenness: "Evenness:",
-            },
+                evenness: "Evenness:"
+            }
         },
         basel_scenarios: {
             related_concepts: "Related Concepts:",
             grid_title: "Basel Regional Scenarios",
             grid_description: "Explore biodiversity through local Basel examples",
-            image_alt: "{title} - Image {index}",
+            image_alt: "{title} - Image {index}"
         },
         ecosystem_map: {
             title: "Basel Region Ecosystem Map",
@@ -1597,7 +1568,7 @@ export const enBiology = {
             ecosystem_type: "Ecosystem Type",
             ecosystems: "Ecosystems",
             avg_score: "Avg. Score",
-            total_threats: "Total Threats",
+            total_threats: "Total Threats"
         },
         conservation_planner: {
             title: "Conservation Planner",
@@ -1609,14 +1580,14 @@ export const enBiology = {
             available_strategies: "Available Strategies",
             effectiveness: "Effectiveness",
             over_budget: "Over Budget!",
-            your_plan: "Your Conservation Plan",
+            your_plan: "Your Conservation Plan"
         },
         error_boundary: {
             title: "Something went wrong",
             description: "An error occurred while loading this content. Please try again.",
             retry: "Try Again",
-            details: "Error Details",
-        },
+            details: "Error Details"
+        }
     },
     sb3_01: {
         placeholders: {
@@ -1628,7 +1599,7 @@ export const enBiology = {
             v_100: "100",
             v_6_dot_8: "6.8",
             v_2414: "2414",
-            v_0_dot_62: "0.62",
+            v_0_dot_62: "0.62"
         },
         back: "Return to Nexus",
         title: "SB3.01 // ECOSYSTEM DYNAMICS",
@@ -1642,9 +1613,7 @@ export const enBiology = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SB3.01_ECOSYSTEM_MONITOR",
-        footer_left: "SB3.01_ECOSYSTEM_DYNAMICS // NODE: RHINE",
         objective_title: "Active Mission Objective",
         stages: {
             food_chains: "FOOD CHAINS",
@@ -1730,7 +1699,7 @@ export const enBiology = {
         placeholders: {
             x_to_y_upper: "X:Y",
             x_percent: "X%",
-            v_0_dot_xx: "0.XX",
+            v_0_dot_xx: "0.XX"
         },
         back: "Back to Nexus",
         title: "SB2.03 // GENETIC VARIATION",
@@ -1743,9 +1712,7 @@ export const enBiology = {
         check: "Verify",
         correct: "Verified",
         incorrect: "Mismatch",
-        ready: "Ready",
         monitor_title: "SB2.03_VARIATION_MONITOR",
-        footer_left: "SB2.03_GENETIC_VARIATION // NODE: BASEL",
         stages: {
             monohybrid: "MONOHYBRID CROSS",
             probability: "PROBABILITY",
@@ -1801,12 +1768,10 @@ export const enBiology = {
         difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
         objective_title: "Active Mission Objective",
         monitor_title: "Physiology Monitor",
-        footer_left: "SB2.04_HUMAN_PHYSIOLOGY // NODE: BASEL",
         check: "Verify",
         next: "Next System",
         correct: "System Functional",
         incorrect: "System Malfunction",
-        ready: "Ready",
         stages: {
             digestive_system: "DIGESTIVE SYSTEM",
             respiratory_system: "RESPIRATORY SYSTEM",
@@ -1945,5 +1910,5 @@ export const enBiology = {
             circulatory_system: "You are examining how the heart and blood vessels transport oxygen, nutrients, and waste throughout the body. This system maintains homeostasis.",
             excretory_system: "You are investigating how kidneys filter blood and maintain fluid balance. The excretory system removes metabolic waste and regulates body chemistry."
         }
-    },
+    }
 };

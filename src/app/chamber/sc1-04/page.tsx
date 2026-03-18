@@ -146,13 +146,11 @@ export default function SC104Page() {
     },
     target_title: t("sc1_04.target_title"),
     objective_title: t("sc1_04.objective_title"),
-    footer_left: t("sc1_04.footer_left"),
     back: t("sc1_04.back"),
     check: t("sc1_04.check"),
     next: t("sc1_04.next"),
     correct: t("sc1_04.correct"),
     incorrect: t("sc1_04.incorrect"),
-    ready: t("sc1_04.ready"),
     monitor_title: t("sc1_04.monitor_title"),
     difficulty: {
       basic: t("sc1_04.difficulty.basic"),
@@ -182,14 +180,12 @@ export default function SC104Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={sc1_04_t.footer_left}
       translations={{
         back: sc1_04_t.back,
         check: sc1_04_t.check,
         next: sc1_04_t.next,
         correct: sc1_04_t.correct,
         incorrect: sc1_04_t.incorrect,
-        ready: sc1_04_t.ready,
         monitor_title: sc1_04_t.monitor_title,
         difficulty: sc1_04_t.difficulty,
       }}

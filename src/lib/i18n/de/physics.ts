@@ -10,12 +10,10 @@ export const dePhysics = {
         sp1_01: {
                 "title": "SP1.01 // Kräftemodell",
                 "back": "Zurück",
-                "footer_left": "SP1.01_Mechanik // Knoten: Basel",
                 "check": "Kraft prüfen",
                 "next": "Nächste Aufgabe",
                 "correct": "Gleichgewicht",
                 "incorrect": "Abweichung",
-                "ready": "BEREIT",
                 "monitor_title": "VEKTORANALYSE",
                 "difficulty": {
                         "basic": "Basis",
@@ -713,7 +711,7 @@ export const dePhysics = {
                 minus_4: "-4",
                 x: "x",
                 v_1: "1",
-                v_0: "0",
+                v_0: "0"
             },
                 back: "Zurück zum Nexus",
                 title: "GP1.01 // ATOMKERN",
@@ -724,9 +722,7 @@ export const dePhysics = {
                 check: "Verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "GP1.01_ATOM_MONITOR",
-                footer_left: "GP1.01_MODERNE_PHYSIK // KNOTEN: BASEL",
                 labels: {
                         input: "EINGABEPARAMETER",
                         hints: "HINWEISE",
@@ -778,7 +774,7 @@ export const dePhysics = {
             placeholders: {
                 x_dot_xx: "x.xx",
                 x: "x",
-                x_dot_x: "x.x",
+                x_dot_x: "x.x"
             },
                 back: "Zurück zum Nexus",
                 title: "GP5.02 // RELATIVITÄTS-LABOR",
@@ -789,9 +785,7 @@ export const dePhysics = {
                 check: "Verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "GP5.02_RELATIVITY_MONITOR",
-                footer_left: "GP5.02_RELATIVITÄT // KNOTEN: CERN",
                 labels: {
                         velocity: "Geschwindigkeit (v/c)",
                         lorentz_factor: "Lorentz-Faktor (γ)",
@@ -848,7 +842,7 @@ export const dePhysics = {
                 xx_dot_x: "xx.x",
                 v_0_dot_xxxxx: "0.xxxxx",
                 xxx: "xxx",
-                minus_x_dot_x: "-x.x",
+                minus_x_dot_x: "-x.x"
             },
                 back: "Zurück zum Nexus",
                 title: "GP5.03 // TEILCHENBESCHLEUNIGER",
@@ -859,9 +853,7 @@ export const dePhysics = {
                 check: "Verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "GP5.03_LHC_MONITOR",
-                footer_left: "GP5.03_TEILCHENPHYSIK // KNOTEN: CERN",
                 labels: {
                         beam_energy: "STRAHLENERGIE",
                         relativistic_effects: "RELATIVISTISCHE EFFEKTE",
@@ -909,7 +901,7 @@ export const dePhysics = {
                 v_0_dot_xxx: "0.xxx",
                 v_2: "2",
                 x_dot_x: "x.x",
-                x_dot_xe14: "x.xe14",
+                x_dot_xe14: "x.xe14"
             },
                 back: "Zurück zum Nexus",
                 title: "GP1.04 // QUANTENTUNNEL",
@@ -920,9 +912,7 @@ export const dePhysics = {
                 check: "Verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "GP1.04_QUANTEN_MONITOR",
-                footer_left: "GP1.04_QUANTENTUNNEL // KNOTEN: CERN",
                 labels: {
                         particle_energy: "PARTIKELENERGIE (E)",
                         barrier_height: "BARRIERENHÖHE (V₀)",
@@ -966,12 +956,10 @@ export const dePhysics = {
         sp1_02: {
                 title: "SP1.02 // NEWTONSCHE GESETZE",
                 back: "Zurück zum Nexus",
-                footer_left: "SP1.02_MECHANIK // KNOTEN: BASEL",
                 check: "Verifizieren",
                 next: "Weiter",
                 correct: "Gesetz Bestätigt",
                 incorrect: "Gesetz Fehler",
-                ready: "SYSTEM_BEREIT",
                 monitor_title: "NEWTON_PHYSIK_V1",
                 difficulty: {
                         basic: "GRUNDLAGEN",
@@ -1135,9 +1123,7 @@ export const dePhysics = {
                 next: "Weiter",
                 correct: "Stromkreis Bestätigt",
                 incorrect: "Stromkreis Fehler",
-                ready: "Bereit",
                 monitor_title: "SP2.01_STROMKREIS_LABOR",
-                footer_left: "SP2.01_ELEKTRIZITÄT // KNOTEN: BASEL",
                 labels: {
                         quest: "Aufgabe"
                 },
@@ -1219,7 +1205,6 @@ export const dePhysics = {
         sp2_02: {
                 title: "SP2.02 // OHMSCHES GESETZ & SCHALTUNGEN",
                 back: "Zurück zum Nexus",
-                footer_left: "SP2.02_SCHALTUNGEN // KNOTEN: BASEL",
                 check: "Verifizieren",
                 next: "Weiter",
                 correct: "Schaltung Bestätigt",
@@ -1236,7 +1221,7 @@ export const dePhysics = {
                         parallel_circuits: "PARALLELSCHALTUNG"
                 },
             placeholders: {
-                type_value: "Wert eingeben",
+                type_value: "Wert eingeben"
             },
                 visualization: {
                         ohms_law_formula: "Ohm'sches Gesetz: U = I × R",
@@ -1269,7 +1254,6 @@ export const dePhysics = {
         sp2_03: {
                 title: "SP2.03 // ELEKTRISCHE LEISTUNG & ENERGIE",
                 back: "Zurück zum Nexus",
-                footer_left: "SP2.03_LEISTUNG // KNOTEN: BASEL",
                 check: "Verifizieren",
                 next: "Weiter",
                 correct: "Leistung Bestätigt",
@@ -1286,7 +1270,7 @@ export const dePhysics = {
                         efficiency: "WIRKUNGSGRAD"
                 },
             placeholders: {
-                type_value: "type value",
+                type_value: "type value"
             },
                 scenarios: {
                         power_basics: "Basler Haushalts-Elektrizität: Sie helfen einem Basler Energieberatungsunternehmen, den Stromverbrauch für Privatkunden zu berechnen. Die elektrische Leistung (P = U × I) bestimmt, wie viel Energie Geräte pro Sekunde verbrauchen, gemessen in Watt. Ihre Aufgabe ist es, die Leistung verschiedener Haushaltsgeräte zu berechnen. Dies hilft Familien, Stromrechnungen und CO_2-Fußabdruck zu reduzieren. Ein typischer Basler Haushalt verbraucht etwa 4.500 kWh pro Jahr, was bei 0,25 CHF/kWh etwa 1.125 CHF kostet. Genaue Leistungsberechnungen helfen, energieverschwendende Geräte zu identifizieren.",
@@ -1321,7 +1305,7 @@ export const dePhysics = {
         // 1. MESSEN (Grundlage)
         sp3_01: {
             placeholders: {
-                ellipsis: "...",
+                ellipsis: "..."
             },
                 back: "Zurück zum Nexus",
                 title: "SP3.01 // MESSEN & EINHEITEN",
@@ -1329,9 +1313,7 @@ export const dePhysics = {
                 next: "Weiter",
                 correct: "Messung Bestätigt",
                 incorrect: "Messfehler",
-                ready: "Bereit",
                 monitor_title: "SP3.01_MESSLABOR",
-                footer_left: "SP3.01_MESSEN // KNOTEN: BASEL",
                 objective_title: "Messziel",
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
                 stages: { si_units: "SI-EINHEITEN", conversion: "UMRECHNUNG", precision: "PRÄZISION" },
@@ -1391,7 +1373,6 @@ export const dePhysics = {
                 correct: "Gleichgewicht erreicht",
                 incorrect: "Kraft-Abweichung",
                 monitor_title: "SP3.02_DYNAMIK_MONITOR",
-                footer_left: "SP3.02_MECHANIK // KNOTEN: BASEL",
                 stages: {
                         newton_1: "TRÄGHEIT",
                         newton_2: "F = ma",
@@ -1502,7 +1483,7 @@ export const dePhysics = {
                         basel_tram_equilibrium: "Für Gleichgewicht am Hang: ΣF = 0. Zerlegen Sie Kräfte in parallele und senkrechte Komponenten. F_Motor muss mg sin θ + f ausgleichen, wobei f = μN = μ(mg cos θ).",
                         roche_tower_structural: "Verwenden Sie F = ma mit Vektorzerlegung. F_net = F - f wobei f = μN. Zerlegen Sie Windkraft: F_x = F sin θ, F_y = F cos θ. Dann a = F_net/m.",
                         basel_port_crane: "Vektorsumme: F_net = T - W - f. Zerlegen Sie Spannung im Winkel θ: T_y = T cos θ (vertikal), T_x = T sin θ (horizontal). Reibung f = μT. Beschleunigung a = F_net/m.",
-                        hospital_equipment_3d: "Auf geneigter Ebene: N = mg cos θ (Normalkraft senkrecht zur Oberfläche). Reibungskraft f = μN = μ(mg cos θ) wirkt parallel zur Oberfläche, entgegen der Bewegung.",
+                        hospital_equipment_3d: "Auf geneigter Ebene: N = mg cos θ (Normalkraft senkrecht zur Oberfläche). Reibungskraft f = μN = μ(mg cos θ) wirkt parallel zur Oberfläche, entgegen der Bewegung."
                 }
         },
 
@@ -1517,7 +1498,6 @@ export const dePhysics = {
                 correct: "Energieerhaltung bestätigt",
                 incorrect: "Energieverlust",
                 monitor_title: "SP3.03_ENERGIE_HUB",
-                footer_left: "SP3.03_MECHANIK // KNOTEN: BASEL",
                 stages: { potential: "POTENTIELLE ENERGIE", kinetic: "KINETISCHE ENERGIE", work: "LEISTUNG" },
                 monitor: {
                         title: "BASELER ENERGIEAUDIT",
@@ -1587,9 +1567,7 @@ export const dePhysics = {
                 check: "Verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "SP3.04_FLUID_MONITOR",
-                footer_left: "SP3.04_FLUIDMECHANIK // KNOTEN: RHEIN",
                 objective_title: "Aktives Missionsziel",
                 stages: { pressure: "DRUCK", buoyancy: "AUFTRIEB", hydraulics: "HYDRAULIK" },
             placeholders: {
@@ -1637,7 +1615,7 @@ export const dePhysics = {
                 v_7_dot_5: "7.5",
                 v_5000: "5000",
                 v_1900: "1900",
-                v_300: "300",
+                v_300: "300"
 },
                 prompts: {
                         pressure_depth: "Ein Schwimmer taucht auf {depth} m im Rhein. Berechnen Sie den Gesamtdruck.",
@@ -1735,7 +1713,7 @@ export const dePhysics = {
                         navigation: "Navigation",
                         next_mission: "Nächste Mission",
                         resultant_speed: "Resultierende Geschwindigkeit",
-                        terminal_input: "Eingabe",
+                        terminal_input: "Eingabe"
                 },
                 scenarios: {
                         rhine_swimming: "Schwimmen im Rhein: Taucher erkunden das Rheinbett bei der Mittleren Brücke. Der Wasserdruck steigt mit der Tiefe.",
@@ -1748,25 +1726,25 @@ export const dePhysics = {
                         compare_densities: "\\text{Dichten vergleichen}",
                         at_equilibrium: "\\text{Im Gleichgewicht: } W = F_b",
                         weight_equals_buoyancy: "\\text{Gewicht = Auftriebskraft}",
-                        pressure_force_per_area: "\\text{Druck ist Kraft pro Fläche}",
+                        pressure_force_per_area: "\\text{Druck ist Kraft pro Fläche}"
                 },
                         labels: {
-                        float_q: "\\text{Schwimmt?}",
+                        float_q: "\\text{Schwimmt?}"
                 },
                         targets: {
-                        answer: "\\text{Antwort}",
+                        answer: "\\text{Antwort}"
                 },
                         corrects: {
                         yes_density_less_water: "\\text{Ja (Dichte < Wasser)}",
-                        yes_rho_avg_less_1000: "\\text{Ja (} \\rho_{avg} < 1000 \\text{)}",
-                },
+                        yes_rho_avg_less_1000: "\\text{Ja (} \\rho_{avg} < 1000 \\text{)}"
+                }
         }
 ,
 
         // 5. EINFACHE MASCHINEN (Angewandte Mechanik)
         sp3_05: {
             placeholders: {
-                ellipsis: "...",
+                ellipsis: "..."
             },
                 back: "Zurück zum Nexus",
                 title: "SP3.05 // EINFACHE MASCHINEN",
@@ -1775,9 +1753,7 @@ export const dePhysics = {
                 check: "Verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "SP3.05_MECHANIK_MONITOR",
-                footer_left: "SP3.05_MASCHINEN // KNOTEN: BASEL",
                 objective_title: "Missionsziel",
                 stages: {
                         levers: "HEBEL",
@@ -1824,8 +1800,8 @@ export const dePhysics = {
                         for_friction: "Reibung berücksichtigen",
                         all_supporting_strands: "Alle tragenden Stränge zählen",
                         friction_component: "Reibungskomponente hinzufügen",
-                        is_inclined_plane_wrapped_around_cylinder: "Schraube ist eine um einen Zylinder gewickelte schiefe Ebene",
-                },
+                        is_inclined_plane_wrapped_around_cylinder: "Schraube ist eine um einen Zylinder gewickelte schiefe Ebene"
+                }
         },
 
         // SP3.07: Navigation & Vektoren (von sp1_05)
@@ -1834,9 +1810,7 @@ export const dePhysics = {
                 back: "Zurück zum Hub",
                 title: "SP3.07 // NAVIGATION & VEKTOREN",
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE" },
-                next: "Nächste Sequenz", check: "Verifizieren", correct: "Bestätigt", incorrect: "Abweichung", ready: "Bereit",
-                monitor_title: "SP3.07_FERRY_MONITOR", footer_left: "SP3.07_RHEIN_FÄHRE // KNOTEN: BASEL",
-                stages: { composition: "VEKTORADDITION", drift: "ABDRIFT-ANALYSE", navigation: "PRÄZISIONSNAV" },
+                next: "Nächste Sequenz", check: "Verifizieren", correct: "Bestätigt", incorrect: "Abweichung", monitor_title: "SP3.07_FERRY_MONITOR", stages: { composition: "VEKTORADDITION", drift: "ABDRIFT-ANALYSE", navigation: "PRÄZISIONSNAV" },
                 labels: {
                         river_speed: "Flussgeschwindigkeit (v_r)", ferry_speed: "Fährengeschwindigkeit (v_f)",
                         cable_angle: "Seilwinkel (θ)", resultant_speed: "Netto-Geschwindigkeit (v_net)",
@@ -1853,7 +1827,7 @@ export const dePhysics = {
                 deg: "deg",
                 s: "s",
                 m: "m",
-                j: "J",
+                j: "J"
             },
                 prompts: {
                         c_b1: "\\text{Fähre: }2\\text{ m/s Nord, Fluss: }1\\text{ m/s Nord. Netto-Geschwindigkeit?}",
@@ -1915,7 +1889,7 @@ export const dePhysics = {
                         n_e2: "\\text{Überquere 30m + zurück, Fähre }4\\text{ m/s bei }135^\\circ\\text{, Fluss }1.5\\text{ m/s. Gesamtzeit?}",
                         n_e3: "\\text{Überquere 40m, Fähre }6\\text{ m/s bei }120^\\circ\\text{, Fluss }3\\text{ m/s. Gesamtpfadlänge?}",
                         n_e4: "\\text{Überquere 30m, Fähre }5\\text{ m/s bei }126.9^\\circ\\text{, Fluss }2\\text{ m/s. Pfadwinkel?}",
-                        n_e5: "\\text{Fähre Masse 1kg, }3\\text{ m/s bei }110^\\circ\\text{, Fluss }1\\text{ m/s. Kinetische Energie?}",
+                        n_e5: "\\text{Fähre Masse 1kg, }3\\text{ m/s bei }110^\\circ\\text{, Fluss }1\\text{ m/s. Kinetische Energie?}"
                 },
                 hints: {
                         c_b1: "\\text{Addiere Geschwindigkeiten: }2 + 1 = 3",
@@ -1977,14 +1951,14 @@ export const dePhysics = {
                         n_e2: "\\text{Berechne Überquerungszeit, dann Rückkehrzeit, summiere beide}",
                         n_e3: "d_{total} = \\sqrt{40^{2} + (3 \\times t)^2} \\text{wobei }t = \\frac{40}{6\\sin(120^\\circ)}",
                         n_e4: "\\theta = \\arctan\\left(\\frac{d_{drift}}{30}\\right) \\text{wobei Abdrift von Flussströmung}",
-                        n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{finde zuerst }v_{net}",
+                        n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{finde zuerst }v_{net}"
                 },
                 results: {
                         valid: "Berechnung gültig",
                         invalid: "Vektor-Abweichung",
                         valid_desc: "Physik bestätigt. Weiter zum nächsten Ziel.",
                         invalid_desc: "Vektorkomponenten neu berechnen.",
-                        stability: "Vektor-Stabilität",
+                        stability: "Vektor-Stabilität"
                 }
         },
 
@@ -1995,7 +1969,6 @@ export const dePhysics = {
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
                 objective_title: "Schallsignatur-Analyse",
                 monitor_title: "Akustik-Monitor",
-                footer_left: "SP3.06_AKUSTIK // KNOTEN: BASEL",
                 check: "Verifizieren",
                 next: "Nächste Stufe",
                 correct: "Richtig",
@@ -2067,7 +2040,7 @@ export const dePhysics = {
                         li_e2: "\\text{Sone ist lineare Skala}",
                         li_e3: "\\text{A-bewertete Dezibel}",
                         li_e4: "+3 \\text{ dB verdoppelt Intensität, halbiert sichere Zeit}",
-                        li_e5: "\\text{Betont empfindlichsten Bereich des Gehörs}",
+                        li_e5: "\\text{Betont empfindlichsten Bereich des Gehörs}"
                 },
                 labels: {
                         label_yes_no: "\\text{Ja/Nein}",
@@ -2086,7 +2059,7 @@ export const dePhysics = {
                         label_unit: "\\text{Einheit}",
                         label_symbol: "\\text{Symbol}",
                         label_dose: "\\text{Dosis (\\%)}",
-                        label_application: "\\text{Anwendung}",
+                        label_application: "\\text{Anwendung}"
                 },
                 expressions: {
                         fp_a2: "\\text{Unterschiedlicher Oberton-Inhalt}",
@@ -2118,11 +2091,11 @@ export const dePhysics = {
                         sw_b5: "\\text{Schall braucht ein Medium}",
                         sw_c5: "\\text{Verhältnis} = \\frac{v_{\\text{Stahl}}}{v_{\\text{Luft}}}",
                         sw_e4: "v > v_{\\text{Schall}} \\rightarrow \\text{Schockwelle}",
-                        sw_e5: "\\text{Großer Impedanzunterschied} \\rightarrow \\text{starke Reflexion}",
+                        sw_e5: "\\text{Großer Impedanzunterschied} \\rightarrow \\text{starke Reflexion}"
                 },
                 targets: {
                         answer: "\\text{Antwort}",
-                        phenomenon: "\\text{Phänomen}",
+                        phenomenon: "\\text{Phänomen}"
                 },
                 corrects: {
                         correct_true: "\\text{Wahr}",
@@ -2149,7 +2122,7 @@ export const dePhysics = {
                         li_e1: "\\text{Phon}",
                         li_e2: "2\\times \\text{ mal lauter}",
                         li_e3: "\\text{dB(A) oder dBA}",
-                        li_e5: "\\text{Audio-Rauschen/Zischen}",
+                        li_e5: "\\text{Audio-Rauschen/Zischen}"
                 },
                 prompts: {
                 // SOUND_WAVES
@@ -2214,7 +2187,7 @@ export const dePhysics = {
                 loudness_intensity_e2: "Das Sone ist eine Einheit, bei der eine Verdopplung der Sone-Zahl die wahrgenommene Lautstärke verdoppelt. Wie viel lauter ist 2 Sone als 1 Sone?",
                 loudness_intensity_e3: "Die A-Bewertung passt dB-Messungen an die menschliche Hörempfindlichkeit an. Was ist das Symbol?",
                 loudness_intensity_e4: "85 dB für 8 Stunden entspricht 100 % Lärmbelastung. Was ist die Belastung für 88 dB über 4 Stunden?",
-                loudness_intensity_e5: "Die ITU-R 468-Bewertung betont den 6-kHz-Bereich. Wofür wird sie verwendet?",
+                loudness_intensity_e5: "Die ITU-R 468-Bewertung betont den 6-kHz-Bereich. Wofür wird sie verwendet?"
                 },
                 placeholders: {
                         true: "wahr",
@@ -2266,15 +2239,14 @@ export const dePhysics = {
                     minus_3: "-3",
                     v_110: "110",
                     v_56: "56",
-                    v_100: "100",
-},
+                    v_100: "100"
+}
         },
 
         // 8. OPTIK (Wellenlehre II)
         sp3_08: {
                 title: "SP3.08 // GEOMETRISCHE OPTIK",
                 back: "Zurück zum Nexus",
-                footer_left: "SP3.08_OPTIK // KNOTEN: BASEL",
                 monitor_title: "SP3.08_OPTIK_MONITOR",
                 objective_title: "Lichtpfad-Kalibrierung",
                 target_title: "Ziel",
@@ -2336,9 +2308,7 @@ export const dePhysics = {
                 check: "Zustand analysieren",
                 correct: "Zustand stabil",
                 incorrect: "Gleichungsfehler",
-                ready: "Stabil",
                 monitor_title: "GP2.01_THERMO_MONITOR",
-                footer_left: "GP2.01_THERMODYNAMIK // KNOTEN: BASEL",
                 stages: { ideal_gas: "IDEALES GAS", boyles: "BOYLE-MARIOTTE", charles: "GAY-LUSSAC" },
                 prompts: {
                         find_p: "Idealgas-Zustandsaufgabe: gegeben n={n} mol, T={T} K und V={V} m^{3}. Aufgabe: Druck P mit PV=nRT berechnen.",
@@ -2383,7 +2353,7 @@ export const dePhysics = {
                         charles_vt_slope: "V-T-Diagramm-Auswertung: Steigung=nR/P bei n=1 mol und P=8,314 Pa. Aufgabe: Steigung berechnen.",
                         charles_piston_work: "Kolben-Expansionsfall: T_1=300 K, V_1=1 m^{3}, isobare Arbeit W=300 J bei P=100 Pa. Aufgabe: V_2 bestimmen.",
                         charles_find_t2_piston: "Folgeaufgabe zur Verhältnisgleichung: T_1/V_1=T_2/V_2 mit T_1=300 K, V_1=1 m^{3}, V_2=4 m^{3}. Aufgabe: T_2 berechnen.",
-                        charles_carnot_ke: "Kinetik-Skalierungscheck: Temperatur ist proportional zur mittleren kinetischen Energie. Aufgabe: Exponentenänderung von v_{rms} bei T-Verdopplung bestimmen.",
+                        charles_carnot_ke: "Kinetik-Skalierungscheck: Temperatur ist proportional zur mittleren kinetischen Energie. Aufgabe: Exponentenänderung von v_{rms} bei T-Verdopplung bestimmen."
                 },
                 scenarios: {
                         ideal_gas: "Das ideale Gasgesetz (PV=nRT) beschreibt das Verhalten von Gasen unter verschiedenen Bedingungen.",
@@ -2442,7 +2412,7 @@ export const dePhysics = {
                     v_6_dot_02: "6.02",
                     v_250: "250",
                     v_0_dot_5: "0.5",
-                    v_1200: "1200",
+                    v_1200: "1200"
 }
         }
 ,
@@ -2455,9 +2425,7 @@ export const dePhysics = {
                 check: "Energie verifizieren",
                 correct: "Bestätigt",
                 incorrect: "Abweichung",
-                ready: "Bereit",
                 monitor_title: "GP2.02_THERMO_MONITOR",
-                footer_left: "GP2.02_THERMODYNAMIK // KNOTEN: BASEL",
                 stages: { first_law: "ERSTER HAUPTSATZ", internal_energy: "INNERE ENERGIE", work_heat: "ARBEIT & WÄRME" },
                 prompts: {
                         fl_calc_du: "Energieprotokoll im Basler Labor: Das System absorbiert Q={q} J und leistet W={w} J an die Umgebung. Aufgabe: Berechne die innere Energieänderung mit ΔU=Q-W.",
@@ -2518,7 +2486,7 @@ export const dePhysics = {
                         q_wh_e2: "Realgas-Arbeitsansatz: Van-der-Waals-Form P=nRT/(V-nb)-... (a-Term ignorieren), isotherme Expansion V1→V2. Aufgabe: Bestimme den Rechenweg für W.",
                         q_wh_e3: "Struktur des Stirling-Zyklus: Aufgabe: Ergänze die zweite Prozesspaarung neben den zwei Isothermen.",
                         q_wh_e4: "Adiabatische Arbeit per Einsetzen: W=(P1V1-P2V2)/(g-1), einatomig g=1,67, P1V1=100, P2V2=50. Aufgabe: Berechne W.",
-                        q_wh_e5: "Irreversibilitätsprinzip: Aufgabe: Beschreibe das Verhalten der Entropieproduktion bei irreversibler Arbeit.",
+                        q_wh_e5: "Irreversibilitätsprinzip: Aufgabe: Beschreibe das Verhalten der Entropieproduktion bei irreversibler Arbeit."
                 },
                 scenarios: {
                         first_law: "Der erste Hauptsatz der Thermodynamik ist der Satz von der Erhaltung der Energie.",
@@ -2528,7 +2496,7 @@ export const dePhysics = {
                 placeholders: {
                         isothermal: "isotherm",
                         constant: "Konstante",
-                        state: "Zustand",
+                        state: "Zustand"
                 }
         },
         gp2_03: {
@@ -2562,9 +2530,7 @@ export const dePhysics = {
                 next: "Nächste Herausforderung",
                 correct: "Welle verifiziert",
                 incorrect: "Berechnung prüfen",
-                ready: "Bereit",
                 monitor_title: "GP3.01_WELLEN_MONITOR",
-                footer_left: "GP3.01_WELLENPHYSIK // KNOTEN: BASEL",
                 prompts: {
                         find_velocity: "Rhein-Wellenmonitoring: Berechne die Ausbreitungsgeschwindigkeit für die Navigationsplanung. Gegeben f={f} Hz und λ={lambda} m. Nutze v=fλ.",
                         find_wavelength: "Akustik-Kalibrierung in Basel: Bestimme die Wellenlänge aus Frequenz und Geschwindigkeit. Gegeben f={f} Hz und v={v} m/s. Nutze λ=v/f.",
@@ -2746,7 +2712,7 @@ export const dePhysics = {
                     v_53: "53",
                     v_1e_minus_6: "1e-6",
                     v_1000: "1000",
-                    v_10000: "10000",
+                    v_10000: "10000"
 }
         },
 
@@ -2776,9 +2742,7 @@ export const dePhysics = {
                 next: "Nächste Herausforderung",
                 correct: "Feld verifiziert",
                 incorrect: "Berechnung prüfen",
-                ready: "Bereit",
                 monitor_title: "GP3.02_EM_MONITOR",
-                footer_left: "GP3.02_ELEKTROMAGNETISMUS // KNOTEN: BASEL",
                 labels: {
                         loading: "Lädt...",
                         question: "Frage",
@@ -2827,9 +2791,7 @@ export const dePhysics = {
                 next: "Nächste Herausforderung",
                 correct: "Induktion verifiziert",
                 incorrect: "Berechnung prüfen",
-                ready: "Bereit",
                 monitor_title: "GP3.03_INDUKTION_MONITOR",
-                footer_left: "GP3.03_INDUKTION // KNOTEN: BASEL",
                 labels: {
                         direction_effect: "Richtung/Effekt",
                         answer: "Antwort",
@@ -2904,12 +2866,10 @@ export const dePhysics = {
                         weather: "WETTERPHÄNOMENE",
                         climate: "KLIMASYSTEM"
                 },
-                footer_left: "SP1.03_METEOROLOGIE // KNOTEN: BASEL",
                 check: "Verifizieren",
                 next: "Nächste Herausforderung",
                 correct: "Daten verifiziert",
                 incorrect: "Parameter prüfen",
-                ready: "SYSTEM_BEREIT",
                 monitor_title: "METEOROLOGIE_V1",
                 loading: "Lädt...",
                 labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM" },
@@ -2934,12 +2894,10 @@ export const dePhysics = {
                         moon_phases: "MONDPHASEN",
                         seasons: "JAHRESZEITEN"
                 },
-                footer_left: "SP1.04_ASTROPHYSIK // KNOTEN: BASEL",
                 check: "Verifizieren",
                 next: "Nächste Herausforderung",
                 correct: "Koordinaten bestätigt",
                 incorrect: "Orbit-Anomalie",
-                ready: "SYSTEM_BEREIT",
                 monitor_title: "ASTRONOMIE_V1",
                 loading: "Lädt...",
                 labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM" },

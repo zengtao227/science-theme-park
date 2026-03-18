@@ -238,9 +238,7 @@ export default function S303Page() {
     next: t("sm3_03.next"),
     correct: t("sm3_03.correct"),
     incorrect: t("sm3_03.incorrect"),
-    ready: t("sm3_03.ready"),
     monitor_title: t("sm3_03.monitor_title"),
-    footer_left: t("sm3_03.footer_left"),
     objective_title: t("sm3_03.objective_title"),
     input_tip: t("sm3_03.input_tip"),
     difficulty: {
@@ -355,7 +353,6 @@ export default function S303Page() {
       onVerify={verify}
       checkStatus={lastCheck}
       translations={sm3_03_t}
-      footerLeft={sm3_03_t.footer_left}
       monitorContent={
         <div className="space-y-6">
           {/* SVG Chart */}

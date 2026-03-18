@@ -673,7 +673,6 @@ export default function SM305Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                footerLeft={t("sm3_05.footer_left")}
                 translations={{
                     back: t("sm3_05.back"),
                     check: t("sm3_05.check"),
@@ -710,7 +709,6 @@ export default function SM305Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sm3_05.footer_left")}
             translations={{
                 back: t("sm3_05.back"),
                 check: t("sm3_05.check"),

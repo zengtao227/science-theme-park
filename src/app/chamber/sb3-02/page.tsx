@@ -100,14 +100,12 @@ export default function BiodiversityModule() {
       stages={stageLabels}
       currentStage={currentStageId}
       onStageChange={setCurrentStageId}
-      footerLeft={sb3Copy.footer_left}
       translations={{
         back: sb3Copy.back,
         check: sb3Copy.check,
         next: sb3Copy.next,
         correct: sb3Copy.correct,
         incorrect: sb3Copy.incorrect,
-        ready: sb3Copy.ready,
         difficulty: {
           BASIC: sb3Copy.difficulty.basic,
           CORE: sb3Copy.difficulty.core,

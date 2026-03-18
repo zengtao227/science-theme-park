@@ -40,7 +40,6 @@ export default function SB105AnimalClassification() {
             alpine_animals: t("sb1_05.scenarios.alpine_animals"),
             wildlife_conservation: t("sb1_05.scenarios.wildlife_conservation")
         },
-        footer_left: t("sb1_05.footer_left"),
         check: t("sb1_05.check"),
         next: t("sb1_05.next"),
         correct: t("sb1_05.correct"),
@@ -282,7 +281,6 @@ export default function SB105AnimalClassification() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sb1_05_t.footer_left}
             translations={{
                 back: sb1_05_t.back,
                 difficulty: sb1_05_t.difficulty,

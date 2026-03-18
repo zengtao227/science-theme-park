@@ -258,14 +258,13 @@ export default function SB201TissuesPage() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("sb2_01_tissues.footer_left")}
             translations={{
                 back: t("sb2_01_tissues.back"),
                 check: t("sb2_01_tissues.check"),
                 next: t("sb2_01_tissues.next"),
                 correct: t("sb2_01_tissues.correct"),
                 incorrect: t("sb2_01_tissues.incorrect"),
-                ready: t("sb1_01.ready"), // Fallback to common or sibling
+                // Fallback to common or sibling
                 monitor_title: t("sb2_01_tissues.monitor_title"),
                 difficulty: {
                     basic: t("sb2_01_tissues.difficulty.basic"),

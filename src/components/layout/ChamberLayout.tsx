@@ -31,7 +31,6 @@ interface ChamberLayoutProps {
     defaultLeftWidth?: number;
     minLeftWidth?: number;
     maxLeftWidth?: number;
-    footerLeft?: string;
     checkStatus?: { ok: boolean; correct: string } | null;
     onVerify?: () => void;
     onNext?: () => void;
@@ -42,7 +41,6 @@ interface ChamberLayoutProps {
         next: string;
         correct: string;
         incorrect: string;
-        ready?: string;
         monitor_title?: string;
         difficulty: Record<string, string>;
     };
@@ -71,7 +69,6 @@ export default function ChamberLayout({
     defaultLeftWidth,
     minLeftWidth,
     maxLeftWidth,
-    footerLeft,
     checkStatus,
     onVerify,
     onNext,

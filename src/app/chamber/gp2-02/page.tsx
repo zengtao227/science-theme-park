@@ -193,7 +193,6 @@ export default function GP202Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                footerLeft={t.footer_left}
                 translations={{
                     back: t.back,
                     check: t.check,
@@ -225,7 +224,6 @@ export default function GP202Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t.footer_left}
             translations={{
                 back: t.back,
                 check: t.check,

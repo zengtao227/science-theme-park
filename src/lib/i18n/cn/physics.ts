@@ -38,7 +38,6 @@ export const cnPhysics = {
         "next": "下一个任务",
         "correct": "验证通过 - 系统稳定",
         "incorrect": "验证失败 - 存在偏差",
-        "ready": "系统准备就绪",
         "monitor_title": "静态力学监视器",
         "SP1.01.034": {
             "prompt": "三个力作用在物体上：100 N 在 0°，80 N 在 60°，60 N 在 150°。合力的大小是多少？",
@@ -648,7 +647,7 @@ export const cnPhysics = {
             minus_4: "-4",
             x: "x",
             v_1: "1",
-            v_0: "0",
+            v_0: "0"
         },
         back: "返回枢纽",
         title: "GP1.01 // 原子核核心",
@@ -659,9 +658,7 @@ export const cnPhysics = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GP1.01_原子核监视器",
-        footer_left: "GP1.01_现代物理 // 节点：巴塞尔",
         labels: {
             input: "输入参数",
             hints: "提示",
@@ -713,7 +710,7 @@ export const cnPhysics = {
         placeholders: {
             x_dot_xx: "x.xx",
             x: "x",
-            x_dot_x: "x.x",
+            x_dot_x: "x.x"
         },
         back: "返回 Nexus",
         title: "GP5.02 // 相对论实验室",
@@ -724,9 +721,7 @@ export const cnPhysics = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GP5.02_相对论监视器",
-        footer_left: "GP5.02_狭义相对论 // 节点：CERN",
         labels: {
             velocity: "速度 (v/c)",
             lorentz_factor: "洛伦兹因子 (γ)",
@@ -783,7 +778,7 @@ export const cnPhysics = {
             xx_dot_x: "xx.x",
             v_0_dot_xxxxx: "0.xxxxx",
             xxx: "xxx",
-            minus_x_dot_x: "-x.x",
+            minus_x_dot_x: "-x.x"
         },
         back: "返回枢纽",
         title: "GP5.03 // 粒子对撞机",
@@ -794,9 +789,7 @@ export const cnPhysics = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GP5.03_LHC_监视器",
-        footer_left: "GP5.03_粒子对撞机 // 节点：CERN",
         labels: {
             beam_energy: "束流能量",
             relativistic_effects: "相对论效应",
@@ -844,7 +837,7 @@ export const cnPhysics = {
             v_0_dot_xxx: "0.xxx",
             v_2: "2",
             x_dot_x: "x.x",
-            x_dot_xe14: "x.xe14",
+            x_dot_xe14: "x.xe14"
         },
         back: "返回 Nexus",
         title: "GP1.04 // 量子隧道",
@@ -855,9 +848,7 @@ export const cnPhysics = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GP1.04_量子监控",
-        footer_left: "GP1.04_量子隧道 // 节点：CERN",
         labels: {
             particle_energy: "粒子能量 (E)",
             barrier_height: "势垒高度 (V₀)",
@@ -901,12 +892,10 @@ export const cnPhysics = {
     sp1_02: {
         title: "SP1.02 // 牛顿定律",
         back: "返回枢纽",
-        footer_left: "SP1.02_力学 // 节点: 巴塞尔",
         check: "验证",
         next: "下一步",
         correct: "定律验证通过",
         incorrect: "定律错误",
-        ready: "系统准备就绪",
         monitor_title: "牛顿物理监测 V1",
         difficulty: {
             basic: "基础",
@@ -1070,9 +1059,7 @@ export const cnPhysics = {
         next: "下一步",
         correct: "电路验证通过",
         incorrect: "电路错误",
-        ready: "就绪",
         monitor_title: "SP2.01_电路实验室",
-        footer_left: "SP2.01_电学 // 节点: 巴塞尔",
         labels: {
             quest: "任务"
         },
@@ -1154,7 +1141,6 @@ export const cnPhysics = {
     sp2_02: {
         title: "SP2.02 // 欧姆定律与电路",
         back: "返回枢纽",
-        footer_left: "SP2.02_电路 // 节点: 巴塞尔",
         check: "验证",
         next: "下一步",
         correct: "电路验证通过",
@@ -1171,7 +1157,7 @@ export const cnPhysics = {
             parallel_circuits: "并联电路"
         },
         placeholders: {
-            type_value: "输入数值",
+            type_value: "输入数值"
         },
         visualization: {
             ohms_law_formula: "欧姆定律：U = I × R",
@@ -1184,7 +1170,7 @@ export const cnPhysics = {
             series_summary: "电压：{voltage}V → 电流：{current}A",
             parallel_formula: "并联电路：1/R_total = 1/R_1 + 1/R_2 + ...",
             total_resistance: "总电阻",
-            total_current: "总电流",
+            total_current: "总电流"
         },
         scenarios: {
             ohms_law: "巴塞尔大学电气工程实验室：你是一名一年级电气工程专业学生，正在学习电路基础知识。今天的实验重点是欧姆定律（U = I × R），这是所有电路分析的基础。你的任务是计算简单电路中的电压、电流或电阻。施密特教授强调：'理解欧姆定律就像学习字母表——它是后续所有内容的基础。'你将使用数字万用表测量真实电路并验证你的计算。这些知识对于设计从智能手机电路到巴塞尔有轨电车电气系统的一切都至关重要。",
@@ -1204,7 +1190,6 @@ export const cnPhysics = {
     sp2_03: {
         title: "SP2.03 // 电功率与能耗",
         back: "返回枢纽",
-        footer_left: "SP2.03_电功率 // 节点: 巴塞尔",
         check: "验证",
         next: "下一步",
         correct: "功率验证通过",
@@ -1221,7 +1206,7 @@ export const cnPhysics = {
             efficiency: "效率"
         },
         placeholders: {
-            type_value: "type value",
+            type_value: "type value"
         },
         scenarios: {
             power_basics: "巴塞尔家庭用电：你正在帮助巴塞尔的能源咨询公司为居民客户计算用电功率。电功率（P = U × I）决定了设备每秒消耗多少能量，单位为瓦特。你的任务是计算各种家用电器的功率。理解这一点有助于家庭减少电费和碳足迹。例如，一个典型的巴塞尔家庭每年使用约4,500千瓦时，按0.25瑞士法郎/千瓦时计算，费用约为1,125瑞士法郎。准确的功率计算有助于识别浪费能源的设备。",
@@ -1256,7 +1241,7 @@ export const cnPhysics = {
     // SP3.01: 测量与单位 (映射自原 sp1_01)
     sp3_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回枢纽",
         title: "SP3.01 // 测量与单位",
@@ -1264,9 +1249,7 @@ export const cnPhysics = {
         next: "下一步",
         correct: "测量验证成功",
         incorrect: "测量误差超限",
-        ready: "就绪",
         monitor_title: "SP3.01_测量实验室",
-        footer_left: "SP3.01_测量 // 节点：巴塞尔",
         objective_title: "测量科学任务",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         stages: { si_units: "SI 单位", conversion: "单位换算", precision: "测量精度" },
@@ -1326,7 +1309,6 @@ export const cnPhysics = {
         correct: "达到力学平衡",
         incorrect: "受力不匹配",
         monitor_title: "SP3.02_动力学监视器",
-        footer_left: "SP3.02_力学 // 节点：巴塞尔",
         stages: {
             newton_1: "惯性定律",
             newton_2: "牛顿第二定律 (F=ma)",
@@ -1437,7 +1419,7 @@ export const cnPhysics = {
             basel_tram_equilibrium: "斜坡上的平衡：ΣF = 0。将力分解为平行和垂直分量。F_motor 必须平衡 mg sin θ + f，其中 f = μN = μ(mg cos θ)。",
             roche_tower_structural: "使用 F = ma 和向量分解。F_net = F - f，其中 f = μN。分解风力：F_x = F sin θ，F_y = F cos θ。然后 a = F_net/m。",
             basel_port_crane: "向量和：F_net = T - W - f。分解角度 θ 的张力：T_y = T cos θ（垂直），T_x = T sin θ（水平）。摩擦 f = μT。加速度 a = F_net/m。",
-            hospital_equipment_3d: "在斜面上：N = mg cos θ（垂直于表面的支持力）。摩擦力 f = μN = μ(mg cos θ) 平行于表面，阻碍运动。",
+            hospital_equipment_3d: "在斜面上：N = mg cos θ（垂直于表面的支持力）。摩擦力 f = μN = μ(mg cos θ) 平行于表面，阻碍运动。"
         }
     },
 
@@ -1452,7 +1434,6 @@ export const cnPhysics = {
         correct: "能量守恒验证成功",
         incorrect: "检测到能量损耗",
         monitor_title: "SP3.03_能量中枢",
-        footer_left: "SP3.03_力学 // 节点：巴塞尔",
         stages: { potential: "重力势能", kinetic: "动能", work: "功率输出" },
         monitor: {
             title: "巴塞尔能源审计",
@@ -1529,7 +1510,6 @@ export const cnPhysics = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        footer_left: "SP3.04_流体力学 // 节点：巴塞尔",
         stages: {
             pressure: "压力",
             buoyancy: "浮力",
@@ -1580,7 +1560,7 @@ export const cnPhysics = {
             v_7_dot_5: "7.5",
             v_5000: "5000",
             v_1900: "1900",
-            v_300: "300",
+            v_300: "300"
 },
         prompts: {
             pressure_depth: "莱茵河中潜水员下潜到 {depth} m，计算总压强。",
@@ -1681,24 +1661,24 @@ export const cnPhysics = {
                         compare_densities: "\\text{比较密度}",
                         at_equilibrium: "\\text{平衡时：} W = F_b",
                         weight_equals_buoyancy: "\\text{重力 = 浮力}",
-                        pressure_force_per_area: "\\text{压强是单位面积上的力}",
+                        pressure_force_per_area: "\\text{压强是单位面积上的力}"
                 },
                         labels: {
-                        float_q: "\\text{浮？}",
+                        float_q: "\\text{浮？}"
                 },
                         targets: {
-                        answer: "\\text{答案}",
+                        answer: "\\text{答案}"
                 },
                         corrects: {
                         yes_density_less_water: "\\text{是（密度 < 水）}",
-                        yes_rho_avg_less_1000: "\\text{是（} \\rho_{avg} < 1000 \\text{）}",
-                },
+                        yes_rho_avg_less_1000: "\\text{是（} \\rho_{avg} < 1000 \\text{）}"
+                }
         },
 
     // SP3.05: 简单机械 (映射自原 sp1_04 - 完整背景版)
     sp3_05: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "返回 Nexus",
         title: "SP3.05 // 简单机械",
@@ -1707,9 +1687,7 @@ export const cnPhysics = {
         check: "验证机械效率",
         correct: "机械优势计算正确",
         incorrect: "数值不匹配",
-        ready: "就绪",
         monitor_title: "SP3.05_简单机械监控",
-        footer_left: "SP3.05_简单机械 // 节点：巴塞尔",
         objective_title: "力学优化任务",
         stages: {
             levers: "杠杆原理",
@@ -1757,8 +1735,8 @@ export const cnPhysics = {
             for_friction: "考虑摩擦力",
             all_supporting_strands: "计算所有承重绳段数",
             friction_component: "加入摩擦力分量",
-            is_inclined_plane_wrapped_around_cylinder: "螺钉是缠绕在圆柱体上的斜面",
-        },
+            is_inclined_plane_wrapped_around_cylinder: "螺钉是缠绕在圆柱体上的斜面"
+        }
     },
 
     // SP3.07: 导航与矢量 - 莱茵河渡轮 (60题：3阶段 × 4难度 × 5题)
@@ -1772,9 +1750,7 @@ export const cnPhysics = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "SP3.07_渡轮监视器",
-        footer_left: "SP3.07_莱茵河渡轮 // 节点：巴塞尔",
         stages: {
             composition: "矢量合成",
             drift: "偏航分析",
@@ -1801,7 +1777,7 @@ export const cnPhysics = {
             deg: "deg",
             s: "s",
             m: "m",
-            j: "J",
+            j: "J"
         },
         prompts: {
             c_b1: "\\text{渡轮：}2\\text{ m/s 向北，河流：}1\\text{ m/s 向北。合速度？}",
@@ -1863,7 +1839,7 @@ export const cnPhysics = {
             n_e2: "\\text{横渡30m+返回，渡轮}4\\text{ m/s，角度}135^\\circ\\text{，河流}1.5\\text{ m/s。总时间？}",
             n_e3: "\\text{横渡40m，渡轮}6\\text{ m/s，角度}120^\\circ\\text{，河流}3\\text{ m/s。总路径长度？}",
             n_e4: "\\text{横渡30m，渡轮}5\\text{ m/s，角度}126.9^\\circ\\text{，河流}2\\text{ m/s。路径角度？}",
-            n_e5: "\\text{渡轮质量1kg，}3\\text{ m/s，角度}110^\\circ\\text{，河流}1\\text{ m/s。动能？}",
+            n_e5: "\\text{渡轮质量1kg，}3\\text{ m/s，角度}110^\\circ\\text{，河流}1\\text{ m/s。动能？}"
         },
         hints: {
             c_b1: "\\text{相加速度：}2 + 1 = 3",
@@ -1925,14 +1901,14 @@ export const cnPhysics = {
             n_e2: "\\text{计算横渡时间，然后返回时间，求和}",
             n_e3: "d_{total} = \\sqrt{40^{2} + (3 \\times t)^2} \\text{其中 }t = \\frac{40}{6\\sin(120^\\circ)}",
             n_e4: "\\theta = \\arctan\\left(\\frac{d_{drift}}{30}\\right) \\text{其中偏航来自河流流速}",
-            n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{先求 }v_{net}",
+            n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{先求 }v_{net}"
         },
         results: {
             valid: "计算有效",
             invalid: "矢量不匹配",
             valid_desc: "物理计算确认。正在进入下一目标。",
             invalid_desc: "重新计算矢量分量。",
-            stability: "矢量稳定性",
+            stability: "矢量稳定性"
         }
     },
 
@@ -1943,7 +1919,6 @@ export const cnPhysics = {
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "声学特征分析",
         monitor_title: "声学实时监测",
-        footer_left: "SP3.06_声学 // 节点：巴塞尔",
         check: "频率验证",
         next: "进入下一关",
         correct: "频率匹配正确",
@@ -2015,7 +1990,7 @@ export const cnPhysics = {
                         li_e2: "\\text{宋（sone）是线性刻度}",
                         li_e3: "\\text{A 计权分贝}",
                         li_e4: "+3 \\text{ dB 强度翻倍，安全时间减半}",
-                        li_e5: "\\text{强调耳朵最敏感的频率区域}",
+                        li_e5: "\\text{强调耳朵最敏感的频率区域}"
                 },
                 labels: {
                         label_yes_no: "\\text{是/否}",
@@ -2034,7 +2009,7 @@ export const cnPhysics = {
                         label_unit: "\\text{单位}",
                         label_symbol: "\\text{符号}",
                         label_dose: "\\text{剂量（\\%）}",
-                        label_application: "\\text{应用}",
+                        label_application: "\\text{应用}"
                 },
                 expressions: {
                         fp_a2: "\\text{谐波成分不同}",
@@ -2066,11 +2041,11 @@ export const cnPhysics = {
                         sw_b5: "\\text{声音需要介质}",
                         sw_c5: "\\text{倍数} = \\frac{v_{\\text{钢铁}}}{v_{\\text{空气}}}",
                         sw_e4: "v > v_{\\text{音速}} \\rightarrow \\text{冲击波}",
-                        sw_e5: "\\text{阻抗差异大} \\rightarrow \\text{强反射}",
+                        sw_e5: "\\text{阻抗差异大} \\rightarrow \\text{强反射}"
                 },
                 targets: {
                         answer: "\\text{答案}",
-                        phenomenon: "\\text{现象}",
+                        phenomenon: "\\text{现象}"
                 },
                 corrects: {
                         correct_true: "\\text{正确}",
@@ -2097,7 +2072,7 @@ export const cnPhysics = {
                         li_e1: "\\text{方（Phon）}",
                         li_e2: "2\\times \\text{ 倍响}",
                         li_e3: "\\text{dB(A) 或 dBA}",
-                        li_e5: "\\text{音频噪声/嘶嘶声}",
+                        li_e5: "\\text{音频噪声/嘶嘶声}"
                 },
         prompts: {
         // SOUND_WAVES
@@ -2162,7 +2137,7 @@ export const cnPhysics = {
         loudness_intensity_e2: "宋（sone）是响度单位，倍增宋值表示感知响度加倍，2 宋比 1 宋响多少倍？",
         loudness_intensity_e3: "A 计权将分贝测量调整为符合人耳灵敏度，其符号是什么？",
         loudness_intensity_e4: "85 dB 持续 8 小时等于 100% 噪声剂量，88 dB 持续 4 小时的噪声剂量是多少？",
-        loudness_intensity_e5: "ITU-R 468 计权强调 6 kHz 频段，用于测量什么？",
+        loudness_intensity_e5: "ITU-R 468 计权强调 6 kHz 频段，用于测量什么？"
         },
         placeholders: {
             true: "正确",
@@ -2214,15 +2189,14 @@ export const cnPhysics = {
             minus_3: "-3",
             v_110: "110",
             v_56: "56",
-            v_100: "100",
-},
+            v_100: "100"
+}
     },
 
     // SP3.08: 几何光学 (映射自原 sp1_08)
     sp3_08: {
         title: "SP3.08 // 几何光学",
         back: "返回 Nexus",
-        footer_left: "SP3.08_光学平台 // 节点：巴塞尔",
         monitor_title: "SP3.08_光学监控器",
         objective_title: "光路追踪标定",
         target_title: "目标",
@@ -2284,9 +2258,7 @@ export const cnPhysics = {
         check: "验证状态",
         correct: "状态已平衡",
         incorrect: "方程不匹配",
-        ready: "状态就绪",
         monitor_title: "GP2.01_热力学监视器",
-        footer_left: "GP2.01_热力学 // 节点：巴塞尔",
         stages: { ideal_gas: "理想气体", boyles: "波义耳定律", charles: "查理定律" },
         prompts: {
             find_p: "理想气体状态任务：已知 n={n} mol、T={T} K、V={V} m^{3}。任务：用 PV=nRT 计算压强 P。",
@@ -2331,7 +2303,7 @@ export const cnPhysics = {
                         charles_vt_slope: "V-T 图像解读：斜率=nR/P，给定 n=1 mol、P=8.314 Pa。任务：计算斜率。",
                         charles_piston_work: "活塞膨胀案例：T_1=300 K、V_1=1 m^{3}，在 P=100 Pa 下做功 W=300 J。任务：求 V_2。",
                         charles_find_t2_piston: "续题比例任务：T_1/V_1=T_2/V_2，且 T_1=300 K、V_1=1 m^{3}、V_2=4 m^{3}。任务：求 T_2。",
-                        charles_carnot_ke: "分子动理论比例检查：温度正比于平均动能。任务：判断 T 加倍时 v_{rms} 的幂次变化。",
+                        charles_carnot_ke: "分子动理论比例检查：温度正比于平均动能。任务：判断 T 加倍时 v_{rms} 的幂次变化。"
         },
         scenarios: {
             ideal_gas: "理想气体定律 (PV=nRT) 描述了许多气体在各种条件下的行为。",
@@ -2390,7 +2362,7 @@ export const cnPhysics = {
             v_6_dot_02: "6.02",
             v_250: "250",
             v_0_dot_5: "0.5",
-            v_1200: "1200",
+            v_1200: "1200"
 }
     }
 ,
@@ -2403,9 +2375,7 @@ export const cnPhysics = {
         check: "验证能量",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "GP2.02_热力学监视器",
-        footer_left: "GP2.02_热力学 // 节点：巴塞尔",
         stages: { first_law: "能量守恒", internal_energy: "系统内能", work_heat: "功与热量" },
         prompts: {
             fl_calc_du: "巴塞尔热学实验记录：系统吸收 Q={q} J，同时对外做功 W={w} J。任务：计算内能变化。使用 ΔU=Q-W。",
@@ -2466,7 +2436,7 @@ export const cnPhysics = {
             q_wh_e2: "真实气体做功设定：范德瓦耳斯形式 P=nRT/(V-nb)-...（忽略 a 项），等温膨胀 V1→V2。任务：指出求功方法。",
             q_wh_e3: "斯特林循环结构题：任务：补全“两个等温过程”之外的另一对过程类型。",
             q_wh_e4: "绝热功代入计算：W=(P1V1-P2V2)/(g-1)，单原子 g=1.67，P1V1=100，P2V2=50。任务：计算 W。",
-            q_wh_e5: "不可逆过程原理题：任务：判断不可逆做功过程中熵产生的行为。",
+            q_wh_e5: "不可逆过程原理题：任务：判断不可逆做功过程中熵产生的行为。"
         },
         scenarios: {
             first_law: "热力学第一定律即能量守恒定律。",
@@ -2476,7 +2446,7 @@ export const cnPhysics = {
         placeholders: {
             isothermal: "等温",
             constant: "常数",
-            state: "状态",
+            state: "状态"
         }
     },
     gp2_03: {
@@ -2515,9 +2485,7 @@ export const cnPhysics = {
         next: "下一挑战",
         correct: "波动已验证",
         incorrect: "检查计算",
-        ready: "就绪",
         monitor_title: "GP3.01_波动监视器",
-        footer_left: "GP3.01_波动物理 // 节点：巴塞尔",
         prompts: {
             find_velocity: "莱茵河波浪监测任务：为航运预警计算传播速度。已知 f={f} Hz、λ={lambda} m。使用 v=fλ。",
             find_wavelength: "巴塞尔声学校准任务：由已知频率与速度求波长。已知 f={f} Hz、v={v} m/s。使用 λ=v/f。",
@@ -2699,7 +2667,7 @@ export const cnPhysics = {
             v_53: "53",
             v_1e_minus_6: "1e-6",
             v_1000: "1000",
-            v_10000: "10000",
+            v_10000: "10000"
 }
     },
 
@@ -2729,9 +2697,7 @@ export const cnPhysics = {
         next: "下一挑战",
         correct: "场验证成功",
         incorrect: "检查计算",
-        ready: "就绪",
         monitor_title: "GP3.02_电磁监视器",
-        footer_left: "GP3.02_电磁学 // 节点：巴塞尔",
         labels: {
             loading: "加载中...",
             question: "题目",
@@ -2780,9 +2746,7 @@ export const cnPhysics = {
         next: "下一挑战",
         correct: "感应验证成功",
         incorrect: "检查计算",
-        ready: "就绪",
         monitor_title: "GP3.03_感应监视器",
-        footer_left: "GP3.03_电磁感应 // 节点：巴塞尔",
         labels: {
             direction_effect: "方向/效果",
             answer: "答案",
@@ -2857,12 +2821,10 @@ export const cnPhysics = {
             weather: "天气现象",
             climate: "气候系统"
         },
-        footer_left: "SP1.03_气象学 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "数据验证成功",
         incorrect: "检查参数",
-        ready: "系统准备就绪",
         monitor_title: "气象监测 V1",
         loading: "加载中...",
         labels: { mission_objective: "气象数据分析", terminal_input: "数据输入", hint: "提示", sensor_feed: "传感器数据流" },
@@ -2887,12 +2849,10 @@ export const cnPhysics = {
             moon_phases: "月相与潮汐",
             seasons: "四季交替"
         },
-        footer_left: "SP1.04_天体物理 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "坐标系确认",
         incorrect: "轨道数据异常",
-        ready: "系统准备就绪",
         monitor_title: "天文监测 V1",
         loading: "加载中...",
         labels: { mission_objective: "轨道遥测分析", terminal_input: "遥测输入", hint: "提示", sensor_feed: "传感器数据流" },

@@ -735,7 +735,6 @@ export default function GP301Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                footerLeft={t("gp3_01.footer_left")}
                 translations={{
                     back: t("gp3_01.back"),
                     check: t("gp3_01.check"),
@@ -772,7 +771,6 @@ export default function GP301Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={t("gp3_01.footer_left")}
             translations={{
                 back: t("gp3_01.back"),
                 check: t("gp3_01.check"),

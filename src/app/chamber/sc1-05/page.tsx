@@ -20,13 +20,11 @@ export default function SC105Page() {
 
     const sc1_05_t = {
         title: t("sc1_05.title"),
-        footer_left: t("sc1_05.footer_left"),
         back: t("sc1_05.back"),
         check: t("sc1_05.check"),
         next: t("sc1_05.next"),
         correct: t("sc1_05.correct"),
         incorrect: t("sc1_05.incorrect"),
-        ready: t("sc1_05.ready"),
         monitor_title: t("sc1_05.monitor_title"),
         objective_title: t("sc1_05.objective_title"),
         stages: {
@@ -153,14 +151,12 @@ export default function SC105Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sc1_05_t.footer_left}
             translations={{
                 back: sc1_05_t.back,
                 check: sc1_05_t.check,
                 next: sc1_05_t.next,
                 correct: sc1_05_t.correct,
                 incorrect: sc1_05_t.incorrect,
-                ready: sc1_05_t.ready,
                 monitor_title: sc1_05_t.monitor_title,
                 difficulty: sc1_05_t.difficulty,
             }}

@@ -45,7 +45,6 @@ export default function SP102NewtonsLaws() {
             second_law: t("sp1_02.scenarios.second_law"),
             third_law: t("sp1_02.scenarios.third_law")
         },
-        footer_left: t("sp1_02.footer_left"),
         check: t("sp1_02.check"),
         next: t("sp1_02.next"),
         correct: t("sp1_02.correct"),
@@ -127,7 +126,6 @@ export default function SP102NewtonsLaws() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sp1_02_t.footer_left}
             translations={{
                 back: sp1_02_t.back,
                 difficulty: sp1_02_t.difficulty,
@@ -135,7 +133,6 @@ export default function SP102NewtonsLaws() {
                 next: sp1_02_t.next,
                 correct: sp1_02_t.correct,
                 incorrect: sp1_02_t.incorrect,
-                ready: t("sp1_02.ready"),
                 monitor_title: t("sp1_02.monitor_title"),
             }}
             monitorContent={

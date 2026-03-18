@@ -24,9 +24,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "EM1.01_THALES_MONITOR",
-        footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
             basics: "基础",
             measure: "测量",
@@ -67,7 +65,7 @@ export const cnMath = {
             v_100: "100",
             v_0_dot_732: "0.732",
             v_45: "45",
-            v_1_dot_57: "1.57",
+            v_1_dot_57: "1.57"
 },
         prompts: {
             sim_ratio: "三角形边长 {a}, {b}, {c}. 相似三角形最短边为 {s}. 求最长边.",
@@ -162,9 +160,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "EM2.01_矩阵监视器",
-        footer_left: "EM2.01_矩阵几何 // 节点：巴塞尔",
         labels: {
             matrix: "矩阵 A",
             properties: "属性",
@@ -172,7 +168,7 @@ export const cnMath = {
             volume_scale: "体积缩放",
         placeholders: {
             det: "det",
-                    v_0: "0",
+                    v_0: "0"
 },
             formulas: "公式",
             angle: "旋转角度 (θ)",
@@ -217,7 +213,7 @@ export const cnMath = {
             areaExpanded: "面积扩大 (det > 1)",
             areaCompressed: "面积压缩 (0 < det < 1)",
             orientationReversed: "方向反转 (det < 0)",
-            collapsedToLine: "塌缩为线 (det ≈ 0)",
+            collapsedToLine: "塌缩为线 (det ≈ 0)"
         },
         prompts: {
             identify_trans: "罗氏对称性审计任务：观察该矩阵并判断它对应的几何变换类型。",
@@ -272,7 +268,6 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -282,7 +277,6 @@ export const cnMath = {
         hints_title: "公式参考",
         monitor_title: "GM1.01_视觉监控",
         status: "状态: 运行中",
-        footer_left: "GM1.01_微积分 // 节点: 巴塞尔",
         footer_right: "导数模拟器",
         stages: {
             intro: "微积分基础",
@@ -312,7 +306,7 @@ export const cnMath = {
             hints: "提示"
         },
         placeholders: {
-            derivative: "导数",
+            derivative: "导数"
         },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
@@ -368,18 +362,16 @@ export const cnMath = {
     },
     gm1_01_advanced: {
         placeholders: {
-            v_0_dot_00: "0.00",
+            v_0_dot_00: "0.00"
         },
         back: "返回枢纽",
         title: "GM1.01-进阶 // 高级微积分",
         monitor_title: "GM1.01_进阶监控",
-        footer_left: "GM1.01_进阶 // 节点: 巴塞尔",
         input_tip_2dp: "提示：保留 2 位小数。",
         check: "验证",
         next: "下一挑战",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -465,7 +457,7 @@ export const cnMath = {
             find_maximum: "\\text{优化任务：求使函数达到最大值的自变量}",
             find_maximum_area: "\\text{优化任务：求使面积最大的取值}",
             find_maximum_profit: "\\text{优化任务：求使利润最大的取值}",
-            find_critical_points: "\\text{分析任务：求所有满足 } f'(x)=0 \\text{ 的临界点}",
+            find_critical_points: "\\text{分析任务：求所有满足 } f'(x)=0 \\text{ 的临界点}"
         },
         progress: "进度"
     },
@@ -484,9 +476,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "GM2.01_向量监控",
-        footer_left: "GM2.01_矢量飞行 // 节点：巴塞尔",
         stages: {
             navigation: "导航",
             dot: "点积",
@@ -513,7 +503,7 @@ export const cnMath = {
             z: "z",
             magnitude: "模长",
             dot_product: "点积",
-            dot: "点积",
+            dot: "点积"
         },
         mission: {
             title: "任务：莱茵河空域",
@@ -541,9 +531,7 @@ export const cnMath = {
         check: "验证",
         correct: "验证通过",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GM1.02_积分监测器",
-        footer_left: "GM1.02_积分 // 节点: 巴塞尔",
         mission: {
             title: "积分微积分任务",
             description: "通过计算不定积分、定积分和实际应用来掌握积分。积分是微分的逆运算。"
@@ -567,7 +555,7 @@ export const cnMath = {
             hint_area: "\\text{面积} = \\int_a^b f(x)dx\\text{，当 }f(x)\\geq 0"
         },
         placeholders: {
-            value: "数值",
+            value: "数值"
         },
         input_tip_2dp: "提示：保留 2 位小数。"
     },
@@ -586,9 +574,7 @@ export const cnMath = {
         check: "验证",
         correct: "验证通过",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GM3.01_概率监测器",
-        footer_left: "GM3.01_概率仓库 // 节点: 巴塞尔",
         stages: {
             basic_prob: "基础概率",
             binomial: "二项分布",
@@ -605,7 +591,7 @@ export const cnMath = {
             problem_tag: "题目"
         },
         placeholders: {
-            probability_4dp: "0.0000",
+            probability_4dp: "0.0000"
         },
         viz: {
             sampleSpace: "样本空间",
@@ -739,9 +725,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "GM4.01_复数监视器",
-        footer_left: "GM4.01_复数地平线 // 节点：巴塞尔",
         scenario_title: "巴塞尔工程任务",
         scenarios: {
             basics: "罗氏制药信号处理：您正在罗氏巴塞尔校准用于 MRI 信号处理的医学成像设备，该设备使用复数分析。每个复数 z = a + bi 表示一个具有实部（振幅）和虚部（相位）的信号。计算模长 |z| 以确定信号强度。准确的模长计算对于检测患者扫描中的组织异常至关重要。",
@@ -762,7 +746,7 @@ export const cnMath = {
         },
         placeholders: {
             value: "数值",
-            decimal_2dp: "0.00",
+            decimal_2dp: "0.00"
         },
         visualization: {
             pythagorean: "勾股定理",
@@ -796,9 +780,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "监控",
-        footer_left: "几何任务 // 节点：巴塞尔",
         input_tip_2dp: "提示：输入分数 (如 4/3) 或保留 2 位小数。",
         base_twice_height: "底边是高的2倍",
         stages: {
@@ -826,6 +808,7 @@ export const cnMath = {
             side: "边长",
             area: "面积",
             volume: "体积",
+            pending: "待验证",
             calculate_area: "计算面积",
             calculate_volume: "计算体积",
             rectangle: "长方形",
@@ -919,7 +902,7 @@ export const cnMath = {
         placeholders: {
             question: "?",
             hash: "#",
-            x: "x",
+            x: "x"
         },
         back: "返回枢纽",
         title: "代数探险",
@@ -927,9 +910,7 @@ export const cnMath = {
         check: "验证",
         correct: "验证通过",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "代数监控器",
-        footer_left: "代数探险 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -998,7 +979,7 @@ export const cnMath = {
             minus_0_dot_xx: "-0.xx",
             y: "y",
             v_1_minus_4: "1-4",
-            minus_y: "-y",
+            minus_y: "-y"
         },
         back: "返回枢纽",
         title: "零度以下",
@@ -1009,9 +990,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "整数监视器",
-        footer_left: "零度以下 // 节点：巴塞尔",
         basel_scenario: "巴塞尔冬季场景",
         scenario_title: "场景说明",
         objective_title: "任务目标",
@@ -1163,7 +1142,7 @@ export const cnMath = {
             xx: "xx",
             x_dot_xx: "x.xx",
             xxxx: "xxxx",
-            xxx: "xxx",
+            xxx: "xxx"
         },
         back: "返回枢纽",
         title: "方程平衡",
@@ -1174,9 +1153,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "方程监视器",
-        footer_left: "方程平衡 // 节点：巴塞尔",
         basel_scenario: "巴塞尔等式场景",
         scenario_title: "场景说明",
         objective_title: "任务目标",
@@ -1327,7 +1304,7 @@ export const cnMath = {
             app_e2: "当前年龄",
             app_e3: "纯酸量",
             app_e4: "静水船速",
-            app_e5: "成本价",
+            app_e5: "成本价"
         },
         canvas: {
             bus: "公交车",
@@ -1426,7 +1403,7 @@ export const cnMath = {
     sm1_05: {
         placeholders: {
             question: "?",
-            hash: "#",
+            hash: "#"
         },
         back: "返回枢纽",
         title: "比例实验室",
@@ -1437,9 +1414,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "比例监视器",
-        footer_left: "比例实验室 // 节点：巴塞尔",
         stages: {
             recipes: "配方",
             percent: "百分比",
@@ -1533,7 +1508,7 @@ export const cnMath = {
             mix_evaporate: "诺华实验室一种溶液起始为 200 克、浓度 10%，加热后蒸发掉 100 克水。剩余溶液的新浓度是多少？",
             mix_how_much_add: "罗氏实验室有 50 克浓度为 40% 的浓缩药物溶液，医生需要浓度为 10% 的安全溶液。需要加入多少克水才能正确稀释？",
             mix_inverse: "诺华实习生需要配制浓度 10% 的溶液，计划将 X 克纯水（浓度 0%）与 100 克浓度 20% 的原液混合。应该使用多少克水（X）？",
-            mix_final_challenge: "罗氏化学师手中有 200 克浓度为 20% 的溶液，随后加入 50 克纯活性化合物（浓度 100%）以增强批次。新的浓度百分比是多少？",
+            mix_final_challenge: "罗氏化学师手中有 200 克浓度为 20% 的溶液，随后加入 50 克纯活性化合物（浓度 100%）以增强批次。新的浓度百分比是多少？"
         },
         hints: {
             recipe_double: "数量翻倍，金额也翻倍。",
@@ -1558,7 +1533,6 @@ export const cnMath = {
         back: "← 返回枢纽",
         back_short: "返回枢纽",
         title: "二项式工厂",
-        ready: "就绪",
         difficulty: {
             basic: "初级",
             core: "核心",
@@ -1580,7 +1554,7 @@ export const cnMath = {
             b2: "b^{2}",
             ab: "ab",
             target_plus: "(a+b)^{2}",
-            target_minus: "$(a-b)^{2}$",
+            target_minus: "$(a-b)^{2}$"
         },
         scenarios: {
             architect_title: "场景 A: 花园扩建",
@@ -1646,7 +1620,6 @@ export const cnMath = {
             status_operational: "状态：运行中",
             fps: "帧率",
             latency: "延迟",
-            footer_left: "SM2.01_代数同步 // 节点：苏黎世工业区",
             verified: "已验证",
             simulating: "模拟中",
             coeff: "系数",
@@ -1673,7 +1646,7 @@ export const cnMath = {
             v: "V",
             two_cvxy: "2CVxy",
             v_squared: "V²",
-            question: "?",
+            question: "?"
         },
         decomposition_pattern: "分解模式：$a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
@@ -1705,7 +1678,7 @@ export const cnMath = {
     },
     sm2_02: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "返回枢纽",
         title: "勾股定律与开平方",
@@ -1727,11 +1700,9 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         yes: "是",
         no: "否",
         monitor_title: "视觉监控",
-        footer_left: "勾股与开方 // 节点：苏黎世",
         input_radical: "用 k√m 形式作答",
         input_k: "k",
         input_m: "m",
@@ -1837,9 +1808,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "激光监视器",
-        footer_left: "直线导航器 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -1882,7 +1851,7 @@ export const cnMath = {
             question: "?",
             total_price: "总价 (CHF)",
                     distance_km: "Distance (km)",
-            threshold_km: "Threshold (km)",
+            threshold_km: "Threshold (km)"
 },
         laser: {
             axis_km: "km",
@@ -1919,9 +1888,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "监控",
-        footer_left: "相似形 // 节点：巴塞尔",
         stages: {
             scale_factor: "缩放",
             similar_triangles: "相似",
@@ -1933,7 +1900,7 @@ export const cnMath = {
             input: "输入",
             hints: "提示",
             old_value: "旧值",
-            new_value: "新值",
+            new_value: "新值"
         },
         hints: {
             rules: {
@@ -1976,7 +1943,7 @@ export const cnMath = {
             v: "v",
             h: "H",            x: "x",
             y: "y",
-            z: "z",
+            z: "z"
 },
         formulas: {
             old_value: "\\text{旧值}",
@@ -2002,9 +1969,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "监控",
-        footer_left: "幂与根号 // 节点：巴塞尔",
         experimental: {
             show: "▸ 实验功能 (3D)",
             hide: "▾ 隐藏实验功能"
@@ -2032,7 +1997,7 @@ export const cnMath = {
         placeholders: {
             value: "数值",
             x: "x",
-            n: "n",
+            n: "n"
         }
     },
     sm2_06: {
@@ -2050,9 +2015,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "监控",
-        footer_left: "二元一次方程组 // 节点：巴塞尔",
         stages: {
             substitution: "代入法",
             elimination: "加减法",
@@ -2176,8 +2139,8 @@ export const cnMath = {
             var1: "var1",
             var2: "var2",
             coeff1: "coeff1",
-            coeff2: "coeff2",
-},
+            coeff2: "coeff2"
+}
     },
     sm2_07: {
         back: "返回枢纽",
@@ -2191,9 +2154,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "坐标监视器",
-        footer_left: "坐标几何 // 节点：苏黎世",
         labels: {
             input: "输入",
             hints: "提示",
@@ -2244,7 +2205,7 @@ export const cnMath = {
             distance: "距离",
                     question: "?",
             x: "x",
-            y: "y",
+            y: "y"
 }
     },
     sm2_08: {
@@ -2257,7 +2218,7 @@ export const cnMath = {
             xx: "xx",
             xxx: "xxx",
             x: "x",
-            v_1_or_minus_1: "1 or -1",
+            v_1_or_minus_1: "1 or -1"
         },
         back: "返回枢纽",
         title: "概率基础",
@@ -2268,9 +2229,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "概率监视器",
-        footer_left: "概率统计 // 节点：巴塞尔",
         formula_title: "概率公式",
         formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "问题",
@@ -2292,7 +2251,7 @@ export const cnMath = {
             data_stats: "数据统计",
             frequency: "频率数据",
             combined: "组合事件",
-            weekdays: ["周一", "周二", "周三", "周四", "周五"],
+            weekdays: ["周一", "周二", "周三", "周四", "周五"]
         },
         geometry_visualization: {
             width: "宽",
@@ -2328,7 +2287,7 @@ export const cnMath = {
             two_coins: "在课堂实验中，两枚独立的公平硬币同时被抛掷。每枚硬币各有50%的概率出现正面。计算两枚硬币都出现正面的概率，以在家庭作业中验证独立事件的乘法法则。",
             three_buses: "巴塞尔一名通勤者每天早上乘坐三条接驳公交线路：A路（准点率：80%）、B路（75%）、C路（90%）。计算三条公交车同一早上都准时的概率，决定是否为重要约会规划备用路线。",
             four_buses: "一名物流学生分析一条需要四条接驳公交车的配送路线，每条准点率为80%。计算全部四条都准时的概率，以判断该路线是否满足日常配送40%的最低可靠性门槛。",
-            complex_event: "在高级概率单元中，你计算多个独立事件中至少一个发生的概率——这是用于保险风险建模和物流规划的技术。应用余事件法则求出组合概率，并为实际决策解读结果。",
+            complex_event: "在高级概率单元中，你计算多个独立事件中至少一个发生的概率——这是用于保险风险建模和物流规划的技术。应用余事件法则求出组合概率，并为实际决策解读结果。"
         },
         prompts: {
             prompt_average: "平均数",
@@ -2397,12 +2356,12 @@ export const cnMath = {
             p_match: "P(\\text{匹配})",
             q1: "\\text{Q1}",
             iqr: "\\text{IQR}",
-            pct_change: "\\text{百分比变化}",
+            pct_change: "\\text{百分比变化}"
 },
         expr: {
             middle_value: "中间值",
             most_frequent: "最频繁",
-            p25: "第25百分位",
+            p25: "第25百分位"
         },
         problems: {
             bus_ontime_16_20: "过去20天中，公交车准时到达16次。明天准时到达的概率是多少？",
@@ -2552,14 +2511,14 @@ export const cnMath = {
             outlier_effect: "数据：10、12、15、18、100。计算平均值。注意异常值（100）如何影响它。",
             interquartile_range: "数据：10、15、20、25、30。Q1=15，Q3=25。计算IQR = Q3 - Q1。",
             percentage_change: "上个月：100瑞郎。这个月：120瑞郎。计算百分比变化。",
-            correlation_direction: "随着学习时间增加，考试成绩提高。相关性是正（1）还是负（-1）？",
+            correlation_direction: "随着学习时间增加，考试成绩提高。相关性是正（1）还是负（-1）？"
         }
     },
     sm3_01: {
         placeholders: {
             question: "?",
             factor_a: "甲",
-            factor_b: "乙",
+            factor_b: "乙"
         },
         back: "返回枢纽",
         title: "一元二次方程",
@@ -2575,9 +2534,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "监控",
-        footer_left: "一元二次方程 // 节点：苏黎世",
         stages: {
             terms: "合并同类项",
             factorize: "因式分解",
@@ -2665,9 +2622,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "三角函数监控",
-        footer_left: "三角函数圆 // 节点：巴塞尔",
         labels: {
             angle: "角度 (θ)",
             values: "三角函数值",
@@ -2695,7 +2650,7 @@ export const cnMath = {
         },
         placeholders: {
             question: "?",
-            plus_minus: "+/-",
+            plus_minus: "+/-"
         },
         mission: {
             title: "任务：单位圆",
@@ -2731,9 +2686,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "增长监控",
-        footer_left: "指数函数 // 节点：巴塞尔",
         labels: {
             input: "输入",
             hints: "提示",
@@ -2816,9 +2769,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "匹配失败",
-        ready: "就绪",
         monitor_title: "对数监视器",
-        footer_left: "对数 // 节点：巴塞尔",
         input_tip_2dp: "提示：保留 2 位小数。",
         labels: {
             input: "输入",
@@ -2832,7 +2783,7 @@ export const cnMath = {
             db_reduction: "分贝差值",
             decibels: "分贝",
             magnitude_diff: "震级差值",
-            magnitude: "震级",
+            magnitude: "震级"
         },
         mission: {
             title: "对数测量实验室",
@@ -2888,7 +2839,6 @@ export const cnMath = {
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "数据分析监视器",
-        footer_left: "数据分析 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "正确",
@@ -2931,7 +2881,7 @@ export const cnMath = {
             eliteStep2: "2. 区间估计: CI = x̄ ± z*SE",
             eliteStep3: "3. 诊断混淆变量",
             eliteStep4: "4. 区分相关与因果",
-            eliteGoal: "目标: 统计结论 -> 可执行决策",
+            eliteGoal: "目标: 统计结论 -> 可执行决策"
         },
         labels: {
             type: "类型",
@@ -3043,7 +2993,7 @@ export const cnMath = {
             v_1_dot_52: "1.52",
             v_179: "179",
             v_0_dot_096: "0.096",
-            v_9_dot_34: "9.34",
+            v_9_dot_34: "9.34"
 },
         formula_phrases: {
             no_correlation: "无相关性",
@@ -3290,7 +3240,6 @@ export const cnMath = {
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
         objective_title: "当前任务目标",
         monitor_title: "3D几何监视器",
-        footer_left: "3D几何 // 节点：巴塞尔",
         check: "验证",
         next: "下一挑战",
         correct: "正确",
@@ -3344,7 +3293,7 @@ export const cnMath = {
             skewLines: "异面直线",
             skewDesc: "不平行且不相交",
             dihedralAngle: "二面角",
-            angleBetweenPlanes: "平面夹角",
+            angleBetweenPlanes: "平面夹角"
         },
         scenarios: {
             basel_arch: "巴塞尔建筑 - 几何地标：你是巴塞尔的一名实习建筑师，正在分析这座城市的现代天际线。罗氏塔（1号楼和2号楼）可以建模为一系列堆叠的梯形柱体和圆柱体。巴塞尔博览会大厦（Messeturm）是另一个具有独特长方形和圆柱形截面的地标。你的任务是将这些标志性结构抽象为基础几何体，并计算它们的体积和表面积。例如，第一阶段专注于通过将罗氏塔复合体转化为其组成柱体来计算其总体积。理解这些数学关系对于材料规划（混凝土、玻璃）和结构完整性至关重要。",
@@ -3411,7 +3360,7 @@ export const cnMath = {
             curve_e2_hollow_sphere_volume: "曲面几何任务：一个空心球外半径10cm、内半径8cm，材料体积是多少？（pi ~= 3.14）",
             curve_e3_shell_volume: "曲面几何任务：一个球壳外半径12cm、厚度2cm，球壳体积是多少？（pi ~= 3.14）",
             curve_e4_frustum_volume: "曲面几何任务：一个圆锥台底半径10cm、顶半径6cm、高12cm，体积是多少？（pi ~= 3.14）",
-            curve_e5_capsule_volume: "曲面几何任务：一个胶囊体圆柱半径4cm、高10cm，两端为半球，总体积是多少？（pi ~= 3.14）",
+            curve_e5_capsule_volume: "曲面几何任务：一个胶囊体圆柱半径4cm、高10cm，两端为半球，总体积是多少？（pi ~= 3.14）"
         },
         labels: {
             shape: "\\text{形状}",
@@ -3521,12 +3470,12 @@ export const cnMath = {
             v_1877: "1877",
             v_1206: "1206",
             v_2111: "2111",
-            v_770: "770",
+            v_770: "770"
 }
     },
     sm2_11: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         title: "数列与级数",
         back: "返回中枢",
@@ -3534,9 +3483,7 @@ export const cnMath = {
         next: "下一题",
         correct: "正确",
         incorrect: "错误",
-        ready: "就绪",
         monitor_title: "数列与级数监控器",
-        footer_left: "数列级数 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -3584,7 +3531,7 @@ export const cnMath = {
     sm2_12: {
         placeholders: {
             ellipsis: "...",
-            v_0_dot_xxx: "0.xxx",
+            v_0_dot_xxx: "0.xxx"
         },
         title: "组合数学",
         back: "返回中枢",
@@ -3592,9 +3539,7 @@ export const cnMath = {
         next: "下一题",
         correct: "正确",
         incorrect: "错误",
-        ready: "就绪",
         monitor_title: "组合数学监控器",
-        footer_left: "组合数学 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -3648,9 +3593,7 @@ export const cnMath = {
         next: "下一题",
         correct: "正确",
         incorrect: "错误",
-        ready: "就绪",
         monitor_title: "变换监控器",
-        footer_left: "几何变换 // 节点：巴塞尔",
         difficulty: {
             basic: "基础",
             core: "核心",
@@ -3716,7 +3659,7 @@ export const cnMath = {
             y: "y",
             b: "b",
             d: "d",
-            val: "val",
+            val: "val"
         }
     },
     gp3_03: {
@@ -3792,12 +3735,12 @@ export const cnMath = {
             v_2494: "2494",
             v_60: "60",
             v_83_dot_1: "83.1",
-            v_75: "75",
-},
+            v_75: "75"
+}
     },
     sc3_04: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         hints: {
             look_for_group: "\\text{在 {formula} 中寻找特征基团}",
@@ -3826,9 +3769,7 @@ export const cnMath = {
         hide_steps: "隐藏步骤",
         correct: "验证成功",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "不等式监控器",
-        footer_left: "不等式 // 节点：巴塞尔",
         labels: {
             scenario_title: "巴塞尔场景",
             problem_title: "题目",
@@ -3914,9 +3855,7 @@ export const cnMath = {
         check: "验证",
         correct: "已验证",
         incorrect: "不匹配",
-        ready: "就绪",
         monitor_title: "GM1.03_极限监视器",
-        footer_left: "GM1.03_极限与连续性 // 节点：巴塞尔",
         stages: {
             LIMIT_BASICS: "极限基础",
             LIMIT_OPERATIONS: "极限运算",
@@ -3959,7 +3898,7 @@ export const cnMath = {
         },
         placeholders: {
             value: "数值",
-            yes_no: "是/否",
+            yes_no: "是/否"
         },
         input_tip_2dp: "提示：输入结果保留2位小数。不存在时使用'DNE'。",
         visualization: {
@@ -3976,7 +3915,6 @@ export const cnMath = {
     },
     gm2_02: {
         back: "返回枢纽",
-        ready: "就绪",
         monitor_title: "可视化",
         objective_title: "当前任务目标",
         input_tip_2dp: "答案请保留两位小数。",
@@ -4071,8 +4009,8 @@ export const cnMath = {
       count: "数量",
       ratio: "比值",
       type: "类型",
-      percentage: "百分比",
+      percentage: "百分比"
     },
-    answer_prefix: "答案：",
-  },
+    answer_prefix: "答案："
+  }
 };

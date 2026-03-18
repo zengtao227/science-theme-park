@@ -215,8 +215,9 @@ export default function BinomialSquareCanvas({ a, b, translations }: BinomialSqu
   };
 
   return (
-    <div className="w-full h-[800px] relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-      <Canvas camera={{ position: [0, 0, 12], fov: 50 }} gl={{ antialias: true }}>
+    <div className="w-full h-[800px] bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
+      <div className="relative flex-1 min-h-0">
+        <Canvas camera={{ position: [0, 0, 12], fov: 50 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* 灯光 */}
@@ -244,65 +245,65 @@ export default function BinomialSquareCanvas({ a, b, translations }: BinomialSqu
           <arrowHelper args={[new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 3, "#ff4444"]} />
           <arrowHelper args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 3, "#44ff44"]} />
         </group>
-      </Canvas>
+        </Canvas>
 
-      {/* 3D控制 */}
-      <Canvas3DControls
-        onReset={handleReset}
-        showInstructions={true}
-        instructionsText={translations.instructions}
-      />
+        {/* 3D控制 */}
+        <Canvas3DControls
+          onReset={handleReset}
+          showInstructions={true}
+          instructionsText={translations.instructions}
+        />
 
-      {/* 展开/收起按钮 */}
-      <div className="absolute top-20 right-4 flex flex-col gap-2">
-        <button
-          onClick={() => setExploded(true)}
-          disabled={exploded}
-          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          {translations.expand}
-        </button>
-        <button
-          onClick={() => setExploded(false)}
-          disabled={!exploded}
-          className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          {translations.collapse}
-        </button>
-      </div>
+        {/* 展开/收起按钮 */}
+        <div className="absolute top-20 right-4 flex flex-col gap-2">
+          <button
+            onClick={() => setExploded(true)}
+            disabled={exploded}
+            className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-cyan/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            {translations.expand}
+          </button>
+          <button
+            onClick={() => setExploded(false)}
+            disabled={!exploded}
+            className="px-4 py-2 bg-black/80 border border-white/60 rounded text-white/80 hover:text-white hover:border-neon-green/50 transition-all text-xs font-mono backdrop-blur-sm disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            {translations.collapse}
+          </button>
+        </div>
 
-      {/* 固定公式显示 */}
-      <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
-        <div className="text-white font-mono text-sm space-y-2">
-          <div className="text-neon-cyan font-bold text-base">{translations.pattern_3d}</div>
-          <div className="text-white/60 text-xs">
-            {exploded ? translations.expanded_view : translations.assembled_view}
+        {/* 固定公式显示 */}
+        <div className="absolute top-4 left-4 bg-black/90 p-4 rounded border border-white/60 backdrop-blur-md">
+          <div className="text-white font-mono text-sm space-y-2">
+            <div className="text-neon-cyan font-bold text-base">{translations.pattern_3d}</div>
+            <div className="text-white/60 text-xs">
+              {exploded ? translations.expanded_view : translations.assembled_view}
+            </div>
+          </div>
+        </div>
+
+        {/* 颜色图例 */}
+        <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
+          <div className="text-white/60 font-bold mb-2">{translations.color_coding}</div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
+            <span className="text-[#ff3131]">a² = {a * a}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
+            <span className="text-[#ffaa00]">2ab = {2 * a * b}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
+            <span className="text-[#39ff14]">b² = {b * b}</span>
+          </div>
+          <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
+            {translations.total}: {(a + b) ** 2}
           </div>
         </div>
       </div>
 
-      {/* 颜色图例 */}
-      <div className="absolute bottom-4 left-4 space-y-1 font-mono text-[10px] bg-black/80 p-3 rounded border border-white/60 backdrop-blur-sm">
-        <div className="text-white/60 font-bold mb-2">{translations.color_coding}</div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#ff3131] rounded"></div>
-          <span className="text-[#ff3131]">a² = {a * a}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#ffaa00] rounded"></div>
-          <span className="text-[#ffaa00]">2ab = {2 * a * b}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 bg-[#39ff14] rounded"></div>
-          <span className="text-[#39ff14]">b² = {b * b}</span>
-        </div>
-        <div className="text-white font-bold mt-2 pt-2 border-t border-white/60">
-          {translations.total}: {(a + b) ** 2}
-        </div>
-      </div>
-
-      {/* 状态指示 */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
+      <div className="mt-3 px-4 pb-4 text-[8px] font-mono text-white/60 text-right uppercase shrink-0">
         CHAMBER // S2.01<br />
         BINOMIAL_SQUARE<br />
         {translations.status_mode}: {exploded ? translations.status_exploded : translations.status_assembled}

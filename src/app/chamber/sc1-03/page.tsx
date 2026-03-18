@@ -219,10 +219,8 @@ export default function SC1_03_AtomsForge() {
                 next: t("sc1_03.next"),
                 correct: t("sc1_03.correct"),
                 incorrect: t("sc1_03.incorrect"),
-                ready: t("sc1_03.ready"),
                 monitor_title: t("sc1_03.monitor_title"),
             }}
-            footerLeft={t("sc1_03.footer_left")}
             monitorContent={
                 <OrbitalCanvas
                     element={selectedElement.symbol}

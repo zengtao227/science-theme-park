@@ -11,12 +11,10 @@ export const enPhysics = {
         sp1_01: {
                 "title": "SP1.01 // Forces Basics",
                 "back": "Back",
-                "footer_left": "SP1.01_Mechanics // Node: Basel",
                 "check": "Verify Force",
                 "next": "Next Task",
                 "correct": "Models Match",
                 "incorrect": "Deviation",
-                "ready": "READY",
                 "monitor_title": "VECTOR SCAN",
                 "difficulty": {
                         "basic": "Basic",
@@ -714,7 +712,7 @@ export const enPhysics = {
                 minus_4: "-4",
                 x: "x",
                 v_1: "1",
-                v_0: "0",
+                v_0: "0"
             },
                 back: "Back to Nexus",
                 title: "GP1.01 // THE ATOMIC CORE",
@@ -725,9 +723,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "GP1.01_NUCLEAR_MONITOR",
-                footer_left: "GP1.01_MODERN_PHYSICS // NODE: BASEL",
                 labels: {
                         input: "INPUT PARAMETERS",
                         hints: "HINTS",
@@ -779,7 +775,7 @@ export const enPhysics = {
             placeholders: {
                 x_dot_xx: "x.xx",
                 x: "x",
-                x_dot_x: "x.x",
+                x_dot_x: "x.x"
             },
                 back: "Back to Nexus",
                 title: "GP5.02 // RELATIVITY LAB",
@@ -790,9 +786,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "GP5.02_RELATIVITY_MONITOR",
-                footer_left: "GP5.02_SPECIAL_RELATIVITY // NODE: CERN",
                 labels: {
                         velocity: "Velocity (v/c)",
                         lorentz_factor: "Lorentz Factor (γ)",
@@ -849,7 +843,7 @@ export const enPhysics = {
                 xx_dot_x: "xx.x",
                 v_0_dot_xxxxx: "0.xxxxx",
                 xxx: "xxx",
-                minus_x_dot_x: "-x.x",
+                minus_x_dot_x: "-x.x"
             },
                 back: "Back to Nexus",
                 title: "GP5.03 // PARTICLE COLLIDER",
@@ -860,9 +854,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "GP5.03_LHC_MONITOR",
-                footer_left: "GP5.03_PARTICLE_COLLIDER // NODE: CERN",
                 labels: {
                         beam_energy: "BEAM ENERGY",
                         relativistic_effects: "RELATIVISTIC EFFECTS",
@@ -910,7 +902,7 @@ export const enPhysics = {
                 v_0_dot_xxx: "0.xxx",
                 v_2: "2",
                 x_dot_x: "x.x",
-                x_dot_xe14: "x.xe14",
+                x_dot_xe14: "x.xe14"
             },
                 back: "Back to Nexus",
                 title: "GP1.04 // QUANTUM TUNNEL",
@@ -921,9 +913,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "GP1.04_QUANTUM_MONITOR",
-                footer_left: "GP1.04_QUANTUM_TUNNEL // NODE: CERN",
                 labels: {
                         particle_energy: "PARTICLE ENERGY (E)",
                         barrier_height: "BARRIER HEIGHT (V₀)",
@@ -967,12 +957,10 @@ export const enPhysics = {
         sp1_02: {
                 title: "SP1.02 // NEWTON'S LAWS",
                 back: "Back to Nexus",
-                footer_left: "SP1.02_MECHANICS // NODE: BASEL",
                 check: "Verify",
                 next: "Next",
                 correct: "Law Verified",
                 incorrect: "Law Error",
-                ready: "SYSTEM_READY",
                 monitor_title: "NEWTON_PHYSICS_V1",
                 difficulty: {
                         basic: "BASIC",
@@ -1136,9 +1124,7 @@ export const enPhysics = {
                 next: "Next",
                 correct: "Circuit Verified",
                 incorrect: "Circuit Error",
-                ready: "Ready",
                 monitor_title: "SP2.01_CIRCUIT_LAB",
-                footer_left: "SP2.01_ELECTRICITY // NODE: BASEL",
                 labels: {
                         quest: "Quest"
                 },
@@ -1221,7 +1207,7 @@ export const enPhysics = {
         // SP3.01: Measurement (from sp1_01)
         sp3_01: {
             placeholders: {
-                ellipsis: "...",
+                ellipsis: "..."
             },
                 back: "Back to Nexus",
                 title: "SP3.01 // MEASUREMENT & UNITS",
@@ -1229,9 +1215,7 @@ export const enPhysics = {
                 next: "Next",
                 correct: "Measurement Verified",
                 incorrect: "Measurement Error",
-                ready: "Ready",
                 monitor_title: "SP3.01_MEASUREMENT_LAB",
-                footer_left: "SP3.01_MEASUREMENT // NODE: BASEL",
                 objective_title: "Measurement Objective",
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
                 stages: { si_units: "SI UNITS", conversion: "CONVERSION", precision: "PRECISION" },
@@ -1291,7 +1275,6 @@ export const enPhysics = {
                 correct: "Equilibrium Reached",
                 incorrect: "Force Mismatch",
                 monitor_title: "SP3.02_DYNAMICS_MONITOR",
-                footer_left: "SP3.02_MECHANICS // NODE: BASEL",
                 stages: {
                         newton_1: "INERTIA",
                         newton_2: "F = ma",
@@ -1402,7 +1385,7 @@ export const enPhysics = {
                         basel_tram_equilibrium: "For equilibrium on slope: ΣF = 0. Decompose forces into parallel and perpendicular components. F_motor must balance mg sin θ + f where f = μN = μ(mg cos θ).",
                         roche_tower_structural: "Use F = ma with vector decomposition. F_net = F - f where f = μN. Decompose wind force: F_x = F sin θ, F_y = F cos θ. Then a = F_net/m.",
                         basel_port_crane: "Vector sum: F_net = T - W - f. Decompose tension at angle θ: T_y = T cos θ (vertical), T_x = T sin θ (horizontal). Friction f = μT. Acceleration a = F_net/m.",
-                        hospital_equipment_3d: "On inclined plane: N = mg cos θ (normal force perpendicular to surface). Friction force f = μN = μ(mg cos θ) acts parallel to surface, opposing motion.",
+                        hospital_equipment_3d: "On inclined plane: N = mg cos θ (normal force perpendicular to surface). Friction force f = μN = μ(mg cos θ) acts parallel to surface, opposing motion."
                 }
         },
 
@@ -1417,7 +1400,6 @@ export const enPhysics = {
                 correct: "Energy Conserved",
                 incorrect: "Energy Leakage",
                 monitor_title: "SP3.03_ENERGY_HUB",
-                footer_left: "SP3.03_MECHANICS // NODE: BASEL",
                 stages: { potential: "POTENTIAL ENERGY", kinetic: "KINETIC ENERGY", work: "POWER OUTPUT" },
                 monitor: {
                         title: "BASEL ENERGY AUDIT",
@@ -1487,9 +1469,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "SP3.04_FLUID_MONITOR",
-                footer_left: "SP3.04_FLUID_MECHANICS // NODE: RHINE",
                 objective_title: "Active Mission Objective",
                 stages: { pressure: "PRESSURE", buoyancy: "BUOYANCY", hydraulics: "HYDRAULICS" },
             placeholders: {
@@ -1537,7 +1517,7 @@ export const enPhysics = {
                 v_7_dot_5: "7.5",
                 v_5000: "5000",
                 v_1900: "1900",
-                v_300: "300",
+                v_300: "300"
 },
                 prompts: {
                         pressure_depth: "A swimmer dives to {depth} m in the Rhine. Calculate total pressure.",
@@ -1631,7 +1611,7 @@ export const enPhysics = {
                         sp1_03_q3: "Question 3",
                         sp1_04_q1: "Question 1",
                         sp1_04_q2: "Question 2",
-                        sp1_04_q3: "Question 3",
+                        sp1_04_q3: "Question 3"
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",
@@ -1644,25 +1624,25 @@ export const enPhysics = {
                         compare_densities: "\\text{Compare densities}",
                         at_equilibrium: "\\text{At equilibrium: } W = F_b",
                         weight_equals_buoyancy: "\\text{Weight = Buoyant force}",
-                        pressure_force_per_area: "\\text{Pressure is force per unit area}",
+                        pressure_force_per_area: "\\text{Pressure is force per unit area}"
                 },
                         labels: {
-                        float_q: "\\text{Float?}",
+                        float_q: "\\text{Float?}"
                 },
                         targets: {
-                        answer: "\\text{Answer}",
+                        answer: "\\text{Answer}"
                 },
                         corrects: {
                         yes_density_less_water: "\\text{Yes (density < water)}",
-                        yes_rho_avg_less_1000: "\\text{Yes (} \\rho_{avg} < 1000 \\text{)}",
-                },
+                        yes_rho_avg_less_1000: "\\text{Yes (} \\rho_{avg} < 1000 \\text{)}"
+                }
         }
 ,
 
         // SP3.05: Simple Machines (from sp1_04 - Full Version)
         sp3_05: {
             placeholders: {
-                ellipsis: "...",
+                ellipsis: "..."
             },
                 back: "Return to Nexus",
                 title: "SP3.05 // SIMPLE MACHINES",
@@ -1671,9 +1651,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "SP3.05_MECHANICS_MONITOR",
-                footer_left: "SP3.05_SIMPLE_MACHINES // NODE: BASEL",
                 objective_title: "Active Mission Objective",
                 stages: {
                         levers: "LEVERS",
@@ -1721,8 +1699,8 @@ export const enPhysics = {
                         for_friction: "Account for friction",
                         all_supporting_strands: "Count all supporting strands",
                         friction_component: "Add friction component",
-                        is_inclined_plane_wrapped_around_cylinder: "Screw is inclined plane wrapped around cylinder",
-                },
+                        is_inclined_plane_wrapped_around_cylinder: "Screw is inclined plane wrapped around cylinder"
+                }
         },
 
         // SP3.07: Navigation & Vectors - Rhine Ferry (60 questions: 3 stages × 4 difficulties × 5 questions)
@@ -1736,9 +1714,7 @@ export const enPhysics = {
                 check: "Verify",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "SP3.07_FERRY_MONITOR",
-                footer_left: "SP3.07_RHINE_FERRY // NODE: BASEL",
                 stages: {
                         composition: "VECTOR ADDITION",
                         drift: "DRIFT ANALYSIS",
@@ -1765,7 +1741,7 @@ export const enPhysics = {
                 deg: "deg",
                 s: "s",
                 m: "m",
-                j: "J",
+                j: "J"
             },
                 prompts: {
                         // COMPOSITION - BASIC (5 questions)
@@ -1839,7 +1815,7 @@ export const enPhysics = {
                         n_e2: "\\text{Cross 30m + return, ferry } 4\\text{ m/s at } 135^\\circ\\text{, river } 1.5\\text{ m/s. Total time?}",
                         n_e3: "\\text{Cross 40m, ferry } 6\\text{ m/s at } 120^\\circ\\text{, river } 3\\text{ m/s. Total path length?}",
                         n_e4: "\\text{Cross 30m, ferry } 5\\text{ m/s at } 126.9^\\circ\\text{, river } 2\\text{ m/s. Path angle?}",
-                        n_e5: "\\text{Ferry mass 1kg, } 3\\text{ m/s at } 110^\\circ\\text{, river } 1\\text{ m/s. Kinetic energy?}",
+                        n_e5: "\\text{Ferry mass 1kg, } 3\\text{ m/s at } 110^\\circ\\text{, river } 1\\text{ m/s. Kinetic energy?}"
                 },
                 hints: {
                         // COMPOSITION hints
@@ -1904,14 +1880,14 @@ export const enPhysics = {
                         n_e2: "\\text{Calculate crossing time, then return time, sum both}",
                         n_e3: "d_{total} = \\sqrt{40^{2} + (3 \\times t)^2} \\text{ where } t = \\frac{40}{6\\sin(120^\\circ)}",
                         n_e4: "\\theta = \\arctan\\left(\\frac{d_{drift}}{30}\\right) \\text{ where drift from river current}",
-                        n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{ find } v_{net} \\text{ first}",
+                        n_e5: "E = \\frac{1}{2} \\times 1 \\times v_{net}^{2}, \\text{ find } v_{net} \\text{ first}"
                 },
                 results: {
                         valid: "Calculation Valid",
                         invalid: "Vector Mismatch",
                         valid_desc: "Physics confirmed. Proceeding to next objective.",
                         invalid_desc: "Recalculate vector components.",
-                        stability: "Vector Stability",
+                        stability: "Vector Stability"
                 }
         },
 
@@ -1922,7 +1898,6 @@ export const enPhysics = {
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
                 objective_title: "Sonic Signature Analysis",
                 monitor_title: "Acoustics Monitor",
-                footer_left: "SP3.06_ACOUSTICS // NODE: BASEL",
                 check: "Verify",
                 next: "Next Challenge",
                 correct: "Correct",
@@ -1994,7 +1969,7 @@ export const enPhysics = {
                         li_e2: "\\text{Sone is linear scale}",
                         li_e3: "\\text{A-weighted decibels}",
                         li_e4: "+3 \\text{ dB doubles intensity, halves safe time}",
-                        li_e5: "\\text{Emphasizes ear's most sensitive region}",
+                        li_e5: "\\text{Emphasizes ear's most sensitive region}"
                 },
                 labels: {
                         label_yes_no: "\\text{Yes/No}",
@@ -2013,7 +1988,7 @@ export const enPhysics = {
                         label_unit: "\\text{Unit}",
                         label_symbol: "\\text{Symbol}",
                         label_dose: "\\text{Dose (\\%)}",
-                        label_application: "\\text{Application}",
+                        label_application: "\\text{Application}"
                 },
                 expressions: {
                         fp_a2: "\\text{Different harmonic content}",
@@ -2045,11 +2020,11 @@ export const enPhysics = {
                         sw_b5: "\\text{Sound needs medium}",
                         sw_c5: "\\text{Ratio} = \\frac{v_{\\text{steel}}}{v_{\\text{air}}}",
                         sw_e4: "v > v_{\\text{sound}} \\rightarrow \\text{shock wave}",
-                        sw_e5: "\\text{Large impedance mismatch} \\rightarrow \\text{strong reflection}",
+                        sw_e5: "\\text{Large impedance mismatch} \\rightarrow \\text{strong reflection}"
                 },
                 targets: {
                         answer: "\\text{Answer}",
-                        phenomenon: "\\text{Phenomenon}",
+                        phenomenon: "\\text{Phenomenon}"
                 },
                 corrects: {
                         correct_true: "\\text{True}",
@@ -2076,7 +2051,7 @@ export const enPhysics = {
                         li_e1: "\\text{Phon}",
                         li_e2: "2\\times \\text{ louder}",
                         li_e3: "\\text{dB(A) or dBA}",
-                        li_e5: "\\text{Audio noise/hiss}",
+                        li_e5: "\\text{Audio noise/hiss}"
                 },
                 prompts: {
                 // SOUND_WAVES
@@ -2141,7 +2116,7 @@ export const enPhysics = {
                 loudness_intensity_e2: "The sone is a unit where doubling sones doubles perceived loudness. How much louder is 2 sones than 1 sone?",
                 loudness_intensity_e3: "A-weighting adjusts dB measurements to match human hearing sensitivity. What is the symbol?",
                 loudness_intensity_e4: "85 dB for 8 hours equals 100% noise dose. What is the dose for 88 dB over 4 hours?",
-                loudness_intensity_e5: "ITU-R 468 weighting emphasises the 6 kHz region. It is used to measure what?",
+                loudness_intensity_e5: "ITU-R 468 weighting emphasises the 6 kHz region. It is used to measure what?"
                 },
                 placeholders: {
                         true: "true",
@@ -2193,15 +2168,14 @@ export const enPhysics = {
                     minus_3: "-3",
                     v_110: "110",
                     v_56: "56",
-                    v_100: "100",
-},
+                    v_100: "100"
+}
         },
 
         // SP3.08: Geometrical Optics (from sp1_08)
         sp3_08: {
                 title: "SP3.08 // GEOMETRICAL OPTICS",
                 back: "Back to Nexus",
-                footer_left: "SP3.08_OPTICS_BENCH // NODE: BASEL",
                 monitor_title: "SP3.08_OPTICS_MONITOR",
                 objective_title: "Photon Path Calibration",
                 target_title: "Target",
@@ -2256,7 +2230,6 @@ export const enPhysics = {
         sp2_02: {
                 title: "SP2.02 // OHM'S LAW & CIRCUITS",
                 back: "Back to Nexus",
-                footer_left: "SP2.02_CIRCUITS // NODE: BASEL",
                 check: "Verify",
                 next: "Next",
                 correct: "Circuit Verified",
@@ -2273,7 +2246,7 @@ export const enPhysics = {
                         parallel_circuits: "PARALLEL CIRCUITS"
                 },
             placeholders: {
-                type_value: "type value",
+                type_value: "type value"
             },
                 visualization: {
                         ohms_law_formula: "Ohm's Law: U = I × R",
@@ -2306,7 +2279,6 @@ export const enPhysics = {
         sp2_03: {
                 title: "SP2.03 // ELECTRIC POWER & ENERGY",
                 back: "Back to Nexus",
-                footer_left: "SP2.03_POWER // NODE: BASEL",
                 check: "Verify",
                 next: "Next",
                 correct: "Power Verified",
@@ -2323,7 +2295,7 @@ export const enPhysics = {
                         efficiency: "EFFICIENCY"
                 },
             placeholders: {
-                type_value: "type value",
+                type_value: "type value"
             },
                 scenarios: {
                         power_basics: "Basel Household Electricity: You are helping Basel's energy consulting company calculate power consumption for residential customers. Electric power (P = U × I) determines how much energy devices use per second, measured in Watts. Your task is to calculate power for various household appliances. Understanding this helps families reduce electricity bills and carbon footprint. For example, a typical Basel household uses about 4,500 kWh per year, costing around 1,125 CHF at 0.25 CHF/kWh. Accurate power calculations help identify energy-wasting devices.",
@@ -2364,9 +2336,7 @@ export const enPhysics = {
                 check: "Analyze State",
                 correct: "State Balanced",
                 incorrect: "Equation Mismatch",
-                ready: "Stable",
                 monitor_title: "GP2.01_THERMO_MONITOR",
-                footer_left: "GP2.01_THERMODYNAMICS // NODE: BASEL",
                 stages: { ideal_gas: "IDEAL GAS", boyles: "BOYLE'S LAW", charles: "CHARLES'S LAW" },
                 prompts: {
                         find_p: "Ideal-gas state task: given n={n} mol, T={T} K, and V={V} m^{3}. Task: compute pressure P using PV=nRT.",
@@ -2411,7 +2381,7 @@ export const enPhysics = {
                         charles_vt_slope: "V-T graph interpretation: slope=nR/P with n=1 mol and P=8.314 Pa. Task: compute the slope.",
                         charles_piston_work: "Piston expansion case: T_1=300 K, V_1=1 m^{3}, isobaric work W=300 J at P=100 Pa. Task: compute V_2.",
                         charles_find_t2_piston: "Follow-up ratio task: T_1/V_1=T_2/V_2 with T_1=300 K, V_1=1 m^{3}, V_2=4 m^{3}. Task: compute T_2.",
-                        charles_carnot_ke: "Kinetic-theory scaling check: temperature is proportional to mean kinetic energy. Task: determine exponent change of v_{rms} when T doubles.",
+                        charles_carnot_ke: "Kinetic-theory scaling check: temperature is proportional to mean kinetic energy. Task: determine exponent change of v_{rms} when T doubles."
                 },
                 scenarios: {
                         ideal_gas: "The Ideal Gas Law (PV=nRT) describes the behavior of many gases under various conditions.",
@@ -2470,7 +2440,7 @@ export const enPhysics = {
                     v_6_dot_02: "6.02",
                     v_250: "250",
                     v_0_dot_5: "0.5",
-                    v_1200: "1200",
+                    v_1200: "1200"
 }
         }
 ,
@@ -2483,9 +2453,7 @@ export const enPhysics = {
                 check: "Verify Energy",
                 correct: "Verified",
                 incorrect: "Mismatch",
-                ready: "Ready",
                 monitor_title: "GP2.02_THERMO_MONITOR",
-                footer_left: "GP2.02_THERMODYNAMICS // NODE: BASEL",
                 stages: { first_law: "FIRST LAW", internal_energy: "INTERNAL ENERGY", work_heat: "WORK & HEAT" },
                 prompts: {
                         fl_calc_du: "Basel lab energy audit: the system absorbs Q={q} J and does W={w} J on surroundings. Task: compute internal-energy change. Use ΔU=Q-W.",
@@ -2546,7 +2514,7 @@ export const enPhysics = {
                         q_wh_e2: "Real-gas work setup: for van der Waals form P=nRT/(V-nb)-... (ignore attraction term a), isothermal expansion V1→V2. Task: identify work-evaluation approach.",
                         q_wh_e3: "Stirling-cycle structure check: Task: complete the process pair after two isotherms in the ideal Stirling cycle.",
                         q_wh_e4: "Adiabatic-work substitution: W=(P1V1-P2V2)/(g-1), monatomic g=1.67, P1V1=100, P2V2=50. Task: compute W.",
-                        q_wh_e5: "Irreversibility principle check: Task: determine entropy-production behavior during irreversible work processes.",
+                        q_wh_e5: "Irreversibility principle check: Task: determine entropy-production behavior during irreversible work processes."
                 },
                 scenarios: {
                         first_law: "The First Law of Thermodynamics is the law of conservation of energy.",
@@ -2571,7 +2539,7 @@ export const enPhysics = {
                         isothermal: "isothermal",
                         constant: "constant",
                         state: "state",
-                        yes: "yes",
+                        yes: "yes"
                 }
         },
         gp2_03: {
@@ -2609,9 +2577,7 @@ export const enPhysics = {
                 next: "Next Challenge",
                 correct: "Wave Verified",
                 incorrect: "Check calculation",
-                ready: "Ready",
                 monitor_title: "GP3.01_WAVE_MONITOR",
-                footer_left: "GP3.01_WAVE_PHYSICS // NODE: BASEL",
                 prompts: {
                         find_velocity: "Rhine wave monitoring task: compute propagation speed for navigation timing. Given f={f} Hz and λ={lambda} m. Use v=fλ.",
                         find_wavelength: "Basel acoustic calibration: determine wavelength from known source speed and frequency. Given f={f} Hz and v={v} m/s. Use λ=v/f.",
@@ -2789,7 +2755,7 @@ export const enPhysics = {
                     v_53: "53",
                     v_1e_minus_6: "1e-6",
                     v_1000: "1000",
-                    v_10000: "10000",
+                    v_10000: "10000"
 },
                 expr: {
                         same_phase_constructive: "\\text{Same phase} \\rightarrow \\text{constructive}",
@@ -2823,9 +2789,7 @@ export const enPhysics = {
                 next: "Next Challenge",
                 correct: "Field Verified",
                 incorrect: "Check calculation",
-                ready: "Ready",
                 monitor_title: "GP3.02_EM_MONITOR",
-                footer_left: "GP3.02_ELECTROMAGNETISM // NODE: BASEL",
                 labels: {
                         loading: "Loading...",
                         question: "Question",
@@ -2874,9 +2838,7 @@ export const enPhysics = {
                 next: "Next Challenge",
                 correct: "Induction Verified",
                 incorrect: "Check calculation",
-                ready: "Ready",
                 monitor_title: "GP3.03_INDUCTION_MONITOR",
-                footer_left: "GP3.03_INDUCTION // NODE: BASEL",
                 labels: {
                         direction_effect: "Direction/Effect",
                         answer: "Answer",
@@ -2950,12 +2912,10 @@ export const enPhysics = {
                 weather: "WEATHER",
                 climate: "CLIMATE"
         },
-        footer_left: "SP1.03_METEOROLOGY // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Data Validated",
         incorrect: "Check parameters",
-        ready: "SYSTEM_READY",
         monitor_title: "METEOROLOGY_V1",
         loading: "Loading...",
         labels: { mission_objective: "METEOROLOGICAL ANALYSIS", terminal_input: "DATA INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
@@ -2976,12 +2936,10 @@ export const enPhysics = {
                 moon_phases: "MOON PHASES",
                 seasons: "SEASONS"
         },
-        footer_left: "SP1.04_ASTRONOMY // NODE: BASEL",
         check: "Verify",
         next: "Next Challenge",
         correct: "Coordinates Validated",
         incorrect: "Check orbital data",
-        ready: "SYSTEM_READY",
         monitor_title: "ASTRONOMY_V1",
         loading: "Loading...",
         labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },

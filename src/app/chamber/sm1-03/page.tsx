@@ -1006,14 +1006,12 @@ export default function SM103Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sm1_03.footer_left")}
       translations={{
         back: t("sm1_03.back"),
         check: t("sm1_03.check"),
         next: t("sm1_03.next"),
         correct: t("sm1_03.correct"),
         incorrect: t("sm1_03.incorrect"),
-        ready: t("sm1_03.ready"),
         monitor_title: t("sm1_03.monitor_title"),
         difficulty: {
           basic: t("sm1_03.difficulty.basic"),

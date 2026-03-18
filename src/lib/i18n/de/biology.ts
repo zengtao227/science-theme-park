@@ -52,7 +52,7 @@ export const deBiology = {
             v_0_dot_693: "0.693",
             v_1100: "1100",
             v_0_dot_3: "0.3",
-            v_95: "95",
+            v_95: "95"
 },
         prompts: {
             natural_selection: "In einer Population von {initial} Finken überleben {survival} die Dürre. Berechne die Fitness.",
@@ -103,7 +103,7 @@ export const deBiology = {
             ev_e2: "Kimura-Zwei-Parameter-Modell: Transition/Transversion-Verhältnis R=2. Bias-Wert?",
             ev_e3: "Synonyme (dS) vs. nicht-synonyme (dN) Substitutionsraten. dN/dS > 1. Selektionstyp?",
             ev_e4: "Maximale Parsimonie: Baum A 10 Minimaländerungen, Baum B 12. Baum A bevorzugen?",
-            ev_e5: "Bootstrap-Unterstützung: 95 von 100 Replikaten. Konfidenzwert?",
+            ev_e5: "Bootstrap-Unterstützung: 95 von 100 Replikaten. Konfidenzwert?"
         },
         feedback: {
             correct: "Natürliche Selektion bestätigt!",
@@ -113,8 +113,6 @@ export const deBiology = {
         next: "Nächste Generation",
         correct: "Korrekt",
         incorrect: "Falsch",
-        ready: "Bereit",
-        footer_left: "GB1.01 // EVOLUTIONSLABOR",
         scenarios: {
             galapagos_study: "Naturhistorisches Museum Basel - Das Darwin-Erbe: Sie sind Kurator am Naturhistorischen Museum Basel, das eine der bedeutendsten Sammlungen biologischer Präparate in der Schweiz beherbergt. Ihre Aufgabe ist es, historische Daten von mehreren Inseln zu analysieren, die die Beobachtungen von Charles Darwin auf den Galapagos-Inseln widerspiegeln. Durch die Berechnung der Fitness verschiedener Vogelpopulationen basierend auf Überlebensraten während extremer Umweltveränderungen helfen Sie, die Kraft der natürlichen Selektion zu demonstrieren. In Basel nutzen Wissenschaftler diese Museumsunterlagen, um zu verstehen, wie sich regionale Arten, wie lokale Käfer und Vögel, als Reaktion auf die Urbanisierung in den letzten zwei Jahrhunderten entwickelt haben. Diese Arbeit ist wie das Aufdecken der verborgenen Zahnräder der Natur, um zu sehen, wie kleine strukturelle Veränderungen zu massiven Überlebensvorteilen führen.",
             genetic_drift: "Biozentrum Basel - Populationsdynamik: Als Forscher am Biozentrum der Universität Basel untersuchen Sie die genetische Ausstattung isolierter Populationen im nahe gelegenen Jura. Genetische Drift – die zufällige Änderung der Allelfrequenzen – kann über viele Generationen hinweg zu einer signifikanten Divergenz in kleinen Gruppen führen. Durch die Modellierung dieser Prozesse helfen Sie vorherzusagen, wie sich gefährdete Arten im Schweizer Grenzgebiet an die Habitatfragmentierung anpassen könnten. Die lange Geschichte Basels in der Genetikforschung, die bis zur Entdeckung der Nukleinsäuren im 19. Jahrhundert zurückreicht, bietet ein erstklassiges Umfeld für Ihre Studie. Es ist, als würde man die Entwicklung einer Sprache in einem abgelegenen Tal beobachten; mit der Zeit ändert sich der 'Akzent' des Genoms, bis ein neuer Spezies-'Dialekt' entsteht.",
@@ -125,19 +123,17 @@ export const deBiology = {
     gb2_01: {
         placeholders: {
             ellipsis: "...",
-            v_0: "0",
+            v_0: "0"
         },
         back: "Zurück zum Nexus",
         title: "GB2.01 // NEUROBIOLOGIE",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "Monitor für neuronale Aktivität",
-        footer_left: "GB2.01_NEUROBIOLOGIE // KNOTEN: BASEL",
         check: "Überprüfen",
         next: "Nächster Impuls",
         correct: "Signal übertragen",
         incorrect: "Synaptisches Versagen",
-        ready: "Bereit",
         stages: {
             anatomy: "NEURONANATOMIE",
             potential: "AKTIONSPOTENTIAL",
@@ -186,7 +182,7 @@ export const deBiology = {
     gb3_01: {
         placeholders: {
             ellipsis: "...",
-            v_2_minus_3: "2-3",
+            v_2_minus_3: "2-3"
         },
         back: "Zurück zum Nexus",
         title: "GB3.01 // DNA-SCHMIEDE",
@@ -197,9 +193,7 @@ export const deBiology = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Fehlersignal",
-        ready: "Bereit",
         monitor_title: "GB3.01_DNA_MONITOR",
-        footer_left: "GB3.01_DNA_SCHMIEDE // KNOTEN: BASEL",
         stages: {
             pairing: "BASENPAARUNG",
             bonds: "WASSERSTOFFBRÜCKEN",
@@ -251,19 +245,17 @@ export const deBiology = {
     },
     gb3_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "GB3.02 // IMMUNOLOGIE-LABOR",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "Monitor für Immunantwort",
-        footer_left: "GB3.02_IMMUNOLOGIE // KNOTEN: BASEL",
         check: "Überprüfen",
         next: "Nächste Herausforderung",
         correct: "Antigen neutralisiert",
         incorrect: "Erreger entkommen",
-        ready: "Bereit",
         stages: {
             innate: "ANGEBORENE IMMUNITÄT",
             adaptive: "ADAPTIVE IMMUNITÄT",
@@ -305,7 +297,7 @@ export const deBiology = {
             select: "Auswählen...",
             answer: "Antwort eingeben...",
             hormone_type: "Hormontyp wählen...",
-            gland: "Drüse wählen...",
+            gland: "Drüse wählen..."
         },
         back: "Zurück zum Nexus",
         title: "GB2.02 // ENDOKRINES SYSTEM",
@@ -314,7 +306,6 @@ export const deBiology = {
         next: "Nächste Aufgabe",
         correct: "Richtig",
         incorrect: "Falsch",
-        ready: "Bereit",
         stages: {
             hormone_identification: "HORMONIDENTIFIKATION",
             feedback_mechanisms: "RÜCKKOPPLUNGSMECHANISMEN",
@@ -439,7 +430,7 @@ export const deBiology = {
     },
     sb1_01: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "SB1.01 // ZELLFABRIK",
@@ -452,9 +443,7 @@ export const deBiology = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SB1.01_ZELL_MONITOR",
-        footer_left: "SB1.01_ZELLFABRIK // KNOTEN: BASEL",
         stages: {
             identification: "IDENTIFIZIERUNG",
             function: "FUNKTION",
@@ -572,9 +561,7 @@ export const deBiology = {
         check: "Überprüfen",
         correct: "Homöostase stabil",
         incorrect: "Stoffwechselkrise",
-        ready: "Bereit",
         monitor_title: "SB1.01_METABOLIC_MONITOR",
-        footer_left: "SB1.01_ZELLBIOLOGIE // KNOTEN: BASEL",
         stages: {
             osmosis: "OSMOSE",
             respiration: "ZELLATMUNG",
@@ -602,7 +589,7 @@ export const deBiology = {
         },
         placeholders: {
             enter_leave_stable: "enter/leave/stable",
-                    ellipsis: "...",
+                    ellipsis: "..."
 },
         prompts: {
             osmosis_prompt: "Die Zelle befindet sich in einer {status} Umgebung ({desc}). Was passiert mit dem Wasser?",
@@ -706,7 +693,7 @@ export const deBiology = {
     },
     sb1_02: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "SB1.02 // PHOTOSYNTHESE-LABOR",
@@ -715,9 +702,7 @@ export const deBiology = {
         next: "Nächste Sequenz ausführen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SB1.02_PHOTOSYNTHESE_MONITOR",
-        footer_left: "SB1.02_PHOTOSYNTHESE_LABOR // KNOTEN: BASEL",
         objective_title: "Aktives Missionsziel",
         stages: {
             equation: "REAKTIONSGLEICHUNG",
@@ -766,7 +751,7 @@ export const deBiology = {
     },
     sb1_03: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         back: "Zurück zum Nexus",
         title: "SB1.03 // ZELLTEILUNG",
@@ -774,9 +759,7 @@ export const deBiology = {
         next: "Nächste Phase",
         correct: "Phase Abgeschlossen",
         incorrect: "Fehlausrichtung",
-        ready: "Bereit",
         monitor_title: "SB1.03_REPLIKATIONSZENTRUM",
-        footer_left: "SB1.03_ZELLTEILUNG // KNOTEN: BASEL",
         objective_title: "Aktuelles Missionsziel",
         difficulty: {
             basic: "BASIS",
@@ -835,7 +818,7 @@ export const deBiology = {
             nutrient_transport: "NÄHRSTOFFTRANSPORT"
         },
         placeholders: {
-            type_answer: "type answer",
+            type_answer: "type answer"
         },
         scenarios: {
             plant_structure: "Botanischer Garten Basel - Pflanzenanatomieforschung: Sie sind Botaniker am Botanischen Garten der Universität Basel, einem der ältesten botanischen Gärten der Schweiz (gegründet 1589), und studieren Pflanzenstruktur und -funktion. Pflanzen haben drei Hauptorgansysteme: Wurzeln (verankern die Pflanze, absorbieren Wasser und Mineralien aus dem Boden, speichern Nährstoffe), Stängel (bieten strukturelle Unterstützung, transportieren Wasser und Nährstoffe zwischen Wurzeln und Blättern, können Nährstoffe speichern) und Blätter (Hauptort der Photosynthese, Gasaustausch durch Stomata, Transpiration). Jedes Organ hat spezialisierte Gewebe: Hautgewebe (Epidermis mit Kutikula zum Schutz, Wurzelhaare zur Absorption), Leitgewebe (Xylem transportiert Wasser aufwärts, Phloem transportiert Zucker bidirektional) und Grundgewebe (Parenchym für Speicherung und Photosynthese, Kollenchym für flexible Unterstützung, Sklerenchym für starre Unterstützung). Das Verständnis der Pflanzenstruktur ist essentiell für Basels Agrarforschung, städtische Forstwirtschaft entlang des Rheins und pharmazeutische Botanik bei Roche und Novartis, wo viele Medikamente aus Pflanzenverbindungen gewonnen werden. Der Botanische Garten Basel pflegt über 7.500 Pflanzenarten für Forschung und Bildung.",
@@ -848,9 +831,7 @@ export const deBiology = {
         next: "Nächste Herausforderung",
         correct: "Struktur verifiziert",
         incorrect: "Antwort prüfen",
-        ready: "Bereit",
         monitor_title: "SB1.04_PFLANZEN_MONITOR",
-        footer_left: "SB1.04_PFLANZENSTRUKTUR // KNOTEN: BASEL",
         expressions: {
             structure_label: "Struktur:",
             water_transport_title: "Wassertransportmechanismus",
@@ -879,7 +860,7 @@ export const deBiology = {
             behavior_evolution: "VERHALTEN & EVOLUTION"
         },
         placeholders: {
-            type_answer: "type answer",
+            type_answer: "type answer"
         },
         scenarios: {
             basel_zoo: "Zoo Basel Biodiversitätstour: Sie sind Studentenführer im Zoo Basel (Zolli) und bereiten eine Bildungstour über Tierklassifikation vor. Der Zoo beherbergt über 600 Arten aus allen wichtigen Tiergruppen. Ihre Aufgabe ist es, einen Klassifikationsleitfaden für Besucher zu erstellen. Heute konzentrieren Sie sich auf die Afrikanische Savanne, die Löwen (Panthera leo), Zebras (Equus quagga) und Strauße (Struthio camelus) umfasst. Sie müssen erklären, wie diese Tiere trotz des gleichen Lebensraums in verschiedene Gruppen klassifiziert werden. Das Bildungsprogramm des Zoos betont das Verständnis, dass Klassifikation auf evolutionären Beziehungen und gemeinsamen Merkmalen basiert, nicht nur darauf, wo Tiere leben. Dies hilft Besuchern, die Biodiversität und die Bedeutung von Naturschutzbemühungen zu schätzen. Ihre Aufgabe: Klassifizieren Sie jedes Tier in seine richtige Klasse (Mammalia, Aves oder Reptilia) und erklären Sie die Schlüsselmerkmale, die jede Gruppe definieren. Dieses Wissen hilft Zoobesuchern zu verstehen, warum Naturschutzstrategien die einzigartigen biologischen Bedürfnisse jeder Art basierend auf ihrer Klassifikation berücksichtigen müssen.",
@@ -894,9 +875,7 @@ export const deBiology = {
         correct: "Klassifikation verifiziert",
         incorrect: "Antwort prüfen",
         loading: "Lädt...",
-        ready: "Bereit",
-        monitor_title: "SB1.05_TIER_MONITOR",
-        footer_left: "SB1.05_TIERKLASSIFIKATION // KNOTEN: BASEL"
+        monitor_title: "SB1.05_TIER_MONITOR"
     },
 
     sb2_01_tissues: {
@@ -905,12 +884,10 @@ export const deBiology = {
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "Gewebeorganisations-Monitor",
-        footer_left: "SB2.01_GEWEBE_ORGANE // KNOTEN: BASEL",
         check: "Prüfen",
         next: "Nächste Ebene",
         correct: "Richtig",
         incorrect: "Falsch",
-        ready: "Bereit",
         stages: {
             tissues: "GEWEBETYPEN",
             organs: "ORGANZUSAMMENSETZUNG",
@@ -1015,9 +992,7 @@ export const deBiology = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SB2.01_GENETIK_MONITOR",
-        footer_left: "SB2.01_MENDELS_GARTEN // KNOTEN: BASEL",
         stages: {
             monohybrid: "MONOHYBRIDE KREUZUNG",
             probability: "WAHRSCHEINLICHKEIT",
@@ -1074,9 +1049,7 @@ export const deBiology = {
         next: "Nächste Sequenz ausführen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SB2.02_KÖRPERSYSTEME_MONITOR",
-        footer_left: "SB2.02_MENSCHLICHE_KÖRPERSYSTEME // KNOTEN: BASEL",
         objective_title: "Aktuelles Missionsziel",
         stages: {
             digestive: "VERDAUUNG",
@@ -1152,7 +1125,7 @@ export const deBiology = {
         corrects: {
             carbon_dioxide: "\\text{Kohlendioxid (CO}_2\\text{)}",
             baroreceptors_raas_anp: "\\text{Barorezeptoren, RAAS, ANP}",
-            oxygen: "\\text{Sauerstoff (O}_2\\text{)}",
+            oxygen: "\\text{Sauerstoff (O}_2\\text{)}"
         },
         prompts: {
             // VERDAUUNGSSYSTEM - BASIS (5 Fragen)
@@ -1459,7 +1432,7 @@ export const deBiology = {
             o2: "O2",
             v_70: "70",
             v_7_dot_5: "7.5",
-            v_50: "50",
+            v_50: "50"
 }
     },
     sb3_02: {
@@ -1468,34 +1441,32 @@ export const deBiology = {
         next: "Weiter",
         correct: "Richtig!",
         incorrect: "Falsch",
-        ready: "Bereit",
         title: "SB3.02 Biodiversität",
-        footer_left: "SB3.02_BIODIVERSITÄT // KNOTEN: BASEL",
         difficulty: {
             basic: "Grundlagen",
             core: "Kern",
             advanced: "Fortgeschritten",
-            elite: "Elite",
+            elite: "Elite"
         },
         tabs: {
             quests: "Quests",
             scenarios: "Basler Szenarien",
-            visualizations: "Visualisierungen",
+            visualizations: "Visualisierungen"
         },
         language_buttons: {
             english: "Sprache auf Englisch wechseln",
             chinese: "Sprache auf Chinesisch wechseln",
-            german: "Sprache auf Deutsch wechseln",
+            german: "Sprache auf Deutsch wechseln"
         },
         stats: {
             total_quests: "Gesamtquests",
             completed: "Abgeschlossen",
-            progress: "Fortschritt",
+            progress: "Fortschritt"
         },
         stage_view: {
             stage: "Stufe {order}",
             progress: "Fortschritt",
-            quests: "Quests",
+            quests: "Quests"
         },
         quest_card: {
             completed: "Abgeschlossen",
@@ -1503,7 +1474,7 @@ export const deBiology = {
             correct: "Richtig!",
             incorrect: "Noch nicht ganz richtig",
             try_again: "Erneut versuchen",
-            explanation: "Erklärung",
+            explanation: "Erklärung"
         },
         diversity_calculator: {
             title: "Artenvielfalt-Rechner",
@@ -1519,14 +1490,14 @@ export const deBiology = {
             formula_labels: {
                 shannon: "Shannon-Index:",
                 simpson: "Simpson-Index:",
-                evenness: "Gleichmäßigkeit:",
-            },
+                evenness: "Gleichmäßigkeit:"
+            }
         },
         basel_scenarios: {
             related_concepts: "Verwandte Konzepte:",
             grid_title: "Basler Regionalszenarien",
             grid_description: "Erkunden Sie Biodiversität anhand lokaler Basler Beispiele",
-            image_alt: "{title} - Bild {index}",
+            image_alt: "{title} - Bild {index}"
         },
         ecosystem_map: {
             title: "Basler Region Ökosystemkarte",
@@ -1537,7 +1508,7 @@ export const deBiology = {
             ecosystem_type: "Ökosystemtyp",
             ecosystems: "Ökosysteme",
             avg_score: "Durchschn. Bewertung",
-            total_threats: "Gesamtbedrohungen",
+            total_threats: "Gesamtbedrohungen"
         },
         conservation_planner: {
             title: "Naturschutzplaner",
@@ -1549,14 +1520,14 @@ export const deBiology = {
             available_strategies: "Verfügbare Strategien",
             effectiveness: "Wirksamkeit",
             over_budget: "Über Budget!",
-            your_plan: "Ihr Naturschutzplan",
+            your_plan: "Ihr Naturschutzplan"
         },
         error_boundary: {
             title: "Etwas ist schief gelaufen",
             description: "Beim Laden dieses Inhalts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
             retry: "Erneut versuchen",
-            details: "Fehlerdetails",
-        },
+            details: "Fehlerdetails"
+        }
     },
     sb3_01: {
         placeholders: {
@@ -1568,7 +1539,7 @@ export const deBiology = {
             v_100: "100",
             v_6_dot_8: "6.8",
             v_2414: "2414",
-            v_0_dot_62: "0.62",
+            v_0_dot_62: "0.62"
         },
         back: "Zurück zum Nexus",
         title: "SB3.01 // ÖKOSYSTEM-DYNAMIK",
@@ -1582,9 +1553,7 @@ export const deBiology = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "SB3.01_ÖKOSYSTEM_MONITOR",
-        footer_left: "SB3.01_ÖKOSYSTEM_DYNAMIK // KNOTEN: RHEIN",
         objective_title: "Aktuelles Missionsziel",
         stages: {
             food_chains: "NAHRUNGSKETTEN",
@@ -1670,7 +1639,7 @@ export const deBiology = {
         placeholders: {
             x_to_y_upper: "X:Y",
             x_percent: "X%",
-            v_0_dot_xx: "0.XX",
+            v_0_dot_xx: "0.XX"
         },
         back: "Zurück zum Nexus",
         title: "SB2.03 // GENETISCHE VARIATION",
@@ -1683,9 +1652,7 @@ export const deBiology = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "SB2.03_VARIATIONS_MONITOR",
-        footer_left: "SB2.03_GENETISCHE_VARIATION // KNOTEN: BASEL",
         stages: {
             monohybrid: "MONOHYBRIDE KREUZUNG",
             probability: "WAHRSCHEINLICHKEIT",
@@ -1741,12 +1708,10 @@ export const deBiology = {
         difficulty: { basic: "GRUNDLAGEN", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktives Missionsziel",
         monitor_title: "Physiologie-Monitor",
-        footer_left: "SB2.04_HUMANPHYSIOLOGIE // KNOTEN: BASEL",
         check: "Überprüfen",
         next: "Nächstes System",
         correct: "System Funktionsfähig",
         incorrect: "Systemfehler",
-        ready: "Bereit",
         stages: {
             digestive_system: "VERDAUUNGSSYSTEM",
             respiratory_system: "ATMUNGSSYSTEM",

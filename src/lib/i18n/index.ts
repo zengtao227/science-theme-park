@@ -68,7 +68,7 @@ export const translations: Record<string, any> = {
     ...enPhysics,
     ...enChemistry,
     ...enBiology,
-    common: mergeCommonNamespaces([enMath, enPhysics, enChemistry, enBiology, enCommon]),
+    common: mergeCommonNamespaces([enMath, enPhysics, enChemistry, enBiology, enCommon])
   },
   CN: {
     ...cnCommon,
@@ -76,7 +76,7 @@ export const translations: Record<string, any> = {
     ...cnPhysics,
     ...cnChemistry,
     ...cnBiology,
-    common: mergeCommonNamespaces([cnMath, cnPhysics, cnChemistry, cnBiology, cnCommon]),
+    common: mergeCommonNamespaces([cnMath, cnPhysics, cnChemistry, cnBiology, cnCommon])
   },
   DE: {
     ...deCommon,
@@ -84,8 +84,8 @@ export const translations: Record<string, any> = {
     ...dePhysics,
     ...deChemistry,
     ...deBiology,
-    common: mergeCommonNamespaces([deMath, dePhysics, deChemistry, deBiology, deCommon]),
-  },
+    common: mergeCommonNamespaces([deMath, dePhysics, deChemistry, deBiology, deCommon])
+  }
 };
 
 /**

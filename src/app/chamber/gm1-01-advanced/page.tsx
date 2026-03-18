@@ -1137,9 +1137,7 @@ export default function G101AdvancedPage() {
     next: t("gm1_01_advanced.next"),
     correct: t("gm1_01_advanced.correct"),
     incorrect: t("gm1_01_advanced.incorrect"),
-    ready: t("gm1_01_advanced.ready"),
     monitor_title: t("gm1_01_advanced.monitor_title"),
-    footer_left: t("gm1_01_advanced.footer_left"),
     function_label: t("gm1_01_advanced.function_label"),
     question_label: t("gm1_01_advanced.question_label"),
     hint_label: t("gm1_01_advanced.hint_label"),
@@ -1281,14 +1279,12 @@ export default function G101AdvancedPage() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={gm1_01_advanced_t.footer_left}
       translations={{
         back: gm1_01_advanced_t.back,
         check: gm1_01_advanced_t.check,
         next: gm1_01_advanced_t.next,
         correct: gm1_01_advanced_t.correct,
         incorrect: gm1_01_advanced_t.incorrect,
-        ready: gm1_01_advanced_t.ready,
         monitor_title: gm1_01_advanced_t.monitor_title,
         difficulty: {
           basic: gm1_01_advanced_t.difficulty.basic,

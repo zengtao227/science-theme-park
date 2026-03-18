@@ -93,14 +93,12 @@ export default function GM102Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("gm1_02.footer_left")}
       translations={{
         back: t("gm1_02.back"),
         check: t("gm1_02.check"),
         next: t("gm1_02.next"),
         correct: t("gm1_02.correct"),
         incorrect: t("gm1_02.incorrect"),
-        ready: t("gm1_02.ready"),
         monitor_title: t("gm1_02.monitor_title"),
         difficulty: {
           basic: t("gm1_02.difficulty.basic"),

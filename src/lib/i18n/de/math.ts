@@ -24,9 +24,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "EM1.01_THALES_MONITOR",
-        footer_left: "EM1.01_THALES_TOWER // NODE: BASEL",
         stages: {
             basics: "BASIS",
             measure: "MESSEN",
@@ -67,7 +65,7 @@ export const deMath = {
             v_100: "100",
             v_0_dot_732: "0.732",
             v_45: "45",
-            v_1_dot_57: "1.57",
+            v_1_dot_57: "1.57"
 },
         prompts: {
             sim_ratio: "Dreieckseiten {a}, {b}, {c}. Ähnliches Dreieck hat kürzeste Seite {s}. Finde die längste.",
@@ -162,9 +160,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "EM2.01_MATRIX_MONITOR",
-        footer_left: "EM2.01_MATRIXGEOMETRIE // KNOTEN: BASEL",
         labels: {
             matrix: "MATRIX A",
             properties: "EIGENSCHAFTEN",
@@ -172,7 +168,7 @@ export const deMath = {
             volume_scale: "Volumenskalierung",
         placeholders: {
             det: "det",
-                    v_0: "0",
+                    v_0: "0"
 },
             formulas: "FORMELN",
             angle: "ROTATIONSWINKEL (θ)",
@@ -217,7 +213,7 @@ export const deMath = {
             areaExpanded: "Fläche erweitert (det > 1)",
             areaCompressed: "Fläche komprimiert (0 < det < 1)",
             orientationReversed: "Orientierung umgekehrt (det < 0)",
-            collapsedToLine: "Zu Linie kollabiert (det ≈ 0)",
+            collapsedToLine: "Zu Linie kollabiert (det ≈ 0)"
         },
         prompts: {
             identify_trans: "Roche-Symmetrieaudit: Analysiere die Matrix und bestimme, welche geometrische Transformation sie darstellt.",
@@ -272,7 +268,6 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -282,7 +277,6 @@ export const deMath = {
         hints_title: "Formelreferenz",
         monitor_title: "GM1.01_MONITOR",
         status: "STATUS: BETRIEBSBEREIT",
-        footer_left: "GM1.01_INFINITESIMAL // KNOTEN: BASEL",
         footer_right: "ABLEITUNGS_SIMULATOR",
         stages: {
             intro: "INTRO",
@@ -312,7 +306,7 @@ export const deMath = {
             hints: "HINWEISE"
         },
         placeholders: {
-            derivative: "Ableitung",
+            derivative: "Ableitung"
         },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
@@ -367,18 +361,16 @@ export const deMath = {
     },
     gm1_01_advanced: {
         placeholders: {
-            v_0_dot_00: "0.00",
+            v_0_dot_00: "0.00"
         },
         back: "Zurück zum Nexus",
         title: "GM1.01-ADV // FORTGESCHRITTENE ANALYSIS",
         monitor_title: "GM1.01_FORTGESCHRITTEN_MONITOR",
-        footer_left: "GM1.01_FORTGESCHRITTEN // KNOTEN: BASEL",
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -464,7 +456,7 @@ export const deMath = {
             find_maximum: "\\text{Optimierungsaufgabe: finde den x-Wert mit maximalem Funktionswert}",
             find_maximum_area: "\\text{Optimierungsaufgabe: finde den x-Wert mit maximaler Flaeche}",
             find_maximum_profit: "\\text{Optimierungsaufgabe: finde den x-Wert mit maximalem Gewinn}",
-            find_critical_points: "\\text{Analyseaufgabe: finde alle kritischen Punkte mit } f'(x)=0",
+            find_critical_points: "\\text{Analyseaufgabe: finde alle kritischen Punkte mit } f'(x)=0"
         },
         progress: "Fortschritt"
     },
@@ -483,9 +475,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "GM2.01_VEKTOR_MONITOR",
-        footer_left: "GM2.01_VEKTOR_PILOT // KNOTEN: BASEL",
         stages: {
             navigation: "NAVIGATION",
             dot: "SKALARPRODUKT",
@@ -512,7 +502,7 @@ export const deMath = {
             z: "z",
             magnitude: "Betrag",
             dot_product: "Skalarprodukt",
-            dot: "Dot",
+            dot: "Dot"
         },
         mission: {
             title: "MISSION: RHEIN-LUFTKORRIDOR",
@@ -540,9 +530,7 @@ export const deMath = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Fehlermeldung",
-        ready: "Bereit",
         monitor_title: "GM1.02_INTEGRAL_MONITOR",
-        footer_left: "GM1.02_INTEGRAL // KNOTEN: BASEL",
         mission: {
             title: "INTEGRALRECHNUNG MISSION",
             description: "Meistere Integration durch Berechnung von Stammfunktionen, bestimmten Integralen und realen Anwendungen. Integration ist die Umkehrung der Differentiation."
@@ -566,7 +554,7 @@ export const deMath = {
             hint_area: "\\text{Fläche} = \\int_a^b f(x)dx\\text{ wenn }f(x)\\geq 0"
         },
         placeholders: {
-            value: "Wert",
+            value: "Wert"
         },
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
     },
@@ -585,9 +573,7 @@ export const deMath = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Fehlermeldung",
-        ready: "Bereit",
         monitor_title: "GM3.01_WAHRSCHEINLICHKEITSMONITOR",
-        footer_left: "GM3.01_WAHRSCHEINLICHKEITS-TRESOR // KNOTEN: BASEL",
         stages: {
             basic_prob: "GRUNDWAHRSCHEINLICHKEIT",
             binomial: "BINOMIAL",
@@ -604,7 +590,7 @@ export const deMath = {
             problem_tag: "AUFGABE"
         },
         placeholders: {
-            probability_4dp: "0.0000",
+            probability_4dp: "0.0000"
         },
         viz: {
             sampleSpace: "Stichprobenraum",
@@ -768,9 +754,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        ready: "Bereit",
         monitor_title: "GM4.01_KOMPLEX_MONITOR",
-        footer_left: "GM4.01_KOMPLEXER_HORIZONT // KNOTEN: BASEL",
         scenario_title: "BASEL INGENIEURSMISSION",
         scenarios: {
             basics: "Roche Pharma-Signalverarbeitung: Sie kalibrieren medizinische Bildgebungsgeräte bei Roche Basel, die komplexe Zahlenanalyse für die MRT-Signalverarbeitung verwenden. Jede komplexe Zahl z = a + bi repräsentiert ein Signal mit Realteil (Amplitude) und Imaginärteil (Phase). Berechnen Sie den Betrag |z|, um die Signalstärke zu bestimmen. Eine genaue Betragsberechnung ist entscheidend für die Erkennung von Gewebeanomalien in Patientenscans.",
@@ -791,7 +775,7 @@ export const deMath = {
         },
         placeholders: {
             value: "Wert",
-            decimal_2dp: "0.00",
+            decimal_2dp: "0.00"
         },
         visualization: {
             pythagorean: "SATZ DES PYTHAGORAS",
@@ -825,9 +809,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "MONITOR",
-        footer_left: "GEOMETRIE // KNOTEN: BASEL",
         input_tip_2dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an.",
         base_twice_height: "Basis ist doppelt so hoch wie die Höhe",
         stages: {
@@ -855,6 +837,7 @@ export const deMath = {
             side: "Seite",
             area: "Fläche",
             volume: "Volumen",
+            pending: "Ausstehend",
             calculate_area: "Berechnen Sie die Fläche.",
             calculate_volume: "Berechnen Sie das Volumen.",
             rectangle: "Rechteck",
@@ -948,7 +931,7 @@ export const deMath = {
         placeholders: {
             question: "?",
             hash: "#",
-            x: "x",
+            x: "x"
         },
         back: "Zurück zum Nexus",
         title: "ALGEBRA QUEST",
@@ -956,9 +939,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
-        ready: "Bereit",
         monitor_title: "ALGEBRA_MONITOR",
-        footer_left: "ALGEBRA_QUEST // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1011,7 +992,7 @@ export const deMath = {
         scenarios: {
             variables: "Im Basler Rheinbad markiert das Personal Schliessfächer mit dem Symbol x, weil Inhalt und Gebühren täglich wechseln. Deine Aufgabe ist, x als unbekannte Größe zu interpretieren und mit den Tagesdaten zu verknüpfen. Erst wenn x korrekt bestimmt ist, können Schlüssel und Fächer fehlerfrei zugeordnet werden. So zeigt sich, warum Variablen in realen Abläufen wichtig sind.",
             terms: "Im Lager am Marktplatz werden Lieferkisten nach Produktart zusammengeführt, bevor sie auf die LKW geladen werden. Deine Aufgabe ist, nur gleichartige Terme zusammenzufassen - so wie Äpfel nur mit Äpfeln addiert werden können. Durch das Vereinfachen entsteht eine klare Packliste. Das Ergebnis wird zur Kontrolle der Beladung verwendet.",
-            substitution: "Am BVB-Ticketautomaten-Prüfstand testen Ingenieure eine Preisformel mit der Variablen x für die Zone. Deine Aufgabe ist, den gegebenen Zonenwert einzusetzen und den angezeigten Fahrpreis zu berechnen. Damit wird geprüft, ob die Software unter realen Pendelbedingungen korrekt rechnet. Das Resultat ist Grundlage für die Freigabe von Ticket-Updates.",
+            substitution: "Am BVB-Ticketautomaten-Prüfstand testen Ingenieure eine Preisformel mit der Variablen x für die Zone. Deine Aufgabe ist, den gegebenen Zonenwert einzusetzen und den angezeigten Fahrpreis zu berechnen. Damit wird geprüft, ob die Software unter realen Pendelbedingungen korrekt rechnet. Das Resultat ist Grundlage für die Freigabe von Ticket-Updates."
         }
     },
     sm1_03: {
@@ -1027,7 +1008,7 @@ export const deMath = {
             minus_0_dot_xx: "-0.xx",
             y: "y",
             v_1_minus_4: "1-4",
-            minus_y: "-y",
+            minus_y: "-y"
         },
         back: "Zurück zum Nexus",
         title: "UNTER NULL",
@@ -1038,9 +1019,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "GANZZAHL_MONITOR",
-        footer_left: "UNTER_NULL // KNOTEN: BASEL",
         basel_scenario: "BASLER WINTERSZENARIO",
         scenario_title: "SZENARIO-KONTEXT",
         objective_title: "MISSIONSZIEL",
@@ -1194,7 +1173,7 @@ export const deMath = {
             xx: "xx",
             x_dot_xx: "x.xx",
             xxxx: "xxxx",
-            xxx: "xxx",
+            xxx: "xxx"
         },
         back: "Zurück zum Nexus",
         title: "GLEICHUNGSWAAGE",
@@ -1205,9 +1184,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "GLEICHUNGS_MONITOR",
-        footer_left: "GLEICHUNGSWAAGE // KNOTEN: BASEL",
         basel_scenario: "BASLER GLEICHUNGSSZENARIO",
         scenario_title: "SZENARIO-KONTEXT",
         objective_title: "MISSIONSZIEL",
@@ -1352,7 +1329,7 @@ export const deMath = {
             app_e2: "Aktuelles Alter",
             app_e3: "Reine Säuremenge",
             app_e4: "Bootgeschwindigkeit",
-            app_e5: "Einkaufspreis",
+            app_e5: "Einkaufspreis"
         },
         canvas: {
             bus: "BUS",
@@ -1457,7 +1434,7 @@ export const deMath = {
     sm1_05: {
         placeholders: {
             question: "?",
-            hash: "#",
+            hash: "#"
         },
         back: "Zurück zum Nexus",
         title: "PROPORTIONS-LABOR",
@@ -1468,9 +1445,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "PROPORTION_MONITOR",
-        footer_left: "PROPORTIONS-LABOR // KNOTEN: BASEL",
         stages: {
             recipes: "REZEPTE",
             percent: "PROZENT",
@@ -1564,7 +1539,7 @@ export const deMath = {
             mix_evaporate: "Eine Novartis-Lösung beginnt mit 200 g und 10% Konzentration. Das Labor erhitzt sie und 100 g Wasser verdampfen. Wie hoch ist die neue Konzentration?",
             mix_how_much_add: "Das Roche-Labor hat 50 g einer konzentrierten 40%-igen Arzneimittellösung. Der Arzt benötigt eine 10%-ige Lösung. Wie viele Gramm Wasser müssen zur Verdünnung hinzugefügt werden?",
             mix_inverse: "Eine Novartis-Praktikantin mischt X Gramm reines Wasser (0%) mit 100 g einer 20%-igen Stammlösung, um 10% zu erhalten. Wie viele Gramm Wasser (X) soll sie verwenden?",
-            mix_final_challenge: "Eine Roche-Chemikerin beginnt mit 200 g einer 20%-igen Lösung und fügt 50 g reinen Wirkstoff (100%) hinzu. Wie hoch ist die neue Konzentration in Prozent?",
+            mix_final_challenge: "Eine Roche-Chemikerin beginnt mit 200 g einer 20%-igen Lösung und fügt 50 g reinen Wirkstoff (100%) hinzu. Wie hoch ist die neue Konzentration in Prozent?"
         },
         hints: {
             recipe_double: "Doppelte Menge, doppelter Betrag.",
@@ -1589,7 +1564,6 @@ export const deMath = {
         back: "← Zurück zum Nexus",
         back_short: "Zurück zum Nexus",
         title: "BINOMISCHE FORMELN",
-        ready: "Bereit",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1611,7 +1585,7 @@ export const deMath = {
             b2: "b^{2}",
             ab: "ab",
             target_plus: "(a+b)^{2}",
-            target_minus: "$(a-b)^{2}$",
+            target_minus: "$(a-b)^{2}$"
         },
         scenarios: {
             architect_title: "Szenario A: Gartenerweiterung",
@@ -1677,7 +1651,6 @@ export const deMath = {
             status_operational: "STATUS: BETRIEBSBEREIT",
             fps: "FPS",
             latency: "LATENZ",
-            footer_left: "SM2.01_ALGEBRA_SYNC // KNOTEN: ZÜRICH",
             verified: "Verifiziert",
             simulating: "Simuliert",
             coeff: "Koeff.",
@@ -1704,7 +1677,7 @@ export const deMath = {
             v: "V",
             two_cvxy: "2CVxy",
             v_squared: "V²",
-            question: "?",
+            question: "?"
         },
         decomposition_pattern: "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
@@ -1736,7 +1709,7 @@ export const deMath = {
     },
     sm2_02: {
         placeholders: {
-            question: "?",
+            question: "?"
         },
         back: "Zurück zum Nexus",
         title: "PYTHAGORAS & WURZELN",
@@ -1758,11 +1731,9 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         yes: "JA",
         no: "NEIN",
         monitor_title: "VISUELLE_UEBERWACHUNG",
-        footer_left: "PYTHAGORAS // KNOTEN: ZÜRICH",
         ui: {
             view_2d: "2D-Ansicht",
             view_fluid: "Fluid-Ansicht",
@@ -1869,9 +1840,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "LASER_MONITOR",
-        footer_left: "LINIEN_NAVIGATOR // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -1914,7 +1883,7 @@ export const deMath = {
             question: "?",
             total_price: "Gesamtpreis (CHF)",
                     distance_km: "Distance (km)",
-            threshold_km: "Threshold (km)",
+            threshold_km: "Threshold (km)"
 },
         laser: {
             axis_km: "km",
@@ -1951,9 +1920,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "MONITOR",
-        footer_left: "AEHNLICHKEIT // KNOTEN: BASEL",
         stages: {
             scale_factor: "STRECKUNG",
             similar_triangles: "ÄHNLICH",
@@ -1965,7 +1932,7 @@ export const deMath = {
             input: "EINGABE",
             hints: "HINWEISE",
             old_value: "alt",
-            new_value: "Neu",
+            new_value: "Neu"
         },
         hints: {
             rules: {
@@ -2008,7 +1975,7 @@ export const deMath = {
             v: "v",
             h: "H",            x: "x",
             y: "y",
-            z: "z",
+            z: "z"
 },
         formulas: {
             old_value: "\\text{alt}",
@@ -2034,9 +2001,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "MONITOR",
-        footer_left: "POTENZEN // KNOTEN: BASEL",
         experimental: {
             show: "▸ Experimentell (3D)",
             hide: "▾ Verstecken"
@@ -2064,7 +2029,7 @@ export const deMath = {
         placeholders: {
             value: "Wert",
             x: "x",
-            n: "n",
+            n: "n"
         }
     },
     sm2_06: {
@@ -2082,9 +2047,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "MONITOR",
-        footer_left: "GLEICHUNGSSYSTEME // KNOTEN: BASEL",
         stages: {
             substitution: "EINSETZUNGSVERFAHREN",
             elimination: "ADDITIONSVERFAHREN",
@@ -2208,8 +2171,8 @@ export const deMath = {
             var1: "var1",
             var2: "var2",
             coeff1: "coeff1",
-            coeff2: "coeff2",
-},
+            coeff2: "coeff2"
+}
     },
     sm2_07: {
         back: "Zurück zum Nexus",
@@ -2223,9 +2186,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "KOORDINATEN_MONITOR",
-        footer_left: "KOORD_GEOM // KNOTEN: ZÜRICH",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -2276,7 +2237,7 @@ export const deMath = {
             distance: "Abstand",
                     question: "?",
             x: "x",
-            y: "y",
+            y: "y"
 }
     },
     sm2_08: {
@@ -2289,7 +2250,7 @@ export const deMath = {
             xx: "xx",
             xxx: "xxx",
             x: "x",
-            v_1_or_minus_1: "1 or -1",
+            v_1_or_minus_1: "1 or -1"
         },
         back: "Zurück zum Nexus",
         title: "WAHRSCHEINLICHKEIT GRUNDLAGEN",
@@ -2300,9 +2261,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "WAHRSCHEINLICHKEIT_MONITOR",
-        footer_left: "WAHRSCHEINLICHKEIT // KNOTEN: BASEL",
         formula_title: "WAHRSCHEINLICHKEITSFORMEL",
         formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "PROBLEM",
@@ -2324,7 +2283,7 @@ export const deMath = {
             data_stats: "Datenstatistik",
             frequency: "Häufigkeitsdaten",
             combined: "Kombinierte Ereignisse",
-            weekdays: ["Mo", "Di", "Mi", "Do", "Fr"],
+            weekdays: ["Mo", "Di", "Mi", "Do", "Fr"]
         },
         geometry_visualization: {
             width: "Breite",
@@ -2360,7 +2319,7 @@ export const deMath = {
             two_coins: "Im Klassenexperiment werden zwei unabhängige faire Münzen gleichzeitig geworfen. Jede zeigt mit 50 % Wahrscheinlichkeit Kopf. Berechne die Wahrscheinlichkeit, dass beide Münzen Kopf zeigen, um die Multiplikationsregel für unabhängige Ereignisse zu überprüfen.",
             three_buses: "Eine Basler Pendlerin fährt jeden Morgen mit drei Anschlussbuslinien: Bus A (80 % pünktlich), Bus B (75 %), Bus C (90 %). Berechne die Wahrscheinlichkeit, dass alle drei an demselben Morgen pünktlich sind, um über eine Ausweichroute für wichtige Termine zu entscheiden.",
             four_buses: "Eine Logistikschülerin analysiert eine Lieferroute mit vier Anschlussbussen à 80 % Pünktlichkeit. Berechne die Wahrscheinlichkeit, dass alle vier pünktlich sind, und prüfe, ob die Route die Mindest-Zuverlässigkeitsschwelle von 40 % für tägliche Lieferungen erfüllt.",
-            complex_event: "In einer fortgeschrittenen Wahrscheinlichkeitseinheit berechnest du die Wahrscheinlichkeit, dass mindestens eines von mehreren unabhängigen Ereignissen eintritt – eine Methode aus der Versicherungsrisikomodellierung und Logistikplanung. Wende die Gegenwahrscheinlichkeit an und interpretiere das Ergebnis für eine reale Entscheidung.",
+            complex_event: "In einer fortgeschrittenen Wahrscheinlichkeitseinheit berechnest du die Wahrscheinlichkeit, dass mindestens eines von mehreren unabhängigen Ereignissen eintritt – eine Methode aus der Versicherungsrisikomodellierung und Logistikplanung. Wende die Gegenwahrscheinlichkeit an und interpretiere das Ergebnis für eine reale Entscheidung."
         },
         prompts: {
             prompt_average: "Durchschnitt",
@@ -2429,12 +2388,12 @@ export const deMath = {
             p_match: "P(\\text{Treffer})",
             q1: "\\text{Q1}",
             iqr: "\\text{IQR}",
-            pct_change: "\\text{%-Änderung}",
+            pct_change: "\\text{%-Änderung}"
 },
         expr: {
             middle_value: "Mittelwert",
             most_frequent: "Am häufigsten",
-            p25: "25. Perzentil",
+            p25: "25. Perzentil"
         },
         problems: {
             bus_ontime_16_20: "In den letzten 20 Tagen kam der Bus 16 Mal pünktlich. Wahrscheinlichkeit für morgen?",
@@ -2529,14 +2488,14 @@ export const deMath = {
             outlier_effect: "Daten: 10, 12, 15, 18, 100. Mittelwert? Beachten Sie den Ausreißer (100).",
             interquartile_range: "Daten: 10, 15, 20, 25, 30. Q1=15, Q3=25. IQR = Q3 - Q1?",
             percentage_change: "Letzter Monat: CHF 100. Dieser Monat: CHF 120. Prozentuale Änderung?",
-            correlation_direction: "Mehr Lernzeit → höhere Noten. Korrelation positiv (1) oder negativ (-1)?",
+            correlation_direction: "Mehr Lernzeit → höhere Noten. Korrelation positiv (1) oder negativ (-1)?"
         }
     },
     sm3_01: {
         placeholders: {
             question: "?",
             factor_a: "A",
-            factor_b: "B",
+            factor_b: "B"
         },
         back: "Zurück zum Nexus",
         title: "QUADRATISCHE GLEICHUNGEN",
@@ -2552,9 +2511,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "MONITOR",
-        footer_left: "QUADRATISCH // KNOTEN: ZÜRICH",
         stages: {
             terms: "TERME",
             factorize: "FAKTORISIEREN",
@@ -2642,9 +2599,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "TRIG_MONITOR",
-        footer_left: "TRIG_KREIS // KNOTEN: BASEL",
         labels: {
             angle: "WINKEL (θ)",
             values: "TRIGONOMETRISCHE WERTE",
@@ -2677,7 +2632,7 @@ export const deMath = {
         },
         placeholders: {
             question: "?",
-            plus_minus: "+/-",
+            plus_minus: "+/-"
         },
         mission: {
             title: "MISSION: EINHEITSKREIS",
@@ -2713,9 +2668,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        ready: "Bereit",
         monitor_title: "WACHSTUM_MONITOR",
-        footer_left: "EXPONENTIAL // KNOTEN: BASEL",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -2798,9 +2751,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        ready: "Bereit",
         monitor_title: "LOG_MONITOR",
-        footer_left: "LOGARITHMEN // KNOTEN: BASEL",
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
         labels: {
             input: "EINGABE",
@@ -2814,7 +2765,7 @@ export const deMath = {
             db_reduction: "dB-Reduktion",
             decibels: "Dezibel",
             magnitude_diff: "Magnituden-Differenz",
-            magnitude: "Magnitude",
+            magnitude: "Magnitude"
         },
         mission: {
             title: "LOGARITHMISCHES MESSLABOR",
@@ -2870,7 +2821,6 @@ export const deMath = {
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "Datenanalyse-Monitor",
-        footer_left: "DATENANALYSE // KNOTEN: BASEL",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Richtig",
@@ -2913,7 +2863,7 @@ export const deMath = {
             eliteStep2: "2. Intervallschätzung: KI = x̄ ± z*SE",
             eliteStep3: "3. Störvariablen prüfen",
             eliteStep4: "4. Korrelation von Kausalität trennen",
-            eliteGoal: "Ziel: Statistik -> belastbare Entscheidungen",
+            eliteGoal: "Ziel: Statistik -> belastbare Entscheidungen"
         },
         labels: {
             type: "Typ",
@@ -3025,7 +2975,7 @@ export const deMath = {
             v_1_dot_52: "1.52",
             v_179: "179",
             v_0_dot_096: "0.096",
-            v_9_dot_34: "9.34",
+            v_9_dot_34: "9.34"
 },
         formula_phrases: {
             no_correlation: "Keine Korrelation",
@@ -3272,7 +3222,6 @@ export const deMath = {
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
         monitor_title: "3D-Geometrie-Monitor",
-        footer_left: "3D_GEOMETRIE // KNOTEN: BASEL",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Richtig",
@@ -3326,7 +3275,7 @@ export const deMath = {
             skewLines: "Windschiefe Geraden",
             skewDesc: "Nicht parallel, nicht schneidend",
             dihedralAngle: "Diederwinkel",
-            angleBetweenPlanes: "Winkel zwischen Ebenen",
+            angleBetweenPlanes: "Winkel zwischen Ebenen"
         },
         scenarios: {
             basel_arch: "Basler Architektur - Geometrische Ikonen: Sie sind ein Lehrling im Architekturbüro und analysieren die moderne Skyline von Basel. Der Roche-Turm (Bau 1 und 2) kann als eine Serie von gestapelten trapezförmigen Prismen und Zylindern modelliert werden. Der Messeturm Basel ist ein weiteres Wahrzeichen mit seinen markanten rechteckigen und zylindrischen Abschnitten. Ihre Aufgabe ist es, die Volumina und Oberflächen dieser ikonischen Strukturen zu berechnen, indem Sie sie in geometrische Grundkörper abstrahieren. Stufe 1 konzentriert sich auf die Berechnung des Gesamtvolumens des Roche-Turm-Komplexes. Das Verständnis dieser Beziehungen ist lebenswichtig für die Materialplanung (Beton, Glas) und die strukturelle Integrität.",
@@ -3393,7 +3342,7 @@ export const deMath = {
             curve_e2_hollow_sphere_volume: "Aufgabe zu gekruemmten Koerpern: Eine Hohlkugel hat Aussenradius 10cm und Innenradius 8cm. Wie gross ist das Materialvolumen? (pi ~= 3.14)",
             curve_e3_shell_volume: "Aufgabe zu gekruemmten Koerpern: Eine Kugelschale hat Aussenradius 12cm und Dicke 2cm. Wie gross ist das Schalenvolumen? (pi ~= 3.14)",
             curve_e4_frustum_volume: "Aufgabe zu gekruemmten Koerpern: Ein Kegelstumpf hat Basisradius 10cm, oberen Radius 6cm und Hoehe 12cm. Wie gross ist das Volumen? (pi ~= 3.14)",
-            curve_e5_capsule_volume: "Aufgabe zu gekruemmten Koerpern: Eine Kapsel hat Zylinderradius 4cm und Hoehe 10cm mit zwei Halbkugeln. Wie gross ist das Gesamtvolumen? (pi ~= 3.14)",
+            curve_e5_capsule_volume: "Aufgabe zu gekruemmten Koerpern: Eine Kapsel hat Zylinderradius 4cm und Hoehe 10cm mit zwei Halbkugeln. Wie gross ist das Gesamtvolumen? (pi ~= 3.14)"
         },
         labels: {
             shape: "\\text{Form}",
@@ -3503,12 +3452,12 @@ export const deMath = {
             v_1877: "1877",
             v_1206: "1206",
             v_2111: "2111",
-            v_770: "770",
+            v_770: "770"
 }
     },
     sm2_11: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         title: "FOLGEN & REIHEN",
         back: "Zurück zum Nexus",
@@ -3516,9 +3465,7 @@ export const deMath = {
         next: "Nächste Aufgabe",
         correct: "Richtig",
         incorrect: "Falsch",
-        ready: "Bereit",
         monitor_title: "Folgen & Reihen Monitor",
-        footer_left: "FOLGEN_REIHEN // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3566,7 +3513,7 @@ export const deMath = {
     sm2_12: {
         placeholders: {
             ellipsis: "...",
-            v_0_dot_xxx: "0.xxx",
+            v_0_dot_xxx: "0.xxx"
         },
         title: "KOMBINATORIK",
         back: "Zurück zum Nexus",
@@ -3574,9 +3521,7 @@ export const deMath = {
         next: "Nächste Aufgabe",
         correct: "Richtig",
         incorrect: "Falsch",
-        ready: "Bereit",
         monitor_title: "Kombinatorik Monitor",
-        footer_left: "KOMBINATORIK // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3630,9 +3575,7 @@ export const deMath = {
         next: "Weiter",
         correct: "Richtig",
         incorrect: "Falsch",
-        ready: "Bereit",
         monitor_title: "Transformationsmonitor",
-        footer_left: "GEOMETRISCHE_TRANSFORMATIONEN // KNOTEN: BASEL",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3698,7 +3641,7 @@ export const deMath = {
             y: "y",
             b: "b",
             d: "d",
-            val: "val",
+            val: "val"
         }
     },
     gp3_03: {
@@ -3774,12 +3717,12 @@ export const deMath = {
             v_2494: "2494",
             v_60: "60",
             v_83_dot_1: "83.1",
-            v_75: "75",
-},
+            v_75: "75"
+}
     },
     sc3_04: {
         placeholders: {
-            ellipsis: "...",
+            ellipsis: "..."
         },
         hints: {
             look_for_group: "\\text{Suche die charakteristische Gruppe in } {formula}",
@@ -3808,9 +3751,7 @@ export const deMath = {
         hide_steps: "Schritte verbergen",
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
-        ready: "Bereit",
         monitor_title: "UNGLEICHUNGEN_MONITOR",
-        footer_left: "UNGLEICHUNGEN // KNOTEN: BASEL",
         labels: {
             scenario_title: "Basel-Szenario",
             problem_title: "Aufgabe",
@@ -3896,9 +3837,7 @@ export const deMath = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
-        ready: "Bereit",
         monitor_title: "GM1.03_GRENZWERT_MONITOR",
-        footer_left: "GM1.03_GRENZWERTE_STETIGKEIT // KNOTEN: BASEL",
         stages: {
             LIMIT_BASICS: "GRENZWERT-GRUNDLAGEN",
             LIMIT_OPERATIONS: "GRENZWERT-OPERATIONEN",
@@ -3941,7 +3880,7 @@ export const deMath = {
         },
         placeholders: {
             value: "Wert",
-            yes_no: "ja/nein",
+            yes_no: "ja/nein"
         },
         input_tip_2dp: "Tipp: Ergebnis auf 2 Dezimalstellen gerundet eingeben. Verwende 'DNE' für nicht existent.",
         visualization: {
@@ -3958,7 +3897,6 @@ export const deMath = {
     },
     gm2_02: {
         back: "Zurück zum Nexus",
-        ready: "Bereit",
         monitor_title: "Visualisierung",
         objective_title: "Missionsziel",
         input_tip_2dp: "Antwort mit Genauigkeit auf 2 Dezimalstellen eingeben.",
@@ -4053,8 +3991,8 @@ export const deMath = {
       count: "Anzahl",
       ratio: "Verhältnis",
       type: "Typ",
-      percentage: "Prozentsatz",
+      percentage: "Prozentsatz"
     },
-    answer_prefix: "Antwort:",
-  },
+    answer_prefix: "Antwort:"
+  }
 };

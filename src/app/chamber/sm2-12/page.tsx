@@ -235,14 +235,12 @@ export default function SM212Page() {
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sm2_12.footer_left")}
       translations={{
         back: t("sm2_12.back"),
         check: t("sm2_12.check"),
         next: t("sm2_12.next"),
         correct: t("sm2_12.correct"),
         incorrect: t("sm2_12.incorrect"),
-        ready: t("sm2_12.ready"),
         monitor_title: t("sm2_12.monitor_title"),
         difficulty: {
           basic: t("sm2_12.difficulty.basic"),

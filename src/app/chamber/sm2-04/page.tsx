@@ -754,7 +754,6 @@ export default function S204Page() {
             onVerify={verify}
             onNext={next}
             successRate={successRate}
-            footerLeft={t("sm2_04.footer_left")}
             checkStatus={lastCheck}
             translations={{
                 back: t("sm2_04.back"),
@@ -762,7 +761,6 @@ export default function S204Page() {
                 next: t("sm2_04.next"),
                 correct: t("sm2_04.correct"),
                 incorrect: t("sm2_04.incorrect"),
-                ready: t("sm2_04.ready"),
                 monitor_title: t("sm2_04.monitor_title"),
                 difficulty: {
                     basic: t("sm2_04.difficulty.basic"),

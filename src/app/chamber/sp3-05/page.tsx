@@ -29,9 +29,7 @@ export default function SP305Page() {
         next: t("sp3_05.next"),
         correct: t("sp3_05.correct"),
         incorrect: t("sp3_05.incorrect"),
-        ready: t("sp3_05.ready"),
         monitor_title: t("sp3_05.monitor_title"),
-        footer_left: t("sp3_05.footer_left"),
         objective_title: t("sp3_05.objective_title"),
         target_title: t("sp3_05.target_title"),
         difficulty: {
@@ -491,14 +489,12 @@ export default function SP305Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            footerLeft={sp3_05_t.footer_left}
             translations={{
                 back: sp3_05_t.back,
                 check: sp3_05_t.check,
                 next: sp3_05_t.next,
                 correct: sp3_05_t.correct,
                 incorrect: sp3_05_t.incorrect,
-                ready: sp3_05_t.ready,
                 monitor_title: sp3_05_t.monitor_title,
                 difficulty: {
                     basic: sp3_05_t.difficulty.basic,
