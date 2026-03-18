@@ -21,6 +21,21 @@ interface ProbabilityVisualizationProps {
   };
 }
 
+type Gm301VizCopy = {
+  sampleSpace: string;
+  outcomes: string;
+  favorable: string;
+  unfavorable: string;
+  binomialDist: string;
+  conditionalProb: string;
+  formula: string;
+  probGivenB: string;
+  total: string;
+  trials: string;
+  successes: string;
+  probability: string;
+};
+
 const palette = {
   cyan: "#00e5ff",
   pink: "#ff2d7d",
@@ -33,7 +48,7 @@ const palette = {
 
 // Basic Probability: Visual representation of sample space
 function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: number; total: number; lang: string }) {
-  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz as Gm301VizCopy;
   
   const items = useMemo(() => {
     const arr = [];
@@ -71,7 +86,7 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-4 font-mono">
-        {(t as Record<string, string>).sampleSpace}: {total} {(t as Record<string, string>).outcomes}
+        {t.sampleSpace}: {total} {t.outcomes}
       </div>
       
       <div 
@@ -112,11 +127,11 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
         <div className="flex items-center justify-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded border-2" style={{ backgroundColor: palette.green + '40', borderColor: palette.green }} />
-            <span className="text-sm" style={{ color: palette.green }}>{(t as Record<string, string>).favorable}: {favorable}</span>
+            <span className="text-sm" style={{ color: palette.green }}>{t.favorable}: {favorable}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded border-2" style={{ backgroundColor: palette.white + '10', borderColor: palette.white + '40' }} />
-            <span className="text-sm text-white/60">{(t as Record<string, string>).unfavorable}: {total - favorable}</span>
+            <span className="text-sm text-white/60">{t.unfavorable}: {total - favorable}</span>
           </div>
         </div>
         
@@ -130,7 +145,7 @@ function BasicProbabilityViz({ favorable = 1, total = 6, lang }: { favorable: nu
 
 // Binomial Distribution: Show distribution bars
 function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p: number; lang: string }) {
-  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz as Gm301VizCopy;
   const binomialFormulaLatex = "P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}";
   
   const binomial = (n: number, k: number): number => {
@@ -158,7 +173,7 @@ function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p:
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-3 font-mono">
-        {(t as Record<string, string>).binomialDist}: n={n}, p={p}
+        {t.binomialDist}: n={n}, p={p}
       </div>
       
       <div className="flex items-end justify-center gap-1 mb-4 overflow-x-auto" style={{ height: '280px', maxWidth: '100%' }}>
@@ -190,7 +205,7 @@ function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p:
       
       <div className="space-y-2 text-center">
         <div className="text-xs text-white/70 flex items-center justify-center gap-2">
-          <span>{(t as Record<string, string>).formula}:</span>
+          <span>{t.formula}:</span>
           <InlineMath math={binomialFormulaLatex} />
         </div>
         <div className="text-lg font-mono" style={{ color: palette.yellow }}>
@@ -206,7 +221,7 @@ function BinomialViz({ n = 5, k = 3, p = 0.5, lang }: { n: number; k: number; p:
 
 // Conditional Probability: Venn diagram
 function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { eventA: number; eventB: number; eventAB: number; lang: string }) {
-  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const t = translations[lang as keyof typeof translations]?.gm3_01?.viz as Gm301VizCopy;
   const conditionalFormulaLatex = "P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}";
   
   const condProb = eventAB / eventB;
@@ -219,13 +234,13 @@ function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { e
   return (
     <div className="flex flex-col items-center justify-start h-full p-4 overflow-y-auto">
       <div className="text-white text-base mb-4 font-mono">
-        {(t as Record<string, string>).conditionalProb}: P(A|B)
+        {t.conditionalProb}: P(A|B)
       </div>
       
       <svg width="480" height="320" className="mb-4">
         {/* Rectangle for sample space */}
         <rect x="40" y="40" width="400" height="240" fill="none" stroke={palette.white} strokeWidth="2" opacity="0.3" />
-        <text x="50" y="32" fill={palette.white} fontSize="13" opacity="0.6">{(t as Record<string, string>).sampleSpace} (Ω)</text>
+        <text x="50" y="32" fill={palette.white} fontSize="13" opacity="0.6">{t.sampleSpace} (Ω)</text>
         
         {/* Circle B */}
         <circle
@@ -260,14 +275,14 @@ function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { e
       
       <div className="space-y-2 text-center">
         <div className="text-xs text-white/70 flex items-center justify-center gap-2">
-          <span>{(t as Record<string, string>).formula}:</span>
+          <span>{t.formula}:</span>
           <InlineMath math={conditionalFormulaLatex} />
         </div>
         <div className="text-lg font-mono" style={{ color: palette.green }}>
           <InlineMath math={`P(A\\mid B)=\\frac{${eventAB}}{${eventB}}=${condProb.toFixed(4)}`} />
         </div>
         <div className="text-xs text-white/60">
-          {(t as Record<string, string>).probGivenB || ""}
+          {t.probGivenB}
         </div>
       </div>
     </div>
@@ -288,13 +303,13 @@ export default function ProbabilityVisualization(props: ProbabilityVisualization
   const stageKey = stageKeyMap[stage] || "mission";
   const currentStageLabel =
     translations[lang as keyof typeof translations]?.gm3_01?.stages?.[stageKey];
-  const vizLabels = translations[lang as keyof typeof translations]?.gm3_01?.viz || {};
+  const vizLabels = translations[lang as keyof typeof translations]?.gm3_01?.viz as Gm301VizCopy;
   const labels = {
-    favorable: (vizLabels as Record<string, string>).favorable,
-    total: (vizLabels as Record<string, string>).total,
-    trials: (vizLabels as Record<string, string>).trials,
-    successes: (vizLabels as Record<string, string>).successes,
-    probability: (vizLabels as Record<string, string>).probability,
+    favorable: vizLabels.favorable,
+    total: vizLabels.total,
+    trials: vizLabels.trials,
+    successes: vizLabels.successes,
+    probability: vizLabels.probability,
   };
   
   return (

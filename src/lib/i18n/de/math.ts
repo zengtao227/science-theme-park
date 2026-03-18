@@ -1729,6 +1729,10 @@ export const deMath = {
             help: "Hilfe",
             title: "3D-Steuerung",
             hint: "Verwende die Maus zum Interagieren"
+        },
+        error: {
+            title: "FEHLER BEIM LADEN DES MODULS",
+            description: "SM2.01 // BINOMISCHE FORMELN konnten nicht geladen werden"
         }
     },
     sm2_02: {

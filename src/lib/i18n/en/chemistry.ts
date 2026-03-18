@@ -522,6 +522,18 @@ export const enChemistry = {
         mission: {
             title: "MISSION: NOVARTIS SYNTHESIS BAY",
             description: "Calibrate a pharma-grade reaction. Balance the mole ratios and confirm yields."
+        },
+        visualization: {
+            title: "MOLECULAR BALANCE",
+            hud_title: "MOLE_MASTER v2.0",
+            balanced: "BALANCED",
+            unbalanced: "UNBALANCED",
+            stoichiometry_lab: "STOICHIOMETRY LAB",
+            instruction_balance: "Balance shows",
+            instruction_tilt: "Scale tilts based on mass/mole difference",
+            instruction_atoms: "Atoms appear as molecular clusters on pans",
+            input: "INPUT",
+            target: "TARGET"
         }
     },
     sc1_03: {

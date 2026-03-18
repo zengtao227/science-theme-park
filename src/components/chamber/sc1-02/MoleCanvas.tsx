@@ -4,6 +4,7 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Float } from "@react-three/drei";
 import * as THREE from "three";
+import { useLanguage } from "@/lib/i18n";
 
 interface MoleCanvasProps {
   stageLabel: string;
@@ -337,6 +338,20 @@ export default function MoleCanvas({
   targetValue,
   status,
 }: MoleCanvasProps) {
+  const { t } = useLanguage();
+  const copy = t("sc1_02.visualization") as {
+    title: string;
+    hud_title: string;
+    balanced: string;
+    unbalanced: string;
+    stoichiometry_lab: string;
+    instruction_balance: string;
+    instruction_tilt: string;
+    instruction_atoms: string;
+    input: string;
+    target: string;
+  };
+
   // Generate sample molecules for decoration
   const leftMolecules = useMemo(() => {
     if (inputValue === null) return [];
@@ -399,14 +414,14 @@ export default function MoleCanvas({
           position={[-2, 2.5, 0]}
           value={inputValue}
           unit={unit}
-          label="INPUT"
+          label={copy.input}
         />
 
         <ValueDisplay
           position={[2, 2.5, 0]}
           value={targetValue}
           unit={unit}
-          label="TARGET"
+          label={copy.target}
         />
 
         {/* Floating decoration atoms */}
@@ -420,7 +435,7 @@ export default function MoleCanvas({
             color={palette.white}
             anchorX="center"
           >
-            MOLECULAR BALANCE
+            {copy.title}
           </Text>
         </Float>
 
@@ -440,7 +455,7 @@ export default function MoleCanvas({
         <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${status === "correct" ? "bg-green-400" : status === "incorrect" ? "bg-pink-400" : "bg-cyan-400"
           }`} />
         <span className="text-[8px] font-mono text-white/90 tracking-[0.3em] uppercase">
-          Mole_Master v2.0
+          {copy.hud_title}
         </span>
       </div>
 
@@ -451,7 +466,7 @@ export default function MoleCanvas({
             : "bg-pink-500/20 border-pink-400/50 text-pink-400"
           }`}>
           <div className="text-[10px] font-mono uppercase tracking-wider">
-            {status === "correct" ? "✓ BALANCED" : "✗ UNBALANCED"}
+            {status === "correct" ? `✓ ${copy.balanced}` : `✗ ${copy.unbalanced}`}
           </div>
         </div>
       )}
@@ -459,12 +474,12 @@ export default function MoleCanvas({
       {/* Instructions */}
       <div className="absolute bottom-4 left-4 right-4 bg-black/70 border border-white/60 rounded-lg px-4 py-3">
         <div className="text-[10px] text-white uppercase tracking-wider mb-2">
-          Stoichiometry Lab
+          {copy.stoichiometry_lab}
         </div>
         <div className="text-[9px] text-white/70 space-y-1">
-          <div>• Balance shows <span className="text-purple-400">INPUT</span> vs <span className="text-cyan-400">TARGET</span> values</div>
-          <div>• Scale tilts based on mass/mole difference</div>
-          <div>• Atoms appear as molecular clusters on pans</div>
+          <div>• {copy.instruction_balance} <span className="text-purple-400">{copy.input}</span> vs <span className="text-cyan-400">{copy.target}</span> values</div>
+          <div>• {copy.instruction_tilt}</div>
+          <div>• {copy.instruction_atoms}</div>
         </div>
       </div>
 

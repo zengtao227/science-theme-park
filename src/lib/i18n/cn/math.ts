@@ -1698,6 +1698,10 @@ export const cnMath = {
             help: "帮助",
             title: "3D 控制",
             hint: "使用鼠标进行交互"
+        },
+        error: {
+            title: "模块加载错误",
+            description: "SM2.01 // 二项式工厂加载失败"
         }
     },
     sm2_02: {

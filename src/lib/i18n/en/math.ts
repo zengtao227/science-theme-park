@@ -1718,6 +1718,10 @@ export const enMath = {
             help: "Help",
             title: "3D Controls",
             hint: "Use mouse to interact"
+        },
+        error: {
+            title: "MODULE LOADING ERROR",
+            description: "SM2.01 // BINOMIAL FACTORY failed to load"
         }
     },
     sm2_02: {

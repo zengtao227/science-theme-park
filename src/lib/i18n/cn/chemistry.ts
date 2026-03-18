@@ -522,6 +522,18 @@ export const cnChemistry = {
         mission: {
             title: "任务：诺华合成舱",
             description: "校准制药级反应流程。平衡摩尔比例并核对理论产量。"
+        },
+        visualization: {
+            title: "分子平衡",
+            hud_title: "摩尔大师 v2.0",
+            balanced: "已平衡",
+            unbalanced: "未平衡",
+            stoichiometry_lab: "化学计量实验室",
+            instruction_balance: "天平显示",
+            instruction_tilt: "天平会根据质量或物质的量差值发生倾斜",
+            instruction_atoms: "原子会以分子团簇的形式出现在托盘上",
+            input: "输入",
+            target: "目标"
         }
     },
     sc1_03: {

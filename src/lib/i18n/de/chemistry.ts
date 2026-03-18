@@ -514,6 +514,18 @@ export const deChemistry = {
         mission: {
             title: "MISSION: NOVARTIS-SYNTHESEBAY",
             description: "Kalibriere eine pharmazeutische Reaktion. Balanciere Mol-Verhältnisse und prüfe Ausbeuten."
+        },
+        visualization: {
+            title: "MOLEKULARE BALANCE",
+            hud_title: "MOL_MEISTER v2.0",
+            balanced: "AUSGEGLICHEN",
+            unbalanced: "NICHT AUSGEGLICHEN",
+            stoichiometry_lab: "STÖCHIOMETRIE-LABOR",
+            instruction_balance: "Die Waage zeigt",
+            instruction_tilt: "Die Waage neigt sich je nach Massen- oder Stoffmengenunterschied",
+            instruction_atoms: "Atome erscheinen als Molekülcluster auf den Waagschalen",
+            input: "EINGABE",
+            target: "ZIEL"
         }
     },
     sc1_03: {
