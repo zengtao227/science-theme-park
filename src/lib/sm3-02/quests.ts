@@ -51,7 +51,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 promptLatex: t("sm3_02.stages.unit_circle_prompt_latex"),
                 expressionLatex: `${angle}^\\circ`,
                 targetLatex: t("sm3_02.targets.quadrant_latex"),
-                slots: [{ id: "q", labelLatex: "Q", placeholder: "?", expected: q }],
+                slots: [{ id: "q", labelLatex: "Q", placeholder: t("sm3_02.placeholders.question"), expected: q }],
                 correctLatex: `${q}`,
                 angle
             });
@@ -71,7 +71,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 promptLatex: t("sm3_02.stages.unit_circle_prompt_latex"),
                 expressionLatex: `\\${func}(${angle}^\\circ)`,
                 targetLatex: t("sm3_02.targets.sign_latex"),
-                slots: [{ id: "s", labelLatex: "+/-", placeholder: "+/-", expected: sign }],
+                slots: [{ id: "s", labelLatex: "+/-", placeholder: t("sm3_02.placeholders.plus_minus"), expected: sign }],
                 correctLatex: sign,
                 angle,
                 trigFunc: func as any
@@ -104,7 +104,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 promptLatex: t("sm3_02.stages.unit_circle_prompt_latex"),
                 expressionLatex: `${a.d}^\\circ`,
                 targetLatex: t("sm3_02.targets.radians_latex"),
-                slots: [{ id: "r", labelLatex: "rad", placeholder: "?", expected: a.r }],
+                slots: [{ id: "r", labelLatex: "rad", placeholder: t("sm3_02.placeholders.question"), expected: a.r }],
                 correctLatex: a.l,
                 angle: a.d
             });
@@ -136,7 +136,7 @@ export function generateUnitCircleQuests(t: ReturnType<typeof useLanguage>["t"],
                 promptLatex: t("sm3_02.stages.unit_circle_prompt_latex"),
                 expressionLatex: a.l,
                 targetLatex: t("sm3_02.targets.degrees_latex"),
-                slots: [{ id: "d", labelLatex: "deg", placeholder: "?", expected: a.d }],
+                slots: [{ id: "d", labelLatex: "deg", placeholder: t("sm3_02.placeholders.question"), expected: a.d }],
                 correctLatex: `${a.d}^\\circ`,
                 angle: a.d
             });
@@ -170,7 +170,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
                 promptLatex: t("sm3_02.stages.projections_prompt_latex"),
                 expressionLatex: `\\${q.f}(${q.a}^\\circ)`,
                 targetLatex: "v",
-                slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
+                slots: [{ id: "v", labelLatex: "v", placeholder: t("sm3_02.placeholders.question"), expected: q.ans }],
                 correctLatex: q.cl,
                 angle: q.a, trigFunc: q.f as any
             });
@@ -193,7 +193,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
                 promptLatex: t("sm3_02.stages.projections_prompt_latex"),
                 expressionLatex: `\\${q.f}(${q.a}^\\circ)`,
                 targetLatex: "v",
-                slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
+                slots: [{ id: "v", labelLatex: "v", placeholder: t("sm3_02.placeholders.question"), expected: q.ans }],
                 correctLatex: q.cl,
                 angle: q.a, trigFunc: q.f as any
             });
@@ -224,7 +224,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
                 promptLatex: t("sm3_02.stages.projections_prompt_latex"),
                 expressionLatex: `\\${q.f}(${q.a}^\\circ)`,
                 targetLatex: "v",
-                slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
+                slots: [{ id: "v", labelLatex: "v", placeholder: t("sm3_02.placeholders.question"), expected: q.ans }],
                 correctLatex: q.cl,
                 angle: q.a, trigFunc: q.f as any
             });
@@ -254,7 +254,7 @@ export function generateProjectionsQuests(t: ReturnType<typeof useLanguage>["t"]
                 promptLatex: t("sm3_02.stages.projections_prompt_latex"),
                 expressionLatex: `\\tan(${q.a}^\\circ)`,
                 targetLatex: "v",
-                slots: [{ id: "v", labelLatex: "v", placeholder: "?", expected: q.ans }],
+                slots: [{ id: "v", labelLatex: "v", placeholder: t("sm3_02.placeholders.question"), expected: q.ans }],
                 correctLatex: q.cl,
                 angle: q.a, trigFunc: "tan"
             });
@@ -282,7 +282,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                 promptLatex: t("sm3_02.stages.waves_prompt_latex"),
                 expressionLatex: `y=${sign}${typeof A === "string" ? `\\frac{${A.split('/')[0]}}{${A.split('/')[1]}}` : A}\\${f}(x)`,
                 targetLatex: t("sm3_02.targets.amplitude_latex"),
-                slots: [{ id: "a", labelLatex: "A", placeholder: "?", expected: expectedAmp }],
+                slots: [{ id: "a", labelLatex: "A", placeholder: t("sm3_02.placeholders.question"), expected: expectedAmp }],
                 correctLatex: expectedAmp
             });
         }
@@ -306,7 +306,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                 promptLatex: t("sm3_02.stages.waves_prompt_latex"),
                 expressionLatex: `y=\\${f}(${q.tex})`,
                 targetLatex: t("sm3_02.targets.period_latex"),
-                slots: [{ id: "p", labelLatex: "T", placeholder: "?", expected: q.ans }],
+                slots: [{ id: "p", labelLatex: "T", placeholder: t("sm3_02.placeholders.question"), expected: q.ans }],
                 correctLatex: q.cl
             });
         }
@@ -326,7 +326,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                 promptLatex: t("sm3_02.stages.waves_prompt_latex"),
                 expressionLatex: `y=${sign}${A}\\${f}(x)${D > 0 ? `+${D}` : D}`,
                 targetLatex: isMax ? t("sm3_02.targets.max_latex") : t("sm3_02.targets.min_latex"),
-                slots: [{ id: "m", labelLatex: isMax ? "max" : "min", placeholder: "?", expected: isMax ? max : min }],
+                slots: [{ id: "m", labelLatex: isMax ? "max" : "min", placeholder: t("sm3_02.placeholders.question"), expected: isMax ? max : min }],
                 correctLatex: isMax ? `${max}` : `${min}`
             });
         }
@@ -358,7 +358,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                     promptLatex: t("sm3_02.stages.waves_prompt_latex"),
                     expressionLatex: `y=\\${f}(${B === 1 ? 'x' : B + 'x'}), x=${xAngle}^\\circ`,
                     targetLatex: "y",
-                    slots: [{ id: "y", labelLatex: "y", placeholder: "?", expected: ans }],
+                    slots: [{ id: "y", labelLatex: "y", placeholder: t("sm3_02.placeholders.question"), expected: ans }],
                     correctLatex: cl
                 });
             } else {
@@ -375,7 +375,7 @@ export function generateWavesQuests(t: ReturnType<typeof useLanguage>["t"], diff
                     promptLatex: t("sm3_02.stages.waves_prompt_latex"),
                     expressionLatex: `y=${q.eq}, y'=?`,
                     targetLatex: t("sm3_02.targets.derivative_latex"),
-                    slots: [{ id: "d", labelLatex: "y'", placeholder: "?", expected: q.ans }],
+                    slots: [{ id: "d", labelLatex: "y'", placeholder: t("sm3_02.placeholders.question"), expected: q.ans }],
                     correctLatex: q.cl
                 });
             }

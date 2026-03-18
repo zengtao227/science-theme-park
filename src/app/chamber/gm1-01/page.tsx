@@ -79,6 +79,9 @@ export default function G101Page() {
     labels: {
       hints: t("gm1_01.labels.hints"),
     },
+    placeholders: {
+      derivative: t("gm1_01.placeholders.derivative"),
+    },
     formulas: {
       power_rule: t("gm1_01.formulas.power_rule"),
       factor_rule: t("gm1_01.formulas.factor_rule"),

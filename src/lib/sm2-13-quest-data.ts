@@ -13,6 +13,14 @@ export const buildStagePool = (
     stage: Stage,
     t: TranslationFn
 ): SM213Quest[] => {
+    const placeholders = {
+        x: t("sm2_13.placeholders.x"),
+        y: t("sm2_13.placeholders.y"),
+        b: t("sm2_13.placeholders.b"),
+        d: t("sm2_13.placeholders.d"),
+        val: t("sm2_13.placeholders.val"),
+    };
+
     const pool: SM213Quest[] = [];
 
     // Generate 20 variants for each difficulty/stage combo to ensure >= 80 quests per stage
@@ -40,8 +48,8 @@ export const buildStagePool = (
                     expressionLatex: `P(x, y) \\xrightarrow{${axis}\\text{-axis}} ` + (axis === "x" ? "P'(x, -y)" : "P'(-x, y)"),
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: axis === "x" ? x : -x },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: axis === "x" ? -y : y }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: axis === "x" ? x : -x },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: axis === "x" ? -y : y }
                     ],
                     correctLatex: `P'(${axis === "x" ? x : -x}, ${axis === "x" ? -y : y})`
                 });
@@ -57,8 +65,8 @@ export const buildStagePool = (
                     expressionLatex: `P(x, y) \\xrightarrow{${line}} ` + (line === "y = x" ? "P'(y, x)" : "P'(-y, -x)"),
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: aX },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: aY }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: aX },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: aY }
                     ],
                     correctLatex: `P'(${aX}, ${aY})`
                 });
@@ -75,8 +83,8 @@ export const buildStagePool = (
                     expressionLatex: t("sm2_13.expressions.mirror_distance", { lineAxis, offset }),
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: aX },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: aY }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: aX },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: aY }
                     ],
                     correctLatex: `P'(${aX}, ${aY})`
                 });
@@ -100,7 +108,7 @@ export const buildStagePool = (
                     expressionLatex: t("sm2_13.expressions.perpendicular_slope", { m }),
                     targetLatex: "x'",
                     slots: [
-                        { id: "x", labelLatex: "x'\\approx", placeholder: "x", expected: Math.round(px * 10) / 10 }
+                        { id: "x", labelLatex: "x'\\approx", placeholder: placeholders.x, expected: Math.round(px * 10) / 10 }
                     ],
                     correctLatex: `${Math.round(px * 10) / 10}`
                 });
@@ -115,8 +123,8 @@ export const buildStagePool = (
                     expressionLatex: `P'(x, y) = (${x}+${dx}, ${y}+${dy})`,
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: x + dx },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: y + dy }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: x + dx },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: y + dy }
                     ],
                     correctLatex: `P'(${x + dx}, ${y + dy})`
                 });
@@ -129,8 +137,8 @@ export const buildStagePool = (
                     expressionLatex: `P_x = P'_x - v_x, \\quad P_y = P'_y - v_y`,
                     targetLatex: "P(x, y)",
                     slots: [
-                        { id: "x", labelLatex: "x=", placeholder: "x", expected: x - dx },
-                        { id: "y", labelLatex: "y=", placeholder: "y", expected: y - dy }
+                        { id: "x", labelLatex: "x=", placeholder: placeholders.x, expected: x - dx },
+                        { id: "y", labelLatex: "y=", placeholder: placeholders.y, expected: y - dy }
                     ],
                     correctLatex: `P(${x - dx}, ${y - dy})`
                 });
@@ -147,7 +155,7 @@ export const buildStagePool = (
                     expressionLatex: `y - ${dy} = ${m}(x - ${dx}) + ${b}`,
                     targetLatex: "b'",
                     slots: [
-                        { id: "b", labelLatex: "b'=", placeholder: "b", expected: new_b }
+                        { id: "b", labelLatex: "b'=", placeholder: placeholders.b, expected: new_b }
                     ],
                     correctLatex: `${new_b}`
                 });
@@ -164,7 +172,7 @@ export const buildStagePool = (
                     expressionLatex: `C' = (${new_cx}, ${new_cy}), d = \\sqrt{${new_cx}^{2} + ${new_cy}^2}`,
                     targetLatex: "d",
                     slots: [
-                        { id: "d", labelLatex: "d\\approx", placeholder: "d", expected: Math.round(dist * 10) / 10 }
+                        { id: "d", labelLatex: "d\\approx", placeholder: placeholders.d, expected: Math.round(dist * 10) / 10 }
                     ],
                     correctLatex: `${Math.round(dist * 10) / 10}`
                 });
@@ -188,8 +196,8 @@ export const buildStagePool = (
                     expressionLatex: t("sm2_13.expressions.observe_swaps_signs"),
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: ax },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: ay }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: ax },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: ay }
                     ],
                     correctLatex: `P'(${ax}, ${ay})`
                 });
@@ -213,8 +221,8 @@ export const buildStagePool = (
                     expressionLatex: `\\text{Translate } C \\rightarrow (0,0)\\text{, rotate, then translate back}`,
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: rx + cx },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: ry + cx }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: rx + cx },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: ry + cx }
                     ],
                     correctLatex: `P'(${rx + cx}, ${ry + cx})`
                 });
@@ -233,7 +241,7 @@ export const buildStagePool = (
                     expressionLatex: `x' = x \\cos \\theta - y \\sin \\theta`,
                     targetLatex: "x'",
                     slots: [
-                        { id: "x", labelLatex: "x'\\approx", placeholder: "x", expected: Math.round(rx * 10) / 10 }
+                        { id: "x", labelLatex: "x'\\approx", placeholder: placeholders.x, expected: Math.round(rx * 10) / 10 }
                     ],
                     correctLatex: `${Math.round(rx * 10) / 10}`
                 });
@@ -252,7 +260,7 @@ export const buildStagePool = (
                     expressionLatex: t("sm2_13.expressions.rotate_line_hint"),
                     targetLatex: "b'",
                     slots: [
-                        { id: "b", labelLatex: "b'\\approx", placeholder: "b", expected: Math.round(b / Math.cos(theta) * 10) / 10 }
+                        { id: "b", labelLatex: "b'\\approx", placeholder: placeholders.b, expected: Math.round(b / Math.cos(theta) * 10) / 10 }
                     ],
                     correctLatex: `${Math.round(b / Math.cos(theta) * 10) / 10}` // Rough approximation assuming rotation by -theta makes it horizontal.
                 });
@@ -267,8 +275,8 @@ export const buildStagePool = (
                     expressionLatex: `(${x},${y}) \\rightarrow (${x + dx},${y}) \\rightarrow (${x + dx}, ${-y})`,
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: x + dx },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: -y }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: x + dx },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: -y }
                     ],
                     correctLatex: `P'(${x + dx}, ${-y})`
                 });
@@ -287,8 +295,8 @@ export const buildStagePool = (
                     expressionLatex: `(${x},${y}) \\xrightarrow{y=x} (${y},${x}) \\xrightarrow{90^\\circ} (${rotX}, ${rotY})`,
                     targetLatex: "P'(x', y')",
                     slots: [
-                        { id: "x", labelLatex: "x'=", placeholder: "x", expected: rotX },
-                        { id: "y", labelLatex: "y'=", placeholder: "y", expected: rotY }
+                        { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: rotX },
+                        { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: rotY }
                     ],
                     correctLatex: `P'(${rotX}, ${rotY})`
                 });
@@ -301,7 +309,7 @@ export const buildStagePool = (
                     expressionLatex: `\\Delta x = 2(${dy} - ${dx})`,
                     targetLatex: "\\Delta x",
                     slots: [
-                        { id: "x", labelLatex: "\\Delta x=", placeholder: "val", expected: 2 * (dy - dx) }
+                        { id: "x", labelLatex: "\\Delta x=", placeholder: placeholders.val, expected: 2 * (dy - dx) }
                     ],
                     correctLatex: `${2 * (dy - dx)}`
                 });
@@ -314,7 +322,7 @@ export const buildStagePool = (
                     expressionLatex: t("sm2_13.expressions.perpendicular_reflection_rule"),
                     targetLatex: "x_c + y_c",
                     slots: [
-                        { id: "val", labelLatex: "Sum=", placeholder: "val", expected: dx + dy }
+                        { id: "val", labelLatex: "Sum=", placeholder: placeholders.val, expected: dx + dy }
                     ],
                     correctLatex: `${dx + dy}`
                 });

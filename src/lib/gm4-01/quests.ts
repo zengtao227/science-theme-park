@@ -74,7 +74,7 @@ export function generateBasicsQuests(t: any, difficulty: Difficulty): G401Quest[
             promptLatex: t?.stages?.basics_prompt || "Calculate magnitude",
             expressionLatex: `z = ${formatComplexLatex(re, im)}`,
             targetLatex: "\\left|z\\right|",
-            slots: [{ id: "magnitude", labelLatex: "|z|", placeholder: "val", expected: round2(r) }],
+            slots: [{ id: "magnitude", labelLatex: "|z|", placeholder: t?.placeholders?.value ?? "", expected: round2(r) }],
             correctLatex: `|z| = ${round2(r)}`,
         });
     }
@@ -128,8 +128,8 @@ export function generateOperationsQuests(t: any, difficulty: Difficulty): G401Qu
             expressionLatex: `z_1 = ${formatComplexLatex(z1.re, z1.im)},\\; z_2 = ${formatComplexLatex(z2.re, z2.im)}`,
             targetLatex: `z_1 ${opSymbol} z_2`,
             slots: [
-                { id: "re", labelLatex: "\\mathrm{Re}", placeholder: "0.00", expected: round2(resultRe) },
-                { id: "im", labelLatex: "\\mathrm{Im}", placeholder: "0.00", expected: round2(resultIm) },
+                { id: "re", labelLatex: "\\mathrm{Re}", placeholder: t?.placeholders?.decimal_2dp ?? "", expected: round2(resultRe) },
+                { id: "im", labelLatex: "\\mathrm{Im}", placeholder: t?.placeholders?.decimal_2dp ?? "", expected: round2(resultIm) },
             ],
             correctLatex: `z = ${formatComplexLatex(round2(resultRe), round2(resultIm))}`,
         });
@@ -182,8 +182,8 @@ export function generatePolarQuests(t: any, difficulty: Difficulty): G401Quest[]
             expressionLatex: `z = ${formatComplexLatex(re, im)},\\; z^{${n}}`,
             targetLatex: `z^{${n}}`,
             slots: [
-                { id: "re", labelLatex: "\\mathrm{Re}", placeholder: "0.00", expected: round2(resultRe) },
-                { id: "im", labelLatex: "\\mathrm{Im}", placeholder: "0.00", expected: round2(resultIm) },
+                { id: "re", labelLatex: "\\mathrm{Re}", placeholder: t?.placeholders?.decimal_2dp ?? "", expected: round2(resultRe) },
+                { id: "im", labelLatex: "\\mathrm{Im}", placeholder: t?.placeholders?.decimal_2dp ?? "", expected: round2(resultIm) },
             ],
             correctLatex: `z^{${n}} = ${formatComplexLatex(round2(resultRe), round2(resultIm))}`,
         });

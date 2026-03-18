@@ -66,6 +66,9 @@ export default function G301Page() {
       hints: t("gm3_01.labels.hints"),
       problem_tag: t("gm3_01.labels.problem_tag") || "PROBLEM",
     },
+    placeholders: {
+      probability_4dp: t("gm3_01.placeholders.probability_4dp"),
+    },
     mission: {
       title: t("gm3_01.mission.title"),
       description: t("gm3_01.mission.description"),

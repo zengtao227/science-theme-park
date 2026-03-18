@@ -301,6 +301,9 @@ export const enMath = {
             x_coordinate: "x-coordinate",
             hints: "HINTS"
         },
+        placeholders: {
+            derivative: "derivative",
+        },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
             factor_rule: "(a\\cdot f)' = a\\cdot f'",
@@ -480,6 +483,14 @@ export const enMath = {
         labels: {
             input: "INPUT"
         },
+        placeholders: {
+            x: "x",
+            y: "y",
+            z: "z",
+            magnitude: "magnitude",
+            dot_product: "dot product",
+            dot: "dot",
+        },
         mission: {
             title: "MISSION: RHINE AIRSPACE",
             description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
@@ -531,6 +542,9 @@ export const enMath = {
             hint_definite: "F(b) - F(a)\\text{ where }F\\text{ is the antiderivative}",
             hint_area: "\\text{Area} = \\int_a^b f(x)dx\\text{ when }f(x)\\geq 0"
         },
+        placeholders: {
+            value: "value",
+        },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
     },
     gm3_01: {
@@ -565,6 +579,9 @@ export const enMath = {
             input: "INPUT",
             hints: "HINTS",
             problem_tag: "PROBLEM"
+        },
+        placeholders: {
+            probability_4dp: "0.0000",
         },
         viz: {
             sampleSpace: "Sample Space",
@@ -738,6 +755,10 @@ export const enMath = {
             operations_target: "Target: report both real and imaginary components.",
             polar_prompt: "Resonance task: use polar form to compute complex powers efficiently.",
             polar_target: "Target: convert z^n back to rectangular form for implementation."
+        },
+        placeholders: {
+            value: "value",
+            decimal_2dp: "0.00",
         },
         visualization: {
             pythagorean: "PYTHAGOREAN THEOREM",
@@ -1610,13 +1631,21 @@ export const enMath = {
             simulating: "Simulating",
             coeff: "Coeff",
             const: "Constant",
+            linear: "Linear",
             geometry_proof: "2D Geometry Proof",
             binomial_formula: "S2.01 Binomial Formula",
             node_zurich: "Node: Zurich"
         },
         placeholders: {
             ax: "ax",
+            ax_squared: "ax²",
             b: "b",
+            by: "by",
+            by_squared: "by²",
+            x: "x",
+            xy: "XY",
+            xyz: "XYZ",
+            v_1: "1",
             a_squared: "a²",
             two_ab: "2ab",
             b_squared: "b²",
@@ -1624,11 +1653,8 @@ export const enMath = {
             v: "V",
             two_cvxy: "2CVxy",
             v_squared: "V²",
-            by: "by",
             question: "?",
-                    v_1: "1",
-            x: "x",
-},
+        },
         decomposition_pattern: "Decomposition Pattern: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
         expand: "Expand",
@@ -2583,6 +2609,10 @@ export const enMath = {
             min_latex: "\\text{Min}",
             derivative_latex: "\\text{Derivative}"
         },
+        placeholders: {
+            question: "?",
+            plus_minus: "+/-",
+        },
         mission: {
             title: "MISSION: UNIT CIRCLE",
             description: "Master the unit circle and trigonometric functions. Understand sin, cos, and tan relationships."
@@ -3517,6 +3547,13 @@ export const enMath = {
             observe_swaps_signs: "\\text{Observe coordinate swaps and sign changes}",
             rotate_line_hint: "\\text{Find intercepts, rotate points, solve the new equation}",
             perpendicular_reflection_rule: "\\text{Reflection across two perpendicular lines equals }180^\\circ\\text{ rotation around their intersection}"
+        },
+        placeholders: {
+            x: "x",
+            y: "y",
+            b: "b",
+            d: "d",
+            val: "val",
         }
     },
     gp3_03: {
@@ -3756,6 +3793,10 @@ export const enMath = {
             discontinuity_type: "Discontinuity Type",
             function_value: "Function Value",
             hints: "HINTS"
+        },
+        placeholders: {
+            value: "value",
+            yes_no: "yes/no",
         },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places. Use 'DNE' for does not exist.",
         visualization: {

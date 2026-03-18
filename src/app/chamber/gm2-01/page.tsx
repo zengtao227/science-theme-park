@@ -61,6 +61,14 @@ export default function G201Page() {
     labels: {
       input: t("gm2_01.labels.input"),
     },
+    placeholders: {
+      x: t("gm2_01.placeholders.x"),
+      y: t("gm2_01.placeholders.y"),
+      z: t("gm2_01.placeholders.z"),
+      magnitude: t("gm2_01.placeholders.magnitude"),
+      dot_product: t("gm2_01.placeholders.dot_product"),
+      dot: t("gm2_01.placeholders.dot"),
+    },
     mission: {
       title: t("gm2_01.mission.title"),
       description: t("gm2_01.mission.description"),

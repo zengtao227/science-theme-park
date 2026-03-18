@@ -301,6 +301,9 @@ export const cnMath = {
             x_coordinate: "x 坐标",
             hints: "提示"
         },
+        placeholders: {
+            derivative: "导数",
+        },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
             factor_rule: "(a\\cdot f)' = a\\cdot f'",
@@ -481,6 +484,14 @@ export const cnMath = {
         labels: {
             input: "输入"
         },
+        placeholders: {
+            x: "x",
+            y: "y",
+            z: "z",
+            magnitude: "模长",
+            dot_product: "点积",
+            dot: "点积",
+        },
         mission: {
             title: "任务：莱茵河空域",
             description: "在莱茵河上空校准无人机航线。输入 3D 向量并用点积验证安全走廊。"
@@ -532,6 +543,9 @@ export const cnMath = {
             hint_definite: "F(b) - F(a)\\text{，其中 }F\\text{ 是不定积分}",
             hint_area: "\\text{面积} = \\int_a^b f(x)dx\\text{，当 }f(x)\\geq 0"
         },
+        placeholders: {
+            value: "数值",
+        },
         input_tip_2dp: "提示：保留 2 位小数。"
     },
     gm3_01: {
@@ -566,6 +580,9 @@ export const cnMath = {
             input: "输入",
             hints: "提示",
             problem_tag: "题目"
+        },
+        placeholders: {
+            probability_4dp: "0.0000",
         },
         viz: {
             sampleSpace: "样本空间",
@@ -719,6 +736,10 @@ export const cnMath = {
             operations_target: "目标：同时给出实部与虚部。",
             polar_prompt: "谐振任务：使用极坐标形式高效计算复数幂。",
             polar_target: "目标：将 z^n 转回直角坐标形式用于实现。"
+        },
+        placeholders: {
+            value: "数值",
+            decimal_2dp: "0.00",
         },
         visualization: {
             pythagorean: "勾股定理",
@@ -1594,13 +1615,21 @@ export const cnMath = {
             simulating: "模拟中",
             coeff: "系数",
             const: "常数",
+            linear: "线性",
             geometry_proof: "2D 几何解析",
             binomial_formula: "S2.01 二项式定理",
             node_zurich: "节点：苏黎世"
         },
         placeholders: {
             ax: "ax",
+            ax_squared: "ax²",
             b: "b",
+            by: "by",
+            by_squared: "by²",
+            x: "x",
+            xy: "XY",
+            xyz: "XYZ",
+            v_1: "1",
             a_squared: "a²",
             two_ab: "2ab",
             b_squared: "b²",
@@ -1608,11 +1637,8 @@ export const cnMath = {
             v: "V",
             two_cvxy: "2CVxy",
             v_squared: "V²",
-            by: "by",
             question: "?",
-                    v_1: "1",
-            x: "x",
-},
+        },
         decomposition_pattern: "分解模式：$a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
         expand: "展开",
@@ -2581,6 +2607,10 @@ export const cnMath = {
             min_latex: "\\text{最小值}",
             derivative_latex: "\\text{导数}"
         },
+        placeholders: {
+            question: "?",
+            plus_minus: "+/-",
+        },
         mission: {
             title: "任务：单位圆",
             description: "掌握单位圆与三角函数。理解 sin、cos 和 tan 的关系。"
@@ -3515,6 +3545,13 @@ export const cnMath = {
             observe_swaps_signs: "\\text{注意坐标交换与符号变化}",
             rotate_line_hint: "\\text{先求截距，旋转关键点，再求新方程}",
             perpendicular_reflection_rule: "\\text{关于两条互相垂直直线的连续对称，等价于绕交点旋转 }180^\\circ"
+        },
+        placeholders: {
+            x: "x",
+            y: "y",
+            b: "b",
+            d: "d",
+            val: "val",
         }
     },
     gp3_03: {
@@ -3754,6 +3791,10 @@ export const cnMath = {
             discontinuity_type: "间断类型",
             function_value: "函数值",
             hints: "提示"
+        },
+        placeholders: {
+            value: "数值",
+            yes_no: "是/否",
         },
         input_tip_2dp: "提示：输入结果保留2位小数。不存在时使用'DNE'。",
         visualization: {

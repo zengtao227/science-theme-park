@@ -76,10 +76,10 @@ export function generateNavigationQuests(gm2_01_t: any, difficulty: Difficulty):
             expressionLatex: `A(${A.join(',')})\\;\\text{to}\\;B(${B.join(',')})`,
             targetLatex: "\\vec v,\\;|\\vec v|",
             slots: [
-                { id: "vx", labelLatex: "v_x", placeholder: "x", expected: round2(v[0]) },
-                { id: "vy", labelLatex: "v_y", placeholder: "y", expected: round2(v[1]) },
-                { id: "vz", labelLatex: "v_z", placeholder: "z", expected: round2(v[2]) },
-                { id: "magnitude", labelLatex: "|\\vec v|", placeholder: "magnitude", expected: magnitude },
+                { id: "vx", labelLatex: "v_x", placeholder: gm2_01_t.placeholders.x, expected: round2(v[0]) },
+                { id: "vy", labelLatex: "v_y", placeholder: gm2_01_t.placeholders.y, expected: round2(v[1]) },
+                { id: "vz", labelLatex: "v_z", placeholder: gm2_01_t.placeholders.z, expected: round2(v[2]) },
+                { id: "magnitude", labelLatex: "|\\vec v|", placeholder: gm2_01_t.placeholders.magnitude, expected: magnitude },
             ],
             correctLatex: `\\vec v=(${round2(v[0])},${round2(v[1])},${round2(v[2])}),\\;|\\vec v|=${magnitude}`,
         });
@@ -128,7 +128,7 @@ export function generateDotQuests(gm2_01_t: any, difficulty: Difficulty): G201Qu
             expressionLatex: `\\vec v=(${v.join(',')}),\\;\\vec w=(${w.join(',')})`,
             targetLatex: "\\vec v\\cdot\\vec w",
             slots: [
-                { id: "dot", labelLatex: "\\vec v\\cdot\\vec w", placeholder: "dot product", expected: dotProduct },
+                { id: "dot", labelLatex: "\\vec v\\cdot\\vec w", placeholder: gm2_01_t.placeholders.dot_product, expected: dotProduct },
             ],
             correctLatex: `\\vec v\\cdot\\vec w=${dotProduct}`,
         });
@@ -180,11 +180,11 @@ export function generateMissionQuests(gm2_01_t: any, difficulty: Difficulty): G2
             expressionLatex: `A(${A.join(',')})\\;\\text{to}\\;B(${B.join(',')}),\\;\\vec s=(${s.join(',')})`,
             targetLatex: "\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|",
             slots: [
-                { id: "vx", labelLatex: "v_x", placeholder: "x", expected: round2(v[0]) },
-                { id: "vy", labelLatex: "v_y", placeholder: "y", expected: round2(v[1]) },
-                { id: "vz", labelLatex: "v_z", placeholder: "z", expected: round2(v[2]) },
-                { id: "dot", labelLatex: "\\vec v\\cdot\\vec s", placeholder: "dot", expected: dotProduct },
-                { id: "magnitude", labelLatex: "|\\vec v|", placeholder: "magnitude", expected: magnitude },
+                { id: "vx", labelLatex: "v_x", placeholder: gm2_01_t.placeholders.x, expected: round2(v[0]) },
+                { id: "vy", labelLatex: "v_y", placeholder: gm2_01_t.placeholders.y, expected: round2(v[1]) },
+                { id: "vz", labelLatex: "v_z", placeholder: gm2_01_t.placeholders.z, expected: round2(v[2]) },
+                { id: "dot", labelLatex: "\\vec v\\cdot\\vec s", placeholder: gm2_01_t.placeholders.dot, expected: dotProduct },
+                { id: "magnitude", labelLatex: "|\\vec v|", placeholder: gm2_01_t.placeholders.magnitude, expected: magnitude },
             ],
             correctLatex: `\\vec v=(${round2(v[0])},${round2(v[1])},${round2(v[2])}),\\;\\vec v\\cdot\\vec s=${dotProduct},\\;|\\vec v|=${magnitude}`,
         });

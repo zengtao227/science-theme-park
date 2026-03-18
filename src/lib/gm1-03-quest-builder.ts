@@ -105,7 +105,7 @@ export function buildStagePool(
           {
             id: "limit",
             labelLatex: "\\text{Limit}",
-            placeholder: "value",
+            placeholder: t("gm1_03.placeholders.value"),
             expected,
           },
         ],
@@ -191,7 +191,7 @@ export function buildStagePool(
           {
             id: "answer",
             labelLatex: "\\text{Result}",
-            placeholder: "value",
+            placeholder: t("gm1_03.placeholders.value"),
             expected,
           },
         ],
@@ -258,7 +258,7 @@ export function buildStagePool(
         {
           id: "continuous",
           labelLatex: "\\text{Continuous?}",
-          placeholder: "yes/no",
+          placeholder: t("gm1_03.placeholders.yes_no"),
           expected,
         },
       ],

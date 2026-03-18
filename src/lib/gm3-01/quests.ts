@@ -123,7 +123,7 @@ export function generateBasicProbQuests(gm3_01_t: any, difficulty: Difficulty): 
             promptLatex: gm3_01_t.stages.basic_prob_prompt_latex,
             expressionLatex: `F=${favorable},\\;N=${total}`,
             targetLatex: "P(E)",
-            slots: [{ id: "probability", labelLatex: "P(E)", placeholder: "0.0000", expected: prob }],
+            slots: [{ id: "probability", labelLatex: "P(E)", placeholder: gm3_01_t.placeholders.probability_4dp, expected: prob }],
             correctLatex: `P(E)=${prob}`,
         });
     }
@@ -166,7 +166,7 @@ export function generateBinomialQuests(gm3_01_t: any, difficulty: Difficulty): G
             promptLatex: gm3_01_t.stages.binomial_prompt_latex,
             expressionLatex: `n=${n},\\;k=${k},\\;p=${p}`,
             targetLatex: "P(X=k)",
-            slots: [{ id: "probability", labelLatex: "P(X=k)", placeholder: "0.0000", expected: prob }],
+            slots: [{ id: "probability", labelLatex: "P(X=k)", placeholder: gm3_01_t.placeholders.probability_4dp, expected: prob }],
             correctLatex: `P(X=${k})=${prob}`,
         });
     }
@@ -219,7 +219,7 @@ export function generateConditionalQuests(gm3_01_t: any, difficulty: Difficulty)
             promptLatex: gm3_01_t.stages.conditional_prompt_latex,
             expressionLatex: `P(A)=${pA},\\;P(B)=${pB},\\;P(A\\cap B)=${pAB}`,
             targetLatex: "P(A|B)",
-            slots: [{ id: "probability", labelLatex: "P(A|B)", placeholder: "0.0000", expected: condProb }],
+            slots: [{ id: "probability", labelLatex: "P(A|B)", placeholder: gm3_01_t.placeholders.probability_4dp, expected: condProb }],
             correctLatex: `P(A|B)=${condProb}`,
         });
     }

@@ -74,7 +74,7 @@ export function generatePowerRuleQuests(gm1_01_t: any, difficulty: Difficulty): 
             promptLatex: gm1_01_t.stages.power_rule_prompt_latex,
             expressionLatex: expr,
             targetLatex: "f'(x)",
-            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: gm1_01_t.placeholders.derivative, expected: derivative }],
             correctLatex: `f'(${x})=${derivative}`,
         });
     }
@@ -121,7 +121,7 @@ export function generateFactorRuleQuests(gm1_01_t: any, difficulty: Difficulty):
             promptLatex: gm1_01_t.stages.factor_rule_prompt_latex,
             expressionLatex: expr,
             targetLatex: "f'(x)",
-            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: gm1_01_t.placeholders.derivative, expected: derivative }],
             correctLatex: `f'(${x})=${derivative}`,
         });
     }
@@ -189,7 +189,7 @@ export function generateSumRuleQuests(gm1_01_t: any, difficulty: Difficulty): G1
             promptLatex: gm1_01_t.stages.sum_rule_prompt_latex,
             expressionLatex: expr,
             targetLatex: "f'(x)",
-            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: gm1_01_t.placeholders.derivative, expected: derivative }],
             correctLatex: `f'(${x})=${derivative}`,
         });
     }
@@ -225,7 +225,7 @@ export function generateProductRuleQuests(gm1_01_t: any, difficulty: Difficulty)
             promptLatex: gm1_01_t.stages.product_rule_prompt_latex,
             expressionLatex: `f(x)=x\\cdot\\sin(x),\\; x=${round2(x)}`,
             targetLatex: "f'(x)",
-            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: gm1_01_t.placeholders.derivative, expected: derivative }],
             correctLatex: `f'(${round2(x)})=${derivative}`,
         });
     }
@@ -263,7 +263,7 @@ export function generateQuotientRuleQuests(gm1_01_t: any, difficulty: Difficulty
             promptLatex: gm1_01_t.stages.quotient_rule_prompt_latex,
             expressionLatex: `f(x)=\\frac{x}{\\sin(x)},\\; x=${round2(x)}`,
             targetLatex: "f'(x)",
-            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: gm1_01_t.placeholders.derivative, expected: derivative }],
             correctLatex: `f'(${round2(x)})=${derivative}`,
         });
     }
@@ -304,7 +304,7 @@ export function generateChainRuleQuests(gm1_01_t: any, difficulty: Difficulty): 
             promptLatex: gm1_01_t.stages.chain_rule_prompt_latex,
             expressionLatex: `f(x)=\\sin(${k}x),\\; x=${round2(x)}`,
             targetLatex: "f'(x)",
-            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: "derivative", expected: derivative }],
+            slots: [{ id: "derivative", labelLatex: "f'(x)", placeholder: gm1_01_t.placeholders.derivative, expected: derivative }],
             correctLatex: `f'(${round2(x)})=${derivative}`,
         });
     }

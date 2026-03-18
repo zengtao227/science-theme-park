@@ -109,7 +109,7 @@ export function generateAntiderivativeQuests(t: any, difficulty: Difficulty): GM
             promptLatex: t("gm1_02.prompts.find_antiderivative", { expr }),
             expressionLatex: `\\int (${expr}) dx`,
             targetLatex: "F(1)",
-            slots: [{ id: "answer", labelLatex: "F(1)", placeholder: "value", expected: answer }],
+            slots: [{ id: "answer", labelLatex: "F(1)", placeholder: t("gm1_02.placeholders.value"), expected: answer }],
             correctLatex: `F(1) = ${answer}`,
         });
     }
@@ -161,7 +161,7 @@ export function generateDefiniteIntegralQuests(t: any, difficulty: Difficulty): 
             promptLatex: t("gm1_02.prompts.evaluate_integral", { expr, a, b }),
             expressionLatex: `\\int_{${a}}^{${b}} (${expr}) dx`,
             targetLatex: "\\text{Result}",
-            slots: [{ id: "answer", labelLatex: "\\text{Result}", placeholder: "value", expected: answer }],
+            slots: [{ id: "answer", labelLatex: "\\text{Result}", placeholder: t("gm1_02.placeholders.value"), expected: answer }],
             correctLatex: `\\int_{${a}}^{${b}} = ${answer}`,
         });
     }
@@ -246,7 +246,7 @@ export function generateApplicationQuests(t: any, difficulty: Difficulty): GM102
             slots: [{
                 id: "answer",
                 labelLatex: context === "volume" ? "V" : context === "work" ? "W" : "\\text{Area}",
-                placeholder: "value",
+                placeholder: t("gm1_02.placeholders.value"),
                 expected: answer
             }],
             correctLatex: `${context === "volume" ? "V" : context === "work" ? "W" : "\\text{Area}"} = ${answer}`,

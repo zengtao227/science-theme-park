@@ -301,6 +301,9 @@ export const deMath = {
             x_coordinate: "x-Koordinate",
             hints: "HINWEISE"
         },
+        placeholders: {
+            derivative: "Ableitung",
+        },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
             factor_rule: "(a\\cdot f)' = a\\cdot f'",
@@ -480,6 +483,14 @@ export const deMath = {
         labels: {
             input: "EINGABE"
         },
+        placeholders: {
+            x: "x",
+            y: "y",
+            z: "z",
+            magnitude: "Betrag",
+            dot_product: "Skalarprodukt",
+            dot: "Dot",
+        },
         mission: {
             title: "MISSION: RHEIN-LUFTKORRIDOR",
             description: "Navigiere den Drohnenkorridor über dem Rhein. Gib den 3D-Vektor ein und prüfe die Ausrichtung mit dem Skalarprodukt."
@@ -531,6 +542,9 @@ export const deMath = {
             hint_definite: "F(b) - F(a)\\text{, wobei }F\\text{ die Stammfunktion ist}",
             hint_area: "\\text{Fläche} = \\int_a^b f(x)dx\\text{ wenn }f(x)\\geq 0"
         },
+        placeholders: {
+            value: "Wert",
+        },
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
     },
     gm3_01: {
@@ -565,6 +579,9 @@ export const deMath = {
             input: "EINGABE",
             hints: "HINWEISE",
             problem_tag: "AUFGABE"
+        },
+        placeholders: {
+            probability_4dp: "0.0000",
         },
         viz: {
             sampleSpace: "Stichprobenraum",
@@ -748,6 +765,10 @@ export const deMath = {
             operations_target: "Ziel: Gib Real- und Imaginärteil vollständig an.",
             polar_prompt: "Resonanzaufgabe: Nutze die Polarform zur effizienten Berechnung komplexer Potenzen.",
             polar_target: "Ziel: Wandle z^n zur Implementierung zurück in die kartesische Form."
+        },
+        placeholders: {
+            value: "Wert",
+            decimal_2dp: "0.00",
         },
         visualization: {
             pythagorean: "SATZ DES PYTHAGORAS",
@@ -1633,7 +1654,14 @@ export const deMath = {
         },
         placeholders: {
             ax: "ax",
+            ax_squared: "ax²",
             b: "b",
+            by: "by",
+            by_squared: "by²",
+            x: "x",
+            xy: "XY",
+            xyz: "XYZ",
+            v_1: "1",
             a_squared: "a²",
             two_ab: "2ab",
             b_squared: "b²",
@@ -1641,11 +1669,8 @@ export const deMath = {
             v: "V",
             two_cvxy: "2CVxy",
             v_squared: "V²",
-            by: "by",
             question: "?",
-                    v_1: "1",
-            x: "x",
-},
+        },
         decomposition_pattern: "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$",
         decomposition_pattern_2d: "$(a+b)^{2} = a^{2} + 2ab + b^{2}$",
         expand: "Ausklappen",
@@ -2564,6 +2589,10 @@ export const deMath = {
             max_latex: "\\text{Maximum}",
             min_latex: "\\text{Minimum}",
             derivative_latex: "\\text{Ableitung}"
+        },
+        placeholders: {
+            question: "?",
+            plus_minus: "+/-",
         },
         mission: {
             title: "MISSION: EINHEITSKREIS",
@@ -3499,6 +3528,13 @@ export const deMath = {
             observe_swaps_signs: "\\text{Koordinatentausch und Vorzeichenwechsel beachten}",
             rotate_line_hint: "\\text{Achsenabschnitte finden, Punkte drehen, neue Gleichung bestimmen}",
             perpendicular_reflection_rule: "\\text{Spiegelung an zwei senkrechten Geraden entspricht einer }180^\\circ\\text{-Drehung um ihren Schnittpunkt}"
+        },
+        placeholders: {
+            x: "x",
+            y: "y",
+            b: "b",
+            d: "d",
+            val: "val",
         }
     },
     gp3_03: {
@@ -3738,6 +3774,10 @@ export const deMath = {
             discontinuity_type: "Unstetigkeitstyp",
             function_value: "Funktionswert",
             hints: "HINWEISE"
+        },
+        placeholders: {
+            value: "Wert",
+            yes_no: "ja/nein",
         },
         input_tip_2dp: "Tipp: Ergebnis auf 2 Dezimalstellen gerundet eingeben. Verwende 'DNE' für nicht existent.",
         visualization: {
