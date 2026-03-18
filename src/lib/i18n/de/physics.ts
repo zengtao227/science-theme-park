@@ -2861,7 +2861,10 @@ export const dePhysics = {
                 next: "Nächste Herausforderung",
                 correct: "Daten verifiziert",
                 incorrect: "Parameter prüfen",
-                labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS" },
+                ready: "SYSTEM_BEREIT",
+                monitor_title: "METEOROLOGIE_V1",
+                loading: "Lädt...",
+                labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM" },
                 prompts: {
                         sp1_03_q1: "Identifizieren Sie die Schicht der Atmosphäre.",
                         sp1_03_q2: "Was ist der Standard-Luftdruck auf Meereshöhe (hPa)?",
@@ -2888,7 +2891,10 @@ export const dePhysics = {
                 next: "Nächste Herausforderung",
                 correct: "Koordinaten bestätigt",
                 incorrect: "Orbit-Anomalie",
-                labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS" },
+                ready: "SYSTEM_BEREIT",
+                monitor_title: "ASTRONOMIE_V1",
+                loading: "Lädt...",
+                labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM" },
                 prompts: {
                         sp1_04_q1: "Identifizieren Sie den größten Planeten im Sonnensystem.",
                         sp1_04_q2: "Identifizieren Sie die Phase, wenn der Mond voll beleuchtet ist.",

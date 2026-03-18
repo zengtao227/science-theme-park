@@ -789,6 +789,7 @@ export const cnBiology = {
         next: "下一挑战",
         correct: "分类验证成功",
         incorrect: "检查答案",
+        loading: "加载中...",
         ready: "就绪",
         monitor_title: "SB1.05_动物监视器",
         footer_left: "SB1.05_动物分类 // 节点：巴塞尔"

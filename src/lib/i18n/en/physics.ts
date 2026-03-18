@@ -2897,18 +2897,21 @@ export const enPhysics = {
                         hpa: "hPa",
                         formula: "Formula"
                 },
-                stages: {
-                        atmosphere: "ATMOSPHERE",
-                        weather: "WEATHER",
-                        climate: "CLIMATE"
-                },
-                footer_left: "SP1.03_METEOROLOGY // NODE: BASEL",
-                check: "Verify",
-                next: "Next Challenge",
-                correct: "Data Validated",
-                incorrect: "Check parameters",
-                labels: { mission_objective: "METEOROLOGICAL ANALYSIS", terminal_input: "DATA INPUT", hint: "HINT" },
-                prompts: {}
+        stages: {
+                atmosphere: "ATMOSPHERE",
+                weather: "WEATHER",
+                climate: "CLIMATE"
+        },
+        footer_left: "SP1.03_METEOROLOGY // NODE: BASEL",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Data Validated",
+        incorrect: "Check parameters",
+        ready: "SYSTEM_READY",
+        monitor_title: "METEOROLOGY_V1",
+        loading: "Loading...",
+        labels: { mission_objective: "METEOROLOGICAL ANALYSIS", terminal_input: "DATA INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
+        prompts: {}
         },
 
         // SP1.04: Astronomy Basics
@@ -2920,17 +2923,20 @@ export const enPhysics = {
                         name: "Name",
                         degrees: "Degrees"
                 },
-                stages: {
-                        solar_system: "SOLAR SYSTEM",
-                        moon_phases: "MOON PHASES",
-                        seasons: "SEASONS"
-                },
-                footer_left: "SP1.04_ASTRONOMY // NODE: BASEL",
-                check: "Verify",
-                next: "Next Challenge",
-                correct: "Coordinates Validated",
-                incorrect: "Check orbital data",
-                labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT" },
-                prompts: {}
+        stages: {
+                solar_system: "SOLAR SYSTEM",
+                moon_phases: "MOON PHASES",
+                seasons: "SEASONS"
+        },
+        footer_left: "SP1.04_ASTRONOMY // NODE: BASEL",
+        check: "Verify",
+        next: "Next Challenge",
+        correct: "Coordinates Validated",
+        incorrect: "Check orbital data",
+        ready: "SYSTEM_READY",
+        monitor_title: "ASTRONOMY_V1",
+        loading: "Loading...",
+        labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
+        prompts: {}
         }
 };

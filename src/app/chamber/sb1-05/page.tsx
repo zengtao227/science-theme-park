@@ -246,7 +246,7 @@ export default function SB105AnimalClassification() {
     if (!currentQuest) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <div className="text-white">Loading...</div>
+                <div className="text-white">{t("sb1_05.loading")}</div>
             </div>
         );
     }

@@ -21,24 +21,30 @@ export default function SP103WeatherClimate() {
     const { t } = useLanguage();
 
     const sp1_03_t = useMemo(() => ({
-        title: t("sp1_03.title") || "SP1.03 // Weather & Climate",
-        back: t("sp1_03.back") || "Back",
+        title: t("sp1_03.title"),
+        back: t("sp1_03.back"),
         difficulty: {
-            basic: t("sp1_03.difficulty.basic") || "BASIC",
-            core: t("sp1_03.difficulty.core") || "CORE",
-            advanced: t("sp1_03.difficulty.advanced") || "ADVANCED",
-            elite: t("sp1_03.difficulty.elite") || "ELITE"
+            basic: t("sp1_03.difficulty.basic"),
+            core: t("sp1_03.difficulty.core"),
+            advanced: t("sp1_03.difficulty.advanced"),
+            elite: t("sp1_03.difficulty.elite")
         },
         stages: {
-            atmosphere: t("sp1_03.stages.atmosphere") || "ATMOSPHERE",
-            weather: t("sp1_03.stages.weather") || "WEATHER",
-            climate: t("sp1_03.stages.climate") || "CLIMATE"
+            atmosphere: t("sp1_03.stages.atmosphere"),
+            weather: t("sp1_03.stages.weather"),
+            climate: t("sp1_03.stages.climate")
         },
-        footer_left: t("sp1_03.footer_left") || "SP1.03_METEOROLOGY",
-        check: t("sp1_03.check") || "Verify",
-        next: t("sp1_03.next") || "Next",
-        correct: t("sp1_03.correct") || "Correct",
-        incorrect: t("sp1_03.incorrect") || "Incorrect"
+        footer_left: t("sp1_03.footer_left"),
+        check: t("sp1_03.check"),
+        next: t("sp1_03.next"),
+        correct: t("sp1_03.correct"),
+        incorrect: t("sp1_03.incorrect"),
+        ready: t("sp1_03.ready"),
+        monitor_title: t("sp1_03.monitor_title"),
+        loading: t("sp1_03.loading"),
+        labels: {
+            sensor_feed: t("sp1_03.labels.sensor_feed")
+        }
     }), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
@@ -65,7 +71,7 @@ export default function SP103WeatherClimate() {
         buildPool
     });
 
-    if (!currentQuest) return <div className="p-8 text-white">Loading...</div>;
+    if (!currentQuest) return <div className="p-8 text-white">{sp1_03_t.loading}</div>;
 
     const handleInputChange = (slotId: string, val: string) => {
         setInputs((prev) => ({ ...prev, [slotId]: val }));
@@ -97,15 +103,15 @@ export default function SP103WeatherClimate() {
                 next: sp1_03_t.next,
                 correct: sp1_03_t.correct,
                 incorrect: sp1_03_t.incorrect,
-                ready: "SYSTEM_READY",
-                monitor_title: "METEOROLOGY_V1"
+                ready: sp1_03_t.ready,
+                monitor_title: sp1_03_t.monitor_title
             }}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}
                 <div className="lg:w-1/2 p-6 flex flex-col bg-[#050B14] border-r border-[#0ff]/20">
                     <div className="h-full rounded border border-[#0ff]/30 shadow-[0_0_15px_rgba(0,255,255,0.1)] flex items-center justify-center p-8 bg-black/40 relative overflow-hidden">
-                        <h2 className="text-[#0ff] font-mono opacity-50 absolute top-4 left-4">SENSOR FEED</h2>
+                        <h2 className="text-[#0ff] font-mono opacity-50 absolute top-4 left-4">{sp1_03_t.labels.sensor_feed}</h2>
                     </div>
                 </div>
 

@@ -2814,7 +2814,10 @@ export const cnPhysics = {
         next: "下一挑战",
         correct: "数据验证成功",
         incorrect: "检查参数",
-        labels: { mission_objective: "气象数据分析", terminal_input: "数据输入", hint: "提示" },
+        ready: "系统准备就绪",
+        monitor_title: "气象监测 V1",
+        loading: "加载中...",
+        labels: { mission_objective: "气象数据分析", terminal_input: "数据输入", hint: "提示", sensor_feed: "传感器数据流" },
         prompts: {
             sp1_03_q1: "识别此大气层分层。",
             sp1_03_q2: "标准海平面气压是多少 (hPa)？",
@@ -2841,7 +2844,10 @@ export const cnPhysics = {
         next: "下一挑战",
         correct: "坐标系确认",
         incorrect: "轨道数据异常",
-        labels: { mission_objective: "轨道遥测分析", terminal_input: "遥测输入", hint: "提示" },
+        ready: "系统准备就绪",
+        monitor_title: "天文监测 V1",
+        loading: "加载中...",
+        labels: { mission_objective: "轨道遥测分析", terminal_input: "遥测输入", hint: "提示", sensor_feed: "传感器数据流" },
         prompts: {
             sp1_04_q1: "识别太阳系中体积最大的行星。",
             sp1_04_q2: "识别月球完全被照亮时的相位名称。",

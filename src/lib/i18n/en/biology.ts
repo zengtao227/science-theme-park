@@ -849,6 +849,7 @@ export const enBiology = {
         next: "Next Challenge",
         correct: "Classification Verified",
         incorrect: "Check answer",
+        loading: "Loading...",
         ready: "Ready",
         monitor_title: "SB1.05_ANIMAL_MONITOR",
         footer_left: "SB1.05_ANIMAL_CLASSIFICATION // NODE: BASEL"

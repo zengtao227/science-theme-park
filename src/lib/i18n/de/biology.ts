@@ -789,6 +789,7 @@ export const deBiology = {
         next: "Nächste Herausforderung",
         correct: "Klassifikation verifiziert",
         incorrect: "Antwort prüfen",
+        loading: "Lädt...",
         ready: "Bereit",
         monitor_title: "SB1.05_TIER_MONITOR",
         footer_left: "SB1.05_TIERKLASSIFIKATION // KNOTEN: BASEL"

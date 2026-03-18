@@ -110,8 +110,8 @@ export default function GM202AnalyticalGeometry() {
     return (
       <div className="w-full h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
-          <div className="text-2xl font-black mb-4">NO QUESTS AVAILABLE</div>
-          <div className="text-white/60">Please check the quest pool configuration.</div>
+          <div className="text-2xl font-black mb-4">{t.no_quests_available}</div>
+          <div className="text-white/60">{t.quest_pool_configuration}</div>
         </div>
       </div>
     );
@@ -129,15 +129,15 @@ export default function GM202AnalyticalGeometry() {
       checkStatus={checkStatus}
       onVerify={handleVerify}
       onNext={checkStatus?.ok ? handleNext : undefined}
-      footerLeft={`QUEST ${questIndex + 1}/${questPool.length}`}
+      footerLeft={`${t.quest} ${questIndex + 1}/${questPool.length}`}
       translations={{
-        back: currentLanguage === "CN" ? "返回" : currentLanguage === "DE" ? "ZURÜCK" : "BACK",
+        back: t.back,
         check: t.check,
         next: t.next,
         correct: t.correct,
         incorrect: t.incorrect,
-        ready: "READY",
-        monitor_title: currentLanguage === "CN" ? "场景描述" : currentLanguage === "DE" ? "SZENARIO" : "SCENARIO",
+        ready: t.ready,
+        monitor_title: t.monitor_title,
         difficulty: {
           basic: t.basic,
           core: t.core,
@@ -164,7 +164,7 @@ export default function GM202AnalyticalGeometry() {
         {/* Quest Prompt */}
         <div className="border-2 border-white/10 rounded-xl p-6 bg-white/[0.02]">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black mb-4">
-            {currentLanguage === "CN" ? "问题" : currentLanguage === "DE" ? "AUFGABE" : "QUEST"}
+            {t.quest}
           </div>
           <div className="text-lg text-white mb-4">
             {renderMixedText(currentQuest?.promptLatex || "")}

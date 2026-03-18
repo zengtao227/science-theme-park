@@ -21,24 +21,30 @@ export default function SP104AstronomyBasics() {
     const { t } = useLanguage();
 
     const sp1_04_t = useMemo(() => ({
-        title: t("sp1_04.title") || "SP1.04 // Astronomy Basics",
-        back: t("sp1_04.back") || "Back",
+        title: t("sp1_04.title"),
+        back: t("sp1_04.back"),
         difficulty: {
-            basic: t("sp1_04.difficulty.basic") || "BASIC",
-            core: t("sp1_04.difficulty.core") || "CORE",
-            advanced: t("sp1_04.difficulty.advanced") || "ADVANCED",
-            elite: t("sp1_04.difficulty.elite") || "ELITE"
+            basic: t("sp1_04.difficulty.basic"),
+            core: t("sp1_04.difficulty.core"),
+            advanced: t("sp1_04.difficulty.advanced"),
+            elite: t("sp1_04.difficulty.elite")
         },
         stages: {
-            solar_system: t("sp1_04.stages.solar_system") || "SOLAR SYSTEM",
-            moon_phases: t("sp1_04.stages.moon_phases") || "MOON PHASES",
-            seasons: t("sp1_04.stages.seasons") || "SEASONS"
+            solar_system: t("sp1_04.stages.solar_system"),
+            moon_phases: t("sp1_04.stages.moon_phases"),
+            seasons: t("sp1_04.stages.seasons")
         },
-        footer_left: t("sp1_04.footer_left") || "SP1.04_ASTRONOMY",
-        check: t("sp1_04.check") || "Verify",
-        next: t("sp1_04.next") || "Next",
-        correct: t("sp1_04.correct") || "Correct",
-        incorrect: t("sp1_04.incorrect") || "Incorrect"
+        footer_left: t("sp1_04.footer_left"),
+        check: t("sp1_04.check"),
+        next: t("sp1_04.next"),
+        correct: t("sp1_04.correct"),
+        incorrect: t("sp1_04.incorrect"),
+        ready: t("sp1_04.ready"),
+        monitor_title: t("sp1_04.monitor_title"),
+        loading: t("sp1_04.loading"),
+        labels: {
+            sensor_feed: t("sp1_04.labels.sensor_feed")
+        }
     }), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
@@ -65,7 +71,7 @@ export default function SP104AstronomyBasics() {
         buildPool
     });
 
-    if (!currentQuest) return <div className="p-8 text-white">Loading...</div>;
+    if (!currentQuest) return <div className="p-8 text-white">{sp1_04_t.loading}</div>;
 
     const handleInputChange = (slotId: string, val: string) => {
         setInputs((prev) => ({ ...prev, [slotId]: val }));
@@ -97,15 +103,15 @@ export default function SP104AstronomyBasics() {
                 next: sp1_04_t.next,
                 correct: sp1_04_t.correct,
                 incorrect: sp1_04_t.incorrect,
-                ready: "SYSTEM_READY",
-                monitor_title: "ASTRONOMY_V1"
+                ready: sp1_04_t.ready,
+                monitor_title: sp1_04_t.monitor_title
             }}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}
                 <div className="lg:w-1/2 p-6 flex flex-col bg-[#050B14] border-r border-[#0ff]/20">
                     <div className="h-full rounded border border-[#0ff]/30 shadow-[0_0_15px_rgba(0,255,255,0.1)] flex items-center justify-center p-8 bg-black/40 relative overflow-hidden">
-                        <h2 className="text-[#0ff] font-mono opacity-50 absolute top-4 left-4">SENSOR FEED</h2>
+                        <h2 className="text-[#0ff] font-mono opacity-50 absolute top-4 left-4">{sp1_04_t.labels.sensor_feed}</h2>
                     </div>
                 </div>
 
