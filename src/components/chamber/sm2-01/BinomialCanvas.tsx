@@ -426,11 +426,6 @@ export default function S201BinomialCanvas({
         </div>
       </div>
 
-      <div className="mt-3 px-4 pb-4 text-[8px] font-mono text-white/60 text-right uppercase shrink-0">
-        CHAMBER // S2.01<br />
-        {translations.volume_proof_3d}<br />
-        {translations.status_mode}: {exploded ? translations.status_exploded : translations.status_assembled}
-      </div>
     </div>
   );
 }

@@ -380,12 +380,6 @@ export default function GaltonCanvas({
         </div>
       </div>
       
-      {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // G3.01<br />
-        GALTON_SIM: {isRunning ? "ACTIVE" : "STANDBY"}<br />
-        QUANTUM_MODE: PROBABILISTIC
-      </div>
     </div>
   );
 }

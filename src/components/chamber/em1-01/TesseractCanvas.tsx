@@ -344,12 +344,6 @@ export default function TesseractCanvas({
         />
       </div>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // S1.02<br />
-        4D_PROJECTION: ACTIVE<br />
-        ROTATION: {rotationSpeed.toFixed(1)}x
-      </div>
-
       <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Tesseract Lab 4D
       </div>

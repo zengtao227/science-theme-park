@@ -668,12 +668,6 @@ export default function P308OpticsCanvas({
         )}
       </div>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // P3.01<br />
-        RAY_TRACING: ACTIVE<br />
-        GLASS_PHYSICS: ENABLED
-      </div>
-
       <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Optics Lab 3D
       </div>

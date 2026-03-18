@@ -483,12 +483,6 @@ export default function MoleCanvas({
         </div>
       </div>
 
-      {/* Module info */}
-      <div className="absolute top-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // C1.02<br />
-        MOLE_BALANCE: ACTIVE<br />
-        STATUS: {status.toUpperCase()}
-      </div>
     </div>
   );
 }

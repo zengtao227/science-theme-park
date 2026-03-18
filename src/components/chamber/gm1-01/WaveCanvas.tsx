@@ -300,12 +300,6 @@ export default function WaveCanvas({
         </div>
       </div>
       
-      {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // G1.01<br />
-        CALCULUS_SIM: ACTIVE<br />
-        MODE: {functionType.toUpperCase()}
-      </div>
     </div>
   );
 }

@@ -318,12 +318,6 @@ export default function WaveOpticsCanvas({
         </div>
       </div>
       
-      {/* Status */}
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // P3.02<br />
-        WAVE_OPTICS: ACTIVE<br />
-        MODE: {stage}
-      </div>
     </div>
   );
 }

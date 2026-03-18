@@ -402,12 +402,6 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
         )}
       </div>
 
-      <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right">
-        CHAMBER // S2.06<br />
-        3D_MATRIX_SPACE<br />
-        SCAN_STATUS: {visual.intersect ? 'LOCKED' : 'SEARCHING'}
-      </div>
-
       <div className="absolute top-4 right-4 text-[9px] font-mono text-white/60 uppercase tracking-wider">
         Linear Systems 3D
       </div>
