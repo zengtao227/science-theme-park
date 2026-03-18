@@ -30,6 +30,7 @@ export const enCommon = {
         correct: "Verified",
         incorrect: "Mismatch",
         ready: "Ready",
+        reference: "Reference",
         none: "None",
         achievements_title: "Achievements",
         achievement_unlocked: "Achievement Unlocked",

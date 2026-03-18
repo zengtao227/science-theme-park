@@ -30,6 +30,7 @@ export const deCommon = {
         correct: "Bestätigt",
         incorrect: "Abweichung",
         ready: "Bereit",
+        reference: "Referenz",
         none: "Keine",
         achievements_title: "Errungenschaften",
         achievement_unlocked: "Errungenschaft freigeschaltet",

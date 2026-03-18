@@ -415,7 +415,7 @@ export default function SB201TissuesPage() {
                                         >
                                             <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                                                 <InlineMath math={slot.labelLatex ?? ""} />
-                                                <span className="text-neon-green/30 font-mono">TISSUE_0x{slot.id.toUpperCase()}</span>
+                                                <span className="text-neon-green/30 font-mono">{t("common.reference")}</span>
                                             </div>
                                             <motion.div 
                                                 className="relative group"

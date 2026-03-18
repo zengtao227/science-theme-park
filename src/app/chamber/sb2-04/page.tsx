@@ -239,7 +239,7 @@ export default function SB204Page() {
                         <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-widest text-white/60">
                           <InlineMath math={slot.labelLatex ?? ""} />
                           <span className="text-neon-green/30 font-mono">
-                            SYS_REG_0x{slot.id.toUpperCase()}
+                            {t("common.reference")}
                           </span>
                         </div>
                         <div className="relative group">

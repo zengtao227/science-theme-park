@@ -30,6 +30,7 @@ export const cnCommon = {
         correct: "已验证",
         incorrect: "不匹配",
         ready: "就绪",
+        reference: "参考",
         none: "无",
         achievements_title: "成就",
         achievement_unlocked: "成就解锁",
