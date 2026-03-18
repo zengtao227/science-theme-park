@@ -91,7 +91,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_c2"),
                         expressionLatex: `\\text{${t("sb2_02.organs.stomach")}}`,
                         targetLatex: `\\text{${t("sb2_02.functions.acid_production")}}`,
-                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.acid"), expected: t("sb2_02.labels.acid_production") || "acid" }],
+                        slots: [{ id: "func", labelLatex: `\\text{${t("sb2_02.labels.function")}}`, placeholder: t("sb2_02.placeholders.acid"), expected: t("sb2_02.functions.acid_production") }],
                         correctLatex: `\\text{${t("sb2_02.functions.acid_production")}}`,
                         hintLatex: [t("sb2_02.hints.digestive_c2")]
                     },

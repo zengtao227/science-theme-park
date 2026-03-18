@@ -458,7 +458,7 @@ export default function S303Page() {
                     type="text"
                     value={value}
                     onChange={(e) => setInputs({ ...inputs, [slot.id]: e.target.value })}
-                    placeholder={slot.placeholder || "?"}
+                    placeholder={slot.placeholder}
                     disabled={isCorrect}
                     className={clsx(
                       "w-32 h-14 bg-white/5 border-2 rounded-xl text-center text-xl font-bold font-mono transition-all outline-none",

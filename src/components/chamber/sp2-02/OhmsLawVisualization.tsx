@@ -48,13 +48,13 @@ export default function OhmsLawVisualization({
                 <div className="grid grid-cols-3 gap-8 w-full max-w-md">
                     <div className="flex flex-col items-center gap-2">
                         <div className="text-cyan-400 text-xs uppercase">{vizT.voltage}</div>
-                        <div className="text-white text-3xl font-bold">{voltage || "?"}</div>
+                        <div className="text-white text-3xl font-bold">{voltage}</div>
                         <div className="text-white/40 text-xs">V</div>
                     </div>
                     
                     <div className="flex flex-col items-center gap-2">
                         <div className="text-yellow-400 text-xs uppercase">{vizT.current}</div>
-                        <div className="text-white text-3xl font-bold">{current || "?"}</div>
+                        <div className="text-white text-3xl font-bold">{current}</div>
                         <div className="text-white/40 text-xs">A</div>
                     </div>
                     

@@ -12,25 +12,25 @@ import Canvas3DControls from '@/components/ui/Canvas3DControls';
 interface Cube3DProps {
   sideLength: number; // 边长
   showDiagonal?: boolean; // 是否显示对角线
-  translations?: {
-    volume?: string;
-    diagonal?: string;
-    side?: string;
-    unit?: string;
-    instructions?: {
-      rotate?: string;
-      zoom?: string;
-      reset?: string;
-      help?: string;
-      title?: string;
-      hint?: string;
+  translations: {
+    volume: string;
+    diagonal: string;
+    side: string;
+    unit: string;
+    instructions: {
+      rotate: string;
+      zoom: string;
+      reset: string;
+      help: string;
+      title: string;
+      hint: string;
     };
   };
 }
 
 function CubeGeometry({ sideLength, showDiagonal, translations }: Cube3DProps) {
   const a = sideLength / 2;
-  const sideLabel = translations?.side || "a";
+  const sideLabel = translations.side;
 
   return (
     <group>
@@ -111,20 +111,7 @@ function CubeGeometry({ sideLength, showDiagonal, translations }: Cube3DProps) {
 export default function Cube3D({
   sideLength,
   showDiagonal = false,
-  translations = {
-    volume: "Volume",
-    diagonal: "Space Diagonal",
-    side: "a",
-    unit: "cm",
-    instructions: {
-      rotate: "Drag to rotate",
-      zoom: "Scroll to zoom",
-      reset: "Reset View",
-      help: "Instructions",
-      title: "3D Controls",
-      hint: "Observe the model from any angle"
-    }
-  }
+  translations
 }: Cube3DProps) {
   const controlsRef = useRef<OrbitControlsImpl>(null);
 
@@ -178,7 +165,7 @@ export default function Cube3D({
           <div className="text-neon-green mb-2">{translations.volume}</div>
           <div className="bg-white/5 p-2 rounded">
             <span>
-              {translations.side || "a"}: <InlineMath math={`V = ${sideLength}^{3} = ${sideLength ** 3}`} /> {translations.unit || "cm"}³
+              {translations.side}: <InlineMath math={`V = ${sideLength}^{3} = ${sideLength ** 3}`} /> {translations.unit}³
             </span>
           </div>
           {showDiagonal && (
@@ -186,7 +173,7 @@ export default function Cube3D({
               <div className="mb-1">{translations.diagonal}</div>
               <div className="bg-white/5 p-2 rounded">
                 <span>
-                  {translations.side || "a"}: <InlineMath math={`d = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}`} /> {translations.unit || "cm"}
+                  {translations.side}: <InlineMath math={`d = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}`} /> {translations.unit}
                 </span>
               </div>
             </div>

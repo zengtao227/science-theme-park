@@ -21,7 +21,7 @@ export interface SystemsVisual {
 interface AlchemistCanvasProps {
     visual?: SystemsVisual;
     inputs?: Record<string, string>;
-    translations?: {
+    translations: {
         legend: string;
         eq1: string;
         eq2: string;
@@ -128,7 +128,7 @@ function GlowingLine({
 }
 
 // 3. Interactive Cursor & Solution Highlight
-function InteractiveCursor({ x, y, visual, lockedLabel }: { x: number, y: number, visual: SystemsVisual, lockedLabel?: string }) {
+function InteractiveCursor({ x, y, visual, lockedLabel }: { x: number, y: number, visual: SystemsVisual, lockedLabel: string }) {
     const isSolved = visual.intersect &&
         Math.abs(x - visual.intersect.x) < 0.1 &&
         Math.abs(y - visual.intersect.y) < 0.1;
@@ -153,7 +153,7 @@ function InteractiveCursor({ x, y, visual, lockedLabel }: { x: number, y: number
             <Html position={[0, 0.8, 0]} center transform sprite>
                 <div className={`px-2 py-1 rounded text-xs font-mono font-bold whitespace-nowrap shadow-lg ${isSolved ? 'bg-green-500 text-black' : 'bg-yellow-500 text-black'}`}>
                     ({x.toFixed(1)}, {y.toFixed(1)})
-                    {isSolved && <span className="ml-2">✓ {lockedLabel || "LOCKED"}</span>}
+                    {isSolved && <span className="ml-2">✓ {lockedLabel}</span>}
                 </div>
             </Html>
         </group>
@@ -182,14 +182,7 @@ export default function AlchemistCanvas({ visual, inputs, translations }: Alchem
     const inputX = parseFloat(inputs?.x || "0") || 0;
     const inputY = parseFloat(inputs?.y || "0") || 0;
 
-    const t = translations || {
-        legend: "LEGEND",
-        eq1: "",
-        eq2: "",
-        cursor: "",
-        locked: "LOCKED",
-        view: "GRAPH_VIEW: ORTHOGRAPHIC_2D"
-    };
+    const t = translations;
 
     if (!visual) return null;
 
