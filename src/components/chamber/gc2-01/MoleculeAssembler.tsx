@@ -62,7 +62,7 @@ const calculateFormula = (atomList: Atom[]): string => {
 const calculateIupacName = (atomList: Atom[]): string => {
   const atomsById = new Map(atomList.map((atom) => [atom.id, atom]));
   const carbons = atomList.filter((atom) => atom.type === "C");
-  if (!carbons.length) return "unknown";
+  if (!carbons.length) return calculateFormula(atomList);
 
   const carbonAdj: Record<string, string[]> = {};
   carbons.forEach((atom) => {
@@ -101,7 +101,8 @@ const calculateIupacName = (atomList: Atom[]): string => {
   }
 
   const roots = ["meth", "eth", "prop", "but", "pent", "hex", "hept", "oct", "non", "dec"];
-  const root = roots[longest - 1] || "alk";
+  const root = roots[longest - 1];
+  if (!root) return calculateFormula(atomList);
 
   const hasAlcohol = atomList.some((atom) => {
     if (atom.type !== "O") return false;

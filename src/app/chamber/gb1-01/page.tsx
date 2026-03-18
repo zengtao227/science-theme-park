@@ -12,10 +12,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
 type Stage = "NATURAL_SELECTION" | "SPECIATION" | "EVIDENCE";
+type GB101ScenarioKey = keyof TranslationKeys["gb1_01"]["scenarios"];
+const DEFAULT_SCENARIO_KEY: GB101ScenarioKey = "galapagos_study";
 
 interface GB101Quest extends Quest {
     stage: Stage;
-    scenario?: string;
+    scenario?: GB101ScenarioKey;
 }
 
 function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: Difficulty, stage: Stage): GB101Quest[] {
@@ -23,12 +25,12 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
     const quests: GB101Quest[] = [];
     let idCounter = 0;
 
-    const create = (pIdx: string, promptArgs: any, expr: string, target: string, ans: string, hint: string[], scen?: string) => {
+    const create = (pIdx: string, promptArgs: any, expr: string, target: string, ans: string, hint: string[], scen?: GB101ScenarioKey) => {
         return {
             id: `gb1-01-${stage}-${difficulty}-${idCounter++}`,
             difficulty,
             stage,
-            scenario: scen || "galapagos_study",
+            scenario: scen ?? DEFAULT_SCENARIO_KEY,
             promptLatex: t(`gb1_01.prompts.${pIdx}`, promptArgs),
             expressionLatex: expr,
             targetLatex: target,
@@ -201,11 +203,10 @@ export default function GB101Page() {
     const hint = getHint();
 
     const activeScenario = useMemo(() => {
-        if (currentQuest?.scenario && t.scenarios[currentQuest?.scenario as keyof typeof t.scenarios]) {
-            return t.scenarios[currentQuest?.scenario as keyof typeof t.scenarios];
+        if (currentQuest?.scenario && t.scenarios[currentQuest.scenario]) {
+            return t.scenarios[currentQuest.scenario];
         }
-        const keys = Object.keys(t.scenarios);
-        return t.scenarios[keys[0] as keyof typeof t.scenarios];
+        return t.scenarios[DEFAULT_SCENARIO_KEY];
     }, [t, currentQuest]);
 
     if (!t || !t.stages) return null;
