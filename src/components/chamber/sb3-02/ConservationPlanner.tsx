@@ -6,6 +6,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Language, Threat, Strategy } from '@/lib/sb3-02/types';
 
 interface ConservationPlannerProps {
@@ -21,7 +22,12 @@ const threats: Threat[] = [
       de: 'Lebensraumverlust',
     },
     severity: 9,
-    affectedSpecies: ['Birds', 'Mammals', 'Amphibians', 'Plants'],
+    affectedSpecies: [
+      { en: 'Birds', cn: '鸟类', de: 'Vögel' },
+      { en: 'Mammals', cn: '哺乳动物', de: 'Säugetiere' },
+      { en: 'Amphibians', cn: '两栖动物', de: 'Amphibien' },
+      { en: 'Plants', cn: '植物', de: 'Pflanzen' },
+    ],
   },
   {
     id: 'climate-change',
@@ -31,7 +37,11 @@ const threats: Threat[] = [
       de: 'Klimawandel',
     },
     severity: 8,
-    affectedSpecies: ['Alpine species', 'Aquatic species', 'Migratory birds'],
+    affectedSpecies: [
+      { en: 'Alpine species', cn: '高山物种', de: 'Alpine Arten' },
+      { en: 'Aquatic species', cn: '水生物种', de: 'Aquatische Arten' },
+      { en: 'Migratory birds', cn: '候鸟', de: 'Zugvögel' },
+    ],
   },
   {
     id: 'pollution',
@@ -41,7 +51,11 @@ const threats: Threat[] = [
       de: 'Verschmutzung',
     },
     severity: 7,
-    affectedSpecies: ['Aquatic species', 'Insects', 'Plants'],
+    affectedSpecies: [
+      { en: 'Aquatic species', cn: '水生物种', de: 'Aquatische Arten' },
+      { en: 'Insects', cn: '昆虫', de: 'Insekten' },
+      { en: 'Plants', cn: '植物', de: 'Pflanzen' },
+    ],
   },
   {
     id: 'invasive-species',
@@ -51,7 +65,11 @@ const threats: Threat[] = [
       de: 'Invasive Arten',
     },
     severity: 6,
-    affectedSpecies: ['Native plants', 'Aquatic species', 'Birds'],
+    affectedSpecies: [
+      { en: 'Native plants', cn: '本地植物', de: 'Einheimische Pflanzen' },
+      { en: 'Aquatic species', cn: '水生物种', de: 'Aquatische Arten' },
+      { en: 'Birds', cn: '鸟类', de: 'Vögel' },
+    ],
   },
 ];
 
@@ -136,8 +154,10 @@ const strategies: Strategy[] = [
 ];
 
 export function ConservationPlanner({ language }: ConservationPlannerProps) {
+  const { t } = useLanguage();
   const [budget] = useState(100000);
   const [selectedStrategies, setSelectedStrategies] = useState<string[]>([]);
+  const copy = t('sb3_02.conservation_planner');
 
   const planMetrics = useMemo(() => {
     const totalCost = selectedStrategies.reduce((sum, id) => {
@@ -171,67 +191,19 @@ export function ConservationPlanner({ language }: ConservationPlannerProps) {
     );
   };
 
-  const labels = {
-    title: {
-      en: 'Conservation Planner',
-      cn: '保护规划器',
-      de: 'Naturschutzplaner',
-    },
-    budget: {
-      en: 'Budget',
-      cn: '预算',
-      de: 'Budget',
-    },
-    remaining: {
-      en: 'Remaining',
-      cn: '剩余',
-      de: 'Verbleibend',
-    },
-    totalCost: {
-      en: 'Total Cost',
-      cn: '总成本',
-      de: 'Gesamtkosten',
-    },
-    expectedImpact: {
-      en: 'Expected Impact',
-      cn: '预期影响',
-      de: 'Erwartete Auswirkung',
-    },
-    threatsAddressed: {
-      en: 'Threats Addressed',
-      cn: '已解决的威胁',
-      de: 'Behandelte Bedrohungen',
-    },
-    availableStrategies: {
-      en: 'Available Strategies',
-      cn: '可用策略',
-      de: 'Verfügbare Strategien',
-    },
-    effectiveness: {
-      en: 'Effectiveness',
-      cn: '有效性',
-      de: 'Wirksamkeit',
-    },
-    overBudget: {
-      en: 'Over Budget!',
-      cn: '超出预算！',
-      de: 'Über Budget!',
-    },
-  };
-
   return (
     <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 space-y-6">
-      <h3 className="text-2xl font-bold text-gray-900">{labels.title[language]}</h3>
+      <h3 className="text-2xl font-bold text-gray-900">{copy.title}</h3>
 
       {/* Budget Overview */}
       <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-200">
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <p className="text-sm text-gray-600">{labels.budget[language]}</p>
+            <p className="text-sm text-gray-600">{copy.budget}</p>
             <p className="text-2xl font-bold text-gray-900">CHF {budget.toLocaleString()}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-600">{labels.totalCost[language]}</p>
+            <p className="text-sm text-gray-600">{copy.total_cost}</p>
             <p
               className={`text-2xl font-bold ${
                 planMetrics.isOverBudget ? 'text-red-600' : 'text-blue-600'
@@ -241,7 +213,7 @@ export function ConservationPlanner({ language }: ConservationPlannerProps) {
             </p>
           </div>
           <div>
-            <p className="text-sm text-gray-600">{labels.remaining[language]}</p>
+            <p className="text-sm text-gray-600">{copy.remaining}</p>
             <p
               className={`text-2xl font-bold ${
                 planMetrics.isOverBudget ? 'text-red-600' : 'text-green-600'
@@ -253,14 +225,14 @@ export function ConservationPlanner({ language }: ConservationPlannerProps) {
         </div>
         {planMetrics.isOverBudget && (
           <div className="mt-3 p-2 bg-red-100 border border-red-300 rounded text-red-800 text-sm font-semibold">
-            ⚠ {labels.overBudget[language]}
+            ⚠ {copy.over_budget}
           </div>
         )}
       </div>
 
       {/* Strategies */}
       <div>
-        <h4 className="font-semibold text-gray-900 mb-3">{labels.availableStrategies[language]}</h4>
+        <h4 className="font-semibold text-gray-900 mb-3">{copy.available_strategies}</h4>
         <div className="space-y-2">
           {strategies.map(strategy => {
             const isSelected = selectedStrategies.includes(strategy.id);
@@ -309,7 +281,7 @@ export function ConservationPlanner({ language }: ConservationPlannerProps) {
                       CHF {strategy.cost.toLocaleString()}
                     </p>
                     <p className="text-sm text-gray-600">
-                      {labels.effectiveness[language]}: {strategy.effectiveness}/10
+                      {copy.effectiveness}: {strategy.effectiveness}/10
                     </p>
                   </div>
                 </div>
@@ -322,18 +294,14 @@ export function ConservationPlanner({ language }: ConservationPlannerProps) {
       {/* Plan Summary */}
       {selectedStrategies.length > 0 && (
         <div className="bg-green-50 border border-green-200 rounded-lg p-4 space-y-3">
-          <h4 className="font-semibold text-green-900">
-            {language === 'en' && 'Your Conservation Plan'}
-            {language === 'cn' && '您的保护计划'}
-            {language === 'de' && 'Ihr Naturschutzplan'}
-          </h4>
+          <h4 className="font-semibold text-green-900">{copy.your_plan}</h4>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-green-700">{labels.expectedImpact[language]}</p>
+              <p className="text-sm text-green-700">{copy.expected_impact}</p>
               <p className="text-2xl font-bold text-green-900">{planMetrics.expectedImpact}/10</p>
             </div>
             <div>
-              <p className="text-sm text-green-700">{labels.threatsAddressed[language]}</p>
+              <p className="text-sm text-green-700">{copy.threats_addressed}</p>
               <p className="text-2xl font-bold text-green-900">
                 {planMetrics.addressedThreats.length}/{threats.length}
               </p>

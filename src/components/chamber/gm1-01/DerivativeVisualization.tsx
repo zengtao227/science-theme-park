@@ -10,12 +10,12 @@ import "katex/dist/katex.min.css";
 interface DerivativeVisualizationProps {
   functionLatex: string;
   xPosition: number;
-  translations?: {
+  translations: {
     title: string;
     xLabel: string;
     yLabel: string;
-    functionLabel?: string;
-    pointLabel?: string;
+    functionLabel: string;
+    pointLabel: string;
   };
 }
 
@@ -149,13 +149,7 @@ function PointMarker({ x, func }: { x: number; func: (x: number) => number }) {
 export default function DerivativeVisualization({
   functionLatex,
   xPosition,
-  translations = {
-    title: "FUNCTION VISUALIZATION",
-    xLabel: "x",
-    yLabel: "f(x)",
-    functionLabel: "FUNCTION",
-    pointLabel: "POINT"
-  }
+  translations,
 }: DerivativeVisualizationProps) {
   const func = useMemo(() => parseFunction(functionLatex), [functionLatex]);
   
@@ -195,7 +189,7 @@ export default function DerivativeVisualization({
       {/* Function formula display */}
       <div className="absolute top-4 left-4 bg-black/80 border border-cyan-400/30 rounded-lg px-4 py-3">
         <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider mb-2">
-          {translations.functionLabel || "FUNCTION"}
+          {translations.functionLabel}
         </div>
         <div className="text-white font-mono text-sm">
           <InlineMath math={functionLatex} />
@@ -205,7 +199,7 @@ export default function DerivativeVisualization({
       {/* Point info */}
       <div className="absolute bottom-4 right-4 bg-black/80 border border-green-400/30 rounded-lg px-4 py-3">
         <div className="text-[9px] text-green-400/60 uppercase tracking-wider mb-1">
-          {translations.pointLabel || "POINT"}
+          {translations.pointLabel}
         </div>
         <div className="text-green-400 font-mono text-sm">
           x = {xPosition.toFixed(1)}

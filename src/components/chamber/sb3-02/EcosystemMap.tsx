@@ -6,6 +6,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Language, EcosystemRegion } from '@/lib/sb3-02/types';
 
 interface EcosystemMapProps {
@@ -20,10 +21,23 @@ const baselEcosystems: EcosystemRegion[] = [
       cn: '莱茵河',
       de: 'Rhein',
     },
-    type: 'Aquatic',
+    type: {
+      en: 'Aquatic',
+      cn: '水域',
+      de: 'Aquatisch',
+    },
     biodiversityScore: 8.5,
-    keySpecies: ['Salmon', 'Kingfisher', 'Mayfly', 'Water vole'],
-    threats: ['Pollution', 'Invasive species', 'Climate change'],
+    keySpecies: [
+      { en: 'Salmon', cn: '鲑鱼', de: 'Lachs' },
+      { en: 'Kingfisher', cn: '翠鸟', de: 'Eisvogel' },
+      { en: 'Mayfly', cn: '蜉蝣', de: 'Eintagsfliege' },
+      { en: 'Water vole', cn: '水䶄', de: 'Wasserschermaus' },
+    ],
+    threats: [
+      { en: 'Pollution', cn: '污染', de: 'Verschmutzung' },
+      { en: 'Invasive species', cn: '入侵物种', de: 'Invasive Arten' },
+      { en: 'Climate change', cn: '气候变化', de: 'Klimawandel' },
+    ],
     coordinates: { lat: 47.5596, lng: 7.5886 },
   },
   {
@@ -33,10 +47,23 @@ const baselEcosystems: EcosystemRegion[] = [
       cn: '侏罗山脉',
       de: 'Jura-Gebirge',
     },
-    type: 'Alpine',
+    type: {
+      en: 'Alpine',
+      cn: '高山',
+      de: 'Alpin',
+    },
     biodiversityScore: 9.2,
-    keySpecies: ['Chamois', 'Alpine Aster', 'Golden Eagle', 'Marmot'],
-    threats: ['Climate change', 'Tourism pressure', 'Habitat fragmentation'],
+    keySpecies: [
+      { en: 'Chamois', cn: '岩羚羊', de: 'Gämse' },
+      { en: 'Alpine Aster', cn: '高山紫菀', de: 'Alpen-Aster' },
+      { en: 'Golden Eagle', cn: '金雕', de: 'Steinadler' },
+      { en: 'Marmot', cn: '土拨鼠', de: 'Murmeltier' },
+    ],
+    threats: [
+      { en: 'Climate change', cn: '气候变化', de: 'Klimawandel' },
+      { en: 'Tourism pressure', cn: '旅游压力', de: 'Tourismusdruck' },
+      { en: 'Habitat fragmentation', cn: '栖息地破碎化', de: 'Lebensraumfragmentierung' },
+    ],
     coordinates: { lat: 47.4, lng: 7.3 },
   },
   {
@@ -46,10 +73,23 @@ const baselEcosystems: EcosystemRegion[] = [
       cn: '巴塞尔城区',
       de: 'Basler Stadtgebiet',
     },
-    type: 'Urban',
+    type: {
+      en: 'Urban',
+      cn: '城市',
+      de: 'Urban',
+    },
     biodiversityScore: 6.3,
-    keySpecies: ['House sparrow', 'Urban fox', 'Peregrine falcon', 'Street trees'],
-    threats: ['Habitat loss', 'Light pollution', 'Noise pollution'],
+    keySpecies: [
+      { en: 'House sparrow', cn: '麻雀', de: 'Haussperling' },
+      { en: 'Urban fox', cn: '城市狐狸', de: 'Stadtfuchs' },
+      { en: 'Peregrine falcon', cn: '游隼', de: 'Wanderfalke' },
+      { en: 'Street trees', cn: '行道树', de: 'Straßenbäume' },
+    ],
+    threats: [
+      { en: 'Habitat loss', cn: '栖息地丧失', de: 'Lebensraumverlust' },
+      { en: 'Light pollution', cn: '光污染', de: 'Lichtverschmutzung' },
+      { en: 'Noise pollution', cn: '噪音污染', de: 'Lärmbelastung' },
+    ],
     coordinates: { lat: 47.5596, lng: 7.5886 },
   },
   {
@@ -59,10 +99,22 @@ const baselEcosystems: EcosystemRegion[] = [
       cn: '植物园',
       de: 'Botanischer Garten',
     },
-    type: 'Managed',
+    type: {
+      en: 'Managed',
+      cn: '人工管理',
+      de: 'Gepflegt',
+    },
     biodiversityScore: 8.8,
-    keySpecies: ['7500+ plant species', 'Pollinators', 'Endemic plants', 'Rare orchids'],
-    threats: ['Funding constraints', 'Climate adaptation needs'],
+    keySpecies: [
+      { en: '7500+ plant species', cn: '7500多种植物', de: '7500+ Pflanzenarten' },
+      { en: 'Pollinators', cn: '传粉者', de: 'Bestäuber' },
+      { en: 'Endemic plants', cn: '特有植物', de: 'Endemische Pflanzen' },
+      { en: 'Rare orchids', cn: '珍稀兰科植物', de: 'Seltene Orchideen' },
+    ],
+    threats: [
+      { en: 'Funding constraints', cn: '资金限制', de: 'Finanzierungsengpässe' },
+      { en: 'Climate adaptation needs', cn: '气候适应需求', de: 'Anpassung an den Klimawandel' },
+    ],
     coordinates: { lat: 47.5633, lng: 7.5808 },
   },
   {
@@ -72,58 +124,40 @@ const baselEcosystems: EcosystemRegion[] = [
       cn: '农业用地',
       de: 'Landwirtschaftliche Flächen',
     },
-    type: 'Agricultural',
+    type: {
+      en: 'Agricultural',
+      cn: '农业',
+      de: 'Landwirtschaftlich',
+    },
     biodiversityScore: 5.7,
-    keySpecies: ['Field birds', 'Wildflowers', 'Pollinators', 'Small mammals'],
-    threats: ['Intensive farming', 'Pesticide use', 'Habitat loss'],
+    keySpecies: [
+      { en: 'Field birds', cn: '农田鸟类', de: 'Feldvögel' },
+      { en: 'Wildflowers', cn: '野花', de: 'Wildblumen' },
+      { en: 'Pollinators', cn: '传粉者', de: 'Bestäuber' },
+      { en: 'Small mammals', cn: '小型哺乳动物', de: 'Kleine Säugetiere' },
+    ],
+    threats: [
+      { en: 'Intensive farming', cn: '集约农业', de: 'Intensive Landwirtschaft' },
+      { en: 'Pesticide use', cn: '农药使用', de: 'Pestizideinsatz' },
+      { en: 'Habitat loss', cn: '栖息地丧失', de: 'Lebensraumverlust' },
+    ],
     coordinates: { lat: 47.5, lng: 7.6 },
   },
 ];
 
 export function EcosystemMap({ language }: EcosystemMapProps) {
+  const { t } = useLanguage();
   const [selectedRegion, setSelectedRegion] = useState<EcosystemRegion | null>(null);
-
-  const labels = {
-    title: {
-      en: 'Basel Region Ecosystem Map',
-      cn: '巴塞尔地区生态系统地图',
-      de: 'Basler Region Ökosystemkarte',
-    },
-    selectRegion: {
-      en: 'Select a region to view details',
-      cn: '选择一个区域查看详情',
-      de: 'Wählen Sie eine Region aus, um Details anzuzeigen',
-    },
-    biodiversityScore: {
-      en: 'Biodiversity Score',
-      cn: '生物多样性评分',
-      de: 'Biodiversitätsbewertung',
-    },
-    keySpecies: {
-      en: 'Key Species',
-      cn: '关键物种',
-      de: 'Schlüsselarten',
-    },
-    threats: {
-      en: 'Threats',
-      cn: '威胁',
-      de: 'Bedrohungen',
-    },
-    ecosystemType: {
-      en: 'Ecosystem Type',
-      cn: '生态系统类型',
-      de: 'Ökosystemtyp',
-    },
-  };
+  const copy = t('sb3_02.ecosystem_map');
 
   return (
     <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 space-y-6">
-      <h3 className="text-2xl font-bold text-gray-900">{labels.title[language]}</h3>
+      <h3 className="text-2xl font-bold text-gray-900">{copy.title}</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Map/Region List */}
         <div className="space-y-3">
-          <p className="text-sm text-gray-600">{labels.selectRegion[language]}</p>
+          <p className="text-sm text-gray-600">{copy.select_region}</p>
           <div className="space-y-2">
             {baselEcosystems.map(region => (
               <button
@@ -138,11 +172,11 @@ export function EcosystemMap({ language }: EcosystemMapProps) {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold text-gray-900">{region.name[language]}</p>
-                    <p className="text-sm text-gray-600">{region.type}</p>
+                    <p className="text-sm text-gray-600">{region.type[language]}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="text-right">
-                      <p className="text-xs text-gray-500">{labels.biodiversityScore[language]}</p>
+                      <p className="text-xs text-gray-500">{copy.biodiversity_score}</p>
                       <p className="text-lg font-bold text-blue-600">{region.biodiversityScore}</p>
                     </div>
                     <div
@@ -168,13 +202,13 @@ export function EcosystemMap({ language }: EcosystemMapProps) {
               <div>
                 <h4 className="text-2xl font-bold text-gray-900">{selectedRegion.name[language]}</h4>
                 <p className="text-sm text-gray-600 mt-1">
-                  {labels.ecosystemType[language]}: {selectedRegion.type}
+                  {copy.ecosystem_type}: {selectedRegion.type[language]}
                 </p>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="flex-1">
-                  <p className="text-sm text-gray-600">{labels.biodiversityScore[language]}</p>
+                  <p className="text-sm text-gray-600">{copy.biodiversity_score}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <div className="flex-1 bg-gray-200 rounded-full h-3 overflow-hidden">
                       <div
@@ -196,28 +230,28 @@ export function EcosystemMap({ language }: EcosystemMapProps) {
               </div>
 
               <div>
-                <p className="font-semibold text-gray-900 mb-2">{labels.keySpecies[language]}</p>
+                <p className="font-semibold text-gray-900 mb-2">{copy.key_species}</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedRegion.keySpecies.map((species, idx) => (
                     <span
                       key={idx}
                       className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm border border-green-300"
                     >
-                      {species}
+                      {species[language]}
                     </span>
                   ))}
                 </div>
               </div>
 
               <div>
-                <p className="font-semibold text-gray-900 mb-2">{labels.threats[language]}</p>
+                <p className="font-semibold text-gray-900 mb-2">{copy.threats}</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedRegion.threats.map((threat, idx) => (
                     <span
                       key={idx}
                       className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm border border-red-300"
                     >
-                      {threat}
+                      {threat[language]}
                     </span>
                   ))}
                 </div>
@@ -225,7 +259,7 @@ export function EcosystemMap({ language }: EcosystemMapProps) {
             </div>
           ) : (
             <div className="h-full flex items-center justify-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-12">
-              <p className="text-gray-500 text-center">{labels.selectRegion[language]}</p>
+              <p className="text-gray-500 text-center">{copy.select_region}</p>
             </div>
           )}
         </div>
@@ -235,11 +269,7 @@ export function EcosystemMap({ language }: EcosystemMapProps) {
       <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
         <div className="text-center">
           <p className="text-3xl font-bold text-blue-600">{baselEcosystems.length}</p>
-          <p className="text-sm text-gray-600">
-            {language === 'en' && 'Ecosystems'}
-            {language === 'cn' && '生态系统'}
-            {language === 'de' && 'Ökosysteme'}
-          </p>
+          <p className="text-sm text-gray-600">{copy.ecosystems}</p>
         </div>
         <div className="text-center">
           <p className="text-3xl font-bold text-green-600">
@@ -248,21 +278,13 @@ export function EcosystemMap({ language }: EcosystemMapProps) {
               baselEcosystems.length
             ).toFixed(1)}
           </p>
-          <p className="text-sm text-gray-600">
-            {language === 'en' && 'Avg. Score'}
-            {language === 'cn' && '平均评分'}
-            {language === 'de' && 'Durchschn. Bewertung'}
-          </p>
+          <p className="text-sm text-gray-600">{copy.avg_score}</p>
         </div>
         <div className="text-center">
           <p className="text-3xl font-bold text-amber-600">
             {baselEcosystems.reduce((sum, r) => sum + r.threats.length, 0)}
           </p>
-          <p className="text-sm text-gray-600">
-            {language === 'en' && 'Total Threats'}
-            {language === 'cn' && '总威胁'}
-            {language === 'de' && 'Gesamtbedrohungen'}
-          </p>
+          <p className="text-sm text-gray-600">{copy.total_threats}</p>
         </div>
       </div>
     </div>

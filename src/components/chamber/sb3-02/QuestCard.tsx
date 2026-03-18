@@ -6,6 +6,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Quest, Language, Question } from '@/lib/sb3-02/types';
 import { LaTeXRenderer, LaTeXErrorBoundary } from './LaTeXRenderer';
 
@@ -17,9 +18,12 @@ interface QuestCardProps {
 }
 
 export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCardProps) {
+  const { t } = useLanguage();
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const cardCopy = t('sb3_02.quest_card');
+  const difficultyCopy = t('sb3_02.difficulty');
 
   const handleAnswerSelect = (questionId: string, answer: string) => {
     setSelectedAnswers(prev => ({ ...prev, [questionId]: answer }));
@@ -56,11 +60,17 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
         </div>
         <div className="flex items-center gap-2 ml-4">
           <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${difficultyColors[quest.difficulty]}`}>
-            {quest.difficulty}
+            {quest.difficulty === 'BASIC'
+              ? difficultyCopy.basic
+              : quest.difficulty === 'CORE'
+              ? difficultyCopy.core
+              : quest.difficulty === 'ADVANCED'
+              ? difficultyCopy.advanced
+              : difficultyCopy.elite}
           </span>
           {isCompleted && (
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
-              ✓ Completed
+              ✓ {cardCopy.completed}
             </span>
           )}
         </div>
@@ -90,6 +100,7 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
             question={question}
             questionNumber={qIdx + 1}
             language={language}
+            explanationLabel={cardCopy.explanation}
             selectedAnswer={selectedAnswers[question.id]}
             onAnswerSelect={(answer) => handleAnswerSelect(question.id, answer)}
             showExplanation={showFeedback}
@@ -105,7 +116,7 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
           disabled={quest.questions.some(q => !selectedAnswers[q.id])}
           className="w-full mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
         >
-          Submit Answers
+          {cardCopy.submit_answers}
         </button>
       )}
 
@@ -113,7 +124,7 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
       {showFeedback && (
         <div className={`mt-6 p-4 rounded-lg border ${isCorrect ? 'bg-green-50 border-green-300' : 'bg-amber-50 border-amber-300'}`}>
           <p className={`font-semibold ${isCorrect ? 'text-green-800' : 'text-amber-800'}`}>
-            {isCorrect ? '✓ Correct!' : '✗ Not quite right'}
+            {isCorrect ? `✓ ${cardCopy.correct}` : `✗ ${cardCopy.incorrect}`}
           </p>
           <p className={`text-sm mt-2 ${isCorrect ? 'text-green-700' : 'text-amber-700'}`}>
             {quest.feedback[language]}
@@ -126,7 +137,7 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
               }}
               className="mt-3 px-4 py-2 bg-white border border-amber-300 text-amber-800 rounded font-semibold hover:bg-amber-50 transition-colors"
             >
-              Try Again
+              {cardCopy.try_again}
             </button>
           )}
         </div>
@@ -139,6 +150,7 @@ interface QuestionItemProps {
   question: Question;
   questionNumber: number;
   language: Language;
+  explanationLabel: string;
   selectedAnswer?: string;
   onAnswerSelect: (answer: string) => void;
   showExplanation: boolean;
@@ -149,6 +161,7 @@ function QuestionItem({
   question,
   questionNumber,
   language,
+  explanationLabel,
   selectedAnswer,
   onAnswerSelect,
   showExplanation,
@@ -205,7 +218,7 @@ function QuestionItem({
       {showExplanation && (
         <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded">
           <p className="text-sm text-blue-900">
-            <span className="font-semibold">Explanation:</span> {question.explanation[language]}
+            <span className="font-semibold">{explanationLabel}:</span> {question.explanation[language]}
           </p>
         </div>
       )}

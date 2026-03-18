@@ -494,6 +494,15 @@ export const cnMath = {
         labels: {
             input: "输入"
         },
+        visualization: {
+            point_a: "点 A",
+            point_b: "点 B",
+            vector_v: "向量 v",
+            vector_w: "向量 w",
+            vector_s: "向量 s",
+            coordinates: "坐标",
+            dot_product: "点积"
+        },
         placeholders: {
             x: "x",
             y: "y",

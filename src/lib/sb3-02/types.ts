@@ -54,8 +54,8 @@ export interface BaselScenario {
   id: string;
   title: LocalizedString;
   content: LocalizedString;
-  location: string;
-  relatedConcepts: string[];
+  location: LocalizedString;
+  relatedConcepts: LocalizedString[];
   images?: string[];
 }
 
@@ -91,10 +91,10 @@ export interface DiversityMetrics {
 export interface EcosystemRegion {
   id: string;
   name: LocalizedString;
-  type: string;
+  type: LocalizedString;
   biodiversityScore: number;
-  keySpecies: string[];
-  threats: string[];
+  keySpecies: LocalizedString[];
+  threats: LocalizedString[];
   coordinates: { lat: number; lng: number };
 }
 
@@ -107,7 +107,7 @@ export interface Threat {
   id: string;
   name: LocalizedString;
   severity: number;
-  affectedSpecies: string[];
+  affectedSpecies: LocalizedString[];
 }
 
 export interface Strategy {

@@ -493,6 +493,15 @@ export const deMath = {
         labels: {
             input: "EINGABE"
         },
+        visualization: {
+            point_a: "Punkt A",
+            point_b: "Punkt B",
+            vector_v: "Vektor v",
+            vector_w: "Vektor w",
+            vector_s: "Vektor s",
+            coordinates: "Koordinaten",
+            dot_product: "Skalarprodukt"
+        },
         placeholders: {
             x: "x",
             y: "y",

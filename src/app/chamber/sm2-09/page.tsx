@@ -10,7 +10,6 @@ import { InequalityVisualization } from "@/components/chamber/sm2-09/InequalityV
 import { StepBySolver } from "@/components/chamber/sm2-09/StepBySolver";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { SM209Quest, Stage, SolutionStep } from "@/lib/sm2-09-types";
-import { baselScenarios } from "@/lib/sm2-09-basel-scenarios";
 import { renderMixedText } from "@/lib/latex-utils";
 import {
   inequalityBasicsBasic,
@@ -92,7 +91,7 @@ function PrintableSM209Section({
 
 export default function SM209Page() {
   const { completeStage } = useAppStore();
-  const { t, currentLanguage } = useLanguage();
+  const { t } = useLanguage();
   const [showSteps, setShowSteps] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -125,6 +124,12 @@ export default function SM209Page() {
       systems: t("sm2_09.stages.systems"),
       absolute_value: t("sm2_09.stages.absolute_value"),
     },
+    basel_scenarios: {
+      tram_context: t("sm2_09.basel_scenarios.tram_context"),
+      roche_context: t("sm2_09.basel_scenarios.roche_context"),
+      marathon_context: t("sm2_09.basel_scenarios.marathon_context"),
+      university_context: t("sm2_09.basel_scenarios.university_context"),
+    },
     step: t("sm2_09.labels.step"),
     justification: t("sm2_09.labels.justification"),
     final_solution: t("sm2_09.labels.final_solution"),
@@ -138,7 +143,7 @@ export default function SM209Page() {
     solution_label: t("sm2_09.labels.solution"),
     enter_solution: t("sm2_09.labels.enter_solution"),
     placeholder_interval: t("sm2_09.labels.placeholder_interval"),
-    and_connector: t("sm2_09.labels.and_connector") || "AND",
+    and_connector: t("sm2_09.labels.and_connector"),
     feedback: {
       correct: t("sm2_09.feedback.correct"),
       incorrect: t("sm2_09.feedback.incorrect"),
@@ -314,14 +319,20 @@ export default function SM209Page() {
   // Get Basel scenario text
   const getBaselScenarioText = useCallback(() => {
     if (!currentQuest?.baselScenario) return null;
-    
-    const scenario = baselScenarios[currentQuest?.baselScenario];
-    if (!scenario) return null;
 
-    if (currentLanguage === "CN") return scenario.cn;
-    if (currentLanguage === "DE") return scenario.de;
-    return scenario.en;
-  }, [currentQuest, currentLanguage]);
+    switch (currentQuest.baselScenario) {
+      case "tram_ticket":
+        return sm2_09_t.basel_scenarios.tram_context;
+      case "roche_dosage":
+        return sm2_09_t.basel_scenarios.roche_context;
+      case "basel_marathon":
+        return sm2_09_t.basel_scenarios.marathon_context;
+      case "university_basel":
+        return sm2_09_t.basel_scenarios.university_context;
+      default:
+        return null;
+    }
+  }, [currentQuest, sm2_09_t.basel_scenarios]);
 
   const printableSections = useMemo(() => {
     const stageLabels: Record<Stage, string> = {

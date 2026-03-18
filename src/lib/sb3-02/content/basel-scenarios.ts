@@ -19,8 +19,18 @@ export const baselScenarios: BaselScenario[] = [
       cn: '巴塞尔动物园成立于1874年，是欧洲最古老、最受尊敬的动物园之一。该动物园通过其濒危物种繁殖计划在异地保护中发挥着至关重要的作用。显著的成功包括印度犀牛、索马里野驴和各种灵长类物种的繁殖。动物园参与了40多个欧洲濒危物种计划（EEP），协调多个机构的繁殖工作。除了繁殖，巴塞尔动物园还进行动物行为、遗传学和兽医学研究。动物园还支持马达加斯加、南美洲和非洲的就地保护项目。教育计划每年覆盖超过50,000名学生，通过互动展览教授生物多样性概念。动物园对保护的承诺延伸到其可持续运营，包括使用可再生能源和减少废物。最近的举措侧重于重新引入计划，动物园繁殖的动物被准备释放到受保护的栖息地。巴塞尔动物园展示了现代动物园如何作为生物多样性方舟，保护遗传多样性，同时激发公众参与保护。',
       de: 'Der Basler Zoo, gegründet 1874, ist einer der ältesten und angesehensten Zoos Europas. Der Zoo spielt eine entscheidende Rolle im Ex-situ-Schutz durch seine Zuchtprogramme für bedrohte Arten. Bemerkenswerte Erfolge umfassen die Zucht von Indischen Nashörnern, Somali-Wildeseln und verschiedenen Primatenarten. Der Zoo beteiligt sich an über 40 Europäischen Erhaltungszuchtprogrammen (EEP) und koordiniert Zuchtbemühungen über mehrere Institutionen hinweg. Über die Zucht hinaus führt der Basler Zoo Forschungen zu Tierverhalten, Genetik und Veterinärmedizin durch. Der Zoo unterstützt auch In-situ-Schutzprojekte in Madagaskar, Südamerika und Afrika. Bildungsprogramme erreichen jährlich über 50.000 Schüler und vermitteln Biodiversitätskonzepte durch interaktive Ausstellungen. Das Engagement des Zoos für den Naturschutz erstreckt sich auf seinen nachhaltigen Betrieb, einschließlich der Nutzung erneuerbarer Energien und Abfallreduzierung. Jüngste Initiativen konzentrieren sich auf Wiederansiedlungsprogramme, bei denen im Zoo gezüchtete Tiere auf die Freilassung in geschützte Lebensräume vorbereitet werden. Der Basler Zoo zeigt, wie moderne Zoos als Biodiversitätsarchen dienen und genetische Vielfalt bewahren, während sie das öffentliche Engagement für den Naturschutz fördern.',
     },
-    location: 'Basel Zoo, Binningerstrasse 40, 4054 Basel',
-    relatedConcepts: ['ex-situ conservation', 'breeding programs', 'genetic diversity', 'species reintroduction', 'conservation education'],
+    location: {
+      en: 'Basel Zoo, Binningerstrasse 40, 4054 Basel',
+      cn: '巴塞尔动物园，Binningerstrasse 40，4054 巴塞尔',
+      de: 'Zoo Basel, Binningerstrasse 40, 4054 Basel',
+    },
+    relatedConcepts: [
+      { en: 'ex-situ conservation', cn: '迁地保护', de: 'Ex-situ-Schutz' },
+      { en: 'breeding programs', cn: '繁育计划', de: 'Zuchtprogramme' },
+      { en: 'genetic diversity', cn: '遗传多样性', de: 'genetische Vielfalt' },
+      { en: 'species reintroduction', cn: '物种重引入', de: 'Wiederansiedlung von Arten' },
+      { en: 'conservation education', cn: '保护教育', de: 'Naturschutzbildung' },
+    ],
   },
   {
     id: 'rhine-river',
@@ -34,8 +44,18 @@ export const baselScenarios: BaselScenario[] = [
       cn: '流经巴塞尔的莱茵河代表了一个显著的生物多样性恢复故事。在1960年代至1980年代的严重污染之后，包括1986年灾难性的山德士化学品泄漏，莱茵河经历了戏剧性的生态恢复。今天，巴塞尔段有60多种鱼类栖息，包括几十年缺席后返回的鲑鱼。河岸带支持多样化的鸟类种群，记录了100多种，包括翠鸟、苍鹭和鸬鹚。水生无脊椎动物作为水质的生物指标，蜉蝣和石蛾表明条件改善。河流提供关键的生态系统服务：水净化、洪水调节、娱乐和运输。河边植被创造了连接城市和农村栖息地的绿色走廊，促进物种移动。保护挑战包括维持水质、管理入侵物种如斑马贻贝，以及平衡人类使用与生态需求。莱茵河行动计划展示了河流管理中成功的国际合作。持续监测跟踪生物多样性趋势，为适应性管理策略提供信息。莱茵河例证了退化的生态系统如何通过持续的保护努力和利益相关者合作恢复。',
       de: 'Der durch Basel fließende Rhein stellt eine bemerkenswerte Geschichte der Biodiversitätserholung dar. Nach schwerer Verschmutzung in den 1960er-1980er Jahren, einschließlich der katastrophalen Sandoz-Chemiekatastrophe 1986, hat der Rhein eine dramatische ökologische Wiederherstellung durchlaufen. Heute bewohnen über 60 Fischarten den Basler Abschnitt, einschließlich zurückkehrender Lachse nach Jahrzehnten der Abwesenheit. Die Uferzonen unterstützen vielfältige Vogelpopulationen, mit über 100 aufgezeichneten Arten, darunter Eisvögel, Reiher und Kormorane. Aquatische Wirbellose dienen als Bioindikatoren der Wasserqualität, wobei Eintagsfliegen und Köcherfliegen verbesserte Bedingungen anzeigen. Der Fluss bietet entscheidende Ökosystemleistungen: Wasserreinigung, Hochwasserregulierung, Erholung und Transport. Ufervegetation schafft grüne Korridore, die städtische und ländliche Lebensräume verbinden und Artenbewegungen erleichtern. Schutzherausforderungen umfassen die Aufrechterhaltung der Wasserqualität, das Management invasiver Arten wie der Quagga-Muschel und die Balance zwischen menschlicher Nutzung und ökologischen Bedürfnissen. Das Rhein-Aktionsprogramm demonstriert erfolgreiche internationale Zusammenarbeit im Flussmanagement. Laufende Überwachung verfolgt Biodiversitätstrends und informiert adaptive Managementstrategien. Der Rhein veranschaulicht, wie degradierte Ökosysteme durch nachhaltige Schutzbemühungen und Stakeholder-Zusammenarbeit sich erholen können.',
     },
-    location: 'Rhine River, Basel waterfront',
-    relatedConcepts: ['aquatic biodiversity', 'ecosystem recovery', 'riparian habitats', 'bioindicators', 'ecosystem services'],
+    location: {
+      en: 'Rhine River, Basel waterfront',
+      cn: '莱茵河，巴塞尔河岸',
+      de: 'Rhein, Basler Uferzone',
+    },
+    relatedConcepts: [
+      { en: 'aquatic biodiversity', cn: '水生生物多样性', de: 'aquatische Biodiversität' },
+      { en: 'ecosystem recovery', cn: '生态系统恢复', de: 'Ökosystemerholung' },
+      { en: 'riparian habitats', cn: '河岸栖息地', de: 'Uferlebensräume' },
+      { en: 'bioindicators', cn: '生物指标', de: 'Bioindikatoren' },
+      { en: 'ecosystem services', cn: '生态系统服务', de: 'Ökosystemleistungen' },
+    ],
   },
   {
     id: 'botanical-garden',
@@ -49,8 +69,18 @@ export const baselScenarios: BaselScenario[] = [
       cn: '巴塞尔大学植物园成立于1589年，拥有瑞士最重要的植物收藏之一，有7,500多种物种。花园具有多种保护功能：活体收藏保存稀有和濒危植物，种子库保护遗传多样性，研究项目研究植物生物学和生态学。著名的收藏包括来自瑞士山脉的高山植物、地中海物种和气候控制温室中的热带植物。花园参与国际植物保护网络，与全球植物机构交换种子和知识。异地保护工作侧重于受气候变化和栖息地丧失威胁的瑞士特有物种。花园的种子库储存了数千份材料，为防止灭绝提供保险。教育计划教授植物识别、民族植物学和保护重要性。研究项目调查植物对环境变化的适应、传粉者关系和药用植物特性。花园展示了可持续园艺实践，包括节水、有机害虫管理和本地植物景观。作为城市绿地，它在城市内提供生态系统服务和生物多样性栖息地。植物园例证了植物收藏如何为全球生物多样性保护做出贡献，同时服务于教育和研究。',
       de: 'Der Botanische Garten der Universität Basel, gegründet 1589, unterhält eine der bedeutendsten Pflanzensammlungen der Schweiz mit über 7.500 Arten. Der Garten erfüllt mehrere Schutzfunktionen: Lebendsammlungen bewahren seltene und gefährdete Pflanzen, Samenbanken sichern genetische Vielfalt, und Forschungsprogramme untersuchen Pflanzenbiologie und -ökologie. Bemerkenswerte Sammlungen umfassen Alpenpflanzen aus Schweizer Bergen, mediterrane Arten und tropische Pflanzen in klimatisierten Gewächshäusern. Der Garten beteiligt sich an internationalen Pflanzenschutznetzwerken und tauscht Samen und Wissen mit botanischen Institutionen weltweit aus. Ex-situ-Schutzbemühungen konzentrieren sich auf Schweizer endemische Arten, die durch Klimawandel und Lebensraumverlust bedroht sind. Die Samenbank des Gartens lagert Tausende von Akzessionen und bietet Versicherung gegen Aussterben. Bildungsprogramme lehren Pflanzenidentifikation, Ethnobotanik und Schutzwichtigkeit. Forschungsprojekte untersuchen Pflanzenanpassung an Umweltveränderungen, Bestäuberbeziehungen und Heilpflanzeneigenschaften. Der Garten demonstriert nachhaltige Gartenbau praktiken, einschließlich Wasserschutz, organisches Schädlingsmanagement und einheimische Pflanzenlandschaftsgestaltung. Als städtischer Grünraum bietet er Ökosystemleistungen und Biodiversitätslebensraum innerhalb der Stadt. Der Botanische Garten veranschaulicht, wie Pflanzensammlungen zum globalen Biodiversitätsschutz beitragen und gleichzeitig Bildung und Forschung dienen.',
     },
-    location: 'Botanischer Garten der Universität Basel, Schönbeinstrasse 6, 4056 Basel',
-    relatedConcepts: ['plant diversity', 'seed banking', 'ex-situ conservation', 'botanical research', 'urban biodiversity'],
+    location: {
+      en: 'University of Basel Botanical Garden, Schönbeinstrasse 6, 4056 Basel',
+      cn: '巴塞尔大学植物园，Schönbeinstrasse 6，4056 巴塞尔',
+      de: 'Botanischer Garten der Universität Basel, Schönbeinstrasse 6, 4056 Basel',
+    },
+    relatedConcepts: [
+      { en: 'plant diversity', cn: '植物多样性', de: 'Pflanzenvielfalt' },
+      { en: 'seed banking', cn: '种子库保存', de: 'Samenbanken' },
+      { en: 'ex-situ conservation', cn: '迁地保护', de: 'Ex-situ-Schutz' },
+      { en: 'botanical research', cn: '植物学研究', de: 'botanische Forschung' },
+      { en: 'urban biodiversity', cn: '城市生物多样性', de: 'urbane Biodiversität' },
+    ],
   },
   {
     id: 'swiss-alps',
@@ -64,7 +94,17 @@ export const baselScenarios: BaselScenario[] = [
       cn: '巴塞尔附近的瑞士阿尔卑斯山，包括侏罗山脉，代表了具有独特高山生态系统的关键生物多样性热点。这些高海拔栖息地支持适应极端条件的专门物种：寒冷温度、短生长季节和强烈紫外线辐射。高山植物多样性显著，特有物种如雪绒花和高山紫菀在其他地方找不到。该地区拥有多样化的野生动物，包括北山羊、岩羚羊、土拨鼠和金雕。高山草甸为牲畜提供关键的夏季放牧，同时支持丰富的昆虫群落，特别是蝴蝶和蜜蜂。气候变化构成严重威胁，温度升高迫使物种向上迁移，最终耗尽栖息地。冰川退缩消除了独特的冷适应物种并改变了水的可用性。保护策略包括瑞士国家公园等保护区、栖息地恢复和气候监测。研究项目跟踪物种分布变化和生态系统对变暖的响应。阿尔卑斯山展示了高贝塔多样性，物种组成在海拔梯度上发生戏剧性变化。传统的高山农业维持支持生物多样性的文化景观。该地区例证了山地生态系统如何作为生物多样性避难所和气候变化影响的早期预警系统。',
       de: 'Die Schweizer Alpen in der Nähe von Basel, einschließlich des Jura-Gebirges, stellen kritische Biodiversitäts-Hotspots mit einzigartigen alpinen Ökosystemen dar. Diese Hochgebirgslebensräume unterstützen spezialisierte Arten, die an extreme Bedingungen angepasst sind: kalte Temperaturen, kurze Wachstumsperioden und intensive UV-Strahlung. Die alpine Pflanzenvielfalt ist bemerkenswert, mit endemischen Arten wie Edelweiß und Alpen-Aster, die nirgendwo sonst vorkommen. Die Region beherbergt vielfältige Wildtiere, darunter Steinböcke, Gämsen, Murmeltiere und Steinadler. Almwiesen bieten entscheidende Sommerweiden für Vieh und unterstützen reiche Insektengemeinschaften, insbesondere Schmetterlinge und Bienen. Der Klimawandel stellt schwere Bedrohungen dar, wobei steigende Temperaturen Arten zwingen, nach oben zu wandern und schließlich keinen Lebensraum mehr haben. Gletscherrückgang eliminiert einzigartige kälteangepasste Arten und verändert die Wasserverfügbarkeit. Schutzstrategien umfassen Schutzgebiete wie den Schweizerischen Nationalpark, Lebensraumwiederherstellung und Klimaüberwachung. Forschungsprogramme verfolgen Artenverteilungsverschiebungen und Ökosystemreaktionen auf Erwärmung. Die Alpen zeigen hohe Beta-Diversität, wobei sich die Artenzusammensetzung dramatisch über Höhengradienten ändert. Traditionelle Alpwirtschaft erhält Kulturlandschaften, die Biodiversität unterstützen. Die Region veranschaulicht, wie Bergökosysteme als Biodiversitätsrefugien und Frühwarnsysteme für Klimawandelauswirkungen dienen.',
     },
-    location: 'Swiss Alps and Jura Mountains, accessible from Basel',
-    relatedConcepts: ['alpine ecosystems', 'endemic species', 'climate change impacts', 'elevation gradients', 'mountain biodiversity'],
+    location: {
+      en: 'Swiss Alps and Jura Mountains, accessible from Basel',
+      cn: '瑞士阿尔卑斯山与侏罗山脉，可从巴塞尔抵达',
+      de: 'Schweizer Alpen und Jura, von Basel aus erreichbar',
+    },
+    relatedConcepts: [
+      { en: 'alpine ecosystems', cn: '高山生态系统', de: 'alpine Ökosysteme' },
+      { en: 'endemic species', cn: '特有物种', de: 'endemische Arten' },
+      { en: 'climate change impacts', cn: '气候变化影响', de: 'Auswirkungen des Klimawandels' },
+      { en: 'elevation gradients', cn: '海拔梯度', de: 'Höhengradienten' },
+      { en: 'mountain biodiversity', cn: '山地生物多样性', de: 'Gebirgsbiodiversität' },
+    ],
   },
 ];

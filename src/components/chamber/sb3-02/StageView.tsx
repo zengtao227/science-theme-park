@@ -6,6 +6,7 @@
 'use client';
 
 import React from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Stage, Quest, Language } from '@/lib/sb3-02/types';
 import { QuestCard } from './QuestCard';
 
@@ -24,10 +25,13 @@ export function StageView({
   onQuestComplete,
   language,
 }: StageViewProps) {
+  const { t } = useLanguage();
   const stageQuests = quests.filter(q => q.stageId === stage.id);
   const completedCount = stageQuests.filter(q => completedQuestIds.includes(q.id)).length;
   const totalCount = stageQuests.length;
   const progressPercent = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
+  const stageViewCopy = t('sb3_02.stage_view');
+  const difficultyCopy = t('sb3_02.difficulty');
 
   // Group quests by difficulty
   const questsByDifficulty = {
@@ -66,9 +70,7 @@ export function StageView({
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
               <span className="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold">
-                {language === 'en' && `Stage ${stage.order}`}
-                {language === 'cn' && `阶段 ${stage.order}`}
-                {language === 'de' && `Stufe ${stage.order}`}
+                {t('sb3_02.stage_view.stage', { order: stage.order })}
               </span>
             </div>
             <h2 className="text-3xl font-bold">{stage.title[language]}</h2>
@@ -79,15 +81,9 @@ export function StageView({
         {/* Progress Bar */}
         <div className="mt-6">
           <div className="flex items-center justify-between text-sm mb-2">
-            <span>
-              {language === 'en' && 'Progress'}
-              {language === 'cn' && '进度'}
-              {language === 'de' && 'Fortschritt'}
-            </span>
+            <span>{stageViewCopy.progress}</span>
             <span className="font-semibold">
-              {completedCount} / {totalCount} {language === 'en' && 'quests'}
-              {language === 'cn' && '任务'}
-              {language === 'de' && 'Quests'}
+              {completedCount} / {totalCount} {stageViewCopy.quests}
             </span>
           </div>
           <div className="w-full bg-white/20 rounded-full h-3 overflow-hidden">
@@ -104,20 +100,18 @@ export function StageView({
         const difficultyQuests = questsByDifficulty[difficulty];
         if (difficultyQuests.length === 0) return null;
 
-        const difficultyLabels = {
-          BASIC: { en: 'Basic', cn: '基础', de: 'Grundlagen' },
-          CORE: { en: 'Core', cn: '核心', de: 'Kern' },
-          ADVANCED: { en: 'Advanced', cn: '高级', de: 'Fortgeschritten' },
-          ELITE: { en: 'Elite', cn: '精英', de: 'Elite' },
-        };
-
         return (
           <div key={difficulty} className="space-y-4">
             <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-              {difficultyLabels[difficulty][language]} {language === 'en' && 'Quests'}
-              {language === 'cn' && '任务'}
-              {language === 'de' && 'Quests'}
+              {difficulty === 'BASIC'
+                ? difficultyCopy.basic
+                : difficulty === 'CORE'
+                ? difficultyCopy.core
+                : difficulty === 'ADVANCED'
+                ? difficultyCopy.advanced
+                : difficultyCopy.elite}{' '}
+              {stageViewCopy.quests}
               <span className="text-sm font-normal text-gray-500">
                 ({difficultyQuests.length})
               </span>

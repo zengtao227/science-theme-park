@@ -13,6 +13,7 @@ import { Language } from '@/lib/sb3-02/types';
 import { stages, allQuests } from '@/lib/sb3-02/content/quest-data';
 import { baselScenarios } from '@/lib/sb3-02/content/basel-scenarios';
 import { Difficulty } from '@/hooks/useQuestManager';
+import { useLanguage } from '@/lib/i18n';
 import {
   loadProgress,
   saveProgress,
@@ -38,8 +39,15 @@ const ConservationPlanner = dynamic(
   { ssr: false }
 );
 
+const toModuleLanguage = (language: string): Language =>
+  language === 'CN' ? 'cn' : language === 'DE' ? 'de' : 'en';
+
+const toAppLanguage = (language: Language): 'EN' | 'CN' | 'DE' =>
+  language === 'cn' ? 'CN' : language === 'de' ? 'DE' : 'EN';
+
 export default function BiodiversityModule() {
-  const [language, setLanguage] = useState<Language>('en');
+  const { t, currentLanguage, setLanguage } = useLanguage();
+  const language = toModuleLanguage(currentLanguage);
   const [completedQuestIds, setCompletedQuestIds] = useState<string[]>([]);
   const [currentStageId, setCurrentStageId] = useState('SPECIES_DIVERSITY');
   const [activeTab, setActiveTab] = useState<'quests' | 'scenarios' | 'visualizations'>('quests');
@@ -49,7 +57,6 @@ export default function BiodiversityModule() {
   useEffect(() => {
     const progress = loadProgress();
     if (progress) {
-      setLanguage(progress.language);
       setCompletedQuestIds(progress.completedQuests);
       setCurrentStageId(progress.currentStage);
     } else {
@@ -69,42 +76,11 @@ export default function BiodiversityModule() {
     const progress = loadProgress() || initializeProgress();
     const updatedProgress = updateLanguage(progress, newLanguage);
     saveProgress(updatedProgress);
-    setLanguage(newLanguage);
+    setLanguage(toAppLanguage(newLanguage));
   };
 
   const currentStage = stages.find(s => s.id === currentStageId) || stages[0];
-
-  const moduleTitle = {
-    en: 'SB3.02 Biodiversity',
-    cn: 'SB3.02 生物多样性',
-    de: 'SB3.02 Biodiversität',
-  };
-
-  const tabLabels = {
-    quests: { en: 'Quests', cn: '任务', de: 'Quests' },
-    scenarios: { en: 'Basel Scenarios', cn: '巴塞尔场景', de: 'Basler Szenarien' },
-    visualizations: { en: 'Visualizations', cn: '可视化', de: 'Visualisierungen' },
-  };
-
-  const languageButtonAria = {
-    en: { en: 'Switch language to English', cn: '切换到英文', de: 'Sprache auf Englisch wechseln' },
-    cn: { en: 'Switch language to Chinese', cn: '切换到中文', de: 'Sprache auf Chinesisch wechseln' },
-    de: { en: 'Switch language to German', cn: '切换到德文', de: 'Sprache auf Deutsch wechseln' },
-  } as const;
-
-  const translations = {
-    back: { en: 'Back', cn: '返回', de: 'Zurück' }[language],
-    check: { en: 'Check', cn: '检查', de: 'Prüfen' }[language],
-    next: { en: 'Next', cn: '下一个', de: 'Weiter' }[language],
-    correct: { en: 'Correct!', cn: '正确！', de: 'Richtig!' }[language],
-    incorrect: { en: 'Incorrect', cn: '不正确', de: 'Falsch' }[language],
-    difficulty: {
-      BASIC: { en: 'Basic', cn: '基础', de: 'Grundlagen' }[language],
-      CORE: { en: 'Core', cn: '核心', de: 'Kern' }[language],
-      ADVANCED: { en: 'Advanced', cn: '高级', de: 'Fortgeschritten' }[language],
-      ELITE: { en: 'Elite', cn: '精英', de: 'Elite' }[language],
-    },
-  };
+  const sb3Copy = t('sb3_02');
 
   // Convert stages to ChamberLayout format
   const stageLabels = stages.map(s => ({
@@ -117,16 +93,28 @@ export default function BiodiversityModule() {
 
   return (
     <ChamberLayout
-
-      title={moduleTitle[language]}
+      title={sb3Copy.title}
       moduleCode="SB3.02"
       difficulty={difficulty}
       onDifficultyChange={setDifficulty}
       stages={stageLabels}
       currentStage={currentStageId}
       onStageChange={setCurrentStageId}
-      footerLeft="Lehrplan 21 NT.8.2"
-      translations={translations}
+      footerLeft={sb3Copy.footer_left}
+      translations={{
+        back: sb3Copy.back,
+        check: sb3Copy.check,
+        next: sb3Copy.next,
+        correct: sb3Copy.correct,
+        incorrect: sb3Copy.incorrect,
+        ready: sb3Copy.ready,
+        difficulty: {
+          BASIC: sb3Copy.difficulty.basic,
+          CORE: sb3Copy.difficulty.core,
+          ADVANCED: sb3Copy.difficulty.advanced,
+          ELITE: sb3Copy.difficulty.elite,
+        },
+      }}
     >
       <div className="space-y-6">
         {/* Language Selector */}
@@ -135,7 +123,13 @@ export default function BiodiversityModule() {
             <button
               key={lang}
               onClick={() => handleLanguageChange(lang)}
-              aria-label={languageButtonAria[lang][language]}
+              aria-label={
+                lang === 'en'
+                  ? sb3Copy.language_buttons.english
+                  : lang === 'cn'
+                  ? sb3Copy.language_buttons.chinese
+                  : sb3Copy.language_buttons.german
+              }
               className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
                 language === lang
                   ? 'bg-blue-600 text-white'
@@ -182,14 +176,14 @@ export default function BiodiversityModule() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              aria-label={tabLabels[tab][language]}
+              aria-label={sb3Copy.tabs[tab]}
               className={`px-6 py-3 font-semibold transition-colors ${
                 activeTab === tab
                   ? 'text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              {tabLabels[tab][language]}
+              {sb3Copy.tabs[tab]}
             </button>
           ))}
         </div>
@@ -224,25 +218,19 @@ export default function BiodiversityModule() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <p className="text-sm text-gray-600">
-                {language === 'en' && 'Total Quests'}
-                {language === 'cn' && '总任务数'}
-                {language === 'de' && 'Gesamtquests'}
+                {sb3Copy.stats.total_quests}
               </p>
               <p className="text-3xl font-bold text-gray-900">{allQuests.length}</p>
             </div>
             <div>
               <p className="text-sm text-gray-600">
-                {language === 'en' && 'Completed'}
-                {language === 'cn' && '已完成'}
-                {language === 'de' && 'Abgeschlossen'}
+                {sb3Copy.stats.completed}
               </p>
               <p className="text-3xl font-bold text-blue-600">{completedQuestIds.length}</p>
             </div>
             <div>
               <p className="text-sm text-gray-600">
-                {language === 'en' && 'Progress'}
-                {language === 'cn' && '进度'}
-                {language === 'de' && 'Fortschritt'}
+                {sb3Copy.stats.progress}
               </p>
               <p className="text-3xl font-bold text-green-600">
                 {overallProgressPercent}%

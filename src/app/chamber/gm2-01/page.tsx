@@ -61,6 +61,15 @@ export default function G201Page() {
     labels: {
       input: t("gm2_01.labels.input"),
     },
+    visualization: {
+      point_a: t("gm2_01.visualization.point_a"),
+      point_b: t("gm2_01.visualization.point_b"),
+      vector_v: t("gm2_01.visualization.vector_v"),
+      vector_w: t("gm2_01.visualization.vector_w"),
+      vector_s: t("gm2_01.visualization.vector_s"),
+      coordinates: t("gm2_01.visualization.coordinates"),
+      dot_product: t("gm2_01.visualization.dot_product"),
+    },
     placeholders: {
       x: t("gm2_01.placeholders.x"),
       y: t("gm2_01.placeholders.y"),
@@ -158,10 +167,12 @@ export default function G201Page() {
           showDotProduct={currentQuest?.showDotProduct}
           translations={{
             title: gm2_01_t.monitor_title,
-            pointA: "Point A",
-            pointB: "Point B",
-            vectorV: "Vector v",
-            vectorW: stage === "MISSION" ? "Vector s" : "Vector w",
+            pointA: gm2_01_t.visualization.point_a,
+            pointB: gm2_01_t.visualization.point_b,
+            vectorV: gm2_01_t.visualization.vector_v,
+            vectorW: stage === "MISSION" ? gm2_01_t.visualization.vector_s : gm2_01_t.visualization.vector_w,
+            coordinates: gm2_01_t.visualization.coordinates,
+            dotProduct: gm2_01_t.visualization.dot_product,
           }}
         />
       }

@@ -6,6 +6,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { Language, SpeciesEntry, DiversityMetrics } from '@/lib/sb3-02/types';
 import { LaTeXRenderer } from './LaTeXRenderer';
 
@@ -14,12 +15,14 @@ interface DiversityCalculatorProps {
 }
 
 export function DiversityCalculator({ language }: DiversityCalculatorProps) {
+  const { t } = useLanguage();
   const [species, setSpecies] = useState<SpeciesEntry[]>([
     { name: { en: 'Species A', cn: '物种A', de: 'Art A' }, count: 10 },
     { name: { en: 'Species B', cn: '物种B', de: 'Art B' }, count: 10 },
   ]);
 
   const metrics = useMemo(() => calculateDiversity(species), [species]);
+  const copy = t('sb3_02.diversity_calculator');
 
   const addSpecies = () => {
     const newIndex = species.length + 1;
@@ -48,47 +51,9 @@ export function DiversityCalculator({ language }: DiversityCalculatorProps) {
     setSpecies(newSpecies);
   };
 
-  const labels = {
-    title: {
-      en: 'Species Diversity Calculator',
-      cn: '物种多样性计算器',
-      de: 'Artenvielfalt-Rechner',
-    },
-    addSpecies: {
-      en: 'Add Species',
-      cn: '添加物种',
-      de: 'Art hinzufügen',
-    },
-    totalIndividuals: {
-      en: 'Total Individuals',
-      cn: '总个体数',
-      de: 'Gesamtindividuen',
-    },
-    speciesRichness: {
-      en: 'Species Richness',
-      cn: '物种丰富度',
-      de: 'Artenreichtum',
-    },
-    shannonIndex: {
-      en: 'Shannon Index (H\')',
-      cn: '香农指数 (H\')',
-      de: 'Shannon-Index (H\')',
-    },
-    simpsonIndex: {
-      en: 'Simpson Index (D)',
-      cn: '辛普森指数 (D)',
-      de: 'Simpson-Index (D)',
-    },
-    evenness: {
-      en: 'Evenness (J\')',
-      cn: '均匀度 (J\')',
-      de: 'Gleichmäßigkeit (J\')',
-    },
-  };
-
   return (
     <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 space-y-6">
-      <h3 className="text-2xl font-bold text-gray-900">{labels.title[language]}</h3>
+      <h3 className="text-2xl font-bold text-gray-900">{copy.title}</h3>
 
       {/* Species Input */}
       <div className="space-y-3">
@@ -103,7 +68,7 @@ export function DiversityCalculator({ language }: DiversityCalculatorProps) {
                 setSpecies(newSpecies);
               }}
               className="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder={`Species ${idx + 1}`}
+              placeholder={t('sb3_02.diversity_calculator.species_placeholder', { index: idx + 1 })}
             />
             <input
               type="number"
@@ -125,29 +90,29 @@ export function DiversityCalculator({ language }: DiversityCalculatorProps) {
           onClick={addSpecies}
           className="w-full px-4 py-2 bg-blue-100 text-blue-700 rounded font-semibold hover:bg-blue-200 transition-colors"
         >
-          + {labels.addSpecies[language]}
+          + {copy.add_species}
         </button>
       </div>
 
       {/* Results */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
         <MetricCard
-          label={labels.totalIndividuals[language]}
+          label={copy.total_individuals}
           value={metrics.totalIndividuals}
           format="number"
         />
         <MetricCard
-          label={labels.speciesRichness[language]}
+          label={copy.species_richness}
           value={metrics.speciesRichness}
           format="number"
         />
         <MetricCard
-          label={labels.shannonIndex[language]}
+          label={copy.shannon_index}
           value={metrics.shannonIndex}
           format="decimal"
         />
         <MetricCard
-          label={labels.simpsonIndex[language]}
+          label={copy.simpson_index}
           value={metrics.simpsonIndex}
           format="decimal"
         />
@@ -155,37 +120,27 @@ export function DiversityCalculator({ language }: DiversityCalculatorProps) {
 
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
         <MetricCard
-          label={labels.evenness[language]}
+          label={copy.evenness}
           value={metrics.evenness}
           format="decimal"
-          description={
-            language === 'en'
-              ? 'Evenness ranges from 0 to 1, with 1 indicating perfect evenness'
-              : language === 'cn'
-              ? '均匀度范围从0到1，1表示完全均匀'
-              : 'Gleichmäßigkeit reicht von 0 bis 1, wobei 1 perfekte Gleichmäßigkeit anzeigt'
-          }
+          description={copy.evenness_description}
         />
       </div>
 
       {/* Formulas */}
       <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-        <p className="font-semibold text-gray-900">
-          {language === 'en' && 'Formulas:'}
-          {language === 'cn' && '公式：'}
-          {language === 'de' && 'Formeln:'}
-        </p>
+        <p className="font-semibold text-gray-900">{copy.formulas}</p>
         <div className="space-y-2">
           <div>
-            <p className="text-sm text-gray-700 mb-1">Shannon Index:</p>
+            <p className="text-sm text-gray-700 mb-1">{copy.formula_labels.shannon}</p>
             <LaTeXRenderer formula="H' = -\\sum_{i=1}^{S} p_i \\ln(p_i)" display={true} />
           </div>
           <div>
-            <p className="text-sm text-gray-700 mb-1">Simpson Index:</p>
+            <p className="text-sm text-gray-700 mb-1">{copy.formula_labels.simpson}</p>
             <LaTeXRenderer formula="D = 1 - \\sum_{i=1}^{S} p_i^{2}" display={true} />
           </div>
           <div>
-            <p className="text-sm text-gray-700 mb-1">Evenness:</p>
+            <p className="text-sm text-gray-700 mb-1">{copy.formula_labels.evenness}</p>
             <LaTeXRenderer formula="J' = \\frac{H'}{\\ln(S)}" display={true} />
           </div>
         </div>

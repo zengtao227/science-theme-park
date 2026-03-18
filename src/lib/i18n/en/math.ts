@@ -493,6 +493,15 @@ export const enMath = {
         labels: {
             input: "INPUT"
         },
+        visualization: {
+            point_a: "Point A",
+            point_b: "Point B",
+            vector_v: "Vector v",
+            vector_w: "Vector w",
+            vector_s: "Vector s",
+            coordinates: "Coordinates",
+            dot_product: "Dot Product"
+        },
         placeholders: {
             x: "x",
             y: "y",

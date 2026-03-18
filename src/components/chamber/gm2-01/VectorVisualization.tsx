@@ -11,12 +11,14 @@ interface VectorVisualizationProps {
   vectorV?: [number, number, number];
   vectorW?: [number, number, number];
   showDotProduct?: boolean;
-  translations?: {
+  translations: {
     title: string;
     pointA: string;
     pointB: string;
     vectorV: string;
     vectorW: string;
+    coordinates: string;
+    dotProduct: string;
   };
 }
 
@@ -255,13 +257,7 @@ export default function VectorVisualization({
   vectorV,
   vectorW,
   showDotProduct = false,
-  translations = {
-    title: "VECTOR VISUALIZATION",
-    pointA: "Point A",
-    pointB: "Point B",
-    vectorV: "Vector v",
-    vectorW: "Vector w",
-  }
+  translations,
 }: VectorVisualizationProps) {
   
   // Calculate vector from points if provided
@@ -343,21 +339,21 @@ export default function VectorVisualization({
       {(pointA || pointB) && (
         <div className="absolute top-4 left-4 bg-black/80 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
           <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider mb-2">
-            COORDINATES
+            {translations.coordinates}
           </div>
           {pointA && (
             <div className="text-white font-mono text-sm">
-              <span className="text-cyan-400">A:</span> ({pointA[0]}, {pointA[1]}, {pointA[2]})
+              <span className="text-cyan-400">{translations.pointA}:</span> ({pointA[0]}, {pointA[1]}, {pointA[2]})
             </div>
           )}
           {pointB && (
             <div className="text-white font-mono text-sm">
-              <span className="text-pink-400">B:</span> ({pointB[0]}, {pointB[1]}, {pointB[2]})
+              <span className="text-pink-400">{translations.pointB}:</span> ({pointB[0]}, {pointB[1]}, {pointB[2]})
             </div>
           )}
           {vectorW && !pointA && (
             <div className="text-white font-mono text-sm">
-              <span className="text-yellow-400">w:</span> ({vectorW[0]}, {vectorW[1]}, {vectorW[2]})
+              <span className="text-yellow-400">{translations.vectorW}:</span> ({vectorW[0]}, {vectorW[1]}, {vectorW[2]})
             </div>
           )}
         </div>
@@ -367,10 +363,10 @@ export default function VectorVisualization({
       {showDotProduct && dotProduct !== null && (
         <div className="absolute top-4 right-4 bg-black/80 border border-green-400/30 rounded-lg px-4 py-3">
           <div className="text-[9px] text-green-400/60 uppercase tracking-wider mb-2">
-            DOT PRODUCT
+            {translations.dotProduct}
           </div>
           <div className="text-white font-mono text-xl">
-            v · w = {dotProduct.toFixed(2)}
+            {translations.vectorV} · {translations.vectorW} = {dotProduct.toFixed(2)}
           </div>
         </div>
       )}
