@@ -12,7 +12,6 @@ import { Difficulty } from "@/hooks/useQuestManager";
 import { translations as i18n, useLanguage } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import SuccessEureka from "@/components/shared/SuccessEureka";
 import { MODULE_DEPENDENCIES } from "@/lib/curriculum/dependencies";
 import CoopPanel from "@/components/coop/CoopPanel";
 import HUDAlert from "@/components/shared/HUDAlert";
@@ -96,7 +95,6 @@ export default function ChamberLayout({
     const prevOkRef = useRef(false);
     const stageStartRef = useRef(0);
     const hadFailureRef = useRef(false);
-    const [showEureka, setShowEureka] = useState(false);
     const [printSelectorOpen, setPrintSelectorOpen] = useState(false);
     const [selectedPrintSectionIds, setSelectedPrintSectionIds] = useState<string[]>([]);
     const hasPrintSections = Array.isArray(printSections) && printSections.length > 0;
@@ -191,7 +189,6 @@ export default function ChamberLayout({
                 durationMs,
                 rigor: !hadFailureRef.current,
             });
-            setShowEureka(true);
         }
         prevOkRef.current = ok;
     }, [addHistory, checkStatus, currentStage, difficulty, moduleCode, stageLabel, successRate]);
@@ -741,9 +738,6 @@ export default function ChamberLayout({
                     </motion.aside>
                 )}
             </AnimatePresence>
-
-
-            <SuccessEureka show={showEureka} onComplete={() => setShowEureka(false)} />
 
             <CoopPanel lastCheckCorrect={checkStatus ? checkStatus.ok : null} />
 
