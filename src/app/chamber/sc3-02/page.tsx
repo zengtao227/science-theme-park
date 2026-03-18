@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -209,10 +210,23 @@ export default function SC302Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "HYDROCARBONS", label: t("sc3_02.stages.hydrocarbons") },
-        { id: "FUNCTIONAL_GROUPS", label: t("sc3_02.stages.functional_groups") },
-        { id: "ISOMERS", label: t("sc3_02.stages.isomers") },
+        { id: "HYDROCARBONS" as Stage, label: t("sc3_02.stages.hydrocarbons") },
+        { id: "FUNCTIONAL_GROUPS" as Stage, label: t("sc3_02.stages.functional_groups") },
+        { id: "ISOMERS" as Stage, label: t("sc3_02.stages.isomers") },
     ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SC302Quest, Stage>({
+        moduleTitle: t("sc3_02.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sc3_02.difficulty.BASIC"),
+            CORE: t("sc3_02.difficulty.CORE"),
+            ADVANCED: t("sc3_02.difficulty.ADVANCED"),
+            ELITE: t("sc3_02.difficulty.ELITE"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
 
     useEffect(() => {
         if (currentQuest?.molecule) {
@@ -241,6 +255,7 @@ export default function SC302Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

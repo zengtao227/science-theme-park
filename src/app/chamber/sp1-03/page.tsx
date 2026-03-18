@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 import {
     Stage,
@@ -52,6 +53,25 @@ export default function SP103WeatherClimate() {
         return [];
     }, [t]);
 
+    const stages = useMemo(() => [
+        { id: "ATMOSPHERE" as Stage, label: sp1_03_t.stages.atmosphere },
+        { id: "WEATHER" as Stage, label: sp1_03_t.stages.weather },
+        { id: "CLIMATE" as Stage, label: sp1_03_t.stages.climate }
+    ], [sp1_03_t.stages.atmosphere, sp1_03_t.stages.climate, sp1_03_t.stages.weather]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP103Quest, Stage>({
+        moduleTitle: sp1_03_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp1_03_t.difficulty.basic,
+            CORE: sp1_03_t.difficulty.core,
+            ADVANCED: sp1_03_t.difficulty.advanced,
+            ELITE: sp1_03_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp1_03_t.difficulty.advanced, sp1_03_t.difficulty.basic, sp1_03_t.difficulty.core, sp1_03_t.difficulty.elite, sp1_03_t.title, stages]);
+
     const {
         difficulty,
         stage,
@@ -83,13 +103,10 @@ export default function SP103WeatherClimate() {
             moduleCode="SP1.03"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "ATMOSPHERE", label: sp1_03_t.stages.atmosphere },
-                { id: "WEATHER", label: sp1_03_t.stages.weather },
-                { id: "CLIMATE", label: sp1_03_t.stages.climate }
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}

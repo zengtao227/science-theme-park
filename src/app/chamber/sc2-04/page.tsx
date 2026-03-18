@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BeakerCanvas from "@/components/chamber/sc2-04/BeakerCanvas";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import {
   Stage,
   SC204Quest as SC204QuestType,
@@ -32,6 +33,11 @@ export default function SC204Page() {
   const [temperature, setTemperature] = useState(25); // °C
   const [soluteAmount, setSoluteAmount] = useState(20); // g
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => {
+    if (s === "elite") return generateEliteQuests(t, d);
+    return generateSolubilityQuests(t, d, s);
+  }, [t]);
+
   const {
     currentQuest,
     difficulty,
@@ -49,10 +55,7 @@ export default function SC204Page() {
     requestAiFeedback,
   } = useQuestManager<SC204QuestType, Stage>({
     moduleCode: "sc2-04",
-    buildPool: (d, s) => {
-      if (s === "elite") return generateEliteQuests(t, d);
-      return generateSolubilityQuests(t, d, s);
-    },
+    buildPool,
     initialStage: "dissolve",
   });
 
@@ -83,6 +86,19 @@ export default function SC204Page() {
     { id: "elite" as Stage, label: t.difficulty.elite },
   ], [t]);
 
+  const printSections = useMemo(() => buildQuestPrintSections<SC204QuestType, Stage>({
+    moduleTitle: t.title,
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t.difficulty.basic,
+      CORE: t.difficulty.core,
+      ADVANCED: t.difficulty.advanced,
+      ELITE: t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t]);
+
   if (!currentQuest) return null;
 
   return (
@@ -98,6 +114,7 @@ export default function SC204Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrbitalCanvas from "@/components/chamber/sc3-05/OrbitalCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
@@ -142,23 +143,39 @@ export default function SC305MolecularForge() {
         initialStage: "VSEPR",
     });
 
+    const stages = useMemo(() => [
+        { id: "VSEPR" as Stage, label: sc3_05_t.stages.vsepr },
+        { id: "HYBRIDIZATION" as Stage, label: sc3_05_t.stages.hybridization },
+        { id: "MO_THEORY" as Stage, label: sc3_05_t.stages.mo_theory },
+    ], [sc3_05_t.stages.hybridization, sc3_05_t.stages.mo_theory, sc3_05_t.stages.vsepr]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SC305Quest, Stage>({
+        moduleTitle: sc3_05_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sc3_05_t.difficulty.basic,
+            CORE: sc3_05_t.difficulty.core,
+            ADVANCED: sc3_05_t.difficulty.advanced,
+            ELITE: sc3_05_t.difficulty.elite,
+        },
+        buildPool: buildStagePool,
+    }), [buildStagePool, sc3_05_t.difficulty.advanced, sc3_05_t.difficulty.basic, sc3_05_t.difficulty.core, sc3_05_t.difficulty.elite, sc3_05_t.title, stages]);
+
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={sc3_05_t.title}
+            title={sc3_05_t.title}
             moduleCode="SC3.05"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            stages={[
-                { id: "VSEPR", label: sc3_05_t.stages.vsepr },
-                { id: "HYBRIDIZATION", label: sc3_05_t.stages.hybridization },
-                { id: "MO_THEORY", label: sc3_05_t.stages.mo_theory },
-            ]}
+            stages={stages}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
+            printSections={printSections}
             translations={sc3_05_t}
             checkStatus={lastCheck}
             onVerify={verify}

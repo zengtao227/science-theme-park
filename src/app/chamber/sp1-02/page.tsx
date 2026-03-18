@@ -6,6 +6,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 
 import P102LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
@@ -57,6 +58,25 @@ export default function SP102NewtonsLaws() {
         if (s === "THIRD_LAW") return generateThirdLawQuests(t, d);
         return [];
     }, [t]);
+
+    const stages = useMemo(() => [
+        { id: "FIRST_LAW" as Stage, label: sp1_02_t.stages.first_law },
+        { id: "SECOND_LAW" as Stage, label: sp1_02_t.stages.second_law },
+        { id: "THIRD_LAW" as Stage, label: sp1_02_t.stages.third_law },
+    ], [sp1_02_t.stages.first_law, sp1_02_t.stages.second_law, sp1_02_t.stages.third_law]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP102Quest, Stage>({
+        moduleTitle: sp1_02_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp1_02_t.difficulty.basic,
+            CORE: sp1_02_t.difficulty.core,
+            ADVANCED: sp1_02_t.difficulty.advanced,
+            ELITE: sp1_02_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp1_02_t.difficulty.advanced, sp1_02_t.difficulty.basic, sp1_02_t.difficulty.core, sp1_02_t.difficulty.elite, sp1_02_t.title, stages]);
 
     const {
         difficulty,
@@ -116,13 +136,10 @@ export default function SP102NewtonsLaws() {
             moduleCode="SP1.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "FIRST_LAW", label: sp1_02_t.stages.first_law },
-                { id: "SECOND_LAW", label: sp1_02_t.stages.second_law },
-                { id: "THIRD_LAW", label: sp1_02_t.stages.third_law },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

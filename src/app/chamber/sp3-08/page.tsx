@@ -2,14 +2,15 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import P308OpticsCanvas from "@/components/chamber/sp3-08/OpticsCanvas";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import {
   Stage,
   SP308Quest,
@@ -25,6 +26,32 @@ import {
 export default function P301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+
+  const buildPool = useCallback((d: Difficulty, s: Stage) => {
+    if (s === "REFLECTION") return generateReflectionQuests(t, d);
+    if (s === "REFRACTION") return generateRefractionQuests(t, d);
+    if (s === "LENSES") return generateLensQuests(t, d);
+    return [];
+  }, [t]);
+
+  const stages = useMemo(() => [
+    { id: "REFLECTION" as Stage, label: t("sp3_08.stages.reflection") },
+    { id: "REFRACTION" as Stage, label: t("sp3_08.stages.refraction") },
+    { id: "LENSES" as Stage, label: t("sp3_08.stages.lenses") },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<SP308Quest, Stage>({
+    moduleTitle: t("sp3_08.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sp3_08.difficulty.basic"),
+      CORE: t("sp3_08.difficulty.core"),
+      ADVANCED: t("sp3_08.difficulty.advanced"),
+      ELITE: t("sp3_08.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stages, t]);
 
   const {
     difficulty,
@@ -44,12 +71,7 @@ export default function P301Page() {
       requestAiFeedback
     } = useQuestManager<SP308Quest, Stage>({
     moduleCode: "sp3-08",
-    buildPool: (d, s) => {
-      if (s === "REFLECTION") return generateReflectionQuests(t, d);
-      if (s === "REFRACTION") return generateRefractionQuests(t, d);
-      if (s === "LENSES") return generateLensQuests(t, d);
-      return [];
-    },
+    buildPool,
     initialStage: "REFLECTION",
   });
 
@@ -60,12 +82,6 @@ export default function P301Page() {
   }, [lastCheck, completeStage, stage]);
 
   if (!currentQuest) return null;
-
-  const stages = [
-    { id: "REFLECTION", label: t("sp3_08.stages.reflection") },
-    { id: "REFRACTION", label: t("sp3_08.stages.refraction") },
-    { id: "LENSES", label: t("sp3_08.stages.lenses") },
-  ];
 
   return (
     <ChamberLayout
@@ -80,6 +96,7 @@ export default function P301Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}

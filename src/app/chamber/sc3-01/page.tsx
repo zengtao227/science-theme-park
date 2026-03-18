@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
@@ -231,6 +232,19 @@ export default function SC301Page() {
     { id: "ADRENALINE" as Stage, label: t("sc3_01.stages.adrenaline") },
   ], [t]);
 
+  const printSections = useMemo(() => buildQuestPrintSections<SC301Quest, Stage>({
+    moduleTitle: t("sc3_01.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sc3_01.difficulty.BASIC"),
+      CORE: t("sc3_01.difficulty.CORE"),
+      ADVANCED: t("sc3_01.difficulty.ADVANCED"),
+      ELITE: t("sc3_01.difficulty.ELITE"),
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t]);
+
   const hint = getHint();
 
   const activeScenario = useMemo(() => {
@@ -252,6 +266,7 @@ export default function SC301Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

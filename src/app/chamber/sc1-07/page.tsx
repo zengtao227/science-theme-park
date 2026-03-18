@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 import {
     Stage,
@@ -52,6 +53,25 @@ export default function SC107Sustainability() {
         return [];
     }, [t]);
 
+    const stages = useMemo(() => [
+        { id: "RECYCLING" as Stage, label: sc1_07_t.stages.recycling },
+        { id: "GREEN_CHEMISTRY" as Stage, label: sc1_07_t.stages.green_chemistry },
+        { id: "CIRCULAR_ECONOMY" as Stage, label: sc1_07_t.stages.circular_economy }
+    ], [sc1_07_t.stages.circular_economy, sc1_07_t.stages.green_chemistry, sc1_07_t.stages.recycling]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SC107Quest, Stage>({
+        moduleTitle: sc1_07_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sc1_07_t.difficulty.basic,
+            CORE: sc1_07_t.difficulty.core,
+            ADVANCED: sc1_07_t.difficulty.advanced,
+            ELITE: sc1_07_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sc1_07_t.difficulty.advanced, sc1_07_t.difficulty.basic, sc1_07_t.difficulty.core, sc1_07_t.difficulty.elite, sc1_07_t.title, stages]);
+
     const {
         difficulty,
         stage,
@@ -83,13 +103,10 @@ export default function SC107Sustainability() {
             moduleCode="SC1.07"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "RECYCLING", label: sc1_07_t.stages.recycling },
-                { id: "GREEN_CHEMISTRY", label: sc1_07_t.stages.green_chemistry },
-                { id: "CIRCULAR_ECONOMY", label: sc1_07_t.stages.circular_economy }
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}

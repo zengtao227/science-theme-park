@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { useQuestManager, Difficulty } from '@/hooks/useQuestManager';
@@ -25,6 +25,7 @@ import { EnergyDiagram } from '@/components/sc2-07/EnergyDiagram';
 import { HessCycleView } from '@/components/sc2-07/HessCycleView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function SC207Page() {
   const { completeStage } = useAppStore();
@@ -120,6 +121,25 @@ export default function SC207Page() {
     }
   };
 
+  const stages = useMemo(() => [
+    { id: 'ENERGY_CHANGES' as Stage, label: t('sc2_07.stages.energy_changes') },
+    { id: 'HESS_LAW' as Stage, label: t('sc2_07.stages.hess_law') },
+    { id: 'CALORIMETRY' as Stage, label: t('sc2_07.stages.calorimetry') },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<SC207Quest, Stage>({
+    moduleTitle: t('sc2_07.title'),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t('sc2_07.difficulty.basic'),
+      CORE: t('sc2_07.difficulty.core'),
+      ADVANCED: t('sc2_07.difficulty.advanced'),
+      ELITE: t('sc2_07.difficulty.elite'),
+    },
+    buildPool: buildPoolCallback,
+  }), [buildPoolCallback, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -130,13 +150,10 @@ export default function SC207Page() {
       moduleCode="SC2.07"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: 'ENERGY_CHANGES', label: t('sc2_07.stages.energy_changes') },
-        { id: 'HESS_LAW', label: t('sc2_07.stages.hess_law') },
-        { id: 'CALORIMETRY', label: t('sc2_07.stages.calorimetry') },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={handleVerify}
       onNext={handleNext}
       checkStatus={feedback ? { ok: feedback.correct, correct: feedback.message } : null}

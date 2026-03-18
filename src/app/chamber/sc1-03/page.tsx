@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
@@ -8,6 +8,7 @@ import { InlineMath } from "react-katex";
 import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 const OrbitalCanvas = dynamic(() => import("@/components/chamber/sc1-03/OrbitalCanvas"), {
     ssr: false,
@@ -187,6 +188,25 @@ export default function SC1_03_AtomsForge() {
         }
     }, [lastCheck, completeStage, stage]);
 
+    const stages = useMemo(() => [
+        { id: "build" as Stage, label: t("sc1_03.stages.build") },
+        { id: "elements" as Stage, label: t("sc1_03.stages.elements") },
+        { id: "isotopes" as Stage, label: t("sc1_03.stages.isotopes") },
+    ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<AtomQuest, Stage>({
+        moduleTitle: t("sc1_03.title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sc1_03.difficulty.basic"),
+            CORE: t("sc1_03.difficulty.core"),
+            ADVANCED: t("sc1_03.difficulty.advanced"),
+            ELITE: t("sc1_03.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stages, t]);
+
     return (
         <ChamberLayout
             adaptiveRecommendation={adaptiveRecommendation}
@@ -197,13 +217,10 @@ export default function SC1_03_AtomsForge() {
             moduleCode="SC1.03"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "build", label: t("sc1_03.stages.build") },
-                { id: "elements", label: t("sc1_03.stages.elements") },
-                { id: "isotopes", label: t("sc1_03.stages.isotopes") },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

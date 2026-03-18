@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import SimpleMachineCanvas from "@/components/chamber/sp3-05/SimpleMachineCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -466,10 +467,23 @@ export default function SP305Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "LEVERS", label: sp3_05_t.stages.levers },
-        { id: "PULLEYS", label: sp3_05_t.stages.pulleys },
-        { id: "INCLINED_PLANES", label: sp3_05_t.stages.inclined_planes },
+        { id: "LEVERS" as Stage, label: sp3_05_t.stages.levers },
+        { id: "PULLEYS" as Stage, label: sp3_05_t.stages.pulleys },
+        { id: "INCLINED_PLANES" as Stage, label: sp3_05_t.stages.inclined_planes },
     ], [sp3_05_t.stages.levers, sp3_05_t.stages.pulleys, sp3_05_t.stages.inclined_planes]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP305Quest, Stage>({
+        moduleTitle: sp3_05_t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp3_05_t.difficulty.basic,
+            CORE: sp3_05_t.difficulty.core,
+            ADVANCED: sp3_05_t.difficulty.advanced,
+            ELITE: sp3_05_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp3_05_t.difficulty.advanced, sp3_05_t.difficulty.basic, sp3_05_t.difficulty.core, sp3_05_t.difficulty.elite, sp3_05_t.title, stagesProps]);
 
     const hint = getHint();
 
@@ -486,6 +500,7 @@ export default function SP305Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 import {
     Stage,
@@ -52,6 +53,25 @@ export default function SP104AstronomyBasics() {
         return [];
     }, [t]);
 
+    const stages = useMemo(() => [
+        { id: "SOLAR_SYSTEM" as Stage, label: sp1_04_t.stages.solar_system },
+        { id: "MOON_PHASES" as Stage, label: sp1_04_t.stages.moon_phases },
+        { id: "SEASONS" as Stage, label: sp1_04_t.stages.seasons }
+    ], [sp1_04_t.stages.moon_phases, sp1_04_t.stages.seasons, sp1_04_t.stages.solar_system]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP104Quest, Stage>({
+        moduleTitle: sp1_04_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp1_04_t.difficulty.basic,
+            CORE: sp1_04_t.difficulty.core,
+            ADVANCED: sp1_04_t.difficulty.advanced,
+            ELITE: sp1_04_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp1_04_t.difficulty.advanced, sp1_04_t.difficulty.basic, sp1_04_t.difficulty.core, sp1_04_t.difficulty.elite, sp1_04_t.title, stages]);
+
     const {
         difficulty,
         stage,
@@ -83,13 +103,10 @@ export default function SP104AstronomyBasics() {
             moduleCode="SP1.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "SOLAR_SYSTEM", label: sp1_04_t.stages.solar_system },
-                { id: "MOON_PHASES", label: sp1_04_t.stages.moon_phases },
-                { id: "SEASONS", label: sp1_04_t.stages.seasons }
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}

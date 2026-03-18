@@ -2,12 +2,13 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleCanvas from "@/components/chamber/sc1-02/MoleCanvas";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import {
   Stage,
   SC102Quest as SC102QuestType,
@@ -61,6 +62,32 @@ export default function C102Page() {
     },
   };
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => {
+    if (s === "MOLAR_MASS") return generateMolarMassQuests(t, d);
+    if (s === "STOICHIOMETRY") return generateStoichiometryQuests(t, d);
+    if (s === "YIELD") return generateYieldQuests(t, d);
+    return [];
+  }, [t]);
+
+  const stages = useMemo(() => [
+    { id: "MOLAR_MASS" as Stage, label: sc1_02_t.stages.molar_mass },
+    { id: "STOICHIOMETRY" as Stage, label: sc1_02_t.stages.stoichiometry },
+    { id: "YIELD" as Stage, label: sc1_02_t.stages.yield },
+  ], [sc1_02_t.stages.molar_mass, sc1_02_t.stages.stoichiometry, sc1_02_t.stages.yield]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<SC102QuestType, Stage>({
+    moduleTitle: sc1_02_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: sc1_02_t.difficulty.basic,
+      CORE: sc1_02_t.difficulty.core,
+      ADVANCED: sc1_02_t.difficulty.advanced,
+      ELITE: sc1_02_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, sc1_02_t.difficulty.advanced, sc1_02_t.difficulty.basic, sc1_02_t.difficulty.core, sc1_02_t.difficulty.elite, sc1_02_t.title, stages]);
+
   const {
     difficulty,
     stage,
@@ -79,12 +106,7 @@ export default function C102Page() {
     requestAiFeedback,
   } = useQuestManager<SC102QuestType, Stage>({
     moduleCode: "sc1-02",
-    buildPool: (d, s) => {
-      if (s === "MOLAR_MASS") return generateMolarMassQuests(t, d);
-      if (s === "STOICHIOMETRY") return generateStoichiometryQuests(t, d);
-      if (s === "YIELD") return generateYieldQuests(t, d);
-      return [];
-    },
+    buildPool,
     initialStage: "MOLAR_MASS",
   });
 
@@ -117,13 +139,10 @@ export default function C102Page() {
       moduleCode="SC1.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "MOLAR_MASS", label: sc1_02_t.stages.molar_mass },
-        { id: "STOICHIOMETRY", label: sc1_02_t.stages.stoichiometry },
-        { id: "YIELD", label: sc1_02_t.stages.yield },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

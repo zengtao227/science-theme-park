@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -8,7 +8,8 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasTankCanvas from "@/components/chamber/sc2-03/GasTankCanvas";
 import { idealGasPressure } from "@/lib/physics";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import {
   Stage,
   SC203Quest as SC203QuestType,
@@ -28,6 +29,14 @@ export default function SC203Page() {
   const [temperature, setTemperature] = useState(300); // K
   const [moles, setMoles] = useState(1); // mol
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => {
+    if (s === "boyle") return generateBoyleQuests(t, d);
+    if (s === "charles") return generateCharlesQuests(t, d);
+    if (s === "combined") return generateCombinedQuests(t, d);
+    if (s === "elite") return generateEliteQuests(getT, d);
+    return [];
+  }, [getT, t]);
+
   const {
     currentQuest,
     difficulty,
@@ -45,13 +54,7 @@ export default function SC203Page() {
     requestAiFeedback,
   } = useQuestManager<SC203QuestType, Stage>({
     moduleCode: "sc2-03",
-    buildPool: (d, s) => {
-      if (s === "boyle") return generateBoyleQuests(t, d);
-      if (s === "charles") return generateCharlesQuests(t, d);
-      if (s === "combined") return generateCombinedQuests(t, d);
-      if (s === "elite") return generateEliteQuests(getT, d);
-      return [];
-    },
+    buildPool,
     initialStage: "boyle",
   });
 
@@ -80,6 +83,19 @@ export default function SC203Page() {
     { id: "elite" as Stage, label: t.difficulty.elite },
   ], [t]);
 
+  const printSections = useMemo(() => buildQuestPrintSections<SC203QuestType, Stage>({
+    moduleTitle: t.title,
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t.difficulty.basic,
+      CORE: t.difficulty.core,
+      ADVANCED: t.difficulty.advanced,
+      ELITE: t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t]);
+
   if (!currentQuest) return null;
 
   return (
@@ -95,6 +111,7 @@ export default function SC203Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

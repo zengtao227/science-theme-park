@@ -10,6 +10,7 @@ import "katex/dist/katex.min.css";
 import { motion } from "framer-motion";
 import BondingVisualization3D from "@/components/chamber/sc1-05/BondingVisualization3D";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "IONIC" | "COVALENT" | "METALLIC";
 type BondQuest = Quest & { stage: Stage };
@@ -112,10 +113,23 @@ export default function SC105Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "IONIC", label: sc1_05_t.stages.ionic },
-        { id: "COVALENT", label: sc1_05_t.stages.covalent },
-        { id: "METALLIC", label: sc1_05_t.stages.metallic },
+        { id: "IONIC" as Stage, label: sc1_05_t.stages.ionic },
+        { id: "COVALENT" as Stage, label: sc1_05_t.stages.covalent },
+        { id: "METALLIC" as Stage, label: sc1_05_t.stages.metallic },
     ], [sc1_05_t.stages.ionic, sc1_05_t.stages.covalent, sc1_05_t.stages.metallic]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<BondQuest, Stage>({
+        moduleTitle: sc1_05_t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sc1_05_t.difficulty.basic,
+            CORE: sc1_05_t.difficulty.core,
+            ADVANCED: sc1_05_t.difficulty.advanced,
+            ELITE: sc1_05_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sc1_05_t.difficulty.advanced, sc1_05_t.difficulty.basic, sc1_05_t.difficulty.core, sc1_05_t.difficulty.elite, sc1_05_t.title, stagesProps]);
 
     const activeScenario = useMemo(() => {
         if (stage === "IONIC") return sc1_05_t.scenarios.ionic_salts;
@@ -148,6 +162,7 @@ export default function SC105Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

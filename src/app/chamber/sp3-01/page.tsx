@@ -10,6 +10,7 @@ import MeasurementCanvas from "@/components/chamber/sp3-01/MeasurementCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "SI_UNITS" | "CONVERSION" | "PRECISION";
 
@@ -492,10 +493,23 @@ export default function SP301Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "SI_UNITS", label: sp3_01_t.stages.si_units },
-        { id: "CONVERSION", label: sp3_01_t.stages.conversion },
-        { id: "PRECISION", label: sp3_01_t.stages.precision },
+        { id: "SI_UNITS" as Stage, label: sp3_01_t.stages.si_units },
+        { id: "CONVERSION" as Stage, label: sp3_01_t.stages.conversion },
+        { id: "PRECISION" as Stage, label: sp3_01_t.stages.precision },
     ], [sp3_01_t.stages.si_units, sp3_01_t.stages.conversion, sp3_01_t.stages.precision]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP301Quest, Stage>({
+        moduleTitle: sp3_01_t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp3_01_t.difficulty.basic,
+            CORE: sp3_01_t.difficulty.core,
+            ADVANCED: sp3_01_t.difficulty.advanced,
+            ELITE: sp3_01_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp3_01_t.difficulty.advanced, sp3_01_t.difficulty.basic, sp3_01_t.difficulty.core, sp3_01_t.difficulty.elite, sp3_01_t.title, stagesProps]);
 
     const hint = getHint();
 
@@ -512,6 +526,7 @@ export default function SP301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

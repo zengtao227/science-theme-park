@@ -7,6 +7,7 @@ import PowerVisualization from "@/components/chamber/sp2-03/PowerVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "POWER_BASICS" | "ENERGY_CONSUMPTION" | "EFFICIENCY";
 
@@ -368,6 +369,27 @@ export default function SP203ElectricPower() {
         return [];
     }, [buildEnergyPrompt, buildEfficiencyPrompt, buildPowerPrompt, t]);
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sp2_03_t, d, s), [buildStagePool, sp2_03_t]);
+
+    const stages = useMemo(() => [
+        { id: "POWER_BASICS" as Stage, label: sp2_03_t.stages.power_basics },
+        { id: "ENERGY_CONSUMPTION" as Stage, label: sp2_03_t.stages.energy_consumption },
+        { id: "EFFICIENCY" as Stage, label: sp2_03_t.stages.efficiency },
+    ], [sp2_03_t.stages.efficiency, sp2_03_t.stages.energy_consumption, sp2_03_t.stages.power_basics]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP203Quest, Stage>({
+        moduleTitle: sp2_03_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp2_03_t.difficulty.basic,
+            CORE: sp2_03_t.difficulty.core,
+            ADVANCED: sp2_03_t.difficulty.advanced,
+            ELITE: sp2_03_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp2_03_t.difficulty.advanced, sp2_03_t.difficulty.basic, sp2_03_t.difficulty.core, sp2_03_t.difficulty.elite, sp2_03_t.title, stages]);
+
     const {
         difficulty,
         stage,
@@ -385,7 +407,7 @@ export default function SP203ElectricPower() {
       requestAiFeedback
     } = useQuestManager<SP203Quest, Stage>({
     moduleCode: "sp2-03",
-        buildPool: (d, s) => buildStagePool(sp2_03_t, d, s),
+        buildPool,
         initialStage: "POWER_BASICS",
     });
 
@@ -408,17 +430,14 @@ export default function SP203ElectricPower() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={sp2_03_t.title}
+            title={sp2_03_t.title}
             moduleCode="SP2.03"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "POWER_BASICS", label: sp2_03_t.stages.power_basics },
-                { id: "ENERGY_CONSUMPTION", label: sp2_03_t.stages.energy_consumption },
-                { id: "EFFICIENCY", label: sp2_03_t.stages.efficiency },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

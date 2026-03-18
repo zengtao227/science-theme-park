@@ -10,6 +10,7 @@ import "katex/dist/katex.min.css";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/TitrationCanvas"), {
     ssr: false,
@@ -355,11 +356,26 @@ export default function SC202Page() {
         return sc2_02_t.scenarios.biotech_titration;
     }, [stage, sc2_02_t.scenarios.environmental_monitoring, sc2_02_t.scenarios.water_quality, sc2_02_t.scenarios.biotech_titration]);
 
-    const stages = [
-        { id: "CURVES", label: sc2_02_t.stages.curves },
-        { id: "EQUIVALENCE", label: sc2_02_t.stages.equivalence },
-        { id: "INDICATORS", label: sc2_02_t.stages.indicators },
-    ];
+    const buildPool = useMemo(() => (d: Difficulty, s: Stage) => buildStagePool(sc2_02_t, d, s), [sc2_02_t]);
+
+    const stages = useMemo(() => [
+        { id: "CURVES" as Stage, label: sc2_02_t.stages.curves },
+        { id: "EQUIVALENCE" as Stage, label: sc2_02_t.stages.equivalence },
+        { id: "INDICATORS" as Stage, label: sc2_02_t.stages.indicators },
+    ], [sc2_02_t.stages.curves, sc2_02_t.stages.equivalence, sc2_02_t.stages.indicators]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<TitrationQuest, Stage>({
+        moduleTitle: sc2_02_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sc2_02_t.difficulty.basic,
+            CORE: sc2_02_t.difficulty.core,
+            ADVANCED: sc2_02_t.difficulty.advanced,
+            ELITE: sc2_02_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sc2_02_t.difficulty.advanced, sc2_02_t.difficulty.basic, sc2_02_t.difficulty.core, sc2_02_t.difficulty.elite, sc2_02_t.title, stages]);
 
     const config = currentQuest?.simConfig || {
         acidType: "strong",
@@ -382,6 +398,7 @@ export default function SC202Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

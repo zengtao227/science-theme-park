@@ -11,6 +11,7 @@ import { Stage } from "@/lib/sp1-01/domain/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function SP101_ForcesBasics() {
   const { t } = useLanguage();
@@ -22,6 +23,19 @@ export default function SP101_ForcesBasics() {
   ], [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildSP101Pool(d as any, s, t), [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<any, Stage>({
+    moduleTitle: t("sp1_01.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sp1_01.difficulty.basic"),
+      CORE: t("sp1_01.difficulty.core"),
+      ADVANCED: t("sp1_01.difficulty.advanced"),
+      ELITE: t("sp1_01.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stages, t]);
 
   const {
     difficulty,
@@ -68,6 +82,7 @@ export default function SP101_ForcesBasics() {
       stages={stages}
       currentStage={stage}
       onStageChange={handleStageChange as (s: string) => void}
+      printSections={printSections}
       onVerify={verify}
       onNext={canNext ? next : undefined}
       checkStatus={lastCheck}

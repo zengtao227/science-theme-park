@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicReactionCanvas from "@/components/chamber/sc3-03/OrganicReactionCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -207,10 +208,23 @@ export default function SC303Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "COMBUSTION", label: t("sc3_03.stages.combustion") },
-        { id: "SUBSTITUTION", label: t("sc3_03.stages.substitution") },
-        { id: "ADDITION", label: t("sc3_03.stages.addition") },
+        { id: "COMBUSTION" as Stage, label: t("sc3_03.stages.combustion") },
+        { id: "SUBSTITUTION" as Stage, label: t("sc3_03.stages.substitution") },
+        { id: "ADDITION" as Stage, label: t("sc3_03.stages.addition") },
     ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SC303Quest, Stage>({
+        moduleTitle: t("sc3_03.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sc3_03.difficulty.BASIC"),
+            CORE: t("sc3_03.difficulty.CORE"),
+            ADVANCED: t("sc3_03.difficulty.ADVANCED"),
+            ELITE: t("sc3_03.difficulty.ELITE"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
 
     const hint = getHint();
 
@@ -233,6 +247,7 @@ export default function SC303Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

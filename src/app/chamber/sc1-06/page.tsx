@@ -11,7 +11,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { useQuestManager, Difficulty } from '@/hooks/useQuestManager';
@@ -25,6 +25,7 @@ import ChemicalReaction3D from '@/components/sc1-06/ChemicalReaction3D';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, Beaker, Zap, Info } from 'lucide-react';
 import { clsx } from 'clsx';
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function SC106Page() {
   const { completeStage } = useAppStore();
@@ -107,6 +108,25 @@ export default function SC106Page() {
         return t('sc1_06.prompts.analyze_reaction');
     }
   };
+
+  const stages = useMemo(() => [
+    { id: 'REACTION_TYPES' as Stage, label: t('sc1_06.stages.reaction_types') },
+    { id: 'EQUATION_BALANCING' as Stage, label: t('sc1_06.stages.equation_balancing') },
+    { id: 'REACTION_SIMULATION' as Stage, label: t('sc1_06.stages.reaction_simulation') },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<SC106Quest, Stage>({
+    moduleTitle: t('sc1_06.title'),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t('sc1_06.difficulty.basic'),
+      CORE: t('sc1_06.difficulty.core'),
+      ADVANCED: t('sc1_06.difficulty.advanced'),
+      ELITE: t('sc1_06.difficulty.elite'),
+    },
+    buildPool: buildPoolCallback,
+  }), [buildPoolCallback, stages, t]);
 
   const renderStageContent = () => {
     if (!currentQuest) {
@@ -227,13 +247,10 @@ export default function SC106Page() {
       moduleCode="SC1.06"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: 'REACTION_TYPES', label: t('sc1_06.stages.reaction_types') },
-        { id: 'EQUATION_BALANCING', label: t('sc1_06.stages.equation_balancing') },
-        { id: 'REACTION_SIMULATION', label: t('sc1_06.stages.reaction_simulation') },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       successRate={successRate}

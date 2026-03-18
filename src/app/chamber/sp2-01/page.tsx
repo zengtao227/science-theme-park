@@ -1,14 +1,15 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { SP201Quest, Stage } from "@/types/sp2-01-types";
 import { buildStagePool } from "@/lib/sp2-01-quest-data";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function SP201CircuitBasics() {
   useAppStore();
@@ -42,6 +43,27 @@ export default function SP201CircuitBasics() {
     }
   }), [t]);
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
+  const stages = useMemo(() => [
+    { id: "COMPONENTS" as Stage, label: sp2_01_t.stages.components },
+    { id: "CIRCUITS" as Stage, label: sp2_01_t.stages.simple_circuits },
+    { id: "DIAGRAMS" as Stage, label: sp2_01_t.stages.circuit_diagrams },
+  ], [sp2_01_t.stages.circuit_diagrams, sp2_01_t.stages.components, sp2_01_t.stages.simple_circuits]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<SP201Quest, Stage>({
+    moduleTitle: sp2_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: sp2_01_t.difficulty.basic,
+      CORE: sp2_01_t.difficulty.core,
+      ADVANCED: sp2_01_t.difficulty.advanced,
+      ELITE: sp2_01_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, sp2_01_t.difficulty.advanced, sp2_01_t.difficulty.basic, sp2_01_t.difficulty.core, sp2_01_t.difficulty.elite, sp2_01_t.title, stages]);
+
   const {
     difficulty,
     stage,
@@ -59,7 +81,7 @@ export default function SP201CircuitBasics() {
       requestAiFeedback
   } = useQuestManager<SP201Quest, Stage>({
     moduleCode: "sp2-01",
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "COMPONENTS",
   });
 
@@ -95,13 +117,10 @@ export default function SP201CircuitBasics() {
       moduleCode="SP2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "COMPONENTS", label: sp2_01_t.stages.components },
-        { id: "CIRCUITS", label: sp2_01_t.stages.simple_circuits },
-        { id: "DIAGRAMS", label: sp2_01_t.stages.circuit_diagrams },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

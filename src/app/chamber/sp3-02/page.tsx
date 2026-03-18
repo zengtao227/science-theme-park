@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import {
   Stage,
   SP302Quest,
@@ -66,6 +67,19 @@ export default function SP302Page() {
     { id: "FRICTION" as Stage, label: t("sp3_02.stages.friction") },
   ], [t]);
 
+  const printSections = useMemo(() => buildQuestPrintSections<SP302Quest, Stage>({
+    moduleTitle: t("sp3_02.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sp3_02.difficulty.basic"),
+      CORE: t("sp3_02.difficulty.core"),
+      ADVANCED: t("sp3_02.difficulty.advanced"),
+      ELITE: t("sp3_02.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t]);
+
   if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
 
   return (
@@ -81,6 +95,7 @@ export default function SP302Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

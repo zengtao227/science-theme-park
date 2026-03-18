@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FerryCanvas from "@/components/chamber/sp3-07/FerryCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -555,10 +556,23 @@ export default function SP307Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "COMPOSITION", label: t("sp3_07.stages.composition") },
-        { id: "DRIFT", label: t("sp3_07.stages.drift") },
-        { id: "NAVIGATION", label: t("sp3_07.stages.navigation") },
+        { id: "COMPOSITION" as Stage, label: t("sp3_07.stages.composition") },
+        { id: "DRIFT" as Stage, label: t("sp3_07.stages.drift") },
+        { id: "NAVIGATION" as Stage, label: t("sp3_07.stages.navigation") },
     ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP307Quest, Stage>({
+        moduleTitle: t("sp3_07.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sp3_07.difficulty.basic"),
+            CORE: t("sp3_07.difficulty.core"),
+            ADVANCED: t("sp3_07.difficulty.advanced"),
+            ELITE: t("sp3_07.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
 
     const hint = getHint();
 
@@ -575,6 +589,7 @@ export default function SP307Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

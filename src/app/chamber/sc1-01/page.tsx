@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText } from "@/lib/latex-utils";
 
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import C101LabCanvas, { Substance, Tool } from "@/components/chamber/sc1-01/LabCanvas";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import {
   Stage,
   SC101Quest as SC101QuestType,
@@ -22,6 +23,32 @@ export default function SC101Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const [testedReactions, setTestedReactions] = useState<Array<{ substance: Substance; tool: Tool }>>([]);
+
+  const buildPool = useCallback((d: Difficulty, s: Stage) => {
+    if (s === "IDENTIFY") return generateIdentifyQuests(t, d);
+    if (s === "PROPERTIES") return generatePropertiesQuests(t, d);
+    if (s === "REACTIONS") return generateReactionsQuests(t, d);
+    return [];
+  }, [t]);
+
+  const stages = useMemo(() => [
+    { id: "IDENTIFY" as Stage, label: t("sc1_01.stages.identify") },
+    { id: "PROPERTIES" as Stage, label: t("sc1_01.stages.properties") },
+    { id: "REACTIONS" as Stage, label: t("sc1_01.stages.reactions") },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<SC101QuestType, Stage>({
+    moduleTitle: t("sc1_01.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sc1_01.difficulty.basic"),
+      CORE: t("sc1_01.difficulty.core"),
+      ADVANCED: t("sc1_01.difficulty.advanced"),
+      ELITE: t("sc1_01.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stages, t]);
 
   const {
     difficulty,
@@ -40,12 +67,7 @@ export default function SC101Page() {
     requestAiFeedback,
   } = useQuestManager<SC101QuestType, Stage>({
     moduleCode: "sc1-01",
-    buildPool: (d, s) => {
-      if (s === "IDENTIFY") return generateIdentifyQuests(t, d);
-      if (s === "PROPERTIES") return generatePropertiesQuests(t, d);
-      if (s === "REACTIONS") return generateReactionsQuests(t, d);
-      return [];
-    },
+    buildPool,
     initialStage: "IDENTIFY",
   });
 
@@ -58,12 +80,6 @@ export default function SC101Page() {
   const handleTest = (substance: Substance, tool: Tool) => {
     setTestedReactions((prev) => [...prev, { substance, tool }]);
   };
-
-  const stages = [
-    { id: "IDENTIFY", label: t("sc1_01.stages.identify") },
-    { id: "PROPERTIES", label: t("sc1_01.stages.properties") },
-    { id: "REACTIONS", label: t("sc1_01.stages.reactions") },
-  ];
 
   const getObservation = (substance: Substance, tool: Tool) => {
     return t(`sc1_01.lab_ui.results.${substance}_${tool}`);
@@ -82,6 +98,7 @@ export default function SC101Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FunctionalGroupCanvas from "@/components/chamber/sc3-04/FunctionalGroupCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -207,10 +208,23 @@ export default function SC304Page() {
     }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
-        { id: "ALCOHOLS", label: t("sc3_04.stages.alcohols") },
-        { id: "ACIDS", label: t("sc3_04.stages.acids") },
-        { id: "ESTERS", label: t("sc3_04.stages.esters") },
+        { id: "ALCOHOLS" as Stage, label: t("sc3_04.stages.alcohols") },
+        { id: "ACIDS" as Stage, label: t("sc3_04.stages.acids") },
+        { id: "ESTERS" as Stage, label: t("sc3_04.stages.esters") },
     ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SC304Quest, Stage>({
+        moduleTitle: t("sc3_04.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sc3_04.difficulty.BASIC"),
+            CORE: t("sc3_04.difficulty.CORE"),
+            ADVANCED: t("sc3_04.difficulty.ADVANCED"),
+            ELITE: t("sc3_04.difficulty.ELITE"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
 
     useEffect(() => {
         if (currentQuest?.molecule) {
@@ -235,6 +249,7 @@ export default function SC304Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

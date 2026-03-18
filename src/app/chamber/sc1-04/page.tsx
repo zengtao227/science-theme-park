@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
@@ -9,6 +9,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AtomBuilder from "@/components/chamber/sc1-04/AtomBuilder";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "build" | "periodic" | "groups";
 type PeriodicQuest = Quest & { stage: Stage };
@@ -160,6 +161,25 @@ export default function SC104Page() {
     },
   };
 
+  const stages = useMemo(() => [
+    { id: "build" as Stage, label: sc1_04_t.stages.build },
+    { id: "periodic" as Stage, label: sc1_04_t.stages.periodic },
+    { id: "groups" as Stage, label: sc1_04_t.stages.groups },
+  ], [sc1_04_t.stages.build, sc1_04_t.stages.groups, sc1_04_t.stages.periodic]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<PeriodicQuest, Stage>({
+    moduleTitle: sc1_04_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: sc1_04_t.difficulty.basic,
+      CORE: sc1_04_t.difficulty.core,
+      ADVANCED: sc1_04_t.difficulty.advanced,
+      ELITE: sc1_04_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, sc1_04_t.difficulty.advanced, sc1_04_t.difficulty.basic, sc1_04_t.difficulty.core, sc1_04_t.difficulty.elite, sc1_04_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -170,13 +190,10 @@ export default function SC104Page() {
       moduleCode="SC1.04"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "build", label: sc1_04_t.stages.build },
-        { id: "periodic", label: sc1_04_t.stages.periodic },
-        { id: "groups", label: sc1_04_t.stages.groups },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -7,6 +7,7 @@ import OhmsLawVisualization from "@/components/chamber/sp2-02/OhmsLawVisualizati
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "OHMS_LAW" | "SERIES_CIRCUITS" | "PARALLEL_CIRCUITS";
 
@@ -270,6 +271,27 @@ export default function SP202OhmsLaw() {
         return [];
     }, [formatResistanceList, buildOhmsPrompt, t]);
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sp2_02_t, d, s), [buildStagePool, sp2_02_t]);
+
+    const stages = useMemo(() => [
+        { id: "OHMS_LAW" as Stage, label: sp2_02_t.stages.ohms_law },
+        { id: "SERIES_CIRCUITS" as Stage, label: sp2_02_t.stages.series_circuits },
+        { id: "PARALLEL_CIRCUITS" as Stage, label: sp2_02_t.stages.parallel_circuits },
+    ], [sp2_02_t.stages.ohms_law, sp2_02_t.stages.parallel_circuits, sp2_02_t.stages.series_circuits]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SP202Quest, Stage>({
+        moduleTitle: sp2_02_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sp2_02_t.difficulty.basic,
+            CORE: sp2_02_t.difficulty.core,
+            ADVANCED: sp2_02_t.difficulty.advanced,
+            ELITE: sp2_02_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sp2_02_t.difficulty.advanced, sp2_02_t.difficulty.basic, sp2_02_t.difficulty.core, sp2_02_t.difficulty.elite, sp2_02_t.title, stages]);
+
     const {
         difficulty,
         stage,
@@ -287,7 +309,7 @@ export default function SP202OhmsLaw() {
       requestAiFeedback
     } = useQuestManager<SP202Quest, Stage>({
     moduleCode: "sp2-02",
-        buildPool: (d, s) => buildStagePool(sp2_02_t, d, s),
+        buildPool,
         initialStage: "OHMS_LAW",
     });
 
@@ -312,17 +334,14 @@ export default function SP202OhmsLaw() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={sp2_02_t.title}
+            title={sp2_02_t.title}
             moduleCode="SP2.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "OHMS_LAW", label: sp2_02_t.stages.ohms_law },
-                { id: "SERIES_CIRCUITS", label: sp2_02_t.stages.series_circuits },
-                { id: "PARALLEL_CIRCUITS", label: sp2_02_t.stages.parallel_circuits },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

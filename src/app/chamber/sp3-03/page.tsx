@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FlowMonitor from "@/components/shared/FlowMonitor";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import {
   Stage,
@@ -66,6 +67,19 @@ export default function SP303Page() {
     { id: "POWER" as Stage, label: t("sp3_03.stages.work") },
   ], [t]);
 
+  const printSections = useMemo(() => buildQuestPrintSections<SP303Quest, Stage>({
+    moduleTitle: t("sp3_03.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sp3_03.difficulty.basic"),
+      CORE: t("sp3_03.difficulty.core"),
+      ADVANCED: t("sp3_03.difficulty.advanced"),
+      ELITE: t("sp3_03.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t]);
+
   if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
 
   return (
@@ -81,6 +95,7 @@ export default function SP303Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

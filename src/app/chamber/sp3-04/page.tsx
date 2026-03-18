@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PressureBuoyancyCanvas from "@/components/chamber/sp1-07/PressureBuoyancyCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "PRESSURE" | "BUOYANCY" | "HYDRAULICS";
@@ -671,6 +672,19 @@ export default function SP304Page() {
         { id: "HYDRAULICS" as Stage, label: t("sp3_04.stages.hydraulics") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SP304Quest, Stage>({
+        moduleTitle: t("sp3_04.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sp3_04.difficulty.basic"),
+            CORE: t("sp3_04.difficulty.core"),
+            ADVANCED: t("sp3_04.difficulty.advanced"),
+            ELITE: t("sp3_04.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     if (!currentQuest) return <div className="p-20 text-white">Loading...</div>;
 
     return (
@@ -686,6 +700,7 @@ export default function SP304Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

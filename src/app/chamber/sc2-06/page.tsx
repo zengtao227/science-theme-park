@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -401,6 +402,19 @@ export default function SC206Page() {
     [t]
   );
 
+  const printSections = useMemo(() => buildQuestPrintSections<SC206Quest, Stage>({
+    moduleTitle: t("sc2_06.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sc2_06.difficulty.basic"),
+      CORE: t("sc2_06.difficulty.core"),
+      ADVANCED: t("sc2_06.difficulty.advanced"),
+      ELITE: t("sc2_06.difficulty.elite"),
+    },
+    buildPool: buildStagePool,
+  }), [buildStagePool, stagesProps, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -414,6 +428,7 @@ export default function SC206Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

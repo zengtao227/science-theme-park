@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcousticsVisualization from "@/components/chamber/sp3-06/AcousticsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "SOUND_WAVES" | "FREQUENCY_PITCH" | "LOUDNESS_INTENSITY";
@@ -659,6 +660,19 @@ export default function SP306Page() {
         { id: "LOUDNESS_INTENSITY" as Stage, label: t("sp3_06.stages.loudness_intensity") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SP306Quest, Stage>({
+        moduleTitle: t("sp3_06.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sp3_06.difficulty.basic"),
+            CORE: t("sp3_06.difficulty.core"),
+            ADVANCED: t("sp3_06.difficulty.advanced"),
+            ELITE: t("sp3_06.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     if (!currentQuest) {
         return (
             <ChamberLayout
@@ -673,6 +687,7 @@ export default function SP306Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
+                printSections={printSections}
                 translations={{
                     back: t("sp3_06.back"),
                     check: t("sp3_06.check"),
@@ -701,6 +716,7 @@ export default function SP306Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

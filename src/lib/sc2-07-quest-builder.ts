@@ -23,6 +23,26 @@ import {
   calorimetryElite,
 } from './sc2-07-quest-data';
 
+function buildCalorimetryData(data: any) {
+  const tempChange = (data.finalTemp || 0) - (data.initialTemp || 0);
+  const solutionHeat = (data.mass || 0) * (data.specificHeat || 0) * tempChange;
+  const calorimeterHeat = (data.calorimeterCapacity || 0) * tempChange;
+  const heat = solutionHeat + calorimeterHeat;
+  const deltaH = data.moles ? -(heat / data.moles) / 1000 : undefined;
+
+  return {
+    mass: data.mass || 0,
+    specificHeat: data.specificHeat || 0,
+    initialTemp: data.initialTemp || 0,
+    finalTemp: data.finalTemp || 0,
+    tempChange,
+    heat,
+    moles: data.moles,
+    deltaH,
+    calorimeterCapacity: data.calorimeterCapacity,
+  };
+}
+
 /**
  * Build quest pool for a specific stage and difficulty
  * Returns 5 quests per stage/difficulty combination
@@ -82,8 +102,16 @@ function buildQuestFromData(
   const expressionLatex = equationLatex; // Use equation as expression context
   const targetLabel = t ? t("sc2_07.labels.target") : (stage === 'ENERGY_CHANGES' ? 'Value' : 'Result');
   const targetLatex = `\\\\text{${targetLabel}}`;
+  const calorimetryData = stage === 'CALORIMETRY' ? buildCalorimetryData(data) : undefined;
+  const calorimetryExpected: number = stage === 'CALORIMETRY'
+    ? ((difficulty === 'CORE' || difficulty === 'ELITE')
+        ? (calorimetryData?.deltaH ?? 0)
+        : (calorimetryData?.heat ?? 0))
+    : 0;
   const correctLatex = stage === 'CALORIMETRY'
-    ? `${data.calorimetryData?.heat || 0} J`
+    ? ((difficulty === 'CORE' || difficulty === 'ELITE')
+        ? `${calorimetryData?.deltaH ?? 0} kJ\\,mol^{-1}`
+        : `${calorimetryData?.heat ?? 0} J`)
     : `${data.deltaH || data.targetDeltaH || 0} kJ`;
 
   const quest: SC207Quest = {
@@ -151,14 +179,17 @@ function buildQuestFromData(
       unit: 'kJ'
     }];
   } else if (stage === 'CALORIMETRY') {
-    quest.calorimetryData = data.calorimetryData;
+    quest.calorimetryData = calorimetryData;
     quest.slots = [{
-      id: 'heat',
-      labelLatex: 'q',
+      id: (difficulty === 'CORE' || difficulty === 'ELITE') ? 'deltaH' : 'heat',
+      labelLatex: (difficulty === 'CORE' || difficulty === 'ELITE') ? '\\Delta H' : 'q',
       placeholder: 'Enter value',
-      expected: data.calorimetryData.heat,
-      unit: 'J'
+      expected: calorimetryExpected,
+      unit: (difficulty === 'CORE' || difficulty === 'ELITE') ? 'kJ/mol' : 'J'
     }];
+    if (typeof calorimetryData?.deltaH === 'number') {
+      quest.deltaH = calorimetryData.deltaH;
+    }
   }
 
   return quest;
