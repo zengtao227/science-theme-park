@@ -277,7 +277,7 @@ export default function S201Page() {
   const sm2_01_t = useMemo(() => ({
     title: t("sm2_01.title"),
     back: t("sm2_01.back"),
-    check: t("sm2_01.check"),
+    check: t("common.check"),
     solve_success: t("sm2_01.solve_success"),
     solve_fail: t("sm2_01.solve_fail"),
     params_config: t("sm2_01.params_config"),

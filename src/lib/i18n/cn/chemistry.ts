@@ -2103,7 +2103,7 @@ export const cnChemistry = {
             hint: "提示",
             sensor_feed: "传感器数据流",
             material: "材料",
-            atom_economy: "原子经济性",
+            atom_economy: "\\text{原子经济性}",
             lifecycle_stage: "生命周期阶段"
         },
         placeholders: {

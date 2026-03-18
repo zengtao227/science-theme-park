@@ -2097,7 +2097,7 @@ export const deChemistry = {
             hint: "HINWEIS",
             sensor_feed: "SENSOR-DATENSTROM",
             material: "Material",
-            atom_economy: "Atomökonomie",
+            atom_economy: "\\text{Atomökonomie}",
             lifecycle_stage: "Lebenszyklus-Phase"
         },
         placeholders: {

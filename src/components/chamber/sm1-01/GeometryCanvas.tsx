@@ -105,6 +105,12 @@ export default function S101_GeometryCanvas({
     const neonRed = "#ff3131";
 
     const mainColor = userAnswer === undefined ? neonCyan : (isCorrect ? neonGreen : neonRed);
+    const renderLabelValue = (label: string, value: number) => (
+        <span>
+            {label}=
+            <InlineMath math={String(value)} />
+        </span>
+    );
 
     return (
         <div className="relative w-full aspect-square bg-[#050505] rounded-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center p-4 sm:p-8">
@@ -140,12 +146,12 @@ export default function S101_GeometryCanvas({
                             <rect width={params.a * scale} height={params.b * scale} fill="url(#shapeGrad)" stroke={mainColor} strokeWidth="2.5" rx="2" />
                             <foreignObject x={0} y={-30} width={params.a * scale} height={20}>
                                 <div className="flex justify-center items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.length}=${params.a}`} />
+                                    {renderLabelValue(translations.length, params.a)}
                                 </div>
                             </foreignObject>
                             <foreignObject x={params.a * scale + 5} y={0} width={60} height={params.b * scale}>
                                 <div className="flex justify-start items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.width}=${params.b}`} />
+                                    {renderLabelValue(translations.width, params.b)}
                                 </div>
                             </foreignObject>
                         </g>
@@ -159,12 +165,12 @@ export default function S101_GeometryCanvas({
                             />
                             <foreignObject x={-(params.b * scale) / 2} y={(params.h * scale) / 2 + 5} width={params.b * scale} height={20}>
                                 <div className="flex justify-center items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.base}=${params.b}`} />
+                                    {renderLabelValue(translations.base, params.b)}
                                 </div>
                             </foreignObject>
                             <foreignObject x={-(params.b * scale) / 2 - 65} y={-(params.h * scale) / 2} width={60} height={params.h * scale}>
                                 <div className="flex justify-end items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.height}=${params.h}`} />
+                                    {renderLabelValue(translations.height, params.h)}
                                 </div>
                             </foreignObject>
                         </g>
@@ -178,12 +184,12 @@ export default function S101_GeometryCanvas({
                             />
                             <foreignObject x={-(params.a * scale) / 2} y={-(params.h * scale) / 2 - 25} width={params.a * scale} height={20}>
                                 <div className="flex justify-center items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.side}=${params.a}`} />
+                                    {renderLabelValue(translations.side, params.a)}
                                 </div>
                             </foreignObject>
                             <foreignObject x={-(params.b * scale) / 2} y={(params.h * scale) / 2 + 5} width={params.b * scale} height={20}>
                                 <div className="flex justify-center items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.base}=${params.b}`} />
+                                    {renderLabelValue(translations.base, params.b)}
                                 </div>
                             </foreignObject>
                             {/* Height indicator line */}
@@ -194,7 +200,7 @@ export default function S101_GeometryCanvas({
                             />
                             <foreignObject x={-(params.a * scale) / 2 - 65} y={-(params.h * scale) / 2} width={60} height={params.h * scale}>
                                 <div className="flex justify-end items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.height}=${params.h}`} />
+                                    {renderLabelValue(translations.height, params.h)}
                                 </div>
                             </foreignObject>
                         </g>
@@ -207,7 +213,7 @@ export default function S101_GeometryCanvas({
                             <circle r="2" fill="white" />
                             <foreignObject x={0} y={-25} width={params.r * scale} height={20}>
                                 <div className="flex justify-center items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.radius}=${params.r}`} />
+                                    {renderLabelValue(translations.radius, params.r)}
                                 </div>
                             </foreignObject>
                         </g>
@@ -220,7 +226,7 @@ export default function S101_GeometryCanvas({
                             <path d={`M ${params.a * scale},0 L ${params.a * scale + 25},-25 L ${params.a * scale + 25},${params.a * scale - 25} L ${params.a * scale},${params.a * scale}`} fill="rgba(255,255,255,0.05)" stroke={mainColor} strokeWidth="1" opacity="0.5" />
                             <foreignObject x={0} y={params.a * scale + 5} width={params.a * scale} height={20}>
                                 <div className="flex justify-center items-center h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.side}=${params.a}`} />
+                                    {renderLabelValue(translations.side, params.a)}
                                 </div>
                             </foreignObject>
                         </g>
@@ -235,8 +241,8 @@ export default function S101_GeometryCanvas({
                             <ellipse cy={(params.h * scale) / 2} rx={params.r * scale} ry={params.r * scale * 0.3} fill="url(#shapeGrad)" stroke={mainColor} strokeWidth="2.5" />
                             <foreignObject x={params.r * scale + 10} y={-(params.h * scale) / 2} width={80} height={params.h * scale}>
                                 <div className="flex flex-col justify-center items-start h-full text-[10px] text-white/70 font-mono">
-                                    <InlineMath math={`${translations.radius}=${params.r}`} />
-                                    <InlineMath math={`${translations.height}=${params.h}`} />
+                                    {renderLabelValue(translations.radius, params.r)}
+                                    {renderLabelValue(translations.height, params.h)}
                                 </div>
                             </foreignObject>
                         </g>

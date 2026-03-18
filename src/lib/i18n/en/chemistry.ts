@@ -2104,7 +2104,7 @@ export const enChemistry = {
             hint: "HINT",
             sensor_feed: "SENSOR FEED",
             material: "Material",
-            atom_economy: "Atom Economy",
+            atom_economy: "\\text{Atom Economy}",
             lifecycle_stage: "Lifecycle Stage"
         },
         placeholders: {

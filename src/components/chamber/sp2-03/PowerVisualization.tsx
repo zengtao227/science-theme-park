@@ -36,7 +36,7 @@ export default function PowerVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider mb-2">
-                    <BlockMath math="P = U \\times I" />
+                    <BlockMath math={"P = U \\times I"} />
                 </div>
                 
                 <div className="relative w-48 h-48">

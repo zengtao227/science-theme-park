@@ -337,7 +337,7 @@ export default function GB201Neurobiology() {
                                                 <span className="text-purple-400 font-bold text-xs">?</span>
                                             </div>
                                             <div className="text-sm text-purple-300/80 leading-relaxed italic overflow-x-auto">
-                                                <InlineMath math={currentQuest?.hintLatex[0]} />
+                                                {renderMixedText(currentQuest?.hintLatex[0] || "", "font-sans text-sm text-purple-300/80 leading-relaxed italic whitespace-pre-wrap")}
                                             </div>
                                         </div>
                                     )}

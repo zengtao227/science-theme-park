@@ -168,7 +168,7 @@ function buildStagePool(
                 {
                     id: "IG-A5", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.combined_law", { target: "P2" }),
-                    expressionLatex: "\\frac{P_1V_1}{T_1} = \\\frac{P_2V_2}{T_2}",
+                    expressionLatex: "\\frac{P_1V_1}{T_1} = \\frac{P_2V_2}{T_2}",
                     targetLatex: "P_2",
                     slots: [{ id: "f", labelLatex: t("gp2_01.labels.symbol"), placeholder: t("gp2_01.placeholders.p2"), expected: "P2" }], // Logic placeholder
                     correctLatex: "P_2 = P_1 \\frac{V_1 T_2}{V_2 T_1}",
@@ -207,7 +207,7 @@ function buildStagePool(
                 {
                     id: "IG-E4", difficulty, stage, gasType: "ideal",
                     promptLatex: t("gp2_01.prompts.weather_balloon", { v1: 10, t1: 300, t2: 240 }),
-                    expressionLatex: "\\frac{V_1}{T_1} = \\\frac{V_2}{T_2}",
+                    expressionLatex: "\\frac{V_1}{T_1} = \\frac{V_2}{T_2}",
                     targetLatex: "V_2",
                     slots: [{ id: "v", labelLatex: "V_2 \\text{ (m}^{3})", placeholder: t("gp2_01.placeholders.v_8"), expected: 8 }],
                     correctLatex: "8 \\text{ m}^{3}",
@@ -374,7 +374,7 @@ function buildStagePool(
                 { id: "C-E2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_vt_slope"), expressionLatex: "Slope = R/P = 1", targetLatex: "S", slots: [{ id: "s", labelLatex: "S", placeholder: t("gp2_01.placeholders.v_1"), expected: 1 }], correctLatex: "1", hintLatex: ["R = 8.314"] },
                 { id: "C-E3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_piston_work"), expressionLatex: "300 = 100(V_2 - 1)", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: t("gp2_01.placeholders.v_4"), expected: 4 }], correctLatex: "4 L", hintLatex: ["W = P \\Delta V"] },
                 { id: "C-E4", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2_piston"), expressionLatex: "300/1 = T_2/4", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: t("gp2_01.placeholders.v_1200"), expected: 1200 }], correctLatex: "1200 K", hintLatex: ["Prop"] },
-                { id: "C-E5", difficulty, stage, lawType: "combined", promptLatex: t("gp2_01.prompts.charles_carnot_ke"), expressionLatex: "v_{rms} \\propto \\\sqrt{T}", targetLatex: "\\text{Power}", slots: [{ id: "p", labelLatex: "P", placeholder: t("gp2_01.placeholders.v_0_dot_5"), expected: 0.5 }], correctLatex: "Sq root", hintLatex: ["Power 1/2"] }
+                { id: "C-E5", difficulty, stage, lawType: "combined", promptLatex: t("gp2_01.prompts.charles_carnot_ke"), expressionLatex: "v_{rms} \\propto \\sqrt{T}", targetLatex: "\\text{Power}", slots: [{ id: "p", labelLatex: "P", placeholder: t("gp2_01.placeholders.v_0_dot_5"), expected: 0.5 }], correctLatex: "Sq root", hintLatex: ["Power 1/2"] }
             );
         }
     }

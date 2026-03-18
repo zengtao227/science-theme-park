@@ -68,7 +68,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): OrganicQu
             stage,
             promptLatex: t(`gc2_01.prompts.${data.key}`),
             expressionLatex: "",
-            targetLatex: "\\\\text{Answer}",
+            targetLatex: "\\text{Answer}",
             slots: [{ id: "ans", labelLatex: "Answer", placeholder: t("gc2_01.placeholders.ellipsis"), expected: data.expected }],
             correctLatex: data.expected,
             simConfig: {

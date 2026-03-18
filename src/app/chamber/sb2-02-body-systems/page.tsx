@@ -131,7 +131,7 @@ export default function SB202BodySystemsPage() {
                         promptLatex: t("sb2_02.prompts.digestive_a1"),
                         expressionLatex: `\\text{${t("sb2_02.organs.pancreas")}}`,
                         targetLatex: `\\text{${t("sb2_02.answers.ph_increase")}}`,
-                        slots: [{ id: "ph", labelLatex: `\text{pH}`, placeholder: t("sb2_02.placeholders.v_7"), expected: 7 }],
+                        slots: [{ id: "ph", labelLatex: `\\text{pH}`, placeholder: t("sb2_02.placeholders.v_7"), expected: 7 }],
                         correctLatex: `\\text{pH} \\approx 7`,
                         hintLatex: [t("sb2_02.hints.digestive_a1")]
                     },

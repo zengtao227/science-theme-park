@@ -177,13 +177,17 @@ export default function Cube3D({
         <div className="text-white font-mono text-sm">
           <div className="text-neon-green mb-2">{translations.volume}</div>
           <div className="bg-white/5 p-2 rounded">
-            <InlineMath math={`V = ${translations.side || "a"}^3 = ${sideLength}^3 = ${sideLength ** 3}\\text{ ${translations.unit || "cm"}}^3`} />
+            <span>
+              {translations.side || "a"}: <InlineMath math={`V = ${sideLength}^{3} = ${sideLength ** 3}`} /> {translations.unit || "cm"}³
+            </span>
           </div>
           {showDiagonal && (
             <div className="mt-2 text-neon-cyan">
               <div className="mb-1">{translations.diagonal}</div>
               <div className="bg-white/5 p-2 rounded">
-                <InlineMath math={`d = ${translations.side || "a"}\\sqrt{3} = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}\\text{ ${translations.unit || "cm"}}`} />
+                <span>
+                  {translations.side || "a"}: <InlineMath math={`d = ${sideLength}\\sqrt{3} \\approx ${(sideLength * Math.sqrt(3)).toFixed(2)}`} /> {translations.unit || "cm"}
+                </span>
               </div>
             </div>
           )}

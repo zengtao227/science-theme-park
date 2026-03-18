@@ -547,7 +547,7 @@ export default function SM210Page() {
                     {
                         id: "C-C4", difficulty, stage, dataType: "negative_strong",
                         promptLatex: t("sm2_10.prompts.b2_2_c_c4"),
-                        expressionLatex: `r < 0, \\ |r| \\text{ ${t("sm2_10.expressions.near")} } 1`,
+                        expressionLatex: `r < 0,\\; |r| \\text{ ${t("sm2_10.expressions.near")} } 1`,
                         targetLatex: t("sm2_10.labels.description"),
                         slots: [{ id: "desc", labelLatex: t("sm2_10.labels.type"), placeholder: t("sm2_10.placeholders.strong_negative"), expected: t("sm2_10.placeholders.strong_negative") }],
                         correctLatex: t("sm2_10.formula_phrases.strong_negative"),
