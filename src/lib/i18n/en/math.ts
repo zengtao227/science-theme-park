@@ -2565,6 +2565,9 @@ export const enMath = {
                 square_root_pm_latex: "\\text{Take square roots with }\\pm\\text{.}",
                 zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
             }
+        },
+        ui: {
+            loading: "Loading..."
         }
     },
     sm3_02: {

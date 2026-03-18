@@ -2541,6 +2541,9 @@ export const deMath = {
                 square_root_pm_latex: "\\text{Wurzel ziehen mit }\\pm\\text{.}",
                 zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
             }
+        },
+        ui: {
+            loading: "Wird geladen..."
         }
     },
     sm3_02: {

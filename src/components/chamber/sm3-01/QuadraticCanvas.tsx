@@ -212,9 +212,16 @@ function HintPanel({ stage, hints, lang }: { stage: string; hints?: string[]; la
 // ---------------------------------------------------------------
 // MAIN EXPORT
 // ---------------------------------------------------------------
-export default function S301QuadraticCanvas({ quest, lang = "EN" }: { quest: CanvasQuest; lang?: string }) {
+export default function S301QuadraticCanvas({
+  quest,
+  lang = "EN",
+  loadingText = "",
+}: {
+  quest: CanvasQuest;
+  lang?: string;
+  loadingText?: string;
+}) {
   if (!quest) {
-    const loadingText = lang === "CN" ? "加载中..." : lang === "DE" ? "Wird geladen..." : "Loading...";
     return (
       <div className="w-full rounded-xl border border-white/10 bg-white/[0.02] p-8 flex items-center justify-center">
         <span className="text-white/40 font-mono text-sm">{loadingText}</span>

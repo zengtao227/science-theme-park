@@ -271,8 +271,7 @@ export default function S301Page() {
   ];
 
   if (!currentQuest) {
-    const loadingText = currentLanguage === "CN" ? "加载中..." : currentLanguage === "DE" ? "Wird geladen..." : "Loading...";
-    return <div className="p-20 text-white">{loadingText}</div>;
+    return <div className="p-20 text-white">{t("sm3_01.ui.loading")}</div>;
   }
 
   return (
@@ -312,6 +311,7 @@ export default function S301Page() {
         <S301QuadraticCanvas
           quest={currentQuest}
           lang={currentLanguage}
+          loadingText={t("sm3_01.ui.loading")}
         />
       }
     >

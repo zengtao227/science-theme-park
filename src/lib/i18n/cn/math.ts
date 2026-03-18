@@ -2563,6 +2563,9 @@ export const cnMath = {
                 square_root_pm_latex: "\\text{开方时要考虑 }\\pm\\text{。}",
                 zero_product_latex: "\\text{若 }pq=0\\text{ 则 }p=0\\text{ 或 }q=0."
             }
+        },
+        ui: {
+            loading: "加载中..."
         }
     },
     sm3_02: {

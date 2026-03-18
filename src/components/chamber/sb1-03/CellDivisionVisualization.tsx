@@ -511,7 +511,7 @@ export default function CellDivisionVisualization({ quest, stage, translations }
         return (
             <div className="w-full h-64 bg-black/20 rounded-xl border border-white/5 flex items-center justify-center">
                 <p className="text-white/40 text-sm font-mono uppercase tracking-wider">
-                    {translations?.labels?.loading || "Loading..."}
+                    {translations?.labels?.loading ?? ""}
                 </p>
             </div>
         );
