@@ -16,9 +16,9 @@ export default function SP101_ForcesBasics() {
   const { t } = useLanguage();
 
   const stages = useMemo(() => [
-    { id: "FORCE_CONCEPTS" as Stage, label: t("sp1_01.stages.concepts") || "Concepts" },
-    { id: "FORCE_COMPOSITION" as Stage, label: t("sp1_01.stages.composition") || "Composition" },
-    { id: "FORCE_EQUILIBRIUM" as Stage, label: t("sp1_01.stages.equilibrium") || "Equilibrium" }
+    { id: "FORCE_CONCEPTS" as Stage, label: t("sp1_01.stages.concepts") },
+    { id: "FORCE_COMPOSITION" as Stage, label: t("sp1_01.stages.composition") },
+    { id: "FORCE_EQUILIBRIUM" as Stage, label: t("sp1_01.stages.equilibrium") }
   ], [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildSP101Pool(d as any, s, t), [t]);
@@ -61,7 +61,7 @@ export default function SP101_ForcesBasics() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={t("sp1_01.title") || "Forces Basics"}
+      title={t("sp1_01.title")}
       moduleCode="SP1.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
@@ -126,7 +126,7 @@ export default function SP101_ForcesBasics() {
             <div className="flex gap-6">
               <div className="flex flex-col">
                 <span className="text-[8px] font-black text-white/30 tracking-[0.2em] uppercase mb-1">
-                  {t("sp1_01.labels.progress") || "Progress"}
+                  {t("sp1_01.labels.progress")}
                 </span>
                 <span className="text-xs font-black text-cyan-400 tracking-wider">
                   {Math.round(progress)}%
@@ -134,7 +134,7 @@ export default function SP101_ForcesBasics() {
               </div>
               <div className="flex flex-col border-l border-white/10 pl-6">
                 <span className="text-[8px] font-black text-white/30 tracking-[0.2em] uppercase mb-1">
-                  {t("common.mastery") || "Success Rate"}
+                  {t("common.mastery")}
                 </span>
                 <span className={`text-xs font-black tracking-wider ${successRate > 0.8 ? 'text-green-400' : successRate > 0.5 ? 'text-amber-400' : 'text-white/60'}`}>
                   {Math.round(successRate * 100)}%
@@ -142,7 +142,7 @@ export default function SP101_ForcesBasics() {
               </div>
               <div className="flex flex-col border-l border-white/10 pl-6">
                 <span className="text-[8px] font-black text-white/30 tracking-[0.2em] uppercase mb-1">
-                  {t("common.attempts") || "Attempts"}
+                  {t("common.attempts")}
                 </span>
                 <span className="text-xs font-black text-white/60 tracking-wider">
                   {currentStageStats.attempts}
@@ -156,14 +156,14 @@ export default function SP101_ForcesBasics() {
                 disabled={!canPrevious}
                 className={`px-4 py-2 border border-white/10 text-[10px] uppercase font-black tracking-widest transition-all rounded-lg ${canPrevious ? 'hover:bg-white/10 hover:border-white/30 text-white' : 'opacity-20 cursor-not-allowed text-white/30'}`}
               >
-                {t("sp1_01.labels.previous") || "Prev"}
+                {t("sp1_01.labels.previous")}
               </button>
               <button
                 onClick={next}
                 disabled={!canNext}
                 className={`px-4 py-2 border border-white/10 text-[10px] uppercase font-black tracking-widest transition-all rounded-lg ${canNext ? 'hover:bg-white/10 hover:border-white/30 text-white' : 'opacity-20 cursor-not-allowed text-white/30'}`}
               >
-                {t("sp1_01.labels.skip") || "Skip"}
+                {t("sp1_01.labels.skip")}
               </button>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function SP101_ForcesBasics() {
                   </span>
                   {errorCount > 0 && (
                     <span className="px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded text-[9px] font-black text-red-400 tracking-[0.2em] uppercase animate-pulse">
-                      X {errorCount} {t("common.failed_attempts") || "Attempts"}
+                      X {errorCount} {t("common.failed_attempts")}
                     </span>
                   )}
                 </div>

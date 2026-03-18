@@ -972,6 +972,8 @@ export const enPhysics = {
                 next: "Next",
                 correct: "Law Verified",
                 incorrect: "Law Error",
+                ready: "SYSTEM_READY",
+                monitor_title: "NEWTON_PHYSICS_V1",
                 difficulty: {
                         basic: "BASIC",
                         core: "CORE",

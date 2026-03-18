@@ -294,11 +294,11 @@ export default function S204_SimilarityCanvas({ visual, labels }: S204_Similarit
             {/* HUD Overlay */}
             <div className="absolute top-3 left-4 flex gap-2 items-center pointer-events-none">
                 <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
-                <span className="text-[8px] font-mono text-white/70 tracking-[0.3em] uppercase">{labels?.sim_matrix || "SIM-MATRIX"}</span>
+                <span className="text-[8px] font-mono text-white/70 tracking-[0.3em] uppercase">{labels?.sim_matrix}</span>
             </div>
 
             <div className="absolute bottom-3 left-4 text-[7px] font-mono text-white/10 uppercase tracking-widest">
-                {labels?.k_scale_active || "K-SCALE ACTIVE"}
+                {labels?.k_scale_active}
             </div>
         </div>
     );

@@ -38,7 +38,7 @@ export default function PhotosynthesisCanvas({
 
         ctx.fillStyle = `rgba(255, 255, 0, ${lightAlpha})`;
         ctx.font = "10px monospace";
-        ctx.fillText(translations?.canvas_labels?.light ?? "LIGHT", w * 0.35, centerY - 45);
+        ctx.fillText(translations.canvas_labels.light, w * 0.35, centerY - 45);
 
         ctx.fillStyle = "#0a4d0a";
         ctx.beginPath();
@@ -94,9 +94,9 @@ export default function PhotosynthesisCanvas({
         ctx.stroke();
 
         const bars = [
-            { x: spacing * 2, value: light, color: "#ffff00", label: translations?.canvas_labels?.light ?? "Light" },
-            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations?.canvas_labels?.co2_label ?? "CO_2" },
-            { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: translations?.canvas_labels?.temp_label ?? "Temp" }
+            { x: spacing * 2, value: light, color: "#ffff00", label: translations.canvas_labels.light },
+            { x: spacing * 2 + barWidth + spacing, value: co2, color: "#00ffff", label: translations.canvas_labels.co2_label },
+            { x: spacing * 2 + (barWidth + spacing) * 2, value: temp * 2, color: "#ff8800", label: translations.canvas_labels.temp_label }
         ];
 
         bars.forEach(bar => {
@@ -117,7 +117,7 @@ export default function PhotosynthesisCanvas({
         ctx.fillStyle = "#00ff00";
         ctx.font = "bold 16px monospace";
         ctx.textAlign = "center";
-        ctx.fillText(`${translations?.canvas_labels?.rate ?? "Rate"}: ${Math.round(avgRate)}%`, w / 2, h * 0.9);
+        ctx.fillText(`${translations.canvas_labels.rate}: ${Math.round(avgRate)}%`, w / 2, h * 0.9);
     }, [translations]);
 
     const drawChloroplast = useCallback((ctx: CanvasRenderingContext2D, w: number, h: number) => {
@@ -161,7 +161,7 @@ export default function PhotosynthesisCanvas({
         ctx.fillStyle = "#00ff00";
         ctx.font = "10px monospace";
         ctx.textAlign = "center";
-        ctx.fillText(translations?.canvas_labels?.thylakoid ?? "THYLAKOID", centerX, centerY - 55);
+        ctx.fillText(translations.canvas_labels.thylakoid, centerX, centerY - 55);
         ctx.strokeStyle = "#00ff00";
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -169,7 +169,7 @@ export default function PhotosynthesisCanvas({
         ctx.lineTo(centerX, centerY - 35);
         ctx.stroke();
 
-        ctx.fillText(translations?.canvas_labels?.stroma ?? "STROMA", centerX + 70, centerY + 50);
+        ctx.fillText(translations.canvas_labels.stroma, centerX + 70, centerY + 50);
         ctx.beginPath();
         ctx.moveTo(centerX + 70, centerY + 45);
         ctx.lineTo(centerX + 40, centerY + 10);
@@ -213,4 +213,3 @@ export default function PhotosynthesisCanvas({
         />
     );
 }
-

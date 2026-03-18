@@ -135,8 +135,8 @@ export default function SP102NewtonsLaws() {
                 next: sp1_02_t.next,
                 correct: sp1_02_t.correct,
                 incorrect: sp1_02_t.incorrect,
-                ready: t("sp1_02.ready") || "SYSTEM_READY",
-                monitor_title: t("sp1_02.monitor_title") || "NEWTON_PHYSICS_V1",
+                ready: t("sp1_02.ready"),
+                monitor_title: t("sp1_02.monitor_title"),
             }}
             monitorContent={
                 <P102LawsCanvas

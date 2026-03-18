@@ -971,6 +971,8 @@ export const dePhysics = {
                 next: "Weiter",
                 correct: "Gesetz Bestätigt",
                 incorrect: "Gesetz Fehler",
+                ready: "SYSTEM_BEREIT",
+                monitor_title: "NEWTON_PHYSIK_V1",
                 difficulty: {
                         basic: "GRUNDLAGEN",
                         core: "KERN",

@@ -112,7 +112,7 @@ export default function SC106Page() {
     if (!currentQuest) {
       return (
         <div className="text-center text-white/60 py-12 animate-pulse font-mono tracking-widest">
-          {t('sc1_06.loading') || "INITIALIZING SYSTEM..."}
+          {t('sc1_06.loading')}
         </div>
       );
     }
@@ -143,7 +143,7 @@ export default function SC106Page() {
               <div className="flex flex-col items-center gap-8">
                 <div className="text-center space-y-4">
                   <h4 className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">
-                    {t('sc1_06.reaction_simulation.molecular_field') || "Molecular Interaction Field"}
+                    {t('sc1_06.reaction_simulation.molecular_field')}
                   </h4>
                   <div className="flex items-center justify-center gap-6 text-2xl lg:text-4xl font-light">
                     {currentQuest?.equation.reactants.map((c, i) => (
@@ -174,13 +174,13 @@ export default function SC106Page() {
                     onClick={() => handleComplete(true)}
                     className="px-10 py-4 bg-white text-black text-[10px] font-black tracking-[0.4em] uppercase rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] transition-all"
                   >
-                    {t('sc1_06.reaction_simulation.trigger') || "Trigger Reaction"}
+                    {t('sc1_06.reaction_simulation.trigger')}
                   </motion.button>
                 ) : (
                   <div className="flex items-center gap-3 text-neon-green bg-neon-green/10 border border-neon-green/30 px-6 py-3 rounded-full animate-in fade-in zoom-in duration-500">
                     <Zap className="w-4 h-4 fill-current" />
                     <span className="text-[10px] font-black tracking-[0.2em] uppercase">
-                      {t('sc1_06.reaction_simulation.success') || "REACTION STABLE"}
+                      {t('sc1_06.reaction_simulation.success')}
                     </span>
                   </div>
                 )}
@@ -258,7 +258,7 @@ export default function SC106Page() {
         <div className="flex flex-col h-full gap-6">
           <div className="space-y-4">
             <h3 className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">
-              {t('sc1_06.visualization.title') || "MOLECULAR MONITOR"}
+              {t('sc1_06.visualization.title')}
             </h3>
 
             <div className="h-[400px] w-full">
@@ -297,7 +297,7 @@ export default function SC106Page() {
           <div className="flex justify-between items-center px-2">
             <div className="flex items-center gap-4">
               <span className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">
-                {t('sp1_01.labels.progress') || "PROGRESS"}
+                {t('sp1_01.labels.progress')}
               </span>
               <span className="text-sm font-bold text-white/80 font-mono">
                 {Math.round((nonce / (pool.length || 1)) * 100)}%
@@ -305,7 +305,7 @@ export default function SC106Page() {
             </div>
             <div className="flex gap-8">
               <div className="flex flex-col items-end">
-                <span className="text-[8px] font-black tracking-widest text-white/30 uppercase">{t('common.mastery') || "MASTERY"}</span>
+                <span className="text-[8px] font-black tracking-widest text-white/30 uppercase">{t('common.mastery')}</span>
                 <span className={clsx(
                   "text-xs font-black font-mono",
                   successRate > 0.8 ? "text-neon-green" : successRate > 0.5 ? "text-yellow-400" : "text-white/60"
@@ -314,7 +314,7 @@ export default function SC106Page() {
                 </span>
               </div>
               <div className="flex flex-col items-end">
-                <span className="text-[8px] font-black tracking-widest text-white/30 uppercase">{t('common.attempts') || "ATTEMPTS"}</span>
+                <span className="text-[8px] font-black tracking-widest text-white/30 uppercase">{t('common.attempts')}</span>
                 <span className="text-xs font-black text-white/80 font-mono">{currentStageStats.attempts}</span>
               </div>
             </div>
@@ -340,7 +340,7 @@ export default function SC106Page() {
               </span>
               {errorCount > 0 && (
                 <span className="ml-2 text-[8px] font-bold bg-red-500/20 text-red-400 px-2 py-0.5 rounded border border-red-500/30">
-                  {t('common.failed_attempts') || "FAIL"} : {errorCount}
+                  {t('common.failed_attempts')} : {errorCount}
                 </span>
               )}
             </div>

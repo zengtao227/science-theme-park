@@ -1929,6 +1929,11 @@ export const cnChemistry = {
             description: "观察分子结构和反应动力学",
             current_equation: "当前化学方程式"
         },
+        reaction_simulation: {
+            molecular_field: "分子相互作用场",
+            trigger: "触发反应",
+            success: "反应稳定"
+        },
         loading: "正在初始化化学反应模拟...",
         hints: {
             synthesis_hint: "寻找多个反应物结合成单一产物",

@@ -429,12 +429,12 @@ export default function S201Page() {
   });
 
   const stages = [
-    { id: "EXPLORE", label: sm2_01_t.tabs?.explore ?? "EXPLORE" },
-    { id: "ARCHITECT", label: sm2_01_t.tabs?.architect ?? "ARCHITECT" },
-    { id: "SCRAPPER", label: sm2_01_t.tabs?.scrapper ?? "SCRAPPER" },
-    { id: "SPEEDSTER", label: sm2_01_t.tabs?.speedster ?? "SPEEDSTER" },
-    { id: "VOYAGER", label: sm2_01_t.tabs?.voyager ?? "VOYAGER" },
-    { id: "ELITE", label: sm2_01_t.tabs?.elite ?? "ELITE" },
+    { id: "EXPLORE", label: sm2_01_t.tabs?.explore },
+    { id: "ARCHITECT", label: sm2_01_t.tabs?.architect },
+    { id: "SCRAPPER", label: sm2_01_t.tabs?.scrapper },
+    { id: "SPEEDSTER", label: sm2_01_t.tabs?.speedster },
+    { id: "VOYAGER", label: sm2_01_t.tabs?.voyager },
+    { id: "ELITE", label: sm2_01_t.tabs?.elite },
   ];
 
   const handleModeChange = (mode: string) => {
@@ -509,24 +509,24 @@ export default function S201Page() {
       stages={stages}
       currentStage={questMode}
       onStageChange={handleModeChange}
-      footerLeft={sm2_01_t.ui?.footer_left ?? "S2.01_BINOMIAL_FACTORY"}
+      footerLeft={sm2_01_t.ui?.footer_left}
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}
       successRate={successRate}
       translations={{
         back: sm2_01_t.back,
-        check: sm2_01_t.check || "VERIFY",
-        next: sm2_01_t.ui?.execute_next_sequence ?? "NEXT",
-        correct: sm2_01_t.solve_success ?? "VERIFIED",
-        incorrect: sm2_01_t.solve_fail || "INCORRECT",
+        check: sm2_01_t.check,
+        next: sm2_01_t.ui?.execute_next_sequence,
+        correct: sm2_01_t.solve_success,
+        incorrect: sm2_01_t.solve_fail,
         ready: t("sm2_01.ready"),
         monitor_title: sm2_01_t.ui?.visual_reference_position ?? "",
         difficulty: {
-          basic: sm2_01_t.difficulty?.basic ?? "BASIC",
-          core: sm2_01_t.difficulty?.core ?? "CORE",
-          advanced: sm2_01_t.difficulty?.advanced ?? "ADVANCED",
-          elite: sm2_01_t.difficulty?.elite ?? "ELITE",
+          basic: sm2_01_t.difficulty?.basic,
+          core: sm2_01_t.difficulty?.core,
+          advanced: sm2_01_t.difficulty?.advanced,
+          elite: sm2_01_t.difficulty?.elite,
         },
       }}
       monitorContent={
@@ -558,14 +558,14 @@ export default function S201Page() {
                       <Zap className="text-neon-green w-5 h-5" />
                     </div>
                     <h3 className="text-xl font-black neon-text-green tracking-tighter uppercase">
-                      {sm2_01_t.solve_success ?? "VERIFIED"}
+                      {sm2_01_t.solve_success}
                     </h3>
                     <div className="h-px bg-white/10 w-full" />
                     <button
                       onClick={() => (questMode !== "EXPLORE" ? next() : setSnappedBlocks({}))}
                       className="w-full py-3 bg-neon-green/10 text-neon-green border border-neon-green hover:bg-neon-green text-[10px] font-bold tracking-widest uppercase transition-colors hover:text-black"
                     >
-                      {sm2_01_t.ui?.continue_operation ?? "CONTINUE"}
+                      {sm2_01_t.ui?.continue_operation}
                     </button>
                   </div>
                 </motion.div>
@@ -576,11 +576,11 @@ export default function S201Page() {
             <div className="p-4 bg-white/[0.02] border-t-2 border-white/10 text-[9px] font-black text-white/90 uppercase tracking-[0.4em] flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-neon-green rounded-full shadow-[0_0_10px_#00ff9d]" />{" "}
-                {sm2_01_t.ui?.status_operational ?? "OPERATIONAL"}
+                {sm2_01_t.ui?.status_operational}
               </div>
               <div className="flex items-center gap-4">
-                <span>{sm2_01_t.ui?.fps ?? "FPS"}: 60.0</span>
-                <span>{sm2_01_t.ui?.latency ?? "LATENCY"}: 2ms</span>
+                <span>{sm2_01_t.ui?.fps}: 60.0</span>
+                <span>{sm2_01_t.ui?.latency}: 2ms</span>
               </div>
             </div>
           )}
@@ -688,7 +688,7 @@ export default function S201Page() {
                           value={inputs.a_root || ""}
                           onChange={(e) => setInputs({ ...inputs, a_root: e.target.value })}
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
+                          placeholder={sm2_01_t.placeholders?.ax}
                         />
                         <span className="text-white/80"><InlineMath math=")^{2}" /></span>
 
@@ -700,14 +700,14 @@ export default function S201Page() {
                           value={inputs.a_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, a_mid: e.target.value })}
                           className="w-20 sm:w-24 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
+                          placeholder={sm2_01_t.placeholders?.ax}
                         />
                         <span className="text-white/80">)(</span>
                         <input
                           value={inputs.b_mid || ""}
                           onChange={(e) => setInputs({ ...inputs, b_mid: e.target.value })}
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={sm2_01_t.placeholders?.b ?? "b"}
+                          placeholder={sm2_01_t.placeholders?.b}
                         />
                         <span className="text-white/90">)</span>
 
@@ -718,13 +718,13 @@ export default function S201Page() {
                           value={inputs.b_root || ""}
                           onChange={(e) => setInputs({ ...inputs, b_root: e.target.value })}
                           className="w-16 sm:w-20 bg-black border-2 border-neon-cyan/50 p-2 text-center outline-none focus:border-neon-cyan text-white rounded-lg"
-                          placeholder={sm2_01_t.placeholders?.b ?? "b"}
+                          placeholder={sm2_01_t.placeholders?.b}
                         />
                         <span className="text-white/80"><InlineMath math=")^{2}" /></span>
                       </div>
                       <div className="h-px bg-white/10 w-full max-w-lg" />
                       <div className="text-white/90 text-sm uppercase tracking-widest font-mono">
-                        {renderMixedText(sm2_01_t.decomposition_pattern ?? "Zerlegungsmuster: $a^{2} + 2ab + b^{2}$")}
+                        {renderMixedText(sm2_01_t.decomposition_pattern)}
                       </div>
                     </div>
                   ) : (
@@ -734,9 +734,9 @@ export default function S201Page() {
                           value={inputs.a2 || ""}
                           onChange={(e) => setInputs({ ...inputs, a2: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question}
                         />
-                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff ?? "Coefficient"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff}</span>
                       </div>
                       <InlineMath math="x^{2}" />
                       <span className="text-4xl font-black text-neon-cyan">+</span>
@@ -745,9 +745,9 @@ export default function S201Page() {
                           value={inputs.ab || ""}
                           onChange={(e) => setInputs({ ...inputs, ab: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question}
                         />
-                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff ?? "Coefficient"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.coeff}</span>
                       </div>
                       <span className="text-4xl font-black text-white/80">x</span>
                       <span className="text-4xl font-black text-neon-cyan">+</span>
@@ -756,9 +756,9 @@ export default function S201Page() {
                           value={inputs.b2 || ""}
                           onChange={(e) => setInputs({ ...inputs, b2: e.target.value })}
                           className="w-24 sm:w-32 bg-black border-2 border-neon-cyan/50 p-4 text-center outline-none focus:border-neon-cyan text-3xl font-black text-white rounded-xl shadow-[0_0_15px_rgba(0,255,255,0.1)]"
-                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question}
                         />
-                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.const ?? "Constant"}</span>
+                        <span className="text-[10px] text-white/90 uppercase tracking-[0.2em] font-black text-center">{sm2_01_t.ui?.const}</span>
                       </div>
                     </>
                   )}
@@ -784,25 +784,25 @@ export default function S201Page() {
                   </div>
                   <div className="flex flex-col gap-4 text-center col-span-1">
                     <span className="text-xs text-white uppercase font-black tracking-widest">
-                      {sm2_01_t.ui?.identify_root_a ?? "ROOT A"}
+                      {sm2_01_t.ui?.identify_root_a}
                     </span>
                     <input
                       value={inputs.a || ""}
                       onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
-                      placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
+                      placeholder={sm2_01_t.placeholders?.ax}
                     />
                   </div>
                   <div className="flex items-end pb-4 justify-center text-4xl text-white font-black">+</div>
                   <div className="flex flex-col gap-4 text-center col-span-1">
                     <span className="text-xs text-white uppercase font-black tracking-widest">
-                      {sm2_01_t.ui?.identify_root_b ?? "ROOT B"}
+                      {sm2_01_t.ui?.identify_root_b}
                     </span>
                     <input
                       value={inputs.b || ""}
                       onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                       className="w-full bg-black border-2 border-white/60 p-3 text-center outline-none focus:border-white placeholder:text-white/90 font-black text-2xl text-white"
-                      placeholder={scrapperQuest?.variant === "XY" ? (sm2_01_t.placeholders?.by ?? "by") : (sm2_01_t.placeholders?.b ?? "b")}
+                      placeholder={scrapperQuest?.variant === "XY" ? sm2_01_t.placeholders?.by : sm2_01_t.placeholders?.b}
                     />
                   </div>
                 </>
@@ -822,14 +822,14 @@ export default function S201Page() {
                       value={inputs.part2 || ""}
                       onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={sm2_01_t.placeholders?.two_ab ?? "2ab"}
+                      placeholder={sm2_01_t.placeholders?.two_ab}
                     />
                     <span className="text-3xl font-black text-white">+</span>
                     <input
                       value={inputs.part3 || ""}
                       onChange={(e) => setInputs({ ...inputs, part3: e.target.value })}
                       className="w-28 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/90 text-2xl font-black text-white flex-shrink-0"
-                      placeholder={sm2_01_t.placeholders?.b_squared ?? "b²"}
+                      placeholder={sm2_01_t.placeholders?.b_squared}
                     />
                   </div>
                 </div>
@@ -868,7 +868,7 @@ export default function S201Page() {
                   </div>
                   <div className="flex flex-col items-center gap-6">
                     <div className="text-white/60 text-xs font-mono uppercase tracking-widest mb-2">
-                      {sm2_01_t.ui?.elite_step_1 ?? "STEP 1"}
+                      {sm2_01_t.ui?.elite_step_1}
                     </div>
                     <div className="flex items-center gap-4 justify-center bg-white/10 p-8 rounded-2xl border-2 border-white/40">
                       <span className="text-3xl text-white font-black">(</span>
@@ -876,20 +876,20 @@ export default function S201Page() {
                         value={inputs.base || ""}
                         onChange={(e) => setInputs({ ...inputs, base: e.target.value })}
                         className="w-32 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
-                        placeholder={sm2_01_t.placeholders?.cxy ?? "Cxy"}
+                        placeholder={sm2_01_t.placeholders?.cxy}
                       />
                       <span className="text-3xl text-white font-black">-</span>
                       <input
                         value={inputs.sub || ""}
                         onChange={(e) => setInputs({ ...inputs, sub: e.target.value })}
                         className="w-24 bg-transparent border-b-4 border-white/60 p-2 text-center outline-none focus:border-white text-3xl text-white font-black"
-                        placeholder={sm2_01_t.placeholders?.v ?? "V"}
+                        placeholder={sm2_01_t.placeholders?.v}
                       />
                       <span className="text-3xl text-white font-black"><InlineMath math=")^{2}" /></span>
                     </div>
 
                     <div className="text-white/60 text-xs font-mono uppercase tracking-widest mt-4 mb-2">
-                      {sm2_01_t.ui?.elite_step_2 ?? "STEP 2"}
+                      {sm2_01_t.ui?.elite_step_2}
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-2xl text-white font-black">+</span>
@@ -897,7 +897,7 @@ export default function S201Page() {
                         value={inputs.add_term || ""}
                         onChange={(e) => setInputs({ ...inputs, add_term: e.target.value })}
                         className="w-40 bg-black border-2 border-white/40 p-3 text-center outline-none focus:border-white text-xl text-white font-black"
-                        placeholder={sm2_01_t.placeholders?.two_cvxy ?? "2CVxy"}
+                        placeholder={sm2_01_t.placeholders?.two_cvxy}
                       />
                       <span className="text-2xl text-white font-black">-</span>
                       <input
@@ -919,19 +919,19 @@ export default function S201Page() {
                         value={inputs.a || ""}
                         onChange={(e) => setInputs({ ...inputs, a: e.target.value })}
                         className="w-24 sm:w-32 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder={sm2_01_t.placeholders?.ax ?? "ax"}
+                        placeholder={sm2_01_t.placeholders?.ax}
                       />
                       <span className="text-white">+</span>
                       <input
                         value={inputs.b || ""}
                         onChange={(e) => setInputs({ ...inputs, b: e.target.value })}
                         className="w-20 sm:w-28 bg-transparent border-b-4 border-white/60 text-center outline-none focus:border-white text-white font-black flex-shrink-0"
-                        placeholder={sm2_01_t.placeholders?.b ?? "b"}
+                        placeholder={sm2_01_t.placeholders?.b}
                       />
                       <span className="text-white">) (</span>
-                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || (sm2_01_t.placeholders?.ax ?? "ax")}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.a || sm2_01_t.placeholders?.ax}</span>
                       <span className="text-white">-</span>
-                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || (sm2_01_t.placeholders?.b ?? "b")}</span>
+                      <span className="text-white/70 min-w-[60px] text-center">{inputs.b || sm2_01_t.placeholders?.b}</span>
                       <span className="text-white">)</span>
                     </div>
                   ) : (
@@ -941,7 +941,7 @@ export default function S201Page() {
                           value={inputs.part1 || ""}
                           onChange={(e) => setInputs({ ...inputs, part1: e.target.value })}
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
-                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question}
                         />
                         <span className="text-white ml-2"><InlineMath math="x^{2}" /></span>
                       </div>
@@ -951,7 +951,7 @@ export default function S201Page() {
                           value={inputs.part2 || ""}
                           onChange={(e) => setInputs({ ...inputs, part2: e.target.value })}
                           className="w-32 bg-black border-2 border-white/60 p-4 text-center outline-none focus:border-white placeholder:text-white/70 font-black text-3xl text-white"
-                          placeholder={sm2_01_t.placeholders?.question ?? "?"}
+                          placeholder={sm2_01_t.placeholders?.question}
                         />
                       </div>
                     </div>
@@ -967,14 +967,14 @@ export default function S201Page() {
             <div className="flex items-center gap-2 mb-2">
               <Settings2 className="w-4 h-4 text-white" />
               <span className="text-[10px] uppercase tracking-[0.2em] font-black text-white underline underline-offset-[6px] decoration-white decoration-2">
-                {sm2_01_t.ui?.logic_lattice_title ?? "LOGIC"}
+                {sm2_01_t.ui?.logic_lattice_title}
               </span>
             </div>
             <div className="p-5 bg-white/[0.03] border-2 border-white/10 rounded-lg font-mono text-xs space-y-3 hover:border-white/60 transition-all">
               {questMode === "ARCHITECT" && (
                 <>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
-                    {sm2_01_t.ui?.logic_architect_step_1 ?? "STEP 1"}
+                    {sm2_01_t.ui?.logic_architect_step_1}
                   </div>
                   <div className="text-white font-black">
                     {architectQuest
@@ -982,7 +982,7 @@ export default function S201Page() {
                       : ""}
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
-                    {sm2_01_t.ui?.logic_architect_step_2 ?? "STEP 2"}
+                    {sm2_01_t.ui?.logic_architect_step_2}
                   </div>
                   <div className="text-white font-black">
                     <InlineMath
@@ -999,13 +999,13 @@ export default function S201Page() {
               {questMode === "SCRAPPER" && (
                 <>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
-                    {sm2_01_t.ui?.logic_scrapper_step_1 ?? "STEP 1"}
+                    {sm2_01_t.ui?.logic_scrapper_step_1}
                   </div>
                   <div className="text-white font-black">
                     <InlineMath math={scrapperQuest ? `\\sqrt{${scrapperQuest.ca * scrapperQuest.ca}x^{2}} = ${scrapperQuest.ca}x` : ""} />
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
-                    {sm2_01_t.ui?.logic_scrapper_step_2 ?? "STEP 2"}
+                    {sm2_01_t.ui?.logic_scrapper_step_2}
                   </div>
                   <div className="text-white font-black">
                     {scrapperQuest ? `2 * (${scrapperQuest.ca}x) * (${scrapperQuest.vb}) = ${2 * scrapperQuest.ca * scrapperQuest.vb}x` : ""}
@@ -1015,10 +1015,10 @@ export default function S201Page() {
               {questMode === "VOYAGER" && (
                 <>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase">
-                    {sm2_01_t.ui?.logic_voyager_axiom_title ?? "AXIOM"}
+                    {sm2_01_t.ui?.logic_voyager_axiom_title}
                   </div>
                   <div className="text-white font-black flex items-center h-6">
-                    <InlineMath math={sm2_01_t.ui?.logic_voyager_axiom_body ?? "(A+B)(A-B) = A^{2} - B^{2}"} />
+                    <InlineMath math={sm2_01_t.ui?.logic_voyager_axiom_body ?? ""} />
                   </div>
                   <div className="text-white/90 text-[9px] tracking-[0.1em] font-black uppercase mt-1">
                     {sm2_01_t.ui?.logic_voyager_derivation_title ?? ""}
@@ -1030,7 +1030,7 @@ export default function S201Page() {
               )}
               {!["ARCHITECT", "SCRAPPER", "VOYAGER"].includes(questMode) && (
                 <div className="text-white/60 italic text-[10px] py-8 text-center uppercase tracking-[0.3em] font-black">
-                  {sm2_01_t.ui?.link_established ?? "LINK ESTABLISHED"}
+                  {sm2_01_t.ui?.link_established}
                 </div>
               )}
             </div>

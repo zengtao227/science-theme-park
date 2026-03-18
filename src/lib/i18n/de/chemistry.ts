@@ -1922,6 +1922,11 @@ export const deChemistry = {
             description: "Beobachten Sie die Molekülstruktur und Reaktionsdynamik",
             current_equation: "Aktuelle chemische Gleichung"
         },
+        reaction_simulation: {
+            molecular_field: "Molekulares Interaktionsfeld",
+            trigger: "Reaktion auslösen",
+            success: "REAKTION STABIL"
+        },
         loading: "Chemische Reaktionssimulation wird initialisiert...",
         hints: {
             synthesis_hint: "Suchen Sie nach mehreren Reaktanten, die sich zu einem einzigen Produkt verbinden",

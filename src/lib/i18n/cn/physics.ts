@@ -906,6 +906,8 @@ export const cnPhysics = {
         next: "下一步",
         correct: "定律验证通过",
         incorrect: "定律错误",
+        ready: "系统准备就绪",
+        monitor_title: "牛顿物理监测 V1",
         difficulty: {
             basic: "基础",
             core: "核心",

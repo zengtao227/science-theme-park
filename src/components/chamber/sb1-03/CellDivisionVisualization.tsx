@@ -521,7 +521,7 @@ export default function CellDivisionVisualization({ quest, stage, translations }
         <div className="w-full bg-black/20 rounded-xl border border-white/5 p-6 space-y-4">
             <div className="flex items-center justify-between">
                 <h4 className="text-[10px] uppercase tracking-[0.3em] text-neon-emerald font-black">
-                    {translations?.labels?.visualization || "Cell Division Visualization"}
+                    {translations?.labels?.visualization}
                 </h4>
                 <span className="text-[10px] text-white/40 font-mono">
                     {stage}

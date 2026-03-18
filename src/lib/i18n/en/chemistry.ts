@@ -1929,6 +1929,11 @@ export const enChemistry = {
             description: "Observe the molecular structure and reaction dynamics",
             current_equation: "Current Chemical Equation"
         },
+        reaction_simulation: {
+            molecular_field: "Molecular Interaction Field",
+            trigger: "Trigger Reaction",
+            success: "REACTION STABLE"
+        },
         loading: "Initializing chemical reaction simulation...",
         hints: {
             synthesis_hint: "Look for multiple reactants combining into a single product",

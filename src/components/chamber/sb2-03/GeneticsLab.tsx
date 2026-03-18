@@ -50,9 +50,9 @@ function PunnettSquare({ parent1, parent2, translations }: { parent1: Genotype; 
         const recessive = normalized[1];
         // Check if dominant allele is present
         if (dominant === dominant.toUpperCase() && (dominant === recessive || recessive === recessive.toUpperCase())) {
-            return translations.labels.purple_flowers?.split(' ')[0] || "Dominant";
+            return translations.labels.purple_flowers?.split(' ')[0] || "";
         }
-        return translations.labels.white_flowers?.split(' ')[0] || "Recessive";
+        return translations.labels.white_flowers?.split(' ')[0] || "";
     };
 
     return (
@@ -150,10 +150,10 @@ function OffspringStats({ offspring, translations }: { offspring: Genotype[]; tr
             <div className="border-t border-amber-500/50 pt-2 space-y-1 text-xs">
                 <div className="text-purple-300 capitalize">{translations.labels.phenotype_ratio}:</div>
                 <div className="flex justify-between text-purple-200">
-                    <span>{translations.labels.purple_flowers || "Dominant"}: {dominantCount}/4 ({dominantPercent}%)</span>
+                    <span>{translations.labels.purple_flowers}: {dominantCount}/4 ({dominantPercent}%)</span>
                 </div>
                 <div className="flex justify-between text-pink-200">
-                    <span>{translations.labels.white_flowers || "Recessive"}: {recessiveCount}/4 ({recessivePercent}%)</span>
+                    <span>{translations.labels.white_flowers}: {recessiveCount}/4 ({recessivePercent}%)</span>
                 </div>
             </div>
         </div>
@@ -192,7 +192,7 @@ function PeaPlant({ genotype, label, translations }: { genotype: Genotype; label
                 ></div>
             </div>
             <div className="text-sm font-bold text-cyan-300">{normalized}</div>
-            <div className="text-xs text-white">{isPurple ? translations.labels.purple_flowers?.split(' ')[0] || "Dominant" : translations.labels.white_flowers?.split(' ')[0] || "Recessive"}</div>
+            <div className="text-xs text-white">{isPurple ? (translations.labels.purple_flowers?.split(' ')[0] || "") : (translations.labels.white_flowers?.split(' ')[0] || "")}</div>
         </div>
     );
 }
