@@ -16,6 +16,14 @@ interface SB104Quest extends Quest {
     function?: string;
 }
 
+function pickAnswer(...values: Array<string | undefined>) {
+    const answer = values.find((value) => typeof value === "string");
+    if (!answer) {
+        throw new Error("SB1.04 quest is missing an answer value");
+    }
+    return answer;
+}
+
 export default function SB104PlantStructure() {
     const { t } = useLanguage();
 
@@ -133,43 +141,35 @@ export default function SB104PlantStructure() {
                 ]
             };
 
-            return waterData[difficulty].map((item, idx) => ({
-                id: `${stage}_${difficulty}_${idx + 1}`,
-                difficulty,
-                stage,
-                promptLatex: item.prompt,
-                expressionLatex: t("sb1_04.formulas.water_transport"),
-                targetLatex: "answer",
-                slots: [{
-                    id: "answer",
-                    labelLatex: "Answer",
-                    placeholder: t("sb1_04.placeholders.type_answer"),
-                    expected: ('location' in item ? item.location : undefined) || 
-                             ('tissue' in item ? item.tissue : undefined) || 
-                             ('structure' in item ? item.structure : undefined) || 
-                             ('effect' in item ? item.effect : undefined) || 
-                             ('force' in item ? item.force : undefined) || 
-                             ('condition' in item ? item.condition : undefined) || 
-                             ('feature' in item ? item.feature : undefined) || 
-                             ('benefit' in item ? item.benefit : undefined) || "unknown"
-                }],
-                correctLatex: `${t("common.answer_prefix")} ${('location' in item ? item.location : undefined) || 
-                              ('tissue' in item ? item.tissue : undefined) || 
-                              ('structure' in item ? item.structure : undefined) || 
-                              ('effect' in item ? item.effect : undefined) || 
-                              ('force' in item ? item.force : undefined) || 
-                              ('condition' in item ? item.condition : undefined) || 
-                              ('feature' in item ? item.feature : undefined) || 
-                              ('benefit' in item ? item.benefit : undefined) || "unknown"}`,
-                answer: (('location' in item ? item.location : undefined) || 
-                        ('tissue' in item ? item.tissue : undefined) || 
-                        ('structure' in item ? item.structure : undefined) || 
-                        ('effect' in item ? item.effect : undefined) || 
-                        ('force' in item ? item.force : undefined) || 
-                        ('condition' in item ? item.condition : undefined) || 
-                        ('feature' in item ? item.feature : undefined) || 
-                        ('benefit' in item ? item.benefit : undefined) || "unknown") as string
-            }));
+            return waterData[difficulty].map((item, idx) => {
+                const answer = pickAnswer(
+                    'location' in item ? item.location : undefined,
+                    'tissue' in item ? item.tissue : undefined,
+                    'structure' in item ? item.structure : undefined,
+                    'effect' in item ? item.effect : undefined,
+                    'force' in item ? item.force : undefined,
+                    'condition' in item ? item.condition : undefined,
+                    'feature' in item ? item.feature : undefined,
+                    'benefit' in item ? item.benefit : undefined
+                );
+
+                return {
+                    id: `${stage}_${difficulty}_${idx + 1}`,
+                    difficulty,
+                    stage,
+                    promptLatex: item.prompt,
+                    expressionLatex: t("sb1_04.formulas.water_transport"),
+                    targetLatex: "answer",
+                    slots: [{
+                        id: "answer",
+                        labelLatex: "Answer",
+                        placeholder: t("sb1_04.placeholders.type_answer"),
+                        expected: answer
+                    }],
+                    correctLatex: `${t("common.answer_prefix")} ${answer}`,
+                    answer
+                };
+            });
         }
 
         if (stage === "NUTRIENT_TRANSPORT") {
@@ -204,58 +204,40 @@ export default function SB104PlantStructure() {
                 ]
             };
 
-            return nutrientData[difficulty].map((item, idx) => ({
-                id: `${stage}_${difficulty}_${idx + 1}`,
-                difficulty,
-                stage,
-                promptLatex: item.prompt,
-                expressionLatex: t("sb1_04.formulas.nutrient_transport"),
-                targetLatex: "answer",
-                slots: [{
-                    id: "answer",
-                    labelLatex: "Answer",
-                    placeholder: t("sb1_04.placeholders.type_answer"),
-                    expected: ('tissue' in item ? item.tissue : undefined) || 
-                             ('product' in item ? item.product : undefined) || 
-                             ('use' in item ? item.use : undefined) || 
-                             ('direction' in item ? item.direction : undefined) || 
-                             ('location' in item ? item.location : undefined) || 
-                             ('type' in item ? item.type : undefined) || 
-                             ('feature' in item ? item.feature : undefined) || 
-                             ('energy' in item ? item.energy : undefined) || 
-                             ('pathway' in item ? item.pathway : undefined) || 
-                             ('effect' in item ? item.effect : undefined) || 
-                             ('factor' in item ? item.factor : undefined) || 
-                             ('transport' in item ? item.transport : undefined) || 
-                             ('source' in item ? item.source : undefined) || "unknown"
-                }],
-                correctLatex: `${t("common.answer_prefix")} ${('tissue' in item ? item.tissue : undefined) || 
-                              ('product' in item ? item.product : undefined) || 
-                              ('use' in item ? item.use : undefined) || 
-                              ('direction' in item ? item.direction : undefined) || 
-                              ('location' in item ? item.location : undefined) || 
-                              ('type' in item ? item.type : undefined) || 
-                              ('feature' in item ? item.feature : undefined) || 
-                              ('energy' in item ? item.energy : undefined) || 
-                              ('pathway' in item ? item.pathway : undefined) || 
-                              ('effect' in item ? item.effect : undefined) || 
-                              ('factor' in item ? item.factor : undefined) || 
-                              ('transport' in item ? item.transport : undefined) || 
-                              ('source' in item ? item.source : undefined) || "unknown"}`,
-                answer: (('tissue' in item ? item.tissue : undefined) || 
-                        ('product' in item ? item.product : undefined) || 
-                        ('use' in item ? item.use : undefined) || 
-                        ('direction' in item ? item.direction : undefined) || 
-                        ('location' in item ? item.location : undefined) || 
-                        ('type' in item ? item.type : undefined) || 
-                        ('feature' in item ? item.feature : undefined) || 
-                        ('energy' in item ? item.energy : undefined) || 
-                        ('pathway' in item ? item.pathway : undefined) || 
-                        ('effect' in item ? item.effect : undefined) || 
-                        ('factor' in item ? item.factor : undefined) || 
-                        ('transport' in item ? item.transport : undefined) || 
-                        ('source' in item ? item.source : undefined) || "unknown") as string
-            }));
+            return nutrientData[difficulty].map((item, idx) => {
+                const answer = pickAnswer(
+                    'tissue' in item ? item.tissue : undefined,
+                    'product' in item ? item.product : undefined,
+                    'use' in item ? item.use : undefined,
+                    'direction' in item ? item.direction : undefined,
+                    'location' in item ? item.location : undefined,
+                    'type' in item ? item.type : undefined,
+                    'feature' in item ? item.feature : undefined,
+                    'energy' in item ? item.energy : undefined,
+                    'pathway' in item ? item.pathway : undefined,
+                    'effect' in item ? item.effect : undefined,
+                    'factor' in item ? item.factor : undefined,
+                    'transport' in item ? item.transport : undefined,
+                    'source' in item ? item.source : undefined
+                );
+
+                return {
+                    id: `${stage}_${difficulty}_${idx + 1}`,
+                    difficulty,
+                    stage,
+                    promptLatex: item.prompt,
+                    expressionLatex: t("sb1_04.formulas.nutrient_transport"),
+                    targetLatex: "answer",
+                    slots: [{
+                        id: "answer",
+                        labelLatex: "Answer",
+                        placeholder: t("sb1_04.placeholders.type_answer"),
+                        expected: answer
+                    }],
+                    correctLatex: `${t("common.answer_prefix")} ${answer}`,
+                    answer
+                };
+            });
         }
 
         return [];

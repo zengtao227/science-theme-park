@@ -16,20 +16,18 @@ export default function RatioCanvas({ mode, quest, language, translations }: Rat
     void language;
 
     const t = translations;
-    // Use quest data or fallback to defaults
     const data = quest?.visualData || {};
 
     // --- RENDERERS ---
 
     const renderRecipes = () => {
-        const ingredient = data.ingredient || "flour"; // flour, eggs, milk, sugar
+        const ingredient = typeof data.ingredient === "string" ? data.ingredient : "";
         const baseAmount = data.baseAmount || 2;
         const targetAmount = data.targetAmount || 4;
         const multiplier = targetAmount / baseAmount;
 
-        // Determine color/icon based on ingredient
-        let color = "#fbbf24"; // default amber
-        let label = "Item";
+        let color = "#fbbf24";
+        let label = t.labels.flour;
 
         if (ingredient === "flour" || ingredient === "sugar") { color = "#f5f5f5"; label = ingredient === "flour" ? t.labels.flour : t.labels.sugar; }
         else if (ingredient === "eggs") { color = "#fbbf24"; label = t.labels.eggs; }
@@ -78,7 +76,7 @@ export default function RatioCanvas({ mode, quest, language, translations }: Rat
 
     const renderPercent = () => {
         const current = data.percentage || 50;
-        const label = data.label || "Battery";
+        const label = typeof data.label === "string" ? data.label : t.labels.capacity;
 
         return (
             <div className="flex flex-col items-center justify-center h-full gap-6 max-w-lg w-full">
