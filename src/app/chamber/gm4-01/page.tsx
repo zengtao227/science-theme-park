@@ -32,7 +32,7 @@ function buildStagePool(
 
 export default function GM401Page() {
   const { t: getT, currentLanguage } = useLanguage();
-  const t = getT("gm4_01");
+  const gm4_01_t = getT("gm4_01");
 
   const {
     difficulty,
@@ -51,16 +51,16 @@ export default function GM401Page() {
       requestAiFeedback
     } = useQuestManager<G401Quest, Stage>({
     moduleCode: "gm4-01",
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool: (d, s) => buildStagePool(gm4_01_t, d, s),
     initialStage: "BASICS",
   });
 
   const currentScenario =
     stage === "BASICS"
-      ? (t?.scenarios?.basics || "[FALLBACK] Roche Pharmaceutical Signal Processing: You are calibrating medical imaging equipment at Roche Basel that uses complex number analysis for MRI signal processing. Each complex number z = a + bi represents a signal with real component (amplitude) and imaginary component (phase). Calculate the magnitude |z| to determine signal strength. Accurate magnitude calculation is critical for detecting tissue abnormalities in patient scans.")
+      ? gm4_01_t.scenarios.basics
       : stage === "OPERATIONS"
-        ? (t?.scenarios?.operations || "[FALLBACK] Novartis Quantum Chemistry Simulation: You are running molecular orbital calculations at Novartis Basel using complex number arithmetic. Wave functions are represented as complex numbers, and their interactions require addition and multiplication in the complex plane. Calculate the result of complex operations to predict molecular behavior. These calculations determine drug binding efficiency.")
-        : (t?.scenarios?.polar || "[FALLBACK] University of Basel Electrical Engineering: You are analyzing AC circuit behavior in power systems for Basel's smart grid. Complex impedances are raised to powers when calculating resonance frequencies. Use polar form $r e^{i\\theta}$ to compute $z^n$ efficiently. The result determines optimal power distribution across Basel's renewable energy network.");
+        ? gm4_01_t.scenarios.operations
+        : gm4_01_t.scenarios.polar;
 
   return (
     <ChamberLayout
@@ -68,34 +68,34 @@ export default function GM401Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={t?.title || "GM4.01 // COMPLEX HORIZON"}
+      title={gm4_01_t.title}
       moduleCode="GM4.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "BASICS", label: t?.stages?.basics || "BASICS" },
-        { id: "OPERATIONS", label: t?.stages?.operations || "OPERATIONS" },
-        { id: "POLAR", label: t?.stages?.polar || "POLAR" },
+        { id: "BASICS", label: gm4_01_t.stages.basics },
+        { id: "OPERATIONS", label: gm4_01_t.stages.operations },
+        { id: "POLAR", label: gm4_01_t.stages.polar },
       ]}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t?.footer_left || "GM4.01_COMPLEX_HORIZON // NODE: BASEL"}
+      footerLeft={gm4_01_t.footer_left}
       translations={{
-        back: t?.back || "Back to Nexus",
-        check: t?.check || "Verify",
-        next: t?.next || "Next",
-        correct: t?.correct || "Verified",
-        incorrect: t?.incorrect || "Mismatch",
-        ready: t?.ready || "Ready",
-        monitor_title: t?.monitor_title || "GM4.01_COMPLEX_MONITOR",
+        back: gm4_01_t.back,
+        check: gm4_01_t.check,
+        next: gm4_01_t.next,
+        correct: gm4_01_t.correct,
+        incorrect: gm4_01_t.incorrect,
+        ready: gm4_01_t.ready,
+        monitor_title: gm4_01_t.monitor_title,
         difficulty: {
-          basic: t?.difficulty?.basic || "BASIC",
-          core: t?.difficulty?.core || "CORE",
-          advanced: t?.difficulty?.advanced || "ADVANCED",
-          elite: t?.difficulty?.elite || "ELITE",
+          basic: gm4_01_t.difficulty.basic,
+          core: gm4_01_t.difficulty.core,
+          advanced: gm4_01_t.difficulty.advanced,
+          elite: gm4_01_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -110,7 +110,7 @@ export default function GM401Page() {
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <div className="text-[10px] text-white/60 uppercase tracking-[0.5em] font-black">
-              {t?.scenario_title || "MISSION"}
+              {gm4_01_t.scenario_title}
             </div>
             <p className="text-sm text-white/80 font-mono max-w-2xl mx-auto leading-relaxed">
               {renderMixedText(currentScenario, "whitespace-pre-wrap")}

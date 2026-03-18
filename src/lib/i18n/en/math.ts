@@ -968,7 +968,9 @@ export const enMath = {
             coefficient: "Coefficient",
             mixed_items: "Mixed Items (Marketplace)",
             combine_hint: "Combine items of the same color/type.",
-            processing_core: "Processing Core"
+            processing_core: "Processing Core",
+            holds_value: "holds value",
+            remove: "remove"
         },
         stages: {
             variables: "VARIABLES",
@@ -985,7 +987,10 @@ export const enMath = {
             substitute_and_evaluate: "Substitute and evaluate",
             if: "If",
             calculate: "Calculate",
-            what_is: "What is"
+            what_is: "What is",
+            evaluate: "Evaluate expression",
+            substitute_both: "Substitute both variables",
+            multiply_coeffs: "Multiply coefficients first"
         },
         objective_title: "MISSION OBJECTIVE",
         scenario_title: "SCENARIO CONTEXT",

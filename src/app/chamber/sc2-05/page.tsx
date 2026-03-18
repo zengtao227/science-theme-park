@@ -26,6 +26,7 @@ type AcidBaseQuest = Quest & {
 export default function SC205Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const sc2_05_t = t("sc2_05");
 
   const buildStagePool = useCallback(
     (difficulty: Difficulty, stage: Stage): AcidBaseQuest[] => {
@@ -825,33 +826,33 @@ export default function SC205Page() {
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
       moduleCode="SC2.05"
-      title={t("sc2_05.title") || "SC2.05 // ACID-BASE CHEMISTRY"}
+      title={sc2_05_t.title}
       difficulty={currentDifficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={[
-        { id: "PH_BASICS", label: t("sc2_05.stages.ph_basics") || "PH BASICS" },
-        { id: "NEUTRALIZATION", label: t("sc2_05.stages.neutralization") || "NEUTRALIZATION" },
-        { id: "TITRATION", label: t("sc2_05.stages.titration") || "TITRATION" },
+        { id: "PH_BASICS", label: sc2_05_t.stages.ph_basics },
+        { id: "NEUTRALIZATION", label: sc2_05_t.stages.neutralization },
+        { id: "TITRATION", label: sc2_05_t.stages.titration },
       ]}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
-      footerLeft={t("sc2_05.footer_left") || "SC2.05_ACIDBASE // NODE: BASEL"}
+      footerLeft={sc2_05_t.footer_left}
       translations={{
-        back: t("sc2_05.back") || "Back",
-        check: t("sc2_05.check") || "Verify",
-        next: t("sc2_05.next") || "Next",
-        correct: t("sc2_05.correct") || "Correct",
-        incorrect: t("sc2_05.incorrect") || "Incorrect",
-        ready: t("sc2_05.ready") || "Ready",
-        monitor_title: t("sc2_05.monitor_title") || "SC2.05_MONITOR",
+        back: sc2_05_t.back,
+        check: sc2_05_t.check,
+        next: sc2_05_t.next,
+        correct: sc2_05_t.correct,
+        incorrect: sc2_05_t.incorrect,
+        ready: sc2_05_t.ready,
+        monitor_title: sc2_05_t.monitor_title,
         difficulty: {
-          basic: t("sc2_05.difficulty.basic") || "BASIC",
-          core: t("sc2_05.difficulty.core") || "CORE",
-          advanced: t("sc2_05.difficulty.advanced") || "ADVANCED",
-          elite: t("sc2_05.difficulty.elite") || "ELITE",
+          basic: sc2_05_t.difficulty.basic,
+          core: sc2_05_t.difficulty.core,
+          advanced: sc2_05_t.difficulty.advanced,
+          elite: sc2_05_t.difficulty.elite,
         },
       }}
       monitorContent={
@@ -866,7 +867,7 @@ export default function SC205Page() {
         {quest?.scenario && (
           <div className="p-6 bg-purple-500/10 border border-purple-500/30 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-purple-400 font-black mb-3">
-              {t("sc2_05.scenario_title") || "BASEL SCENARIO"}
+              {sc2_05_t.scenario_title}
             </div>
             <p className="text-white/90 leading-relaxed font-medium">{quest.scenario}</p>
           </div>
@@ -875,7 +876,7 @@ export default function SC205Page() {
         {quest?.context && (
           <div className="p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black mb-3">
-              {t("sc2_05.objective_title") || "PROBLEM"}
+              {sc2_05_t.objective_title}
             </div>
             <p className="text-white/80 leading-relaxed">{quest.context}</p>
           </div>
@@ -883,7 +884,7 @@ export default function SC205Page() {
 
         <div className="text-center space-y-4">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            FORMULA
+            {sc2_05_t.labels.formula}
           </div>
           {quest?.promptLatex && (
             <div className="text-2xl text-white font-black">
@@ -895,7 +896,7 @@ export default function SC205Page() {
         {quest?.expressionLatex && (
           <div className="p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
             <div className="text-[10px] uppercase tracking-[0.4em] text-green-400 font-black mb-3">
-              GIVEN
+              {sc2_05_t.labels.given}
             </div>
             <div className="text-center">
               <BlockMath math={quest.expressionLatex} />
@@ -905,7 +906,7 @@ export default function SC205Page() {
 
         <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-xl space-y-4">
           <div className="text-[10px] uppercase tracking-[0.4em] text-blue-400 font-black mb-3">
-            {t("sc2_05.answer_title") || "YOUR ANSWER"}
+            {sc2_05_t.answer_title}
           </div>
           {quest?.slots.map((slot) => (
             <div key={slot.id} className="space-y-2">

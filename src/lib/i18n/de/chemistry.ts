@@ -773,7 +773,11 @@ export const deChemistry = {
             input: "EINGABE",
             hints: "HINWEISE",
             ph: "pH",
-            volume: "Volumen"
+            volume: "Volumen",
+            formula: "FORMEL",
+            given: "GEGEBEN",
+            temperature: "Temperatur",
+            activation_energy: "Aktivierungsenergie"
         },
         mission: {
             title: "MISSION: CHEMISCHES KINETIK-LABOR",
@@ -1527,9 +1531,9 @@ export const deChemistry = {
             elite: "ELITE"
         },
         stages: {
-            ph_basics: "Novartis Pharmazeutische pH-Kontrolle — Sie sind Formulierungswissenschaftlerin bei Novartis Basel und entwickeln ein neues orales Arzneimittel. Stabilität und Bioverfügbarkeit des Wirkstoffs hängen entscheidend vom pH-Wert ab: Im Magen (pH 1,5) muss der Wirkstoff stabil bleiben, im Blutkreislauf (pH 7,4) muss er schnell löslich sein. Die erlaubte pH-Abweichung im Herstellungsprozess beträgt ±0,2 Einheiten. Mit Präzisions-pH-Metern und Henderson-Hasselbalch-Berechnungen passen Sie das Verhältnis von schwacher Säure zu konjugierter Base an. Berechnen Sie die erforderlichen pH-Werte und Pufferverhältnisse, damit das Formulierungsteam bestätigen kann, ob die Charge die Freigabespezifikationen erfüllt und verpackt werden darf.",
-            neutralization: "Universitätsspital Basel — Magenbehandlung: Sie sind klinische Apothekerin am Universitätsspital Basel und bereiten ein Antazidum für einen Patienten mit schwerem Säurereflux vor. Der Magen enthält ca. 50 mL HCl-Lösung bei pH 1,5 (ca. 0,03 M). Ihre Aufgabe ist es, die exakte Molzahl Natriumbicarbonat (NaHCO₃) zu berechnen, die benötigt wird, um die überschüssige Säure zu neutralisieren, ohne den pH-Wert in den alkalischen Bereich zu verschieben, was andere Komplikationen verursachen könnte. Die Neutralisationsreaktion erzeugt außerdem CO₂-Gas. Berechnen Sie die erforderliche NaHCO₃-Menge, damit die Apotheke die korrekte Dosis zubereiten kann, die Symptome effektiv lindert und Nebenwirkungen vermeidet.",
-            titration: "Roche-Qualitätskontrolllabor — Sie sind Qualitätskontrollanalystin im Basler Hauptsitz von Roche und führen Titrationsanalysen zur Überprüfung der Reinheit einer neuen Arzneimittelverbindung durch. Mit einer kalibrierten Bürette geben Sie tropfenweise standardisierte 0,1 M NaOH-Lösung zu einer eingewogenen und in Wasser gelösten Arzneimittelmenge. Eine pH-Elektrode überwacht kontinuierlich die Lösung und erzeugt eine Titrationskurve. Der scharfe pH-Sprung am Äquivalenzpunkt zeigt vollständige Neutralisation an; das genaue Verbrauchsvolumen des Titriermittels gibt die Arzneimittelkonzentration an. Jede Abweichung von der Mindestanforderung (99,5 % Reinheit) löst eine vollständige Chargenuntersuchung aus. Berechnen Sie das Äquivalenzvolumen und die daraus resultierende Reinheit, und beurteilen Sie, ob die Charge den Roche-Qualitätsstandard erfüllt."
+            ph_basics: "PH-GRUNDLAGEN",
+            neutralization: "NEUTRALISATION",
+            titration: "TITRATION"
         },
         scenarios: {
             ph_basics: "Novartis Pharmazeutische pH-Kontrolle — Sie sind Formulierungswissenschaftlerin bei Novartis Basel und entwickeln ein neues orales Arzneimittel. Stabilität und Bioverfügbarkeit des Wirkstoffs hängen entscheidend vom pH-Wert ab: Im Magen (pH 1,5) muss der Wirkstoff stabil bleiben, im Blutkreislauf (pH 7,4) muss er schnell löslich sein. Die erlaubte pH-Abweichung im Herstellungsprozess beträgt ±0,2 Einheiten. Mit Präzisions-pH-Metern und Henderson-Hasselbalch-Berechnungen passen Sie das Verhältnis von schwacher Säure zu konjugierter Base an. Berechnen Sie die erforderlichen pH-Werte und Pufferverhältnisse, damit das Formulierungsteam bestätigen kann, ob die Charge die Freigabespezifikationen erfüllt und verpackt werden darf.",
@@ -1673,7 +1677,9 @@ export const deChemistry = {
             ph: "pH",
             concentration: "Konzentration",
             volume: "Volumen",
-            indicator: "Indikator"
+            indicator: "Indikator",
+            formula: "FORMEL",
+            given: "GEGEBEN"
         },
         check: "Überprüfen",
         next: "Nächste Herausforderung",

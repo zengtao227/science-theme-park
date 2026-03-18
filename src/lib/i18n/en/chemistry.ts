@@ -781,7 +781,11 @@ export const enChemistry = {
             input: "INPUT",
             hints: "HINTS",
             volume: "Titrant Volume",
-            ph: "pH"
+            ph: "pH",
+            formula: "FORMULA",
+            given: "GIVEN",
+            temperature: "Temperature",
+            activation_energy: "Activation Energy"
         },
         mission: {
             title: "MISSION: CHEMICAL KINETICS LAB",
@@ -1534,9 +1538,9 @@ export const enChemistry = {
             elite: "ELITE"
         },
         stages: {
-            ph_basics: "Novartis Pharmaceutical pH Control — You are a formulation scientist at Novartis Basel, developing a new oral medication. The drug's stability and bioavailability critically depend on pH: in the stomach (pH 1.5), the active ingredient must remain stable, while in the bloodstream (pH 7.4), it must dissolve rapidly. You have a target pH window of ±0.2 units during manufacturing. Using precision pH meters and Henderson-Hasselbalch calculations, you adjust the ratio of weak acid to conjugate base in the buffer. Calculate the required pH values and buffer ratios so the formulation team can confirm whether the batch meets release specifications and can proceed to packaging.",
-            neutralization: "University Hospital Basel — Gastric Treatment: You are a clinical pharmacist at the Universitätsspital Basel, preparing an antacid formulation for a patient with severe acid reflux. The stomach contains approximately 50 mL of HCl solution at pH 1.5 (roughly 0.03 M). Your task is to calculate the exact moles of sodium bicarbonate (NaHCO₃) needed to neutralize the excess acid without overshooting to alkaline pH, which could cause different complications. The neutralization reaction also produces CO₂ gas. Calculate the required amount of NaHCO₃ so that the pharmacist can prepare the correct dosage that relieves symptoms effectively while avoiding side effects.",
-            titration: "Roche Quality Control Laboratory — You are a quality control analyst at Roche's Basel headquarters, performing titration analysis to verify the purity of a new drug compound. Using a calibrated burette, you add standardised 0.1 M NaOH solution dropwise to a weighed sample of the drug dissolved in water. A pH electrode continuously monitors the solution, generating a titration curve. The sharp pH jump at the equivalence point indicates complete neutralisation, and the exact volume of titrant used reveals the drug's concentration. Any deviation from the specified purity (minimum 99.5%) triggers a full batch investigation. Calculate the equivalence volume and resulting purity, and report whether the batch passes or fails the Roche quality standard."
+            ph_basics: "PH BASICS",
+            neutralization: "NEUTRALIZATION",
+            titration: "TITRATION"
         },
         scenarios: {
             ph_basics: "Novartis Pharmaceutical pH Control — You are a formulation scientist at Novartis Basel, developing a new oral medication. The drug's stability and bioavailability critically depend on pH: in the stomach (pH 1.5), the active ingredient must remain stable, while in the bloodstream (pH 7.4), it must dissolve rapidly. You have a target pH window of ±0.2 units during manufacturing. Using precision pH meters and Henderson-Hasselbalch calculations, you adjust the ratio of weak acid to conjugate base in the buffer. Calculate the required pH values and buffer ratios so the formulation team can confirm whether the batch meets release specifications and can proceed to packaging.",
@@ -1680,7 +1684,9 @@ export const enChemistry = {
             ph: "pH",
             concentration: "Concentration",
             volume: "Volume",
-            indicator: "Indicator"
+            indicator: "Indicator",
+            formula: "FORMULA",
+            given: "GIVEN"
         },
         check: "Verify",
         next: "Next Challenge",

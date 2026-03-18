@@ -258,63 +258,7 @@ export default function SM102Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
-    const sm1_02_t = useMemo(() => ({
-        title: t("sm1_02.title") || "SM1.02 // ALGEBRAIC EXPRESSIONS",
-        back: t("sm1_02.back") || "Back",
-        check: t("sm1_02.check") || "Verify",
-        next: t("sm1_02.next") || "Next",
-        correct: t("sm1_02.correct") || "Correct",
-        incorrect: t("sm1_02.incorrect") || "Incorrect",
-        ready: t("sm1_02.ready") || "READY",
-        difficulty: {
-            basic: t("sm1_02.difficulty.basic") || "BASIC",
-            core: t("sm1_02.difficulty.core") || "CORE",
-            advanced: t("sm1_02.difficulty.advanced") || "ADVANCED",
-            elite: t("sm1_02.difficulty.elite") || "ELITE"
-        },
-        stages: {
-            variables: t("sm1_02.stages.variables") || "VARIABLES",
-            terms: t("sm1_02.stages.terms") || "TERMS",
-            substitution: t("sm1_02.stages.substitution") || "SUBSTITUTION"
-        },
-        scenarios: {
-            variables: t("sm1_02.scenarios.variables") || "Variables store values like containers.",
-            terms: t("sm1_02.scenarios.terms") || "Group matching variables together to simplify.",
-            substitution: t("sm1_02.scenarios.substitution") || "Put the value inside the operation machine."
-        },
-        prompts: {
-            simplify: t("sm1_02.prompts.simplify") || "Simplify:",
-            combine_like_terms: t("sm1_02.prompts.combine_like_terms") || "Combine terms with same variables",
-            substitute_and_evaluate: t("sm1_02.prompts.substitute_and_evaluate") || "Substitute value into expression",
-            if: t("sm1_02.prompts.if") || "If",
-            calculate: t("sm1_02.prompts.calculate") || "calculate",
-            what_is: t("sm1_02.prompts.what_is") || "what is",
-            evaluate: t("sm1_02.prompts.evaluate") || "Evaluate expression",
-            substitute_both: t("sm1_02.prompts.substitute_both") || "Substitute both variables",
-            multiply_coeffs: t("sm1_02.prompts.multiply_coeffs") || "Multiply coefficients first"
-        },
-        labels: {
-            result: t("sm1_02.labels.result") || "Result",
-            coefficient: t("sm1_02.labels.coefficient") || "Coefficient",
-            variable: t("sm1_02.labels.variable") || "Variable",
-            value: t("sm1_02.labels.value") || "Value",
-            output: t("sm1_02.labels.output") || "Output",
-            input: t("sm1_02.labels.input") || "Input",
-            mixed_items: t("sm1_02.labels.mixed_items") || "Mixed Items",
-            combine_hint: t("sm1_02.labels.combine_hint") || "Combine like items",
-            processing_core: t("sm1_02.labels.processing_core") || "Processing Core",
-            holds_value: t("sm1_02.labels.holds_value"),
-            remove: t("sm1_02.labels.remove")
-        },
-        placeholders: {
-            question: t("sm1_02.placeholders.question"),
-            hash: t("sm1_02.placeholders.hash"),
-            x: t("sm1_02.placeholders.x"),
-        },
-        monitor_title: t("sm1_02.monitor_title") || t("sm1_02.title") || "",
-        objective_title: t("sm1_02.objective_title") || "MISSION OBJECTIVE",
-        scenario_title: t("sm1_02.scenario_title") || "SCENARIO CONTEXT"
-    }), [t]);
+    const sm1_02_t = useMemo(() => t("sm1_02"), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_02_t, d, s), [sm1_02_t]);
 
