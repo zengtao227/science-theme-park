@@ -4,12 +4,6 @@ This directory contains standardized, reusable UI components for the Science The
 
 ## 🧱 Components Index
 
-### 🚀 SuccessEureka
-The global "Correct Answer" celebration overlay.
-- **File**: `SuccessEureka.tsx`
-- **Usage**: Managed by `ChamberLayout` via the `showEureka` state.
-- **Features**: Particle burst, animated HUD message, and auto-timeout.
-
 ### 📊 DataTracker
 A versatile time-series or category bar chart.
 - **File**: `DataTracker.tsx`
