@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import { useAppStore } from '@/lib/store';
+import { useLanguage } from '@/lib/i18n';
 import { User, ChevronDown, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
 
 export default function UserSwitcher() {
   const { currentUser, getUserList, switchUser, createUser } = useAppStore();
+  const { t } = useLanguage();
   const [showMenu, setShowMenu] = useState(false);
   const [showNewUser, setShowNewUser] = useState(false);
   const [newUsername, setNewUsername] = useState('');
@@ -96,7 +98,7 @@ export default function UserSwitcher() {
                   type="text"
                   value={newUsername}
                   onChange={(e) => setNewUsername(e.target.value)}
-                  placeholder="Enter name..."
+                  placeholder={t('common.placeholders.user_name')}
                   className="w-full p-2 bg-black border border-white/60 text-white text-sm font-mono focus:border-neon-green focus:outline-none mb-3"
                   autoFocus
                   maxLength={30}

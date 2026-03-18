@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback } from "react";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager } from "@/hooks/useQuestManager";
@@ -13,6 +14,9 @@ import { renderMixedText } from "@/lib/latex-utils";
 
 export default function OlympiadChallenge() {
     const { t } = useLanguage();
+    const buildPool = useCallback((difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELITE", stage: string) => {
+        return buildOlympiadPool(t, difficulty, stage);
+    }, [t]);
 
     const {
         difficulty,
@@ -33,7 +37,7 @@ export default function OlympiadChallenge() {
         handleStageChange,
     } = useQuestManager<OlympiadQuest, "logic">({
         moduleCode: "EM3.01",
-        buildPool: buildOlympiadPool,
+        buildPool,
         initialStage: "logic",
     });
 

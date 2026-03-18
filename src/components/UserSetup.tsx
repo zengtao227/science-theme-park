@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 import { useAppStore } from '@/lib/store';
 
 export default function UserSetup() {
   const [username, setUsername] = useState('');
   const { createUser } = useAppStore();
+  const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +49,7 @@ export default function UserSetup() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your name..."
+              placeholder={t('common.placeholders.user_name')}
               className="w-full p-3 bg-black border-2 border-white/60 text-white font-mono focus:border-neon-green focus:outline-none transition-colors"
               autoFocus
               maxLength={30}

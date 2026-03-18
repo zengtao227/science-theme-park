@@ -73,6 +73,10 @@ export const deCommon = {
             MAINTAINING_MAX_LEVEL: "Höchstes Niveau gehalten. Bleibe auf dieser Stufe.",
             DIFFICULTY_SPIKE_DETECTED: "Schwierigkeitsanstieg erkannt. Erwäge kurz zurückzuschalten.",
             RECALIBRATING_BASICS: "Grundlagen werden neu kalibriert. Empfohlen: Kernstufe."
+        },
+        placeholders: {
+            user_name: "Name eingeben...",
+            room_code: "Raumcode"
         }
     },
     home: {
@@ -329,6 +333,43 @@ export const deCommon = {
             intuition: "Intuition",
             rigor: "Präzision",
             experiment: "Experiment"
+        },
+        ai_provider: {
+            placeholders: {
+                base_url: "z. B. https://api.openai.com/v1",
+                api_key: "sk-...",
+                model_name: "z. B. gpt-4o"
+            }
+        }
+    },
+    em3_01: {
+        placeholders: {
+            name: "Name",
+            position: "Position",
+            color: "Farbe",
+            sum: "Summe",
+            count: "Anzahl",
+            outfits: "Kombinationen",
+            day: "Tag",
+            days: "Tage",
+            area: "Fläche",
+            minutes: "Min",
+            knight_knave: "Ritter/Lügner",
+            degrees: "Grad",
+            last_two_digits: "letzte 2 Ziffern",
+            fraction: "Bruch",
+            remainder: "Rest",
+            distance: "Distanz",
+            ways: "Wege",
+            suspect: "A/B/C",
+            races: "Rennen",
+            integer: "Ganzzahl",
+            paths: "Pfade",
+            guaranteed: "garantiert",
+            last_three_digits: "letzte 3 Ziffern",
+            weighings: "Wägungen",
+            volume: "Volumen",
+            digit: "Ziffer"
         }
     },
     protocol: {

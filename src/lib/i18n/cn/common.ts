@@ -73,6 +73,10 @@ export const cnCommon = {
             MAINTAINING_MAX_LEVEL: "已稳定保持最高等级，可继续挑战。",
             DIFFICULTY_SPIKE_DETECTED: "难度陡升，建议暂时下调。",
             RECALIBRATING_BASICS: "需要重新校准基础，建议回到核心。"
+        },
+        placeholders: {
+            user_name: "输入名字...",
+            room_code: "房间码"
         }
     },
     home: {
@@ -326,6 +330,43 @@ export const cnCommon = {
             intuition: "直觉",
             rigor: "严谨",
             experiment: "实验"
+        },
+        ai_provider: {
+            placeholders: {
+                base_url: "例如 https://api.openai.com/v1",
+                api_key: "sk-...",
+                model_name: "例如 gpt-4o"
+            }
+        }
+    },
+    em3_01: {
+        placeholders: {
+            name: "姓名",
+            position: "名次",
+            color: "颜色",
+            sum: "总和",
+            count: "数量",
+            outfits: "搭配数",
+            day: "星期",
+            days: "天数",
+            area: "面积",
+            minutes: "分钟",
+            knight_knave: "骑士/骗子",
+            degrees: "角度",
+            last_two_digits: "后两位",
+            fraction: "分数",
+            remainder: "余数",
+            distance: "距离",
+            ways: "方法数",
+            suspect: "A/B/C",
+            races: "场次",
+            integer: "整数",
+            paths: "路径数",
+            guaranteed: "保证值",
+            last_three_digits: "后三位",
+            weighings: "称量次数",
+            volume: "体积",
+            digit: "个位数"
         }
     },
     protocol: {

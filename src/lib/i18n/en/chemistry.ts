@@ -1969,6 +1969,7 @@ export const enChemistry = {
         },
         placeholders: {
             Formula: "Formula",
+            coefficient: "1",
         }
     },
     sc2_07: {

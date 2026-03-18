@@ -73,6 +73,10 @@ export const enCommon = {
             MAINTAINING_MAX_LEVEL: "Top level maintained. Keep pushing at this difficulty.",
             DIFFICULTY_SPIKE_DETECTED: "Difficulty spike detected. Consider stepping down briefly.",
             RECALIBRATING_BASICS: "Recalibrating fundamentals. Consider core practice."
+        },
+        placeholders: {
+            user_name: "Enter name...",
+            room_code: "Room Code"
         }
     },
     home: {
@@ -327,6 +331,43 @@ export const enCommon = {
             intuition: "Intuition",
             rigor: "Rigor",
             experiment: "Experiment"
+        },
+        ai_provider: {
+            placeholders: {
+                base_url: "e.g. https://api.openai.com/v1",
+                api_key: "sk-...",
+                model_name: "e.g. gpt-4o"
+            }
+        }
+    },
+    em3_01: {
+        placeholders: {
+            name: "Name",
+            position: "position",
+            color: "Color",
+            sum: "sum",
+            count: "count",
+            outfits: "outfits",
+            day: "day",
+            days: "days",
+            area: "area",
+            minutes: "min",
+            knight_knave: "knight/knave",
+            degrees: "degrees",
+            last_two_digits: "last 2 digits",
+            fraction: "fraction",
+            remainder: "remainder",
+            distance: "distance",
+            ways: "ways",
+            suspect: "A/B/C",
+            races: "races",
+            integer: "integer",
+            paths: "paths",
+            guaranteed: "guaranteed",
+            last_three_digits: "last 3 digits",
+            weighings: "weighings",
+            volume: "volume",
+            digit: "digit"
         }
     },
     protocol: {

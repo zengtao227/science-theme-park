@@ -1966,6 +1966,9 @@ export const cnChemistry = {
             no_hint: "没有可用的提示。",
             hint_increase_products: "尝试增加包含 {element} 的生成物的系数",
             hint_increase_reactants: "尝试增加包含 {element} 的反应物的系数"
+        },
+        placeholders: {
+            coefficient: "1",
         }
     },
     sc2_07: {

@@ -1959,6 +1959,9 @@ export const deChemistry = {
             no_hint: "Kein Hinweis verfügbar.",
             hint_increase_products: "Versuchen Sie, den Koeffizienten für ein Produkt mit {element} zu erhöhen",
             hint_increase_reactants: "Versuchen Sie, den Koeffizienten für einen Reaktanten mit {element} zu erhöhen"
+        },
+        placeholders: {
+            coefficient: "1",
         }
     },
     sc2_07: {

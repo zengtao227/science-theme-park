@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useAppStore } from "@/lib/store";
+import { useLanguage } from "@/lib/i18n";
 import { clsx } from "clsx";
 import { Settings, Key, Globe, Cpu } from "lucide-react";
 
 export default function AiProviderSettings() {
   const { aiProviderConfig, setAiProviderConfig } = useAppStore();
+  const { t } = useLanguage();
 
   const [useDefault, setUseDefault] = useState(aiProviderConfig.useDefault);
   const [baseUrl, setBaseUrl] = useState(aiProviderConfig.baseUrl || "");
@@ -70,7 +72,7 @@ export default function AiProviderSettings() {
                 type="text"
                 value={baseUrl}
                 onChange={(e) => setBaseUrl(e.target.value)}
-                placeholder="e.g. https://api.openai.com/v1"
+                placeholder={t("profile.ai_provider.placeholders.base_url")}
                 className="w-full bg-black/50 border border-white/20 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-neon-purple transition-colors"
               />
             </div>
@@ -83,7 +85,7 @@ export default function AiProviderSettings() {
                 type="password"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                placeholder="sk-..."
+                placeholder={t("profile.ai_provider.placeholders.api_key")}
                 className="w-full bg-black/50 border border-white/20 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-neon-purple transition-colors"
               />
             </div>
@@ -96,7 +98,7 @@ export default function AiProviderSettings() {
                 type="text"
                 value={modelName}
                 onChange={(e) => setModelName(e.target.value)}
-                placeholder="e.g. gpt-4o"
+                placeholder={t("profile.ai_provider.placeholders.model_name")}
                 className="w-full bg-black/50 border border-white/20 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-neon-purple transition-colors"
               />
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { InlineMath } from "react-katex";
+import { useLanguage } from "@/lib/i18n";
 import "katex/dist/katex.min.css";
 
 export interface Radical {
@@ -16,6 +17,7 @@ interface RadicalSlotInputProps {
 }
 
 export default function RadicalSlotInput({ value, onChange, labelK, labelM }: RadicalSlotInputProps) {
+  const { t } = useLanguage();
   const safeK = Number.isFinite(value.k) && value.k !== 0 ? value.k : 1;
   const safeM = Number.isFinite(value.m) && value.m > 0 ? value.m : 1;
 
@@ -31,7 +33,7 @@ export default function RadicalSlotInput({ value, onChange, labelK, labelM }: Ra
           }}
           className="w-20 bg-black border-2 border-cyan-400/40 p-3 text-center outline-none focus:border-cyan-400 placeholder:text-white/70 font-black text-2xl text-white rounded-lg"
           inputMode="numeric"
-          placeholder="?"
+          placeholder={t("sm2_02.placeholders.question")}
         />
       </div>
 
@@ -46,7 +48,7 @@ export default function RadicalSlotInput({ value, onChange, labelK, labelM }: Ra
             }}
             className="w-20 bg-black border-2 border-neon-green/40 p-3 text-center outline-none focus:border-neon-green placeholder:text-white/70 font-black text-2xl text-white rounded-lg"
             inputMode="numeric"
-            placeholder="?"
+            placeholder={t("sm2_02.placeholders.question")}
           />
         </div>
       </div>

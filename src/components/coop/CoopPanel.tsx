@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx } from "clsx";
 import { useCoop } from "@/hooks/useCoop";
+import { useLanguage } from "@/lib/i18n";
 import { CoopQuestState } from "@/lib/coop/coopService";
 import {
     Wifi,
@@ -106,6 +107,7 @@ export default function CoopPanel({
 }: CoopPanelProps) {
     void myAnswers;
     void onNext;
+    const { t } = useLanguage();
 
     const [joinCode, setJoinCode] = useState("");
     const [panelOpen, setPanelOpen] = useState(false);
@@ -205,7 +207,7 @@ export default function CoopPanel({
                                         <input
                                             value={joinCode}
                                             onChange={(e) => setJoinCode(e.target.value.toUpperCase().slice(0, 6))}
-                                            placeholder="Room Code"
+                                            placeholder={t("common.placeholders.room_code")}
                                             maxLength={6}
                                             className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs font-mono text-white uppercase tracking-widest focus:outline-none focus:border-neon-purple/50 transition-colors"
                                         />

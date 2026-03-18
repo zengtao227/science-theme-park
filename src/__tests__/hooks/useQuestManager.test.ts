@@ -16,7 +16,7 @@ describe("useQuestManager", () => {
             promptLatex: "What is 1+1?",
             expressionLatex: "1+1",
             targetLatex: "2",
-            slots: [{ id: "ans", labelLatex: "x", placeholder: "?", expected: 2 }],
+            slots: [{ id: "ans", labelLatex: "x", placeholder: "", expected: 2 }],
             correctLatex: "2",
         }
     ]);

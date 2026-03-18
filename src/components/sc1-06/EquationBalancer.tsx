@@ -107,7 +107,7 @@ export function EquationBalancer({ quest, onComplete, t }: EquationBalancerProps
                   value={inputValues[index]}
                   onChange={(e) => handleCoefficientChange(index, e.target.value)}
                   className="w-14 h-14 text-2xl font-mono text-center bg-black border-2 border-white/10 rounded-lg focus:border-blue-500 focus:outline-none transition-all hover:bg-white/5"
-                  placeholder="1"
+                  placeholder={t('sc1_06.placeholders.coefficient')}
                 />
                 <div className="text-2xl px-2">
                   <ChemicalFormula latex={compound.formulaLatex} />
@@ -129,7 +129,7 @@ export function EquationBalancer({ quest, onComplete, t }: EquationBalancerProps
                     value={inputValues[productIndex]}
                     onChange={(e) => handleCoefficientChange(productIndex, e.target.value)}
                     className="w-14 h-14 text-2xl font-mono text-center bg-black border-2 border-white/10 rounded-lg focus:border-blue-500 focus:outline-none transition-all hover:bg-white/5"
-                    placeholder="1"
+                    placeholder={t('sc1_06.placeholders.coefficient')}
                   />
                   <div className="text-2xl px-2">
                     <ChemicalFormula latex={compound.formulaLatex} />
