@@ -250,7 +250,7 @@ export const cnMath = {
             rate: "变化率",
             elite: "精英"
         },
-        explore_title: "00 // 交互式探索",
+        explore_title: "交互式探索",
         explore_instruction: "在抛物线 y = x^{2} 上拖动点 P，观察切线如何变化。斜率 m 表示瞬时变化率。",
         explore_hint: "在右侧视觉监视器中拖动点 P →",
         current_point: "当前点",

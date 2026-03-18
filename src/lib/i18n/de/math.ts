@@ -250,7 +250,7 @@ export const deMath = {
             rate: "ÄNDERUNGSRATE",
             elite: "ELITE"
         },
-        explore_title: "00 // Interaktive Erkundung",
+        explore_title: "Interaktive Erkundung",
         explore_instruction: "Ziehe den Punkt P entlang der Parabel y = x^{2} und beobachte, wie sich die Tangente verändert. Die Steigung m repräsentiert die momentane Änderungsrate.",
         explore_hint: "Ziehe Punkt P im visuellen Monitor →",
         current_point: "Aktueller Punkt",

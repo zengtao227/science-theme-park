@@ -250,7 +250,7 @@ export const enMath = {
             rate: "RATE",
             elite: "ELITE"
         },
-        explore_title: "00 // Interactive Exploration",
+        explore_title: "Interactive Exploration",
         explore_instruction: "Drag the point P along the parabola y = x^{2} and observe how the tangent line changes. The slope m represents the instantaneous rate of change.",
         explore_hint: "Drag point P in the visual monitor →",
         current_point: "Current Point",
