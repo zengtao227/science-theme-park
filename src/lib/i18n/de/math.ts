@@ -1500,7 +1500,7 @@ export const deMath = {
             water: "Wasser",
             capacity: "Kapazität",
             logic_framework: "Logischer Rahmen",
-            data_ref: "DATEN_REF"
+            data_ref: "Referenz"
         },
         prompts: {
             // Rezepte-Stufe

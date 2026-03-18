@@ -1489,7 +1489,7 @@ export const enMath = {
             water: "Water",
             capacity: "Capacity",
             logic_framework: "Logical Framework",
-            data_ref: "DATA_REF"
+            data_ref: "Reference"
         },
         prompts: {
             // RECIPES STAGE

@@ -678,7 +678,7 @@ export default function SM105Page() {
                                             <InlineMath math={slot.labelLatex} />
                                         </div>
                                         <div className="text-[10px] font-mono text-neon-cyan/40 tracking-tighter italic">
-                                            {sm1_05_t.labels.data_ref}_{slot.id.toUpperCase()}
+                                            {sm1_05_t.labels.data_ref}
                                         </div>
                                     </div>
                                     <div className="relative group">
