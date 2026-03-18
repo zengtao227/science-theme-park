@@ -1488,8 +1488,7 @@ export const enMath = {
             target_batch: "Target Batch",
             water: "Water",
             capacity: "Capacity",
-            logic_framework: "Logical Framework",
-            data_ref: "Reference"
+            logic_framework: "Logical Framework"
         },
         prompts: {
             // RECIPES STAGE

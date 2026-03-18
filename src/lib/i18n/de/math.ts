@@ -1499,8 +1499,7 @@ export const deMath = {
             target_batch: "Zielrezept",
             water: "Wasser",
             capacity: "Kapazität",
-            logic_framework: "Logischer Rahmen",
-            data_ref: "Referenz"
+            logic_framework: "Logischer Rahmen"
         },
         prompts: {
             // Rezepte-Stufe

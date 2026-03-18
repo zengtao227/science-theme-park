@@ -68,8 +68,7 @@ export default function SM105Page() {
             target_batch: t("sm1_05.labels.target_batch"),
             water: t("sm1_05.labels.water"),
             capacity: t("sm1_05.labels.capacity"),
-            logic_framework: t("sm1_05.labels.logic_framework"),
-            data_ref: t("sm1_05.labels.data_ref")
+            logic_framework: t("sm1_05.labels.logic_framework")
         },
         prompts: {
             map_scale: t("sm1_05.prompts.map_scale"),

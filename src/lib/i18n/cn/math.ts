@@ -1468,8 +1468,7 @@ export const cnMath = {
             target_batch: "目标配方",
             water: "水",
             capacity: "容量",
-            logic_framework: "解题框架",
-            data_ref: "数据参考"
+            logic_framework: "解题框架"
         },
         prompts: {
             // 比例/食谱阶段
