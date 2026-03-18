@@ -342,11 +342,6 @@ export default function SP202OhmsLaw() {
                     stage={stage}
                     voltage={currentVoltage}
                     current={currentCurrent}
-                    translations={{
-                        ohms_law: sp2_02_t.stages.ohms_law,
-                        series_circuits: sp2_02_t.stages.series_circuits,
-                        parallel_circuits: sp2_02_t.stages.parallel_circuits,
-                    }}
                 />
             }
         >

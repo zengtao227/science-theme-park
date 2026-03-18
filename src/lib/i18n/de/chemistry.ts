@@ -2068,7 +2068,49 @@ export const deChemistry = {
         visualization: {
             title: "Energiediagramm",
             description: "Visuelle Darstellung von Enthalpieänderungen",
-            current_equation: "Aktuelle Reaktion"
+            current_equation: "Aktuelle Reaktion",
+            hess_cycle: {
+                title: "Hess'scher Kreisprozess",
+                description: "Wählen Sie Gleichungen, um den Reaktionsweg aufzubauen",
+                target_equation: "Zielgleichung",
+                available_equations: "Verfügbare Gleichungen",
+                selected_pathway_calculation: "Berechnung des gewählten Reaktionswegs",
+                total_delta_h: "Gesamt-ΔH",
+                direct: "Direkt",
+                pathway_matches_target: "Der Reaktionsweg stimmt mit der Zielgleichung überein!"
+            },
+            bond_energy: {
+                title: "Bindungsenergie-Analyse",
+                description: "Energieänderungen beim Brechen und Bilden von Bindungen",
+                bonds_broken: "Gebrochene Bindungen (Energieaufnahme)",
+                bonds_formed: "Gebildete Bindungen (Energiefreisetzung)",
+                total: "Gesamt",
+                net_energy_change: "Nettoenergieänderung",
+                energy_absorbed: "Aufgenommene Energie (gebrochene Bindungen):",
+                energy_released: "Freigesetzte Energie (gebildete Bindungen):",
+                delta_h_formula: "ΔH = Gebrochene Bindungen - Gebildete Bindungen:",
+                exothermic: "(Exotherm - Energie wird frei)",
+                endothermic: "(Endotherm - Energie wird aufgenommen)",
+                molecular_representation: "Molekulare Darstellung",
+                reactants: "Edukte",
+                products: "Produkte"
+            },
+            calorimeter: {
+                title: "Kalorimeter",
+                description: "Apparat zur Wärmemessung",
+                exothermic: "Exotherm (Wärme wird frei)",
+                endothermic: "Endotherm (Wärme wird aufgenommen)",
+                measurements: "Messwerte",
+                mass_of_solution: "Masse der Lösung:",
+                specific_heat_capacity: "Spezifische Wärmekapazität:",
+                initial_temperature: "Anfangstemperatur:",
+                final_temperature: "Endtemperatur:",
+                temperature_change: "Temperaturänderung (ΔT):",
+                heat_calculation: "Wärmeberechnung",
+                interpretation: "Interpretation",
+                exothermic_explanation: "Die positive Temperaturänderung zeigt eine exotherme Reaktion an. Wärme wird an die Lösung abgegeben und erhöht ihre Temperatur.",
+                endothermic_explanation: "Die negative Temperaturänderung zeigt eine endotherme Reaktion an. Wärme wird der Lösung entzogen und senkt ihre Temperatur."
+            }
         },
         loading: "Thermodynamik-Kern wird initialisiert..."
     },

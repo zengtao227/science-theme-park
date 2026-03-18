@@ -1088,6 +1088,30 @@ export const cnPhysics = {
             type_answer: "输入答案",
             identify_fault: "识别故障"
         },
+        visualization: {
+            diagram_drawer: {
+                title: "电路图绘制器",
+                description: "使用 IEC 标准符号绘制电路图",
+                battery: "电池",
+                bulb: "灯泡",
+                switch: "开关",
+                wire: "导线",
+                resistor: "电阻器",
+                place_symbols: "点击网格放置符号",
+                draw: "绘制",
+                clear: "清空"
+            },
+            circuit_builder: {
+                title: "电路构建器",
+                description: "交互式电路搭建功能即将上线",
+                battery: "电池",
+                bulb: "灯泡",
+                switch: "开关",
+                wire: "导线",
+                resistor: "电阻器",
+                workspace: "将元件拖到这里搭建你的电路"
+            }
+        },
         scenarios: {
             components: "巴塞尔家庭电气安全：你是巴塞尔职业学校（Gewerbeschule Basel）的电工学徒。今天你要学习识别家庭电气安装中的电路元件。理解每个元件的功能对安全至关重要——错误识别元件可能导致火灾或触电。在巴塞尔的历史建筑中，电气系统必须符合严格的瑞士安全标准（NIV 2020）。你将学习电池（提供电压的电源）、灯泡（将电能转换为光能）、开关（控制电流）、导线（传导电流）和电阻器（限制电流）。每个元件在保护家庭和确保可靠供电方面都有特定作用。这些知识对巴塞尔17万居民每天依赖的安全电气系统至关重要。",
             simple_circuits: "巴塞尔圣诞灯光安装：你正在帮助沿巴塞尔自由街（Freie Strasse）购物区安装圣诞灯。市政府要求使用可独立控制的节能LED灯串。你需要理解串联电路（灯泡在单一路径中——一个失效，全部熄灭）与并联电路（灯泡在独立路径中——每个可独立控制）的区别。串联电路更简单但可靠性较低。并联电路使用更多导线但提供冗余。对于巴塞尔2公里的圣诞灯光，带独立开关的并联电路允许白天关闭部分灯光以节约能源。巴塞尔圣诞市场使用超过5万个LED灯泡，正确的电路设计确保它们在230V交流电下安全运行，同时消耗最少的电力。",
@@ -1148,17 +1172,17 @@ export const cnPhysics = {
             type_value: "输入数值",
         },
         visualization: {
+            ohms_law_formula: "欧姆定律：U = I × R",
             voltage: "电压",
             current: "电流",
-            power: "功率",
-            time: "时间",
-            energy: "能量",
-            cost: "费用",
-            input: "输入",
-            output: "输出",
-            efficiency: "效率",
-            loss: "损耗",
-            efficiency_visualization: "效率可视化",
+            resistance: "电阻",
+            current_flow: "电流方向 →",
+            series_formula: "串联电路：R_total = R_1 + R_2 + ...",
+            total: "总计",
+            series_summary: "电压：{voltage}V → 电流：{current}A",
+            parallel_formula: "并联电路：1/R_total = 1/R_1 + 1/R_2 + ...",
+            total_resistance: "总电阻",
+            total_current: "总电流",
         },
         scenarios: {
             ohms_law: "巴塞尔大学电气工程实验室：你是一名一年级电气工程专业学生，正在学习电路基础知识。今天的实验重点是欧姆定律（U = I × R），这是所有电路分析的基础。你的任务是计算简单电路中的电压、电流或电阻。施密特教授强调：'理解欧姆定律就像学习字母表——它是后续所有内容的基础。'你将使用数字万用表测量真实电路并验证你的计算。这些知识对于设计从智能手机电路到巴塞尔有轨电车电气系统的一切都至关重要。",

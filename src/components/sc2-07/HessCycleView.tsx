@@ -15,6 +15,7 @@
 
 import { useState } from 'react';
 import { InlineMath } from 'react-katex';
+import { useLanguage } from '@/lib/i18n';
 
 interface HessEquation {
   id: string;
@@ -35,7 +36,18 @@ export function HessCycleView({
   selectedPathway = [],
   onPathwaySelect,
 }: HessCycleViewProps) {
+  const { t } = useLanguage();
   const [hoveredEquation, setHoveredEquation] = useState<string | null>(null);
+  const hessT = {
+    title: t('sc2_07.visualization.hess_cycle.title'),
+    description: t('sc2_07.visualization.hess_cycle.description'),
+    targetEquation: t('sc2_07.visualization.hess_cycle.target_equation'),
+    availableEquations: t('sc2_07.visualization.hess_cycle.available_equations'),
+    selectedPathwayCalculation: t('sc2_07.visualization.hess_cycle.selected_pathway_calculation'),
+    totalDeltaH: t('sc2_07.visualization.hess_cycle.total_delta_h'),
+    direct: t('sc2_07.visualization.hess_cycle.direct'),
+    pathwayMatches: t('sc2_07.visualization.hess_cycle.pathway_matches_target'),
+  };
 
   // Calculate total ΔH for selected pathway
   const totalDeltaH = availableEquations
@@ -49,13 +61,13 @@ export function HessCycleView({
     <div className="w-full h-full min-h-[400px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-6">
       {/* Title */}
       <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-white">Hess&apos;s Law Cycle</h3>
-        <p className="text-sm text-white/60">Select equations to build pathway</p>
+        <h3 className="text-lg font-semibold text-white">{hessT.title}</h3>
+        <p className="text-sm text-white/60">{hessT.description}</p>
       </div>
 
       {/* Target Equation */}
       <div className="mb-6 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
-        <div className="text-xs text-purple-400 uppercase tracking-wider mb-2">Target Equation</div>
+        <div className="text-xs text-purple-400 uppercase tracking-wider mb-2">{hessT.targetEquation}</div>
         <div className="text-white text-center">
           <InlineMath math={targetEquation.equationLatex} />
         </div>
@@ -101,7 +113,7 @@ export function HessCycleView({
             strokeDasharray="5,5"
           />
           <text x="200" y="145" fill="#a78bfa" fontSize="11" textAnchor="middle">
-            Direct: ΔH = {targetEquation.deltaH} kJ
+            {hessT.direct}: ΔH = {targetEquation.deltaH} kJ
           </text>
 
           {/* Indirect pathway arrows */}
@@ -173,7 +185,7 @@ export function HessCycleView({
 
       {/* Available Equations */}
       <div className="space-y-3 mb-6">
-        <div className="text-xs text-white/60 uppercase tracking-wider">Available Equations</div>
+        <div className="text-xs text-white/60 uppercase tracking-wider">{hessT.availableEquations}</div>
         {availableEquations.map((eq, index) => (
           <div
             key={eq.id}
@@ -205,7 +217,7 @@ export function HessCycleView({
       {selectedPathway.length > 0 && (
         <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
           <div className="text-xs text-green-400 uppercase tracking-wider mb-2">
-            Selected Pathway Calculation
+            {hessT.selectedPathwayCalculation}
           </div>
           <div className="text-white text-sm space-y-1">
             {availableEquations
@@ -216,11 +228,11 @@ export function HessCycleView({
                 </div>
               ))}
             <div className="border-t border-green-500/30 mt-2 pt-2 font-semibold">
-              Total ΔH = {totalDeltaH} kJ
+              {hessT.totalDeltaH} = {totalDeltaH} kJ
             </div>
             {Math.abs(totalDeltaH - targetEquation.deltaH) < 1 && (
               <div className="text-green-400 text-xs mt-2">
-                ✓ Pathway matches target equation!
+                ✓ {hessT.pathwayMatches}
               </div>
             )}
           </div>

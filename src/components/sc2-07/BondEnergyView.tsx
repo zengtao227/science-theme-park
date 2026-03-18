@@ -15,6 +15,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/lib/i18n';
 
 interface Bond {
   type: string; // e.g., "C-H", "C=O", "O-H"
@@ -33,7 +34,24 @@ export function BondEnergyView({
   bondsFormed,
   animate = false,
 }: BondEnergyViewProps) {
+  const { t } = useLanguage();
   const [animationPhase, setAnimationPhase] = useState<'idle' | 'breaking' | 'forming'>('idle');
+  const bondT = {
+    title: t('sc2_07.visualization.bond_energy.title'),
+    description: t('sc2_07.visualization.bond_energy.description'),
+    bondsBroken: t('sc2_07.visualization.bond_energy.bonds_broken'),
+    bondsFormed: t('sc2_07.visualization.bond_energy.bonds_formed'),
+    total: t('sc2_07.visualization.bond_energy.total'),
+    netEnergyChange: t('sc2_07.visualization.bond_energy.net_energy_change'),
+    energyAbsorbed: t('sc2_07.visualization.bond_energy.energy_absorbed'),
+    energyReleased: t('sc2_07.visualization.bond_energy.energy_released'),
+    deltaHFormula: t('sc2_07.visualization.bond_energy.delta_h_formula'),
+    exothermic: t('sc2_07.visualization.bond_energy.exothermic'),
+    endothermic: t('sc2_07.visualization.bond_energy.endothermic'),
+    molecularRepresentation: t('sc2_07.visualization.bond_energy.molecular_representation'),
+    reactants: t('sc2_07.visualization.bond_energy.reactants'),
+    products: t('sc2_07.visualization.bond_energy.products'),
+  };
 
   useEffect(() => {
     if (animate) {
@@ -68,8 +86,8 @@ export function BondEnergyView({
     <div className="w-full h-full min-h-[400px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-6">
       {/* Title */}
       <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-white">Bond Energy Analysis</h3>
-        <p className="text-sm text-white/60">Energy changes during bond breaking and forming</p>
+        <h3 className="text-lg font-semibold text-white">{bondT.title}</h3>
+        <p className="text-sm text-white/60">{bondT.description}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -78,9 +96,9 @@ export function BondEnergyView({
           animationPhase === 'breaking'
             ? 'bg-red-500/20 border-red-500/50 shadow-lg shadow-red-500/30'
             : 'bg-red-500/10 border-red-500/30'
-        }`}>
+          }`}>
           <div className="text-xs text-red-400 uppercase tracking-wider mb-3">
-            Bonds Broken (Energy Absorbed)
+            {bondT.bondsBroken}
           </div>
           <div className="space-y-2">
             {bondsBroken.map((bond, index) => (
@@ -99,7 +117,7 @@ export function BondEnergyView({
             ))}
           </div>
           <div className="mt-3 pt-3 border-t border-red-500/30 text-right">
-            <span className="text-white/60 text-sm">Total: </span>
+            <span className="text-white/60 text-sm">{bondT.total}: </span>
             <span className="text-red-300 font-semibold">+{totalBroken} kJ</span>
           </div>
         </div>
@@ -109,9 +127,9 @@ export function BondEnergyView({
           animationPhase === 'forming'
             ? 'bg-green-500/20 border-green-500/50 shadow-lg shadow-green-500/30'
             : 'bg-green-500/10 border-green-500/30'
-        }`}>
+          }`}>
           <div className="text-xs text-green-400 uppercase tracking-wider mb-3">
-            Bonds Formed (Energy Released)
+            {bondT.bondsFormed}
           </div>
           <div className="space-y-2">
             {bondsFormed.map((bond, index) => (
@@ -130,7 +148,7 @@ export function BondEnergyView({
             ))}
           </div>
           <div className="mt-3 pt-3 border-t border-green-500/30 text-right">
-            <span className="text-white/60 text-sm">Total: </span>
+            <span className="text-white/60 text-sm">{bondT.total}: </span>
             <span className="text-green-300 font-semibold">-{totalFormed} kJ</span>
           </div>
         </div>
@@ -139,27 +157,27 @@ export function BondEnergyView({
       {/* Calculation */}
       <div className="p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
         <div className="text-xs text-purple-400 uppercase tracking-wider mb-3">
-          Net Energy Change
+          {bondT.netEnergyChange}
         </div>
         <div className="text-white space-y-2">
           <div className="flex items-center justify-between text-sm">
-            <span>Energy absorbed (bonds broken):</span>
+            <span>{bondT.energyAbsorbed}</span>
             <span className="text-red-300">+{totalBroken} kJ</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span>Energy released (bonds formed):</span>
+            <span>{bondT.energyReleased}</span>
             <span className="text-green-300">-{totalFormed} kJ</span>
           </div>
           <div className="border-t border-purple-500/30 pt-2 mt-2">
             <div className="flex items-center justify-between font-semibold">
-              <span>ΔH = Bonds Broken - Bonds Formed:</span>
+              <span>{bondT.deltaHFormula}</span>
               <span className={deltaH < 0 ? 'text-red-400' : 'text-blue-400'}>
                 {deltaH > 0 ? '+' : ''}{deltaH} kJ
               </span>
             </div>
           </div>
           <div className="text-xs text-white/60 mt-2">
-            {deltaH < 0 ? '(Exothermic - energy released)' : '(Endothermic - energy absorbed)'}
+            {deltaH < 0 ? bondT.exothermic : bondT.endothermic}
           </div>
         </div>
       </div>
@@ -167,12 +185,12 @@ export function BondEnergyView({
       {/* Molecular Representation (Simplified) */}
       <div className="mt-6 p-4 bg-white/5 rounded-lg">
         <div className="text-xs text-white/60 uppercase tracking-wider mb-3">
-          Molecular Representation
+          {bondT.molecularRepresentation}
         </div>
         <div className="flex items-center justify-around">
           {/* Reactants */}
           <div className="text-center">
-            <div className="text-white/80 text-sm mb-2">Reactants</div>
+            <div className="text-white/80 text-sm mb-2">{bondT.reactants}</div>
             <svg width="100" height="80" viewBox="0 0 100 80">
               {bondsBroken.slice(0, 3).map((bond, index) => (
                 <g key={index} transform={`translate(${index * 30 + 10}, 30)`}>
@@ -197,7 +215,7 @@ export function BondEnergyView({
 
           {/* Products */}
           <div className="text-center">
-            <div className="text-white/80 text-sm mb-2">Products</div>
+            <div className="text-white/80 text-sm mb-2">{bondT.products}</div>
             <svg width="100" height="80" viewBox="0 0 100 80">
               {bondsFormed.slice(0, 3).map((bond, index) => (
                 <g key={index} transform={`translate(${index * 30 + 10}, 30)`}>

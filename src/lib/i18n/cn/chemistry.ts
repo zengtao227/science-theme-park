@@ -2075,7 +2075,49 @@ export const cnChemistry = {
         visualization: {
             title: "能量图",
             description: "焓变的可视化表示",
-            current_equation: "当前反应"
+            current_equation: "当前反应",
+            hess_cycle: {
+                title: "赫斯定律循环图",
+                description: "选择方程来构建路径",
+                target_equation: "目标方程",
+                available_equations: "可用方程",
+                selected_pathway_calculation: "所选路径计算",
+                total_delta_h: "总 ΔH",
+                direct: "直接路径",
+                pathway_matches_target: "该路径与目标方程一致！"
+            },
+            bond_energy: {
+                title: "键能分析",
+                description: "成键与断键过程中的能量变化",
+                bonds_broken: "断裂的键（吸收能量）",
+                bonds_formed: "形成的键（释放能量）",
+                total: "总计",
+                net_energy_change: "净能量变化",
+                energy_absorbed: "吸收的能量（断键）：",
+                energy_released: "释放的能量（成键）：",
+                delta_h_formula: "ΔH = 断裂的键 - 形成的键：",
+                exothermic: "（放热反应：释放能量）",
+                endothermic: "（吸热反应：吸收能量）",
+                molecular_representation: "分子示意图",
+                reactants: "反应物",
+                products: "生成物"
+            },
+            calorimeter: {
+                title: "量热计",
+                description: "热量测量装置",
+                exothermic: "放热反应（释放热量）",
+                endothermic: "吸热反应（吸收热量）",
+                measurements: "测量数据",
+                mass_of_solution: "溶液质量：",
+                specific_heat_capacity: "比热容：",
+                initial_temperature: "初始温度：",
+                final_temperature: "最终温度：",
+                temperature_change: "温度变化（ΔT）：",
+                heat_calculation: "热量计算",
+                interpretation: "结果解释",
+                exothermic_explanation: "温度上升说明这是放热反应。热量释放到溶液中，使溶液温度升高。",
+                endothermic_explanation: "温度下降说明这是吸热反应。热量从溶液中被吸收，使溶液温度降低。"
+            }
         }
     },
 

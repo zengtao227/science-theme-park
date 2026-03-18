@@ -2,28 +2,35 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface OhmsLawVisualizationProps {
     quest: any;
     stage: string;
     voltage: number;
     current: number;
-    translations: {
-        ohms_law: string;
-        series_circuits: string;
-        parallel_circuits: string;
-    };
 }
 
 export default function OhmsLawVisualization({
     quest,
     stage,
     voltage,
-    current,
-    translations
+    current
 }: OhmsLawVisualizationProps) {
-    void translations;
+    const { t } = useLanguage();
     const [animationKey, setAnimationKey] = useState(0);
+    const vizT = {
+        ohmsLawFormula: t("sp2_02.visualization.ohms_law_formula"),
+        voltage: t("sp2_02.visualization.voltage"),
+        current: t("sp2_02.visualization.current"),
+        resistance: t("sp2_02.visualization.resistance"),
+        currentFlow: t("sp2_02.visualization.current_flow"),
+        seriesFormula: t("sp2_02.visualization.series_formula"),
+        total: t("sp2_02.visualization.total"),
+        parallelFormula: t("sp2_02.visualization.parallel_formula"),
+        totalResistance: t("sp2_02.visualization.total_resistance"),
+        totalCurrent: t("sp2_02.visualization.total_current"),
+    };
 
     useEffect(() => {
         setAnimationKey(prev => prev + 1);
@@ -35,24 +42,24 @@ export default function OhmsLawVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Ohm&apos;s Law: U = I × R
+                    {vizT.ohmsLawFormula}
                 </div>
                 
                 <div className="grid grid-cols-3 gap-8 w-full max-w-md">
                     <div className="flex flex-col items-center gap-2">
-                        <div className="text-cyan-400 text-xs uppercase">Voltage</div>
+                        <div className="text-cyan-400 text-xs uppercase">{vizT.voltage}</div>
                         <div className="text-white text-3xl font-bold">{voltage || "?"}</div>
                         <div className="text-white/40 text-xs">V</div>
                     </div>
                     
                     <div className="flex flex-col items-center gap-2">
-                        <div className="text-yellow-400 text-xs uppercase">Current</div>
+                        <div className="text-yellow-400 text-xs uppercase">{vizT.current}</div>
                         <div className="text-white text-3xl font-bold">{current || "?"}</div>
                         <div className="text-white/40 text-xs">A</div>
                     </div>
                     
                     <div className="flex flex-col items-center gap-2">
-                        <div className="text-red-400 text-xs uppercase">Resistance</div>
+                        <div className="text-red-400 text-xs uppercase">{vizT.resistance}</div>
                         <div className="text-white text-3xl font-bold">{resistance.toFixed(1)}</div>
                         <div className="text-white/40 text-xs">Ω</div>
                     </div>
@@ -73,7 +80,7 @@ export default function OhmsLawVisualization({
                         }}
                     />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/30 text-xs">
-                        Current Flow →
+                        {vizT.currentFlow}
                     </div>
                 </div>
             </div>
@@ -87,7 +94,7 @@ export default function OhmsLawVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Series Circuit: R_total = R_1 + R_2 + ...
+                    {vizT.seriesFormula}
                 </div>
                 
                 <div className="flex items-center gap-4">
@@ -104,11 +111,14 @@ export default function OhmsLawVisualization({
                 </div>
                 
                 <div className="text-white text-xl">
-                    Total: <span className="text-red-400 font-bold">{totalR}Ω</span>
+                    {vizT.total}: <span className="text-red-400 font-bold">{totalR}Ω</span>
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    Voltage: {voltage}V → Current: {(voltage / totalR).toFixed(2)}A
+                    {t("sp2_02.visualization.series_summary", {
+                        voltage,
+                        current: (voltage / totalR).toFixed(2),
+                    })}
                 </div>
             </div>
         );
@@ -121,7 +131,7 @@ export default function OhmsLawVisualization({
         return (
             <div className="flex flex-col items-center justify-center h-full p-6 gap-6">
                 <div className="text-white/60 text-sm uppercase tracking-wider">
-                    Parallel Circuit: 1/R_total = 1/R_1 + 1/R_2 + ...
+                    {vizT.parallelFormula}
                 </div>
                 
                 <div className="flex flex-col gap-4">
@@ -138,11 +148,11 @@ export default function OhmsLawVisualization({
                 </div>
                 
                 <div className="text-white text-xl">
-                    Total R: <span className="text-blue-400 font-bold">{totalR.toFixed(2)}Ω</span>
+                    {vizT.totalResistance}: <span className="text-blue-400 font-bold">{totalR.toFixed(2)}Ω</span>
                 </div>
                 
                 <div className="text-white/60 text-sm">
-                    Total Current: {(voltage / totalR).toFixed(2)}A
+                    {vizT.totalCurrent}: {(voltage / totalR).toFixed(2)}A
                 </div>
             </div>
         );

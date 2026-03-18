@@ -1154,6 +1154,30 @@ export const enPhysics = {
                         type_answer: "type answer",
                         identify_fault: "identify fault"
                 },
+                visualization: {
+                        diagram_drawer: {
+                                title: "Circuit Diagram Drawer",
+                                description: "Draw circuit diagrams using IEC standard symbols",
+                                battery: "Battery",
+                                bulb: "Bulb",
+                                switch: "Switch",
+                                wire: "Wire",
+                                resistor: "Resistor",
+                                place_symbols: "Click to place symbols on the grid",
+                                draw: "Draw",
+                                clear: "Clear"
+                        },
+                        circuit_builder: {
+                                title: "Circuit Builder",
+                                description: "Interactive circuit building coming soon",
+                                battery: "Battery",
+                                bulb: "Bulb",
+                                switch: "Switch",
+                                wire: "Wire",
+                                resistor: "Resistor",
+                                workspace: "Drag components here to build your circuit"
+                        }
+                },
                 scenarios: {
                         components: "Basel Home Electrical Safety: You are a trainee electrician at Basel's vocational school (Gewerbeschule Basel). Today you're learning to identify circuit components for home electrical installations. Understanding each component's function is critical for safety - a misidentified component could cause fires or electrical shocks. In Basel's historic buildings, electrical systems must meet strict Swiss safety standards (NIV 2020). You'll work with batteries (power sources providing voltage), bulbs (converting electrical energy to light), switches (controlling current flow), wires (conducting electricity), and resistors (limiting current). Each component has a specific role in protecting homes and ensuring reliable power delivery. This knowledge is essential for Basel's 170,000 residents who depend on safe electrical systems every day.",
                         simple_circuits: "Basel Christmas Light Installation: You're helping install Christmas lights along Basel's Freie Strasse shopping district. The city requires energy-efficient LED strings that can be controlled independently. You need to understand series circuits (where bulbs are in a single path - if one fails, all go dark) versus parallel circuits (where bulbs are in separate paths - each can be controlled independently). Series circuits are simpler but less reliable. Parallel circuits use more wire but provide redundancy. For Basel's 2km of Christmas lights, parallel circuits with individual switches allow sections to be turned off during the day to save energy. The Basel Christmas market uses over 50,000 LED bulbs, and proper circuit design ensures they operate safely at 230V AC while consuming minimal power.",
@@ -2204,17 +2228,17 @@ export const enPhysics = {
                 type_value: "type value",
             },
                 visualization: {
+                        ohms_law_formula: "Ohm's Law: U = I × R",
                         voltage: "Voltage",
                         current: "Current",
-                        power: "Power",
-                        time: "Time",
-                        energy: "Energy",
-                        cost: "Cost",
-                        input: "Input",
-                        output: "Output",
-                        efficiency: "Efficiency",
-                        loss: "Loss",
-                        efficiency_visualization: "Efficiency Visualization"
+                        resistance: "Resistance",
+                        current_flow: "Current Flow →",
+                        series_formula: "Series Circuit: R_total = R_1 + R_2 + ...",
+                        total: "Total",
+                        series_summary: "Voltage: {voltage}V → Current: {current}A",
+                        parallel_formula: "Parallel Circuit: 1/R_total = 1/R_1 + 1/R_2 + ...",
+                        total_resistance: "Total R",
+                        total_current: "Total Current"
                 },
                 scenarios: {
                         ohms_law: "Basel Electrical Engineering Lab at University of Basel: You are a first-year electrical engineering student learning circuit fundamentals. Today's lab focuses on Ohm's Law (U = I × R), the foundation of all circuit analysis. Your task is to calculate voltage, current, or resistance in simple circuits. Professor Schmidt emphasizes: 'Understanding Ohm's Law is like learning the alphabet - it's essential for everything that follows.' You'll use digital multimeters to measure real circuits and verify your calculations. This knowledge is crucial for designing everything from smartphone circuits to Basel's tram electrical systems.",

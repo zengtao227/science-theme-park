@@ -1153,6 +1153,30 @@ export const dePhysics = {
                         type_answer: "Antwort eingeben",
                         identify_fault: "Fehler erkennen"
                 },
+                visualization: {
+                        diagram_drawer: {
+                                title: "Schaltplan-Zeichner",
+                                description: "Zeichnen Sie Schaltpläne mit IEC-Standardsymbolen",
+                                battery: "Batterie",
+                                bulb: "Lampe",
+                                switch: "Schalter",
+                                wire: "Leitung",
+                                resistor: "Widerstand",
+                                place_symbols: "Klicken Sie, um Symbole im Raster zu platzieren",
+                                draw: "Zeichnen",
+                                clear: "Löschen"
+                        },
+                        circuit_builder: {
+                                title: "Stromkreis-Builder",
+                                description: "Interaktiver Stromkreisbau folgt in Kürze",
+                                battery: "Batterie",
+                                bulb: "Lampe",
+                                switch: "Schalter",
+                                wire: "Leitung",
+                                resistor: "Widerstand",
+                                workspace: "Ziehen Sie Bauteile hierher, um Ihren Stromkreis aufzubauen"
+                        }
+                },
                 scenarios: {
                         components: "Basler Elektrische Sicherheit im Haushalt: Sie sind Auszubildender Elektriker an der Gewerbeschule Basel. Heute lernen Sie, Stromkreiskomponenten für Hausinstallationen zu identifizieren. Das Verständnis der Funktion jeder Komponente ist sicherheitskritisch - eine falsch identifizierte Komponente könnte Brände oder Stromschläge verursachen. In Basels historischen Gebäuden müssen elektrische Systeme strenge Schweizer Sicherheitsstandards (NIV 2020) erfüllen. Sie arbeiten mit Batterien (Stromquellen, die Spannung liefern), Glühbirnen (wandeln elektrische Energie in Licht um), Schaltern (steuern den Stromfluss), Drähten (leiten Elektrizität) und Widerständen (begrenzen den Strom). Jede Komponente hat eine spezifische Rolle beim Schutz von Häusern und der Gewährleistung zuverlässiger Stromversorgung. Dieses Wissen ist für Basels 170.000 Einwohner, die täglich auf sichere elektrische Systeme angewiesen sind, unerlässlich.",
                         simple_circuits: "Basler Weihnachtsbeleuchtung Installation: Sie helfen bei der Installation von Weihnachtslichtern entlang der Basler Freien Strasse. Die Stadt verlangt energieeffiziente LED-Lichterketten, die unabhängig gesteuert werden können. Sie müssen Reihenschaltungen (wo Glühbirnen in einem einzigen Pfad sind - wenn eine ausfällt, erlöschen alle) von Parallelschaltungen (wo Glühbirnen in separaten Pfaden sind - jede kann unabhängig gesteuert werden) verstehen. Reihenschaltungen sind einfacher, aber weniger zuverlässig. Parallelschaltungen verwenden mehr Draht, bieten aber Redundanz. Für Basels 2 km Weihnachtsbeleuchtung ermöglichen Parallelschaltungen mit individuellen Schaltern, Abschnitte tagsüber auszuschalten, um Energie zu sparen. Der Basler Weihnachtsmarkt verwendet über 50.000 LED-Glühbirnen, und ein ordnungsgemäßes Schaltungsdesign stellt sicher, dass sie sicher bei 230V AC betrieben werden und dabei minimalen Strom verbrauchen.",
@@ -1213,17 +1237,17 @@ export const dePhysics = {
                 type_value: "Wert eingeben",
             },
                 visualization: {
+                        ohms_law_formula: "Ohm'sches Gesetz: U = I × R",
                         voltage: "Spannung",
                         current: "Strom",
-                        power: "Leistung",
-                        time: "Zeit",
-                        energy: "Energie",
-                        cost: "Kosten",
-                        input: "Eingang",
-                        output: "Ausgang",
-                        efficiency: "Wirkungsgrad",
-                        loss: "Verlust",
-                        efficiency_visualization: "Wirkungsgrad-Visualisierung"
+                        resistance: "Widerstand",
+                        current_flow: "Stromfluss →",
+                        series_formula: "Reihenschaltung: R_total = R_1 + R_2 + ...",
+                        total: "Gesamt",
+                        series_summary: "Spannung: {voltage}V → Strom: {current}A",
+                        parallel_formula: "Parallelschaltung: 1/R_total = 1/R_1 + 1/R_2 + ...",
+                        total_resistance: "Gesamtwiderstand",
+                        total_current: "Gesamtstrom"
                 },
                 scenarios: {
                         ohms_law: "Elektrotechnik-Labor an der Universität Basel: Sie sind Elektrotechnik-Student im ersten Jahr und lernen Schaltungsgrundlagen. Das heutige Labor konzentriert sich auf das Ohmsche Gesetz (U = I × R), die Grundlage aller Schaltungsanalysen. Ihre Aufgabe ist es, Spannung, Strom oder Widerstand in einfachen Schaltungen zu berechnen. Professor Schmidt betont: 'Das Ohmsche Gesetz zu verstehen ist wie das Alphabet zu lernen - es ist essentiell für alles, was folgt.' Sie werden digitale Multimeter verwenden, um echte Schaltungen zu messen und Ihre Berechnungen zu verifizieren. Dieses Wissen ist entscheidend für die Entwicklung von allem, von Smartphone-Schaltungen bis zu Basels Straßenbahn-Elektrosystemen.",

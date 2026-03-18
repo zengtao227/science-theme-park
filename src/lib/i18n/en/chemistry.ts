@@ -2076,7 +2076,49 @@ export const enChemistry = {
         visualization: {
             title: "Energy Diagram",
             description: "Visual representation of enthalpy changes",
-            current_equation: "Current Reaction"
+            current_equation: "Current Reaction",
+            hess_cycle: {
+                title: "Hess's Law Cycle",
+                description: "Select equations to build pathway",
+                target_equation: "Target Equation",
+                available_equations: "Available Equations",
+                selected_pathway_calculation: "Selected Pathway Calculation",
+                total_delta_h: "Total ΔH",
+                direct: "Direct",
+                pathway_matches_target: "Pathway matches target equation!"
+            },
+            bond_energy: {
+                title: "Bond Energy Analysis",
+                description: "Energy changes during bond breaking and forming",
+                bonds_broken: "Bonds Broken (Energy Absorbed)",
+                bonds_formed: "Bonds Formed (Energy Released)",
+                total: "Total",
+                net_energy_change: "Net Energy Change",
+                energy_absorbed: "Energy absorbed (bonds broken):",
+                energy_released: "Energy released (bonds formed):",
+                delta_h_formula: "ΔH = Bonds Broken - Bonds Formed:",
+                exothermic: "(Exothermic - energy released)",
+                endothermic: "(Endothermic - energy absorbed)",
+                molecular_representation: "Molecular Representation",
+                reactants: "Reactants",
+                products: "Products"
+            },
+            calorimeter: {
+                title: "Calorimeter",
+                description: "Heat measurement apparatus",
+                exothermic: "Exothermic (Heat Released)",
+                endothermic: "Endothermic (Heat Absorbed)",
+                measurements: "Measurements",
+                mass_of_solution: "Mass of solution:",
+                specific_heat_capacity: "Specific heat capacity:",
+                initial_temperature: "Initial temperature:",
+                final_temperature: "Final temperature:",
+                temperature_change: "Temperature change (ΔT):",
+                heat_calculation: "Heat Calculation",
+                interpretation: "Interpretation",
+                exothermic_explanation: "The positive temperature change indicates an exothermic reaction. Heat is released into the solution, raising its temperature.",
+                endothermic_explanation: "The negative temperature change indicates an endothermic reaction. Heat is absorbed from the solution, lowering its temperature."
+            }
         }
     },
 

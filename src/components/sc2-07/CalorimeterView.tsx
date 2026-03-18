@@ -15,6 +15,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/lib/i18n';
 
 interface CalorimeterViewProps {
   mass: number; // grams
@@ -33,8 +34,25 @@ export function CalorimeterView({
   heat,
   animate = false,
 }: CalorimeterViewProps) {
+  const { t } = useLanguage();
   const [currentTemp, setCurrentTemp] = useState(initialTemp);
   const [isAnimating, setIsAnimating] = useState(false);
+  const calorimeterT = {
+    title: t('sc2_07.visualization.calorimeter.title'),
+    description: t('sc2_07.visualization.calorimeter.description'),
+    exothermic: t('sc2_07.visualization.calorimeter.exothermic'),
+    endothermic: t('sc2_07.visualization.calorimeter.endothermic'),
+    measurements: t('sc2_07.visualization.calorimeter.measurements'),
+    massOfSolution: t('sc2_07.visualization.calorimeter.mass_of_solution'),
+    specificHeatCapacity: t('sc2_07.visualization.calorimeter.specific_heat_capacity'),
+    initialTemperature: t('sc2_07.visualization.calorimeter.initial_temperature'),
+    finalTemperature: t('sc2_07.visualization.calorimeter.final_temperature'),
+    temperatureChange: t('sc2_07.visualization.calorimeter.temperature_change'),
+    heatCalculation: t('sc2_07.visualization.calorimeter.heat_calculation'),
+    interpretation: t('sc2_07.visualization.calorimeter.interpretation'),
+    exothermicExplanation: t('sc2_07.visualization.calorimeter.exothermic_explanation'),
+    endothermicExplanation: t('sc2_07.visualization.calorimeter.endothermic_explanation'),
+  };
 
   const tempChange = finalTemp - initialTemp;
   const isExothermic = tempChange > 0;
@@ -74,8 +92,8 @@ export function CalorimeterView({
     <div className="w-full h-full min-h-[400px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-6">
       {/* Title */}
       <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-white">Calorimeter</h3>
-        <p className="text-sm text-white/60">Heat measurement apparatus</p>
+        <h3 className="text-lg font-semibold text-white">{calorimeterT.title}</h3>
+        <p className="text-sm text-white/60">{calorimeterT.description}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -253,7 +271,7 @@ export function CalorimeterView({
               ? 'bg-red-500/20 text-red-300'
               : 'bg-blue-500/20 text-blue-300'
           }`}>
-            {isExothermic ? 'Exothermic (Heat Released)' : 'Endothermic (Heat Absorbed)'}
+            {isExothermic ? calorimeterT.exothermic : calorimeterT.endothermic}
           </div>
         </div>
 
@@ -262,27 +280,27 @@ export function CalorimeterView({
           {/* Measurements */}
           <div className="p-4 bg-white/5 rounded-lg border border-white/10">
             <div className="text-xs text-white/60 uppercase tracking-wider mb-3">
-              Measurements
+              {calorimeterT.measurements}
             </div>
             <div className="space-y-2 text-white text-sm">
               <div className="flex justify-between">
-                <span>Mass of solution:</span>
+                <span>{calorimeterT.massOfSolution}</span>
                 <span className="font-mono">{mass} g</span>
               </div>
               <div className="flex justify-between">
-                <span>Specific heat capacity:</span>
+                <span>{calorimeterT.specificHeatCapacity}</span>
                 <span className="font-mono">{specificHeat} J/g°C</span>
               </div>
               <div className="flex justify-between">
-                <span>Initial temperature:</span>
+                <span>{calorimeterT.initialTemperature}</span>
                 <span className="font-mono">{initialTemp}°C</span>
               </div>
               <div className="flex justify-between">
-                <span>Final temperature:</span>
+                <span>{calorimeterT.finalTemperature}</span>
                 <span className="font-mono">{finalTemp}°C</span>
               </div>
               <div className="flex justify-between border-t border-white/10 pt-2 mt-2">
-                <span>Temperature change (ΔT):</span>
+                <span>{calorimeterT.temperatureChange}</span>
                 <span className={`font-mono font-semibold ${
                   tempChange > 0 ? 'text-red-300' : 'text-blue-300'
                 }`}>
@@ -295,7 +313,7 @@ export function CalorimeterView({
           {/* Calculation */}
           <div className="p-4 bg-purple-500/10 rounded-lg border border-purple-500/30">
             <div className="text-xs text-purple-400 uppercase tracking-wider mb-3">
-              Heat Calculation
+              {calorimeterT.heatCalculation}
             </div>
             <div className="space-y-2 text-white text-sm">
               <div className="font-mono text-center text-lg mb-3">
@@ -322,20 +340,10 @@ export function CalorimeterView({
             <div className={`text-xs uppercase tracking-wider mb-2 ${
               isExothermic ? 'text-red-400' : 'text-blue-400'
             }`}>
-              Interpretation
+              {calorimeterT.interpretation}
             </div>
             <div className="text-white/80 text-sm">
-              {isExothermic ? (
-                <>
-                  The positive temperature change indicates an <strong>exothermic</strong> reaction.
-                  Heat is released into the solution, raising its temperature.
-                </>
-              ) : (
-                <>
-                  The negative temperature change indicates an <strong>endothermic</strong> reaction.
-                  Heat is absorbed from the solution, lowering its temperature.
-                </>
-              )}
+              {isExothermic ? calorimeterT.exothermicExplanation : calorimeterT.endothermicExplanation}
             </div>
           </div>
         </div>
