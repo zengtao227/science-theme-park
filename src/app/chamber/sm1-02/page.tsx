@@ -37,6 +37,21 @@ const VAR_COLORS = {
 function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S102Quest[] {
     const quests: S102Quest[] = [];
     const count = 20;
+    const splitSingleVariableTerm = (term: string) => {
+        const trimmed = term.replace(/\s+/g, "");
+        const match = trimmed.match(/^(-?\d*)([a-zA-Z]+)$/);
+        if (!match) {
+            return { coefficient: trimmed, variable: "" };
+        }
+        const [, rawCoefficient, variable] = match;
+        if (rawCoefficient === "" || rawCoefficient === "+") {
+            return { coefficient: "1", variable };
+        }
+        if (rawCoefficient === "-") {
+            return { coefficient: "-1", variable };
+        }
+        return { coefficient: rawCoefficient, variable };
+    };
 
     for (let i = 0; i < count; i++) {
         const id = `${stage[0]}${i + 1}-${difficulty[0]}`;
@@ -182,11 +197,12 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
                 ];
             }
 
+            const termParts = isMultiVar ? null : splitSingleVariableTerm(answerStr);
             const slots = isMultiVar
                 ? [{ id: "res", labelLatex: `\\text{${sm1_02_t.labels.result}}`, placeholder: answerStr, expected: answerStr }]
                 : [
-                    { id: "coef", labelLatex: `\\text{${sm1_02_t.labels.coefficient}}`, placeholder: sm1_02_t.placeholders.hash, expected: String(parseInt(answerStr) || 0) },
-                    { id: "var", labelLatex: `\\text{${sm1_02_t.labels.variable}}`, placeholder: sm1_02_t.placeholders.x, expected: answerStr.replace(/[0-9-]/g, '') }
+                    { id: "coef", labelLatex: `\\text{${sm1_02_t.labels.coefficient}}`, placeholder: sm1_02_t.placeholders.hash, expected: termParts!.coefficient },
+                    { id: "var", labelLatex: `\\text{${sm1_02_t.labels.variable}}`, placeholder: sm1_02_t.placeholders.x, expected: termParts!.variable }
                 ];
 
             quests.push({
