@@ -1638,7 +1638,7 @@ export const deMath = {
         scrapper_step01: "SCHRITT 01: Wurzel isolieren (a)",
         active_objective: "Aktuelles Missionsziel",
         target_expression: "Ziel-Identitätsausdruck",
-        params_config: "00 // Parameterkonfiguration",
+        params_config: "Parametersteuerung",
         units: "EINHEITEN",
         tabs: {
             explore: "ERKUNDEN",

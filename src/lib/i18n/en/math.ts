@@ -1627,7 +1627,7 @@ export const enMath = {
         scrapper_step01: "STEP 01: Isolate root (a)",
         active_objective: "Active Mission Objective",
         target_expression: "Target Identity Expression",
-        params_config: "00 // Parameters Configuration",
+        params_config: "Parameter Controls",
         units: "UNITS",
         tabs: {
             explore: "EXPLORE",

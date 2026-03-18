@@ -1607,7 +1607,7 @@ export const cnMath = {
         scrapper_step01: "步骤 01：提取根 $(a)$",
         active_objective: "当前任务目标",
         target_expression: "目标恒等式表达式",
-        params_config: "00 // 参数配置",
+        params_config: "参数设置",
         units: "单位",
         tabs: {
             explore: "探索",

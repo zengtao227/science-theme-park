@@ -38,11 +38,38 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
         s.replace(/\$|\{|\}/g, "").replace(/\^2/g, "²");
 
     return (
-        <div className="w-full aspect-square relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col items-center justify-center p-4">
-            <svg
-                viewBox={`0 0 ${viewSize} ${viewSize}`}
-                className="w-full h-full max-w-[500px]"
-            >
+        <div className="w-full aspect-square relative bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col p-4">
+            <div className="w-full mb-3 bg-black/60 p-3 rounded-lg border border-white/10 backdrop-blur-md shrink-0">
+                <div className="text-neon-cyan font-black text-xs mb-2">
+                    <InlineMath math={`${translations.terms.target_plus} = ${translations.terms.a2} + 2${translations.terms.ab} + ${translations.terms.b2}`} />
+                </div>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-mono">
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-[#ff3131]" />
+                        <span className="text-white/60">
+                            <InlineMath math={`${translations.terms.a2}=${a * a}`} />
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-[#ffaa00]" />
+                        <span className="text-white/60">
+                            <InlineMath math={`2${translations.terms.ab}=${2 * a * b}`} />
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 bg-[#39ff14]" />
+                        <span className="text-white/60">
+                            <InlineMath math={`${translations.terms.b2}=${b * b}`} />
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="relative flex-1 min-h-0 flex items-center justify-center">
+                <svg
+                    viewBox={`0 0 ${viewSize} ${viewSize}`}
+                    className="w-full h-full max-w-[500px]"
+                >
                 {/* Main Container Square */}
                 <rect
                     x={padding} y={padding}
@@ -124,39 +151,13 @@ export default function BinomialSquare2D({ a, b, hideRoots = false, translations
                 <text x={padding + aw + bw / 2} y={padding - 10} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle">{hideRoots ? "b" : b}</text>
                 <text x={padding - 15} y={padding + aw / 2} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw / 2})`}>{hideRoots ? "a" : a}</text>
                 <text x={padding - 15} y={padding + aw + bw / 2} fill="rgba(255,255,255,0.6)" fontSize="12" textAnchor="middle" transform={`rotate(-90, ${padding - 15}, ${padding + aw + bw / 2})`}>{hideRoots ? "b" : b}</text>
-            </svg>
+                </svg>
 
-            {/* Legend Overlay */}
-            <div className="absolute top-4 left-4 bg-black/60 p-3 rounded-lg border border-white/10 backdrop-blur-md">
-                <div className="text-neon-cyan font-black text-xs mb-2">
-                    <InlineMath math={`${translations.terms.target_plus} = ${translations.terms.a2} + 2${translations.terms.ab} + ${translations.terms.b2}`} />
+                <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
+                    {translations.ui.geometry_proof}<br />
+                    {translations.ui.binomial_formula}<br />
+                    {translations.ui.node_zurich}
                 </div>
-                <div className="flex items-center gap-4 text-[10px] font-mono">
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-[#ff3131]" />
-                        <span className="text-white/60">
-                            <InlineMath math={`${translations.terms.a2}=${a * a}`} />
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-[#ffaa00]" />
-                        <span className="text-white/60">
-                            <InlineMath math={`2${translations.terms.ab}=${2 * a * b}`} />
-                        </span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 bg-[#39ff14]" />
-                        <span className="text-white/60">
-                            <InlineMath math={`${translations.terms.b2}=${b * b}`} />
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="absolute bottom-4 right-4 text-[8px] font-mono text-white/60 text-right uppercase">
-                {translations.ui.geometry_proof}<br />
-                {translations.ui.binomial_formula}<br />
-                {translations.ui.node_zurich}
             </div>
         </div>
     );
