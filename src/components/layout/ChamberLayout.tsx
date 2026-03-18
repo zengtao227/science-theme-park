@@ -206,19 +206,18 @@ export default function ChamberLayout({
         return minutes ? `${minutes}m ${remaining}s` : `${remaining}s`;
     };
 
-    const panelLabels =
-        currentLanguage === "CN"
-            ? { controls: "控制", monitor: "描述", history: "历史" }
-            : currentLanguage === "DE"
-                ? { controls: "STEUERUNG", monitor: "BESCHREIBUNG", history: "VERLAUF" }
-                : { controls: "CONTROL", monitor: "MONITOR", history: "HISTORY" };
+    const panelLabels = {
+        controls: t("common.chamber_layout.panels.controls"),
+        monitor: t("common.chamber_layout.panels.monitor"),
+        history: t("common.chamber_layout.panels.history"),
+    };
 
-    const printLabels =
-        currentLanguage === "CN"
-            ? { selector: "打印分类", all: "全选", clear: "清空", selected: "已选" }
-            : currentLanguage === "DE"
-                ? { selector: "DRUCK-KATEGORIEN", all: "ALLE", clear: "LEEREN", selected: "AUSGEWÄHLT" }
-                : { selector: "PRINT CATEGORIES", all: "ALL", clear: "CLEAR", selected: "SELECTED" };
+    const printLabels = {
+        selector: t("common.chamber_layout.print.selector"),
+        all: t("common.chamber_layout.print.all"),
+        clear: t("common.chamber_layout.print.clear"),
+        selected: t("common.chamber_layout.print.selected"),
+    };
 
     const togglePrintSection = useCallback((sectionId: string) => {
         setSelectedPrintSectionIds((prev) =>
@@ -532,7 +531,7 @@ export default function ChamberLayout({
                                     {prerequisites.length > 0 && (
                                         <HUDAlert
                                             type={allPrereqsMet ? "success" : "warning"}
-                                            title={currentLanguage === "CN" ? "路径依赖" : currentLanguage === "DE" ? "PFAD-VERBINDUNG" : "PATHWAY_CONNECTION"}
+                                            title={t("common.chamber_layout.pathway_connection")}
                                             className="max-w-2xl mx-auto"
                                         >
                                             <div className="flex items-center justify-between mb-1">
@@ -642,7 +641,7 @@ export default function ChamberLayout({
                         {prerequisites.length > 0 && (
                             <HUDAlert
                                 type={allPrereqsMet ? "success" : "warning"}
-                                title={currentLanguage === "CN" ? "路径依赖" : currentLanguage === "DE" ? "PFAD-VERBINDUNG" : "PATHWAY_CONNECTION"}
+                                title={t("common.chamber_layout.pathway_connection")}
                                 className="opacity-60"
                             >
                                 <div className="flex flex-wrap items-center gap-2 mt-1">

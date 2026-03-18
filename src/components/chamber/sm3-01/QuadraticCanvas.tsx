@@ -15,32 +15,12 @@ export type CanvasQuest = {
   hintLatex?: string[];
   correctLatex?: string;
 }
-
-// ---------------------------------------------------------------
-// Localized text for the Hint Panel
-// ---------------------------------------------------------------
-const hintPanelI18n: Record<string, Record<string, { title: string; items: string[] }>> = {
-  EN: {
-    TERMS: { title: "Combining Like Terms", items: ["ax + bx = (a+b)x", "Group same variables", "Watch signs: -(a-b) = -a+b", "Distribute: c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "Factorization Identities", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Always check: GCF first"] },
-    FRACTIONS: { title: "Simplifying Fractions", items: ["Factor numerator & denominator", "Cancel common factors", "a^{2} - b^{2} = (a-b)(a+b)", "Check domain restrictions"] },
-    EQUATIONS: { title: "Solving Equations", items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"] },
-  },
-  CN: {
-    TERMS: { title: "合并同类项", items: ["ax + bx = (a+b)x", "同类项：变量和次数相同的项", "注意符号：-(a-b) = -a+b", "分配律：c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "因式分解恒等式", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "先提取公因式"] },
-    FRACTIONS: { title: "分式化简", items: ["对分子分母进行因式分解", "约去公因式", "a^{2} - b^{2} = (a-b)(a+b)", "注意定义域限制"] },
-    EQUATIONS: { title: "解方程", items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"] },
-  },
-  DE: {
-    TERMS: { title: "Gleichartige Terme", items: ["ax + bx = (a+b)x", "Gleiche Variablen zusammenfassen", "Vorzeichen: -(a-b) = -a+b", "Ausmultiplizieren: c(x+y) = cx + cy"] },
-    FACTORIZE: { title: "Faktorisierungs-Identitäten", items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Immer zuerst: Gemeinsamer Faktor"] },
-    FRACTIONS: { title: "Brüche Vereinfachen", items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a^{2}-b^{2} = (a-b)(a+b)", "Definitionsmenge beachten"] },
-    EQUATIONS: { title: "Gleichungen Lösen", items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"] },
-  },
+type QuadraticCanvasCopy = {
+  roots: string;
+  vertex: string;
+  hint_step_label: string;
+  hint_panels: Record<string, { title: string; items: string[] }>;
 };
-
-const hintStepLabel: Record<string, string> = { EN: "Step-by-Step Hints", CN: "逐步提示", DE: "Schritt-für-Schritt" };
 
 // ---------------------------------------------------------------
 // PURE 2D SVG PARABOLA — Only shown for EQUATIONS stage.
@@ -174,8 +154,8 @@ function ParabolaSVG({ a, b, c }: { a: number; b: number; c: number }) {
 // ---------------------------------------------------------------
 // HINT PANEL — Localized
 // ---------------------------------------------------------------
-function HintPanel({ stage, hints, lang }: { stage: string; hints?: string[]; lang: string }) {
-  const data = (hintPanelI18n[lang] || hintPanelI18n.EN)[stage] || hintPanelI18n.EN.TERMS;
+function HintPanel({ stage, hints, copy }: { stage: string; hints?: string[]; copy: QuadraticCanvasCopy }) {
+  const data = copy.hint_panels[stage] || copy.hint_panels.TERMS;
 
   return (
     <div className="w-full rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
@@ -194,7 +174,7 @@ function HintPanel({ stage, hints, lang }: { stage: string; hints?: string[]; la
       </div>
       {hints && hints.length > 0 && (
         <div className="border-t border-white/5 p-4 space-y-2">
-          <div className="text-[8px] uppercase tracking-[0.3em] font-black text-yellow-400/70 mb-2">{hintStepLabel[lang] || hintStepLabel.EN}</div>
+          <div className="text-[8px] uppercase tracking-[0.3em] font-black text-yellow-400/70 mb-2">{copy.hint_step_label}</div>
           {hints.map((h, i) => (
             <div key={i} className="flex items-start gap-3">
               <span className="text-yellow-400/50 text-[10px] font-black mt-1">{i + 1}.</span>
@@ -214,12 +194,12 @@ function HintPanel({ stage, hints, lang }: { stage: string; hints?: string[]; la
 // ---------------------------------------------------------------
 export default function S301QuadraticCanvas({
   quest,
-  lang = "EN",
   loadingText = "",
+  copy,
 }: {
   quest: CanvasQuest;
-  lang?: string;
   loadingText?: string;
+  copy: QuadraticCanvasCopy;
 }) {
   if (!quest) {
     return (
@@ -237,12 +217,12 @@ export default function S301QuadraticCanvas({
         <div className="w-full rounded-xl border border-white/10 overflow-hidden shadow-lg">
           <ParabolaSVG a={quest.a!} b={quest.b ?? 0} c={quest.c ?? 0} />
           <div className="px-3 py-2 bg-black/50 flex items-center justify-between">
-            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#39ff14]" /><span className="text-[8px] font-mono text-white/40 uppercase tracking-wider">{lang === "CN" ? "根" : lang === "DE" ? "Nullstellen" : "Roots"}</span></div>
-            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#ff00ff]" /><span className="text-[8px] font-mono text-white/40 uppercase tracking-wider">{lang === "CN" ? "顶点" : lang === "DE" ? "Scheitel" : "Vertex"}</span></div>
+            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#39ff14]" /><span className="text-[8px] font-mono text-white/40 uppercase tracking-wider">{copy.roots}</span></div>
+            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[#ff00ff]" /><span className="text-[8px] font-mono text-white/40 uppercase tracking-wider">{copy.vertex}</span></div>
           </div>
         </div>
       )}
-      <HintPanel stage={quest.stage} hints={quest.hintLatex} lang={lang} />
+      <HintPanel stage={quest.stage} hints={quest.hintLatex} copy={copy} />
     </div>
   );
 }

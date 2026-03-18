@@ -2,6 +2,7 @@
 
 import { useMemo, useCallback } from "react";
 import { BlockMath } from "react-katex";
+import { useLanguage } from "@/lib/i18n";
 import "katex/dist/katex.min.css";
 
 interface Point {
@@ -12,8 +13,18 @@ interface Point {
 interface MatrixVisualization2DProps {
   matrix: number[][];
   stage: string;
-  language: "EN" | "CN" | "DE";
 }
+
+type MatrixVisualizationCopy = {
+  transformationMatrix: string;
+  determinant: string;
+  area: string;
+  basisVectors: string;
+  areaExpanded: string;
+  areaCompressed: string;
+  orientationReversed: string;
+  collapsedToLine: string;
+};
 
 const Arrow = ({ from, to, color, label, toCanvas }: { from: Point; to: Point; color: string; label: string; toCanvas: (p: Point) => Point }) => {
   const canvasFrom = toCanvas(from);
@@ -71,7 +82,9 @@ const Arrow = ({ from, to, color, label, toCanvas }: { from: Point; to: Point; c
   );
 };
 
-export default function MatrixVisualization2D({ matrix, stage, language }: MatrixVisualization2DProps) {
+export default function MatrixVisualization2D({ matrix, stage }: MatrixVisualization2DProps) {
+  const { t } = useLanguage();
+  const copy = t("em2_01.visualization") as MatrixVisualizationCopy;
   const scale = 60; // pixels per unit
   const origin = { x: 200, y: 200 };
 
@@ -110,52 +123,11 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
   const iHat = useMemo(() => transform({ x: 1, y: 0 }), [transform]);
   const jHat = useMemo(() => transform({ x: 0, y: 1 }), [transform]);
 
-  const translations = {
-    EN: {
-      transformationMatrix: "TRANSFORMATION MATRIX",
-      unitSquare: "Unit Square",
-      transformed: "Transformed",
-      determinant: "Determinant",
-      area: "Area",
-      basisVectors: "Basis Vectors",
-      areaExpanded: "Area expanded (det > 1)",
-      areaCompressed: "Area compressed (0 < det < 1)",
-      orientationReversed: "Orientation reversed (det < 0)",
-      collapsedToLine: "Collapsed to line (det ≈ 0)",
-    },
-    CN: {
-      transformationMatrix: "变换矩阵",
-      unitSquare: "单位正方形",
-      transformed: "变换后",
-      determinant: "行列式",
-      area: "面积",
-      basisVectors: "基向量",
-      areaExpanded: "面积扩大 (det > 1)",
-      areaCompressed: "面积压缩 (0 < det < 1)",
-      orientationReversed: "方向反转 (det < 0)",
-      collapsedToLine: "塌缩为线 (det ≈ 0)",
-    },
-    DE: {
-      transformationMatrix: "TRANSFORMATIONSMATRIX",
-      unitSquare: "Einheitsquadrat",
-      transformed: "Transformiert",
-      determinant: "Determinante",
-      area: "Fläche",
-      basisVectors: "Basisvektoren",
-      areaExpanded: "Fläche erweitert (det > 1)",
-      areaCompressed: "Fläche komprimiert (0 < det < 1)",
-      orientationReversed: "Orientierung umgekehrt (det < 0)",
-      collapsedToLine: "Zu Linie kollabiert (det ≈ 0)",
-    },
-  };
-
-  const t = translations[language];
-
   return (
     <div className="w-full h-full bg-black/90 p-4 space-y-4">
       {/* Matrix display */}
       <div className="text-center">
-        <div className="text-sm text-cyan-400 mb-2">{t.transformationMatrix}</div>
+        <div className="text-sm text-cyan-400 mb-2">{copy.transformationMatrix}</div>
         <div className="inline-block bg-black/50 border border-cyan-500 p-3">
           <BlockMath math={`A = \\begin{bmatrix} ${matrix[0][0]} & ${matrix[0][1]} \\\\ ${matrix[1][0]} & ${matrix[1][1]} \\end{bmatrix}`} />
         </div>
@@ -253,17 +225,17 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
       {/* Info panel */}
       <div className="grid grid-cols-2 gap-4 text-sm">
         <div className="border border-purple-500 p-3 bg-black/50">
-          <div className="text-purple-400 mb-1">{t.determinant}</div>
+          <div className="text-purple-400 mb-1">{copy.determinant}</div>
           <div className="text-2xl font-bold text-purple-300">
             det(A) = {det.toFixed(2)}
           </div>
           <div className="text-xs text-purple-300/60 mt-1">
-            {t.area}: {Math.abs(det).toFixed(2)}
+            {copy.area}: {Math.abs(det).toFixed(2)}
           </div>
         </div>
 
         <div className="border border-cyan-500 p-3 bg-black/50">
-          <div className="text-cyan-400 mb-1">{t.basisVectors}</div>
+          <div className="text-cyan-400 mb-1">{copy.basisVectors}</div>
           <div className="text-sm space-y-1">
             <div className="text-red-400">
               î → ({iHat.x.toFixed(2)}, {iHat.y.toFixed(2)})
@@ -279,10 +251,10 @@ export default function MatrixVisualization2D({ matrix, stage, language }: Matri
       {stage === "DETERMINANT" && (
         <div className="border border-yellow-500 p-3 bg-black/50 text-center">
           <div className="text-yellow-400 text-sm">
-            {det > 1 && t.areaExpanded}
-            {det > 0 && det < 1 && t.areaCompressed}
-            {det < 0 && t.orientationReversed}
-            {Math.abs(det) < 0.01 && t.collapsedToLine}
+            {det > 1 && copy.areaExpanded}
+            {det > 0 && det < 1 && copy.areaCompressed}
+            {det < 0 && copy.orientationReversed}
+            {Math.abs(det) < 0.01 && copy.collapsedToLine}
           </div>
         </div>
       )}

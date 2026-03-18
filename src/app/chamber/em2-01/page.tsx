@@ -1,6 +1,5 @@
 "use client";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -168,7 +167,6 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
 }
 
 export default function EM201Page() {
-  const { currentLanguage } = useAppStore();
   const { t: getT } = useLanguage();
   const t = getT("em2_01");
 
@@ -254,7 +252,6 @@ export default function EM201Page() {
         <MatrixVisualization2D
           matrix={displayMatrix}
           stage={stage}
-          language={currentLanguage}
         />
       }
     >

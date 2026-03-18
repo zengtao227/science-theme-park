@@ -209,6 +209,16 @@ export const deMath = {
             determinant: "DETERMINANTE",
             composition: "KOMPOSITION"
         },
+        visualization: {
+            transformationMatrix: "TRANSFORMATIONSMATRIX",
+            determinant: "Determinante",
+            area: "Fläche",
+            basisVectors: "Basisvektoren",
+            areaExpanded: "Fläche erweitert (det > 1)",
+            areaCompressed: "Fläche komprimiert (0 < det < 1)",
+            orientationReversed: "Orientierung umgekehrt (det < 0)",
+            collapsedToLine: "Zu Linie kollabiert (det ≈ 0)",
+        },
         prompts: {
             identify_trans: "Roche-Symmetrieaudit: Analysiere die Matrix und bestimme, welche geometrische Transformation sie darstellt.",
             create_scale: "Molekül-Skalierungsaufgabe: Erstelle eine Matrix, die Koordinaten mit Faktor {k} skaliert.",
@@ -2278,6 +2288,16 @@ export const deMath = {
             combined: "KOMBINIERTE EREIGNISSE",
             data_stats: "DATENSTATISTIK"
         },
+        visualization: {
+            dice: "Würfel (6 Ergebnisse)",
+            coin: "Münze (2 Ergebnisse)",
+            cards: "Karten (52 gesamt)",
+            lottery: "Lotterieziehung",
+            data_stats: "Datenstatistik",
+            frequency: "Häufigkeitsdaten",
+            combined: "Kombinierte Ereignisse",
+            weekdays: ["Mo", "Di", "Mi", "Do", "Fr"],
+        },
         scenarios: {
             bus_punctuality: "Du fährst jeden Morgen mit dem Bus #8 in Basel zur Schule. Laut Aufzeichnungen kam der Bus in den letzten 20 Schultagen 16 Mal pünktlich. Berechne die Wahrscheinlichkeit für morgen, um zu entscheiden, ob du 10 Minuten früher losfahren solltest.",
             weather_basel: "Die Basler Wetterstation erfasste über 30 Tage die Niederschläge und verzeichnete 12 Regentage. Berechne die Regenwahrscheinlichkeit für dieses Wochenende, um zu entscheiden, ob ein Außenplatz (CHF 20) oder eine Halle reserviert werden soll.",
@@ -2544,6 +2564,29 @@ export const deMath = {
         },
         ui: {
             loading: "Wird geladen..."
+        },
+        canvas: {
+            roots: "Nullstellen",
+            vertex: "Scheitel",
+            hint_step_label: "Schritt-für-Schritt",
+            hint_panels: {
+                TERMS: {
+                    title: "Gleichartige Terme",
+                    items: ["ax + bx = (a+b)x", "Gleiche Variablen zusammenfassen", "Vorzeichen: -(a-b) = -a+b", "Ausmultiplizieren: c(x+y) = cx + cy"]
+                },
+                FACTORIZE: {
+                    title: "Faktorisierungs-Identitäten",
+                    items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Immer zuerst: Gemeinsamer Faktor"]
+                },
+                FRACTIONS: {
+                    title: "Brüche Vereinfachen",
+                    items: ["Zähler & Nenner faktorisieren", "Gemeinsame Faktoren kürzen", "a^{2}-b^{2} = (a-b)(a+b)", "Definitionsmenge beachten"]
+                },
+                EQUATIONS: {
+                    title: "Gleichungen Lösen",
+                    items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"]
+                }
+            }
         }
     },
     sm3_02: {
@@ -2800,6 +2843,39 @@ export const deMath = {
             scatter_plots: "STREUDIAGRAMME",
             correlation: "KORRELATION",
             elite: "ELITE-ANALYSE"
+        },
+        visualization: {
+            boxPlot: "BOXPLOT (Box-and-Whisker)",
+            keyConcepts: "SCHLÜSSELKONZEPTE",
+            medianMiddle: "Median: Mittlerer Wert (50. Perzentil)",
+            quartiles: "Q1: 25. Perzentil, Q3: 75. Perzentil",
+            iqrSpread: "IQR: Streuung der mittleren 50%",
+            outlierRule: "Ausreißer: weiter als 1.5×IQR von der Box",
+            iqrFormula: "IQR = Q_3 - Q_1",
+            positive: "POSITIV",
+            negative: "NEGATIV",
+            none: "KEINE",
+            bothIncrease: "Beide steigen",
+            oneUpOneDown: "Eins hoch, eins runter",
+            noPattern: "Kein Muster",
+            corrStrength: "KORRELATIONSSTÄRKE",
+            corrStrongWeak: "Stark: Punkte nahe Linie | Schwach: stärker gestreut",
+            corrCoeff: "KORRELATIONSKOEFFIZIENT (r)",
+            interpretingR: "INTERPRETATION VON r",
+            strongPos: "r = 0.8 bis 1.0: Stark positiv",
+            moderatePos: "r = 0.5 bis 0.8: Mäßig positiv",
+            weakNone: "r = -0.3 bis 0.3: Schwach/keine Korrelation",
+            moderateNeg: "r = -0.5 bis -0.8: Mäßig negativ",
+            strongNeg: "r = -0.8 bis -1.0: Stark negativ",
+            perfect: "Perfekt",
+            noCorrShort: "Keine Korrelation",
+            warning: "Korrelation ist nicht Kausalität!",
+            eliteTitle: "ELITE-ANALYSE-PIPELINE",
+            eliteStep1: "1. Standardisieren: z = (x - μ) / σ",
+            eliteStep2: "2. Intervallschätzung: KI = x̄ ± z*SE",
+            eliteStep3: "3. Störvariablen prüfen",
+            eliteStep4: "4. Korrelation von Kausalität trennen",
+            eliteGoal: "Ziel: Statistik -> belastbare Entscheidungen",
         },
         labels: {
             type: "Typ",
@@ -3167,6 +3243,52 @@ export const deMath = {
             basel_arch: "BASLER ARCHITEKTUR",
             cross_sections: "QUERSCHNITTE",
             curved_solids: "GEKRÜMMTE KÖRPER"
+        },
+        visualization: {
+            shapeButtons: { roche: "ROCHE", cube: "WUERFEL", pyramid: "PYRAMIDE", sphere: "KUGEL", cylinder: "ZYLINDER" },
+            rotationX: "Rotation X:",
+            rotationY: "Rotation Y:",
+            rotateHint: "Ziehen zum Drehen",
+            properties: "Eigenschaften:",
+            rocheTitle: "Roche-Turm Analogie",
+            rocheStructure: "Struktur: Gestapelte Prismen",
+            rocheAreaLabel: "Flaeche:",
+            rocheHeight: "Hoehe: 205m",
+            cubeFaces: "Flaechen: 6",
+            cubeVertices: "Ecken: 8",
+            cubeEdges: "Kanten: 12",
+            pyramidFaces: "Flaechen: 5",
+            pyramidVertices: "Ecken: 5",
+            pyramidEdges: "Kanten: 8",
+            sphereSurface: "Gekruemmte Flaeche",
+            sphereNoEdge: "Keine Kanten/Ecken",
+            cylinderFaces: "Flaechen: 3",
+            eulerTitle: "Eulersche Formel:",
+            convexPoly: "(fuer konvexe Polyeder)",
+            cubeSquare: "Wuerfel -> Quadrat",
+            sphereCircle: "Kugel -> Kreis",
+            cylinderRect: "Zylinder -> Rechteck",
+            parallelFace: "Parallel zur Flaeche",
+            anyPlane: "Beliebige Ebene",
+            parallelAxis: "Parallel zur Achse",
+            crossSectionTypes: "Schnittarten:",
+            parallelBase: "Parallel zur Grundflaeche:",
+            perpendicularBase: "Senkrecht zur Grundflaeche:",
+            diagonalCut: "Diagonalschnitt:",
+            similarShape: "Aehnliche Form",
+            differentShape: "Andere Form",
+            complexPolygon: "Komplexes Polygon",
+            distanceFormula: "Distanzformel:",
+            midpointFormula: "Mittelpunktformel:",
+            spatialRelations: "Raeumliche Beziehungen:",
+            parallelPlanes: "Parallele Ebenen",
+            neverIntersect: "Schneiden sich nie",
+            perpendicularPlanes: "Senkrechte Ebenen",
+            rightAngle: "90-Grad-Winkel",
+            skewLines: "Windschiefe Geraden",
+            skewDesc: "Nicht parallel, nicht schneidend",
+            dihedralAngle: "Diederwinkel",
+            angleBetweenPlanes: "Winkel zwischen Ebenen",
         },
         scenarios: {
             basel_arch: "Basler Architektur - Geometrische Ikonen: Sie sind ein Lehrling im Architekturbüro und analysieren die moderne Skyline von Basel. Der Roche-Turm (Bau 1 und 2) kann als eine Serie von gestapelten trapezförmigen Prismen und Zylindern modelliert werden. Der Messeturm Basel ist ein weiteres Wahrzeichen mit seinen markanten rechteckigen und zylindrischen Abschnitten. Ihre Aufgabe ist es, die Volumina und Oberflächen dieser ikonischen Strukturen zu berechnen, indem Sie sie in geometrische Grundkörper abstrahieren. Stufe 1 konzentriert sich auf die Berechnung des Gesamtvolumens des Roche-Turm-Komplexes. Das Verständnis dieser Beziehungen ist lebenswichtig für die Materialplanung (Beton, Glas) und die strukturelle Integrität.",

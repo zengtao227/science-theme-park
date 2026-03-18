@@ -26,6 +26,9 @@ export const enCommon = {
         failed_attempts: "Attempts",
         achievements_title: "Achievements",
         achievement_unlocked: "Achievement Unlocked",
+        notification: {
+            system_alert: "System Alert"
+        },
         achievements: {
             first_light: {
                 title: "First Light",
@@ -118,6 +121,20 @@ export const enCommon = {
             connection_error: "Connection Error",
             try_again: "Try Again",
             cancel: "Cancel"
+        },
+        chamber_layout: {
+            panels: {
+                controls: "CONTROL",
+                monitor: "MONITOR",
+                history: "HISTORY"
+            },
+            print: {
+                selector: "PRINT CATEGORIES",
+                all: "ALL",
+                clear: "CLEAR",
+                selected: "SELECTED"
+            },
+            pathway_connection: "PATHWAY_CONNECTION"
         }
     },
     home: {

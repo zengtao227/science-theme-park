@@ -209,6 +209,16 @@ export const enMath = {
             determinant: "DETERMINANT",
             composition: "COMPOSITION"
         },
+        visualization: {
+            transformationMatrix: "TRANSFORMATION MATRIX",
+            determinant: "Determinant",
+            area: "Area",
+            basisVectors: "Basis Vectors",
+            areaExpanded: "Area expanded (det > 1)",
+            areaCompressed: "Area compressed (0 < det < 1)",
+            orientationReversed: "Orientation reversed (det < 0)",
+            collapsedToLine: "Collapsed to line (det ≈ 0)",
+        },
         prompts: {
             identify_trans: "Roche symmetry audit: inspect the matrix and identify which geometric transformation it represents.",
             create_scale: "Molecule-resizing task: construct a matrix that scales coordinates by factor {k}.",
@@ -2260,6 +2270,16 @@ export const enMath = {
             combined: "COMBINED EVENTS",
             data_stats: "DATA STATISTICS"
         },
+        visualization: {
+            dice: "Dice (6 outcomes)",
+            coin: "Coin (2 outcomes)",
+            cards: "Cards (52 total)",
+            lottery: "Lottery Draw",
+            data_stats: "Data Statistics",
+            frequency: "Frequency Data",
+            combined: "Combined Events",
+            weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        },
         scenarios: {
             bus_punctuality: "You take Bus #8 in Basel to school every morning. Track records show the bus arrived on time 16 out of 20 school days. Calculate the probability of the bus being on time tomorrow to decide whether you need to leave 10 minutes earlier as a safety buffer.",
             weather_basel: "The Basel Weather Station tracked rainfall over 30 days and recorded 12 rainy days. Calculate the probability of rain this weekend to decide whether to book an outdoor sports court (CHF 20) or choose an indoor alternative.",
@@ -2568,6 +2588,29 @@ export const enMath = {
         },
         ui: {
             loading: "Loading..."
+        },
+        canvas: {
+            roots: "Roots",
+            vertex: "Vertex",
+            hint_step_label: "Step-by-Step Hints",
+            hint_panels: {
+                TERMS: {
+                    title: "Combining Like Terms",
+                    items: ["ax + bx = (a+b)x", "Group same variables", "Watch signs: -(a-b) = -a+b", "Distribute: c(x+y) = cx + cy"]
+                },
+                FACTORIZE: {
+                    title: "Factorization Identities",
+                    items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "Always check: GCF first"]
+                },
+                FRACTIONS: {
+                    title: "Simplifying Fractions",
+                    items: ["Factor numerator & denominator", "Cancel common factors", "a^{2} - b^{2} = (a-b)(a+b)", "Check domain restrictions"]
+                },
+                EQUATIONS: {
+                    title: "Solving Equations",
+                    items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"]
+                }
+            }
         }
     },
     sm3_02: {
@@ -2819,6 +2862,39 @@ export const enMath = {
             scatter_plots: "SCATTER PLOTS",
             correlation: "CORRELATION",
             elite: "ELITE ANALYSIS"
+        },
+        visualization: {
+            boxPlot: "BOX PLOT (Box-and-Whisker)",
+            keyConcepts: "KEY CONCEPTS",
+            medianMiddle: "Median: Middle value (50th percentile)",
+            quartiles: "Q1: 25th percentile, Q3: 75th percentile",
+            iqrSpread: "IQR: Spread of the middle 50%",
+            outlierRule: "Outliers: farther than 1.5×IQR from the box",
+            iqrFormula: "IQR = Q_3 - Q_1",
+            positive: "POSITIVE",
+            negative: "NEGATIVE",
+            none: "NONE",
+            bothIncrease: "Both increase",
+            oneUpOneDown: "One up, one down",
+            noPattern: "No pattern",
+            corrStrength: "CORRELATION STRENGTH",
+            corrStrongWeak: "Strong: points near a line | Weak: points scattered",
+            corrCoeff: "CORRELATION COEFFICIENT (r)",
+            interpretingR: "INTERPRETING r",
+            strongPos: "r = 0.8 to 1.0: Strong positive",
+            moderatePos: "r = 0.5 to 0.8: Moderate positive",
+            weakNone: "r = -0.3 to 0.3: Weak/No correlation",
+            moderateNeg: "r = -0.5 to -0.8: Moderate negative",
+            strongNeg: "r = -0.8 to -1.0: Strong negative",
+            perfect: "Perfect",
+            noCorrShort: "No correlation",
+            warning: "Correlation does not imply causation!",
+            eliteTitle: "ELITE ANALYSIS PIPELINE",
+            eliteStep1: "1. Standardize: z = (x - μ) / σ",
+            eliteStep2: "2. Estimate CI: x̄ ± z*SE",
+            eliteStep3: "3. Check confounders",
+            eliteStep4: "4. Separate correlation from causation",
+            eliteGoal: "Goal: evidence -> decisions",
         },
         labels: {
             type: "Type",
@@ -3186,6 +3262,52 @@ export const enMath = {
             basel_arch: "BASEL ARCHITECTURE",
             cross_sections: "CROSS SECTIONS",
             curved_solids: "CURVED SOLIDS"
+        },
+        visualization: {
+            shapeButtons: { roche: "ROCHE", cube: "CUBE", pyramid: "PYRAMID", sphere: "SPHERE", cylinder: "CYLINDER" },
+            rotationX: "Rotation X:",
+            rotationY: "Rotation Y:",
+            rotateHint: "Drag to rotate",
+            properties: "Properties:",
+            rocheTitle: "Roche Tower Analogy",
+            rocheStructure: "Structure: Stacked Prisms",
+            rocheAreaLabel: "Area:",
+            rocheHeight: "Height: 205m",
+            cubeFaces: "Faces: 6",
+            cubeVertices: "Vertices: 8",
+            cubeEdges: "Edges: 12",
+            pyramidFaces: "Faces: 5",
+            pyramidVertices: "Vertices: 5",
+            pyramidEdges: "Edges: 8",
+            sphereSurface: "Curved surface",
+            sphereNoEdge: "No edges/vertices",
+            cylinderFaces: "Faces: 3",
+            eulerTitle: "Euler's Formula:",
+            convexPoly: "(for convex polyhedra)",
+            cubeSquare: "Cube -> Square",
+            sphereCircle: "Sphere -> Circle",
+            cylinderRect: "Cylinder -> Rectangle",
+            parallelFace: "Parallel to face",
+            anyPlane: "Any plane",
+            parallelAxis: "Parallel to axis",
+            crossSectionTypes: "Cross-Section Types:",
+            parallelBase: "Parallel to base:",
+            perpendicularBase: "Perpendicular to base:",
+            diagonalCut: "Diagonal cut:",
+            similarShape: "Similar shape",
+            differentShape: "Different shape",
+            complexPolygon: "Complex polygon",
+            distanceFormula: "Distance Formula:",
+            midpointFormula: "Midpoint Formula:",
+            spatialRelations: "Spatial Relationships:",
+            parallelPlanes: "Parallel planes",
+            neverIntersect: "Never intersect",
+            perpendicularPlanes: "Perpendicular planes",
+            rightAngle: "90 deg angle",
+            skewLines: "Skew lines",
+            skewDesc: "Non-parallel, non-intersecting",
+            dihedralAngle: "Dihedral angle",
+            angleBetweenPlanes: "Angle between planes",
         },
         scenarios: {
             basel_arch: "Basel Architecture - Geometric Icons: You are an apprentice architect in Basel, analyzing the city's modern skyline. The Roche Tower (Building 1 and 2) can be modeled as a series of stacked trapezoidal prisms and cylinders. The Messeturm Basel is another landmark with its distinct rectangular and cylindrical sections. Your task is to calculate the volumes and surface areas of these iconic structures by abstracting them into basic geometric solids. For example, Stage 1 focuses on calculating the total volume of the Roche Tower complex by breaking it down into its constituent prisms. Understanding these relationships is vital for material planning (concrete, glass) and structural integrity.",

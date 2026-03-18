@@ -26,6 +26,9 @@ export const deCommon = {
         failed_attempts: "Versuche",
         achievements_title: "Errungenschaften",
         achievement_unlocked: "Errungenschaft freigeschaltet",
+        notification: {
+            system_alert: "System-Hinweis"
+        },
         achievements: {
             first_light: {
                 title: "Erstes Licht",
@@ -118,6 +121,20 @@ export const deCommon = {
             connection_error: "Verbindungsfehler",
             try_again: "Erneut versuchen",
             cancel: "Abbrechen"
+        },
+        chamber_layout: {
+            panels: {
+                controls: "STEUERUNG",
+                monitor: "BESCHREIBUNG",
+                history: "VERLAUF"
+            },
+            print: {
+                selector: "DRUCK-KATEGORIEN",
+                all: "ALLE",
+                clear: "LEEREN",
+                selected: "AUSGEWÄHLT"
+            },
+            pathway_connection: "PFAD-VERBINDUNG"
         }
     },
     home: {

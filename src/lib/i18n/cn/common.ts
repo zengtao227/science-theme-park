@@ -26,6 +26,9 @@ export const cnCommon = {
         failed_attempts: "失败尝试",
         achievements_title: "成就",
         achievement_unlocked: "成就解锁",
+        notification: {
+            system_alert: "系统提示"
+        },
         achievements: {
             first_light: {
                 title: "初见之光",
@@ -118,6 +121,20 @@ export const cnCommon = {
             connection_error: "连接错误",
             try_again: "重试",
             cancel: "取消"
+        },
+        chamber_layout: {
+            panels: {
+                controls: "控制",
+                monitor: "描述",
+                history: "历史"
+            },
+            print: {
+                selector: "打印分类",
+                all: "全选",
+                clear: "清空",
+                selected: "已选"
+            },
+            pathway_connection: "路径依赖"
         }
     },
     home: {

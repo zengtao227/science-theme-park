@@ -1,48 +1,28 @@
 "use client";
 
 import { useMemo } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 interface ProbabilityVisualizerProps {
   stage: string;
-  language: "EN" | "CN" | "DE";
 }
 
-export default function ProbabilityVisualizer({ stage, language }: ProbabilityVisualizerProps) {
-  const visualizations = useMemo(() => {
-    const labels = {
-      EN: {
-        dice: "Dice (6 outcomes)",
-        coin: "Coin (2 outcomes)",
-        cards: "Cards (52 total)",
-        lottery: "Lottery Draw",
-        data_stats: "Data Statistics",
-        frequency: "Frequency Data",
-        combined: "Combined Events",
-        weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-      },
-      CN: {
-        dice: "骰子 (6种结果)",
-        coin: "硬币 (2种结果)",
-        cards: "扑克牌 (52张)",
-        lottery: "彩票抽奖",
-        data_stats: "数据统计",
-        frequency: "频率数据",
-        combined: "组合事件",
-        weekdays: ["周一", "周二", "周三", "周四", "周五"],
-      },
-      DE: {
-        dice: "Würfel (6 Ergebnisse)",
-        coin: "Münze (2 Ergebnisse)",
-        cards: "Karten (52 gesamt)",
-        lottery: "Lotterieziehung",
-        data_stats: "Datenstatistik",
-        frequency: "Häufigkeitsdaten",
-        combined: "Kombinierte Ereignisse",
-        weekdays: ["Mo", "Di", "Mi", "Do", "Fr"],
-      },
-    };
+type ProbabilityVisualizationCopy = {
+  dice: string;
+  coin: string;
+  cards: string;
+  lottery: string;
+  data_stats: string;
+  frequency: string;
+  combined: string;
+  weekdays: string[];
+};
 
-    const t = labels[language];
+export default function ProbabilityVisualizer({ stage }: ProbabilityVisualizerProps) {
+  const { t } = useLanguage();
+  const copy = t("sm2_08.visualization") as ProbabilityVisualizationCopy;
+
+  const visualizations = useMemo(() => {
     const weeklyBars = [
       { x: 20, h: 80 },
       { x: 60, h: 100 },
@@ -68,7 +48,7 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
               <circle key={i} cx={x} cy={y} r="3" fill="#00e5ff" />
             ))}
             <text x="30" y="80" textAnchor="middle" fill="#00e5ff" fontSize="10">
-              {t.dice}
+              {copy.dice}
             </text>
           </g>
 
@@ -79,7 +59,7 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
               H/T
             </text>
             <text x="30" y="80" textAnchor="middle" fill="#39ff14" fontSize="10">
-              {t.coin}
+              {copy.coin}
             </text>
           </g>
 
@@ -90,7 +70,7 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
               ♥
             </text>
             <text x="50" y="80" textAnchor="middle" fill="#ff2d7d" fontSize="10">
-              {t.cards}
+              {copy.cards}
             </text>
           </g>
         </svg>
@@ -113,7 +93,7 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
               );
             })}
             <text x="0" y="100" textAnchor="middle" fill="#ff2d7d" fontSize="12">
-              {t.lottery}
+              {copy.lottery}
             </text>
           </g>
         </svg>
@@ -126,13 +106,13 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
               <g key={i}>
                 <rect x={bar.x} y={120 - bar.h} width="30" height={bar.h} fill="#00e5ff" fillOpacity="0.6" stroke="#00e5ff" strokeWidth="1" />
                 <text x={bar.x + 15} y="140" textAnchor="middle" fill="#00e5ff" fontSize="10">
-                  {t.weekdays[i]}
+                  {copy.weekdays[i]}
                 </text>
               </g>
             ))}
             <line x1="10" y1="120" x2="220" y2="120" stroke="#ffffff" strokeWidth="1" opacity="0.3" />
             <text x="120" y="170" textAnchor="middle" fill="#00e5ff" fontSize="12">
-              {t.data_stats}
+              {copy.data_stats}
             </text>
           </g>
         </svg>
@@ -145,13 +125,13 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
               <g key={i}>
                 <rect x={bar.x} y={120 - bar.h} width="30" height={bar.h} fill="#00e5ff" fillOpacity="0.6" stroke="#00e5ff" strokeWidth="1" />
                 <text x={bar.x + 15} y="140" textAnchor="middle" fill="#00e5ff" fontSize="10">
-                  {t.weekdays[i]}
+                  {copy.weekdays[i]}
                 </text>
               </g>
             ))}
             <line x1="10" y1="120" x2="220" y2="120" stroke="#ffffff" strokeWidth="1" opacity="0.3" />
             <text x="120" y="170" textAnchor="middle" fill="#00e5ff" fontSize="12">
-              {t.frequency}
+              {copy.frequency}
             </text>
           </g>
         </svg>
@@ -200,13 +180,13 @@ export default function ProbabilityVisualizer({ stage, language }: ProbabilityVi
             </text>
 
             <text x="0" y="140" textAnchor="middle" fill="#ffffff" fontSize="12" opacity="0.7">
-              {t.combined}
+              {copy.combined}
             </text>
           </g>
         </svg>
       ),
     };
-  }, [language]);
+  }, [copy]);
 
   return (
     <div className="bg-black/50 border border-cyan-500/20 rounded-xl p-4">

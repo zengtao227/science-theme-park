@@ -229,7 +229,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
 }
 
 export default function S301Page() {
-  const { completeStage, currentLanguage } = useAppStore();
+  const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t("sm3_01"), d, s), [t]);
@@ -310,8 +310,8 @@ export default function S301Page() {
       monitorContent={
         <S301QuadraticCanvas
           quest={currentQuest}
-          lang={currentLanguage}
           loadingText={t("sm3_01.ui.loading")}
+          copy={t("sm3_01.canvas")}
         />
       }
     >

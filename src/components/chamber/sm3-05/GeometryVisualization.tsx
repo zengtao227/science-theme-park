@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useLanguage } from "@/lib/i18n";
@@ -9,158 +9,57 @@ import "katex/dist/katex.min.css";
 
 type Stage = "BASEL_ARCH" | "CROSS_SECTIONS" | "CURVED_SOLIDS";
 type Shape = "cube" | "pyramid" | "sphere" | "cylinder" | "roche";
-type Lang = "EN" | "CN" | "DE";
 
 interface GeometryVisualizationProps {
   stage: Stage;
 }
 
-const monitorCopy = {
-  EN: {
-    shapeButtons: { roche: "ROCHE", cube: "CUBE", pyramid: "PYRAMID", sphere: "SPHERE", cylinder: "CYLINDER" },
-    rotationX: "Rotation X:",
-    rotationY: "Rotation Y:",
-    rotateHint: "Drag to rotate",
-    properties: "Properties:",
-    rocheTitle: "Roche Tower Analogy",
-    rocheStructure: "Structure: Stacked Prisms",
-    rocheAreaLabel: "Area:",
-    rocheHeight: "Height: 205m",
-    cubeFaces: "Faces: 6",
-    cubeVertices: "Vertices: 8",
-    cubeEdges: "Edges: 12",
-    pyramidFaces: "Faces: 5",
-    pyramidVertices: "Vertices: 5",
-    pyramidEdges: "Edges: 8",
-    sphereSurface: "Curved surface",
-    sphereNoEdge: "No edges/vertices",
-    cylinderFaces: "Faces: 3",
-    eulerTitle: "Euler's Formula:",
-    convexPoly: "(for convex polyhedra)",
-    crossSectionPlane: "Cross-Section Plane",
-    cubeSquare: "Cube -> Square",
-    sphereCircle: "Sphere -> Circle",
-    cylinderRect: "Cylinder -> Rectangle",
-    parallelFace: "Parallel to face",
-    anyPlane: "Any plane",
-    parallelAxis: "Parallel to axis",
-    crossSectionTypes: "Cross-Section Types:",
-    parallelBase: "Parallel to base:",
-    perpendicularBase: "Perpendicular to base:",
-    diagonalCut: "Diagonal cut:",
-    similarShape: "Similar shape",
-    differentShape: "Different shape",
-    complexPolygon: "Complex polygon",
-    coordinateSystem: "3D Coordinate System",
-    distanceFormula: "Distance Formula:",
-    midpointFormula: "Midpoint Formula:",
-    spatialRelations: "Spatial Relationships:",
-    parallelPlanes: "Parallel planes",
-    neverIntersect: "Never intersect",
-    perpendicularPlanes: "Perpendicular planes",
-    rightAngle: "90 deg angle",
-    skewLines: "Skew lines",
-    skewDesc: "Non-parallel, non-intersecting",
-    dihedralAngle: "Dihedral angle",
-    angleBetweenPlanes: "Angle between planes",
-  },
-  CN: {
-    shapeButtons: { roche: "罗氏塔", cube: "立方体", pyramid: "棱锥", sphere: "球体", cylinder: "圆柱" },
-    rotationX: "X 轴旋转:",
-    rotationY: "Y 轴旋转:",
-    rotateHint: "拖拽可旋转",
-    properties: "性质:",
-    rocheTitle: "罗氏塔类比",
-    rocheStructure: "结构：分层棱柱",
-    rocheAreaLabel: "面积：",
-    rocheHeight: "高度：205m",
-    cubeFaces: "面数：6",
-    cubeVertices: "顶点：8",
-    cubeEdges: "棱数：12",
-    pyramidFaces: "面数：5",
-    pyramidVertices: "顶点：5",
-    pyramidEdges: "棱数：8",
-    sphereSurface: "曲面",
-    sphereNoEdge: "无棱无顶点",
-    cylinderFaces: "面数：3",
-    eulerTitle: "欧拉公式:",
-    convexPoly: "（适用于凸多面体）",
-    crossSectionPlane: "截面平面",
-    cubeSquare: "立方体 -> 正方形",
-    sphereCircle: "球体 -> 圆形",
-    cylinderRect: "圆柱 -> 矩形",
-    parallelFace: "平行于面",
-    anyPlane: "任意平面",
-    parallelAxis: "平行于轴",
-    crossSectionTypes: "截面类型:",
-    parallelBase: "平行于底面:",
-    perpendicularBase: "垂直于底面:",
-    diagonalCut: "对角切割:",
-    similarShape: "相似形状",
-    differentShape: "不同形状",
-    complexPolygon: "复杂多边形",
-    coordinateSystem: "三维坐标系",
-    distanceFormula: "距离公式:",
-    midpointFormula: "中点公式:",
-    spatialRelations: "空间关系:",
-    parallelPlanes: "平行平面",
-    neverIntersect: "永不相交",
-    perpendicularPlanes: "垂直平面",
-    rightAngle: "90 度夹角",
-    skewLines: "异面直线",
-    skewDesc: "不平行且不相交",
-    dihedralAngle: "二面角",
-    angleBetweenPlanes: "平面夹角",
-  },
-  DE: {
-    shapeButtons: { roche: "ROCHE", cube: "WUERFEL", pyramid: "PYRAMIDE", sphere: "KUGEL", cylinder: "ZYLINDER" },
-    rotationX: "Rotation X:",
-    rotationY: "Rotation Y:",
-    rotateHint: "Ziehen zum Drehen",
-    properties: "Eigenschaften:",
-    rocheTitle: "Roche-Turm Analogie",
-    rocheStructure: "Struktur: Gestapelte Prismen",
-    rocheAreaLabel: "Flaeche:",
-    rocheHeight: "Hoehe: 205m",
-    cubeFaces: "Flaechen: 6",
-    cubeVertices: "Ecken: 8",
-    cubeEdges: "Kanten: 12",
-    pyramidFaces: "Flaechen: 5",
-    pyramidVertices: "Ecken: 5",
-    pyramidEdges: "Kanten: 8",
-    sphereSurface: "Gekruemmte Flaeche",
-    sphereNoEdge: "Keine Kanten/Ecken",
-    cylinderFaces: "Flaechen: 3",
-    eulerTitle: "Eulersche Formel:",
-    convexPoly: "(fuer konvexe Polyeder)",
-    crossSectionPlane: "Schnittebene",
-    cubeSquare: "Wuerfel -> Quadrat",
-    sphereCircle: "Kugel -> Kreis",
-    cylinderRect: "Zylinder -> Rechteck",
-    parallelFace: "Parallel zur Flaeche",
-    anyPlane: "Beliebige Ebene",
-    parallelAxis: "Parallel zur Achse",
-    crossSectionTypes: "Schnittarten:",
-    parallelBase: "Parallel zur Grundflaeche:",
-    perpendicularBase: "Senkrecht zur Grundflaeche:",
-    diagonalCut: "Diagonalschnitt:",
-    similarShape: "Aehnliche Form",
-    differentShape: "Andere Form",
-    complexPolygon: "Komplexes Polygon",
-    coordinateSystem: "3D-Koordinatensystem",
-    distanceFormula: "Distanzformel:",
-    midpointFormula: "Mittelpunktformel:",
-    spatialRelations: "Raeumliche Beziehungen:",
-    parallelPlanes: "Parallele Ebenen",
-    neverIntersect: "Schneiden sich nie",
-    perpendicularPlanes: "Senkrechte Ebenen",
-    rightAngle: "90-Grad-Winkel",
-    skewLines: "Windschiefe Geraden",
-    skewDesc: "Nicht parallel, nicht schneidend",
-    dihedralAngle: "Diederwinkel",
-    angleBetweenPlanes: "Winkel zwischen Ebenen",
-  },
-} as const;
+type GeometryVisualizationCopy = {
+  shapeButtons: Record<Shape, string>;
+  rotationX: string;
+  rotationY: string;
+  rotateHint: string;
+  properties: string;
+  rocheTitle: string;
+  rocheStructure: string;
+  rocheAreaLabel: string;
+  rocheHeight: string;
+  cubeFaces: string;
+  cubeVertices: string;
+  cubeEdges: string;
+  pyramidFaces: string;
+  pyramidVertices: string;
+  pyramidEdges: string;
+  sphereSurface: string;
+  sphereNoEdge: string;
+  cylinderFaces: string;
+  eulerTitle: string;
+  convexPoly: string;
+  cubeSquare: string;
+  sphereCircle: string;
+  cylinderRect: string;
+  parallelFace: string;
+  anyPlane: string;
+  parallelAxis: string;
+  crossSectionTypes: string;
+  parallelBase: string;
+  perpendicularBase: string;
+  diagonalCut: string;
+  similarShape: string;
+  differentShape: string;
+  complexPolygon: string;
+  distanceFormula: string;
+  midpointFormula: string;
+  spatialRelations: string;
+  parallelPlanes: string;
+  neverIntersect: string;
+  perpendicularPlanes: string;
+  rightAngle: string;
+  skewLines: string;
+  skewDesc: string;
+  dihedralAngle: string;
+  angleBetweenPlanes: string;
+};
 
 const degToRad = (deg: number) => (deg * Math.PI) / 180;
 const FORMULAS = {
@@ -317,14 +216,10 @@ function CurvedSolidsViewport() {
 }
 
 export default function GeometryVisualization({ stage }: GeometryVisualizationProps) {
-  const { currentLanguage } = useLanguage();
+  const { t } = useLanguage();
   const [rotation, setRotation] = useState({ x: 30, y: 45 });
   const [selectedShape, setSelectedShape] = useState<Shape>("roche");
-
-  const copy = useMemo(() => {
-    const lang = (currentLanguage as Lang) in monitorCopy ? (currentLanguage as Lang) : "EN";
-    return monitorCopy[lang];
-  }, [currentLanguage]);
+  const copy = t("sm3_05.visualization") as GeometryVisualizationCopy;
 
   const renderPolyhedra = () => (
     <div className="space-y-4">

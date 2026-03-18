@@ -69,7 +69,7 @@ export default function NotificationToast() {
               <div className="text-sm font-black text-white">{common.achievements[activeAchievement].title}</div>
               <div className="text-xs text-white/60 font-mono">{common.achievements[activeAchievement].description}</div>
               <div className="text-[9px] uppercase tracking-[0.35em] text-white/90 font-black">
-                {currentLanguage === "CN" ? "系统提示" : currentLanguage === "DE" ? "System-Hinweis" : "System Alert"}
+                {common.notification.system_alert}
               </div>
             </div>
           </div>

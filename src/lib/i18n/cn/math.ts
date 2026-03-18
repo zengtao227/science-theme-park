@@ -209,6 +209,16 @@ export const cnMath = {
             determinant: "行列式",
             composition: "复合变换"
         },
+        visualization: {
+            transformationMatrix: "变换矩阵",
+            determinant: "行列式",
+            area: "面积",
+            basisVectors: "基向量",
+            areaExpanded: "面积扩大 (det > 1)",
+            areaCompressed: "面积压缩 (0 < det < 1)",
+            orientationReversed: "方向反转 (det < 0)",
+            collapsedToLine: "塌缩为线 (det ≈ 0)",
+        },
         prompts: {
             identify_trans: "罗氏对称性审计任务：观察该矩阵并判断它对应的几何变换类型。",
             create_scale: "分子缩放任务：构造一个按系数 {k} 缩放坐标的矩阵。",
@@ -2245,6 +2255,16 @@ export const cnMath = {
             combined: "组合事件",
             data_stats: "数据统计"
         },
+        visualization: {
+            dice: "骰子 (6种结果)",
+            coin: "硬币 (2种结果)",
+            cards: "扑克牌 (52张)",
+            lottery: "彩票抽奖",
+            data_stats: "数据统计",
+            frequency: "频率数据",
+            combined: "组合事件",
+            weekdays: ["周一", "周二", "周三", "周四", "周五"],
+        },
         scenarios: {
             bus_punctuality: "你每天乘坐巴塞尔8路公交车上学。追踪记录显示，过去20个上学日中公交车有16天准时到达。计算明天准时到达的概率，以决定是否需要提前10分钟出发作为安全余量。",
             weather_basel: "巴塞尔气象站追踪了30天的降雨情况，记录到12个雨天。计算本周末下雨的概率，以决定是否预订户外运动场（20瑞郎）还是选择室内替代场所。",
@@ -2566,6 +2586,29 @@ export const cnMath = {
         },
         ui: {
             loading: "加载中..."
+        },
+        canvas: {
+            roots: "根",
+            vertex: "顶点",
+            hint_step_label: "逐步提示",
+            hint_panels: {
+                TERMS: {
+                    title: "合并同类项",
+                    items: ["ax + bx = (a+b)x", "同类项：变量和次数相同的项", "注意符号：-(a-b) = -a+b", "分配律：c(x+y) = cx + cy"]
+                },
+                FACTORIZE: {
+                    title: "因式分解恒等式",
+                    items: ["(x+A)(x+B) = x^{2} + (A+B)x + AB", "u^{2} - v^{2} = (u-v)(u+v)", "(a+b)^{2} = a^{2} + 2ab + b^{2}", "先提取公因式"]
+                },
+                FRACTIONS: {
+                    title: "分式化简",
+                    items: ["对分子分母进行因式分解", "约去公因式", "a^{2} - b^{2} = (a-b)(a+b)", "注意定义域限制"]
+                },
+                EQUATIONS: {
+                    title: "解方程",
+                    items: ["pq=0 \\implies p=0 \\vee q=0", "x = \\frac{-b \\pm \\sqrt{b^{2}-4ac}}{2a}", "\\Delta = b^{2} - 4ac", "\\left(x+\\frac{b}{2}\\right)^{2}=\\frac{b^{2}}{4}-c"]
+                }
+            }
         }
     },
     sm3_02: {
@@ -2817,6 +2860,39 @@ export const cnMath = {
             scatter_plots: "散点图",
             correlation: "相关性",
             elite: "精英分析"
+        },
+        visualization: {
+            boxPlot: "箱线图 (Box-and-Whisker)",
+            keyConcepts: "关键概念",
+            medianMiddle: "中位数：中间值（第50百分位）",
+            quartiles: "Q1: 第25百分位, Q3: 第75百分位",
+            iqrSpread: "IQR: 中间50%的数据离散程度",
+            outlierRule: "异常值：距离箱体超过 1.5×IQR",
+            iqrFormula: "IQR = Q_3 - Q_1",
+            positive: "正相关",
+            negative: "负相关",
+            none: "无相关",
+            bothIncrease: "两者同时上升",
+            oneUpOneDown: "一个上升，一个下降",
+            noPattern: "无明显模式",
+            corrStrength: "相关强度",
+            corrStrongWeak: "强：点靠近直线 | 弱：点更分散",
+            corrCoeff: "相关系数 (r)",
+            interpretingR: "r 的解释",
+            strongPos: "r = 0.8 到 1.0：强正相关",
+            moderatePos: "r = 0.5 到 0.8：中等正相关",
+            weakNone: "r = -0.3 到 0.3：弱/无相关",
+            moderateNeg: "r = -0.5 到 -0.8：中等负相关",
+            strongNeg: "r = -0.8 到 -1.0：强负相关",
+            perfect: "完全",
+            noCorrShort: "无相关",
+            warning: "相关不等于因果！",
+            eliteTitle: "精英分析流程",
+            eliteStep1: "1. 标准化: z = (x - μ) / σ",
+            eliteStep2: "2. 区间估计: CI = x̄ ± z*SE",
+            eliteStep3: "3. 诊断混淆变量",
+            eliteStep4: "4. 区分相关与因果",
+            eliteGoal: "目标: 统计结论 -> 可执行决策",
         },
         labels: {
             type: "类型",
@@ -3184,6 +3260,52 @@ export const cnMath = {
             basel_arch: "巴塞尔建筑",
             cross_sections: "截面分析",
             curved_solids: "曲面几何"
+        },
+        visualization: {
+            shapeButtons: { roche: "罗氏塔", cube: "立方体", pyramid: "棱锥", sphere: "球体", cylinder: "圆柱" },
+            rotationX: "X 轴旋转:",
+            rotationY: "Y 轴旋转:",
+            rotateHint: "拖拽可旋转",
+            properties: "性质:",
+            rocheTitle: "罗氏塔类比",
+            rocheStructure: "结构：分层棱柱",
+            rocheAreaLabel: "面积：",
+            rocheHeight: "高度：205m",
+            cubeFaces: "面数：6",
+            cubeVertices: "顶点：8",
+            cubeEdges: "棱数：12",
+            pyramidFaces: "面数：5",
+            pyramidVertices: "顶点：5",
+            pyramidEdges: "棱数：8",
+            sphereSurface: "曲面",
+            sphereNoEdge: "无棱无顶点",
+            cylinderFaces: "面数：3",
+            eulerTitle: "欧拉公式:",
+            convexPoly: "（适用于凸多面体）",
+            cubeSquare: "立方体 -> 正方形",
+            sphereCircle: "球体 -> 圆形",
+            cylinderRect: "圆柱 -> 矩形",
+            parallelFace: "平行于面",
+            anyPlane: "任意平面",
+            parallelAxis: "平行于轴",
+            crossSectionTypes: "截面类型:",
+            parallelBase: "平行于底面:",
+            perpendicularBase: "垂直于底面:",
+            diagonalCut: "对角切割:",
+            similarShape: "相似形状",
+            differentShape: "不同形状",
+            complexPolygon: "复杂多边形",
+            distanceFormula: "距离公式:",
+            midpointFormula: "中点公式:",
+            spatialRelations: "空间关系:",
+            parallelPlanes: "平行平面",
+            neverIntersect: "永不相交",
+            perpendicularPlanes: "垂直平面",
+            rightAngle: "90 度夹角",
+            skewLines: "异面直线",
+            skewDesc: "不平行且不相交",
+            dihedralAngle: "二面角",
+            angleBetweenPlanes: "平面夹角",
         },
         scenarios: {
             basel_arch: "巴塞尔建筑 - 几何地标：你是巴塞尔的一名实习建筑师，正在分析这座城市的现代天际线。罗氏塔（1号楼和2号楼）可以建模为一系列堆叠的梯形柱体和圆柱体。巴塞尔博览会大厦（Messeturm）是另一个具有独特长方形和圆柱形截面的地标。你的任务是将这些标志性结构抽象为基础几何体，并计算它们的体积和表面积。例如，第一阶段专注于通过将罗氏塔复合体转化为其组成柱体来计算其总体积。理解这些数学关系对于材料规划（混凝土、玻璃）和结构完整性至关重要。",

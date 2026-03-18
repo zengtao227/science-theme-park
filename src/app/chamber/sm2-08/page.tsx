@@ -1206,7 +1206,7 @@ export default function SM208Page() {
       }}
       monitorContent={
         <div className="space-y-4">
-          <ProbabilityVisualizer stage={stage} language={currentLanguage as "EN" | "CN" | "DE"} />
+          <ProbabilityVisualizer stage={stage} />
           <div className="text-[10px] uppercase tracking-[0.4em] text-cyan-400 font-black">
             {t("sm2_08.formula_title")}
           </div>
