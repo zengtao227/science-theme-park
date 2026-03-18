@@ -2203,6 +2203,19 @@ export const enPhysics = {
             placeholders: {
                 type_value: "type value",
             },
+                visualization: {
+                        voltage: "Voltage",
+                        current: "Current",
+                        power: "Power",
+                        time: "Time",
+                        energy: "Energy",
+                        cost: "Cost",
+                        input: "Input",
+                        output: "Output",
+                        efficiency: "Efficiency",
+                        loss: "Loss",
+                        efficiency_visualization: "Efficiency Visualization"
+                },
                 scenarios: {
                         ohms_law: "Basel Electrical Engineering Lab at University of Basel: You are a first-year electrical engineering student learning circuit fundamentals. Today's lab focuses on Ohm's Law (U = I × R), the foundation of all circuit analysis. Your task is to calculate voltage, current, or resistance in simple circuits. Professor Schmidt emphasizes: 'Understanding Ohm's Law is like learning the alphabet - it's essential for everything that follows.' You'll use digital multimeters to measure real circuits and verify your calculations. This knowledge is crucial for designing everything from smartphone circuits to Basel's tram electrical systems.",
                         series_circuits: "Novartis Pharmaceutical Equipment Design: You are working with the electrical engineering team at Novartis Basel, designing power distribution for new laboratory equipment. In series circuits, components share the same current, but voltage divides across them. Your task is to calculate total resistance (R_total = R_1 + R_2 + ...) and current flow. This is critical for ensuring that sensitive analytical instruments receive correct voltage levels. A miscalculation could damage equipment worth millions of Swiss Francs or compromise drug quality testing results.",

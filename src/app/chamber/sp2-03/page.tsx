@@ -69,7 +69,20 @@ export default function SP203ElectricPower() {
         check: t("sp2_03.check"),
         next: t("sp2_03.next"),
         correct: t("sp2_03.correct"),
-        incorrect: t("sp2_03.incorrect")
+        incorrect: t("sp2_03.incorrect"),
+        visualization: {
+            voltage: t("sp2_03.visualization.voltage"),
+            current: t("sp2_03.visualization.current"),
+            power: t("sp2_03.visualization.power"),
+            time: t("sp2_03.visualization.time"),
+            energy: t("sp2_03.visualization.energy"),
+            cost: t("sp2_03.visualization.cost"),
+            input: t("sp2_03.visualization.input"),
+            output: t("sp2_03.visualization.output"),
+            efficiency: t("sp2_03.visualization.efficiency"),
+            loss: t("sp2_03.visualization.loss"),
+            efficiency_visualization: t("sp2_03.visualization.efficiency_visualization"),
+        }
     }), [t]);
 
     const buildPowerPrompt = useCallback((item: PowerDataItem) => {
@@ -428,6 +441,7 @@ export default function SP203ElectricPower() {
                         power_basics: sp2_03_t.stages.power_basics,
                         energy_consumption: sp2_03_t.stages.energy_consumption,
                         efficiency: sp2_03_t.stages.efficiency,
+                        visualization: sp2_03_t.visualization,
                     }}
                 />
             }

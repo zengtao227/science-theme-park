@@ -1210,8 +1210,21 @@ export const dePhysics = {
                         parallel_circuits: "PARALLELSCHALTUNG"
                 },
             placeholders: {
-                type_value: "type value",
+                type_value: "Wert eingeben",
             },
+                visualization: {
+                        voltage: "Spannung",
+                        current: "Strom",
+                        power: "Leistung",
+                        time: "Zeit",
+                        energy: "Energie",
+                        cost: "Kosten",
+                        input: "Eingang",
+                        output: "Ausgang",
+                        efficiency: "Wirkungsgrad",
+                        loss: "Verlust",
+                        efficiency_visualization: "Wirkungsgrad-Visualisierung"
+                },
                 scenarios: {
                         ohms_law: "Elektrotechnik-Labor an der Universität Basel: Sie sind Elektrotechnik-Student im ersten Jahr und lernen Schaltungsgrundlagen. Das heutige Labor konzentriert sich auf das Ohmsche Gesetz (U = I × R), die Grundlage aller Schaltungsanalysen. Ihre Aufgabe ist es, Spannung, Strom oder Widerstand in einfachen Schaltungen zu berechnen. Professor Schmidt betont: 'Das Ohmsche Gesetz zu verstehen ist wie das Alphabet zu lernen - es ist essentiell für alles, was folgt.' Sie werden digitale Multimeter verwenden, um echte Schaltungen zu messen und Ihre Berechnungen zu verifizieren. Dieses Wissen ist entscheidend für die Entwicklung von allem, von Smartphone-Schaltungen bis zu Basels Straßenbahn-Elektrosystemen.",
                         series_circuits: "Novartis Pharma-Gerätedesign: Sie arbeiten mit dem Elektrotechnik-Team bei Novartis Basel und entwerfen die Stromverteilung für neue Laborgeräte. In Reihenschaltungen teilen sich Komponenten denselben Strom, aber die Spannung teilt sich auf sie auf. Ihre Aufgabe ist es, den Gesamtwiderstand (R_gesamt = R_1 + R_2 + ...) und den Stromfluss zu berechnen. Dies ist kritisch, um sicherzustellen, dass empfindliche Analysegeräte die korrekten Spannungspegel erhalten. Eine Fehlberechnung könnte Geräte im Wert von Millionen Schweizer Franken beschädigen oder Arzneimittel-Qualitätstestergebnisse gefährden.",

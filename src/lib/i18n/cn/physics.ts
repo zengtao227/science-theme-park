@@ -1145,7 +1145,20 @@ export const cnPhysics = {
             parallel_circuits: "并联电路"
         },
         placeholders: {
-            type_value: "type value",
+            type_value: "输入数值",
+        },
+        visualization: {
+            voltage: "电压",
+            current: "电流",
+            power: "功率",
+            time: "时间",
+            energy: "能量",
+            cost: "费用",
+            input: "输入",
+            output: "输出",
+            efficiency: "效率",
+            loss: "损耗",
+            efficiency_visualization: "效率可视化",
         },
         scenarios: {
             ohms_law: "巴塞尔大学电气工程实验室：你是一名一年级电气工程专业学生，正在学习电路基础知识。今天的实验重点是欧姆定律（U = I × R），这是所有电路分析的基础。你的任务是计算简单电路中的电压、电流或电阻。施密特教授强调：'理解欧姆定律就像学习字母表——它是后续所有内容的基础。'你将使用数字万用表测量真实电路并验证你的计算。这些知识对于设计从智能手机电路到巴塞尔有轨电车电气系统的一切都至关重要。",
