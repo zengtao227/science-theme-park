@@ -101,7 +101,7 @@ export default function GC102Page() {
                         ) : (
                             <ElectrolysisCanvas
                                 voltage={2.0}
-                                electrolyte={currentQuest?.solution || "CuSO4"}
+                                electrolyte={currentQuest?.solution ?? ""}
                                 activeStage={stage}
                                 showIons={true}
                                 translations={t("gc1_02")}

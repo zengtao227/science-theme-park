@@ -300,9 +300,9 @@ export default function ProbabilityVisualization(props: ProbabilityVisualization
     CONDITIONAL: "conditional",
     MISSION: "mission",
   };
-  const stageKey = stageKeyMap[stage] || "mission";
+  const stageKey = stageKeyMap[stage];
   const currentStageLabel =
-    translations[lang as keyof typeof translations]?.gm3_01?.stages?.[stageKey];
+    stageKey ? translations[lang as keyof typeof translations]?.gm3_01?.stages?.[stageKey] : undefined;
   const vizLabels = translations[lang as keyof typeof translations]?.gm3_01?.viz as Gm301VizCopy;
   const labels = {
     favorable: vizLabels.favorable,

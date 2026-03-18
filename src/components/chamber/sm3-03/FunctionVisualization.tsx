@@ -21,7 +21,7 @@ export default function FunctionVisualization({
   const curveData = useMemo(() => {
     if (!quest) return { points: "", type: "exponential" };
 
-    const stage = quest.stage || "EXPONENTIAL";
+    const stage = typeof quest.stage === "string" ? quest.stage : "";
     const xMin = -3;
     const xMax = 3;
     const step = 0.1;
@@ -35,7 +35,7 @@ export default function FunctionVisualization({
       } else if (stage === "LOGARITHMIC" || stage.includes("LOG")) {
         y = x > 0 ? Math.log2(x) : 0;
       } else {
-        y = Math.pow(2, x); // default
+        y = Math.pow(2, x);
       }
 
       const sx = 300 + x * 80;

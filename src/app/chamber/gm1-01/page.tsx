@@ -20,6 +20,14 @@ import {
 } from "@/lib/gm1-01/quests";
 import { normalizePlainMathNotation, renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
+function getFunctionTypeFromStage(stage: Stage): "power" | "factor" | "sum" | "product" | "quotient" | "chain" {
+  if (stage === "POWER_RULE") return "power";
+  if (stage === "FACTOR_RULE") return "factor";
+  if (stage === "SUM_RULE") return "sum";
+  if (stage === "PRODUCT_RULE") return "product";
+  if (stage === "QUOTIENT_RULE") return "quotient";
+  return "chain";
+}
 
 
 function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G101Quest[] {
@@ -198,7 +206,7 @@ export default function G101Page() {
       monitorContent={
         <div className="space-y-4">
           <DerivativeCanvas
-            functionType={currentQuest?.functionType || "power"}
+            functionType={currentQuest?.functionType ?? getFunctionTypeFromStage(stage)}
             xPosition={currentQuest?.xPosition || 2}
             derivative={parseFloat(inputs.derivative || "0")}
             translations={{

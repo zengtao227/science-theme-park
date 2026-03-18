@@ -29,7 +29,7 @@ export default function GeometryVisualization({
     if (!quest) return null;
     
     // Determine shape type from quest
-    const stage = quest.stage || "ANGLES";
+    const stage = typeof quest.stage === "string" ? quest.stage : "";
     
     return {
       stage,

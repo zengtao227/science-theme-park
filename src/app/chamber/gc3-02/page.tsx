@@ -96,7 +96,7 @@ export default function GC302Page() {
         <div className="flex flex-col h-full gap-4">
           <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
             <CrystalCanvas
-              latticeType={currentQuest?.simConfig.latticeType || "SC"}
+              latticeType={currentQuest?.simConfig.latticeType ?? stage}
               showVoids={currentQuest?.simConfig.showVoids || false}
             />
           </div>
