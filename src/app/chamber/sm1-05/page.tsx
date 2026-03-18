@@ -673,12 +673,9 @@ export default function SM105Page() {
                         <div className="space-y-6">
                             {currentQuest.slots.map((slot) => (
                                 <div key={slot.id} className="space-y-3">
-                                    <div className="flex justify-between items-center px-2">
+                                    <div className="px-2">
                                         <div className="text-xs uppercase font-black tracking-widest text-white/60">
                                             <InlineMath math={slot.labelLatex} />
-                                        </div>
-                                        <div className="text-[10px] font-mono text-neon-cyan/40 tracking-tighter italic">
-                                            {sm1_05_t.labels.data_ref}
                                         </div>
                                     </div>
                                     <div className="relative group">
