@@ -251,11 +251,11 @@ export default function CrystalCanvas(props: CrystalCanvasProps) {
   return (
     <div className="w-full h-[800px] bg-black rounded-xl overflow-hidden border border-white/10">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[2, 2, 4]} fov={55} />
+        <PerspectiveCamera makeDefault position={[2.4, 2.4, 5.2]} fov={60} />
         <OrbitControls
           enablePan={false}
-          minDistance={2}
-          maxDistance={8}
+          minDistance={2.5}
+          maxDistance={10}
         />
 
         <ambientLight intensity={0.3} />

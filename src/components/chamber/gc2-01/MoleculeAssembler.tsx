@@ -340,8 +340,8 @@ export default function MoleculeAssembler({ onMoleculeChange }: MoleculeAssemble
     <div className="space-y-4">
       <div className="w-full h-[800px] bg-black rounded-xl overflow-hidden border border-white/10">
         <Canvas>
-          <PerspectiveCamera makeDefault position={[2, 2, 3]} fov={55} />
-          <OrbitControls enablePan={true} minDistance={1} maxDistance={10} />
+          <PerspectiveCamera makeDefault position={[2.6, 2.4, 4.8]} fov={60} />
+          <OrbitControls enablePan={true} minDistance={1.5} maxDistance={12} />
 
           <ambientLight intensity={0.3} />
           <pointLight position={[5, 5, 5]} intensity={0.8} />
