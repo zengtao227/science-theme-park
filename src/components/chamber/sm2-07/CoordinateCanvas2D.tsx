@@ -1,38 +1,18 @@
 "use client";
 
-import { InlineMath } from "react-katex";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 
 interface CoordinateCanvas2DProps {
   stage: "DISTANCE" | "MIDPOINT" | "SLOPE";
   point1?: [number, number];
   point2?: [number, number];
-  translations?: {
-    distance_formula: string;
-    midpoint_formula: string;
-    slope_formula: string;
-    line_eq: string;
-    hide_formula: string;
-    show_formula: string;
-  };
-  labels?: {
-    analysis_terminal?: string;
-    distance_formula?: string;
-    find_distance?: string;
-    find_slope?: string;
-  };
 }
 
 export default function CoordinateCanvas2D({
   stage = "DISTANCE",
   point1 = [0, 0],
   point2 = [3, 4],
-  translations,
-  labels,
 }: CoordinateCanvas2DProps) {
-  void translations;
-  const [showFormula, setShowFormula] = useState(true);
-
   const width = 800;
   const height = 600;
 
@@ -227,36 +207,6 @@ export default function CoordinateCanvas2D({
         </g>
       </svg>
 
-      {showFormula && (
-        <div className="absolute top-4 left-4 bg-black/80 border border-white/10 rounded-lg p-5 backdrop-blur-md max-w-[240px] shadow-xl">
-          <div className="text-[10px] text-cyan-400 font-black uppercase mb-3 tracking-widest opacity-70">
-            {labels?.analysis_terminal}
-          </div>
-          {stage === "DISTANCE" && (
-            <div className="text-white/90 font-mono text-sm leading-relaxed italic">
-              {labels?.find_distance}
-              <br />
-              <InlineMath math="d = \\sqrt{\\Delta x^{2} + \\Delta y^{2}}" />
-            </div>
-          )}
-          {stage === "MIDPOINT" && <div className="text-white/90 font-mono text-sm leading-relaxed italic">Find mid <span className="text-pink-400">M</span>:<br />M = (Σx/2, Σy/2)</div>}
-          {stage === "SLOPE" && (
-            <div className="text-white/90 font-mono text-sm leading-relaxed italic">
-              {labels?.find_slope}
-              <br />
-              <InlineMath math="m = \\frac{\\Delta y}{\\Delta x}" />
-            </div>
-          )}
-        </div>
-      )}
-
-      <button onClick={() => setShowFormula(!showFormula)} className="absolute top-4 right-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-white/10 transition-all text-[10px] uppercase font-bold">
-        {showFormula ? "Hide Info" : "Show Logic"}
-      </button>
-
-      <div className="absolute bottom-6 left-6 text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">
-        Vector Chamber // SM2.07 // Dynamic Rescale
-      </div>
     </div>
   );
 }

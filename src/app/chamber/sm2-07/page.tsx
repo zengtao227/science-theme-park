@@ -382,12 +382,6 @@ export default function S207Page() {
             stage={stage}
             point1={currentQuest?.point1 || [2, 3]}
             point2={currentQuest?.point2 || [6, 7]}
-            translations={t("sm2_07.canvas_translations")}
-            labels={{
-              analysis_terminal: t("sm2_07.labels.analysis_terminal"),
-              find_distance: t("sm2_07.labels.find_distance"),
-              find_slope: t("sm2_07.labels.find_slope"),
-            }}
           />
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{t("sm2_07.target_title")}</div>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
