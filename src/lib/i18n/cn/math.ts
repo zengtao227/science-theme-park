@@ -1850,8 +1850,8 @@ export const cnMath = {
         placeholders: {
             question: "?",
             total_price: "总价 (CHF)",
-                    distance_km: "Distance (km)",
-            threshold_km: "Threshold (km)"
+                    distance_km: "距离（km）",
+            threshold_km: "阈值距离（km）"
 },
         laser: {
             axis_km: "km",

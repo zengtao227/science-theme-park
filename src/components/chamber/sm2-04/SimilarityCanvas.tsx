@@ -167,11 +167,11 @@ function InitialCamera({ kind }: { kind: SimilarityVisual["kind"] }) {
         pos = [0, 10, 24]; // Look down from further away to see everything
         fov = 45;
     } else if (kind === "rect-scale") {
-        pos = [0, 1.2, 8.2];
-        fov = 30;
+        pos = [0, 1.4, 11.5];
+        fov = 38;
     } else if (kind === "tri-sim") {
-        pos = [0, 1.2, 13];
-        fov = 34;
+        pos = [0, 1.8, 16.5];
+        fov = 42;
     } else if (kind === "ring") {
         pos = [0, 0, 10];
         fov = 45;

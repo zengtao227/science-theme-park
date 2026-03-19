@@ -1882,8 +1882,8 @@ export const deMath = {
         placeholders: {
             question: "?",
             total_price: "Gesamtpreis (CHF)",
-                    distance_km: "Distance (km)",
-            threshold_km: "Threshold (km)"
+                    distance_km: "Entfernung (km)",
+            threshold_km: "Schwellenwert (km)"
 },
         laser: {
             axis_km: "km",
