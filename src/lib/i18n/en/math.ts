@@ -2176,9 +2176,6 @@ export const enMath = {
             distance: "Distance (d)",
             midpoint: "Midpoint (M)",
             slope: "Slope (m)",
-            analysis_terminal: "Analysis Terminal",
-            find_distance: "Find distance d using:",
-            find_slope: "Find slope m:",
             translation_vector: "Translation vector",
             reflection_line: "Reflection line",
             transformation: "Transformation"
@@ -2199,14 +2196,6 @@ export const enMath = {
             distance: "d = \\sqrt{(x_2-x_1)^{2} + (y_2-y_1)^2}",
             midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
-        },
-        canvas_translations: {
-            distance_formula: "Distance Formula",
-            midpoint_formula: "Midpoint Formula",
-            slope_formula: "Slope Formula",
-            line_eq: "Line Equation",
-            hide_formula: "Hide Formula",
-            show_formula: "Show Formula"
         },
         dynamic_prompts: {
             dist_rev_y: "Distance d=${d}. Find y for B(3,y) (y>0).",

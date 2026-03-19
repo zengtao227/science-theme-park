@@ -2157,9 +2157,6 @@ export const cnMath = {
             distance: "距离 (d)",
             midpoint: "中点 (M)",
             slope: "斜率 (m)",
-            analysis_terminal: "分析终端",
-            find_distance: "使用以下公式求距离 d：",
-            find_slope: "求斜率 m：",
             translation_vector: "平移向量",
             reflection_line: "反射线",
             transformation: "变换"
@@ -2180,14 +2177,6 @@ export const cnMath = {
             distance: "d = \\sqrt{(x_2-x_1)^{2} + (y_2-y_1)^2}",
             midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
-        },
-        canvas_translations: {
-            distance_formula: "距离公式",
-            midpoint_formula: "中点公式",
-            slope_formula: "斜率公式",
-            line_eq: "直线方程",
-            hide_formula: "隐藏公式",
-            show_formula: "显示公式"
         },
         dynamic_prompts: {
             dist_rev_y: "距离 d=${d}。已知 A(0,0), B(3,y) 且 y>0，求 y。",

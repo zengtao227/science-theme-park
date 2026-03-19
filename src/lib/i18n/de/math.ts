@@ -2189,9 +2189,6 @@ export const deMath = {
             distance: "Abstand (d)",
             midpoint: "Mittelpunkt (M)",
             slope: "Steigung (m)",
-            analysis_terminal: "Analyse-Terminal",
-            find_distance: "Bestimme die Distanz d mit:",
-            find_slope: "Bestimme die Steigung m:",
             translation_vector: "Translationsvektor",
             reflection_line: "Reflexionslinie",
             transformation: "Transformation"
@@ -2212,14 +2209,6 @@ export const deMath = {
             distance: "d = \\sqrt{(x_2-x_1)^{2} + (y_2-y_1)^2}",
             midpoint: "M = (\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2})",
             slope: "m = \\frac{y_2-y_1}{x_2-x_1}"
-        },
-        canvas_translations: {
-            distance_formula: "Abstandsformel",
-            midpoint_formula: "Mittelpunktsformel",
-            slope_formula: "Steigungsformel",
-            line_eq: "Geradengleichung",
-            hide_formula: "Formel verbergen",
-            show_formula: "Formel anzeigen"
         },
         dynamic_prompts: {
             dist_rev_y: "Abstand d=${d}. Finde y für B(3,y) (y>0).",
