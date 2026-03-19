@@ -274,15 +274,6 @@ export default function SM213Page() {
                                     </div>
 
                                     <div className="space-y-6">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                                                <BrainCircuit className="w-4 h-4 text-white/60" />
-                                            </div>
-                                            <h3 className="text-xs font-black tracking-[0.2em] uppercase text-white/40">
-                                                {sm2_13_t.labels.solution_input}
-                                            </h3>
-                                        </div>
-
                                         <div className="flex flex-wrap gap-4">
                                             {currentQuest.targetLatex && (
                                                 <div className="flex items-center justify-center p-4 bg-white/5 rounded-xl border border-white/10 text-white mr-2">

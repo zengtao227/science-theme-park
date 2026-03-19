@@ -677,11 +677,6 @@ export default function SP307Page() {
                         <div className="bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group">
                             <div className="absolute top-0 left-0 w-1 h-full bg-neon-cyan/50 group-hover:h-0 transition-all duration-700" />
                             <div className="space-y-8">
-                                <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black flex items-center gap-2">
-                                    <span className="w-8 h-px bg-neon-cyan/30" />
-                                    {t("labels.terminal_input")} [Alpha]
-                                </div>
-
                                 <div className="grid grid-cols-1 gap-8 justify-items-center">
                                     {currentQuest?.slots.map((slot: any) => (
                                         <div key={slot.id} className="w-full max-w-md space-y-3">
