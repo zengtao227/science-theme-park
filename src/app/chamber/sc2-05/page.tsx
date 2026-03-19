@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcidBaseVisualization from "@/components/chamber/sc2-05/AcidBaseVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "PH_BASICS" | "NEUTRALIZATION" | "TITRATION";
 
@@ -788,6 +789,30 @@ export default function SC205Page() {
     [t]
   );
 
+  const buildPool = useCallback(
+    (difficulty: Difficulty, stage: Stage) => buildStagePool(difficulty, stage),
+    [buildStagePool]
+  );
+
+  const stages = useMemo(() => [
+    { id: "PH_BASICS" as Stage, label: sc2_05_t.stages.ph_basics },
+    { id: "NEUTRALIZATION" as Stage, label: sc2_05_t.stages.neutralization },
+    { id: "TITRATION" as Stage, label: sc2_05_t.stages.titration },
+  ], [sc2_05_t.stages.neutralization, sc2_05_t.stages.ph_basics, sc2_05_t.stages.titration]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<AcidBaseQuest, Stage>({
+    moduleTitle: sc2_05_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: sc2_05_t.difficulty.basic,
+      CORE: sc2_05_t.difficulty.core,
+      ADVANCED: sc2_05_t.difficulty.advanced,
+      ELITE: sc2_05_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, sc2_05_t.difficulty.advanced, sc2_05_t.difficulty.basic, sc2_05_t.difficulty.core, sc2_05_t.difficulty.elite, sc2_05_t.title, stages]);
+
   const {
     stage: currentStage,
     difficulty: currentDifficulty,
@@ -805,7 +830,7 @@ export default function SC205Page() {
       requestAiFeedback
     } = useQuestManager({
     moduleCode: "sc2-05",
-    buildPool: (difficulty, stage) => buildStagePool(difficulty, stage as Stage),
+    buildPool,
     initialStage: "PH_BASICS" as Stage,
   });
 
@@ -829,13 +854,10 @@ export default function SC205Page() {
       title={sc2_05_t.title}
       difficulty={currentDifficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "PH_BASICS", label: sc2_05_t.stages.ph_basics },
-        { id: "NEUTRALIZATION", label: sc2_05_t.stages.neutralization },
-        { id: "TITRATION", label: sc2_05_t.stages.titration },
-      ]}
+      stages={stages}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

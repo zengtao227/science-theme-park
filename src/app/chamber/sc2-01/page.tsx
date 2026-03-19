@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import KineticsCanvas from "@/components/chamber/sc2-01/KineticsCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "ARRHENIUS" | "RATE_LAW" | "HALF_LIFE";
 type KineticsQuest = Quest & { 
@@ -171,13 +172,37 @@ export default function SC201Page() {
     return pools[stage][difficulty] || [];
   }, [t]);
 
+  const buildPool = useCallback(
+    (difficulty: Difficulty, stage: Stage) => buildStagePool(sc2_01_t, difficulty, stage),
+    [buildStagePool, sc2_01_t]
+  );
+
+  const stages = useMemo(() => [
+    { id: "ARRHENIUS" as Stage, label: sc2_01_t.stages.arrhenius },
+    { id: "RATE_LAW" as Stage, label: sc2_01_t.stages.concentration },
+    { id: "HALF_LIFE" as Stage, label: sc2_01_t.stages.collision },
+  ], [sc2_01_t.stages.arrhenius, sc2_01_t.stages.collision, sc2_01_t.stages.concentration]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<KineticsQuest, Stage>({
+    moduleTitle: sc2_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: sc2_01_t.difficulty.basic,
+      CORE: sc2_01_t.difficulty.core,
+      ADVANCED: sc2_01_t.difficulty.advanced,
+      ELITE: sc2_01_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, sc2_01_t.difficulty.advanced, sc2_01_t.difficulty.basic, sc2_01_t.difficulty.core, sc2_01_t.difficulty.elite, sc2_01_t.title, stages]);
+
   const { stage: currentStage, difficulty: currentDifficulty, currentQuest, inputs: userAnswer, lastCheck, setInputs, verify, next, handleStageChange, handleDifficultyChange, adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
       requestAiFeedback
     } = useQuestManager({
     moduleCode: "sc2-01",
-    buildPool: (difficulty, stage) => buildStagePool(sc2_01_t, difficulty, stage as Stage),
+    buildPool,
     initialStage: "ARRHENIUS" as Stage,
   });
 
@@ -201,13 +226,10 @@ export default function SC201Page() {
       title={sc2_01_t.title}
       difficulty={currentDifficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "ARRHENIUS", label: sc2_01_t.stages.arrhenius },
-        { id: "RATE_LAW", label: sc2_01_t.stages.concentration },
-        { id: "HALF_LIFE", label: sc2_01_t.stages.collision },
-      ]}
+      stages={stages}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
