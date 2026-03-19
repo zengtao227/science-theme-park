@@ -7,6 +7,7 @@ import AnimalVisualization from "@/components/chamber/sb1-05/AnimalVisualization
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "ANIMAL_CLASSIFICATION" | "ADAPTATIONS" | "BEHAVIOR_EVOLUTION";
 
@@ -221,6 +222,27 @@ export default function SB105AnimalClassification() {
         return [];
     }, [t]);
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sb1_05_t, d, s), [buildStagePool, sb1_05_t]);
+
+    const stagesProps = useMemo(() => [
+        { id: "ANIMAL_CLASSIFICATION" as Stage, label: sb1_05_t.stages.animal_classification },
+        { id: "ADAPTATIONS" as Stage, label: sb1_05_t.stages.adaptations },
+        { id: "BEHAVIOR_EVOLUTION" as Stage, label: sb1_05_t.stages.behavior_evolution },
+    ], [sb1_05_t.stages]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SB105Quest, Stage>({
+        moduleTitle: sb1_05_t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sb1_05_t.difficulty.basic,
+            CORE: sb1_05_t.difficulty.core,
+            ADVANCED: sb1_05_t.difficulty.advanced,
+            ELITE: sb1_05_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sb1_05_t.difficulty.advanced, sb1_05_t.difficulty.basic, sb1_05_t.difficulty.core, sb1_05_t.difficulty.elite, sb1_05_t.title, stagesProps]);
+
     const {
         difficulty,
         stage,
@@ -238,7 +260,7 @@ export default function SB105AnimalClassification() {
       requestAiFeedback
     } = useQuestManager<SB105Quest, Stage>({
     moduleCode: "sb1-05",
-        buildPool: (d, s) => buildStagePool(sb1_05_t, d, s),
+        buildPool,
         initialStage: "ANIMAL_CLASSIFICATION",
     });
 
@@ -271,13 +293,10 @@ export default function SB105AnimalClassification() {
             moduleCode="SB1.05"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "ANIMAL_CLASSIFICATION", label: sb1_05_t.stages.animal_classification },
-                { id: "ADAPTATIONS", label: sb1_05_t.stages.adaptations },
-                { id: "BEHAVIOR_EVOLUTION", label: sb1_05_t.stages.behavior_evolution },
-            ]}
+            stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

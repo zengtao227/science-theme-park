@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Stage, SB204Quest } from "@/lib/sb2-04-types";
 import { buildStagePool } from "@/lib/sb2-04-quest-builder";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function SB204Page() {
   const { completeStage } = useAppStore();
@@ -60,6 +61,19 @@ export default function SB204Page() {
     [t]
   );
 
+  const printSections = useMemo(() => buildQuestPrintSections<SB204Quest, Stage>({
+    moduleTitle: t("sb2_04.title"),
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("sb2_04.difficulty.basic"),
+      CORE: t("sb2_04.difficulty.core"),
+      ADVANCED: t("sb2_04.difficulty.advanced"),
+      ELITE: t("sb2_04.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t]);
+
   const hint = getHint();
 
   return (
@@ -75,6 +89,7 @@ export default function SB204Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -10,6 +10,7 @@ import CellCanvas from "@/components/chamber/sb1-01/CellCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "IDENTIFICATION" | "FUNCTION" | "ORGANELLES";
 
@@ -220,6 +221,19 @@ export default function SB101Page() {
         { id: "ORGANELLES" as Stage, label: t("sb1_01.stages.organelles") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SB101Quest, Stage>({
+        moduleTitle: t("sb1_01.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb1_01.difficulty.basic"),
+            CORE: t("sb1_01.difficulty.core"),
+            ADVANCED: t("sb1_01.difficulty.advanced"),
+            ELITE: t("sb1_01.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     const hint = getHint();
 
     return (
@@ -235,6 +249,7 @@ export default function SB101Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

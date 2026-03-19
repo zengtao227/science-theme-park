@@ -10,6 +10,7 @@ import TissueVisualization from "@/components/chamber/sb2-01-tissues/TissueVisua
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "TISSUES" | "ORGANS" | "SYSTEMS";
 
@@ -240,6 +241,19 @@ export default function SB201TissuesPage() {
         { id: "SYSTEMS" as Stage, label: t("sb2_01_tissues.stages.systems") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SB201TissuesQuest, Stage>({
+        moduleTitle: t("sb2_01_tissues.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb2_01_tissues.difficulty.basic"),
+            CORE: t("sb2_01_tissues.difficulty.core"),
+            ADVANCED: t("sb2_01_tissues.difficulty.advanced"),
+            ELITE: t("sb2_01_tissues.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     const hint = getHint();
 
     return (
@@ -255,6 +269,7 @@ export default function SB201TissuesPage() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

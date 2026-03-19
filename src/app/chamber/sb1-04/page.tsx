@@ -7,6 +7,7 @@ import PlantVisualization from "@/components/chamber/sb1-04/PlantVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "PLANT_STRUCTURE" | "WATER_TRANSPORT" | "NUTRIENT_TRANSPORT";
 
@@ -242,6 +243,27 @@ export default function SB104PlantStructure() {
         return [];
     }, [t]);
 
+    const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sb1_04_t, d, s), [buildStagePool, sb1_04_t]);
+
+    const stagesProps = useMemo(() => [
+        { id: "PLANT_STRUCTURE" as Stage, label: sb1_04_t.stages.plant_structure },
+        { id: "WATER_TRANSPORT" as Stage, label: sb1_04_t.stages.water_transport },
+        { id: "NUTRIENT_TRANSPORT" as Stage, label: sb1_04_t.stages.nutrient_transport },
+    ], [sb1_04_t.stages]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<SB104Quest, Stage>({
+        moduleTitle: sb1_04_t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: sb1_04_t.difficulty.basic,
+            CORE: sb1_04_t.difficulty.core,
+            ADVANCED: sb1_04_t.difficulty.advanced,
+            ELITE: sb1_04_t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, sb1_04_t.difficulty.advanced, sb1_04_t.difficulty.basic, sb1_04_t.difficulty.core, sb1_04_t.difficulty.elite, sb1_04_t.title, stagesProps]);
+
     const {
         difficulty,
         stage,
@@ -259,7 +281,7 @@ export default function SB104PlantStructure() {
       requestAiFeedback
     } = useQuestManager<SB104Quest, Stage>({
     moduleCode: "sb1-04",
-        buildPool: (d, s) => buildStagePool(sb1_04_t, d, s),
+        buildPool,
         initialStage: "PLANT_STRUCTURE",
     });
 
@@ -281,13 +303,10 @@ export default function SB104PlantStructure() {
             moduleCode="SB1.04"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "PLANT_STRUCTURE", label: sb1_04_t.stages.plant_structure },
-                { id: "WATER_TRANSPORT", label: sb1_04_t.stages.water_transport },
-                { id: "NUTRIENT_TRANSPORT", label: sb1_04_t.stages.nutrient_transport },
-            ]}
+            stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

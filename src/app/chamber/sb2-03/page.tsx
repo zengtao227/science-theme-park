@@ -10,6 +10,7 @@ import GeneticsLab from "@/components/chamber/sb2-03/GeneticsLab";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "MONOHYBRID" | "PROBABILITY" | "DIHYBRID";
 type Genotype = "RR" | "Rr" | "rr" | "AA" | "Aa" | "aa" | "BB" | "Bb" | "bb";
@@ -206,6 +207,19 @@ export default function SB203Page() {
         { id: "DIHYBRID" as Stage, label: t("sb2_03.stages.dihybrid") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SB203Quest, Stage>({
+        moduleTitle: t("sb2_03.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb2_03.difficulty.basic"),
+            CORE: t("sb2_03.difficulty.core"),
+            ADVANCED: t("sb2_03.difficulty.advanced"),
+            ELITE: t("sb2_03.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     useEffect(() => {
         if (currentQuest) {
             setP1(currentQuest?.p1);
@@ -228,6 +242,7 @@ export default function SB203Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

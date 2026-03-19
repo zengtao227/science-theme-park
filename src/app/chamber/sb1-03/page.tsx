@@ -10,6 +10,7 @@ import CellDivisionVisualization from "@/components/chamber/sb1-03/CellDivisionV
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "MITOSIS" | "MEIOSIS_I" | "MEIOSIS_II";
 
@@ -223,6 +224,19 @@ export default function SB103Page() {
         { id: "MEIOSIS_II" as Stage, label: t("sb1_03.stages.meiosis_ii") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SB103Quest, Stage>({
+        moduleTitle: t("sb1_03.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb1_03.difficulty.basic"),
+            CORE: t("sb1_03.difficulty.core"),
+            ADVANCED: t("sb1_03.difficulty.advanced"),
+            ELITE: t("sb1_03.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     const hint = getHint();
 
     return (
@@ -238,6 +252,7 @@ export default function SB103Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

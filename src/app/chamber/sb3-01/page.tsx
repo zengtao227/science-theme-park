@@ -12,6 +12,7 @@ import ProgressBar from "@/components/shared/ProgressBar";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES" | "ELITE";
 
@@ -322,6 +323,19 @@ export default function SB301Page() {
         { id: "ELITE" as Stage, label: t("sb3_01.stages.elite") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SB301Quest, Stage>({
+        moduleTitle: t("sb3_01.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb3_01.difficulty.basic"),
+            CORE: t("sb3_01.difficulty.core"),
+            ADVANCED: t("sb3_01.difficulty.advanced"),
+            ELITE: t("sb3_01.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     const hint = getHint();
 
     return (
@@ -337,6 +351,7 @@ export default function SB301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

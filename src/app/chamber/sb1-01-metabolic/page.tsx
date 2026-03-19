@@ -10,6 +10,7 @@ import MetabolicCell from "@/components/chamber/sb1-01/MetabolicCell";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "OSMOSIS" | "RESPIRATION" | "HOMEOSTASIS";
 
@@ -225,6 +226,19 @@ export default function SB101MetabolicPage() {
         { id: "HOMEOSTASIS" as Stage, label: t("sb1_01_metabolic.stages.homeostasis") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<MetabolicQuest, Stage>({
+        moduleTitle: t("sb1_01_metabolic.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb1_01_metabolic.difficulty.basic"),
+            CORE: t("sb1_01_metabolic.difficulty.core"),
+            ADVANCED: t("sb1_01_metabolic.difficulty.advanced"),
+            ELITE: t("sb1_01_metabolic.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     const hint = getHint();
 
     return (
@@ -240,6 +254,7 @@ export default function SB101MetabolicPage() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

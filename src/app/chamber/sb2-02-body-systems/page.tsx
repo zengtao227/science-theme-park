@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import BodySystemVisualization from "@/components/chamber/sb2-02-body-systems/BodySystemVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -660,6 +661,19 @@ export default function SB202BodySystemsPage() {
         { id: "RESPIRATORY" as Stage, label: t("sb2_02.stages.respiratory") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<SB202BodySystemsQuest, Stage>({
+        moduleTitle: t("sb2_02.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("sb2_02.difficulty.basic"),
+            CORE: t("sb2_02.difficulty.core"),
+            ADVANCED: t("sb2_02.difficulty.advanced"),
+            ELITE: t("sb2_02.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     if (!currentQuest) {
         return (
             <ChamberLayout
@@ -674,6 +688,7 @@ export default function SB202BodySystemsPage() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
+                printSections={printSections}
                 translations={{
                     back: t("sb2_02.back"),
                     check: t("sb2_02.check"),
@@ -708,6 +723,7 @@ export default function SB202BodySystemsPage() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
