@@ -3598,7 +3598,6 @@ export const enMath = {
             composition: "COMPOSITION"
         },
         labels: {
-            id: "ID",
             context: "CONTEXT",
             answer_confirmed: "Answer Confirmed",
             hint: "Hint",

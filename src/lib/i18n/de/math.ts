@@ -3575,7 +3575,6 @@ export const deMath = {
             composition: "KOMPOSITION"
         },
         labels: {
-            id: "ID",
             context: "KONTEXT",
             answer_confirmed: "Antwort bestätigt",
             hint: "Hinweis",

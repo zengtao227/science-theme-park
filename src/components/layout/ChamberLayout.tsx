@@ -470,29 +470,8 @@ export default function ChamberLayout({
 
             {/* PRINT ONLY HEADER */}
             <div className="hidden print:block mb-10 border-b-4 border-black pb-6 text-black">
-                <div className="flex justify-between items-start mb-8">
-                    <div>
-                        <div className="text-4xl font-black uppercase tracking-tighter leading-none mb-2">{title}</div>
-                        <div className="text-xs font-mono opacity-70">
-                            {`STATION_ID: #ZRH-${moduleCode} // SYSTEM: ANTIGRAVITY_V2 // REF: ${new Date().getFullYear()}`}
-                        </div>
-                    </div>
-                    <div className="text-right font-mono text-[10px] leading-tight">
-                        <div>PARK_ID: SC-TP-2026</div>
-                        <div>STATUS: VERIFIED_CHAMBER</div>
-                        <div>SECURITY_LEVEL: {difficulty === 'ELITE' ? 'ULTRA' : 'STANDARD'}</div>
-                    </div>
-                </div>
-                <div className="grid grid-cols-2 gap-x-12 gap-y-6">
-                    <div className="border-b-2 border-black/10 pb-2 flex items-center justify-between">
-                        <span className="text-[10px] font-black uppercase tracking-widest">CANDIDATE_NAME:</span>
-                        <div className="flex-1 border-b-2 border-black ml-4 h-6"></div>
-                    </div>
-                    <div className="border-b-2 border-black/10 pb-2 flex items-center justify-between">
-                        <span className="text-[10px] font-black uppercase tracking-widest">DATE_STAMP:</span>
-                        <div className="flex-1 border-b-2 border-black ml-4 h-6"></div>
-                    </div>
-                </div>
+                <div className="text-4xl font-black uppercase tracking-tighter leading-none mb-2">{title}</div>
+                <div className="text-xs font-mono opacity-70">{moduleCode}</div>
             </div>
 
             <div className="chamber-body flex-1 flex flex-col md:flex-row overflow-hidden relative">

@@ -134,13 +134,12 @@ export default function SM213Page() {
                 context: t("sm2_13.labels.context"),
                 answer_confirmed: t("sm2_13.labels.answer_confirmed"),
                 hint: t("sm2_13.labels.hint"),
-            loading_data: t("sm2_13.labels.loading_data"),
-            transformation_matrix: t("sm2_13.labels.transformation_matrix"),
-            reflection: t("sm2_13.labels.reflection"),
+                loading_data: t("sm2_13.labels.loading_data"),
+                transformation_matrix: t("sm2_13.labels.transformation_matrix"),
+                reflection: t("sm2_13.labels.reflection"),
                 translation: t("sm2_13.labels.translation"),
                 rotation_origin: t("sm2_13.labels.rotation_origin"),
                 sequence_progress: t("sm2_13.labels.sequence_progress"),
-                id: t("sm2_13.labels.id"),
                 x_axis: t("sm2_13.labels.x_axis"),
                 y_axis: t("sm2_13.labels.y_axis"),
                 degree_90: t("sm2_13.labels.degree_90"),
@@ -251,9 +250,6 @@ export default function SM213Page() {
                                             {sm2_13_t.stages[stage]}
                                         </div>
                                         <div className="h-px flex-1 bg-white/10" />
-                                        <div className="text-[10px] font-mono text-white/40 uppercase">
-                                            {sm2_13_t.labels.id}: {currentQuest.id}
-                                        </div>
                                     </div>
 
                                     <div className="space-y-6">

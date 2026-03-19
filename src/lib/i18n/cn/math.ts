@@ -3593,7 +3593,6 @@ export const cnMath = {
             composition: "复合变换"
         },
         labels: {
-            id: "编号",
             context: "上下文",
             answer_confirmed: "答案已确认",
             hint: "提示",
