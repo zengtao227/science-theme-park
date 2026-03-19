@@ -2,13 +2,14 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Challenge = "COMPOSITE" | "MODELING" | "OPTIMIZATION" | "ANALYSIS";
 
@@ -1231,6 +1232,8 @@ export default function G101AdvancedPage() {
     },
   };
 
+  const buildPool = useCallback((d: Difficulty, s: Challenge) => buildChallengePool(gm1_01_advanced_t, d, s), [gm1_01_advanced_t]);
+
   const {
     difficulty,
     stage,
@@ -1248,7 +1251,7 @@ export default function G101AdvancedPage() {
       requestAiFeedback
     } = useQuestManager<G101AdvQuest, Challenge>({
     moduleCode: "gm1-01-advanced",
-    buildPool: (d, s) => buildChallengePool(gm1_01_advanced_t, d, s),
+    buildPool,
     initialStage: "COMPOSITE",
   });
 
@@ -1257,6 +1260,26 @@ export default function G101AdvancedPage() {
       completeStage("gm1-01-advanced", stage);
     }
   }, [lastCheck, completeStage, stage]);
+
+  const stages = useMemo(() => [
+    { id: "COMPOSITE" as Challenge, label: gm1_01_advanced_t.challenges.composite },
+    { id: "MODELING" as Challenge, label: gm1_01_advanced_t.challenges.modeling },
+    { id: "OPTIMIZATION" as Challenge, label: gm1_01_advanced_t.challenges.optimization },
+    { id: "ANALYSIS" as Challenge, label: gm1_01_advanced_t.challenges.analysis },
+  ], [gm1_01_advanced_t.challenges]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<G101AdvQuest, Challenge>({
+    moduleTitle: gm1_01_advanced_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm1_01_advanced_t.difficulty.basic,
+      CORE: gm1_01_advanced_t.difficulty.core,
+      ADVANCED: gm1_01_advanced_t.difficulty.advanced,
+      ELITE: gm1_01_advanced_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gm1_01_advanced_t.difficulty.advanced, gm1_01_advanced_t.difficulty.basic, gm1_01_advanced_t.difficulty.core, gm1_01_advanced_t.difficulty.elite, gm1_01_advanced_t.title, stages]);
 
   return (
     <ChamberLayout
@@ -1268,14 +1291,10 @@ export default function G101AdvancedPage() {
       moduleCode="GM1.01-ADV"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "COMPOSITE", label: gm1_01_advanced_t.challenges.composite },
-        { id: "MODELING", label: gm1_01_advanced_t.challenges.modeling },
-        { id: "OPTIMIZATION", label: gm1_01_advanced_t.challenges.optimization },
-        { id: "ANALYSIS", label: gm1_01_advanced_t.challenges.analysis },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Challenge)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

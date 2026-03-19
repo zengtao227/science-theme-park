@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
@@ -11,6 +11,7 @@ import LimitsContinuityVisualization from "@/components/chamber/gm1-03/LimitsCon
 import { GM103Quest, Stage } from "@/lib/gm1-03-types";
 import { buildStagePool } from "@/lib/gm1-03-quest-builder";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function GM103Page() {
   const { completeStage } = useAppStore();
@@ -141,6 +142,25 @@ export default function GM103Page() {
     }
   };
 
+  const stages = useMemo(() => [
+    { id: "LIMIT_BASICS" as Stage, label: gm1_03_t.stages.limit_basics },
+    { id: "LIMIT_OPERATIONS" as Stage, label: gm1_03_t.stages.limit_operations },
+    { id: "CONTINUITY" as Stage, label: gm1_03_t.stages.continuity },
+  ], [gm1_03_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<GM103Quest, Stage>({
+    moduleTitle: gm1_03_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm1_03_t.difficulty.basic,
+      CORE: gm1_03_t.difficulty.core,
+      ADVANCED: gm1_03_t.difficulty.advanced,
+      ELITE: gm1_03_t.difficulty.elite,
+    },
+    buildPool: buildPoolCallback,
+  }), [buildPoolCallback, gm1_03_t.difficulty.advanced, gm1_03_t.difficulty.basic, gm1_03_t.difficulty.core, gm1_03_t.difficulty.elite, gm1_03_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -151,13 +171,10 @@ export default function GM103Page() {
       moduleCode="GM1.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "LIMIT_BASICS", label: gm1_03_t.stages.limit_basics },
-        { id: "LIMIT_OPERATIONS", label: gm1_03_t.stages.limit_operations },
-        { id: "CONTINUITY", label: gm1_03_t.stages.continuity },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

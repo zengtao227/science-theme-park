@@ -9,6 +9,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "acceleration" | "collision" | "detection";
 type ColliderQuest = Quest & { stage: Stage };
@@ -290,6 +291,25 @@ export default function P103Page() {
   const gamma = energy * 1000 / restMass;
   const relativisticMass = gamma * restMass;
 
+  const stages = useMemo(() => [
+    { id: "acceleration" as Stage, label: gp1_03_t.stages.acceleration },
+    { id: "collision" as Stage, label: gp1_03_t.stages.collision },
+    { id: "detection" as Stage, label: gp1_03_t.stages.detection },
+  ], [gp1_03_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<ColliderQuest, Stage>({
+    moduleTitle: gp1_03_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gp1_03_t.difficulty.basic,
+      CORE: gp1_03_t.difficulty.core,
+      ADVANCED: gp1_03_t.difficulty.advanced,
+      ELITE: gp1_03_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gp1_03_t.difficulty.advanced, gp1_03_t.difficulty.basic, gp1_03_t.difficulty.core, gp1_03_t.difficulty.elite, gp1_03_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -300,13 +320,10 @@ export default function P103Page() {
       moduleCode="GP1.03"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "acceleration", label: gp1_03_t.stages.acceleration },
-        { id: "collision", label: gp1_03_t.stages.collision },
-        { id: "detection", label: gp1_03_t.stages.detection },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

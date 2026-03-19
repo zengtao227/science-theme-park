@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
@@ -19,6 +19,7 @@ import {
   generateChainRuleQuests
 } from "@/lib/gm1-01/quests";
 import { normalizePlainMathNotation, renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 function getFunctionTypeFromStage(stage: Stage): "power" | "factor" | "sum" | "product" | "quotient" | "chain" {
   if (stage === "POWER_RULE") return "power";
@@ -127,6 +128,8 @@ export default function G101Page() {
     },
   };
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm1_01_t, d, s), [gm1_01_t]);
+
   const {
     difficulty,
     stage,
@@ -144,7 +147,7 @@ export default function G101Page() {
       requestAiFeedback
     } = useQuestManager<G101Quest, Stage>({
     moduleCode: "gm1-01",
-    buildPool: (d, s) => buildStagePool(gm1_01_t, d, s),
+    buildPool,
     initialStage: "POWER_RULE",
   });
 
@@ -162,6 +165,28 @@ export default function G101Page() {
     stage === "QUOTIENT_RULE" ? gm1_01_t.scenarios.quotient_rule :
     gm1_01_t.scenarios.chain_rule;
 
+  const stages = useMemo(() => [
+    { id: "POWER_RULE" as Stage, label: gm1_01_t.stages.power_rule },
+    { id: "FACTOR_RULE" as Stage, label: gm1_01_t.stages.factor_rule },
+    { id: "SUM_RULE" as Stage, label: gm1_01_t.stages.sum_rule },
+    { id: "PRODUCT_RULE" as Stage, label: gm1_01_t.stages.product_rule },
+    { id: "QUOTIENT_RULE" as Stage, label: gm1_01_t.stages.quotient_rule },
+    { id: "CHAIN_RULE" as Stage, label: gm1_01_t.stages.chain_rule },
+  ], [gm1_01_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<G101Quest, Stage>({
+    moduleTitle: gm1_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm1_01_t.difficulty.basic,
+      CORE: gm1_01_t.difficulty.core,
+      ADVANCED: gm1_01_t.difficulty.advanced,
+      ELITE: gm1_01_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gm1_01_t.difficulty.advanced, gm1_01_t.difficulty.basic, gm1_01_t.difficulty.core, gm1_01_t.difficulty.elite, gm1_01_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -172,16 +197,10 @@ export default function G101Page() {
       moduleCode="GM1.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "POWER_RULE", label: gm1_01_t.stages.power_rule },
-        { id: "FACTOR_RULE", label: gm1_01_t.stages.factor_rule },
-        { id: "SUM_RULE", label: gm1_01_t.stages.sum_rule },
-        { id: "PRODUCT_RULE", label: gm1_01_t.stages.product_rule },
-        { id: "QUOTIENT_RULE", label: gm1_01_t.stages.quotient_rule },
-        { id: "CHAIN_RULE", label: gm1_01_t.stages.chain_rule },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

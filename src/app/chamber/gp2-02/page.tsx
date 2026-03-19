@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThermodynamicsVisualization from "@/components/chamber/gp2-02/ThermodynamicsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "FIRST_LAW" | "INTERNAL_ENERGY" | "WORK_HEAT";
 
@@ -75,7 +76,7 @@ function buildStagePool(
             quests.push(
                 { id: "IE-C1", difficulty, stage, processType: "diatomic", promptLatex: t("gp2_02.prompts.ie_diatomic", { n: 1, t: 400 }), expressionLatex: "2.5(1)(8.314)(400)", targetLatex: "U", slots: [{ id: "u", labelLatex: "U", placeholder: t("gp2_02.placeholders.v_8314"), expected: 8314 }], correctLatex: "8314 J", hintLatex: ["5/2 nRT"] },
                 { id: "IE-C2", difficulty, stage, processType: "diatomic", promptLatex: t("gp2_02.prompts.ie_diatomic", { n: 2, t: 300 }), expressionLatex: "2.5(2)(8.314)(300)", targetLatex: "U", slots: [{ id: "u", labelLatex: "U", placeholder: t("gp2_02.placeholders.v_12471"), expected: 12471 }], correctLatex: "12471 J", hintLatex: ["Multiply"] },
-                { id: "IE-C3", difficulty, stage, processType: "change", promptLatex: t("gp2_02.prompts.q_ie_c3"), expressionLatex: "\\oint dU = 0", targetLatex: t("gp2_02.labels.type"), slots: [{ id: "t", labelLatex: t("gp2_02.labels.label_type"), placeholder: t.placeholders.state, expected: "state" }], correctLatex: "State Function", hintLatex: ["Path independent"] },
+                { id: "IE-C3", difficulty, stage, processType: "change", promptLatex: t("gp2_02.prompts.q_ie_c3"), expressionLatex: "\\oint dU = 0", targetLatex: t("gp2_02.labels.type"), slots: [{ id: "t", labelLatex: t("gp2_02.labels.label_type"), placeholder: t("gp2_02.placeholders.state"), expected: "state" }], correctLatex: "State Function", hintLatex: ["Path independent"] },
                 { id: "IE-C4", difficulty, stage, processType: "change", promptLatex: t("gp2_02.prompts.ie_change_t", { n: 1, cv: 12.5, t1: 300, t2: 400 }), expressionLatex: "1(12.5)(100)", targetLatex: "\\Delta U", slots: [{ id: "u", labelLatex: "\\Delta U", placeholder: t("gp2_02.placeholders.v_1250"), expected: 1250 }], correctLatex: "1250 J", hintLatex: ["n Cv dT"] },
                 { id: "IE-C5", difficulty, stage, processType: "change", promptLatex: t("gp2_02.prompts.ie_change_t", { n: 2, cv: 20, t1: 500, t2: 450 }), expressionLatex: "2(20)(-50)", targetLatex: "\\Delta U", slots: [{ id: "u", labelLatex: "\\Delta U", placeholder: t("gp2_02.placeholders.minus_2000"), expected: -2000 }], correctLatex: "-2000 J", hintLatex: ["Cooling"] }
             );
@@ -125,9 +126,9 @@ function buildStagePool(
             );
         } else { // ELITE
             quests.push(
-                { id: "WH-E1", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e1"), expressionLatex: "\\text{Undefined}", targetLatex: t("gp2_02.labels.limit"), slots: [{ id: "l", labelLatex: t("gp2_02.labels.label_type"), placeholder: t.placeholders.isothermal, expected: "isothermal" }], correctLatex: "Isothermal (ln)", hintLatex: ["Logarithmic case"] },
+                { id: "WH-E1", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e1"), expressionLatex: "\\text{Undefined}", targetLatex: t("gp2_02.labels.limit"), slots: [{ id: "l", labelLatex: t("gp2_02.labels.label_type"), placeholder: t("gp2_02.placeholders.isothermal"), expected: "isothermal" }], correctLatex: "Isothermal (ln)", hintLatex: ["Logarithmic case"] },
                 { id: "WH-E2", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e2"), expressionLatex: "nRT \\ln((V_2-nb)/(V_1-nb))", targetLatex: t("gp2_02.labels.corr"), slots: [{ id: "c", labelLatex: "-", placeholder: t("gp2_02.placeholders.nb"), expected: "nb" }], correctLatex: "-nb", hintLatex: ["Excluded volume"] },
-                { id: "WH-E3", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e3"), expressionLatex: "\\text{Isochors}", targetLatex: t("gp2_02.labels.procs"), slots: [{ id: "p", labelLatex: "V", placeholder: t.placeholders.constant, expected: "constant" }], correctLatex: "Constant Volume", hintLatex: ["Regeneration"] },
+                { id: "WH-E3", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e3"), expressionLatex: "\\text{Isochors}", targetLatex: t("gp2_02.labels.procs"), slots: [{ id: "p", labelLatex: "V", placeholder: t("gp2_02.placeholders.constant"), expected: "constant" }], correctLatex: "Constant Volume", hintLatex: ["Regeneration"] },
                 { id: "WH-E4", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e4"), expressionLatex: "50/0.67", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: t("gp2_02.placeholders.v_75"), expected: 75 }], correctLatex: "75 J", hintLatex: ["Approx"] },
                 { id: "WH-E5", difficulty, stage, processType: "elite", promptLatex: t("gp2_02.prompts.q_wh_e5"), expressionLatex: "dS > 0", targetLatex: t("gp2_02.labels.sign"), slots: [{ id: "s", labelLatex: "+/-", placeholder: t("gp2_02.placeholders.plus"), expected: "+" }], correctLatex: "Positive", hintLatex: ["Second Law"] }
             );
@@ -177,6 +178,19 @@ export default function GP202Page() {
         { id: "WORK_HEAT" as Stage, label: t.stages.work_heat },
     ], [t.stages]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<GP202Quest, Stage>({
+        moduleTitle: t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t.difficulty.BASIC,
+            CORE: t.difficulty.CORE,
+            ADVANCED: t.difficulty.ADVANCED,
+            ELITE: t.difficulty.ELITE,
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t.difficulty.ADVANCED, t.difficulty.BASIC, t.difficulty.CORE, t.difficulty.ELITE, t.title]);
+
     if (!t || !t.stages) return null;
 
     if (!currentQuest) {
@@ -193,6 +207,7 @@ export default function GP202Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
+                printSections={printSections}
                 translations={{
                     back: t.back,
                     check: t.check,
@@ -221,6 +236,7 @@ export default function GP202Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

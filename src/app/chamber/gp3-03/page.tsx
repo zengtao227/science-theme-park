@@ -7,6 +7,7 @@ import InductionVisualization from "@/components/chamber/gp3-03/InductionVisuali
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "FARADAYS_LAW" | "LENZS_LAW" | "GENERATORS";
 
@@ -295,6 +296,25 @@ export default function GP303Induction() {
         initialStage: "FARADAYS_LAW",
     });
 
+    const stages = useMemo(() => [
+        { id: "FARADAYS_LAW" as Stage, label: gp3_03_t.stages.faradays_law },
+        { id: "LENZS_LAW" as Stage, label: gp3_03_t.stages.lenzs_law },
+        { id: "GENERATORS" as Stage, label: gp3_03_t.stages.generators },
+    ], [gp3_03_t.stages]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<GP303Quest, Stage>({
+        moduleTitle: gp3_03_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: gp3_03_t.difficulty.basic,
+            CORE: gp3_03_t.difficulty.core,
+            ADVANCED: gp3_03_t.difficulty.advanced,
+            ELITE: gp3_03_t.difficulty.elite,
+        },
+        buildPool: (d, s) => buildStagePool(gp3_03_t, d, s),
+    }), [buildStagePool, gp3_03_t, stages]);
+
     if (!currentQuest) {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -309,17 +329,14 @@ export default function GP303Induction() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={gp3_03_t.title}
+            title={gp3_03_t.title}
             moduleCode="GP3.03"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "FARADAYS_LAW", label: gp3_03_t.stages.faradays_law },
-                { id: "LENZS_LAW", label: gp3_03_t.stages.lenzs_law },
-                { id: "GENERATORS", label: gp3_03_t.stages.generators },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

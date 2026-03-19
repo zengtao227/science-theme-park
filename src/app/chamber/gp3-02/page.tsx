@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "ELECTRIC_FIELD" | "MAGNETIC_FIELD" | "PARTICLE_MOTION";
 
@@ -332,6 +333,25 @@ export default function GP302Electromagnetism() {
         if (currentQuest?.fieldStrength) setFieldIntensity(currentQuest?.fieldStrength);
     }, [currentQuest]);
 
+    const stages = useMemo(() => [
+        { id: "ELECTRIC_FIELD" as Stage, label: gp3_02_t.stages.electric_field },
+        { id: "MAGNETIC_FIELD" as Stage, label: gp3_02_t.stages.magnetic_field },
+        { id: "PARTICLE_MOTION" as Stage, label: gp3_02_t.stages.particle_motion },
+    ], [gp3_02_t.stages]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<GP302Quest, Stage>({
+        moduleTitle: gp3_02_t.title,
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: gp3_02_t.difficulty.basic,
+            CORE: gp3_02_t.difficulty.core,
+            ADVANCED: gp3_02_t.difficulty.advanced,
+            ELITE: gp3_02_t.difficulty.elite,
+        },
+        buildPool: (d, s) => buildStagePool(gp3_02_t, d, s),
+    }), [buildStagePool, gp3_02_t, stages]);
+
     if (!currentQuest) {
         return (
             <div className="flex items-center justify-center h-screen">
@@ -346,17 +366,14 @@ export default function GP302Electromagnetism() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={gp3_02_t.title}
+            title={gp3_02_t.title}
             moduleCode="GP3.02"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[
-                { id: "ELECTRIC_FIELD", label: gp3_02_t.stages.electric_field },
-                { id: "MAGNETIC_FIELD", label: gp3_02_t.stages.magnetic_field },
-                { id: "PARTICLE_MOTION", label: gp3_02_t.stages.particle_motion },
-            ]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

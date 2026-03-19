@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "IDEAL_GAS" | "BOYLES_LAW" | "CHARLES_LAW";
 
@@ -350,7 +351,7 @@ function buildStagePool(
                 { id: "C-B2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2", { v1: 1, t1: 200, v2: 2 }), expressionLatex: "2/T_2 = 1/200", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: t("gp2_01.placeholders.v_400"), expected: 400 }], correctLatex: "400 K", hintLatex: ["V doubles, T doubles"] },
                 { id: "C-B3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_v2", { v1: 10, t1: 400, t2: 200 }), expressionLatex: "V_2/200 = 10/400", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: t("gp2_01.placeholders.v_5"), expected: 5 }], correctLatex: "5 L", hintLatex: ["T halves"] },
                 { id: "C-B4", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2", { v1: 5, t1: 250, v2: 10 }), expressionLatex: "10/T_2 = 5/250", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: t("gp2_01.placeholders.v_500"), expected: 500 }], correctLatex: "500 K", hintLatex: ["Proportional"] },
-                { id: "C-B5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_condition"), expressionLatex: "V/T = k", targetLatex: "\\text{Constant}", slots: [{ id: "c", labelLatex: "P", placeholder: t.placeholders.pressure, expected: "pressure" }], correctLatex: "Pressure", hintLatex: ["Isobaric"] }
+                { id: "C-B5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_condition"), expressionLatex: "V/T = k", targetLatex: "\\text{Constant}", slots: [{ id: "c", labelLatex: "P", placeholder: t("gp2_01.placeholders.pressure"), expected: "pressure" }], correctLatex: "Pressure", hintLatex: ["Isobaric"] }
             );
         } else if (difficulty === "CORE") {
             quests.push(
@@ -363,9 +364,9 @@ function buildStagePool(
         } else if (difficulty === "ADVANCED") {
             quests.push(
                 { id: "C-A1", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_20c_to_80c"), expressionLatex: "V_2 = 5 \\times 353 / 293", targetLatex: "V_2", slots: [{ id: "v", labelLatex: "V", placeholder: t("gp2_01.placeholders.v_6_dot_02"), expected: 6.02 }], correctLatex: "\\approx 6.02 \\text{ L}", hintLatex: ["Kelvin conv"] },
-                { id: "C-A2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_ke_proportional"), expressionLatex: "KE \\propto T", targetLatex: "\\text{Quantity}", slots: [{ id: "q", labelLatex: "Q", placeholder: t.placeholders.temperature, expected: "temperature" }], correctLatex: "Temperature", hintLatex: ["T is measure of KE"] },
+                { id: "C-A2", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_ke_proportional"), expressionLatex: "KE \\propto T", targetLatex: "\\text{Quantity}", slots: [{ id: "q", labelLatex: "Q", placeholder: t("gp2_01.placeholders.temperature"), expected: "temperature" }], correctLatex: "Temperature", hintLatex: ["T is measure of KE"] },
                 { id: "C-A3", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_find_t2_a3"), expressionLatex: "T_2 = 5/10 \\times 500", targetLatex: "T_2", slots: [{ id: "t", labelLatex: "T", placeholder: t("gp2_01.placeholders.v_250"), expected: 250 }], correctLatex: "250 K", hintLatex: ["Halved"] },
-                { id: "C-A4", difficulty, stage, lawType: "combined", promptLatex: t("gp2_01.prompts.charles_combined_reduces"), expressionLatex: "V/T = k", targetLatex: "\\text{Law}", slots: [{ id: "l", labelLatex: "Law", placeholder: t.placeholders.charles, expected: "charles" }], correctLatex: "Charles's Law", hintLatex: ["Name"] },
+                { id: "C-A4", difficulty, stage, lawType: "combined", promptLatex: t("gp2_01.prompts.charles_combined_reduces"), expressionLatex: "V/T = k", targetLatex: "\\text{Law}", slots: [{ id: "l", labelLatex: "Law", placeholder: t("gp2_01.placeholders.charles"), expected: "charles" }], correctLatex: "Charles's Law", hintLatex: ["Name"] },
                 { id: "C-A5", difficulty, stage, lawType: "charles", promptLatex: t("gp2_01.prompts.charles_isobaric_work"), expressionLatex: "100(2-1)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: t("gp2_01.placeholders.v_100"), expected: 100 }], correctLatex: "100 J", hintLatex: ["Direct mult"] }
             );
         } else { // ELITE
@@ -422,6 +423,19 @@ export default function GP201Page() {
         { id: "CHARLES_LAW" as Stage, label: t.stages.charles },
     ], [t.stages]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<GP201Quest, Stage>({
+        moduleTitle: t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t.difficulty.BASIC,
+            CORE: t.difficulty.CORE,
+            ADVANCED: t.difficulty.ADVANCED,
+            ELITE: t.difficulty.ELITE,
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t.difficulty.ADVANCED, t.difficulty.BASIC, t.difficulty.CORE, t.difficulty.ELITE, t.title]);
+
     // Safety check for t loading
     if (!t || !t.stages) return null;
 
@@ -439,6 +453,7 @@ export default function GP201Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
+                printSections={printSections}
                 translations={{
                     back: t.back,
                     check: t.check,
@@ -467,6 +482,7 @@ export default function GP201Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

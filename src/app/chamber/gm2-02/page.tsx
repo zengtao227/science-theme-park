@@ -2,15 +2,16 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeometryVisualization from "@/components/chamber/GeometryVisualization";
 import { GM202Quest, Stage } from "@/lib/gm2-02-types";
 import { buildStagePool } from "@/lib/gm2-02-quest-builder";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function GM202Page() {
   const { completeStage } = useAppStore();
@@ -44,6 +45,8 @@ export default function GM202Page() {
     scenario_university_desc: t("gm2_02.scenario_university_desc"),
   };
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
+
   const {
     difficulty,
     stage,
@@ -61,7 +64,7 @@ export default function GM202Page() {
       requestAiFeedback
   } = useQuestManager<GM202Quest, Stage>({
     moduleCode: "gm2-02",
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "LINE_EQUATIONS",
   });
 
@@ -107,6 +110,25 @@ export default function GM202Page() {
 
   const scenario = getScenarioContent();
 
+  const stages = useMemo(() => [
+    { id: "LINE_EQUATIONS" as Stage, label: gm2_02_t.line_equations },
+    { id: "PLANE_GEOMETRY" as Stage, label: gm2_02_t.plane_geometry },
+    { id: "SPATIAL_RELATIONSHIPS" as Stage, label: gm2_02_t.spatial_relationships },
+  ], [gm2_02_t.line_equations, gm2_02_t.plane_geometry, gm2_02_t.spatial_relationships]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<GM202Quest, Stage>({
+    moduleTitle: gm2_02_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm2_02_t.basic,
+      CORE: gm2_02_t.core,
+      ADVANCED: gm2_02_t.advanced,
+      ELITE: gm2_02_t.elite,
+    },
+    buildPool,
+  }), [buildPool, gm2_02_t.advanced, gm2_02_t.basic, gm2_02_t.core, gm2_02_t.elite, gm2_02_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -120,13 +142,10 @@ export default function GM202Page() {
       maxLeftWidth={75}
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "LINE_EQUATIONS", label: gm2_02_t.line_equations },
-        { id: "PLANE_GEOMETRY", label: gm2_02_t.plane_geometry },
-        { id: "SPATIAL_RELATIONSHIPS", label: gm2_02_t.spatial_relationships },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

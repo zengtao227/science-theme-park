@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import WaveVisualization from "@/components/chamber/gp3-01/WaveVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "WAVE_PROPERTIES" | "SUPERPOSITION" | "OPTICS";
 
@@ -721,6 +722,19 @@ export default function GP301Page() {
         { id: "OPTICS" as Stage, label: t("gp3_01.stages.optics") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<GP301Quest, Stage>({
+        moduleTitle: t("gp3_01.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("gp3_01.difficulty.basic"),
+            CORE: t("gp3_01.difficulty.core"),
+            ADVANCED: t("gp3_01.difficulty.advanced"),
+            ELITE: t("gp3_01.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     if (!currentQuest) {
         return (
             <ChamberLayout
@@ -735,6 +749,7 @@ export default function GP301Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
+                printSections={printSections}
                 translations={{
                     back: t("gp3_01.back"),
                     check: t("gp3_01.check"),
@@ -768,6 +783,7 @@ export default function GP301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

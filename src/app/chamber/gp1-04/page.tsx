@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import TunnellingCanvas from "@/components/chamber/gp1-04/TunnellingCanvas";
 import { calculateTransmissionCoefficient } from "@/lib/physics";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "classical" | "tunneling" | "resonance";
 type TunnelQuest = Quest & { stage: Stage };
@@ -287,6 +288,25 @@ export default function P104Page() {
 
   const transmissionCoefficient = calculateTransmissionCoefficient(particleEnergy, barrierHeight, barrierWidth);
 
+  const stages = useMemo(() => [
+    { id: "classical" as Stage, label: gp1_04_t.stages.classical },
+    { id: "tunneling" as Stage, label: gp1_04_t.stages.tunneling },
+    { id: "resonance" as Stage, label: gp1_04_t.stages.resonance },
+  ], [gp1_04_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<TunnelQuest, Stage>({
+    moduleTitle: gp1_04_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gp1_04_t.difficulty.basic,
+      CORE: gp1_04_t.difficulty.core,
+      ADVANCED: gp1_04_t.difficulty.advanced,
+      ELITE: gp1_04_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gp1_04_t.difficulty.advanced, gp1_04_t.difficulty.basic, gp1_04_t.difficulty.core, gp1_04_t.difficulty.elite, gp1_04_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -297,13 +317,10 @@ export default function P104Page() {
       moduleCode="GP1.04"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "classical", label: gp1_04_t.stages.classical },
-        { id: "tunneling", label: gp1_04_t.stages.tunneling },
-        { id: "resonance", label: gp1_04_t.stages.resonance },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

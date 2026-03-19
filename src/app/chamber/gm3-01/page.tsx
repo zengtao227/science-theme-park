@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
@@ -17,6 +17,7 @@ import {
   generateMissionQuests,
 } from "@/lib/gm3-01/quests";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 
 
@@ -81,6 +82,8 @@ export default function G301Page() {
     input_tip_4dp: t("gm3_01.input_tip_4dp"),
   };
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm3_01_t, d, s), [gm3_01_t]);
+
   const {
     difficulty,
     stage,
@@ -98,7 +101,7 @@ export default function G301Page() {
     requestAiFeedback
   } = useQuestManager<G301Quest, Stage>({
     moduleCode: "gm3-01",
-    buildPool: (d, s) => buildStagePool(gm3_01_t, d, s),
+    buildPool,
     initialStage: "BASIC_PROB",
   });
 
@@ -114,6 +117,26 @@ export default function G301Page() {
     stage === "CONDITIONAL" ? gm3_01_t.scenarios.conditional :
     gm3_01_t.scenarios.mission;
 
+  const stages = useMemo(() => [
+    { id: "BASIC_PROB" as Stage, label: gm3_01_t.stages.basic_prob },
+    { id: "BINOMIAL" as Stage, label: gm3_01_t.stages.binomial },
+    { id: "CONDITIONAL" as Stage, label: gm3_01_t.stages.conditional },
+    { id: "MISSION" as Stage, label: gm3_01_t.stages.mission },
+  ], [gm3_01_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<G301Quest, Stage>({
+    moduleTitle: gm3_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm3_01_t.difficulty.basic,
+      CORE: gm3_01_t.difficulty.core,
+      ADVANCED: gm3_01_t.difficulty.advanced,
+      ELITE: gm3_01_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gm3_01_t.difficulty.advanced, gm3_01_t.difficulty.basic, gm3_01_t.difficulty.core, gm3_01_t.difficulty.elite, gm3_01_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -124,14 +147,10 @@ export default function G301Page() {
       moduleCode="GM3.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "BASIC_PROB", label: gm3_01_t.stages.basic_prob },
-        { id: "BINOMIAL", label: gm3_01_t.stages.binomial },
-        { id: "CONDITIONAL", label: gm3_01_t.stages.conditional },
-        { id: "MISSION", label: gm3_01_t.stages.mission },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

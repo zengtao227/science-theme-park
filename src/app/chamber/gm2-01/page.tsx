@@ -2,7 +2,7 @@
 
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useEffect } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
@@ -16,6 +16,7 @@ import {
   generateMissionQuests,
 } from "@/lib/gm2-01/quests";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 
 
@@ -88,6 +89,8 @@ export default function G201Page() {
     input_tip_2dp: t("gm2_01.input_tip_2dp"),
   };
 
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm2_01_t, d, s), [gm2_01_t]);
+
   const {
     difficulty,
     stage,
@@ -105,7 +108,7 @@ export default function G201Page() {
       requestAiFeedback
     } = useQuestManager<G201Quest, Stage>({
     moduleCode: "gm2-01",
-    buildPool: (d, s) => buildStagePool(gm2_01_t, d, s),
+    buildPool,
     initialStage: "NAVIGATION",
   });
 
@@ -120,6 +123,25 @@ export default function G201Page() {
     stage === "DOT" ? gm2_01_t.scenarios.dot :
     gm2_01_t.scenarios.mission;
 
+  const stages = useMemo(() => [
+    { id: "NAVIGATION" as Stage, label: gm2_01_t.stages.navigation },
+    { id: "DOT" as Stage, label: gm2_01_t.stages.dot },
+    { id: "MISSION" as Stage, label: gm2_01_t.stages.mission },
+  ], [gm2_01_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<G201Quest, Stage>({
+    moduleTitle: gm2_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm2_01_t.difficulty.basic,
+      CORE: gm2_01_t.difficulty.core,
+      ADVANCED: gm2_01_t.difficulty.advanced,
+      ELITE: gm2_01_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gm2_01_t.difficulty.advanced, gm2_01_t.difficulty.basic, gm2_01_t.difficulty.core, gm2_01_t.difficulty.elite, gm2_01_t.title, stages]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -130,13 +152,10 @@ export default function G201Page() {
       moduleCode="GM2.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "NAVIGATION", label: gm2_01_t.stages.navigation },
-        { id: "DOT", label: gm2_01_t.stages.dot },
-        { id: "MISSION", label: gm2_01_t.stages.mission },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

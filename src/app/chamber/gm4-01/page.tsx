@@ -12,6 +12,8 @@ import {
   generateOperationsQuests,
   generatePolarQuests,
 } from "@/lib/gm4-01/quests";
+import { useCallback, useMemo } from "react";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 
 import { InlineMath } from "react-katex";
@@ -33,6 +35,7 @@ function buildStagePool(
 export default function GM401Page() {
   const { t: getT, currentLanguage } = useLanguage();
   const gm4_01_t = getT("gm4_01");
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm4_01_t, d, s), [gm4_01_t]);
 
   const {
     difficulty,
@@ -51,7 +54,7 @@ export default function GM401Page() {
       requestAiFeedback
     } = useQuestManager<G401Quest, Stage>({
     moduleCode: "gm4-01",
-    buildPool: (d, s) => buildStagePool(gm4_01_t, d, s),
+    buildPool,
     initialStage: "BASICS",
   });
 
@@ -61,6 +64,25 @@ export default function GM401Page() {
       : stage === "OPERATIONS"
         ? gm4_01_t.scenarios.operations
         : gm4_01_t.scenarios.polar;
+
+  const stages = useMemo(() => [
+    { id: "BASICS" as Stage, label: gm4_01_t.stages.basics },
+    { id: "OPERATIONS" as Stage, label: gm4_01_t.stages.operations },
+    { id: "POLAR" as Stage, label: gm4_01_t.stages.polar },
+  ], [gm4_01_t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<G401Quest, Stage>({
+    moduleTitle: gm4_01_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gm4_01_t.difficulty.basic,
+      CORE: gm4_01_t.difficulty.core,
+      ADVANCED: gm4_01_t.difficulty.advanced,
+      ELITE: gm4_01_t.difficulty.elite,
+    },
+    buildPool,
+  }), [buildPool, gm4_01_t.difficulty.advanced, gm4_01_t.difficulty.basic, gm4_01_t.difficulty.core, gm4_01_t.difficulty.elite, gm4_01_t.title, stages]);
 
   return (
     <ChamberLayout
@@ -72,13 +94,10 @@ export default function GM401Page() {
       moduleCode="GM4.01"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "BASICS", label: gm4_01_t.stages.basics },
-        { id: "OPERATIONS", label: gm4_01_t.stages.operations },
-        { id: "POLAR", label: gm4_01_t.stages.polar },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

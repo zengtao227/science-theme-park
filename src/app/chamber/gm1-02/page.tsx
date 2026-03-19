@@ -5,7 +5,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import IntegralVisualization from "@/components/chamber/gm1-02/IntegralVisualization";
 import {
@@ -16,6 +16,7 @@ import {
   generateApplicationQuests,
 } from "@/lib/gm1-02/quests";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 
 
@@ -73,6 +74,25 @@ export default function GM102Page() {
     stage === "DEFINITE_INTEGRAL" ? t("gm1_02.scenarios.definite_integral") :
     t("gm1_02.scenarios.application");
 
+  const stages = useMemo(() => [
+    { id: "ANTIDERIVATIVE" as Stage, label: t("gm1_02.stages.antiderivative") },
+    { id: "DEFINITE_INTEGRAL" as Stage, label: t("gm1_02.stages.definite_integral") },
+    { id: "APPLICATION" as Stage, label: t("gm1_02.stages.application") },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<GM102Quest, Stage>({
+    moduleTitle: t("gm1_02.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("gm1_02.difficulty.basic"),
+      CORE: t("gm1_02.difficulty.core"),
+      ADVANCED: t("gm1_02.difficulty.advanced"),
+      ELITE: t("gm1_02.difficulty.elite"),
+    },
+    buildPool: buildPoolCallback,
+  }), [buildPoolCallback, stages, t]);
+
   return (
     <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
@@ -83,13 +103,10 @@ export default function GM102Page() {
       moduleCode="GM1.02"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
-      stages={[
-        { id: "ANTIDERIVATIVE", label: t("gm1_02.stages.antiderivative") },
-        { id: "DEFINITE_INTEGRAL", label: t("gm1_02.stages.definite_integral") },
-        { id: "APPLICATION", label: t("gm1_02.stages.application") },
-      ]}
+      stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}
