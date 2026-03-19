@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { GB202Quest, Stage } from "@/lib/gb2-02-types";
 import { buildStagePool } from "@/lib/gb2-02-quest-builder";
 import "katex/dist/katex.min.css";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function GB202Page() {
   const { completeStage } = useAppStore();
@@ -30,6 +31,10 @@ export default function GB202Page() {
   };
 
   const translateOption = (option: string) => optionLabelMap[option] || option;
+  const buildPool = useCallback(
+    (difficulty: Difficulty, currentStage: Stage) => buildStagePool(t, difficulty, currentStage),
+    [t]
+  );
 
   // Load translations
   const gb2_02_t = {
@@ -69,7 +74,7 @@ export default function GB202Page() {
       requestAiFeedback
   } = useQuestManager<GB202Quest, Stage>({
     moduleCode: "gb2-02",
-    buildPool: (d, s) => buildStagePool(t, d, s),
+    buildPool,
     initialStage: "HORMONE_IDENTIFICATION",
   });
 
@@ -92,6 +97,24 @@ export default function GB202Page() {
   };
   const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
   const stageLabel = stageLabelMap[stage] || stage;
+  const stages = useMemo(() => [
+    { id: "HORMONE_IDENTIFICATION" as Stage, label: gb2_02_t.hormone_identification },
+    { id: "FEEDBACK_MECHANISMS" as Stage, label: gb2_02_t.feedback_mechanisms },
+    { id: "CLINICAL_APPLICATIONS" as Stage, label: gb2_02_t.clinical_applications },
+  ], [gb2_02_t.clinical_applications, gb2_02_t.feedback_mechanisms, gb2_02_t.hormone_identification]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<GB202Quest, Stage>({
+    moduleTitle: gb2_02_t.title,
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: gb2_02_t.basic,
+      CORE: gb2_02_t.core,
+      ADVANCED: gb2_02_t.advanced,
+      ELITE: gb2_02_t.elite,
+    },
+    buildPool,
+  }), [buildPool, gb2_02_t.advanced, gb2_02_t.basic, gb2_02_t.core, gb2_02_t.elite, gb2_02_t.title, stages]);
 
   // Get scenario content based on stage
   const getScenarioContent = () => {
@@ -120,13 +143,10 @@ export default function GB202Page() {
       moduleCode="GB2.02"
       difficulty={difficulty}
       currentStage={stage}
-      stages={[
-        { id: "HORMONE_IDENTIFICATION", label: gb2_02_t.hormone_identification },
-        { id: "FEEDBACK_MECHANISMS", label: gb2_02_t.feedback_mechanisms },
-        { id: "CLINICAL_APPLICATIONS", label: gb2_02_t.clinical_applications },
-      ]}
+      stages={stages}
       onDifficultyChange={handleDifficultyChange}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       translations={{
         back: gb2_02_t.back,
         check: gb2_02_t.check,

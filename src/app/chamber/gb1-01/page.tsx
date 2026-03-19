@@ -10,6 +10,7 @@ import EvolutionCanvas from "@/components/chamber/gb1-01/EvolutionCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "NATURAL_SELECTION" | "SPECIATION" | "EVIDENCE";
 type GB101ScenarioKey = keyof TranslationKeys["gb1_01"]["scenarios"];
@@ -200,6 +201,19 @@ export default function GB101Page() {
         { id: "EVIDENCE" as Stage, label: t.stages.evidence },
     ], [t.stages]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<GB101Quest, Stage>({
+        moduleTitle: t.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t.difficulty.basic,
+            CORE: t.difficulty.core,
+            ADVANCED: t.difficulty.advanced,
+            ELITE: t.difficulty.elite,
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t.difficulty.advanced, t.difficulty.basic, t.difficulty.core, t.difficulty.elite, t.title]);
+
     const hint = getHint();
 
     const activeScenario = useMemo(() => {
@@ -224,6 +238,7 @@ export default function GB101Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

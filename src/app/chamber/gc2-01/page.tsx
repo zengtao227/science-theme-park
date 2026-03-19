@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -9,6 +9,7 @@ import "katex/dist/katex.min.css";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 const OrganicCanvas = dynamic(() => import("@/components/chamber/gc2-01/OrganicCanvas"), {
     ssr: false,
@@ -85,6 +86,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): OrganicQu
 export default function GC201Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const buildPool = useCallback((difficulty: Difficulty, currentStage: Stage) => buildStagePool(t, difficulty, currentStage), [t]);
 
     const {
         difficulty,
@@ -103,7 +105,7 @@ export default function GC201Page() {
       requestAiFeedback
     } = useQuestManager<OrganicQuest, Stage>({
     moduleCode: "gc2-01",
-        buildPool: (d, s) => buildStagePool(t, d, s),
+        buildPool,
         initialStage: "ALKANES",
     });
 
@@ -119,11 +121,24 @@ export default function GC201Page() {
         return t("gc2_01.scenarios.biozentrum_protein_research");
     }, [stage, t]);
 
-    const stages = [
-        { id: "ALKANES", label: t("gc2_01.stages.alkanes") },
-        { id: "AROMATICS", label: t("gc2_01.stages.aromatics") },
-        { id: "BIOMOLECULES", label: t("gc2_01.stages.biomolecules") },
-    ];
+    const stages = useMemo(() => [
+        { id: "ALKANES" as Stage, label: t("gc2_01.stages.alkanes") },
+        { id: "AROMATICS" as Stage, label: t("gc2_01.stages.aromatics") },
+        { id: "BIOMOLECULES" as Stage, label: t("gc2_01.stages.biomolecules") },
+    ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<OrganicQuest, Stage>({
+        moduleTitle: t("gc2_01.title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("gc2_01.difficulty.BASIC"),
+            CORE: t("gc2_01.difficulty.CORE"),
+            ADVANCED: t("gc2_01.difficulty.ADVANCED"),
+            ELITE: t("gc2_01.difficulty.ELITE"),
+        },
+        buildPool,
+    }), [buildPool, stages, t]);
 
     const config = currentQuest?.simConfig || {
         molecule: "methane",
@@ -144,6 +159,7 @@ export default function GC201Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

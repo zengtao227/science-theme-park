@@ -10,6 +10,7 @@ import NeuralCanvas from "@/components/chamber/gb2-01/NeuralCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "ANATOMY" | "POTENTIAL" | "SYNAPSE";
 
@@ -217,23 +218,39 @@ export default function GB201Neurobiology() {
         return gb2_01.scenarios[keys[0] as keyof typeof gb2_01.scenarios];
     }, [gb2_01, currentQuest]);
 
+    const stagesProps = useMemo(() => [
+        { id: "ANATOMY" as Stage, label: gb2_01.stages.anatomy },
+        { id: "POTENTIAL" as Stage, label: gb2_01.stages.potential },
+        { id: "SYNAPSE" as Stage, label: gb2_01.stages.synapse },
+    ], [gb2_01.stages.anatomy, gb2_01.stages.potential, gb2_01.stages.synapse]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<GB201Quest, Stage>({
+        moduleTitle: gb2_01.title,
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: gb2_01.difficulty.basic,
+            CORE: gb2_01.difficulty.core,
+            ADVANCED: gb2_01.difficulty.advanced,
+            ELITE: gb2_01.difficulty.elite,
+        },
+        buildPool: buildStagePool,
+    }), [buildStagePool, gb2_01.difficulty.advanced, gb2_01.difficulty.basic, gb2_01.difficulty.core, gb2_01.difficulty.elite, gb2_01.title, stagesProps]);
+
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={gb2_01.title}
+            title={gb2_01.title}
             moduleCode="GB2.01"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            stages={[
-                { id: "ANATOMY", label: gb2_01.stages.anatomy },
-                { id: "POTENTIAL", label: gb2_01.stages.potential },
-                { id: "SYNAPSE", label: gb2_01.stages.synapse },
-            ]}
+            stages={stagesProps}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
+            printSections={printSections}
             onVerify={verify}
             onNext={lastCheck?.ok ? next : undefined}
             checkStatus={lastCheck}

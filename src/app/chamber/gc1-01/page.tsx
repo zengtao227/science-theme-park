@@ -1,22 +1,27 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxCanvas from "@/components/chamber/gc1-01/RedoxCanvas";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import {
     Stage,
     GC101Quest as GC101QuestType,
     generateRedoxQuests,
 } from "@/lib/gc1-01/quests";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function GC101Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const buildPool = useCallback(
+        (difficulty: Difficulty, currentStage: Stage) => generateRedoxQuests(t, difficulty, currentStage),
+        [t]
+    );
 
     const {
         difficulty,
@@ -35,7 +40,7 @@ export default function GC101Page() {
         requestAiFeedback,
     } = useQuestManager<GC101QuestType, Stage>({
         moduleCode: "gc1-01",
-        buildPool: (d, s) => generateRedoxQuests(t, d, s),
+        buildPool,
         initialStage: "BUILD",
     });
 
@@ -51,11 +56,24 @@ export default function GC101Page() {
         return t("gc1_01.scenarios.analytical_electrochem");
     }, [stage, t]);
 
-    const stages = [
-        { id: "BUILD", label: t("gc1_01.stages.build") },
-        { id: "MEASURE", label: t("gc1_01.stages.measure") },
-        { id: "ANALYZE", label: t("gc1_01.stages.analyze") },
-    ];
+    const stages = useMemo(() => [
+        { id: "BUILD" as Stage, label: t("gc1_01.stages.build") },
+        { id: "MEASURE" as Stage, label: t("gc1_01.stages.measure") },
+        { id: "ANALYZE" as Stage, label: t("gc1_01.stages.analyze") },
+    ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<GC101QuestType, Stage>({
+        moduleTitle: t("gc1_01.title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("gc1_01.difficulty.basic"),
+            CORE: t("gc1_01.difficulty.core"),
+            ADVANCED: t("gc1_01.difficulty.advanced"),
+            ELITE: t("gc1_01.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stages, t]);
 
     return (
         <ChamberLayout
@@ -70,6 +88,7 @@ export default function GC101Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

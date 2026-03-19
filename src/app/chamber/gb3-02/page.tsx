@@ -10,6 +10,7 @@ import ImmuneCanvas from "@/components/chamber/gb3-02/ImmuneCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "INNATE" | "ADAPTIVE" | "VACCINES";
 
@@ -210,23 +211,39 @@ export default function GB302Immunology() {
         return t("gb3_02.scenarios.basel_hospital_infectious");
     }, [t, currentQuest]);
 
+    const stagesProps = useMemo(() => [
+        { id: "INNATE" as Stage, label: t("gb3_02.stages.innate") },
+        { id: "ADAPTIVE" as Stage, label: t("gb3_02.stages.adaptive") },
+        { id: "VACCINES" as Stage, label: t("gb3_02.stages.vaccines") },
+    ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<GB302Quest, Stage>({
+        moduleTitle: t("gb3_02.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("gb3_02.difficulty.basic"),
+            CORE: t("gb3_02.difficulty.core"),
+            ADVANCED: t("gb3_02.difficulty.advanced"),
+            ELITE: t("gb3_02.difficulty.elite"),
+        },
+        buildPool: buildStagePool,
+    }), [buildStagePool, stagesProps, t]);
+
     return (
         <ChamberLayout
       adaptiveRecommendation={adaptiveRecommendation}
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
-      title={t("gb3_02.title")}
+            title={t("gb3_02.title")}
             moduleCode="GB3.02"
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            stages={[
-                { id: "INNATE", label: t("gb3_02.stages.innate") },
-                { id: "ADAPTIVE", label: t("gb3_02.stages.adaptive") },
-                { id: "VACCINES", label: t("gb3_02.stages.vaccines") },
-            ]}
+            stages={stagesProps}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
+            printSections={printSections}
             translations={{
                 back: t("gb3_02.back"),
                 check: t("gb3_02.check"),

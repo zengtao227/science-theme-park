@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquilibriumCanvas from "@/components/chamber/gc3-01/EquilibriumCanvas";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import {
@@ -15,10 +15,15 @@ import {
   GC301Quest as GC301QuestType,
   generateEquilibriumQuests,
 } from "@/lib/gc3-01/quests";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function GC301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const buildPool = useCallback(
+    (difficulty: Difficulty, currentStage: Stage) => generateEquilibriumQuests(t, difficulty, currentStage),
+    [t]
+  );
 
   const {
     difficulty,
@@ -37,7 +42,7 @@ export default function GC301Page() {
     requestAiFeedback
   } = useQuestManager<GC301QuestType, Stage>({
     moduleCode: "gc3-01",
-    buildPool: (d, s) => generateEquilibriumQuests(t, d, s),
+    buildPool,
     initialStage: "CONCENTRATION",
   });
 
@@ -53,11 +58,24 @@ export default function GC301Page() {
     return t("gc3_01.scenarios.haber_process");
   }, [stage, t]);
 
-  const stages = [
-    { id: "CONCENTRATION", label: t("gc3_01.stages.concentration") },
-    { id: "TEMPERATURE", label: t("gc3_01.stages.temperature") },
-    { id: "PRESSURE", label: t("gc3_01.stages.pressure") },
-  ];
+  const stages = useMemo(() => [
+    { id: "CONCENTRATION" as Stage, label: t("gc3_01.stages.concentration") },
+    { id: "TEMPERATURE" as Stage, label: t("gc3_01.stages.temperature") },
+    { id: "PRESSURE" as Stage, label: t("gc3_01.stages.pressure") },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<GC301QuestType, Stage>({
+    moduleTitle: t("gc3_01.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("gc3_01.difficulty.basic"),
+      CORE: t("gc3_01.difficulty.core"),
+      ADVANCED: t("gc3_01.difficulty.advanced"),
+      ELITE: t("gc3_01.difficulty.elite"),
+    },
+    buildPool,
+  }), [buildPool, stages, t]);
 
   return (
     <ChamberLayout
@@ -72,6 +90,7 @@ export default function GC301Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -6,8 +6,9 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import MatrixVisualization2D from "@/components/chamber/em2-01/MatrixVisualization2D";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "BASIC_TRANSFORMS" | "DETERMINANT" | "COMPOSITION";
 
@@ -169,6 +170,10 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
 export default function EM201Page() {
   const { t: getT } = useLanguage();
   const t = getT("em2_01");
+  const buildPool = useCallback(
+    (difficulty: Difficulty, currentStage: Stage) => buildMatrixPool(getT, t, difficulty, currentStage),
+    [getT, t]
+  );
 
   const {
     difficulty,
@@ -187,7 +192,7 @@ export default function EM201Page() {
       requestAiFeedback
     } = useQuestManager<MatrixQuest, Stage>({
     moduleCode: "em2-01",
-    buildPool: (d, s) => buildMatrixPool(getT, t, d, s),
+    buildPool,
     initialStage: "BASIC_TRANSFORMS",
   });
 
@@ -196,6 +201,19 @@ export default function EM201Page() {
     { id: "DETERMINANT" as Stage, label: t.stages.determinant },
     { id: "COMPOSITION" as Stage, label: t.stages.composition },
   ], [t.stages]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<MatrixQuest, Stage>({
+    moduleTitle: t.title,
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t.difficulty.BASIC,
+      CORE: t.difficulty.CORE,
+      ADVANCED: t.difficulty.ADVANCED,
+      ELITE: t.difficulty.ELITE,
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t.difficulty.ADVANCED, t.difficulty.BASIC, t.difficulty.CORE, t.difficulty.ELITE, t.title]);
 
   // Get display matrix for visualization
   const getDisplayMatrix = (): number[][] => {
@@ -234,6 +252,7 @@ export default function EM201Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

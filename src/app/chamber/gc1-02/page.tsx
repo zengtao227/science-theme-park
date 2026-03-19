@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectrolysisCanvas from "@/components/chamber/gc1-02/ElectrolysisCanvas";
 import CorrosionCanvas from "@/components/chamber/gc1-02/CorrosionCanvas";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import {
     Stage,
@@ -15,10 +15,17 @@ import {
     generatePlatingQuests,
     generateCorrosionQuests,
 } from "@/lib/gc1-02/quests";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function GC102Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const buildPool = useCallback((difficulty: Difficulty, currentStage: Stage) => {
+        if (currentStage === "PRINCIPLES") return generatePrinciplesQuests(t, difficulty);
+        if (currentStage === "PLATING") return generatePlatingQuests(t, difficulty);
+        if (currentStage === "CORROSION") return generateCorrosionQuests(t, difficulty);
+        return [];
+    }, [t]);
 
     const {
         difficulty,
@@ -37,12 +44,7 @@ export default function GC102Page() {
         requestAiFeedback,
     } = useQuestManager<GC102QuestType, Stage>({
         moduleCode: "gc1-02",
-        buildPool: (d, s) => {
-            if (s === "PRINCIPLES") return generatePrinciplesQuests(t, d);
-            if (s === "PLATING") return generatePlatingQuests(t, d);
-            if (s === "CORROSION") return generateCorrosionQuests(t, d);
-            return [];
-        },
+        buildPool,
         initialStage: "PRINCIPLES",
     });
 
@@ -52,11 +54,24 @@ export default function GC102Page() {
         }
     }, [lastCheck, completeStage, stage]);
 
-    const stages = [
-        { id: "PRINCIPLES", label: t("gc1_02.stages.principles") },
-        { id: "PLATING", label: t("gc1_02.stages.plating") },
-        { id: "CORROSION", label: t("gc1_02.stages.corrosion") },
-    ];
+    const stages = useMemo(() => [
+        { id: "PRINCIPLES" as Stage, label: t("gc1_02.stages.principles") },
+        { id: "PLATING" as Stage, label: t("gc1_02.stages.plating") },
+        { id: "CORROSION" as Stage, label: t("gc1_02.stages.corrosion") },
+    ], [t]);
+
+    const printSections = useMemo(() => buildQuestPrintSections<GC102QuestType, Stage>({
+        moduleTitle: t("gc1_02.title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("gc1_02.difficulty.basic"),
+            CORE: t("gc1_02.difficulty.core"),
+            ADVANCED: t("gc1_02.difficulty.advanced"),
+            ELITE: t("gc1_02.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stages, t]);
 
     return (
         <ChamberLayout
@@ -71,6 +86,7 @@ export default function GC102Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

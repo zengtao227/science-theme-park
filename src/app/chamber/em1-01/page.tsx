@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "BASICS" | "MEASURE" | "SURVEY";
 
@@ -191,6 +192,19 @@ export default function EM101Page() {
     { id: "SURVEY" as Stage, label: t.stages.survey },
   ], [t.stages]);
 
+  const printSections = useMemo(() => buildQuestPrintSections<ThalesQuest, Stage>({
+    moduleTitle: t.title,
+    stages: stagesProps,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t.difficulty.BASIC,
+      CORE: t.difficulty.CORE,
+      ADVANCED: t.difficulty.ADVANCED,
+      ELITE: t.difficulty.ELITE,
+    },
+    buildPool,
+  }), [buildPool, stagesProps, t.difficulty.ADVANCED, t.difficulty.BASIC, t.difficulty.CORE, t.difficulty.ELITE, t.title]);
+
   // Fallback if translations not loaded
   if (!t || !t.stages) return null;
 
@@ -208,6 +222,7 @@ export default function EM101Page() {
         stages={stagesProps}
         currentStage={stage}
         onStageChange={(s) => handleStageChange(s as Stage)}
+        printSections={printSections}
         translations={{
           back: t.back,
           check: t.check,
@@ -236,6 +251,7 @@ export default function EM101Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={handleNext}
       checkStatus={lastCheck}

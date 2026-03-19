@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import "katex/dist/katex.min.css";
-import { useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import {
@@ -14,6 +14,7 @@ import {
   GC302Quest as GC302QuestType,
   generateCrystalQuests,
 } from "@/lib/gc3-02/quests";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 const CrystalCanvas = dynamic(() => import("@/components/chamber/gc3-02/CrystalCanvas"), {
   ssr: false,
@@ -22,6 +23,10 @@ const CrystalCanvas = dynamic(() => import("@/components/chamber/gc3-02/CrystalC
 export default function GC302Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const buildPool = useCallback(
+    (difficulty: Difficulty, currentStage: Stage) => generateCrystalQuests(t, difficulty, currentStage),
+    [t]
+  );
 
   const {
     difficulty,
@@ -40,7 +45,7 @@ export default function GC302Page() {
     requestAiFeedback
   } = useQuestManager<GC302QuestType, Stage>({
     moduleCode: "gc3-02",
-    buildPool: (d, s) => generateCrystalQuests(t, d, s),
+    buildPool,
     initialStage: "SC",
   });
 
@@ -56,11 +61,24 @@ export default function GC302Page() {
     return t("gc3_02.scenarios.drug_polymorphism");
   }, [stage, t]);
 
-  const stages = [
-    { id: "SC", label: t("gc3_02.stages.sc") },
-    { id: "BCC", label: t("gc3_02.stages.bcc") },
-    { id: "FCC", label: t("gc3_02.stages.fcc") },
-  ];
+  const stages = useMemo(() => [
+    { id: "SC" as Stage, label: t("gc3_02.stages.sc") },
+    { id: "BCC" as Stage, label: t("gc3_02.stages.bcc") },
+    { id: "FCC" as Stage, label: t("gc3_02.stages.fcc") },
+  ], [t]);
+
+  const printSections = useMemo(() => buildQuestPrintSections<GC302QuestType, Stage>({
+    moduleTitle: t("gc3_02.title"),
+    stages,
+    difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+    difficultyLabels: {
+      BASIC: t("gc3_02.difficulty.BASIC"),
+      CORE: t("gc3_02.difficulty.CORE"),
+      ADVANCED: t("gc3_02.difficulty.ADVANCED"),
+      ELITE: t("gc3_02.difficulty.ELITE"),
+    },
+    buildPool,
+  }), [buildPool, stages, t]);
 
   return (
     <ChamberLayout
@@ -75,6 +93,7 @@ export default function GC302Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
+      printSections={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

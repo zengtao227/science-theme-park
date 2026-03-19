@@ -10,6 +10,7 @@ import DnaCanvas from "@/components/chamber/gb3-01/DnaCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type Stage = "PAIRING" | "BONDS" | "SEQUENCE";
 
@@ -232,6 +233,19 @@ export default function GB301Page() {
         { id: "SEQUENCE" as Stage, label: t("gb3_01.stages.sequence") },
     ], [t]);
 
+    const printSections = useMemo(() => buildQuestPrintSections<GB301Quest, Stage>({
+        moduleTitle: t("gb3_01.title"),
+        stages: stagesProps,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("gb3_01.difficulty.basic"),
+            CORE: t("gb3_01.difficulty.core"),
+            ADVANCED: t("gb3_01.difficulty.advanced"),
+            ELITE: t("gb3_01.difficulty.elite"),
+        },
+        buildPool,
+    }), [buildPool, stagesProps, t]);
+
     const hint = getHint();
 
     return (
@@ -247,6 +261,7 @@ export default function GB301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

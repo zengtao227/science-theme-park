@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager } from "@/hooks/useQuestManager";
@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle, BrainCircuit, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import { renderMixedText } from "@/lib/latex-utils";
+import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 export default function OlympiadChallenge() {
     const { t } = useLanguage();
@@ -23,6 +24,19 @@ export default function OlympiadChallenge() {
     const buildPool = useCallback((difficulty: "BASIC" | "CORE" | "ADVANCED" | "ELITE", stage: string) => {
         return buildOlympiadPool(t, difficulty, stage);
     }, [t]);
+    const stages = useMemo(() => [{ id: "logic" as const, label: t("em3_01.stages.logic") }], [t]);
+    const printSections = useMemo(() => buildQuestPrintSections<OlympiadQuest, "logic">({
+        moduleTitle: t("home.em3_01_title"),
+        stages,
+        difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
+        difficultyLabels: {
+            BASIC: t("em3_01.difficulty.basic"),
+            CORE: t("em3_01.difficulty.core"),
+            ADVANCED: t("em3_01.difficulty.advanced"),
+            ELITE: t("em3_01.difficulty.elite"),
+        },
+        buildPool: (difficulty, stage) => buildPool(difficulty, stage),
+    }), [buildPool, stages, t]);
 
     const {
         difficulty,
@@ -69,9 +83,10 @@ export default function OlympiadChallenge() {
             moduleCode="EM3.01"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            stages={[{ id: "logic", label: t("em3_01.stages.logic") }]}
+            stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as "logic")}
+            printSections={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
