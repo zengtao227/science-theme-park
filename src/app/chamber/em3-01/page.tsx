@@ -109,9 +109,6 @@ export default function OlympiadChallenge() {
                                         {categoryLabelMap[currentQuest.category]} {t("em3_01.ui.challenge")}
                                     </div>
                                     <div className="h-px flex-1 bg-white/10" />
-                                    <div className="text-[10px] font-mono text-white/40 uppercase">
-                                        Q-UID: {currentQuest.id}
-                                    </div>
                                 </div>
 
                                 {/* Prompt Section */}
