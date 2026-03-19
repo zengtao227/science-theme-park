@@ -877,7 +877,7 @@ export const absoluteValueElite: Partial<SM209Quest>[] = [
         difficulty: "ELITE",
         stage: "ABSOLUTE_VALUE",
         inequalityType: "ABSOLUTE_VALUE",
-        expression: "|x - a| < b (where a, b are parameters)",
+        expression: "|x - a| < b",
         variable: "x",
         absoluteValueExpression: "x - a",
         solutionType: "INTERVAL",

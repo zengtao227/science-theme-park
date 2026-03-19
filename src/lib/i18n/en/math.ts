@@ -2842,7 +2842,7 @@ export const enMath = {
             elite: "ELITE ANALYSIS"
         },
         visualization: {
-            boxPlot: "BOX PLOT (Box-and-Whisker)",
+            boxPlot: "BOX PLOT (five-number summary)",
             keyConcepts: "KEY CONCEPTS",
             medianMiddle: "Median: Middle value (50th percentile)",
             quartiles: "Q1: 25th percentile, Q3: 75th percentile",
@@ -3177,7 +3177,7 @@ export const enMath = {
             b2_2_elite_b1: "Basel Rhine River: summer temperature $\\mu = 21.5^\\circ\\mathrm{C}$, $\\sigma = 2.3^\\circ\\mathrm{C}$ (normal). Fish diversity correlates with $r = -0.72$. Calculate $P(T > 24^\\circ\\mathrm{C})$.",
             b2_2_elite_b2: "Kannenfeldpark birds ($n=20$): mean = 32, SD = 4.2. Novartis Campus ($n=20$): mean = 28, SD = 3.8. Find the lower bound of the 95% CI for the difference.",
             b2_2_elite_c1: "Basel temperature: $9.2^\\circ\\mathrm{C}$ (1990) to $11.0^\\circ\\mathrm{C}$ (2024), over 34 years. Growing season was 165 days (1990), increasing by 8 days per $^\\circ\\mathrm{C}$. Calculate the 2024 growing season.",
-            b2_2_elite_c2: "Basel urban fox: mean $K = 150$, SD = 18 (normal). Safe range: 120-180. Calculate $P(\\text{outside safe range})$.",
+            b2_2_elite_c2: "Basel urban fox population: let $X \\sim N(150, 18^2)$. The safe range is $120 \\le X \\le 180$. Calculate $P(X < 120 \\text{ or } X > 180)$.",
             b2_2_elite_a1: "Rhine dissolved oxygen ($n=25$): mean = 9.8 mg/L, SD = 1.4. Fish need $\\ge 8.0$ mg/L. Find the lower bound of the 90% CI."
         },
         formulas: {

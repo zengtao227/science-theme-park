@@ -2836,7 +2836,7 @@ export const cnMath = {
             elite: "精英分析"
         },
         visualization: {
-            boxPlot: "箱线图 (Box-and-Whisker)",
+            boxPlot: "箱线图（五数概括）",
             keyConcepts: "关键概念",
             medianMiddle: "中位数：中间值（第50百分位）",
             quartiles: "Q1: 第25百分位, Q3: 第75百分位",
@@ -3171,7 +3171,7 @@ export const cnMath = {
             b2_2_elite_b1: "巴塞尔莱茵河：夏季温度 $\\mu = 21.5^\\circ\\mathrm{C}$，$\\sigma = 2.3^\\circ\\mathrm{C}$（正态）。鱼类多样性与 $r = -0.72$ 相关。计算 $P(T > 24^\\circ\\mathrm{C})$。",
             b2_2_elite_b2: "Kannenfeldpark 鸟类（$n=20$）：均值 = 32，SD = 4.2。Novartis Campus（$n=20$）：均值 = 28，SD = 3.8。求差值 95% 置信区间下界。",
             b2_2_elite_c1: "巴塞尔温度：从 1990 年的 $9.2^\\circ\\mathrm{C}$ 到 2024 年的 $11.0^\\circ\\mathrm{C}$，共 34 年。1990 年生长季为 165 天，每升高 $1^\\circ\\mathrm{C}$ 增加 8 天。计算 2024 年生长季。",
-            b2_2_elite_c2: "巴塞尔城市狐狸：均值 $K = 150$，SD = 18（正态）。安全范围：120-180。计算 $P(\\text{超出安全范围})$。",
+            b2_2_elite_c2: "巴塞尔城市狐狸数量：设随机变量 $X \\sim N(150, 18^2)$。安全范围为 $120 \\le X \\le 180$。计算 $P(X < 120 \\text{ 或 } X > 180)$。",
             b2_2_elite_a1: "莱茵河溶解氧（$n=25$）：均值 = 9.8 mg/L，SD = 1.4。鱼类需要 $\\ge 8.0$ mg/L。求 90% 置信区间下界。"
         },
         formulas: {

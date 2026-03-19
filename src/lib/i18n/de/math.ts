@@ -2818,7 +2818,7 @@ export const deMath = {
             elite: "ELITE-ANALYSE"
         },
         visualization: {
-            boxPlot: "BOXPLOT (Box-and-Whisker)",
+            boxPlot: "BOXPLOT (Fünf-Punkte-Zusammenfassung)",
             keyConcepts: "SCHLÜSSELKONZEPTE",
             medianMiddle: "Median: Mittlerer Wert (50. Perzentil)",
             quartiles: "Q1: 25. Perzentil, Q3: 75. Perzentil",
@@ -3153,7 +3153,7 @@ export const deMath = {
             b2_2_elite_b1: "Basler Rhein: Sommertemperatur $\\mu = 21.5^\\circ\\mathrm{C}$, $\\sigma = 2.3^\\circ\\mathrm{C}$ (normalverteilt). Die Fischdiversität korreliert mit $r = -0.72$. Berechne $P(T > 24^\\circ\\mathrm{C})$.",
             b2_2_elite_b2: "Vögel im Kannenfeldpark ($n=20$): Mittelwert = 32, SD = 4.2. Novartis Campus ($n=20$): Mittelwert = 28, SD = 3.8. Bestimme die untere Grenze des 95%-KI der Differenz.",
             b2_2_elite_c1: "Basel-Temperatur: $9.2^\\circ\\mathrm{C}$ (1990) bis $11.0^\\circ\\mathrm{C}$ (2024), über 34 Jahre. Die Vegetationsperiode betrug 165 Tage (1990) und steigt um 8 Tage pro $^\\circ\\mathrm{C}$. Berechne die Vegetationsperiode 2024.",
-            b2_2_elite_c2: "Stadtfuchs in Basel: Mittelwert $K = 150$, SD = 18 (normalverteilt). Sicherer Bereich: 120-180. Berechne $P(\\text{außerhalb des sicheren Bereichs})$.",
+            b2_2_elite_c2: "Bestand der Basler Stadtfüchse: Sei $X \\sim N(150, 18^2)$. Der sichere Bereich ist $120 \\le X \\le 180$. Berechne $P(X < 120 \\text{ oder } X > 180)$.",
             b2_2_elite_a1: "Gelöster Sauerstoff im Rhein ($n=25$): Mittelwert = 9.8 mg/L, SD = 1.4. Fische benötigen $\\ge 8.0$ mg/L. Bestimme die untere Grenze des 90%-Konfidenzintervalls."
         },
         formulas: {
