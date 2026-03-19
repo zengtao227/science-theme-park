@@ -132,7 +132,6 @@ export default function SM213Page() {
         },
             labels: {
                 context: t("sm2_13.labels.context"),
-                solution_input: t("sm2_13.labels.solution_input"),
                 answer_confirmed: t("sm2_13.labels.answer_confirmed"),
                 hint: t("sm2_13.labels.hint"),
             loading_data: t("sm2_13.labels.loading_data"),

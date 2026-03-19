@@ -3577,7 +3577,6 @@ export const deMath = {
         labels: {
             id: "ID",
             context: "KONTEXT",
-            solution_input: "EINGABE",
             answer_confirmed: "Antwort bestätigt",
             hint: "Hinweis",
             loading_data: "Daten werden geladen...",

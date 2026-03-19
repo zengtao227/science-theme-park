@@ -3600,7 +3600,6 @@ export const enMath = {
         labels: {
             id: "ID",
             context: "CONTEXT",
-            solution_input: "SOLUTION INPUT",
             answer_confirmed: "Answer Confirmed",
             hint: "Hint",
             loading_data: "Loading Data...",

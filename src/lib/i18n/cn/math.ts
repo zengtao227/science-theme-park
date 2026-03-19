@@ -3595,7 +3595,6 @@ export const cnMath = {
         labels: {
             id: "编号",
             context: "上下文",
-            solution_input: "答案输入",
             answer_confirmed: "答案已确认",
             hint: "提示",
             loading_data: "加载数据中...",
