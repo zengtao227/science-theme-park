@@ -278,7 +278,7 @@ export default function WaveOpticsCanvas({
 }: WaveOpticsCanvasProps) {
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 0.4, 15], fov: 56 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 2, 12], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         
         {/* Lighting */}

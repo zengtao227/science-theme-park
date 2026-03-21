@@ -248,7 +248,7 @@ export default function LogarithmicCanvas({
 
   return (
     <div className="relative w-full h-[700px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [10, 0, 10], fov: 45 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 0, 12], fov: 55 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}

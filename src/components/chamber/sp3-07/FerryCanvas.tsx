@@ -203,7 +203,7 @@ function FerryScene({ riverSpeed, cableAngle, ferrySpeed }: FerryCanvasProps) {
 
 export default function FerryCanvas(props: FerryCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 11.5, 12], fov: 56 }}>
+        <Canvas camera={{ position: [0, 6, 12], fov: 56 }}>
             <color attach="background" args={["#000814"]} />
             <FerryScene {...props} />
             <OrbitControls

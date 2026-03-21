@@ -307,7 +307,7 @@ export default function S201BinomialCanvas({
   return (
     <div className="w-full h-[800px] bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
       <div className="relative flex-1 min-h-0">
-        <Canvas camera={{ position: [12, 12, 14], fov: 55 }} gl={{ antialias: true }}>
+        <Canvas camera={{ position: [7, 7, 9], fov: 55 }} gl={{ antialias: true }}>
           <color attach="background" args={["#000005"]} />
 
           {/* Lighting */}

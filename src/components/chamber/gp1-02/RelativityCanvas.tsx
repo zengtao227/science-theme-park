@@ -264,7 +264,7 @@ export default function RelativityCanvas({ velocity, showPhotonClock = true }: R
   return (
     <div className="w-full h-[420px] bg-black rounded-xl overflow-hidden border border-white/10">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 3.2, 12]} fov={50} />
+        <PerspectiveCamera makeDefault position={[0, 2.5, 9]} fov={55} />
         <OrbitControls enablePan={false} minDistance={6} maxDistance={16} maxPolarAngle={Math.PI / 2.1} />
         <Scene velocity={velocity} showPhotonClock={showPhotonClock} />
         <mesh>
