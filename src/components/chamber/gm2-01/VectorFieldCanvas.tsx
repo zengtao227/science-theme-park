@@ -282,13 +282,14 @@ function VectorScene({ vectorA, vectorB, showDotProduct, showCrossProduct, showP
 
 export default function VectorFieldCanvas(props: VectorFieldCanvasProps) {
     return (
-        <Canvas camera={{ position: [8, 8, 8], fov: 50 }}>
+        <Canvas camera={{ position: [6.2, 5.8, 6.2], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <VectorScene {...props} />
             <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
+                target={[0, 0, 0]}
             />
         </Canvas>
     );

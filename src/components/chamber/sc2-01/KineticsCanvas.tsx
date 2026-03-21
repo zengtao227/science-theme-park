@@ -248,10 +248,10 @@ function KineticsScene(props: KineticsCanvasProps) {
 
 export default function KineticsCanvas(props: KineticsCanvasProps) {
     return (
-        <Canvas camera={{ position: [8, 8, 8], fov: 50 }}>
+        <Canvas camera={{ position: [6.5, 6.2, 6.5], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <KineticsScene {...props} />
-            <OrbitControls enablePan={false} minDistance={5} maxDistance={20} />
+            <OrbitControls enablePan={false} minDistance={4.5} maxDistance={18} target={[0, 0, 0]} />
         </Canvas>
     );
 }
