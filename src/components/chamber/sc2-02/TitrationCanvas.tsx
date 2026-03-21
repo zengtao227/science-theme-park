@@ -340,10 +340,10 @@ export default function TitrationCanvas(props: TitrationCanvasProps) {
     return (
         <div className="w-full h-full flex flex-col">
             <div className="flex-1 min-h-0">
-                <Canvas camera={{ position: [0, 2, 8], fov: 50 }}>
+                <Canvas camera={{ position: [1.5, 2.1, 6.4], fov: 56 }}>
                     <color attach="background" args={["#000000"]} />
                     <TitrationScene {...props} />
-                    <OrbitControls enablePan={false} enableZoom={true} enableRotate={true} />
+                    <OrbitControls enablePan={false} enableZoom={true} enableRotate={true} target={[1.2, 0, 0]} />
                 </Canvas>
             </div>
 

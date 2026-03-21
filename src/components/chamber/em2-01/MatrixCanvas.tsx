@@ -249,13 +249,14 @@ function MatrixScene({ matrix, showEigenvectors, showGrid, animate }: MatrixCanv
 
 export default function MatrixCanvas(props: MatrixCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
+        <Canvas camera={{ position: [0, 0.8, 9.2], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <MatrixScene {...props} />
             <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
+                target={[0, 0.5, 0]}
             />
         </Canvas>
     );

@@ -248,9 +248,9 @@ export default function ThermalCanvas({
     setLocalPhase(updatePhase(newTemp));
   };
 
-  return (
-    <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [8, 6, 8], fov: 50 }} gl={{ antialias: true }}>
+    return (
+        <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+      <Canvas camera={{ position: [6.5, 5.2, 6.5], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}
@@ -262,8 +262,9 @@ export default function ThermalCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={8}
-          maxDistance={15}
+          minDistance={6.5}
+          maxDistance={13}
+          target={[0, 0, 0]}
         />
 
         {/* Container */}
