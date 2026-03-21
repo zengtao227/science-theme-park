@@ -328,13 +328,14 @@ function AtomScene({ element, atomicNumber, orbitalType, showTransition }: Orbit
 
 export default function OrbitalCanvas(props: OrbitalCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+        <Canvas camera={{ position: [0, 0.6, 6.4], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <AtomScene {...props} />
             <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
+                target={[0, 0.5, 0]}
             />
         </Canvas>
     );

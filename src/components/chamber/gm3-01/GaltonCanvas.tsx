@@ -295,7 +295,7 @@ export default function GaltonCanvas({
   
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 0, 12], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, -0.8, 9.2], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         
         {/* Lighting */}
@@ -306,9 +306,10 @@ export default function GaltonCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={8}
-          maxDistance={20}
+          minDistance={6.5}
+          maxDistance={16}
           maxPolarAngle={Math.PI / 2}
+          target={[0, -2.2, 0]}
         />
         
         {/* Galton Board */}

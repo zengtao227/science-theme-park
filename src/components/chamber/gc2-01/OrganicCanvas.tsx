@@ -279,13 +279,14 @@ function OrganicScene(props: OrganicCanvasProps) {
 
 export default function OrganicCanvas(props: OrganicCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+        <Canvas camera={{ position: [0, 0.8, 6.2], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <OrganicScene {...props} />
             <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
+                target={[0, 0.5, 0]}
             />
         </Canvas>
     );

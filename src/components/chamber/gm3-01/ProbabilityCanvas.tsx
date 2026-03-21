@@ -232,13 +232,14 @@ function ProbabilityScene(props: ProbabilityCanvasProps) {
 
 export default function ProbabilityCanvas(props: ProbabilityCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 5, 15], fov: 50 }}>
+        <Canvas camera={{ position: [0, 3.8, 11.5], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <ProbabilityScene {...props} />
             <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
+                target={[0, -2.5, 0]}
             />
         </Canvas>
     );
