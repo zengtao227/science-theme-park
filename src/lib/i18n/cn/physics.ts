@@ -1711,7 +1711,7 @@ export const cnPhysics = {
             pulley_efficiency: "滑轮：{strands} 根绳段，效率 {efficiency}% ，负载 {load} N。实际动力？",
             pulley_block_tackle: "滑轮组：{blocks} 个滑轮块，{strands} 根绳段，负载 {load} N。所需动力？",
             inclined_plane: "一个斜面将 {load} N 负载提升到 {height} m 高度，斜面长度为 {length} m。需要多少动力？",
-            inclined_angle: "斜面：角度 {angle}°，负载 {load} N。沿斜面所需动力？",
+            inclined_angle: "无摩擦斜面：角度 {angle}°，重物 {load} N。沿斜面向上施力使重物保持静止，所需力为多少？",
             inclined_friction: "斜面：h={height} m，l={length} m，负载 {load} N，摩擦系数 μ={friction}。所需动力？",
             screw_jack: "螺旋千斤顶：螺距 {pitch} cm，手柄半径 {radius} cm，负载 {load} N。所需动力？",
             hint_lever: "MA = 动力臂 / 阻力臂，动力 = 负载 / MA",

@@ -1675,7 +1675,7 @@ export const enPhysics = {
                         pulley_efficiency: "Pulley: {strands} strands, {efficiency}% efficiency, load {load} N. Actual effort?",
                         pulley_block_tackle: "Block and tackle: {blocks} blocks, {strands} strands, load {load} N. Effort?",
                         inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
-                        inclined_angle: "Inclined plane: angle {angle}°, load {load} N. Effort parallel to plane?",
+                        inclined_angle: "Frictionless inclined plane: angle {angle}°, load {load} N. What force applied upward parallel to the plane keeps the object stationary?",
                         inclined_friction: "Inclined plane: h={height} m, l={length} m, load {load} N, friction μ={friction}. Effort?",
                         screw_jack: "Screw jack: pitch {pitch} cm, handle radius {radius} cm, load {load} N. Effort?",
                         hint_lever: "Use MA = effort arm / load arm, then F_effort = F_load / MA",

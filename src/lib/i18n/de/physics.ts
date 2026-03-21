@@ -1777,7 +1777,7 @@ export const dePhysics = {
                         pulley_efficiency: "Flaschenzug: {strands} Stränge, {efficiency}% Wirkungsgrad, Last {load} N. Tatsächlicher Kraftaufwand?",
                         pulley_block_tackle: "Flaschenzugblock: {blocks} Blöcke, {strands} Stränge, Last {load} N. Kraftaufwand?",
                         inclined_plane: "Schiefe Ebene hebt {load} N auf Höhe {height} m über Länge {length} m. Welche Kraft ist nötig?",
-                        inclined_angle: "Schiefe Ebene: Winkel {angle}°, Last {load} N. Kraft parallel zur Ebene?",
+                        inclined_angle: "Reibungsfreie schiefe Ebene: Winkel {angle}°, Last {load} N. Welche Kraft parallel zur Ebene (aufwärts gerichtet) hält das Objekt im Gleichgewicht?",
                         inclined_friction: "Schiefe Ebene: h={height} m, l={length} m, Last {load} N, Reibung μ={friction}. Kraftaufwand?",
                         screw_jack: "Spindelheber: Steigung {pitch} cm, Hebelradius {radius} cm, Last {load} N. Kraftaufwand?",
                         hint_lever: "MA = Kraftarm / Lastarm; F_kraft = F_last / MA",
