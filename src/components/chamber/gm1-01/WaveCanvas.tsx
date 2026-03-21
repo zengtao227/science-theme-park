@@ -9,6 +9,17 @@ interface WaveCanvasProps {
   functionType: "power" | "product" | "chain";
   xPosition?: number;
   derivative?: number;
+  translations: {
+    waveTitle: string;
+    subtitlePower: string;
+    subtitleProduct: string;
+    subtitleChain: string;
+    rulePower: string;
+    ruleProduct: string;
+    ruleChain: string;
+    xLabel: string;
+    yourSlope: string;
+  };
 }
 
 const palette = {
@@ -246,6 +257,7 @@ export default function WaveCanvas({
   functionType = "power",
   xPosition = 2,
   derivative = 0,
+  translations,
 }: WaveCanvasProps) {
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
@@ -277,27 +289,27 @@ export default function WaveCanvas({
         
         {/* HUD */}
         <Text position={[0, 6, 0]} fontSize={0.4} color={palette.white}>
-          CALCULUS COAST
+          {translations.waveTitle}
         </Text>
         <Text position={[0, 5.3, 0]} fontSize={0.25} color={palette.cyan}>
-          {functionType === "power" && "f(x) = 0.5x^2"}
-          {functionType === "product" && "f(x) = x·sin(x)"}
-          {functionType === "chain" && "f(x) = sin(2x)"}
+          {functionType === "power" && translations.subtitlePower}
+          {functionType === "product" && translations.subtitleProduct}
+          {functionType === "chain" && translations.subtitleChain}
         </Text>
       </Canvas>
       
       {/* Info panel */}
       <div className="absolute top-4 left-4 bg-black/70 border border-cyan-400/30 rounded-lg px-4 py-3 space-y-2">
         <div className="text-[9px] text-cyan-400/60 uppercase tracking-wider">
-          {functionType === "power" && "Power Rule"}
-          {functionType === "product" && "Product Rule"}
-          {functionType === "chain" && "Chain Rule"}
+          {functionType === "power" && translations.rulePower}
+          {functionType === "product" && translations.ruleProduct}
+          {functionType === "chain" && translations.ruleChain}
         </div>
         <div className="text-[11px] font-mono text-white">
-          x = {xPosition.toFixed(2)}
+          {translations.xLabel} = {xPosition.toFixed(2)}
         </div>
         <div className="text-[9px] text-white/90 mt-1">
-          Your slope: {derivative.toFixed(2)}
+          {translations.yourSlope}: {derivative.toFixed(2)}
         </div>
       </div>
       
