@@ -197,7 +197,7 @@ function Scene({ osmolarity, showATP }: MetabolicCellProps) {
             
             {showATP && <ATPParticles count={50} />}
             
-            <OrbitControls enablePan={true} enableZoom={true} />
+            <OrbitControls enablePan={true} enableZoom={true} target={[0, 0.4, 0]} />
         </>
     );
 }
@@ -205,7 +205,7 @@ function Scene({ osmolarity, showATP }: MetabolicCellProps) {
 export default function MetabolicCell(props: MetabolicCellProps) {
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+            <Canvas camera={{ position: [0, 0.3, 6.3], fov: 56 }}>
                 <Scene {...props} />
             </Canvas>
         </div>

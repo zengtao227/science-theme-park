@@ -260,13 +260,14 @@ function OpticsScene({ n1, n2, incidentAngle, showPrism, showTotalReflection }: 
 
 export default function OpticsCanvas(props: OpticsCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+        <Canvas camera={{ position: [0, 0.4, 6.4], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <OpticsScene {...props} />
             <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
+                target={[0, 0, 0]}
             />
         </Canvas>
     );

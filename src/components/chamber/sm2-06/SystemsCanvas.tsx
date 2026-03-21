@@ -350,7 +350,7 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
 
   return (
     <div className="relative w-full aspect-square max-w-[500px] bg-[#020208] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [10, 8, 10], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [8.2, 6.5, 8.2], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}
@@ -362,8 +362,9 @@ export default function S206SystemsCanvas({ visual }: { visual?: SystemsVisual }
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={8}
-          maxDistance={25}
+          minDistance={6}
+          maxDistance={18}
+          target={[0, 1.5, 0]}
         />
 
         {/* Grid floor */}

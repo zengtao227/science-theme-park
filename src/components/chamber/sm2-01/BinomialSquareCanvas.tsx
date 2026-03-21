@@ -217,8 +217,8 @@ export default function BinomialSquareCanvas({ a, b, translations }: BinomialSqu
   return (
     <div className="w-full h-[800px] bg-[#020208] rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col">
       <div className="relative flex-1 min-h-0">
-        <Canvas camera={{ position: [0, 0, 12], fov: 50 }} gl={{ antialias: true }}>
-        <color attach="background" args={["#000005"]} />
+        <Canvas camera={{ position: [0, 0.4, 9], fov: 56 }} gl={{ antialias: true }}>
+          <color attach="background" args={["#000005"]} />
 
         {/* 灯光 */}
         <ambientLight intensity={0.5} />
@@ -229,8 +229,9 @@ export default function BinomialSquareCanvas({ a, b, translations }: BinomialSqu
         <OrbitControls
           ref={controlsRef}
           enablePan={false}
-          minDistance={6}
-          maxDistance={20}
+          minDistance={5}
+          maxDistance={15}
+          target={[0, 0.8, 0]}
           autoRotate={false}
         />
 
@@ -241,10 +242,10 @@ export default function BinomialSquareCanvas({ a, b, translations }: BinomialSqu
         <Legend a={a} b={b} translations={translations} />
 
         {/* 坐标轴 */}
-        <group>
-          <arrowHelper args={[new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 3, "#ff4444"]} />
-          <arrowHelper args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 3, "#44ff44"]} />
-        </group>
+          <group>
+            <arrowHelper args={[new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 3, "#ff4444"]} />
+            <arrowHelper args={[new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 3, "#44ff44"]} />
+          </group>
         </Canvas>
 
         {/* 3D控制 */}

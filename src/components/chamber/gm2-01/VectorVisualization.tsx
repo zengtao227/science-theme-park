@@ -284,7 +284,7 @@ export default function VectorVisualization({
   
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [8, 6, 8], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [6.5, 5.2, 6.5], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         
         {/* Lighting */}
@@ -295,8 +295,9 @@ export default function VectorVisualization({
         {/* Controls */}
         <OrbitControls
           enablePan={true}
-          minDistance={5}
-          maxDistance={20}
+          minDistance={4.5}
+          maxDistance={15}
+          target={[0, 1, 0]}
         />
         
         {/* Grid and axes */}

@@ -237,7 +237,7 @@ function Scene(props: NuclearSimProps) {
             <Nucleus protons={props.protons} neutrons={props.neutrons} />
             <StabilityChart {...props} />
             
-            <OrbitControls enablePan={true} enableZoom={true} />
+            <OrbitControls enablePan={true} enableZoom={true} target={[0, 0.5, 0]} />
         </>
     );
 }
@@ -245,7 +245,7 @@ function Scene(props: NuclearSimProps) {
 export default function NuclearSim(props: NuclearSimProps) {
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 2, 12], fov: 50 }}>
+            <Canvas camera={{ position: [0, 1.6, 9], fov: 56 }}>
                 <Scene {...props} />
             </Canvas>
         </div>
