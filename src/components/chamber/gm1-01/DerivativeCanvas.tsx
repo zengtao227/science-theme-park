@@ -300,7 +300,7 @@ export default function DerivativeCanvas({
 
   return (
     <div className="relative w-full h-[700px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 2, 10], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 2.2, 8], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}
@@ -312,8 +312,9 @@ export default function DerivativeCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={6}
-          maxDistance={15}
+          minDistance={5}
+          maxDistance={12}
+          target={[0, 2, 0]}
           maxPolarAngle={Math.PI / 2}
         />
 

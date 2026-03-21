@@ -184,7 +184,7 @@ function Scene({ mode, xPosition, yPosition, functionType }: CalculusCanvasProps
       {mode === "newton" && (
         <NewtonIterations xStart={xPosition} functionType={functionType} />
       )}
-      <OrbitControls enablePan={false} minDistance={6} maxDistance={16} />
+      <OrbitControls enablePan={false} minDistance={5} maxDistance={13} target={[0, 1, 0]} />
     </>
   );
 }
@@ -192,7 +192,7 @@ function Scene({ mode, xPosition, yPosition, functionType }: CalculusCanvasProps
 export default function CalculusCanvas(props: CalculusCanvasProps) {
   return (
     <div className="w-full h-full">
-      <Canvas camera={{ position: [7, 6, 8], fov: 50 }}>
+      <Canvas camera={{ position: [5.8, 5.2, 6.8], fov: 56 }}>
         <Scene {...props} />
       </Canvas>
     </div>
