@@ -237,7 +237,7 @@ function CircuitScene({ components, onComponentClick, multimeterMode, selectedPo
 
 export default function CircuitCanvas(props: CircuitCanvasProps) {
     return (
-        <Canvas camera={{ position: [0, 8, 12], fov: 50 }}>
+        <Canvas camera={{ position: [0, 6.2, 9.5], fov: 56 }}>
             <color attach="background" args={["#000000"]} />
             <CircuitScene {...props} />
             <OrbitControls
@@ -245,6 +245,7 @@ export default function CircuitCanvas(props: CircuitCanvasProps) {
                 enableZoom={true}
                 enableRotate={true}
                 maxPolarAngle={Math.PI / 2}
+                target={[0, 0.6, 0]}
             />
         </Canvas>
     );

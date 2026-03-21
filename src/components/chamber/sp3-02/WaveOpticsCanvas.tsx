@@ -278,7 +278,7 @@ export default function WaveOpticsCanvas({
 }: WaveOpticsCanvasProps) {
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 0, 20], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 0.4, 15], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         
         {/* Lighting */}
@@ -289,9 +289,10 @@ export default function WaveOpticsCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={15}
-          maxDistance={30}
+          minDistance={12}
+          maxDistance={24}
           autoRotate={false}
+          target={[2.5, 0, 0]}
         />
         
         {/* Stage-specific visualization */}

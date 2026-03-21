@@ -294,7 +294,7 @@ export default function MoleculeCanvas({ target }: MoleculeCanvasProps) {
 
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 1, 8], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 1.4, 6.5], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}
@@ -305,9 +305,10 @@ export default function MoleculeCanvas({ target }: MoleculeCanvasProps) {
         {/* Controls */}
         <OrbitControls
           enablePan={true}
-          minDistance={5}
-          maxDistance={15}
+          minDistance={4.5}
+          maxDistance={12}
           autoRotate={false}
+          target={[0, 1.2, 0]}
         />
 
         {/* Molecule */}
