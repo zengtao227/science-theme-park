@@ -254,7 +254,7 @@ function Scene(props: TrigCanvasProps) {
                 <WaveGraphs angle={props.angle} showSin={props.showSin} showCos={props.showCos} />
             )}
 
-            <OrbitControls enableRotate={false} enablePan={false} />
+            <OrbitControls enableRotate={false} enablePan={false} target={[0, 0, 0]} />
         </>
     );
 }
@@ -262,7 +262,7 @@ function Scene(props: TrigCanvasProps) {
 export default function TrigCanvas(props: TrigCanvasProps) {
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
+            <Canvas camera={{ position: [0, 0.4, 9], fov: 56 }}>
                 <Scene {...props} />
             </Canvas>
         </div>

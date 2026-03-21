@@ -345,7 +345,7 @@ export default function TrigonometryCanvas({
   
   return (
     <div className="relative w-full h-[600px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 0, 8], fov: 50 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 0.3, 6.6], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
         
         {/* Lighting */}
@@ -356,8 +356,9 @@ export default function TrigonometryCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={5}
-          maxDistance={12}
+          minDistance={4}
+          maxDistance={10}
+          target={[0, 0, 0]}
           autoRotate={false}
         />
         

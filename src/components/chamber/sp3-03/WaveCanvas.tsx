@@ -184,7 +184,7 @@ function Scene(props: WaveCanvasProps) {
                 />
             )}
 
-            <OrbitControls enableRotate={false} enablePan={false} />
+            <OrbitControls enableRotate={false} enablePan={false} target={[0, 0, 0]} />
         </>
     );
 }
@@ -192,7 +192,7 @@ function Scene(props: WaveCanvasProps) {
 export default function WaveCanvas(props: WaveCanvasProps) {
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
+            <Canvas camera={{ position: [0, 0.3, 6.5], fov: 56 }}>
                 <Scene {...props} />
             </Canvas>
         </div>

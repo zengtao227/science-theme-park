@@ -170,7 +170,7 @@ function Scene({ rotation, showBonds, highlightPair }: DnaCanvasProps) {
                 ))}
             </group>
 
-            <OrbitControls enablePan={false} enableZoom={true} />
+            <OrbitControls enablePan={false} enableZoom={true} target={[0, 0, 0]} />
         </>
     );
 }
@@ -178,7 +178,7 @@ function Scene({ rotation, showBonds, highlightPair }: DnaCanvasProps) {
 export default function DnaCanvas(props: DnaCanvasProps) {
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
+            <Canvas camera={{ position: [0, 0.3, 5], fov: 56 }}>
                 <Scene {...props} />
             </Canvas>
         </div>
