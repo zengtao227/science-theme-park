@@ -341,6 +341,8 @@ export const cnMath = {
             slope_label: "道路斜率",
             your_slope: "你的斜率",
             correct_slope: "正确斜率",
+            correct_angle: "角度正确",
+            adjust_slope: "调整斜率",
             status_chamber: "实验室",
             status_sim: "导数模拟: 激活",
             status_mode: "模式"

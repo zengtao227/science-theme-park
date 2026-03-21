@@ -341,6 +341,8 @@ export const deMath = {
             slope_label: "STRASSENSTEIGUNG",
             your_slope: "Deine Steigung",
             correct_slope: "Korrekte Steigung",
+            correct_angle: "Winkel korrekt",
+            adjust_slope: "Steigung anpassen",
             status_chamber: "KAMMER",
             status_sim: "ABLEITUNGS_SIM: AKTIV",
             status_mode: "MODUS"

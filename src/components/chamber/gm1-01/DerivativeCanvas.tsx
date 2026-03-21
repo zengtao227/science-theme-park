@@ -17,6 +17,8 @@ interface DerivativeCanvasProps {
     slopeLabel: string;
     yourSlope: string;
     correctSlope: string;
+    correctAngle: string;
+    adjustSlope: string;
     status_chamber: string;
     status_sim: string;
     status_mode: string;
@@ -351,7 +353,7 @@ export default function DerivativeCanvas({
           </div>
         </div>
         <div className={`text-[10px] font-bold ${isCorrect ? "text-green-400" : "text-pink-400"}`}>
-          {isCorrect ? "✓ CORRECT ANGLE" : "✗ ADJUST SLOPE"}
+          {isCorrect ? translations.correctAngle : translations.adjustSlope}
         </div>
       </div>
 

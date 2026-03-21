@@ -341,6 +341,8 @@ export const enMath = {
             slope_label: "ROAD SLOPE",
             your_slope: "Your slope",
             correct_slope: "Correct slope",
+            correct_angle: "Correct angle",
+            adjust_slope: "Adjust slope",
             status_chamber: "CHAMBER",
             status_sim: "DERIVATIVE_SIM: ACTIVE",
             status_mode: "MODE"
