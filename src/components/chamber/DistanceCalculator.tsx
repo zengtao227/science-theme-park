@@ -104,8 +104,6 @@ function DistanceSegment({ from, to }: { from: [number, number, number]; to: [nu
 }
 
 export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
-  void data;
-
   return (
     <div className="w-full h-[720px] border border-white/10 rounded-xl overflow-hidden bg-black relative">
       <Canvas

@@ -255,8 +255,6 @@ function PointObject({
 }
 
 export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
-  void data;
-
   return (
     <div className="relative w-full h-[720px] border border-white/10 rounded-xl overflow-hidden bg-black">
       <Canvas
