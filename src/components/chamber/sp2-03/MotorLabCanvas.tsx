@@ -52,8 +52,8 @@ export default function MotorLabCanvas({ currentOn, polarity }: MotorLabCanvasPr
   return (
     <div className="w-full h-[360px] bg-black rounded-xl border border-white/10 overflow-hidden">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 2.5, 8]} fov={50} />
-        <OrbitControls enablePan={false} minDistance={5} maxDistance={15} maxPolarAngle={Math.PI / 2} />
+        <PerspectiveCamera makeDefault position={[0, 2.1, 6.4]} fov={56} />
+        <OrbitControls enablePan={false} minDistance={4} maxDistance={12} target={[0, 0.2, 0]} maxPolarAngle={Math.PI / 2} />
         <ambientLight intensity={0.3} />
         <pointLight position={[5, 5, 5]} intensity={0.6} />
         <pointLight position={[-5, 5, 5]} intensity={0.6} />

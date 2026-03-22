@@ -156,8 +156,8 @@ export default function RedoxCanvas(props: RedoxCanvasProps) {
   return (
     <div className="w-full h-full">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 2.2, 9]} fov={50} />
-        <OrbitControls enablePan={false} minDistance={6} maxDistance={16} maxPolarAngle={Math.PI / 2} />
+        <PerspectiveCamera makeDefault position={[0, 1.8, 7.2]} fov={56} />
+        <OrbitControls enablePan={false} minDistance={5} maxDistance={13} target={[0, 0.4, 0]} maxPolarAngle={Math.PI / 2} />
         <ambientLight intensity={0.4} />
         <pointLight position={[5, 5, 5]} intensity={0.8} />
         <pointLight position={[-5, 5, 5]} intensity={0.8} />

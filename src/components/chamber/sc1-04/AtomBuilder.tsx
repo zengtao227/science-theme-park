@@ -183,11 +183,12 @@ export default function AtomBuilder(props: AtomBuilderProps) {
   return (
     <div className="w-full h-[600px] relative rounded-3xl overflow-hidden bg-[#050505] border border-white/5 shadow-28xl group">
       <Canvas shadows camera={{ position: [6, 4, 6], fov: 40 }}>
-        <PerspectiveCamera makeDefault position={[0, 2, 8]} fov={50} />
+        <PerspectiveCamera makeDefault position={[0, 1.6, 6.6]} fov={56} />
         <OrbitControls
           enablePan={false}
-          minDistance={3}
-          maxDistance={15}
+          minDistance={2.5}
+          maxDistance={12}
+          target={[0, 0.8, 0]}
           autoRotate
           autoRotateSpeed={0.5}
         />
