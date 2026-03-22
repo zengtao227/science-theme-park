@@ -47,6 +47,17 @@ export default function GM202Page() {
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
+  const stageDifficultyMap = useMemo<Record<Stage, Difficulty[]>>(() => ({
+    LINE_EQUATIONS: ["BASIC"],
+    PLANE_GEOMETRY: ["CORE"],
+    SPATIAL_RELATIONSHIPS: ["ADVANCED", "ELITE"],
+  }), []);
+
+  const resolveDifficultyForStage = useCallback((requested: Difficulty, targetStage: Stage): Difficulty => {
+    const allowed = stageDifficultyMap[targetStage];
+    return allowed.includes(requested) ? requested : allowed[0];
+  }, [stageDifficultyMap]);
+
   const {
     difficulty,
     stage,
@@ -66,7 +77,15 @@ export default function GM202Page() {
     moduleCode: "gm2-02",
     buildPool,
     initialStage: "LINE_EQUATIONS",
+    initialDifficulty: "BASIC" as Difficulty,
   });
+
+  useEffect(() => {
+    const resolved = resolveDifficultyForStage(difficulty, stage);
+    if (resolved !== difficulty) {
+      handleDifficultyChange(resolved);
+    }
+  }, [difficulty, handleDifficultyChange, resolveDifficultyForStage, stage]);
 
   useEffect(() => {
     if (lastCheck?.ok) {
@@ -141,10 +160,17 @@ export default function GM202Page() {
       minLeftWidth={30}
       maxLeftWidth={75}
       difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
+      onDifficultyChange={(d) => handleDifficultyChange(resolveDifficultyForStage(d, stage))}
       stages={stages}
       currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
+      onStageChange={(s) => {
+        const nextStage = s as Stage;
+        const nextDifficulty = resolveDifficultyForStage(difficulty, nextStage);
+        if (nextDifficulty !== difficulty) {
+          handleDifficultyChange(nextDifficulty);
+        }
+        handleStageChange(nextStage);
+      }}
       printSections={printSections}
       onVerify={verify}
       onNext={next}

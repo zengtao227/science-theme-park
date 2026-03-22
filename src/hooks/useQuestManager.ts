@@ -31,6 +31,7 @@ export interface UseQuestManagerOptions<T extends Quest, S extends string> {
     moduleCode: string;
     buildPool: (difficulty: Difficulty, stage: S) => T[];
     initialStage: S;
+    initialDifficulty?: Difficulty;
     tolerance?: number;
 }
 
@@ -45,16 +46,17 @@ export function useQuestManager<T extends Quest, S extends string>({
     moduleCode,
     buildPool,
     initialStage,
+    initialDifficulty = "CORE",
     tolerance = 0.1
 }: UseQuestManagerOptions<T, S>) {
     const { currentLanguage, history } = useAppStore();
     const storageKey = `quest_manager_stats_${moduleCode}_v1`;
-    const [difficulty, setDifficulty] = useState<Difficulty>("CORE");
+    const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
     const [stage, setStage] = useState<S>(initialStage);
     const [nonce, setNonce] = useState(() => {
         if (typeof window === "undefined") return 0;
         try {
-            const key = `quest_manager_nonce_${moduleCode}_${initialStage}_CORE`;
+            const key = `quest_manager_nonce_${moduleCode}_${initialStage}_${initialDifficulty}`;
             const saved = window.localStorage.getItem(key);
             return saved ? parseInt(saved, 10) : 0;
         } catch {

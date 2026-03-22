@@ -139,12 +139,12 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
     if (allPoints.length === 0) {
       return {
         center: [0, 0, 0],
-        extent: 3.4,
-        cameraOffset: [2.8, 2.4, 3.0],
-        gridSize: 5.8,
-        lineExtent: 3.9,
-        planeSize: 4.6,
-        pointRadius: 0.24,
+        extent: 3.0,
+        cameraOffset: [2.15, 1.8, 2.3],
+        gridSize: 4.8,
+        lineExtent: 3.0,
+        planeSize: 3.8,
+        pointRadius: 0.28,
       };
     }
 
@@ -163,15 +163,15 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
       (minZ + maxZ) / 2,
     ];
     const maxSpan = Math.max(maxX - minX, maxY - minY, maxZ - minZ);
-    const extent = Math.max(3.4, maxSpan * 0.48 + 1.0);
+    const extent = Math.max(3.0, maxSpan * 0.38 + 0.75);
     return {
       center,
       extent,
-      cameraOffset: [extent * 0.82, extent * 0.68, extent * 0.88],
-      gridSize: extent * 1.65,
-      lineExtent: extent * 0.96,
-      planeSize: extent * 1.18,
-      pointRadius: Math.max(0.2, Math.min(0.42, extent * 0.045)),
+      cameraOffset: [extent * 0.66, extent * 0.54, extent * 0.72],
+      gridSize: extent * 1.35,
+      lineExtent: extent * 0.8,
+      planeSize: extent * 0.96,
+      pointRadius: Math.max(0.24, Math.min(0.46, extent * 0.065)),
     };
   }, [data]);
 
@@ -274,8 +274,8 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.7}
-          minDistance={sceneBounds.extent * 0.85}
-          maxDistance={sceneBounds.extent * 3.2}
+          minDistance={sceneBounds.extent * 0.72}
+          maxDistance={sceneBounds.extent * 2.8}
           target={sceneBounds.center}
         />
       </Canvas>
