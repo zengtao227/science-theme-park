@@ -163,15 +163,15 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
       (minZ + maxZ) / 2,
     ];
     const maxSpan = Math.max(maxX - minX, maxY - minY, maxZ - minZ);
-    const extent = Math.max(2.35, maxSpan * 0.28 + 0.4);
+    const extent = Math.max(maxSpan * 1.5, 3.0);
     return {
       center,
       extent,
-      cameraOffset: [extent * 0.42, extent * 0.34, extent * 0.46],
-      gridSize: extent * 0.95,
-      lineExtent: extent * 0.62,
-      planeSize: extent * 0.72,
-      pointRadius: Math.max(0.28, Math.min(0.56, extent * 0.09)),
+      cameraOffset: [extent * 0.65, extent * 0.55, extent * 0.70],
+      gridSize: extent * 1.2,
+      lineExtent: extent * 0.8,
+      planeSize: extent * 0.85,
+      pointRadius: Math.max(0.15, Math.min(0.35, extent * 0.05)),
     };
   }, [data]);
 
@@ -184,7 +184,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
             sceneBounds.center[1] + sceneBounds.cameraOffset[1],
             sceneBounds.center[2] + sceneBounds.cameraOffset[2],
           ],
-          fov: 34,
+          fov: 50,
         }}
       >
         <ambientLight intensity={0.5} />
