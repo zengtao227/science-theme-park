@@ -255,40 +255,38 @@ function PointObject({
 }
 
 export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
-  const sceneBounds = useMemo<SceneBounds>(() => buildSceneBounds(data), [data]);
+  void data;
 
   return (
     <div className="relative w-full h-full min-h-[720px] flex-1 border border-white/10 rounded-xl overflow-hidden bg-black">
       <Canvas
         camera={{
-          position: [
-            sceneBounds.center[0] + sceneBounds.cameraOffset[0],
-            sceneBounds.center[1] + sceneBounds.cameraOffset[1],
-            sceneBounds.center[2] + sceneBounds.cameraOffset[2],
-          ],
-          fov: 50,
+          position: [6.5, 5.2, 6.5],
+          fov: 56,
         }}
+        gl={{ antialias: true }}
       >
+        <color attach="background" args={["#000005"]} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
         {/* Grid */}
         <Grid
-          args={[sceneBounds.gridSize, sceneBounds.gridSize]}
-          cellSize={Math.max(0.65, sceneBounds.extent / 8.5)}
+          args={[20, 20]}
+          cellSize={1}
           cellThickness={0.5}
           cellColor="#333333"
-          sectionSize={Math.max(1.2, sceneBounds.extent / 4)}
+          sectionSize={5}
           sectionThickness={1}
           sectionColor="#444444"
-          fadeDistance={sceneBounds.gridSize * 1.1}
+          fadeDistance={25}
           fadeStrength={1}
           followCamera={false}
           infiniteGrid={false}
         />
         
         {/* Axes */}
-        <Axes extent={sceneBounds.extent} />
+        <Axes extent={10} />
         
         {/* Render planes */}
         {data.planes?.map((plane, idx) => (
@@ -297,7 +295,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
             coefficients={plane.coefficients}
             color={plane.color}
             opacity={plane.opacity}
-            size={sceneBounds.planeSize}
+            size={8}
           />
         ))}
         
@@ -310,7 +308,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
                 point={[line.point.x, line.point.y, line.point.z]}
                 direction={[line.direction.x, line.direction.y, line.direction.z]}
                 color={line.color}
-                extent={sceneBounds.lineExtent}
+                extent={8}
               />
             );
           }
@@ -326,7 +324,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
                 coordinates={point.coordinates as [number, number, number]}
                 label={point.label}
                 color={point.color}
-                radius={sceneBounds.pointRadius}
+                radius={0.2}
               />
             );
           }
@@ -339,9 +337,9 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.7}
-          minDistance={sceneBounds.extent * 0.42}
-          maxDistance={sceneBounds.extent * 1.8}
-          target={sceneBounds.center}
+          minDistance={4.5}
+          maxDistance={15}
+          target={[2, 2, 2]}
         />
       </Canvas>
       

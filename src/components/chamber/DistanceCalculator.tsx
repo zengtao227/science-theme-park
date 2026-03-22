@@ -104,135 +104,36 @@ function DistanceSegment({ from, to }: { from: [number, number, number]; to: [nu
 }
 
 export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
-  const sceneBounds = useMemo<SceneBounds>(() => {
-    const allPoints: Array<[number, number, number]> = [];
-
-    data.points?.forEach((point) => {
-      if (point.coordinates.length === 3) {
-        allPoints.push(point.coordinates as [number, number, number]);
-      }
-    });
-
-    data.lines?.forEach((line) => {
-      if (line.type !== "3D") return;
-      const sampleT = 4;
-      allPoints.push([line.point.x, line.point.y, line.point.z]);
-      allPoints.push([
-        line.point.x + line.direction.x * sampleT,
-        line.point.y + line.direction.y * sampleT,
-        line.point.z + line.direction.z * sampleT,
-      ]);
-      allPoints.push([
-        line.point.x - line.direction.x * sampleT,
-        line.point.y - line.direction.y * sampleT,
-        line.point.z - line.direction.z * sampleT,
-      ]);
-    });
-
-    data.planes?.forEach((plane) => {
-      const [A, B, C, D] = plane.coefficients;
-      
-      // Find a point on the plane
-      let px = 0, py = 0, pz = 0;
-      if (Math.abs(C) > 1e-6) {
-        pz = -D / C;
-      } else if (Math.abs(B) > 1e-6) {
-        py = -D / B;
-      } else if (Math.abs(A) > 1e-6) {
-        px = -D / A;
-      }
-      
-      // Sample multiple points around the plane center to get better bounds
-      const tempSize = 5;
-      const normal = new THREE.Vector3(A, B, C).normalize();
-      
-      // Find two orthogonal vectors on the plane
-      const u = new THREE.Vector3();
-      const v = new THREE.Vector3();
-      if (Math.abs(normal.x) < 0.9) {
-        u.set(1, 0, 0).cross(normal).normalize();
-      } else {
-        u.set(0, 1, 0).cross(normal).normalize();
-      }
-      v.crossVectors(normal, u).normalize();
-      
-      // Sample 5 points: center and 4 corners
-      allPoints.push([px, py, pz]);
-      allPoints.push([px + u.x * tempSize, py + u.y * tempSize, pz + u.z * tempSize]);
-      allPoints.push([px - u.x * tempSize, py - u.y * tempSize, pz - u.z * tempSize]);
-      allPoints.push([px + v.x * tempSize, py + v.y * tempSize, pz + v.z * tempSize]);
-      allPoints.push([px - v.x * tempSize, py - v.y * tempSize, pz - v.z * tempSize]);
-    });
-
-    if (allPoints.length === 0) {
-      return {
-        center: [0, 0, 0],
-        extent: 3.0,
-        cameraOffset: [1.85, 1.55, 1.95],
-        gridSize: 4.8,
-        lineExtent: 3.0,
-        planeSize: 3.8,
-        pointRadius: 0.28,
-      };
-    }
-
-    const xs = allPoints.map((p) => p[0]);
-    const ys = allPoints.map((p) => p[1]);
-    const zs = allPoints.map((p) => p[2]);
-    const minX = Math.min(...xs);
-    const maxX = Math.max(...xs);
-    const minY = Math.min(...ys);
-    const maxY = Math.max(...ys);
-    const minZ = Math.min(...zs);
-    const maxZ = Math.max(...zs);
-    const center: [number, number, number] = [
-      (minX + maxX) / 2,
-      (minY + maxY) / 2,
-      (minZ + maxZ) / 2,
-    ];
-    const maxSpan = Math.max(maxX - minX, maxY - minY, maxZ - minZ);
-    const extent = Math.max(maxSpan * 1.5, 3.0);
-    return {
-      center,
-      extent,
-      cameraOffset: [extent * 0.65, extent * 0.55, extent * 0.70],
-      gridSize: extent * 1.2,
-      lineExtent: extent * 0.8,
-      planeSize: extent * 0.85,
-      pointRadius: Math.max(0.15, Math.min(0.35, extent * 0.05)),
-    };
-  }, [data]);
+  void data;
 
   return (
     <div className="w-full h-full min-h-[720px] flex-1 border border-white/10 rounded-xl overflow-hidden bg-black relative">
       <Canvas
         camera={{
-          position: [
-            sceneBounds.center[0] + sceneBounds.cameraOffset[0],
-            sceneBounds.center[1] + sceneBounds.cameraOffset[1],
-            sceneBounds.center[2] + sceneBounds.cameraOffset[2],
-          ],
-          fov: 50,
+          position: [6.5, 5.2, 6.5],
+          fov: 56,
         }}
+        gl={{ antialias: true }}
       >
+        <color attach="background" args={["#000005"]} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
         <Grid
-          args={[sceneBounds.gridSize, sceneBounds.gridSize]}
-          cellSize={Math.max(0.65, sceneBounds.extent / 8.5)}
+          args={[20, 20]}
+          cellSize={1}
           cellThickness={0.5}
           cellColor="#333333"
-          sectionSize={Math.max(1.2, sceneBounds.extent / 4)}
+          sectionSize={5}
           sectionThickness={1}
           sectionColor="#444444"
-          fadeDistance={sceneBounds.gridSize * 1.1}
+          fadeDistance={25}
           fadeStrength={1}
           followCamera={false}
           infiniteGrid={false}
         />
         
-        <Axes extent={sceneBounds.extent} />
+        <Axes extent={10} />
         
         {/* Render planes */}
         {data.planes?.map((plane, idx) => (
@@ -241,7 +142,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
             coefficients={plane.coefficients}
             color={plane.color}
             opacity={plane.opacity}
-            size={sceneBounds.planeSize}
+            size={8}
           />
         ))}
         
@@ -254,7 +155,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
                 point={[line.point.x, line.point.y, line.point.z]}
                 direction={[line.direction.x, line.direction.y, line.direction.z]}
                 color={line.color}
-                extent={sceneBounds.lineExtent}
+                extent={8}
               />
             );
           }
@@ -270,7 +171,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
                 coordinates={point.coordinates as [number, number, number]}
                 label={point.label}
                 color={point.color}
-                radius={sceneBounds.pointRadius}
+                radius={0.2}
               />
             );
           }
@@ -302,9 +203,9 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.7}
-          minDistance={sceneBounds.extent * 0.42}
-          maxDistance={sceneBounds.extent * 1.8}
-          target={sceneBounds.center}
+          minDistance={4.5}
+          maxDistance={15}
+          target={[2, 2, 2]}
         />
       </Canvas>
       
