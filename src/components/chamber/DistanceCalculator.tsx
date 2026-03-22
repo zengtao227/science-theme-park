@@ -131,9 +131,37 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
 
     data.planes?.forEach((plane) => {
       const [A, B, C, D] = plane.coefficients;
-      if (Math.abs(C) > 1e-6) allPoints.push([0, 0, -D / C]);
-      else if (Math.abs(B) > 1e-6) allPoints.push([0, -D / B, 0]);
-      else if (Math.abs(A) > 1e-6) allPoints.push([-D / A, 0, 0]);
+      
+      // Find a point on the plane
+      let px = 0, py = 0, pz = 0;
+      if (Math.abs(C) > 1e-6) {
+        pz = -D / C;
+      } else if (Math.abs(B) > 1e-6) {
+        py = -D / B;
+      } else if (Math.abs(A) > 1e-6) {
+        px = -D / A;
+      }
+      
+      // Sample multiple points around the plane center to get better bounds
+      const tempSize = 5;
+      const normal = new THREE.Vector3(A, B, C).normalize();
+      
+      // Find two orthogonal vectors on the plane
+      const u = new THREE.Vector3();
+      const v = new THREE.Vector3();
+      if (Math.abs(normal.x) < 0.9) {
+        u.set(1, 0, 0).cross(normal).normalize();
+      } else {
+        u.set(0, 1, 0).cross(normal).normalize();
+      }
+      v.crossVectors(normal, u).normalize();
+      
+      // Sample 5 points: center and 4 corners
+      allPoints.push([px, py, pz]);
+      allPoints.push([px + u.x * tempSize, py + u.y * tempSize, pz + u.z * tempSize]);
+      allPoints.push([px - u.x * tempSize, py - u.y * tempSize, pz - u.z * tempSize]);
+      allPoints.push([px + v.x * tempSize, py + v.y * tempSize, pz + v.z * tempSize]);
+      allPoints.push([px - v.x * tempSize, py - v.y * tempSize, pz - v.z * tempSize]);
     });
 
     if (allPoints.length === 0) {
