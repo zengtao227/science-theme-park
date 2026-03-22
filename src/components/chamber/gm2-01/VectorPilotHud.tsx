@@ -13,6 +13,13 @@ interface VectorPilotHudProps {
   to: [number, number, number];
   vector: [number, number, number];
   assistVector?: [number, number, number];
+  translations: {
+    hud_title: string;
+    from: string;
+    to: string;
+    vector: string;
+    assist: string;
+  };
 }
 
 const palette = {
@@ -108,6 +115,7 @@ export default function VectorPilotHud({
   to,
   vector,
   assistVector,
+  translations,
 }: VectorPilotHudProps) {
   const scaled = useMemo(() => {
     const scale = 0.35;
@@ -164,14 +172,14 @@ export default function VectorPilotHud({
           <Drone vector={scaled} stage={stage} />
         </Float>
         <Text position={[-4.8, 3.2, 0]} fontSize={0.22} color={palette.cyan} font="/fonts/Inter-Bold.woff">
-          VECTOR PILOT HUD
+          {translations.hud_title}
         </Text>
       </Canvas>
       <div className="absolute bottom-3 left-3 text-[10px] font-mono text-white space-y-1">
-        <div>FROM: [{from.join(", ")}]</div>
-        <div>TO: [{to.join(", ")}]</div>
-        <div>VEC: [{vector.join(", ")}]</div>
-        {assistVector && <div>ASSIST: [{assistVector.join(", ")}]</div>}
+        <div>{translations.from}: [{from.join(", ")}]</div>
+        <div>{translations.to}: [{to.join(", ")}]</div>
+        <div>{translations.vector}: [{vector.join(", ")}]</div>
+        {assistVector && <div>{translations.assist}: [{assistVector.join(", ")}]</div>}
       </div>
       <div className="absolute top-3 right-3 text-[9px] font-mono text-white/90 uppercase tracking-[0.3em]">
         {stage}

@@ -84,7 +84,7 @@ export const enBiology = {
             sp_c5: "N=500. Fixation probability of new mutation?",
             sp_a4: "Bottleneck: N reduced to 10. Heterozygosity retention factor (1 − 1/2N)?",
             sp_a5: "Effective population size. Nm=100, Nf=100. Ne = 4NmNf/(Nm+Nf)?",
-            sp_e1: "Drift vs selection. s=0.01, N=10. Ns=0.1 < 1. Does drift dominate?",
+            sp_e1: "Drift vs selection: s=0.01, N=10. Calculate Ns and determine whether genetic drift or natural selection dominates (criterion: Ns ≪ 1 → drift; Ns ≫ 1 → selection).",
             sp_e2: "Founder effect. k=1 individual, p=0.5. Allele loss probability (1−p)^{2k}?",
             sp_e3: "Fst index. Ht=0.5, Hs=0.4. Fst = (Ht−Hs)/Ht?",
             sp_e4: "Coalescence time. k=2 lineages. Expected time = 4N / k(k−1). Coefficient?",

@@ -501,7 +501,12 @@ export const cnMath = {
             vector_w: "向量 w",
             vector_s: "向量 s",
             coordinates: "坐标",
-            dot_product: "点积"
+            dot_product: "点积",
+            hud_title: "向量飞行 HUD",
+            from: "起点",
+            to: "终点",
+            vector: "向量",
+            assist: "辅助"
         },
         placeholders: {
             x: "x",

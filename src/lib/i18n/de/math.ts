@@ -500,7 +500,12 @@ export const deMath = {
             vector_w: "Vektor w",
             vector_s: "Vektor s",
             coordinates: "Koordinaten",
-            dot_product: "Skalarprodukt"
+            dot_product: "Skalarprodukt",
+            hud_title: "Vektorpilot-HUD",
+            from: "Von",
+            to: "Nach",
+            vector: "Vek",
+            assist: "Assistenz"
         },
         placeholders: {
             x: "x",

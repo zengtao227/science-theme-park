@@ -1261,7 +1261,9 @@ export const deChemistry = {
             molecule_display: "Molekülanzeige",
             input_terminal: "Eingabeterminal",
             view_3d: "3D-Ansicht",
-            organic_mastery: "Organische Meisterschaft"
+            organic_mastery: "Organische Meisterschaft",
+            target: "Ziel",
+            interactive_3d_assembly: "Interaktive 3D-Montage"
         },
         placeholders: {
             cxhy: "CxHy",

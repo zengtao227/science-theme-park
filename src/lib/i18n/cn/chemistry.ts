@@ -1269,7 +1269,9 @@ export const cnChemistry = {
             molecule_display: "分子显示",
             input_terminal: "输入终端",
             view_3d: "3D视图",
-            organic_mastery: "有机化学掌握度"
+            organic_mastery: "有机化学掌握度",
+            target: "目标",
+            interactive_3d_assembly: "交互式 3D 组装"
         },
         placeholders: {
             cxhy: "CxHy",

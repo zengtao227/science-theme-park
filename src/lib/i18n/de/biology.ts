@@ -84,7 +84,7 @@ export const deBiology = {
             sp_c5: "N=500. Fixationswahrscheinlichkeit einer neuen Mutation?",
             sp_a4: "Flaschenhalseffekt: N sinkt auf 10. Heterozygotie-Erhaltungsfaktor (1 − 1/2N)?",
             sp_a5: "Effektive Populationsgröße: Nm=100, Nf=100. Ne = 4NmNf/(Nm+Nf)?",
-            sp_e1: "Drift vs. Selektion: s=0,01, N=10. Ns=0,1 < 1. Dominiert Drift?",
+            sp_e1: "Drift vs. Selektion: s=0,01, N=10. Berechne Ns und bestimme, ob genetische Drift oder natürliche Selektion dominiert (Kriterium: Ns ≪ 1 → Drift; Ns ≫ 1 → Selektion).",
             sp_e2: "Gründereffekt: k=1 Individuum, p=0,5. Allelverlustwahr­scheinlichkeit (1−p)^{2k}?",
             sp_e3: "Fst-Index: Ht=0,5, Hs=0,4. Fst = (Ht−Hs)/Ht?",
             sp_e4: "Koaleszenzzeit: k=2 Linien. Erwartete Zeit = 4N / k(k−1). Koeffizient?",

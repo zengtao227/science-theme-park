@@ -500,7 +500,12 @@ export const enMath = {
             vector_w: "Vector w",
             vector_s: "Vector s",
             coordinates: "Coordinates",
-            dot_product: "Dot Product"
+            dot_product: "Dot Product",
+            hud_title: "Vector Pilot HUD",
+            from: "From",
+            to: "To",
+            vector: "Vec",
+            assist: "Assist"
         },
         placeholders: {
             x: "x",

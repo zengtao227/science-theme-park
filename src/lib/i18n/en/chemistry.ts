@@ -1269,7 +1269,9 @@ export const enChemistry = {
             molecule_display: "Molecule Display",
             input_terminal: "Input Terminal",
             view_3d: "3D View",
-            organic_mastery: "Organic Mastery"
+            organic_mastery: "Organic Mastery",
+            target: "Target",
+            interactive_3d_assembly: "Interactive 3D Assembly"
         },
         placeholders: {
             cxhy: "CxHy",

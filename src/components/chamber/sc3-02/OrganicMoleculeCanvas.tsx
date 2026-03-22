@@ -174,16 +174,15 @@ function MappedMolecule({ molecule }: { molecule: string }) {
 
 export default function OrganicMoleculeCanvas({ molecule, show3D, stage, translations }: OrganicMoleculeCanvasProps) {
     void stage;
-    void translations;
     return (
         <div className="w-full h-full relative group">
             <div className="absolute top-2 left-2 z-10 flex flex-col gap-1 pointer-events-none">
                 <div className="bg-neon-purple/20 text-neon-purple border border-neon-purple/50 px-2 py-1 rounded text-[8px] uppercase tracking-widest font-black inline-block backdrop-blur-md">
-                    Target: {molecule.toUpperCase()}
+                    {translations("sc3_02.labels.target")}: {molecule.toUpperCase()}
                 </div>
                 {show3D && (
                     <div className="text-[8px] text-white/40 uppercase tracking-widest font-mono">
-                        Interactive 3D Assembly
+                        {translations("sc3_02.labels.interactive_3d_assembly")}
                     </div>
                 )}
             </div>
