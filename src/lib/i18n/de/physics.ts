@@ -1402,25 +1402,25 @@ export const dePhysics = {
                         "2d_balance": "Zwei senkrechte Kräfte wirken auf Objekt (m={m}kg). Resultierende Kraft?",
                         vector_add: "Kräfte F_1={f}N (Ost) und F_2={f}N (Nord) wirken auf Objekt. Nettokraft?",
                         slope: "Objekt (m={m}kg) auf Hang (θ={theta}°) mit Reibung μ={mu}. Normalkomponente?",
-                        space_friction: "Im Weltraum, Objekt (m={m}kg) erfährt Reibung μ={mu}. Ist das realistisch?",
-                        complex: "Objekt (m={m}kg) gezogen mit F={f}N gegen Reibung μ={mu}. Nettokraft?",
+                        space_friction: "Szenario-Check: Jemand behauptet, ein Objekt (m={m}kg) im Weltraum erfahre Reibung mit μ={mu}. Ist das physikalisch realistisch? Erkläre warum.",
+                        complex: "Objekt (m={m}kg) wird auf einer horizontalen Fläche mit F={f}N horizontal gezogen (μk={mu}, g=9,8 m/s²). Berechne die Nettokraft F_net.",
 
                         // NEWTON 2 - F=ma
                         find_f: "Masse m={m}kg beschleunigt mit a={a}m/s^{2}. Finde Nettokraft F.",
                         find_a: "Nettokraft F={f}N wirkt auf Masse m={m}kg. Finde Beschleunigung a.",
                         gravity: "Objekt m={m}kg auf Planet (g={g}m/s^{2}). Gewichtskraft W=mg?",
                         net_force: "Kraft F={f}N wirkt auf m={m}kg. Reibung f={fr}N wirkt entgegen. Nettobeschleunigung?",
-                        friction: "Kraft F={f}N zieht m={m}kg mit Reibung μ={mu}. Beschleunigung?",
+                        friction: "Kraft F={f}N zieht m={m}kg horizontal auf einer flachen Oberfläche (μk={mu}, g=9,8 m/s²). Berechne Beschleunigung a.",
                         pulley: "Flaschenzugsystem: Masse m={m}kg, angewandte Kraft F={f}N, Reibung μ={mu}. Beschleunigung?",
                         variable_mass: "Kraft F={f}N wirkt auf variables Massensystem m={m}kg. Effektive Beschleunigung?",
                         coupled: "Zwei gekoppelte Massen: m_1={m}kg, angewandt F={f}N. Systembeschleunigung?",
 
                         // REIBUNG
-                        static: "Kiste m={m}kg auf Boden (μs={mu}). Maximale Haftreibung?",
-                        kinetic: "Kiste m={m}kg rutscht (μk={mu}). Gleitreibung?",
+                        static: "Kiste m={m}kg auf horizontalem Boden (μs={mu}, g=9,8 m/s²). Berechne die maximale Haftreibungskraft vor dem Rutschen.",
+                        kinetic: "Kiste m={m}kg rutscht auf horizontalem Boden (μk={mu}, g=9,8 m/s²). Berechne die Gleitreibungskraft.",
                         max_static: "Kiste m={m}kg auf Oberfläche (μs={mu}). Maximale Haftreibung vor Rutschen?",
                         kinetic_vs_static: "Kiste m={m}kg: μs={mu}, μk={mu}. Welche Reibung ist größer?",
-                        slope_friction: "Kiste m={m}kg auf Hang (θ={theta}°) mit μ={mu}. Reibungskraft?",
+                        slope_friction: "Kiste m={m}kg rutscht den Hang hinunter (θ={theta}°). Gleitreibungskoeffizient μk={mu}, g=9,8 m/s². Berechne die Gleitreibungskraft.",
                         critical: "Kiste m={m}kg gezogen mit F={f}N mit μ={mu}. Am kritischen Punkt, Nettokraft?",
 
                         // Interdisziplinäre ELITE-Szenarien mit Vektormathematik
@@ -1441,8 +1441,8 @@ export const dePhysics = {
                         n2_find_m: "Nettokraft F={f}N verursacht Beschleunigung a={a}m/s^{2}. Finde Masse m.",
                         n2_complex: "Kraft F={f}N zieht Masse m={m}kg gegen Reibung f={fr}N. Finde Beschleunigung.",
                         n2_gravity: "Objekt m={m}kg fällt auf Planet (g={g}m/s^{2}). Gewichtskraft Fg?",
-                        fr_static: "Kiste m={m}kg auf Boden (μs={mu}). Maximale Haftreibung?",
-                        fr_kinetic: "Kiste m={m}kg rutscht (μk={mu}). Gleitreibung?",
+                        fr_static: "Kiste m={m}kg auf horizontalem Boden (μs={mu}, g=9,8 m/s²). Berechne die maximale Haftreibungskraft vor dem Rutschen.",
+                        fr_kinetic: "Kiste m={m}kg rutscht auf horizontalem Boden (μk={mu}, g=9,8 m/s²). Berechne die Gleitreibungskraft.",
                         fr_norm: "Kiste m={m}kg gegen Wand gedrückt mit F={f}N. Normalkraft?",
                         fr_slide: "Kiste m={m}kg rutscht auf ebener Fläche. Reibung f={f}N. Koeffizient μk?",
                         fr_bank: "Auto fährt auf geneigter Straße (θ={theta}°). Benötigte Reibung?"
@@ -1526,12 +1526,12 @@ export const dePhysics = {
                         basic_ep: "Objekt m={m}kg in Höhe h={h}m. Berechne potentielle Energie Ep (g={g}m/s^{2}).",
                         rhine_hydro: "Rheinwasser m={m}kg fließt von Höhe h={h}m. Potentielle Energie Ep?",
                         total_energy: "Objekt m={m}kg in h={h}m mit Geschwindigkeit v={v}m/s. Gesamtmechanische Energie?",
-                        conservation: "Objekt m={m}kg fällt von h={h}m, erreicht v={v}m/s. Gesamtenergie an jedem Punkt?",
+                        conservation: "Objekt m={m}kg fällt von h={h}m, erreicht v={v}m/s (Luftwiderstand vernachlässigt, g=9,8 m/s²). Wie groß ist die Gesamtmechanikenergie (Ep+Ek) an jedem Punkt?",
 
                         // KINETISCHE ENERGIE
                         basic_ek: "Objekt m={m}kg bewegt sich mit v={v}m/s. Berechne kinetische Energie Ek.",
                         tram_braking: "Basler Tram m={m}kg bremst von v={v}m/s. Zurückgewonnene kinetische Energie?",
-                        velocity_at_bottom: "Objekt m={m}kg fällt von h={h}m mit Anfangsgeschwindigkeit v={v}m/s. Endgeschwindigkeit unten?",
+                        velocity_at_bottom: "Objekt m={m}kg fällt von h={h}m mit Anfangsgeschwindigkeit v={v}m/s. Luftwiderstand vernachlässigt (g=9,8 m/s²): Endgeschwindigkeit unten mit Energieerhaltung bestimmen.",
                         work_energy: "Objekt m={m}kg mit v={v}m/s. Kraft F={f}N wirkt über d={d}m. Endkinetische Energie?",
 
                         // ARBEIT & LEISTUNG
@@ -1776,7 +1776,7 @@ export const dePhysics = {
                         pulley_fixed_movable: "Flaschenzug: {movable} beweglich, {fixed} fest. Last {load} N. Kraftaufwand?",
                         pulley_efficiency: "Flaschenzug: {strands} Stränge, {efficiency}% Wirkungsgrad, Last {load} N. Tatsächlicher Kraftaufwand?",
                         pulley_block_tackle: "Flaschenzugblock: {blocks} Blöcke, {strands} Stränge, Last {load} N. Kraftaufwand?",
-                        inclined_plane: "Schiefe Ebene hebt {load} N auf Höhe {height} m über Länge {length} m. Welche Kraft ist nötig?",
+                        inclined_plane: "Reibungsfreie schiefe Ebene hebt {load} N auf Höhe {height} m über Länge {length} m. Welche Kraft (parallel zur Ebene) hält die Last bei gleichmäßiger Bewegung?",
                         inclined_angle: "Reibungsfreie schiefe Ebene: Winkel {angle}°, Last {load} N. Welche Kraft parallel zur Ebene (aufwärts gerichtet) hält das Objekt im Gleichgewicht?",
                         inclined_friction: "Schiefe Ebene: h={height} m, l={length} m, Last {load} N, Reibung μ={friction}. Kraftaufwand?",
                         screw_jack: "Spindelheber: Steigung {pitch} cm, Hebelradius {radius} cm, Last {load} N. Kraftaufwand?",

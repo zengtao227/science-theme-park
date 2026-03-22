@@ -152,7 +152,7 @@ export const cnBiology = {
         },
         prompts: {
             identify_part: "识别负责{function}的结构。",
-            calc_potential: "已知{ion}细胞外浓度为{cout}，细胞内浓度为{cin}，计算平衡电位。",
+            calc_potential: "已知{ion}细胞外浓度{cout} mmol/L，细胞内浓度{cin} mmol/L（T=37°C，用 Nernst 方程：E=61·log₁₀(C_out/C_in)）。计算平衡电位 E（mV）。",
             action_potential: "在上升相期间，哪种离子的流入是导致去极化的主要原因？",
             synapse_mechanism: "哪种离子的内流触发了神经递质向突触间隙的释放？",
             hint_anatomy: "寻找将冲动从胞体传导出去的长纤维。",
@@ -497,7 +497,7 @@ export const cnBiology = {
             org_er_percentage: "内质网占细胞体积的百分比是多少？",
             org_nuclear_pores: "核膜上通常有多少个核孔？",
             org_peroxisome_count: "典型肝细胞中大约有多少个过氧化物酶体？",
-            org_atp_per_glucose: "有氧呼吸中一个葡萄糖分子产生多少个ATP分子？",
+            org_atp_per_glucose: "有氧呼吸中一个葡萄糖分子产生多少个ATP？（注：经典教材为36-38，现代生物化学估算为30-32）",
             org_protein_synthesis_rate: "蛋白质合成的典型速率是每秒多少个氨基酸？",
             org_membrane_thickness: "细胞膜的厚度是多少纳米？",
             org_microtubule_diameter: "微管的直径是多少纳米？",

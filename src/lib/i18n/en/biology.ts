@@ -152,7 +152,7 @@ export const enBiology = {
         },
         prompts: {
             identify_part: "Identify the structure responsible for {function}.",
-            calc_potential: "Given {ion} outside is {cout} and inside is {cin}, calculate equilibrium potential.",
+            calc_potential: "Given {ion}: outside={cout} mmol/L, inside={cin} mmol/L (T=37\u00b0C, use Nernst: E = 61\u00b7log\u2081\u2080(C_out/C_in)). Calculate the equilibrium potential E in mV.",
             action_potential: "What is the primary ion responsible for depolarization during the rising phase?",
             synapse_mechanism: "Which ion influx triggers the release of neurotransmitters into the synaptic cleft?",
             hint_anatomy: "Look for the long fiber that carries impulses away from the cell body.",
@@ -497,7 +497,7 @@ export const enBiology = {
             org_er_percentage: "What percentage of the cell volume does the endoplasmic reticulum occupy?",
             org_nuclear_pores: "How many nuclear pores are typically in a nuclear envelope?",
             org_peroxisome_count: "Approximately how many peroxisomes are in a typical liver cell?",
-            org_atp_per_glucose: "How many ATP molecules are produced from one glucose molecule in aerobic respiration?",
+            org_atp_per_glucose: "How many ATP molecules are produced from one glucose molecule in aerobic respiration? (Note: classic textbooks give 36-38; modern biochemistry estimates 30-32.)",
             org_protein_synthesis_rate: "What is the typical rate of protein synthesis in amino acids per second?",
             org_membrane_thickness: "What is the thickness of a cell membrane in nanometers?",
             org_microtubule_diameter: "What is the diameter of a microtubule in nanometers?",

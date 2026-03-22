@@ -152,7 +152,7 @@ export const deBiology = {
         },
         prompts: {
             identify_part: "Identifizieren Sie die Struktur, die für {function} verantwortlich ist.",
-            calc_potential: "Gegeben sind {ion} außen = {cout} und innen = {cin}. Berechnen Sie das Gleichgewichtspotential.",
+            calc_potential: "Gegeben: {ion} außen={cout} mmol/L, innen={cin} mmol/L (T=37°C, Nernst: E = 61·log₁₀(C_außen/C_innen)). Berechne das Gleichgewichtspotential E in mV.",
             action_potential: "Welches Ion ist primär für die Depolarisation während der Anstiegsphase verantwortlich?",
             synapse_mechanism: "Welcher Ioneneinstrom löst die Freisetzung von Neurotransmittern in den synaptischen Spalt aus?",
             hint_anatomy: "Suchen Sie nach der langen Faser, die Impulse vom Zellkörper weg leitet.",
@@ -497,7 +497,7 @@ export const deBiology = {
             org_er_percentage: "Welchen Prozentsatz des Zellvolumens nimmt das endoplasmatische Retikulum ein?",
             org_nuclear_pores: "Wie viele Kernporen gibt es typischerweise in einer Kernhülle?",
             org_peroxisome_count: "Ungefähr wie viele Peroxisomen gibt es in einer typischen Leberzelle?",
-            org_atp_per_glucose: "Wie viele ATP-Moleküle werden aus einem Glukosemolekül bei aerober Atmung produziert?",
+            org_atp_per_glucose: "Wie viele ATP-Moleküle werden aus einem Glukosemolekül bei aerober Atmung produziert? (Hinweis: klassische Lehrbücher geben 36-38; moderne Biochemie schätzt 30-32.)",
             org_protein_synthesis_rate: "Was ist die typische Rate der Proteinsynthese in Aminosäuren pro Sekunde?",
             org_membrane_thickness: "Was ist die Dicke einer Zellmembran in Nanometern?",
             org_microtubule_diameter: "Was ist der Durchmesser eines Mikrotubulus in Nanometern?",

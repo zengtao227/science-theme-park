@@ -1338,25 +1338,25 @@ export const cnPhysics = {
             "2d_balance": "两个垂直的力作用于物体 (m={m}kg)。合力大小？",
             vector_add: "力 F_1={f}N (向东) 和 F_2={f}N (向北) 作用于物体。合力大小？",
             slope: "物体 (m={m}kg) 在斜面上 (θ={theta}°)，摩擦系数 μ={mu}。支持力分量？",
-            space_friction: "在太空中，物体 (m={m}kg) 受摩擦力 μ={mu}。这现实吗？",
-            complex: "物体 (m={m}kg) 被力 F={f}N 拉动，对抗摩擦 μ={mu}。合力？",
+            space_friction: "情景假设：有人声称一个物体 (m={m}kg) 在深空中受到摩擦力 μ={mu}。这在物理上现实吗？请解释。",
+            complex: "物体 (m={m}kg) 在水平面上被力 F={f}N 水平拉动 (μk={mu}, g=9.8 m/s²)。求合力 F_net。",
 
             // 牛顿第二定律 - F=ma
             find_f: "质量 m={m}kg 以加速度 a={a}m/s^{2} 运动。求合力 F。",
             find_a: "合力 F={f}N 作用于质量 m={m}kg。求加速度 a。",
             gravity: "物体 m={m}kg 在行星上 (g={g}m/s^{2})。重力 W=mg？",
             net_force: "力 F={f}N 作用于 m={m}kg。摩擦力 f={fr}N 阻碍。合加速度？",
-            friction: "力 F={f}N 拉动 m={m}kg，摩擦系数 μ={mu}。加速度？",
+            friction: "力 F={f}N 将 m={m}kg 在水平面上水平拉动 (μk={mu}, g=9.8 m/s²)。求加速度 a。",
             pulley: "滑轮系统：质量 m={m}kg，施加力 F={f}N，摩擦 μ={mu}。加速度？",
             variable_mass: "力 F={f}N 作用于变质量系统 m={m}kg。有效加速度？",
             coupled: "两个质量耦合：m_1={m}kg，施加 F={f}N。系统加速度？",
 
             // 摩擦力
-            static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
-            kinetic: "箱子 m={m}kg 滑动 (μk={mu})。动摩擦力？",
+            static: "箱子 m={m}kg 在水平地板上 (μs={mu}, g=9.8 m/s²)。计算滑动前最大静摩擦力。",
+            kinetic: "箱子 m={m}kg 在水平地板上滑动 (μk={mu}, g=9.8 m/s²)。计算动摩擦力。",
             max_static: "箱子 m={m}kg 在表面上 (μs={mu})。滑动前的最大静摩擦？",
             kinetic_vs_static: "箱子 m={m}kg：μs={mu}，μk={mu}。哪个摩擦力更大？",
-            slope_friction: "箱子 m={m}kg 在斜面上 (θ={theta}°)，μ={mu}。摩擦力？",
+            slope_friction: "箱子 m={m}kg 沿斜面下滑 (θ={theta}°)，动摩擦系数 μk={mu}，g=9.8 m/s²。计算动摩擦力。",
             critical: "箱子 m={m}kg 被力 F={f}N 拉动，μ={mu}。临界点的合力？",
 
             // 跨学科精英场景（结合向量数学）
@@ -1377,8 +1377,8 @@ export const cnPhysics = {
             n2_find_m: "合力 F={f}N 产生加速度 a={a}m/s^{2}。求质量 m。",
             n2_complex: "力 F={f}N 拉动质量 m={m}kg 对抗摩擦力 f={fr}N。求加速度。",
             n2_gravity: "物体 m={m}kg 在行星上坠落 (g={g}m/s^{2})。重力 Fg？",
-            fr_static: "箱子 m={m}kg 在地板上 (μs={mu})。最大静摩擦力？",
-            fr_kinetic: "箱子 m={m}kg 滑动 (μk={mu})。动摩擦力？",
+            fr_static: "箱子 m={m}kg 在水平地板上 (μs={mu}, g=9.8 m/s²)。计算滑动前最大静摩擦力。",
+            fr_kinetic: "箱子 m={m}kg 在水平地板上滑动 (μk={mu}, g=9.8 m/s²)。计算动摩擦力。",
             fr_norm: "箱子 m={m}kg 被力 F={f}N 压在墙上。支持力？",
             fr_slide: "箱子 m={m}kg 在水平地板上滑动。摩擦力 f={f}N。系数 μk？",
             fr_bank: "汽车在倾斜路面转弯 (θ={theta}°)。需要的摩擦力？"
@@ -1463,12 +1463,12 @@ export const cnPhysics = {
             basic_ep: "物体 m={m}kg 在高度 h={h}m。计算势能 Ep (g={g}m/s^{2})。",
             rhine_hydro: "莱茵河水 m={m}kg 从高度 h={h}m 流下。势能 Ep？",
             total_energy: "物体 m={m}kg 在 h={h}m 高度，速度 v={v}m/s。总机械能？",
-            conservation: "物体 m={m}kg 从 h={h}m 落下，达到 v={v}m/s。任意点的总能量？",
+            conservation: "物体 m={m}kg 从 h={h}m 落下，达到 v={v}m/s（忽略空气阻力，g=9.8 m/s²）。任意点的总机械能（Ep+Ek）为多少？",
 
             // 动能
             basic_ek: "物体 m={m}kg 以 v={v}m/s 运动。计算动能 Ek。",
             tram_braking: "巴塞尔电车 m={m}kg 从 v={v}m/s 刹车。回收的动能？",
-            velocity_at_bottom: "物体 m={m}kg 从 h={h}m 落下，初速度 v={v}m/s。底部的最终速度？",
+            velocity_at_bottom: "物体 m={m}kg 从 h={h}m 落下，初速 v={v}m/s。忽略空气阻力（g=9.8 m/s²），用能量守恒求底部最终速度。",
             work_energy: "物体 m={m}kg 速度 v={v}m/s。力 F={f}N 作用距离 d={d}m。最终动能？",
 
             // 功与功率
@@ -1710,7 +1710,7 @@ export const cnPhysics = {
             pulley_fixed_movable: "滑轮系统：{movable} 个动滑轮，{fixed} 个定滑轮。负载 {load} N。所需动力？",
             pulley_efficiency: "滑轮：{strands} 根绳段，效率 {efficiency}% ，负载 {load} N。实际动力？",
             pulley_block_tackle: "滑轮组：{blocks} 个滑轮块，{strands} 根绳段，负载 {load} N。所需动力？",
-            inclined_plane: "一个斜面将 {load} N 负载提升到 {height} m 高度，斜面长度为 {length} m。需要多少动力？",
+            inclined_plane: "无摩擦斜面将 {load} N 负载提升到 {height} m 高度，斜面长 {length} m。沿斜面施加多少力可使负载区匀速运动？",
             inclined_angle: "无摩擦斜面：角度 {angle}°，重物 {load} N。沿斜面向上施力使重物保持静止，所需力为多少？",
             inclined_friction: "斜面：h={height} m，l={length} m，负载 {load} N，摩擦系数 μ={friction}。所需动力？",
             screw_jack: "螺旋千斤顶：螺距 {pitch} cm，手柄半径 {radius} cm，负载 {load} N。所需动力？",

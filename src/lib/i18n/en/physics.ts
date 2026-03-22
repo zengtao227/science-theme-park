@@ -1304,25 +1304,25 @@ export const enPhysics = {
                         "2d_balance": "Two perpendicular forces act on object (m={m}kg). Resultant force magnitude?",
                         vector_add: "Forces F_1={f}N (east) and F_2={f}N (north) act on object. Net force magnitude?",
                         slope: "Object (m={m}kg) on slope (θ={theta}°) with friction μ={mu}. Normal force component?",
-                        space_friction: "In space, object (m={m}kg) experiences friction μ={mu}. Is this realistic?",
-                        complex: "Object (m={m}kg) pulled by F={f}N against friction μ={mu}. Net force?",
+                        space_friction: "Scenario check: someone claims an object (m={m}kg) in deep space experiences friction with μ={mu}. Is this physically realistic? Explain.",
+                        complex: "Object (m={m}kg) pulled horizontally by F={f}N on a flat surface (μk={mu}, g=9.8 m/s²). Find net force F_net.",
 
                         // NEWTON 2 - F=ma
                         find_f: "Mass m={m}kg accelerates at a={a}m/s^{2}. Find net force F.",
                         find_a: "Net force F={f}N acts on mass m={m}kg. Find acceleration a.",
                         gravity: "Object m={m}kg on planet (g={g}m/s^{2}). Weight force W=mg?",
                         net_force: "Force F={f}N acts on m={m}kg. Friction f={fr}N opposes. Net acceleration?",
-                        friction: "Force F={f}N pulls m={m}kg with friction μ={mu}. Acceleration?",
+                        friction: "Force F={f}N pulls m={m}kg horizontally on a flat surface (μk={mu}, g=9.8 m/s²). Find acceleration a.",
                         pulley: "Pulley system: mass m={m}kg, applied force F={f}N, friction μ={mu}. Acceleration?",
                         variable_mass: "Force F={f}N acts on variable mass system m={m}kg. Effective acceleration?",
                         coupled: "Two masses coupled: m_1={m}kg, applied F={f}N. System acceleration?",
 
                         // FRICTION
-                        static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
-                        kinetic: "Box m={m}kg sliding (μk={mu}). Kinetic friction force?",
+                        static: "Box m={m}kg on a horizontal floor (μs={mu}, g=9.8 m/s²). Calculate the maximum static friction force before sliding begins.",
+                        kinetic: "Box m={m}kg slides on a horizontal floor (μk={mu}, g=9.8 m/s²). Calculate the kinetic friction force.",
                         max_static: "Box m={m}kg on surface (μs={mu}). Maximum static friction before sliding?",
                         kinetic_vs_static: "Box m={m}kg: μs={mu}, μk={mu}. Which friction is larger?",
-                        slope_friction: "Box m={m}kg on slope (θ={theta}°) with μ={mu}. Friction force?",
+                        slope_friction: "Box m={m}kg slides down slope (θ={theta}°). Kinetic friction coefficient μk={mu}, g=9.8 m/s². Calculate the kinetic friction force on the box.",
                         critical: "Box m={m}kg pulled by F={f}N with μ={mu}. At critical point, net force?",
 
                         // Cross-disciplinary ELITE scenarios with vector mathematics
@@ -1343,8 +1343,8 @@ export const enPhysics = {
                         n2_find_m: "Net force F={f}N causes acceleration a={a}m/s^{2}. Find mass m.",
                         n2_complex: "Force F={f}N pulls mass m={m}kg against friction f={fr}N. Find acceleration.",
                         n2_gravity: "Object m={m}kg falls on planet (g={g}m/s^{2}). Weight force Fg?",
-                        fr_static: "Box m={m}kg on floor (μs={mu}). Max static friction force?",
-                        fr_kinetic: "Box m={m}kg sliding (μk={mu}). Kinetic friction force?",
+                        fr_static: "Box m={m}kg on a horizontal floor (μs={mu}, g=9.8 m/s²). Calculate the maximum static friction force before sliding begins.",
+                        fr_kinetic: "Box m={m}kg slides on a horizontal floor (μk={mu}, g=9.8 m/s²). Calculate the kinetic friction force.",
                         fr_norm: "Box m={m}kg pressed against wall with F={f}N. Normal force?",
                         fr_slide: "Box m={m}kg slides on level floor. Friction f={f}N. Coefficient μk?",
                         fr_bank: "Car turns on banked road (θ={theta}°). Friction required?"
@@ -1428,12 +1428,12 @@ export const enPhysics = {
                         basic_ep: "Object m={m}kg at height h={h}m. Calculate potential energy Ep (g={g}m/s^{2}).",
                         rhine_hydro: "Rhine water m={m}kg flows from height h={h}m. Potential energy Ep?",
                         total_energy: "Object m={m}kg at h={h}m with velocity v={v}m/s. Total mechanical energy?",
-                        conservation: "Object m={m}kg falls from h={h}m, reaching v={v}m/s. Total energy at any point?",
+                        conservation: "Object m={m}kg falls from h={h}m, reaching v={v}m/s (ignore air resistance, g=9.8 m/s²). What is the total mechanical energy (Ep + Ek) at any point?",
 
                         // KINETIC ENERGY
                         basic_ek: "Object m={m}kg moves at v={v}m/s. Calculate kinetic energy Ek.",
                         tram_braking: "Basel tram m={m}kg brakes from v={v}m/s. Kinetic energy recovered?",
-                        velocity_at_bottom: "Object m={m}kg falls from h={h}m with initial v={v}m/s. Final velocity at bottom?",
+                        velocity_at_bottom: "Object m={m}kg falls from h={h}m with initial speed v={v}m/s. Ignoring air resistance (g=9.8 m/s²), find the final speed at the bottom using energy conservation.",
                         work_energy: "Object m={m}kg at v={v}m/s. Force F={f}N acts over d={d}m. Final kinetic energy?",
 
                         // WORK & POWER
@@ -1674,7 +1674,7 @@ export const enPhysics = {
                         pulley_fixed_movable: "Pulley: {movable} movable, {fixed} fixed. Load {load} N. Effort?",
                         pulley_efficiency: "Pulley: {strands} strands, {efficiency}% efficiency, load {load} N. Actual effort?",
                         pulley_block_tackle: "Block and tackle: {blocks} blocks, {strands} strands, load {load} N. Effort?",
-                        inclined_plane: "An inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force is needed?",
+                        inclined_plane: "Frictionless inclined plane lifts a {load} N load to height {height} m over length {length} m. What effort force (parallel to the plane) keeps the load moving at constant speed?",
                         inclined_angle: "Frictionless inclined plane: angle {angle}°, load {load} N. What force applied upward parallel to the plane keeps the object stationary?",
                         inclined_friction: "Inclined plane: h={height} m, l={length} m, load {load} N, friction μ={friction}. Effort?",
                         screw_jack: "Screw jack: pitch {pitch} cm, handle radius {radius} cm, load {load} N. Effort?",
