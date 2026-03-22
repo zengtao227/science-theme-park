@@ -27,6 +27,11 @@ export default function GeometryVisualization({
   void quest;
   void translations;
 
+  // Debug: Log what data we're receiving
+  console.log('GeometryVisualization - stage:', stage);
+  console.log('GeometryVisualization - visualizationType:', visualizationType);
+  console.log('GeometryVisualization - data:', data);
+
   // Determine which visualization to render based on stage and data
   const renderVisualization = () => {
     // If there are distance calculations, show distance calculator

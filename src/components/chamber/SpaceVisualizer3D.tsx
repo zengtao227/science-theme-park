@@ -308,6 +308,12 @@ function PointObject({
 }
 
 export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
+  // Debug: Log the data to see what we're receiving
+  console.log('SpaceVisualizer3D received data:', data);
+  console.log('- Points:', data.points);
+  console.log('- Planes:', data.planes);
+  console.log('- Lines:', data.lines);
+  
   return (
     <div className="relative w-full h-[720px] border border-white/10 rounded-xl overflow-hidden bg-black">
       <Canvas
