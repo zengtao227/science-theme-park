@@ -13,6 +13,11 @@ interface DistanceCalculatorProps {
 interface SceneBounds {
   center: [number, number, number];
   extent: number;
+  cameraOffset: [number, number, number];
+  gridSize: number;
+  lineExtent: number;
+  planeSize: number;
+  pointRadius: number;
 }
 
 // Axes component
@@ -27,12 +32,12 @@ function Axes({ extent }: { extent: number }) {
 }
 
 // Point component
-function PointObject({ coordinates, label, color }: { coordinates: [number, number, number]; label: string; color: string }) {
+function PointObject({ coordinates, label, color, radius }: { coordinates: [number, number, number]; label: string; color: string; radius: number }) {
   void label;
   return (
     <group position={coordinates}>
       <mesh>
-        <sphereGeometry args={[0.3, 16, 16]} />
+        <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial color={color} />
       </mesh>
     </group>
@@ -60,7 +65,7 @@ function Line3D({ point, direction, color, extent }: { point: [number, number, n
 }
 
 // Plane component
-function PlaneObject({ coefficients, color, opacity }: { coefficients: [number, number, number, number]; color: string; opacity: number }) {
+function PlaneObject({ coefficients, color, opacity, size }: { coefficients: [number, number, number, number]; color: string; opacity: number; size: number }) {
   const [A, B, C, D] = coefficients;
   const normal = new THREE.Vector3(A, B, C).normalize();
   
@@ -78,7 +83,7 @@ function PlaneObject({ coefficients, color, opacity }: { coefficients: [number, 
   
   return (
     <mesh position={point} quaternion={quaternion}>
-      <planeGeometry args={[10, 10]} />
+      <planeGeometry args={[size, size]} />
       <meshStandardMaterial color={color} opacity={opacity} transparent side={THREE.DoubleSide} />
     </mesh>
   );
@@ -132,7 +137,15 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
     });
 
     if (allPoints.length === 0) {
-      return { center: [0, 0, 0], extent: 5 };
+      return {
+        center: [0, 0, 0],
+        extent: 3.4,
+        cameraOffset: [2.8, 2.4, 3.0],
+        gridSize: 5.8,
+        lineExtent: 3.9,
+        planeSize: 4.6,
+        pointRadius: 0.24,
+      };
     }
 
     const xs = allPoints.map((p) => p[0]);
@@ -150,18 +163,26 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
       (minZ + maxZ) / 2,
     ];
     const maxSpan = Math.max(maxX - minX, maxY - minY, maxZ - minZ);
-    const extent = Math.max(5, maxSpan * 0.55 + 1.4);
-    return { center, extent };
+    const extent = Math.max(3.4, maxSpan * 0.48 + 1.0);
+    return {
+      center,
+      extent,
+      cameraOffset: [extent * 0.82, extent * 0.68, extent * 0.88],
+      gridSize: extent * 1.65,
+      lineExtent: extent * 0.96,
+      planeSize: extent * 1.18,
+      pointRadius: Math.max(0.2, Math.min(0.42, extent * 0.045)),
+    };
   }, [data]);
 
   return (
-    <div className="w-full h-full min-h-[400px] border border-white/10 rounded-xl overflow-hidden bg-black relative">
+    <div className="w-full h-full min-h-[560px] border border-white/10 rounded-xl overflow-hidden bg-black relative">
       <Canvas
         camera={{
           position: [
-            sceneBounds.center[0] + sceneBounds.extent * 1.35,
-            sceneBounds.center[1] + sceneBounds.extent * 1.15,
-            sceneBounds.center[2] + sceneBounds.extent * 1.35,
+            sceneBounds.center[0] + sceneBounds.cameraOffset[0],
+            sceneBounds.center[1] + sceneBounds.cameraOffset[1],
+            sceneBounds.center[2] + sceneBounds.cameraOffset[2],
           ],
           fov: 56,
         }}
@@ -170,14 +191,14 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
         <pointLight position={[10, 10, 10]} intensity={1} />
         
         <Grid
-          args={[sceneBounds.extent * 2.2, sceneBounds.extent * 2.2]}
-          cellSize={Math.max(1, sceneBounds.extent / 10)}
+          args={[sceneBounds.gridSize, sceneBounds.gridSize]}
+          cellSize={Math.max(0.75, sceneBounds.extent / 7.5)}
           cellThickness={0.5}
           cellColor="#333333"
-          sectionSize={Math.max(2, sceneBounds.extent / 4)}
+          sectionSize={Math.max(1.5, sceneBounds.extent / 3.2)}
           sectionThickness={1}
           sectionColor="#444444"
-          fadeDistance={sceneBounds.extent * 3}
+          fadeDistance={sceneBounds.gridSize * 1.35}
           fadeStrength={1}
           followCamera={false}
           infiniteGrid={false}
@@ -192,6 +213,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
             coefficients={plane.coefficients}
             color={plane.color}
             opacity={plane.opacity}
+            size={sceneBounds.planeSize}
           />
         ))}
         
@@ -204,7 +226,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
                 point={[line.point.x, line.point.y, line.point.z]}
                 direction={[line.direction.x, line.direction.y, line.direction.z]}
                 color={line.color}
-                extent={sceneBounds.extent * 1.25}
+                extent={sceneBounds.lineExtent}
               />
             );
           }
@@ -220,6 +242,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
                 coordinates={point.coordinates as [number, number, number]}
                 label={point.label}
                 color={point.color}
+                radius={sceneBounds.pointRadius}
               />
             );
           }
@@ -246,7 +269,15 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
           return null;
         })}
         
-        <OrbitControls enableDamping dampingFactor={0.05} rotateSpeed={0.5} zoomSpeed={0.5} target={sceneBounds.center} />
+        <OrbitControls
+          enableDamping
+          dampingFactor={0.05}
+          rotateSpeed={0.5}
+          zoomSpeed={0.7}
+          minDistance={sceneBounds.extent * 0.85}
+          maxDistance={sceneBounds.extent * 3.2}
+          target={sceneBounds.center}
+        />
       </Canvas>
       
       {/* Distance value display */}
