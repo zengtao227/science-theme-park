@@ -137,7 +137,7 @@ export default function VectorPilotHud({
 
   return (
     <div className="relative w-full aspect-square md:aspect-video bg-[#050505] rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-      <Canvas camera={{ position: [6, 6, 8], fov: 45 }}>
+      <Canvas camera={{ position: [4.8, 4.8, 6.4], fov: 56 }}>
         <color attach="background" args={["#04070d"]} />
         <ambientLight intensity={0.35} />
         <pointLight position={[6, 8, 6]} intensity={1.1} />

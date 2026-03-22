@@ -148,7 +148,7 @@ export default function PhysicsPlayground3D({ forces }: PhysicsPlayground3DProps
                 </div>
             </div>
 
-            <Canvas camera={{ position: [5, 4, 5], fov: 45 }} shadows>
+            <Canvas camera={{ position: [4.2, 3.4, 4.2], fov: 56 }} shadows>
                 <Suspense fallback={null}>
                     <color attach="background" args={['#050505']} />
                     <fog attach="fog" args={['#050505', 10, 30]} />
@@ -186,7 +186,7 @@ export default function PhysicsPlayground3D({ forces }: PhysicsPlayground3DProps
                     ))}
 
                     <ContactShadows position={[0, 0, 0]} opacity={0.4} scale={10} blur={2} far={4} />
-                    <OrbitControls makeDefault maxPolarAngle={Math.PI / 2 - 0.05} minDistance={3} maxDistance={15} enableDamping dampingFactor={0.05} />
+                    <OrbitControls makeDefault maxPolarAngle={Math.PI / 2 - 0.05} minDistance={2.5} maxDistance={12} enableDamping dampingFactor={0.05} target={[0, 0.6, 0]} />
                 </Suspense>
             </Canvas>
         </div>

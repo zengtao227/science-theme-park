@@ -188,7 +188,7 @@ export default function OrganicMoleculeCanvas({ molecule, show3D, stage, transla
                 )}
             </div>
 
-            <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+            <Canvas camera={{ position: [0, 0.2, 5], fov: 56 }}>
                 <Suspense fallback={null}>
                     <color attach="background" args={['#050505']} />
                     <ambientLight intensity={0.4} />
@@ -208,12 +208,13 @@ export default function OrganicMoleculeCanvas({ molecule, show3D, stage, transla
                             autoRotateSpeed={0.5}
                             enableDamping
                             dampingFactor={0.05}
-                            minDistance={3}
-                            maxDistance={15}
+                            minDistance={2.5}
+                            maxDistance={12}
+                            target={[0, 0.2, 0]}
                         />
                     ) : (
                         // Fixed camera angle if 3D rotation toggle is off
-                        <OrbitControls enableRotate={false} enableZoom={true} enablePan={false} />
+                        <OrbitControls enableRotate={false} enableZoom={true} enablePan={false} target={[0, 0.2, 0]} />
                     )}
                 </Suspense>
             </Canvas>
