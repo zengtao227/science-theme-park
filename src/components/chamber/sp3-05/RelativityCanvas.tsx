@@ -189,7 +189,7 @@ function Scene({
 export default function RelativityCanvas(props: RelativityCanvasProps) {
   return (
     <div className="w-full h-[360px] rounded-xl border border-white/10 bg-black/70 overflow-hidden">
-      <Canvas camera={{ position: [0, 0.8, 7], fov: 45 }}>
+      <Canvas camera={{ position: [0, 0.6, 5.8], fov: 56 }}>
         <color attach="background" args={["#02030a"]} />
         <ambientLight intensity={0.45} />
         <pointLight position={[6, 6, 6]} intensity={1.2} />

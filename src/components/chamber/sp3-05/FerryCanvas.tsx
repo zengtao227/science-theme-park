@@ -64,7 +64,7 @@ function Cable({ positionX }: { positionX: number }) {
 export default function P104_FerryCanvas({ angle, positionX }: FerryCanvasProps) {
     return (
         <div className="w-full h-full bg-[#050505] rounded-lg overflow-hidden relative">
-            <Canvas camera={{ position: [0, 8, 8], fov: 45 }}>
+            <Canvas camera={{ position: [0, 6.2, 6.8], fov: 56 }}>
                 <color attach="background" args={["#000"]} />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} intensity={1} />

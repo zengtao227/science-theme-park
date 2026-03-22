@@ -592,7 +592,7 @@ export default function P308OpticsCanvas({
 }: P308OpticsCanvasProps) {
   return (
     <div className="relative w-full h-[420px] border border-white/10 rounded-lg bg-[#020208] overflow-hidden shadow-2xl">
-      <Canvas camera={{ position: [0, 3, 7], fov: 45 }} gl={{ antialias: true }}>
+      <Canvas camera={{ position: [0, 2.3, 5.8], fov: 56 }} gl={{ antialias: true }}>
         <color attach="background" args={["#000005"]} />
 
         {/* Lighting */}
@@ -604,8 +604,9 @@ export default function P308OpticsCanvas({
         {/* Controls */}
         <OrbitControls
           enablePan={false}
-          minDistance={4}
-          maxDistance={12}
+          minDistance={3.5}
+          maxDistance={10}
+          target={[0, 0.5, 0]}
           autoRotate={false}
         />
 

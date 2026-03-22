@@ -260,7 +260,7 @@ function HydraulicPress() {
 export default function HydroCanvas({ stage }: HydroCanvasProps) {
   return (
     <div className="w-full h-[360px] rounded-xl border border-white/10 bg-black/70 overflow-hidden">
-      <Canvas camera={{ position: [0, 1.8, 6.4], fov: 45 }}>
+      <Canvas camera={{ position: [0, 1.4, 5.2], fov: 56 }}>
         <color attach="background" args={["#05070c"]} />
         <ambientLight intensity={0.35} />
         <pointLight position={[4, 4, 4]} intensity={1.2} />
