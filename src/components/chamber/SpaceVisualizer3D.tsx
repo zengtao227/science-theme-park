@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Grid, Line } from "@react-three/drei";
+import { OrbitControls, Grid, Line, Text } from "@react-three/drei";
 import { GeometryData } from "@/lib/gm2-02-types";
 import * as THREE from "three";
 
@@ -132,18 +132,29 @@ function Axes({ extent }: { extent: number }) {
         color="red"
         lineWidth={2}
       />
+      <Text position={[extent + 0.5, 0, 0]} fontSize={0.4} color="red">
+        x
+      </Text>
+      
       {/* Y-axis (green) */}
       <Line
         points={[[0, -extent, 0], [0, extent, 0]]}
         color="green"
         lineWidth={2}
       />
+      <Text position={[0, extent + 0.5, 0]} fontSize={0.4} color="green">
+        y
+      </Text>
+      
       {/* Z-axis (blue) */}
       <Line
         points={[[0, 0, -extent], [0, 0, extent]]}
         color="blue"
         lineWidth={2}
       />
+      <Text position={[0, 0, extent + 0.5]} fontSize={0.4} color="blue">
+        z
+      </Text>
     </>
   );
 }
@@ -243,13 +254,55 @@ function PointObject({
   color: string;
   radius: number;
 }) {
-  void label;
+  const labelOffset: [number, number, number] = [
+    coordinates[0] + 0.8,
+    coordinates[1] + 0.6,
+    coordinates[2] + 0.5
+  ];
+  
+  const coordLabelOffset: [number, number, number] = [
+    coordinates[0] + 0.8,
+    coordinates[1] - 0.3,
+    coordinates[2] + 0.5
+  ];
+  
   return (
     <group position={coordinates}>
       <mesh>
         <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial color={color} />
       </mesh>
+      {/* Point label */}
+      <Text
+        position={labelOffset}
+        fontSize={0.35}
+        color={color}
+        anchorX="left"
+        anchorY="middle"
+      >
+        {label}
+      </Text>
+      {/* Coordinate label */}
+      <Text
+        position={coordLabelOffset}
+        fontSize={0.22}
+        color={color}
+        anchorX="left"
+        anchorY="middle"
+      >
+        ({coordinates[0].toFixed(1)}, {coordinates[1].toFixed(1)}, {coordinates[2].toFixed(1)})
+      </Text>
+      {/* Connection line from point to label */}
+      <Line
+        points={[
+          new THREE.Vector3(...coordinates),
+          new THREE.Vector3(...labelOffset)
+        ]}
+        color={color}
+        lineWidth={1}
+        transparent
+        opacity={0.3}
+      />
     </group>
   );
 }
