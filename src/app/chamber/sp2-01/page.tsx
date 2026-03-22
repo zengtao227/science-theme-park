@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -45,6 +45,17 @@ export default function SP201CircuitBasics() {
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
+  const stageDifficultyMap = useMemo<Record<Stage, Difficulty[]>>(() => ({
+    COMPONENTS: ["BASIC"],
+    CIRCUITS: ["CORE", "ADVANCED", "ELITE"],
+    DIAGRAMS: ["ADVANCED"],
+  }), []);
+
+  const resolveDifficultyForStage = useCallback((requested: Difficulty, targetStage: Stage): Difficulty => {
+    const allowed = stageDifficultyMap[targetStage];
+    return allowed.includes(requested) ? requested : allowed[0];
+  }, [stageDifficultyMap]);
+
   const stages = useMemo(() => [
     { id: "COMPONENTS" as Stage, label: sp2_01_t.stages.components },
     { id: "CIRCUITS" as Stage, label: sp2_01_t.stages.simple_circuits },
@@ -83,7 +94,15 @@ export default function SP201CircuitBasics() {
     moduleCode: "sp2-01",
     buildPool,
     initialStage: "COMPONENTS",
+    initialDifficulty: "BASIC",
   });
+
+  useEffect(() => {
+    const resolved = resolveDifficultyForStage(difficulty, stage);
+    if (resolved !== difficulty) {
+      handleDifficultyChange(resolved);
+    }
+  }, [difficulty, handleDifficultyChange, resolveDifficultyForStage, stage]);
 
   if (!currentQuest) {
     return (
@@ -116,10 +135,17 @@ export default function SP201CircuitBasics() {
       title={sp2_01_t.title}
       moduleCode="SP2.01"
       difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
+      onDifficultyChange={(d) => handleDifficultyChange(resolveDifficultyForStage(d, stage))}
       stages={stages}
       currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
+      onStageChange={(s) => {
+        const nextStage = s as Stage;
+        const nextDifficulty = resolveDifficultyForStage(difficulty, nextStage);
+        if (nextDifficulty !== difficulty) {
+          handleDifficultyChange(nextDifficulty);
+        }
+        handleStageChange(nextStage);
+      }}
       printSections={printSections}
       onVerify={verify}
       onNext={next}
