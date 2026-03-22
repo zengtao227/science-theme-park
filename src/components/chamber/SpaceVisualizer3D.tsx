@@ -258,7 +258,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
   void data;
 
   return (
-    <div className="relative w-full h-full min-h-[720px] flex-1 border border-white/10 rounded-xl overflow-hidden bg-black">
+    <div className="relative w-full h-[720px] border border-white/10 rounded-xl overflow-hidden bg-black">
       <Canvas
         camera={{
           position: [6.5, 5.2, 6.5],

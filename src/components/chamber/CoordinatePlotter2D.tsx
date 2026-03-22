@@ -215,7 +215,7 @@ export default function CoordinatePlotter2D({ data }: CoordinatePlotter2DProps) 
   }, [data]);
 
   return (
-    <div className="w-full h-full min-h-[560px] border border-white/10 rounded-xl overflow-hidden bg-black">
+    <div className="w-full h-[600px] border border-white/10 rounded-xl overflow-hidden bg-black">
       <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );
