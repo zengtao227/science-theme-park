@@ -156,7 +156,7 @@ export default function GM202Page() {
       onAiDiagnosisRequested={requestAiFeedback}
       title={gm2_02_t.title}
       moduleCode="GM2.02"
-      defaultLeftWidth={48}
+      defaultLeftWidth={40}
       minLeftWidth={30}
       maxLeftWidth={75}
       difficulty={difficulty}

@@ -56,7 +56,7 @@ function buildSceneBounds(data: GeometryData): SceneBounds {
     return {
       center: [0, 0, 0],
       extent: 3.0,
-      cameraOffset: [2.15, 1.8, 2.3],
+      cameraOffset: [1.85, 1.55, 1.95],
       gridSize: 4.8,
       lineExtent: 3.0,
       planeSize: 3.8,
@@ -85,7 +85,7 @@ function buildSceneBounds(data: GeometryData): SceneBounds {
   return {
     center,
     extent,
-    cameraOffset: [extent * 0.66, extent * 0.54, extent * 0.72],
+    cameraOffset: [extent * 0.56, extent * 0.46, extent * 0.6],
     gridSize: extent * 1.35,
     lineExtent: extent * 0.8,
     planeSize: extent * 0.96,
@@ -237,7 +237,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
             sceneBounds.center[1] + sceneBounds.cameraOffset[1],
             sceneBounds.center[2] + sceneBounds.cameraOffset[2],
           ],
-          fov: 56,
+          fov: 42,
         }}
       >
         <ambientLight intensity={0.5} />
@@ -310,8 +310,8 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.7}
-          minDistance={sceneBounds.extent * 0.72}
-          maxDistance={sceneBounds.extent * 2.8}
+          minDistance={sceneBounds.extent * 0.58}
+          maxDistance={sceneBounds.extent * 2.4}
           target={sceneBounds.center}
         />
       </Canvas>
