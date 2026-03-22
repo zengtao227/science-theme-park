@@ -191,17 +191,19 @@ export default function GM202Page() {
       }}
       monitorContent={
         currentQuest && (
-          <GeometryVisualization
-            quest={currentQuest}
-            stage={stage}
-            visualizationType={visualizationType}
-            data={currentQuest?.visualizationData}
-            translations={{
-              line_equations: gm2_02_t.line_equations,
-              plane_geometry: gm2_02_t.plane_geometry,
-              spatial_relationships: gm2_02_t.spatial_relationships,
-            }}
-          />
+          <div className="w-full h-full flex flex-col">
+            <GeometryVisualization
+              quest={currentQuest}
+              stage={stage}
+              visualizationType={visualizationType}
+              data={currentQuest?.visualizationData}
+              translations={{
+                line_equations: gm2_02_t.line_equations,
+                plane_geometry: gm2_02_t.plane_geometry,
+                spatial_relationships: gm2_02_t.spatial_relationships,
+              }}
+            />
+          </div>
         )
       }
     >

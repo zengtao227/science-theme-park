@@ -81,15 +81,15 @@ function buildSceneBounds(data: GeometryData): SceneBounds {
   ];
 
   const maxSpan = Math.max(maxX - minX, maxY - minY, maxZ - minZ);
-  const extent = Math.max(3.0, maxSpan * 0.38 + 0.75);
+  const extent = Math.max(2.35, maxSpan * 0.28 + 0.4);
   return {
     center,
     extent,
-    cameraOffset: [extent * 0.56, extent * 0.46, extent * 0.6],
-    gridSize: extent * 1.35,
-    lineExtent: extent * 0.8,
-    planeSize: extent * 0.96,
-    pointRadius: Math.max(0.24, Math.min(0.46, extent * 0.065)),
+    cameraOffset: [extent * 0.42, extent * 0.34, extent * 0.46],
+    gridSize: extent * 0.95,
+    lineExtent: extent * 0.62,
+    planeSize: extent * 0.72,
+    pointRadius: Math.max(0.28, Math.min(0.56, extent * 0.09)),
   };
 }
 
@@ -229,7 +229,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
   const sceneBounds = useMemo<SceneBounds>(() => buildSceneBounds(data), [data]);
 
   return (
-    <div className="relative w-full h-full min-h-[560px] border border-white/10 rounded-xl overflow-hidden bg-black">
+    <div className="relative w-full h-full min-h-[720px] flex-1 border border-white/10 rounded-xl overflow-hidden bg-black">
       <Canvas
         camera={{
           position: [
@@ -237,7 +237,7 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
             sceneBounds.center[1] + sceneBounds.cameraOffset[1],
             sceneBounds.center[2] + sceneBounds.cameraOffset[2],
           ],
-          fov: 42,
+          fov: 34,
         }}
       >
         <ambientLight intensity={0.5} />
@@ -246,13 +246,13 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
         {/* Grid */}
         <Grid
           args={[sceneBounds.gridSize, sceneBounds.gridSize]}
-          cellSize={Math.max(0.75, sceneBounds.extent / 7.5)}
+          cellSize={Math.max(0.65, sceneBounds.extent / 8.5)}
           cellThickness={0.5}
           cellColor="#333333"
-          sectionSize={Math.max(1.5, sceneBounds.extent / 3.2)}
+          sectionSize={Math.max(1.2, sceneBounds.extent / 4)}
           sectionThickness={1}
           sectionColor="#444444"
-          fadeDistance={sceneBounds.gridSize * 1.35}
+          fadeDistance={sceneBounds.gridSize * 1.1}
           fadeStrength={1}
           followCamera={false}
           infiniteGrid={false}
@@ -310,8 +310,8 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.7}
-          minDistance={sceneBounds.extent * 0.58}
-          maxDistance={sceneBounds.extent * 2.4}
+          minDistance={sceneBounds.extent * 0.42}
+          maxDistance={sceneBounds.extent * 1.8}
           target={sceneBounds.center}
         />
       </Canvas>

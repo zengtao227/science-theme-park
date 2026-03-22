@@ -44,7 +44,7 @@ export default function GeometryVisualization({
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full flex-1 min-h-[720px] flex">
       {renderVisualization()}
     </div>
   );
