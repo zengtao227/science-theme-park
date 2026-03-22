@@ -93,8 +93,17 @@ export default function GM202Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
-  // Determine visualization type based on stage
-  const visualizationType = stage === "LINE_EQUATIONS" ? "2D" : "3D";
+  // Determine visualization type based on quest data content (not just stage)
+  const visualizationType = useMemo(() => {
+    const vd = currentQuest?.visualizationData;
+    if (!vd) return "3D";
+    const hasOnly2DLines =
+      (vd.lines?.length ?? 0) > 0 &&
+      vd.lines!.every((l) => l.type === "2D");
+    const hasNo3DPoints = !vd.points?.some((p) => p.coordinates.length === 3);
+    const hasNoPlanes = !vd.planes?.length;
+    return hasOnly2DLines && hasNo3DPoints && hasNoPlanes ? "2D" : "3D";
+  }, [currentQuest]);
 
   // Get scenario description based on stage
   const getScenarioContent = () => {
@@ -196,7 +205,7 @@ export default function GM202Page() {
               quest={currentQuest}
               stage={stage}
               visualizationType={visualizationType}
-              data={currentQuest?.visualizationData}
+              data={currentQuest?.visualizationData ?? {}}
               translations={{
                 line_equations: gm2_02_t.line_equations,
                 plane_geometry: gm2_02_t.plane_geometry,

@@ -25,26 +25,13 @@ export default function GeometryVisualization({
   translations
 }: GeometryVisualizationProps) {
   void quest;
+  void stage;
   void translations;
 
-  // Debug: Log what data we're receiving
-  console.log('GeometryVisualization - stage:', stage);
-  console.log('GeometryVisualization - visualizationType:', visualizationType);
-  console.log('GeometryVisualization - data:', data);
-
-  // Determine which visualization to render based on stage and data
   const renderVisualization = () => {
-    // If there are distance calculations, show distance calculator
-    if (data.distances && data.distances.length > 0) {
-      return <DistanceCalculator data={data} />;
-    }
-
-    // If stage is LINE_EQUATIONS and data is 2D, show 2D plotter
-    if (stage === "LINE_EQUATIONS" && visualizationType === "2D") {
+    if (visualizationType === "2D") {
       return <CoordinatePlotter2D data={data} />;
     }
-
-    // Otherwise show 3D visualizer
     return <SpaceVisualizer3D data={data} />;
   };
 

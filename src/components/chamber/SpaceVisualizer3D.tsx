@@ -308,17 +308,17 @@ function PointObject({
 }
 
 export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
-  // Debug: Log the data to see what we're receiving
-  console.log('SpaceVisualizer3D received data:', data);
-  console.log('- Points:', data.points);
-  console.log('- Planes:', data.planes);
-  console.log('- Lines:', data.lines);
-  
+  const bounds = useMemo(() => buildSceneBounds(data), [data]);
+
   return (
     <div className="relative w-full h-[720px] border border-white/10 rounded-xl overflow-hidden bg-black">
       <Canvas
         camera={{
-          position: [6.5, 5.2, 6.5],
+          position: [
+            bounds.center[0] + bounds.cameraOffset[0],
+            bounds.center[1] + bounds.cameraOffset[1],
+            bounds.center[2] + bounds.cameraOffset[2],
+          ],
           fov: 56,
         }}
         gl={{ antialias: true }}
@@ -326,24 +326,24 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
         <color attach="background" args={["#000005"]} />
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
-        
+
         {/* Grid */}
         <Grid
-          args={[20, 20]}
+          args={[bounds.gridSize, bounds.gridSize]}
           cellSize={1}
           cellThickness={0.5}
           cellColor="#333333"
           sectionSize={5}
           sectionThickness={1}
           sectionColor="#444444"
-          fadeDistance={25}
+          fadeDistance={bounds.gridSize * 2}
           fadeStrength={1}
           followCamera={false}
           infiniteGrid={false}
         />
-        
+
         {/* Axes */}
-        <Axes extent={10} />
+        <Axes extent={bounds.extent} />
         
         {/* Render planes */}
         {data.planes?.map((plane, idx) => (
@@ -394,9 +394,9 @@ export default function SpaceVisualizer3D({ data }: SpaceVisualizer3DProps) {
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.7}
-          minDistance={4.5}
-          maxDistance={15}
-          target={[2, 2, 2]}
+          minDistance={Math.max(2, bounds.extent * 0.5)}
+          maxDistance={bounds.extent * 4}
+          target={bounds.center}
         />
       </Canvas>
       
