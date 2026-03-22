@@ -107,7 +107,7 @@ export default function DistanceCalculator({ data }: DistanceCalculatorProps) {
   void data;
 
   return (
-    <div className="w-full h-full min-h-[720px] flex-1 border border-white/10 rounded-xl overflow-hidden bg-black relative">
+    <div className="w-full h-[720px] border border-white/10 rounded-xl overflow-hidden bg-black relative">
       <Canvas
         camera={{
           position: [6.5, 5.2, 6.5],

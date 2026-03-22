@@ -194,7 +194,7 @@ function Scene({ type }: { type: "IONIC" | "COVALENT" | "METALLIC" }) {
 
 export default function BondingVisualization3D({ type }: BondingVisualization3DProps) {
     return (
-        <div className="w-full h-full min-h-[400px] relative rounded-3xl overflow-hidden bg-[#050505] border border-white/5 shadow-2xl group transition-all duration-700">
+        <div className="w-full h-[400px] relative rounded-3xl overflow-hidden bg-[#050505] border border-white/5 shadow-2xl group transition-all duration-700">
             <Canvas shadows camera={{ position: [0, 2, 8], fov: 40 }}>
                 <Scene type={type} />
             </Canvas>
