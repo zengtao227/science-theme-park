@@ -32,6 +32,13 @@ function formatNumberList(values: number[]): string {
     return values.join(", ");
 }
 
+function finalizeConceptSteps(rawSteps: RawStep[], justification: string, correctLatex: string) {
+    rawSteps.push({
+        justification,
+        expressionLatex: correctLatex,
+    });
+}
+
 export function solveSM210(
     dataType: string | undefined,
     parameters: SM210Parameters | undefined,
@@ -181,16 +188,13 @@ export function solveSM210(
             });
             break;
 
-        // --- Correlation & Scatter Plots ---
+        // --- Scatter Plots & Box Plot Concepts ---
         case "skewness":
             rawSteps.push({
                 justification: t("sm2_10.reasons.interpret_skewness"),
                 expressionLatex: `Q_2 - Q_1 < Q_3 - Q_2`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "compare_spread":
@@ -201,10 +205,7 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.compare_iqr"),
                 expressionLatex: `\\text{IQR}_A = ${p.iqrA},\\ \\text{IQR}_B = ${p.iqrB}`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "percentile":
@@ -215,10 +216,7 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.interpret_percentile"),
                 expressionLatex: `Q_1 = ${p.percentileValue}\\%`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "modified_box":
@@ -226,10 +224,7 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.interpret_modified_box"),
                 expressionLatex: `\\text{Outliers} \\to \\text{separate points}`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "compare_distributions":
@@ -237,10 +232,7 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.compare_distribution_measures"),
                 expressionLatex: `\\text{IQR} \\neq \\text{Range}`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "resistant_measure":
@@ -248,10 +240,7 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.identify_resistant_measure"),
                 expressionLatex: `\\text{Median}`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "five_number":
@@ -259,10 +248,7 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.recall_five_number_summary"),
                 expressionLatex: `\\min,\\ Q_1,\\ \\text{Median},\\ Q_3,\\ \\max`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
         case "symmetric":
@@ -270,15 +256,140 @@ export function solveSM210(
                 justification: t("sm2_10.reasons.assess_symmetry"),
                 expressionLatex: `Q_2 - Q_1 \\approx Q_3 - Q_2`
             });
-            rawSteps.push({
-                justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: correctLatex
-            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
 
+        case "identify":
+        case "positive":
+        case "trend":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.read_scatter_direction"),
+                expressionLatex: `x \\uparrow \\Rightarrow y \\uparrow`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.identify_positive_relationship"), correctLatex);
+            break;
+
+        case "downward":
+        case "negative":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.read_scatter_direction"),
+                expressionLatex: `x \\uparrow \\Rightarrow y \\downarrow`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.identify_negative_relationship"), correctLatex);
+            break;
+
+        case "scatter":
+        case "none":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.read_scatter_pattern"),
+                expressionLatex: `\\text{No stable upward or downward trend}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.identify_no_relationship"), correctLatex);
+            break;
+
+        case "axes":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_axes_roles"),
+                expressionLatex: `x = \\text{independent},\\ y = \\text{dependent}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "point":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.interpret_point_pair"),
+                expressionLatex: `(x, y)`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "strong":
+        case "weak_correlation":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.assess_point_clustering"),
+                expressionLatex: dataType === "strong"
+                    ? `\\text{Points lie close to a line}`
+                    : `\\text{Points are widely scattered}`
+            });
+            finalizeConceptSteps(
+                rawSteps,
+                dataType === "strong"
+                    ? t("sm2_10.reasons.identify_strong_relationship")
+                    : t("sm2_10.reasons.identify_weak_relationship"),
+                correctLatex
+            );
+            break;
+
+        case "best_fit":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_best_fit_goal"),
+                expressionLatex: `\\sum (y - \\hat{y})^2`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "extrapolation":
+        case "interpolation":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compare_prediction_range"),
+                expressionLatex: dataType === "extrapolation"
+                    ? `\\text{Prediction outside the observed data range}`
+                    : `\\text{Prediction inside the observed data range}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "residual":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.define_residual"),
+                expressionLatex: `\\text{Residual} = y - \\hat{y}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "nonlinear":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_nonlinear_pattern"),
+                expressionLatex: `\\text{The pattern follows a curve, not a line}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "influential":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_influential_point"),
+                expressionLatex: `\\text{One point changes the fitted line noticeably}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "lurking":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_lurking_variable"),
+                expressionLatex: `\\text{A third variable may affect both measured variables}`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "regression":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_regression_process"),
+                expressionLatex: `\\hat{y} = a + bx`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        case "r_squared":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_r_squared"),
+                expressionLatex: `r^2 \\times 100\\%`
+            });
+            finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+            break;
+
+        // --- Correlation ---
         case "strength":
         case "weak":
-        case "strong":
         case "negative_strong":
         case "moderate":
         case "interpret_r":
