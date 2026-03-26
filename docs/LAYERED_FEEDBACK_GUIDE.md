@@ -55,6 +55,7 @@ type FeedbackContentProvider<T extends Quest> =
 **约束：**
 - **必须是纯函数**：只根据 `quest` 派生输出，不得修改 `quest`，不得产生副作用，不得依赖组件局部临时状态，不得根据当前错误次数决定返回结构（错误次数属于策略层，不属于内容派生层）
 - **必须返回对象**：当前签名不允许返回 `null`。如果模块某些 stage 没有 steps，应返回 `{ steps: [], fullSolutionLatex: null, hasFullSolution: false }`
+- **`hasFullSolution` 仅为满足类型完整性而返回**：平台不信任该值，只使用 `fullSolutionLatex` 推导最终结果。Provider 可以简单填 `!!fullSolutionLatex`
 - **不传 provider 也是合法的**：`useQuestManager` 会自动降级（见 Step 4）
 
 ---
@@ -164,6 +165,7 @@ interface FeedbackAvailability {
 | ❌-5 | 在 `Quest` 接口上添加反馈数据字段 | 反馈数据通过 `feedbackContentProvider` 派生 |
 | ❌-6 | provider 内修改 quest 对象 | provider 必须是纯函数 |
 | ❌-7 | provider 返回 hint 字段 | hint 由平台自动派生 |
+| ❌-8 | provider 根据错误次数决定返回内容 | 错误次数属于策略层（`FeedbackPolicy`），不属于内容派生层 |
 
 ---
 
