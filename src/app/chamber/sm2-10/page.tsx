@@ -490,6 +490,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "C-C1", difficulty, stage, dataType: "interpret_r",
+                        parameters: { rValue: 0.72 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_c1"),
                         expressionLatex: t("sm2_10.formulas.r_positive"),
                         targetLatex: t("sm2_10.labels.type"),
@@ -499,6 +500,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C2", difficulty, stage, dataType: "strength",
+                        parameters: { rValue: 0.95 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_c2"),
                         expressionLatex: t("sm2_10.formulas.r_near_1_strong"),
                         targetLatex: t("sm2_10.labels.strength"),
@@ -508,6 +510,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C3", difficulty, stage, dataType: "weak",
+                        parameters: { rValue: 0.15 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_c3"),
                         expressionLatex: t("sm2_10.formulas.r_near_0_weak"),
                         targetLatex: t("sm2_10.labels.strength"),
@@ -517,6 +520,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C4", difficulty, stage, dataType: "negative_strong",
+                        parameters: { rValue: -0.88 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_c4"),
                         expressionLatex: `r < 0,\\; |r| \\text{ ${t("sm2_10.expressions.near")} } 1`,
                         targetLatex: t("sm2_10.labels.description"),
@@ -526,6 +530,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-C5", difficulty, stage, dataType: "moderate",
+                        parameters: { rValue: 0.55 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_c5"),
                         expressionLatex: t("sm2_10.formulas.moderate_correlation"),
                         targetLatex: t("sm2_10.labels.strength"),
@@ -547,6 +552,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A2", difficulty, stage, dataType: "coefficient",
+                        parameters: { rValue: 0.9 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_a2"),
                         expressionLatex: t("sm2_10.formulas.r_close_to_1_strong"),
                         targetLatex: t("sm2_10.labels.strength"),
@@ -556,6 +562,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A3", difficulty, stage, dataType: "negative_r",
+                        parameters: { rValue: -0.8 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_a3"),
                         expressionLatex: t("sm2_10.formulas.r_negative"),
                         targetLatex: t("sm2_10.labels.type"),
@@ -565,6 +572,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "C-A4", difficulty, stage, dataType: "zero_r",
+                        parameters: { rValue: 0.05 },
                         promptLatex: t("sm2_10.prompts.b2_2_c_a4"),
                         expressionLatex: t("sm2_10.formulas.r_approx_0_no_correlation"),
                         targetLatex: t("sm2_10.labels.meaning"),
@@ -638,6 +646,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-B1", difficulty, stage, dataType: "rhine_temp_fish",
+                        parameters: { mean: 21.5, stdDev: 2.3, targetValue: 24, zScore: 1.087, tailProbability: 0.138 },
                         promptLatex: t("sm2_10.prompts.b2_2_elite_b1"),
                         expressionLatex: t("sm2_10.formulas.z_score_normal_dist"),
                         targetLatex: `P(T > 24)`,
@@ -651,6 +660,11 @@ export default function SM210Page() {
                     },
                     {
                         id: "ELITE-B2", difficulty, stage, dataType: "park_biodiversity",
+                        parameters: {
+                            meanA: 32, meanB: 28, difference: 4,
+                            sdA: 4.2, sdB: 3.8, nA: 20, nB: 20,
+                            standardError: 1.267, zCritical: 1.96, lowerBound: 1.52, upperBound: 6.48
+                        },
                         promptLatex: t("sm2_10.prompts.b2_2_elite_b2"),
                         expressionLatex: t("sm2_10.formulas.se_diff_ci"),
                         targetLatex: t("sm2_10.labels.lower_bound"),
@@ -667,6 +681,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-C1", difficulty, stage, dataType: "climate_trend",
+                        parameters: { baseValue: 9.2, currentValue: 11.0, deltaValue: 1.8, ratePerUnit: 8, baseDays: 165, predictedDays: 179.4 },
                         promptLatex: t("sm2_10.prompts.b2_2_elite_c1"),
                         expressionLatex: t("sm2_10.formulas.temp_increase_growing_season"),
                         targetLatex: t("sm2_10.labels.days_in_2024"),
@@ -680,6 +695,10 @@ export default function SM210Page() {
                     },
                     {
                         id: "ELITE-C2", difficulty, stage, dataType: "fox_population",
+                        parameters: {
+                            mean: 150, stdDev: 18, lowerBound: 120, upperBound: 180,
+                            leftZ: -1.667, rightZ: 1.667, leftTailProb: 0.048, rightTailProb: 0.048, totalProbability: 0.096
+                        },
                         promptLatex: t("sm2_10.prompts.b2_2_elite_c2"),
                         expressionLatex: `P(X < 120) + P(X > 180)`,
                         targetLatex: `P(\\text{outside})`,
@@ -696,6 +715,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "ELITE-A1", difficulty, stage, dataType: "dissolved_oxygen",
+                        parameters: { sampleMean: 9.8, sampleStdDev: 1.4, sampleSize: 25, standardError: 0.28, zCritical: 1.645, marginError: 0.461, lowerBound: 9.34, safeThreshold: 8.0 },
                         promptLatex: t("sm2_10.prompts.b2_2_elite_a1"),
                         expressionLatex: t("sm2_10.formulas.se_ci_90"),
                         targetLatex: t("sm2_10.labels.lower_bound"),
