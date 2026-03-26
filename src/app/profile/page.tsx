@@ -60,7 +60,7 @@ export default function ProfilePage() {
   const timeline = history.slice(0, 12);
 
   return (
-    <main className="min-h-screen bg-black text-white px-6 pb-20 pt-12 overflow-y-auto">
+    <main className="h-screen overflow-y-auto bg-black text-white px-6 pb-20 pt-12">
       <div className="max-w-6xl mx-auto space-y-12">
         <Link
           href="/nexus"
