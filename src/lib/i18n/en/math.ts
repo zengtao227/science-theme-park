@@ -3030,6 +3030,20 @@ export const enMath = {
             yes_with_some_error: "Yes (with some error)",
             pearson_correlation_coefficient: "Pearson correlation coefficient"
         },
+        reasons: {
+            sort_dataset: "First, arrange the data in ascending order.",
+            find_median: "Identify the middle value of the dataset.",
+            identify_quartiles: "Identify the upper (Q3) and lower (Q1) quartiles.",
+            calc_iqr: "The Interquartile Range (IQR) is the difference between Q3 and Q1.",
+            calc_upper_bound: "Calculate the upper boundary.",
+            calc_lower_bound: "Calculate the lower boundary.",
+            compare_outlier: "Compare the candidate value against the boundary.",
+            substitute_values: "Substitute the known values into the formula.",
+            compute_result: "Compute the final result.",
+            correlation_magnitude: "The closer |r| is to 1, the stronger the correlation.",
+            correlation_direction: "The sign of r indicates the direction (positive/negative).",
+            concept_definition: "Apply the statistical definition for this concept."
+        },
         expressions: {
             median_middle_value: "Median = middle value",
             q1_median_lower_half: "Q1 = \\text{median of lower half}",

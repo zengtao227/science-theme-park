@@ -3024,6 +3024,20 @@ export const cnMath = {
             yes_with_some_error: "是（有一定误差）",
             pearson_correlation_coefficient: "皮尔逊相关系数"
         },
+        reasons: {
+            sort_dataset: "首先，将数据从小到大进行排序。",
+            find_median: "找出数据集最中间的数值。",
+            identify_quartiles: "确定上四分位数 (Q3) 和下四分位数 (Q1)。",
+            calc_iqr: "四分位距 (IQR) 是上四分位数与下四分位数的差值。",
+            calc_upper_bound: "计算上限边界。",
+            calc_lower_bound: "计算下限边界。",
+            compare_outlier: "将嫌疑数值与计算出的边界值进行比较判定。",
+            substitute_values: "将已知数值代入公式中。",
+            compute_result: "计算得出最终结果。",
+            correlation_magnitude: "相关系数的绝对值 |r| 越接近 1，相关性越强。",
+            correlation_direction: "相关系数 r 的正负号代表了相关性的方向。",
+            concept_definition: "根据统计学定义进行判定。"
+        },
         expressions: {
             median_middle_value: "中位数 = 中间值",
             q1_median_lower_half: "Q1 = \\text{下半部分中位数}",

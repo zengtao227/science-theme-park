@@ -3006,6 +3006,20 @@ export const deMath = {
             yes_with_some_error: "Ja (mit etwas Fehler)",
             pearson_correlation_coefficient: "Pearson-Korrelationskoeffizient"
         },
+        reasons: {
+            sort_dataset: "Zuerst die Daten in aufsteigender Reihenfolge ordnen.",
+            find_median: "Den mittleren Wert des Datensatzes ermitteln.",
+            identify_quartiles: "Das obere (Q3) und untere (Q1) Quartil bestimmen.",
+            calc_iqr: "Der Interquartilsabstand (IQR) ist die Differenz zwischen Q3 und Q1.",
+            calc_upper_bound: "Die obere Grenze berechnen.",
+            calc_lower_bound: "Die untere Grenze berechnen.",
+            compare_outlier: "Den fraglichen Wert mit dem Grenzwert vergleichen.",
+            substitute_values: "Die bekannten Werte in die Formel einsetzen.",
+            compute_result: "Das Endergebnis berechnen.",
+            correlation_magnitude: "Je näher |r| bei 1 liegt, desto stärker ist die Korrelation.",
+            correlation_direction: "Das Vorzeichen von r gibt die Richtung (positiv/negativ) an.",
+            concept_definition: "Die statistische Definition für dieses Konzept anwenden."
+        },
         expressions: {
             median_middle_value: "Median = mittlerer Wert",
             q1_median_lower_half: "Q1 = \\text{Median der unteren Hälfte}",

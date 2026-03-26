@@ -10,12 +10,15 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import DataVisualization from "@/components/chamber/sm2-10/DataVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections } from "@/components/print/QuestPrintSections";
+import { createSM210FeedbackProvider } from "@/lib/sm2-10/provider";
+import { SM210Parameters } from "@/lib/sm2-10/solver";
 
 type Stage = "BOX_PLOTS" | "SCATTER_PLOTS" | "CORRELATION" | "ELITE";
 
 interface SM210Quest extends Quest {
     stage: Stage;
     dataType?: string;
+    parameters?: SM210Parameters;
 }
 
 const PRINT_STAGE_ORDER: Stage[] = ["BOX_PLOTS", "SCATTER_PLOTS", "CORRELATION", "ELITE"];
@@ -24,6 +27,7 @@ const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELIT
 export default function SM210Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createSM210FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SM210Quest[] => {
         const quests: SM210Quest[] = [];
@@ -33,6 +37,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-B1", difficulty, stage, dataType: "median",
+                        parameters: { dataset: [2, 4, 6, 8, 10], median: 6 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b1"),
                         expressionLatex: t("sm2_10.expressions.median_middle_value"),
                         targetLatex: t("sm2_10.labels.median"),
@@ -725,6 +730,7 @@ export default function SM210Page() {
         moduleCode: "sm2-10",
         buildPool,
         initialStage: "BOX_PLOTS",
+        feedbackContentProvider,
     });
 
     useEffect(() => {
