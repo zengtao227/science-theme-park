@@ -713,7 +713,14 @@ export default function SM210Page() {
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,
-        requestAiFeedback
+        requestAiFeedback,
+        feedbackLevel,
+        feedbackContent,
+        feedbackAvailability,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
+        policy,
     } = useQuestManager<SM210Quest, Stage>({
         moduleCode: "sm2-10",
         buildPool,
@@ -789,6 +796,13 @@ export default function SM210Page() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={t("sm2_10.title")}
             moduleCode="SM2.10"
             defaultLeftWidth={56}

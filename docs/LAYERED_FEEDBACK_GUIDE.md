@@ -2,7 +2,7 @@
 
 > **状态**: Phase 1 baseline implemented — 基础设施已落地，待分模块推广
 > **日期**: 2026-03-26
-> **版本**: v3.1 (经多轮三方审查修正)
+> **版本**: v3.2 (经多轮三方审查修正)
 
 ---
 
@@ -118,7 +118,11 @@ interface FeedbackAvailability {
 | `hint` | **平台自动派生**（不受 provider 影响） | `quest.hintLatex[]` → `getHint()` |
 | `steps` | **provider 返回值** | 无 fallback，provider 返回空数组则不显示按钮 |
 | `fullSolutionLatex` | **provider 返回值** | 若 provider 返回 `null`，平台自动 fallback 到 `quest.correctLatex` |
-| `hasFullSolution` | 由 provider 的 `fullSolutionLatex` 是否非空决定 | `false` 当 fallback 到 `correctLatex` |
+| `hasFullSolution` | **平台自动推导**（`!!provided.fullSolutionLatex`），provider 返回的该字段被忽略 | `false` 当 fallback 到 `correctLatex` |
+
+> [!IMPORTANT]
+> `hasFullSolution` 的最终值完全由平台根据 `fullSolutionLatex` 是否非空决定。
+> Provider 返回的 `hasFullSolution` 会被平台覆盖。Provider **不需要也不应该**费心维护这个字段的一致性。
 
 当 **不传 provider** 时，所有字段走平台 fallback：`hint` 从 `hintLatex` 派生，`steps` 为空，`fullSolutionLatex` 降级为 `correctLatex`。
 
@@ -170,11 +174,16 @@ interface FeedbackAvailability {
 ```typescript
 // Provider 只负责 steps + fullSolution（hint 由平台自动处理）
 // 即使没有 steps，也必须返回空数组（不允许返回 null / undefined）
-const myFeedbackProvider = useCallback((quest: MyQuestType) => ({
-    steps: generateSteps(quest).map(toPlatformStep),  // 无 steps 时返回 []
-    fullSolutionLatex: quest.fullSolution || null,     // null → 平台 fallback 到 correctLatex
-    hasFullSolution: !!quest.fullSolution,
-}), []);
+// hasFullSolution 由平台自动推导，provider 返回值会被忽略
+const myFeedbackProvider = useCallback((quest: MyQuestType) => {
+    const steps = generateSteps(quest).map(toPlatformStep);  // 无 steps 时返回 []
+    const fullSolutionLatex = computeFullSolution(quest);     // null → 平台 fallback 到 correctLatex
+    return {
+        steps,
+        fullSolutionLatex,
+        hasFullSolution: !!fullSolutionLatex,  // 平台会覆盖此值，但写上保持类型完整
+    };
+}, []);
 ```
 
 ### Step 2: 传入 useQuestManager
@@ -240,3 +249,9 @@ const { feedbackContent, feedbackLevel, feedbackAvailability, policy, ... } =
 - [ ] 点击 Next → feedbackLevel 重置为 NONE
 - [ ] 切换 EN/DE/CN → 文案正确
 - [ ] `scripts/audit-rendering.sh` 通过
+
+### 无 provider 降级模式验证
+
+- [ ] hint 正常显示（基于 `quest.hintLatex`）
+- [ ] Steps 按钮不出现（无 steps 数据）
+- [ ] Full Solution 显示为"标准答案"（`correct_answer_title`），内容为 `correctLatex`

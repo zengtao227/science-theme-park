@@ -251,7 +251,14 @@ export default function S301Page() {
     adaptiveRecommendation,
     aiFeedback,
     isRequestingAi,
-    requestAiFeedback
+    requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
   } = useQuestManager<S301Quest, Stage>({
     moduleCode: "sm3-01",
     buildPool,
@@ -296,6 +303,13 @@ export default function S301Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t("sm3_01.title")}
       moduleCode="SM3.01"
       difficulty={difficulty}
