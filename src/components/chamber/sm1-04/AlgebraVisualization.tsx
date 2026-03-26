@@ -52,10 +52,10 @@ export default function AlgebraVisualization({
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <div className="flex-1 relative bg-black/20 rounded-lg border border-white/10 overflow-hidden p-6">
+    <div className="flex h-full min-h-[680px] flex-col gap-4">
+      <div className="flex min-h-[680px] flex-1 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-black/20 p-6">
         {/* Balance Scale */}
-        <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="flex h-full w-full flex-col items-center justify-center">
           {/* Fulcrum */}
           <div className="relative w-full max-w-md">
             {/* Balance Beam */}

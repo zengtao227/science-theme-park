@@ -68,7 +68,7 @@ export default function AcidBaseVisualization({
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-4">
+    <div className="flex h-full min-h-[680px] flex-col gap-4 p-4">
       {/* Scenario */}
       {quest.scenario && (
         <div className="text-xs text-white/70 leading-relaxed max-h-24 overflow-y-auto">
@@ -77,12 +77,17 @@ export default function AcidBaseVisualization({
       )}
 
       {/* pH Scale Bar */}
-      <div className="flex-1 flex flex-col justify-center gap-4">
+      <div className="flex flex-1 flex-col justify-center gap-6">
         <div className="text-xs text-white/80 font-mono text-center">
           pH SCALE
         </div>
 
-        <svg width="100%" height="80" viewBox="0 0 400 80">
+        <div className="flex items-center justify-center">
+          <svg
+            viewBox="0 0 400 80"
+            className="h-auto w-full max-w-[720px]"
+            preserveAspectRatio="xMidYMid meet"
+          >
           <defs>
             <linearGradient id="phGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               {pHGradient.map((stop, i) => (
@@ -148,7 +153,8 @@ export default function AcidBaseVisualization({
               strokeDasharray="4,2"
             />
           </g>
-        </svg>
+          </svg>
+        </div>
 
         {/* pH value display */}
         <div className="text-center">
@@ -186,7 +192,12 @@ export default function AcidBaseVisualization({
 
         {/* Titration curve for TITRATION stage */}
         {quest.stage === "TITRATION" && quest.volume && (
-          <svg width="100%" height="120" viewBox="0 0 400 120">
+          <div className="flex items-center justify-center">
+            <svg
+              viewBox="0 0 400 120"
+              className="h-auto w-full max-w-[720px]"
+              preserveAspectRatio="xMidYMid meet"
+            >
             <defs>
               <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ef4444" />
@@ -225,7 +236,8 @@ export default function AcidBaseVisualization({
             <text x="30" y="55" fill="#ffffff60" fontSize="10" textAnchor="middle">
               pH
             </text>
-          </svg>
+            </svg>
+          </div>
         )}
       </div>
 

@@ -128,7 +128,7 @@ export default function AlgebraCanvas({
     };
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-black/20 rounded-3xl border border-white/5 backdrop-blur-sm min-h-[400px]">
+        <div className="flex min-h-[680px] w-full h-full flex-col items-center justify-center rounded-3xl border border-white/5 bg-black/20 p-8 backdrop-blur-sm">
             {mode === 'CONTAINERS' && renderContainers()}
             {mode === 'SORTING' && renderSorting()}
             {mode === 'MACHINE' && renderMachine()}

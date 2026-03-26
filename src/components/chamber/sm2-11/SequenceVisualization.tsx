@@ -61,9 +61,9 @@ export default function SequenceVisualization({
   const showSolution = checkStatus?.ok === true;
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-6">
+    <div className="flex h-full min-h-[680px] flex-col gap-4 p-6">
       {/* Sequence visualization */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex min-h-[480px] flex-1 items-center justify-center">
         <div className="flex gap-3 flex-wrap justify-center max-w-full">
           {sequenceData.terms.map((term, idx) => {
             const isTargetTerm = sequenceData.stage !== "SERIES" && idx === sequenceData.n - 1;

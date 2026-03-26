@@ -137,14 +137,13 @@ export default function IntegralVisualization({
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-4">
+    <div className="flex h-full min-h-[680px] flex-col gap-4">
       {/* Visualization canvas */}
-      <div className="flex-1 relative">
+      <div className="relative flex min-h-[680px] flex-1 items-center justify-center">
         <svg
-          width="100%"
-          height="100%"
           viewBox={`0 0 ${width} ${height}`}
-          className="bg-black/20 rounded-lg border border-white/10"
+          className="h-auto w-full max-w-[960px] rounded-lg border border-white/10 bg-black/20"
+          preserveAspectRatio="xMidYMid meet"
         >
           {/* Grid lines */}
           {Array.from({ length: 11 }, (_, i) => {
