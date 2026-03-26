@@ -12,7 +12,13 @@ import { clsx } from "clsx";
 
 export default function ProfilePage() {
   const { history } = useAppStore();
-  const { t, currentLanguage } = useLanguage();
+  const { t, currentLanguage, setLanguage } = useLanguage();
+  const languages = ['DE', 'EN', 'CN'] as const;
+  const languageLabel: Record<(typeof languages)[number], string> = {
+    DE: '🇩🇪 DE',
+    EN: '🇬🇧 EN',
+    CN: '🇨🇳 CN',
+  };
 
   const profile_t = {
     title: t("profile.title"),
@@ -62,13 +68,31 @@ export default function ProfilePage() {
   return (
     <main className="h-screen overflow-y-auto bg-black text-white px-6 pb-20 pt-12">
       <div className="max-w-6xl mx-auto space-y-12">
-        <Link
-          href="/nexus"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-black tracking-widest text-white/60 hover:text-white transition-all group"
-        >
-          <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
-          {t("common.back_to_hub") || "BACK TO HUB"}
-        </Link>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <Link
+            href="/nexus"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-black tracking-widest text-white/60 hover:text-white transition-all group"
+          >
+            <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
+            {t("common.back_to_hub") || "BACK TO HUB"}
+          </Link>
+          <div className="flex items-center gap-2 bg-black/50 border border-white/10 px-3 py-2 rounded-full">
+            {languages.map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                className={clsx(
+                  "text-xs font-bold transition-all px-2 py-1 rounded",
+                  currentLanguage === lang
+                    ? "text-neon-green bg-neon-green/10"
+                    : "text-neutral-300 hover:text-white"
+                )}
+              >
+                {languageLabel[lang]}
+              </button>
+            ))}
+          </div>
+        </div>
 
         <div className="border-l-2 border-neon-purple pl-6 py-3">
           <div className="text-[10px] uppercase tracking-[0.4em] text-neon-purple font-black">{profile_t.title}</div>
@@ -139,7 +163,7 @@ export default function ProfilePage() {
                   <div className="flex-1 border border-white/10 rounded-xl px-4 py-3 bg-white/[0.02]">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                        {entry.moduleCode} · {entry.stageLabel}
+                        {entry.moduleCode} · {entry.stage}
                       </div>
                       <div className="text-[10px] text-white/40 font-mono">
                         {new Date(entry.timestamp).toLocaleString(
