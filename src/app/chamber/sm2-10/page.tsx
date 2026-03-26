@@ -47,6 +47,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B2", difficulty, stage, dataType: "quartiles",
+                        parameters: { lowerHalf: [1, 3, 5], q1: 3, q3: 11 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b2"),
                         expressionLatex: t("sm2_10.expressions.q1_median_lower_half"),
                         targetLatex: `Q_1`,
@@ -56,6 +57,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B3", difficulty, stage, dataType: "range",
+                        parameters: { rangeMin: 10, rangeMax: 30 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b3"),
                         expressionLatex: t("sm2_10.formulas.range"),
                         targetLatex: t("sm2_10.labels.range"),
@@ -65,6 +67,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B4", difficulty, stage, dataType: "iqr",
+                        parameters: { q1: 5, q3: 15, iqr: 10 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b4"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
@@ -74,6 +77,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-B5", difficulty, stage, dataType: "outlier",
+                        parameters: { q1: 4, q3: 6, iqr: 2, lowerBound: 1, upperBound: 9, targetValue: 20 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_b5"),
                         expressionLatex: t("sm2_10.expressions.outlier_far_from_others"),
                         targetLatex: t("sm2_10.labels.outlier"),
@@ -86,6 +90,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-C1", difficulty, stage, dataType: "q3",
+                        parameters: { upperHalf: [10, 12, 14], q1: 6, q3: 12 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c1"),
                         expressionLatex: t("sm2_10.formulas.q3"),
                         targetLatex: `Q_3`,
@@ -95,6 +100,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C2", difficulty, stage, dataType: "iqr_calc",
+                        parameters: { q1: 10, q3: 30, iqr: 20 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c2"),
                         expressionLatex: `\\text{IQR} = Q_3 - Q_1`,
                         targetLatex: `\\text{IQR}`,
@@ -104,6 +110,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C3", difficulty, stage, dataType: "mean",
+                        parameters: { dataset: [4, 6, 8, 10, 12], mean: 8 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c3"),
                         expressionLatex: t("sm2_10.formulas.mean"),
                         targetLatex: t("sm2_10.labels.mean"),
@@ -113,6 +120,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-C4", difficulty, stage, dataType: "outlier_detect",
+                        parameters: { q1: 10, q3: 18, iqr: 8, lowerBound: -2, upperBound: 30, targetValue: 50 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_c4"),
                         expressionLatex: t("sm2_10.expressions.outlier_q1_q3_range"),
                         targetLatex: t("sm2_10.labels.answer"),
@@ -134,6 +142,7 @@ export default function SM210Page() {
                 quests.push(
                     {
                         id: "BP-A1", difficulty, stage, dataType: "outlier_rule",
+                        parameters: { q3: 20, iqr: 10, upperBound: 35 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a1"),
                         expressionLatex: t("sm2_10.formulas.upper_boundary"),
                         targetLatex: t("sm2_10.labels.boundary"),
@@ -143,6 +152,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A2", difficulty, stage, dataType: "lower_outlier",
+                        parameters: { q1: 15, iqr: 8, lowerBound: 3 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a2"),
                         expressionLatex: t("sm2_10.formulas.lower_boundary"),
                         targetLatex: t("sm2_10.labels.boundary"),
@@ -161,6 +171,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A4", difficulty, stage, dataType: "compare_spread",
+                        parameters: { iqrA: 8, iqrB: 12 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a4"),
                         expressionLatex: t("sm2_10.formulas.larger_iqr_more_spread"),
                         targetLatex: t("sm2_10.labels.answer"),
@@ -170,6 +181,7 @@ export default function SM210Page() {
                     },
                     {
                         id: "BP-A5", difficulty, stage, dataType: "percentile",
+                        parameters: { percentileValue: 25 },
                         promptLatex: t("sm2_10.prompts.b2_2_bp_a5"),
                         expressionLatex: `Q_1 = 25\\text{th percentile}`,
                         targetLatex: t("sm2_10.labels.percentile"),

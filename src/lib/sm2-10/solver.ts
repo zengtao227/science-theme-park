@@ -2,6 +2,10 @@ import { PlatformSolutionStep } from "@/hooks/useQuestManager";
 
 export interface SM210Parameters {
     dataset?: number[];
+    lowerHalf?: number[];
+    upperHalf?: number[];
+    rangeMin?: number;
+    rangeMax?: number;
     q1?: number;
     q3?: number;
     iqr?: number;
@@ -10,6 +14,9 @@ export interface SM210Parameters {
     median?: number;
     lowerBound?: number;
     upperBound?: number;
+    iqrA?: number;
+    iqrB?: number;
+    percentileValue?: number;
     rValue?: number;
     [key: string]: any;
 }
@@ -20,6 +27,10 @@ interface RawStep {
 }
 
 type Translator = (path: string, params?: Record<string, string | number>) => any;
+
+function formatNumberList(values: number[]): string {
+    return values.join(", ");
+}
 
 export function solveSM210(
     dataType: string | undefined,
@@ -40,9 +51,10 @@ export function solveSM210(
         // --- Central Tendency & Box Plots ---
         case "median":
             if (p.dataset) {
+                const sortedDataset = p.dataset.slice().sort((a, b) => a - b);
                 rawSteps.push({
                     justification: t("sm2_10.reasons.sort_dataset"),
-                    expressionLatex: p.dataset.slice().sort((a,b)=>a-b).join(", ")
+                    expressionLatex: formatNumberList(sortedDataset)
                 });
             }
             rawSteps.push({
@@ -56,9 +68,33 @@ export function solveSM210(
             if (p.q1 === undefined || p.q3 === undefined) {
                 return { steps: [], fullSolutionLatex: null };
             }
+            if (dataType === "quartiles" && p.lowerHalf) {
+                rawSteps.push({
+                    justification: t("sm2_10.reasons.identify_halves"),
+                    expressionLatex: formatNumberList(p.lowerHalf)
+                });
+            }
+            if (dataType === "q3" && p.upperHalf) {
+                rawSteps.push({
+                    justification: t("sm2_10.reasons.identify_halves"),
+                    expressionLatex: formatNumberList(p.upperHalf)
+                });
+            }
             rawSteps.push({
                 justification: t("sm2_10.reasons.identify_quartiles"),
-                expressionLatex: `Q_1 = ${p.q1 ?? "?"}, Q_3 = ${p.q3 ?? "?"}`
+                expressionLatex: dataType === "quartiles"
+                    ? `Q_1 = ${p.q1}`
+                    : `Q_3 = ${p.q3}`
+            });
+            break;
+
+        case "range":
+            if (p.rangeMin === undefined || p.rangeMax === undefined) {
+                return { steps: [], fullSolutionLatex: null };
+            }
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_range"),
+                expressionLatex: `\\text{Range} = ${p.rangeMax} - ${p.rangeMin} = ${correctLatex}`
             });
             break;
 
@@ -104,8 +140,14 @@ export function solveSM210(
             if (p.lowerBound === undefined || p.upperBound === undefined || p.targetValue === undefined) {
                 return { steps: [], fullSolutionLatex: null };
             }
+            if (p.q1 !== undefined && p.q3 !== undefined && p.iqr !== undefined) {
+                rawSteps.push({
+                    justification: t("sm2_10.reasons.calc_iqr"),
+                    expressionLatex: `\\text{IQR} = ${p.q3} - ${p.q1} = ${p.iqr}`
+                });
+            }
             rawSteps.push({
-                justification: t("sm2_10.reasons.identify_quartiles"),
+                justification: t("sm2_10.reasons.identify_outlier_rule"),
                 expressionLatex: `[${p.lowerBound ?? "?"}, ${p.upperBound ?? "?"}]`
             });
             rawSteps.push({
@@ -114,7 +156,126 @@ export function solveSM210(
             });
             break;
 
+        case "mean":
+            if (!p.dataset || p.mean === undefined) {
+                return { steps: [], fullSolutionLatex: null };
+            }
+            rawSteps.push({
+                justification: t("sm2_10.reasons.substitute_values"),
+                expressionLatex: `\\frac{${formatNumberList(p.dataset).replace(/,\s/g, "+")}}{${p.dataset.length}}`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: `\\text{Mean} = ${p.mean}`
+            });
+            break;
+
+        case "box_parts":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.interpret_box"),
+                expressionLatex: `\\text{Box} = [Q_1, Q_3]`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
         // --- Correlation & Scatter Plots ---
+        case "skewness":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.interpret_skewness"),
+                expressionLatex: `Q_2 - Q_1 < Q_3 - Q_2`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "compare_spread":
+            if (p.iqrA === undefined || p.iqrB === undefined) {
+                return { steps: [], fullSolutionLatex: null };
+            }
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compare_iqr"),
+                expressionLatex: `\\text{IQR}_A = ${p.iqrA},\\ \\text{IQR}_B = ${p.iqrB}`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "percentile":
+            if (p.percentileValue === undefined) {
+                return { steps: [], fullSolutionLatex: null };
+            }
+            rawSteps.push({
+                justification: t("sm2_10.reasons.interpret_percentile"),
+                expressionLatex: `Q_1 = ${p.percentileValue}\\%`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "modified_box":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.interpret_modified_box"),
+                expressionLatex: `\\text{Outliers} \\to \\text{separate points}`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "compare_distributions":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compare_distribution_measures"),
+                expressionLatex: `\\text{IQR} \\neq \\text{Range}`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "resistant_measure":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.identify_resistant_measure"),
+                expressionLatex: `\\text{Median}`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "five_number":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.recall_five_number_summary"),
+                expressionLatex: `\\min,\\ Q_1,\\ \\text{Median},\\ Q_3,\\ \\max`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
+        case "symmetric":
+            rawSteps.push({
+                justification: t("sm2_10.reasons.assess_symmetry"),
+                expressionLatex: `Q_2 - Q_1 \\approx Q_3 - Q_2`
+            });
+            rawSteps.push({
+                justification: t("sm2_10.reasons.compute_result"),
+                expressionLatex: correctLatex
+            });
+            break;
+
         case "strength":
         case "weak":
         case "strong":
