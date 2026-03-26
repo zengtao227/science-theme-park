@@ -697,6 +697,7 @@ export default function SB202BodySystemsPage() {
                 onShowFull={showFullSolution}
                 title={t("sb2_02.title")}
                 moduleCode="SB2.02"
+                historyModuleId="sb2-02-body-systems"
                 difficulty={difficulty}
                 onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
@@ -739,6 +740,7 @@ export default function SB202BodySystemsPage() {
             onShowFull={showFullSolution}
             title={t("sb2_02.title")}
             moduleCode="SB2.02"
+            historyModuleId="sb2-02-body-systems"
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}

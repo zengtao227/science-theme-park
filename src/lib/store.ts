@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { track } from '@vercel/analytics';
+import { getDefaultHistoryModuleId } from '@/lib/historyDisplay';
 
 export type StageId = string;
 export type DifficultyLevel = 'BASIC' | 'CORE' | 'ADVANCED' | 'ELITE';
@@ -87,6 +88,19 @@ interface AppState {
   completeStage: (moduleId: string, stageId: string) => void;
   getModuleProgress: (moduleId: string) => number; // Returns percentage 0-100
   getSectorProgress: (sector: 'math' | 'physics' | 'chemistry') => number;
+}
+
+function normalizeHistoryEntry(entry: HistoryEntry): HistoryEntry {
+  return {
+    ...entry,
+    moduleId: entry.moduleId ?? getDefaultHistoryModuleId(entry.moduleCode),
+    stageLabel: undefined,
+  };
+}
+
+function normalizeHistoryEntries(entries: HistoryEntry[] | undefined): HistoryEntry[] {
+  if (!Array.isArray(entries)) return [];
+  return entries.map(normalizeHistoryEntry);
 }
 
 export const useAppStore = create<AppState>()(
@@ -305,6 +319,28 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'science-park-storage', // name of the item in the storage (must be unique)
+      version: 2,
+      migrate: (persistedState) => {
+        if (!persistedState || typeof persistedState !== 'object') return persistedState;
+
+        const state = persistedState as Partial<AppState> & {
+          history?: HistoryEntry[];
+          userHistory?: Record<string, HistoryEntry[]>;
+        };
+
+        const normalizedUserHistory = Object.fromEntries(
+          Object.entries(state.userHistory || {}).map(([username, entries]) => [
+            username,
+            normalizeHistoryEntries(entries),
+          ])
+        );
+
+        return {
+          ...state,
+          history: normalizeHistoryEntries(state.history),
+          userHistory: normalizedUserHistory,
+        };
+      },
     }
   )
 );
