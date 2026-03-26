@@ -188,7 +188,7 @@ export const deCommon = {
         sm2_09_subtitle: "Lösen Sie Ungleichungen, Systeme und Absolutwertprobleme mit Basel-Szenarien.",
         sm2_10_title: "SM2.10 // DATENANALYSE",
         sm2_10_subtitle: "Analysieren Sie Verteilungen, Boxplots und Korrelationsmuster.",
-        sm2_11_title: "SM2.11 // FOLGEN & REIHEN",
+        sm2_11_title: "SM2.11 // FOLGEN UND REIHEN",
         sm2_11_subtitle: "Erkunden Sie arithmetische und geometrische Folgen und ihre Summen.",
         sm2_12_title: "SM2.12 // KOMBINATORIK",
         sm2_12_subtitle: "Meistern Sie Permutationen, Kombinationen und Wahrscheinlichkeitsanwendungen.",
