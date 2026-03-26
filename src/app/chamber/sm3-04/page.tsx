@@ -43,7 +43,14 @@ export default function S304Page() {
     adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+      feedbackLevel,
+      feedbackContent,
+      feedbackAvailability,
+      showHintLevel,
+      showStepsLevel,
+      showFullSolution,
+      policy,
     } = useQuestManager<S304Quest, Stage>({
     moduleCode: "sm3-04",
     buildPool: (d, s) => buildStagePool(t, d, s),
@@ -83,6 +90,13 @@ export default function S304Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t("sm3_04.title")}
       moduleCode="SM3.04"
       difficulty={difficulty}

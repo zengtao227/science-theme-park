@@ -309,7 +309,14 @@ export default function S303Page() {
     adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+      feedbackLevel,
+      feedbackContent,
+      feedbackAvailability,
+      showHintLevel,
+      showStepsLevel,
+      showFullSolution,
+      policy,
     } = useQuestManager<S303Quest, Stage>({
     moduleCode: "sm3-03",
     buildPool,
@@ -357,6 +364,13 @@ export default function S303Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={sm3_03_t.title}
       moduleCode="SM3.03"
       difficulty={difficulty}

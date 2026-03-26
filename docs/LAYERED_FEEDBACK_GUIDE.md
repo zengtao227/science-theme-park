@@ -53,7 +53,7 @@ type FeedbackContentProvider<T extends Quest> =
 ```
 
 **约束：**
-- **必须是纯函数**：只根据 `quest` 派生输出，不得修改 `quest`，不得产生副作用，不得依赖组件局部临时状态
+- **必须是纯函数**：只根据 `quest` 派生输出，不得修改 `quest`，不得产生副作用，不得依赖组件局部临时状态，不得根据当前错误次数决定返回结构（错误次数属于策略层，不属于内容派生层）
 - **必须返回对象**：当前签名不允许返回 `null`。如果模块某些 stage 没有 steps，应返回 `{ steps: [], fullSolutionLatex: null, hasFullSolution: false }`
 - **不传 provider 也是合法的**：`useQuestManager` 会自动降级（见 Step 4）
 
