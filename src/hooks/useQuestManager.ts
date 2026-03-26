@@ -3,8 +3,12 @@ import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
 import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
 import { canonicalizeFreeText, localizeFreeText } from "@/lib/i18n/freeTextLocale";
+import type { SolutionStep } from "@/lib/sm2-09-types";
+
+export type { SolutionStep };
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
+export type FeedbackLevel = "NONE" | "HINT" | "STEPS" | "FULL";
 
 export interface Slot {
     id: string;
@@ -24,6 +28,8 @@ export interface Quest {
     slots: Slot[];
     correctLatex: string;
     hintLatex?: string[];
+    steps?: SolutionStep[];
+    fullSolutionLatex?: string;
     visual?: unknown;
 }
 
@@ -66,6 +72,7 @@ export function useQuestManager<T extends Quest, S extends string>({
 
     const [inputs, setInputs] = useState<Record<string, string>>({});
     const [lastCheck, setLastCheck] = useState<null | { ok: boolean; correct: string }>(null);
+    const [feedbackLevel, setFeedbackLevel] = useState<FeedbackLevel>("NONE");
     const [stageStats, setStageStats] = useState<Record<string, StageStats>>(() => {
         if (typeof window === "undefined") return {};
         try {
@@ -140,6 +147,7 @@ export function useQuestManager<T extends Quest, S extends string>({
     const clearInputs = useCallback(() => {
         setInputs({});
         setLastCheck(null);
+        setFeedbackLevel("NONE");
         setAiFeedback(null);
         setIsRequestingAi(false);
     }, []);
@@ -397,6 +405,32 @@ export function useQuestManager<T extends Quest, S extends string>({
         return errorCounts[questKey] ?? 0;
     }, [currentQuest, errorCounts, stage]);
 
+    // Layered feedback methods
+    const showHintLevel = useCallback(() => {
+        setFeedbackLevel("HINT");
+    }, []);
+
+    const showStepsLevel = useCallback(() => {
+        setFeedbackLevel("STEPS");
+    }, []);
+
+    const showFullSolution = useCallback(() => {
+        setFeedbackLevel("FULL");
+    }, []);
+
+    // Determine which feedback buttons should be available
+    const feedbackAvailability = useMemo(() => {
+        const errors = getCurrentErrorCount();
+        const hasHints = !!(currentQuest?.hintLatex && currentQuest.hintLatex.length > 0);
+        const hasSteps = !!(currentQuest?.steps && currentQuest.steps.length > 0);
+        const isWrong = lastCheck !== null && !lastCheck.ok;
+        return {
+            canShowHint: isWrong && errors >= 1 && hasHints,
+            canShowSteps: isWrong && errors >= 2 && hasSteps,
+            canShowFull: isWrong && errors >= 3,
+        };
+    }, [getCurrentErrorCount, currentQuest, lastCheck]);
+
     return {
         difficulty,
         stage,
@@ -414,6 +448,11 @@ export function useQuestManager<T extends Quest, S extends string>({
         canNext,
         getHint,
         getCurrentErrorCount,
+        feedbackLevel,
+        feedbackAvailability,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,

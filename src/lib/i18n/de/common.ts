@@ -141,7 +141,16 @@ export const deCommon = {
                 clear: "LEEREN",
                 selected: "AUSGEWÄHLT"
             },
-            pathway_connection: "PFAD-VERBINDUNG"
+            pathway_connection: "PFAD-VERBINDUNG",
+            feedback: {
+                view_hint: "HINWEIS ANZEIGEN",
+                view_steps: "SCHRITTE ANZEIGEN",
+                view_full_solution: "KOMPLETTLÖSUNG",
+                hint_title: "HINWEIS",
+                steps_title: "LÖSUNGSSCHRITTE",
+                full_solution_title: "VOLLSTÄNDIGE LÖSUNG",
+                step_label: "Schritt"
+            }
         }
     },
     home: {

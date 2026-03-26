@@ -141,7 +141,16 @@ export const enCommon = {
                 clear: "CLEAR",
                 selected: "SELECTED"
             },
-            pathway_connection: "PATHWAY_CONNECTION"
+            pathway_connection: "PATHWAY_CONNECTION",
+            feedback: {
+                view_hint: "VIEW HINT",
+                view_steps: "VIEW STEPS",
+                view_full_solution: "FULL SOLUTION",
+                hint_title: "HINT",
+                steps_title: "SOLUTION STEPS",
+                full_solution_title: "COMPLETE SOLUTION",
+                step_label: "Step"
+            }
         }
     },
     home: {

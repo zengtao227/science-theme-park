@@ -141,7 +141,16 @@ export const cnCommon = {
                 clear: "清空",
                 selected: "已选"
             },
-            pathway_connection: "路径依赖"
+            pathway_connection: "路径依赖",
+            feedback: {
+                view_hint: "查看提示",
+                view_steps: "查看步骤",
+                view_full_solution: "完整解法",
+                hint_title: "提示",
+                steps_title: "解题步骤",
+                full_solution_title: "完整解答",
+                step_label: "步骤"
+            }
         }
     },
     home: {

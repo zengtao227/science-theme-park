@@ -9,12 +9,14 @@ import ConceptIcon from "@/components/ConceptIcon";
 import ResizableLayout from "@/components/layout/ResizableLayout";
 import { useAppStore, type HistoryEntry } from "@/lib/store";
 import { Difficulty } from "@/hooks/useQuestManager";
+import type { Quest, FeedbackLevel } from "@/hooks/useQuestManager";
 import { translations as i18n, useLanguage } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { MODULE_DEPENDENCIES } from "@/lib/curriculum/dependencies";
 import CoopPanel from "@/components/coop/CoopPanel";
 import HUDAlert from "@/components/shared/HUDAlert";
+import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
 
 interface ChamberLayoutProps {
     title: string;
@@ -52,6 +54,14 @@ interface ChamberLayoutProps {
     aiFeedback?: string | null;
     isRequestingAi?: boolean;
     onAiDiagnosisRequested?: () => void;
+    // Layered feedback props
+    currentQuest?: Quest | null;
+    feedbackLevel?: FeedbackLevel;
+    feedbackAvailability?: { canShowHint: boolean; canShowSteps: boolean; canShowFull: boolean };
+    currentHint?: string | null;
+    onShowHint?: () => void;
+    onShowSteps?: () => void;
+    onShowFull?: () => void;
 }
 
 export default function ChamberLayout({
@@ -77,7 +87,14 @@ export default function ChamberLayout({
     adaptiveRecommendation,
     aiFeedback,
     isRequestingAi,
-    onAiDiagnosisRequested
+    onAiDiagnosisRequested,
+    currentQuest,
+    feedbackLevel,
+    feedbackAvailability,
+    currentHint,
+    onShowHint,
+    onShowSteps,
+    onShowFull,
 }: ChamberLayoutProps) {
     const { currentLanguage, setLanguage, history, addHistory } = useAppStore();
     const { t } = useLanguage();
@@ -286,6 +303,28 @@ export default function ChamberLayout({
                         </div>
                     )}
                 </div>
+            )}
+
+            {/* Layered Feedback Panel */}
+            {currentQuest && feedbackLevel && feedbackAvailability && onShowHint && onShowSteps && onShowFull && (
+                <LayeredFeedbackPanel
+                    quest={currentQuest}
+                    feedbackLevel={feedbackLevel}
+                    feedbackAvailability={feedbackAvailability}
+                    currentHint={currentHint ?? null}
+                    onShowHint={onShowHint}
+                    onShowSteps={onShowSteps}
+                    onShowFull={onShowFull}
+                    translations={{
+                        view_hint: common.chamber_layout?.feedback?.view_hint ?? "VIEW HINT",
+                        view_steps: common.chamber_layout?.feedback?.view_steps ?? "VIEW STEPS",
+                        view_full_solution: common.chamber_layout?.feedback?.view_full_solution ?? "FULL SOLUTION",
+                        hint_title: common.chamber_layout?.feedback?.hint_title ?? "HINT",
+                        steps_title: common.chamber_layout?.feedback?.steps_title ?? "SOLUTION STEPS",
+                        full_solution_title: common.chamber_layout?.feedback?.full_solution_title ?? "COMPLETE SOLUTION",
+                        step_label: common.chamber_layout?.feedback?.step_label ?? "Step",
+                    }}
+                />
             )}
         </div>
     ) : null;
