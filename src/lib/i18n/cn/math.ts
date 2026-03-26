@@ -3785,6 +3785,8 @@ export const cnMath = {
             justification: "理由",
             final_solution: "最终解",
             enter_solution: "输入解",
+            answer_options: "答案选项",
+            correct_notation: "正确解法写法",
             placeholder_interval: "例如：(-∞, 5] 或 [2, 10)",
             and_connector: "且",
             empty_set: "无解 (∅)",
@@ -3806,6 +3808,7 @@ export const cnMath = {
             incorrect: "解不正确。请检查你的计算。",
             invalid_format: "格式无效。请使用区间记号，如 (-∞, 5] 或 [2, 10)",
             empty_input: "请在验证前输入解。",
+            empty_choice: "请先选择一个答案选项再验证。",
             hint_direction: "记住：乘以或除以负数会反转不等号方向。"
         },
         basel_scenarios: {

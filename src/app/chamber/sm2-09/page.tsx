@@ -30,6 +30,17 @@ import { solveLinearInequality, solveAbsoluteValueInequality } from "@/lib/sm2-0
 
 const PRINT_STAGE_ORDER: Stage[] = ["INEQUALITY_BASICS", "SYSTEMS", "ABSOLUTE_VALUE"];
 const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
+const CHOICE_LABELS = ["A", "B", "C", "D"] as const;
+const REGION_CHOICES = [
+  "Intersection region",
+  "Triangular region",
+  "Bounded region",
+  "Unbounded region",
+  "V-shaped region",
+  "Semicircular region",
+  "Polygonal region",
+  "Feasible region for optimization",
+];
 
 function normalizeExpressionSpacing(expression: string): string {
   return expression.replace(/\s+/g, " ").trim();
@@ -47,11 +58,123 @@ function formatExpressionForLatex(expression: string): string {
   );
 }
 
+function flipBracket(bracket: string): string {
+  if (bracket === "(") return "[";
+  if (bracket === "[") return "(";
+  if (bracket === ")") return "]";
+  return ")";
+}
+
+function toggleIntervalInclusivity(answer: string): string {
+  return answer.replace(/[()[\]]/g, (char) => flipBracket(char));
+}
+
+function shiftFirstNumericToken(answer: string, delta: number): string {
+  return answer.replace(/-?\d+(?:\.\d+)?(?!\/)/, (token) => {
+    const parsed = Number(token);
+    if (!Number.isFinite(parsed)) return token;
+    const shifted = parsed + delta;
+    return Number.isInteger(shifted) ? String(shifted) : shifted.toFixed(1).replace(/\.0$/, "");
+  });
+}
+
+function mirrorIntervalAnswer(answer: string): string | null {
+  const leftInfinite = answer.match(/^([\(\[])-∞,\s*([^\]\)]+)([\)\]])$/);
+  if (leftInfinite) {
+    const [, , bound, endBracket] = leftInfinite;
+    const startBracket = endBracket === "]" ? "[" : "(";
+    return `${startBracket}${bound}, ∞)`;
+  }
+
+  const rightInfinite = answer.match(/^([\(\[])([^,]+),\s*∞([\)\]])$/);
+  if (rightInfinite) {
+    const [, startBracket, bound] = rightInfinite;
+    const endBracket = startBracket === "[" ? "]" : ")";
+    return `(-∞, ${bound}${endBracket}`;
+  }
+
+  const bounded = answer.match(/^([\(\[])([^,]+),\s*([^\]\)]+)([\)\]])$/);
+  if (bounded) {
+    const [, startBracket, start, end, endBracket] = bounded;
+    const leftClose = startBracket === "[" ? ")" : "]";
+    const rightOpen = endBracket === "]" ? "(" : "[";
+    return `(-∞, ${start}${leftClose} ∪ ${rightOpen}${end}, ∞)`;
+  }
+
+  return null;
+}
+
+function buildUnionDistractor(answer: string): string | null {
+  const unionMatch = answer.match(/^([\(\[])-∞,\s*([^)\]]+)([\)\]])\s*∪\s*([\(\[])([^,\]]+),\s*∞([\)\]])$/);
+  if (!unionMatch) return null;
+
+  const [, , leftBound, leftBracket, rightBracket, rightBound] = unionMatch;
+  return `${rightBracket === "[" ? "[" : "("}${leftBound}, ${rightBound}${leftBracket === "]" ? "]" : ")"}`;
+}
+
+function deterministicRotate<T>(values: T[], seed: string): T[] {
+  if (values.length <= 1) return values;
+  const hash = Array.from(seed).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const offset = hash % values.length;
+  return [...values.slice(offset), ...values.slice(0, offset)];
+}
+
+function buildAnswerChoices(answer: string, questId: string): string[] {
+  const trimmed = answer.trim();
+
+  if (trimmed === "ℝ") {
+    return deterministicRotate(["ℝ", "∅", "(-∞, 0)", "[0, ∞)"], questId);
+  }
+
+  if (trimmed === "∅") {
+    return deterministicRotate(["∅", "ℝ", "(-∞, 0)", "[0, ∞)"], questId);
+  }
+
+  if (trimmed === "(a - b, a + b)") {
+    return deterministicRotate(
+      [
+        trimmed,
+        "[a - b, a + b]",
+        "(-∞, a - b) ∪ (a + b, ∞)",
+        "[a + b, ∞)",
+      ],
+      questId
+    );
+  }
+
+  if (REGION_CHOICES.includes(trimmed)) {
+    return deterministicRotate(
+      [trimmed, ...REGION_CHOICES.filter((choice) => choice !== trimmed).slice(0, 3)],
+      questId
+    );
+  }
+
+  const candidates = [
+    trimmed,
+    toggleIntervalInclusivity(trimmed),
+    mirrorIntervalAnswer(trimmed),
+    buildUnionDistractor(trimmed),
+    shiftFirstNumericToken(trimmed, 1),
+    shiftFirstNumericToken(trimmed, -1),
+  ].filter((choice): choice is string => Boolean(choice));
+
+  const uniqueChoices = Array.from(new Set(candidates)).slice(0, 4);
+  if (uniqueChoices.length < 4) {
+    const fallbacks = ["ℝ", "∅", "(-∞, 0)", "[0, ∞)"];
+    for (const fallback of fallbacks) {
+      if (!uniqueChoices.includes(fallback)) uniqueChoices.push(fallback);
+      if (uniqueChoices.length === 4) break;
+    }
+  }
+
+  return deterministicRotate(uniqueChoices.slice(0, 4), questId);
+}
+
 export default function SM209Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const [showSteps, setShowSteps] = useState(false);
-  const [userInput, setUserInput] = useState("");
+  const [selectedChoice, setSelectedChoice] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
 
   const sm2_09_t = {
@@ -99,12 +222,15 @@ export default function SM209Page() {
     solution_label: t("sm2_09.labels.solution"),
     enter_solution: t("sm2_09.labels.enter_solution"),
     placeholder_interval: t("sm2_09.labels.placeholder_interval"),
+    answer_options: t("sm2_09.labels.answer_options"),
+    correct_notation: t("sm2_09.labels.correct_notation"),
     and_connector: t("sm2_09.labels.and_connector"),
     feedback: {
       correct: t("sm2_09.feedback.correct"),
       incorrect: t("sm2_09.feedback.incorrect"),
       format_error: t("sm2_09.feedback.invalid_format"),
       empty_input: t("sm2_09.feedback.empty_input"),
+      empty_choice: t("sm2_09.feedback.empty_choice"),
     }
   };
 
@@ -226,7 +352,7 @@ export default function SM209Page() {
       setCurrentStage(newStage);
       handleStageChange(newStage);
       setShowSteps(false);
-      setUserInput("");
+      setSelectedChoice("");
       setFeedback(null);
     },
     [handleStageChange]
@@ -237,39 +363,39 @@ export default function SM209Page() {
     (newDifficulty: Difficulty) => {
       handleDifficultyChange(newDifficulty);
       setShowSteps(false);
-      setUserInput("");
+      setSelectedChoice("");
       setFeedback(null);
     },
     [handleDifficultyChange]
   );
 
+  const answerChoices = useMemo(
+    () => (currentQuest ? buildAnswerChoices(currentQuest.answer, currentQuest.id) : []),
+    [currentQuest]
+  );
+
+  const handleChoiceSelect = useCallback(
+    (choice: string) => {
+      setSelectedChoice(choice);
+      setInputs({ solution: choice });
+      setFeedback(null);
+    },
+    [setInputs]
+  );
+
   // Handle answer verification
   const handleVerify = useCallback(() => {
-    if (!userInput.trim()) {
-      setFeedback(sm2_09_t.feedback.empty_input);
+    if (!selectedChoice.trim()) {
+      setFeedback(sm2_09_t.feedback.empty_choice);
       return;
     }
-
-    if (!currentQuest) return;
-
-    // Simple string comparison for now
-    const normalizeAnswer = (s: string) => s.trim().toLowerCase().replace(/\s+/g, '').replace(/infinity/g, '∞');
-    const isCorrect = normalizeAnswer(userInput) === normalizeAnswer(currentQuest?.answer);
-    
-    if (isCorrect) {
-      setFeedback(sm2_09_t.feedback.correct);
-      // Update inputs for the hook's verify function
-      setInputs({ solution: userInput });
-      verify();
-    } else {
-      setFeedback(sm2_09_t.feedback.incorrect);
-    }
-  }, [userInput, currentQuest, setInputs, verify, sm2_09_t.feedback.empty_input, sm2_09_t.feedback.correct, sm2_09_t.feedback.incorrect]);
+    verify();
+  }, [selectedChoice, sm2_09_t.feedback.empty_choice, verify]);
 
   // Handle next quest
   const handleNext = useCallback(() => {
     next();
-    setUserInput("");
+    setSelectedChoice("");
     setFeedback(null);
     setShowSteps(false);
   }, [next]);
@@ -321,6 +447,14 @@ export default function SM209Page() {
   useEffect(() => {
     completeStage("sm2-09", currentStage);
   }, [completeStage, currentStage]);
+
+  useEffect(() => {
+    if (!lastCheck) return;
+    setFeedback(lastCheck.ok ? sm2_09_t.feedback.correct : sm2_09_t.feedback.incorrect);
+    if (!lastCheck.ok) {
+      setShowSteps(true);
+    }
+  }, [lastCheck, sm2_09_t.feedback.correct, sm2_09_t.feedback.incorrect]);
 
   if (!currentQuest) {
     return (
@@ -387,6 +521,9 @@ export default function SM209Page() {
       currentStage={currentStage}
       onStageChange={(s) => handleStageChangeLocal(s as Stage)}
       printSections={printableSections}
+      checkStatus={lastCheck}
+      onVerify={handleVerify}
+      onNext={handleNext}
       translations={{
         back: sm2_09_t.back,
         check: sm2_09_t.check,
@@ -427,21 +564,37 @@ export default function SM209Page() {
                 <BlockMath math={currentQuest?.expressionLatex || ""} />
               </div>
 
-              {/* Input Field */}
+              {/* Answer Options */}
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                  {sm2_09_t.enter_solution}
+                <label className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
+                  {sm2_09_t.answer_options}
                 </label>
-                <input
-                  type="text"
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  placeholder={sm2_09_t.placeholder_interval}
-                  className="w-full px-4 py-2 border-2 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:border-blue-500 focus:outline-none"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") handleVerify();
-                  }}
-                />
+                <div className="grid grid-cols-1 gap-3">
+                  {answerChoices.map((choice, index) => {
+                    const selected = selectedChoice === choice;
+                    return (
+                      <button
+                        key={`${currentQuest.id}-${choice}`}
+                        type="button"
+                        onClick={() => handleChoiceSelect(choice)}
+                        className={`w-full rounded-lg border-2 px-4 py-3 text-left transition-all ${
+                          selected
+                            ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-900 dark:text-blue-200"
+                            : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:border-blue-400"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-current text-sm font-black">
+                            {CHOICE_LABELS[index] ?? String(index + 1)}
+                          </div>
+                          <div className="min-w-0 break-words font-mono text-base">
+                            {choice}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Feedback */}
@@ -454,6 +607,17 @@ export default function SM209Page() {
                   }`}
                 >
                   {feedback}
+                </div>
+              )}
+
+              {(feedback || showSteps) && (
+                <div className="mb-4 rounded-lg border-2 border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 p-4">
+                  <div className="mb-2 text-sm font-bold text-blue-900 dark:text-blue-300">
+                    {sm2_09_t.correct_notation}
+                  </div>
+                  <div className="font-mono text-base text-gray-900 dark:text-gray-100 break-words">
+                    {currentQuest.answer}
+                  </div>
                 </div>
               )}
 
