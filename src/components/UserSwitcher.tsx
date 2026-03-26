@@ -1,14 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { User, ChevronDown, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function UserSwitcher() {
   const { currentUser, getUserList, switchUser, createUser } = useAppStore();
   const { t } = useLanguage();
+  const pathname = usePathname();
   const [showMenu, setShowMenu] = useState(false);
   const [showNewUser, setShowNewUser] = useState(false);
   const [newUsername, setNewUsername] = useState('');
@@ -21,6 +23,11 @@ export default function UserSwitcher() {
     create: t('common.user_switcher.create'),
     cancel: t('common.user_switcher.cancel'),
   };
+
+  useEffect(() => {
+    setShowMenu(false);
+    setShowNewUser(false);
+  }, [pathname]);
 
   const handleCreateUser = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +98,10 @@ export default function UserSwitcher() {
                 </button>
                 <Link
                   href="/profile#ai-settings"
+                  onClick={() => {
+                    setShowMenu(false);
+                    setShowNewUser(false);
+                  }}
                   className="w-full px-4 py-3 text-left border-t border-white/10 text-neon-cyan hover:bg-neon-cyan/10 transition-colors flex items-center gap-2"
                 >
                   <Settings className="w-3 h-3" />
