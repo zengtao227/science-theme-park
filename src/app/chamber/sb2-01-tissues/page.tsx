@@ -277,6 +277,7 @@ export default function SB201TissuesPage() {
       onShowSteps={showStepsLevel}
       onShowFull={showFullSolution}
       moduleCode="SB2.01"
+      historyModuleId="sb2-01-tissues"
             title={t("sb2_01_tissues.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}

@@ -262,6 +262,7 @@ export default function SB101MetabolicPage() {
       onShowSteps={showStepsLevel}
       onShowFull={showFullSolution}
       moduleCode="SB1.01"
+      historyModuleId="sb1-01-metabolic"
             title={t("sb1_01_metabolic.title")}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}

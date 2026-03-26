@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { ACHIEVEMENTS, computeStats, formatStudyTime } from "@/lib/achievements";
+import { getHistoryModuleTitle } from "@/lib/historyDisplay";
 import { clsx } from "clsx";
 import { ArrowLeft, Zap, Target, Clock, TrendingUp, Award, BookOpen, Star } from "lucide-react";
 
@@ -272,8 +273,12 @@ export default function NexusHubPage() {
                                 <div key={entry.id} className="flex items-center gap-4 px-5 py-3 hover:bg-white/[0.03] transition-colors">
                                     <div className={clsx("w-2 h-2 rounded-full flex-shrink-0", entry.score >= 0.8 ? "bg-green-400" : "bg-orange-400")} />
                                     <div className="flex-1 min-w-0">
-                                        <span className="text-xs font-black text-white/80 uppercase tracking-widest">{entry.moduleCode}</span>
-                                        <span className="text-xs text-white/40 ml-3">{entry.stageLabel}</span>
+                                        <div className="text-xs font-black text-white/80 truncate">
+                                            {getHistoryModuleTitle(t, entry.moduleCode, entry.moduleId)}
+                                        </div>
+                                        <div className="text-xs text-white/40 mt-1">
+                                            {entry.moduleCode} · {entry.stage}
+                                        </div>
                                     </div>
                                     <div className="text-xs font-mono text-white/40">{Math.round(entry.score * 100)}%</div>
                                     <div className="text-xs font-mono text-white/30">

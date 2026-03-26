@@ -9,6 +9,7 @@ import ScienceRadar from "@/components/ui/ScienceRadar";
 import StatsMatrix from "@/components/profile/StatsMatrix";
 import AiProviderSettings from "@/components/profile/AiProviderSettings";
 import { clsx } from "clsx";
+import { getHistoryModuleTitle } from "@/lib/historyDisplay";
 
 export default function ProfilePage() {
   const { history } = useAppStore();
@@ -162,8 +163,13 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex-1 border border-white/10 rounded-xl px-4 py-3 bg-white/[0.02]">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-                        {entry.moduleCode} · {entry.stage}
+                      <div>
+                        <div className="text-xs font-black text-white/85">
+                          {getHistoryModuleTitle(t, entry.moduleCode, entry.moduleId)}
+                        </div>
+                        <div className="text-[10px] uppercase tracking-[0.3em] text-white/50 font-black mt-1">
+                          {entry.moduleCode} · {entry.stage}
+                        </div>
                       </div>
                       <div className="text-[10px] text-white/40 font-mono">
                         {new Date(entry.timestamp).toLocaleString(

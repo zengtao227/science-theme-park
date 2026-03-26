@@ -16,10 +16,12 @@ import { MODULE_DEPENDENCIES } from "@/lib/curriculum/dependencies";
 import CoopPanel from "@/components/coop/CoopPanel";
 import HUDAlert from "@/components/shared/HUDAlert";
 import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
+import { getDefaultHistoryModuleId } from "@/lib/historyDisplay";
 
 interface ChamberLayoutProps {
     title: string;
     moduleCode: string;
+    historyModuleId?: string;
     difficulty: Difficulty;
     onDifficultyChange: (d: Difficulty) => void;
     stages: { id: string; label: string }[];
@@ -66,6 +68,7 @@ interface ChamberLayoutProps {
 export default function ChamberLayout({
     title,
     moduleCode,
+    historyModuleId,
     difficulty,
     onDifficultyChange,
     stages,
@@ -130,9 +133,9 @@ export default function ChamberLayout({
         return moduleEntries.reduce((best, entry) => entry.score > best.score ? entry : best, moduleEntries[0]);
     }, [moduleEntries]);
 
-    const stageLabel = useMemo(() => {
-        return stages.find((s) => s.id === currentStage)?.label ?? currentStage;
-    }, [stages, currentStage]);
+    const getStageDisplayLabel = useCallback((stageId: string) => {
+        return stages.find((s) => s.id === stageId)?.label ?? stageId;
+    }, [stages]);
 
     const selectedPrintSections = useMemo(() => {
         if (!hasPrintSections || !printSections) return [];
@@ -195,8 +198,8 @@ export default function ChamberLayout({
                 id: `${moduleCode}-${currentStage}-${Date.now()}`,
                 timestamp: Date.now(),
                 moduleCode,
+                moduleId: historyModuleId ?? getDefaultHistoryModuleId(moduleCode),
                 stage: currentStage,
-                stageLabel,
                 difficulty,
                 score: accuracy,
                 durationMs,
@@ -204,7 +207,7 @@ export default function ChamberLayout({
             });
         }
         prevOkRef.current = ok;
-    }, [addHistory, checkStatus, currentStage, difficulty, moduleCode, stageLabel, successRate]);
+    }, [addHistory, checkStatus, currentStage, difficulty, historyModuleId, moduleCode, successRate]);
 
     const formatAccuracy = (value: number) => `${Math.round(value * 100)}%`;
     const formatTime = (value: number) => new Date(value).toLocaleString(locale, { hour12: false });
@@ -346,7 +349,7 @@ export default function ChamberLayout({
             {bestEntry && (
                 <div className="border border-neon-green/30 bg-neon-green/5 rounded-xl p-4">
                     <div className="text-[10px] uppercase tracking-[0.4em] text-neon-green font-black">{common.history_best}</div>
-                    <div className="mt-2 text-sm font-black">{bestEntry.stageLabel}</div>
+                    <div className="mt-2 text-sm font-black">{getStageDisplayLabel(bestEntry.stage)}</div>
                     <div className="text-xs text-white/60 font-mono">{formatAccuracy(bestEntry.score)} · {formatTime(bestEntry.timestamp)}</div>
                 </div>
             )}
@@ -365,7 +368,7 @@ export default function ChamberLayout({
                             className="w-full px-4 py-3 min-h-[44px] flex items-center justify-between text-left bg-white/[0.02] hover:bg-white/[0.05] transition-all"
                         >
                             <div>
-                                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{entry.stageLabel}</div>
+                                <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">{getStageDisplayLabel(entry.stage)}</div>
                                 <div className="text-xs text-white/60 font-mono">{formatAccuracy(entry.score)} · {entry.difficulty}</div>
                             </div>
                             <div className="text-xs text-white/90 font-mono">{formatTime(entry.timestamp)}</div>

@@ -16,8 +16,9 @@ export type HistoryEntry = {
   id: string;
   timestamp: number;
   moduleCode: string;
+  moduleId?: string;
   stage: string;
-  stageLabel: string;
+  stageLabel?: string;
   difficulty: DifficultyLevel;
   score: number;
   durationMs: number;

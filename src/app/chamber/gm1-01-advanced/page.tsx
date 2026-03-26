@@ -1303,6 +1303,7 @@ export default function G101AdvancedPage() {
       onShowFull={showFullSolution}
       title={gm1_01_advanced_t.title}
       moduleCode="GM1.01-ADV"
+      historyModuleId="gm1-01-advanced"
       difficulty={difficulty}
       onDifficultyChange={handleDifficultyChange}
       stages={stages}
