@@ -3,12 +3,42 @@ import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
 import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
 import { canonicalizeFreeText, localizeFreeText } from "@/lib/i18n/freeTextLocale";
-import type { SolutionStep } from "@/lib/sm2-09-types";
-
-export type { SolutionStep };
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 export type FeedbackLevel = "NONE" | "HINT" | "STEPS" | "FULL";
+
+// Platform-level solution step (module-agnostic)
+export interface PlatformSolutionStep {
+    stepNumber: number;
+    expressionLatex: string;
+    justification: string;
+    emphasis?: "warning" | "key" | "transform";
+}
+
+// Derived feedback content — NEVER stored on Quest
+export interface FeedbackContent {
+    hint: string | null;
+    steps: PlatformSolutionStep[];
+    fullSolutionLatex: string | null;
+    hasFullSolution: boolean; // true = real solution, false = correctLatex fallback
+}
+
+// Per-module feedback strategy
+export interface FeedbackPolicy {
+    hintThreshold: number;         // errors needed to unlock hint (default: 1)
+    stepsThreshold: number;        // errors needed to unlock steps (default: 2)
+    fullThreshold: number;         // errors needed to unlock full (default: 3)
+    confirmFullSolution: boolean;  // require confirmation before revealing (default: true)
+    showAfterCorrect: boolean;     // allow review after correct answer (default: true)
+}
+
+export const DEFAULT_FEEDBACK_POLICY: FeedbackPolicy = {
+    hintThreshold: 1,
+    stepsThreshold: 2,
+    fullThreshold: 3,
+    confirmFullSolution: true,
+    showAfterCorrect: true,
+};
 
 export interface Slot {
     id: string;
@@ -28,8 +58,6 @@ export interface Quest {
     slots: Slot[];
     correctLatex: string;
     hintLatex?: string[];
-    steps?: SolutionStep[];
-    fullSolutionLatex?: string;
     visual?: unknown;
 }
 
@@ -39,6 +67,8 @@ export interface UseQuestManagerOptions<T extends Quest, S extends string> {
     initialStage: S;
     initialDifficulty?: Difficulty;
     tolerance?: number;
+    feedbackContentProvider?: (quest: T) => Omit<FeedbackContent, 'hint'>;
+    feedbackPolicy?: Partial<FeedbackPolicy>;
 }
 
 type StageStats = {
@@ -53,8 +83,14 @@ export function useQuestManager<T extends Quest, S extends string>({
     buildPool,
     initialStage,
     initialDifficulty = "CORE",
-    tolerance = 0.1
+    tolerance = 0.1,
+    feedbackContentProvider,
+    feedbackPolicy: policyOverrides,
 }: UseQuestManagerOptions<T, S>) {
+    const policy: FeedbackPolicy = useMemo(
+        () => ({ ...DEFAULT_FEEDBACK_POLICY, ...policyOverrides }),
+        [policyOverrides]
+    );
     const { currentLanguage, history } = useAppStore();
     const storageKey = `quest_manager_stats_${moduleCode}_v1`;
     const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
@@ -418,18 +454,55 @@ export function useQuestManager<T extends Quest, S extends string>({
         setFeedbackLevel("FULL");
     }, []);
 
+    // Derive feedback content from provider (or graceful fallback)
+    const feedbackContent: FeedbackContent = useMemo(() => {
+        if (!currentQuest) {
+            return { hint: null, steps: [], fullSolutionLatex: null, hasFullSolution: false };
+        }
+        const hint = getHint();
+        if (feedbackContentProvider) {
+            const provided = feedbackContentProvider(currentQuest);
+            return {
+                hint,
+                steps: provided.steps,
+                fullSolutionLatex: provided.fullSolutionLatex ?? currentQuest.correctLatex,
+                hasFullSolution: !!provided.fullSolutionLatex,
+            };
+        }
+        // Graceful fallback: no provider → hint + correctLatex only
+        return {
+            hint,
+            steps: [],
+            fullSolutionLatex: currentQuest.correctLatex,
+            hasFullSolution: false,
+        };
+    }, [currentQuest, getHint, feedbackContentProvider]);
+
     // Determine which feedback buttons should be available
     const feedbackAvailability = useMemo(() => {
         const errors = getCurrentErrorCount();
-        const hasHints = !!(currentQuest?.hintLatex && currentQuest.hintLatex.length > 0);
-        const hasSteps = !!(currentQuest?.steps && currentQuest.steps.length > 0);
-        const isWrong = lastCheck !== null && !lastCheck.ok;
+        const hasHints = feedbackContent.hint !== null;
+        const hasSteps = feedbackContent.steps.length > 0;
+        const isAnswered = lastCheck !== null;
+        const isWrong = isAnswered && !lastCheck.ok;
+        const isCorrect = isAnswered && lastCheck.ok;
+
+        // After correct: allow review if policy permits, but don't auto-expand
+        if (isCorrect && policy.showAfterCorrect) {
+            return {
+                canShowHint: hasHints,
+                canShowSteps: hasSteps,
+                canShowFull: true,
+            };
+        }
+
+        // After wrong: progressive unlock based on policy thresholds
         return {
-            canShowHint: isWrong && errors >= 1 && hasHints,
-            canShowSteps: isWrong && errors >= 2 && hasSteps,
-            canShowFull: isWrong && errors >= 3,
+            canShowHint: isWrong && errors >= policy.hintThreshold && hasHints,
+            canShowSteps: isWrong && errors >= policy.stepsThreshold && hasSteps,
+            canShowFull: isWrong && errors >= policy.fullThreshold,
         };
-    }, [getCurrentErrorCount, currentQuest, lastCheck]);
+    }, [getCurrentErrorCount, feedbackContent, lastCheck, policy]);
 
     return {
         difficulty,
@@ -449,10 +522,12 @@ export function useQuestManager<T extends Quest, S extends string>({
         getHint,
         getCurrentErrorCount,
         feedbackLevel,
+        feedbackContent,
         feedbackAvailability,
         showHintLevel,
         showStepsLevel,
         showFullSolution,
+        policy,
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,

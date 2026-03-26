@@ -7,8 +7,8 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InequalityVisualization } from "@/components/chamber/sm2-09/InequalityVisualization";
-import { StepBySolver } from "@/components/chamber/sm2-09/StepBySolver";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
 import { SM209Quest, Stage, SolutionStep } from "@/lib/sm2-09-types";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections } from "@/components/print/QuestPrintSections";
@@ -41,6 +41,16 @@ const REGION_CHOICES = [
   "Polygonal region",
   "Feasible region for optimization",
 ];
+
+// Convert module-specific SolutionStep to platform-level PlatformSolutionStep
+function toPlatformStep(step: SolutionStep): PlatformSolutionStep {
+  return {
+    stepNumber: step.stepNumber,
+    expressionLatex: step.expressionLatex,
+    justification: step.justification,
+    emphasis: step.reversesInequality ? "warning" : undefined,
+  };
+}
 
 function normalizeExpressionSpacing(expression: string): string {
   return expression.replace(/\s+/g, " ").trim();
@@ -173,7 +183,6 @@ function buildAnswerChoices(answer: string, questId: string): string[] {
 export default function SM209Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const [showSteps, setShowSteps] = useState(false);
   const [selectedChoice, setSelectedChoice] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
 
@@ -301,7 +310,7 @@ export default function SM209Page() {
     [sm2_09_t.solution_label, sm2_09_t.and_connector, t]
   );
 
-  // Generate solution steps for a quest
+  // Generate solution steps for a quest (used by feedbackContentProvider)
   function generateSteps(q: Partial<SM209Quest>): SolutionStep[] {
     if (!q.expression) return [];
     
@@ -319,6 +328,16 @@ export default function SM209Page() {
     }
   }
 
+  // feedbackContentProvider: derives feedback content from quest WITHOUT mutating it
+  const sm209FeedbackProvider = useCallback((quest: SM209Quest) => {
+    const steps = quest.steps || generateSteps(quest);
+    return {
+      steps: steps.map(toPlatformStep),
+      fullSolutionLatex: quest.answer || null,
+      hasFullSolution: true,
+    };
+  }, []);
+
   const {
     currentQuest,
     difficulty,
@@ -332,11 +351,19 @@ export default function SM209Page() {
     adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+      feedbackLevel,
+      feedbackContent,
+      feedbackAvailability,
+      showHintLevel,
+      showStepsLevel,
+      showFullSolution,
+      policy,
     } = useQuestManager<SM209Quest, Stage>({
     moduleCode: "sm2-09",
     buildPool: (diff, stg) => buildStagePool(sm2_09_t, diff, stg),
     initialStage: "INEQUALITY_BASICS",
+    feedbackContentProvider: sm209FeedbackProvider,
   });
 
   const [currentStage, setCurrentStage] = useState<Stage>(stage as Stage);
@@ -346,7 +373,6 @@ export default function SM209Page() {
     (newStage: Stage) => {
       setCurrentStage(newStage);
       handleStageChange(newStage);
-      setShowSteps(false);
       setSelectedChoice("");
       setFeedback(null);
     },
@@ -357,7 +383,6 @@ export default function SM209Page() {
   const handleDifficultyChangeLocal = useCallback(
     (newDifficulty: Difficulty) => {
       handleDifficultyChange(newDifficulty);
-      setShowSteps(false);
       setSelectedChoice("");
       setFeedback(null);
     },
@@ -392,13 +417,7 @@ export default function SM209Page() {
     next();
     setSelectedChoice("");
     setFeedback(null);
-    setShowSteps(false);
   }, [next]);
-
-  // Toggle step-by-step solver
-  const toggleSteps = useCallback(() => {
-    setShowSteps(prev => !prev);
-  }, []);
 
   // Get Basel scenario text
   const getBaselScenarioText = useCallback(() => {
@@ -446,9 +465,6 @@ export default function SM209Page() {
   useEffect(() => {
     if (!lastCheck) return;
     setFeedback(lastCheck.ok ? sm2_09_t.feedback.correct : sm2_09_t.feedback.incorrect);
-    if (!lastCheck.ok) {
-      setShowSteps(true);
-    }
   }, [lastCheck, sm2_09_t.feedback.correct, sm2_09_t.feedback.incorrect]);
 
   if (!currentQuest) {
@@ -501,6 +517,13 @@ export default function SM209Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={sm2_09_t.title}
       moduleCode="SM2.09"
       defaultLeftWidth={64}
@@ -604,39 +627,7 @@ export default function SM209Page() {
                   {feedback}
                 </div>
               )}
-
-              {(feedback || showSteps) && (
-                <div className="mb-4 rounded-lg border-2 border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 p-4">
-                  <div className="mb-2 text-sm font-bold text-blue-900 dark:text-blue-300">
-                    {sm2_09_t.correct_notation}
-                  </div>
-                  <div className="font-mono text-base text-gray-900 dark:text-gray-100 break-words">
-                    {currentQuest.answer}
-                  </div>
-                </div>
-              )}
-
-              {/* Show Steps Button */}
-              <div className="mt-4">
-                <button
-                  onClick={toggleSteps}
-                  className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded font-mono transition-colors"
-                >
-                  {showSteps ? sm2_09_t.hide_steps : sm2_09_t.show_steps}
-                </button>
-              </div>
             </div>
-
-            {/* Step-by-Step Solver */}
-            <StepBySolver
-              quest={currentQuest}
-              visible={showSteps}
-              translations={{
-                step: sm2_09_t.step,
-                justification: sm2_09_t.justification,
-                final_solution: sm2_09_t.final_solution,
-              }}
-            />
           </div>
 
           {/* Right Panel - Visualization */}

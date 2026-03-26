@@ -1,19 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import type { FeedbackLevel, Quest, SolutionStep } from "@/hooks/useQuestManager";
+import type { FeedbackLevel, FeedbackContent, PlatformSolutionStep, FeedbackPolicy } from "@/hooks/useQuestManager";
 
 interface LayeredFeedbackPanelProps {
-    quest: Quest;
+    feedbackContent: FeedbackContent;
     feedbackLevel: FeedbackLevel;
     feedbackAvailability: {
         canShowHint: boolean;
         canShowSteps: boolean;
         canShowFull: boolean;
     };
-    currentHint: string | null;
+    policy: FeedbackPolicy;
+    isCorrect: boolean; // whether last answer was correct (for dimmed styling)
     onShowHint: () => void;
     onShowSteps: () => void;
     onShowFull: () => void;
@@ -24,15 +25,20 @@ interface LayeredFeedbackPanelProps {
         hint_title: string;
         steps_title: string;
         full_solution_title: string;
+        correct_answer_title: string;
         step_label: string;
+        confirm_full_solution: string;
+        confirm_yes: string;
+        confirm_cancel: string;
     };
 }
 
 export default function LayeredFeedbackPanel({
-    quest,
+    feedbackContent,
     feedbackLevel,
     feedbackAvailability,
-    currentHint,
+    policy,
+    isCorrect,
     onShowHint,
     onShowSteps,
     onShowFull,
@@ -40,11 +46,33 @@ export default function LayeredFeedbackPanel({
 }: LayeredFeedbackPanelProps) {
     const { canShowHint, canShowSteps, canShowFull } = feedbackAvailability;
     const anyAvailable = canShowHint || canShowSteps || canShowFull;
+    const [showConfirm, setShowConfirm] = useState(false);
 
     if (!anyAvailable) return null;
 
+    // Post-correct: dimmed styling
+    const dimClass = isCorrect ? "opacity-60" : "";
+
+    const handleFullClick = () => {
+        if (policy.confirmFullSolution && feedbackLevel !== "FULL") {
+            setShowConfirm(true);
+        } else {
+            onShowFull();
+        }
+    };
+
+    const handleConfirmYes = () => {
+        setShowConfirm(false);
+        onShowFull();
+    };
+
+    // Determine full solution section title based on whether it's a real solution or fallback
+    const fullSolutionTitle = feedbackContent.hasFullSolution
+        ? translations.full_solution_title
+        : translations.correct_answer_title;
+
     return (
-        <div className="mt-4 space-y-3 animate-in fade-in slide-in-from-bottom-2">
+        <div className={`mt-4 space-y-3 animate-in fade-in slide-in-from-bottom-2 ${dimClass}`}>
             {/* Feedback action buttons */}
             <div className="flex flex-wrap items-center justify-center gap-2">
                 {canShowHint && (
@@ -75,7 +103,7 @@ export default function LayeredFeedbackPanel({
                 )}
                 {canShowFull && (
                     <button
-                        onClick={onShowFull}
+                        onClick={handleFullClick}
                         disabled={feedbackLevel === "FULL"}
                         className={`min-h-[36px] px-4 py-2 text-[9px] font-black tracking-[0.3em] uppercase transition-all border rounded ${
                             feedbackLevel === "FULL"
@@ -88,34 +116,57 @@ export default function LayeredFeedbackPanel({
                 )}
             </div>
 
+            {/* Anti-spoiler confirmation dialog */}
+            {showConfirm && (
+                <div className="p-4 rounded-lg border border-rose-500/30 bg-rose-500/5 text-center space-y-3">
+                    <p className="text-sm text-rose-300">{translations.confirm_full_solution}</p>
+                    <div className="flex justify-center gap-3">
+                        <button
+                            onClick={handleConfirmYes}
+                            className="px-4 py-1.5 text-[9px] font-black tracking-[0.2em] uppercase border border-rose-500/50 rounded text-rose-300 hover:bg-rose-500/20 transition-all"
+                        >
+                            {translations.confirm_yes}
+                        </button>
+                        <button
+                            onClick={() => setShowConfirm(false)}
+                            className="px-4 py-1.5 text-[9px] font-black tracking-[0.2em] uppercase border border-white/20 rounded text-white/50 hover:bg-white/5 transition-all"
+                        >
+                            {translations.confirm_cancel}
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {/* Expanded feedback content */}
             {feedbackLevel !== "NONE" && (
                 <div className="rounded-lg border border-white/10 bg-white/[0.02] overflow-hidden">
                     {/* Hint layer */}
-                    {(feedbackLevel === "HINT" || feedbackLevel === "STEPS" || feedbackLevel === "FULL") && currentHint && (
+                    {(feedbackLevel === "HINT" || feedbackLevel === "STEPS" || feedbackLevel === "FULL") && feedbackContent.hint && (
                         <div className="p-4 border-b border-white/5">
                             <div className="text-[9px] uppercase tracking-[0.3em] text-amber-400 font-black mb-2 flex items-center gap-2">
                                 💡 {translations.hint_title}
                             </div>
                             <div className="text-sm text-white/80 font-mono">
-                                <InlineMath math={currentHint} />
+                                <InlineMath math={feedbackContent.hint} />
                             </div>
                         </div>
                     )}
 
                     {/* Steps layer */}
-                    {(feedbackLevel === "STEPS" || feedbackLevel === "FULL") && quest.steps && quest.steps.length > 0 && (
+                    {(feedbackLevel === "STEPS" || feedbackLevel === "FULL") && feedbackContent.steps.length > 0 && (
                         <div className="p-4 border-b border-white/5">
                             <div className="text-[9px] uppercase tracking-[0.3em] text-cyan-400 font-black mb-3 flex items-center gap-2">
                                 📝 {translations.steps_title}
                             </div>
                             <div className="space-y-3">
-                                {quest.steps.map((step: SolutionStep, index: number) => (
+                                {feedbackContent.steps.map((step: PlatformSolutionStep, index: number) => (
                                     <div
                                         key={index}
                                         className={`p-3 rounded ${
-                                            step.reversesInequality
+                                            step.emphasis === "warning"
                                                 ? "bg-red-500/10 border border-red-500/30"
+                                                : step.emphasis === "key"
+                                                ? "bg-cyan-500/10 border border-cyan-500/30"
                                                 : "bg-white/[0.02]"
                                         }`}
                                     >
@@ -128,16 +179,11 @@ export default function LayeredFeedbackPanel({
                                                     <BlockMath math={step.expressionLatex} />
                                                 </div>
                                                 <div className={`text-[10px] ${
-                                                    step.reversesInequality
+                                                    step.emphasis === "warning"
                                                         ? "text-red-400 font-black"
                                                         : "text-white/50"
                                                 }`}>
                                                     {step.justification}
-                                                    {step.reversesInequality && (
-                                                        <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-[8px] bg-red-500/20 border border-red-500/30">
-                                                            ⚠️ Inequality reversed
-                                                        </span>
-                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -148,13 +194,13 @@ export default function LayeredFeedbackPanel({
                     )}
 
                     {/* Full solution layer */}
-                    {feedbackLevel === "FULL" && (
+                    {feedbackLevel === "FULL" && feedbackContent.fullSolutionLatex && (
                         <div className="p-4">
                             <div className="text-[9px] uppercase tracking-[0.3em] text-rose-400 font-black mb-2 flex items-center gap-2">
-                                📖 {translations.full_solution_title}
+                                📖 {fullSolutionTitle}
                             </div>
                             <div className="p-3 rounded bg-white/[0.03] border border-white/10">
-                                <BlockMath math={quest.fullSolutionLatex || quest.correctLatex} />
+                                <BlockMath math={feedbackContent.fullSolutionLatex} />
                             </div>
                         </div>
                     )}

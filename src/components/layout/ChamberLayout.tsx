@@ -9,7 +9,7 @@ import ConceptIcon from "@/components/ConceptIcon";
 import ResizableLayout from "@/components/layout/ResizableLayout";
 import { useAppStore, type HistoryEntry } from "@/lib/store";
 import { Difficulty } from "@/hooks/useQuestManager";
-import type { Quest, FeedbackLevel } from "@/hooks/useQuestManager";
+import type { FeedbackLevel, FeedbackContent, FeedbackPolicy } from "@/hooks/useQuestManager";
 import { translations as i18n, useLanguage } from "@/lib/i18n";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -55,10 +55,10 @@ interface ChamberLayoutProps {
     isRequestingAi?: boolean;
     onAiDiagnosisRequested?: () => void;
     // Layered feedback props
-    currentQuest?: Quest | null;
+    feedbackContent?: FeedbackContent;
     feedbackLevel?: FeedbackLevel;
     feedbackAvailability?: { canShowHint: boolean; canShowSteps: boolean; canShowFull: boolean };
-    currentHint?: string | null;
+    feedbackPolicy?: FeedbackPolicy;
     onShowHint?: () => void;
     onShowSteps?: () => void;
     onShowFull?: () => void;
@@ -88,10 +88,10 @@ export default function ChamberLayout({
     aiFeedback,
     isRequestingAi,
     onAiDiagnosisRequested,
-    currentQuest,
+    feedbackContent,
     feedbackLevel,
     feedbackAvailability,
-    currentHint,
+    feedbackPolicy,
     onShowHint,
     onShowSteps,
     onShowFull,
@@ -306,12 +306,13 @@ export default function ChamberLayout({
             )}
 
             {/* Layered Feedback Panel */}
-            {currentQuest && feedbackLevel && feedbackAvailability && onShowHint && onShowSteps && onShowFull && (
+            {feedbackContent && feedbackLevel && feedbackAvailability && feedbackPolicy && onShowHint && onShowSteps && onShowFull && (
                 <LayeredFeedbackPanel
-                    quest={currentQuest}
+                    feedbackContent={feedbackContent}
                     feedbackLevel={feedbackLevel}
                     feedbackAvailability={feedbackAvailability}
-                    currentHint={currentHint ?? null}
+                    policy={feedbackPolicy}
+                    isCorrect={checkStatus?.ok === true}
                     onShowHint={onShowHint}
                     onShowSteps={onShowSteps}
                     onShowFull={onShowFull}
@@ -322,7 +323,11 @@ export default function ChamberLayout({
                         hint_title: common.chamber_layout?.feedback?.hint_title ?? "HINT",
                         steps_title: common.chamber_layout?.feedback?.steps_title ?? "SOLUTION STEPS",
                         full_solution_title: common.chamber_layout?.feedback?.full_solution_title ?? "COMPLETE SOLUTION",
+                        correct_answer_title: common.chamber_layout?.feedback?.correct_answer_title ?? "CORRECT ANSWER",
                         step_label: common.chamber_layout?.feedback?.step_label ?? "Step",
+                        confirm_full_solution: common.chamber_layout?.feedback?.confirm_full_solution ?? "Are you sure you want to see the full solution?",
+                        confirm_yes: common.chamber_layout?.feedback?.confirm_yes ?? "YES, SHOW ME",
+                        confirm_cancel: common.chamber_layout?.feedback?.confirm_cancel ?? "CANCEL",
                     }}
                 />
             )}

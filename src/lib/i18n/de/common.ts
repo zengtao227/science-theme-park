@@ -149,7 +149,11 @@ export const deCommon = {
                 hint_title: "HINWEIS",
                 steps_title: "LÖSUNGSSCHRITTE",
                 full_solution_title: "VOLLSTÄNDIGE LÖSUNG",
-                step_label: "Schritt"
+                correct_answer_title: "KORREKTE ANTWORT",
+                step_label: "Schritt",
+                confirm_full_solution: "Möchten Sie die vollständige Lösung wirklich sehen?",
+                confirm_yes: "JA, ZEIGEN",
+                confirm_cancel: "ABBRECHEN"
             }
         }
     },

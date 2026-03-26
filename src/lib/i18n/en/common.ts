@@ -149,7 +149,11 @@ export const enCommon = {
                 hint_title: "HINT",
                 steps_title: "SOLUTION STEPS",
                 full_solution_title: "COMPLETE SOLUTION",
-                step_label: "Step"
+                correct_answer_title: "CORRECT ANSWER",
+                step_label: "Step",
+                confirm_full_solution: "Are you sure you want to see the full solution?",
+                confirm_yes: "YES, SHOW ME",
+                confirm_cancel: "CANCEL"
             }
         }
     },
