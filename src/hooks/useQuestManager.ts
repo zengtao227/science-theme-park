@@ -266,12 +266,10 @@ export function useQuestManager<T extends Quest, S extends string>({
 
         // Enhanced validation: Check for empty inputs with detailed feedback
         let anyEmpty = false;
-        const emptySlots: string[] = [];
         for (const slot of currentQuest.slots) {
             const raw = inputs[slot.id] ?? "";
             if (!raw.trim()) {
                 anyEmpty = true;
-                emptySlots.push(slot.labelLatex);
             }
         }
 
@@ -291,11 +289,7 @@ export function useQuestManager<T extends Quest, S extends string>({
                 };
             });
             setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-            // Enhanced error message for empty inputs
-            const errorMessage = emptySlots.length > 0
-                ? `${currentQuest.correctLatex} \\text{ (Empty: ${emptySlots.join(', ')})}`
-                : currentQuest.correctLatex;
-            setLastCheck({ ok: false, correct: errorMessage });
+            setLastCheck({ ok: false, correct: "" });
             return;
         }
 
@@ -320,7 +314,7 @@ export function useQuestManager<T extends Quest, S extends string>({
                         };
                     });
                     setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-                    setLastCheck({ ok: false, correct: currentQuest.correctLatex });
+                    setLastCheck({ ok: false, correct: "" });
                     return;
                 }
             } else {
@@ -353,7 +347,7 @@ export function useQuestManager<T extends Quest, S extends string>({
                         };
                     });
                     setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-                    setLastCheck({ ok: false, correct: currentQuest.correctLatex });
+                    setLastCheck({ ok: false, correct: "" });
                     return;
                 }
             }
@@ -417,21 +411,9 @@ export function useQuestManager<T extends Quest, S extends string>({
         } else if (errors === 2) {
             // Second error: show expression context
             return currentQuest.expressionLatex;
-        } else if (errors === 3) {
-            // Third error: show partial answer (mask some digits)
-            const masked = currentQuest.correctLatex.replace(/[0-9]/g, (match, offset, str) => {
-                // Show first and last digit, mask middle ones
-                const digitPositions = [...str.matchAll(/[0-9]/g)].map(m => m.index);
-                const currentPos = digitPositions.indexOf(offset);
-                if (currentPos === 0 || currentPos === digitPositions.length - 1) {
-                    return match;
-                }
-                return "•";
-            });
-            return masked;
         } else {
-            // Fourth+ error: show full answer
-            return currentQuest.correctLatex;
+            // Later fallback hints stay contextual and never disclose the final answer.
+            return currentQuest.expressionLatex || currentQuest.targetLatex;
         }
     }, [currentQuest, errorCounts, stage]);
 

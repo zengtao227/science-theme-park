@@ -399,7 +399,7 @@ export default function S302Page() {
                             "text-center font-mono text-sm tracking-widest uppercase transition-all duration-500",
                             lastCheck.ok ? "text-green-400 opacity-100 scale-100" : "text-red-400 opacity-100"
                         )}>
-                            {lastCheck.ok ? t("sm3_02.correct") : `${t("sm3_02.incorrect")}: ${lastCheck.correct}`}
+                            {lastCheck.ok ? t("sm3_02.correct") : t("sm3_02.incorrect")}
                         </div>
                     )}
                 </div>

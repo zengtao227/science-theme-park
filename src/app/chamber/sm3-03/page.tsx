@@ -513,7 +513,7 @@ export default function S303Page() {
               "text-center font-mono text-sm tracking-widest uppercase transition-all duration-500",
               lastCheck.ok ? "text-green-400 opacity-100 scale-100" : "text-red-400 opacity-100"
             )}>
-              {lastCheck.ok ? sm3_03_t.correct : `${sm3_03_t.incorrect}: ${lastCheck.correct}`}
+              {lastCheck.ok ? sm3_03_t.correct : sm3_03_t.incorrect}
             </div>
           )}
         </div>
