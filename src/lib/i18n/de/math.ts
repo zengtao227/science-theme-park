@@ -820,7 +820,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "MONITOR",
+        monitor_title: "ANZEIGE",
         input_tip_2dp: "Tipp: Gib das Resultat als Bruch (z.B. 4/3) oder auf 2 Dezimalstellen gerundet an.",
         base_twice_height: "Basis ist doppelt so hoch wie die Höhe",
         stages: {
@@ -1931,7 +1931,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             scale_factor: "STRECKUNG",
             similar_triangles: "ÄHNLICH",
@@ -2008,7 +2008,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "MONITOR",
+        monitor_title: "ANZEIGE",
         experimental: {
             show: "▸ Experimentell (3D)",
             hide: "▾ Verstecken"
@@ -2054,7 +2054,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             substitution: "EINSETZUNGSVERFAHREN",
             elimination: "ADDITIONSVERFAHREN",
@@ -2507,7 +2507,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             terms: "TERME",
             factorize: "FAKTORISIEREN",
