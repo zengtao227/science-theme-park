@@ -444,6 +444,20 @@ export const enCommon = {
             experiment: "Experiment"
         },
         ai_provider: {
+            title: "AI Diagnostic Settings",
+            mode_label: "AI Mode",
+            default_mode: "Use Default AI (NVIDIA Free Tier)",
+            custom_mode_hint: "Turn this off to enter your own API credentials.",
+            default_mode_hint: "Default mode uses the server-side shared provider when available.",
+            privacy_note: "Privacy Note: Your API keys are stored locally in your browser only. They are not saved to our servers.",
+            save: "Save AI Config",
+            saved: "Saved",
+            open_settings: "Open Settings & AI",
+            labels: {
+                base_url: "API Base URL",
+                api_key: "API Key",
+                model_name: "Model Name"
+            },
             placeholders: {
                 base_url: "e.g. https://api.openai.com/v1",
                 api_key: "sk-...",

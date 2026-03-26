@@ -443,6 +443,20 @@ export const cnCommon = {
             experiment: "实验"
         },
         ai_provider: {
+            title: "AI 诊断设置",
+            mode_label: "AI 模式",
+            default_mode: "使用默认 AI（NVIDIA 免费层）",
+            custom_mode_hint: "关闭此项后即可输入你自己的 API 凭据。",
+            default_mode_hint: "默认模式会在服务器已配置时使用共享 AI 提供方。",
+            privacy_note: "隐私说明：你的 API Key 只会保存在当前浏览器本地，不会存到我们的服务器。",
+            save: "保存 AI 配置",
+            saved: "已保存",
+            open_settings: "打开设置与 AI",
+            labels: {
+                base_url: "API 基础地址",
+                api_key: "API Key",
+                model_name: "模型名称"
+            },
             placeholders: {
                 base_url: "例如 https://api.openai.com/v1",
                 api_key: "sk-...",

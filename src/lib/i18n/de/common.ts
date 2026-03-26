@@ -446,6 +446,20 @@ export const deCommon = {
             experiment: "Experiment"
         },
         ai_provider: {
+            title: "KI-Diagnoseeinstellungen",
+            mode_label: "KI-Modus",
+            default_mode: "Standard-KI verwenden (NVIDIA Free Tier)",
+            custom_mode_hint: "Deaktiviere dies, um deine eigenen API-Zugangsdaten einzugeben.",
+            default_mode_hint: "Der Standardmodus verwendet den serverseitigen Shared Provider, wenn er verfügbar ist.",
+            privacy_note: "Datenschutzhinweis: Deine API-Schlüssel werden nur lokal im Browser gespeichert. Sie werden nicht auf unseren Servern gespeichert.",
+            save: "KI-Konfiguration speichern",
+            saved: "Gespeichert",
+            open_settings: "Einstellungen & KI öffnen",
+            labels: {
+                base_url: "API-Basis-URL",
+                api_key: "API-Schlüssel",
+                model_name: "Modellname"
+            },
             placeholders: {
                 base_url: "z. B. https://api.openai.com/v1",
                 api_key: "sk-...",

@@ -268,17 +268,25 @@ export default function ChamberLayout({
                         <div className="text-white/70 font-black break-words max-w-lg mx-auto p-3 bg-white/[0.03] rounded border border-white/5 relative">
                             <div className="w-full flex flex-col items-center">
                                 {!aiFeedback && (
-                                    <button
-                                        onClick={onAiDiagnosisRequested}
-                                        disabled={isRequestingAi}
-                                        className="px-4 py-2 border border-neon-purple/50 bg-neon-purple/10 text-neon-purple text-[10px] font-black tracking-widest uppercase rounded hover:bg-neon-purple/20 transition-colors disabled:opacity-50 flex items-center gap-2"
-                                    >
-                                        {isRequestingAi ? (
-                                            <span className="animate-pulse">✨ AI Diagnosing...</span>
-                                        ) : (
-                                            <span>🪄 Ask AI for Explanation</span>
-                                        )}
-                                    </button>
+                                    <div className="flex flex-col items-center gap-3">
+                                        <button
+                                            onClick={onAiDiagnosisRequested}
+                                            disabled={isRequestingAi}
+                                            className="px-4 py-2 border border-neon-purple/50 bg-neon-purple/10 text-neon-purple text-[10px] font-black tracking-widest uppercase rounded hover:bg-neon-purple/20 transition-colors disabled:opacity-50 flex items-center gap-2"
+                                        >
+                                            {isRequestingAi ? (
+                                                <span className="animate-pulse">✨ AI Diagnosing...</span>
+                                            ) : (
+                                                <span>🪄 Ask AI for Explanation</span>
+                                            )}
+                                        </button>
+                                        <Link
+                                            href="/profile"
+                                            className="text-[10px] font-black tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors"
+                                        >
+                                            {common.profile?.ai_provider?.open_settings ?? "OPEN SETTINGS & AI"}
+                                        </Link>
+                                    </div>
                                 )}
                                 {aiFeedback && (
                                     <div className="w-full text-left bg-black/40 border border-neon-purple/30 rounded-lg p-4 mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)]">
@@ -287,6 +295,14 @@ export default function ChamberLayout({
                                         </div>
                                         <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap">
                                             {aiFeedback}
+                                        </div>
+                                        <div className="mt-3">
+                                            <Link
+                                                href="/profile"
+                                                className="text-[10px] font-black tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors"
+                                            >
+                                                {common.profile?.ai_provider?.open_settings ?? "OPEN SETTINGS & AI"}
+                                            </Link>
                                         </div>
                                     </div>
                                 )}
