@@ -448,6 +448,7 @@ export const cnCommon = {
             default_mode: "使用默认 AI（NVIDIA 免费层）",
             custom_mode_hint: "关闭此项后即可输入你自己的 API 凭据。",
             default_mode_hint: "默认模式会在服务器已配置时使用共享 AI 提供方。",
+            default_mode_with_fallback_hint: "默认模式会先尝试共享的 NVIDIA 提供方；如果 NVIDIA 失败，会自动回退到你已保存的自定义提供方。",
             privacy_note: "隐私说明：你的 API Key 只会保存在当前浏览器本地，不会存到我们的服务器。",
             save: "保存 AI 配置",
             saved: "已保存",

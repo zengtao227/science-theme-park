@@ -50,6 +50,7 @@ export default function AiProviderSettings() {
   const [apiKey, setApiKey] = useState(aiProviderConfig.apiKey || "");
   const [modelName, setModelName] = useState(aiProviderConfig.modelName || "");
   const aiT = t("profile.ai_provider");
+  const hasSavedCustomProvider = Boolean(apiKey.trim() && baseUrl.trim() && modelName.trim());
 
   useEffect(() => {
     setUseDefault(aiProviderConfig.useDefault);
@@ -117,7 +118,9 @@ export default function AiProviderSettings() {
                 {aiT.default_mode}
               </div>
               <div className="text-xs text-white/50">
-                {useDefault ? aiT.default_mode_hint : aiT.custom_mode_hint}
+                {useDefault
+                  ? (hasSavedCustomProvider ? aiT.default_mode_with_fallback_hint : aiT.default_mode_hint)
+                  : aiT.custom_mode_hint}
               </div>
             </div>
           </label>

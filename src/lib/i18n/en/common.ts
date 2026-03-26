@@ -449,6 +449,7 @@ export const enCommon = {
             default_mode: "Use Default AI (NVIDIA Free Tier)",
             custom_mode_hint: "Turn this off to enter your own API credentials.",
             default_mode_hint: "Default mode uses the server-side shared provider when available.",
+            default_mode_with_fallback_hint: "Default mode tries the shared NVIDIA provider first and automatically falls back to your saved custom provider if NVIDIA fails.",
             privacy_note: "Privacy Note: Your API keys are stored locally in your browser only. They are not saved to our servers.",
             save: "Save AI Config",
             saved: "Saved",

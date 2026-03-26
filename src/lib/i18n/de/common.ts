@@ -451,6 +451,7 @@ export const deCommon = {
             default_mode: "Standard-KI verwenden (NVIDIA Free Tier)",
             custom_mode_hint: "Deaktiviere dies, um deine eigenen API-Zugangsdaten einzugeben.",
             default_mode_hint: "Der Standardmodus verwendet den serverseitigen Shared Provider, wenn er verfügbar ist.",
+            default_mode_with_fallback_hint: "Der Standardmodus versucht zuerst den gemeinsamen NVIDIA-Provider und fällt bei einem Fehler automatisch auf deinen gespeicherten eigenen Provider zurück.",
             privacy_note: "Datenschutzhinweis: Deine API-Schlüssel werden nur lokal im Browser gespeichert. Sie werden nicht auf unseren Servern gespeichert.",
             save: "KI-Konfiguration speichern",
             saved: "Gespeichert",

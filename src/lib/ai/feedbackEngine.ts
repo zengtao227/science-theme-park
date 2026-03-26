@@ -10,6 +10,7 @@ interface FeedbackParams {
 export async function requestPersonalizedFeedback({ quest, inputs, language }: FeedbackParams): Promise<string> {
     const store = useAppStore.getState();
     const config = store.aiProviderConfig || { useDefault: true };
+    const hasCustomProvider = Boolean(config.apiKey && config.baseUrl && config.modelName);
 
     const systemPrompt = `You are an AI scientific assistant at the Basel Science Theme Park in Switzerland. 
 Your goal is to help a student understand why their answer was incorrect and guide them towards the correct logic.
@@ -35,10 +36,18 @@ The user's input was evaluated as incorrect. Why might they have made this mista
         'Content-Type': 'application/json',
     };
 
+    headers['x-ai-mode'] = config.useDefault
+        ? (hasCustomProvider ? 'DEFAULT_WITH_FALLBACK' : 'DEFAULT_ONLY')
+        : 'CUSTOM_ONLY';
+
     if (!config.useDefault) {
         if (config.apiKey) headers['x-custom-api-key'] = config.apiKey;
         if (config.baseUrl) headers['x-custom-base-url'] = config.baseUrl;
         if (config.modelName) headers['x-custom-model-name'] = config.modelName;
+    } else if (hasCustomProvider) {
+        headers['x-fallback-api-key'] = config.apiKey!;
+        headers['x-fallback-base-url'] = config.baseUrl!;
+        headers['x-fallback-model-name'] = config.modelName!;
     }
 
     const response = await fetch('/api/ai/feedback', {
