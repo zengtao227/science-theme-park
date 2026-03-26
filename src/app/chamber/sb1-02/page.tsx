@@ -200,7 +200,14 @@ export default function SB102Page() {
       adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SB102Quest, Stage>({
     moduleCode: "sb1-02",
         buildPool,
@@ -240,6 +247,13 @@ export default function SB102Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       moduleCode="SB1.02"
             title={t("sb1_02.title")}
             difficulty={difficulty}

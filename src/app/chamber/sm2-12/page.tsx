@@ -199,7 +199,14 @@ export default function SM212Page() {
     adaptiveRecommendation,
     aiFeedback,
     isRequestingAi,
-    requestAiFeedback
+    requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<ComboQuest, Stage>({
     moduleCode: "sm2-12",
     buildPool,
@@ -241,6 +248,13 @@ export default function SM212Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       moduleCode="SM2.12"
       title={t("sm2_12.title")}
       difficulty={difficulty}

@@ -278,7 +278,14 @@ export default function SB104PlantStructure() {
       adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SB104Quest, Stage>({
     moduleCode: "sb1-04",
         buildPool,
@@ -299,6 +306,13 @@ export default function SB104PlantStructure() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={sb1_04_t.title}
             moduleCode="SB1.04"
             difficulty={difficulty}

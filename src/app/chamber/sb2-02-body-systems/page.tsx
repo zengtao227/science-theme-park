@@ -642,7 +642,14 @@ export default function SB202BodySystemsPage() {
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,
-        requestAiFeedback
+        requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SB202BodySystemsQuest, Stage>({
         moduleCode: "sb2-02-body-systems",
         buildPool,
@@ -681,6 +688,13 @@ export default function SB202BodySystemsPage() {
                 aiFeedback={aiFeedback}
                 isRequestingAi={isRequestingAi}
                 onAiDiagnosisRequested={requestAiFeedback}
+                feedbackContent={feedbackContent}
+                feedbackLevel={feedbackLevel}
+                feedbackAvailability={feedbackAvailability}
+                feedbackPolicy={policy}
+                onShowHint={showHintLevel}
+                onShowSteps={showStepsLevel}
+                onShowFull={showFullSolution}
                 title={t("sb2_02.title")}
                 moduleCode="SB2.02"
                 difficulty={difficulty}
@@ -716,6 +730,13 @@ export default function SB202BodySystemsPage() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={t("sb2_02.title")}
             moduleCode="SB2.02"
             difficulty={difficulty}

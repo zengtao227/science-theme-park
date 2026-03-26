@@ -213,7 +213,14 @@ export default function SC301Page() {
     adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SC301Quest, Stage>({
     moduleCode: "sc3-01",
     buildPool,
@@ -259,6 +266,13 @@ export default function SC301Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       moduleCode="SC3.01"
       title={t("sc3_01.title")}
       difficulty={difficulty}

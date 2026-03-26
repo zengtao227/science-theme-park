@@ -82,7 +82,14 @@ export default function SP104AstronomyBasics() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        lastCheck
+        lastCheck,
+        feedbackLevel,
+        feedbackContent,
+        feedbackAvailability,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
+        policy,
     } = useQuestManager<SP104Quest, Stage>({
         moduleCode: "SP1.04",
         initialStage: "SOLAR_SYSTEM",
@@ -119,6 +126,13 @@ export default function SP104AstronomyBasics() {
                 incorrect: sp1_04_t.incorrect,
                 monitor_title: sp1_04_t.monitor_title
             }}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}

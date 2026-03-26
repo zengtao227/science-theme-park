@@ -42,7 +42,14 @@ export default function GC302Page() {
     adaptiveRecommendation,
     aiFeedback,
     isRequestingAi,
-    requestAiFeedback
+    requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<GC302QuestType, Stage>({
     moduleCode: "gc3-02",
     buildPool,
@@ -86,6 +93,13 @@ export default function GC302Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t("gc3_02.title")}
       moduleCode="GC3.02"
       difficulty={difficulty}

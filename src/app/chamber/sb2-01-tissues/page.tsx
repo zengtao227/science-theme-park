@@ -222,7 +222,14 @@ export default function SB201TissuesPage() {
       adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SB201TissuesQuest, Stage>({
     moduleCode: "sb2-01-tissues",
         buildPool,
@@ -262,6 +269,13 @@ export default function SB201TissuesPage() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       moduleCode="SB2.01"
             title={t("sb2_01_tissues.title")}
             difficulty={difficulty}

@@ -89,7 +89,14 @@ export default function SP201CircuitBasics() {
     adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<SP201Quest, Stage>({
     moduleCode: "sp2-01",
     buildPool,
@@ -132,6 +139,13 @@ export default function SP201CircuitBasics() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={sp2_01_t.title}
       moduleCode="SP2.01"
       difficulty={difficulty}

@@ -82,7 +82,14 @@ export default function SP103WeatherClimate() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        lastCheck
+        lastCheck,
+        feedbackLevel,
+        feedbackContent,
+        feedbackAvailability,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
+        policy,
     } = useQuestManager<SP103Quest, Stage>({
         moduleCode: "SP1.03",
         initialStage: "ATMOSPHERE",
@@ -119,6 +126,13 @@ export default function SP103WeatherClimate() {
                 incorrect: sp1_03_t.incorrect,
                 monitor_title: sp1_03_t.monitor_title
             }}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}

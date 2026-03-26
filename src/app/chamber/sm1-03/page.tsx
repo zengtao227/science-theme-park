@@ -973,7 +973,14 @@ export default function SM103Page() {
     adaptiveRecommendation,
     aiFeedback,
     isRequestingAi,
-    requestAiFeedback
+    requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<IntegerQuest, Stage>({
     moduleCode: "sm1-03",
     buildPool,
@@ -1014,6 +1021,13 @@ export default function SM103Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t("sm1_03.title")}
       moduleCode="SM1.03"
       difficulty={difficulty}

@@ -572,7 +572,14 @@ export default function SM105Page() {
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,
-        requestAiFeedback
+        requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<S105Quest, Stage>({
         moduleCode: "sm1-05",
         buildPool,
@@ -614,6 +621,13 @@ export default function SM105Page() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             moduleCode="SM1.05"
             title={sm1_05_t.title}
             difficulty={difficulty}

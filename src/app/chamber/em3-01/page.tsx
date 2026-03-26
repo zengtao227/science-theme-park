@@ -55,6 +55,13 @@ export default function OlympiadChallenge() {
         previous,
         handleDifficultyChange,
         handleStageChange,
+        feedbackLevel,
+        feedbackContent,
+        feedbackAvailability,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
+        policy,
     } = useQuestManager<OlympiadQuest, "logic">({
         moduleCode: "EM3.01",
         buildPool,
@@ -91,6 +98,13 @@ export default function OlympiadChallenge() {
             onNext={next}
             checkStatus={lastCheck}
             translations={translations}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
         >
             <div className="flex-1 flex flex-col h-full bg-black/40 backdrop-blur-sm overflow-y-auto">
                 <main className="flex-1 max-w-4xl mx-auto w-full p-6 md:p-12 space-y-12 print-content">

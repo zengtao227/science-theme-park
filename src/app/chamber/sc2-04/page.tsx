@@ -53,6 +53,13 @@ export default function SC204Page() {
     aiFeedback,
     isRequestingAi,
     requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<SC204QuestType, Stage>({
     moduleCode: "sc2-04",
     buildPool,
@@ -107,6 +114,13 @@ export default function SC204Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t.title}
       moduleCode="SC2.04"
       difficulty={difficulty}

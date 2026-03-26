@@ -175,6 +175,13 @@ export default function SC1_03_AtomsForge() {
         aiFeedback,
         isRequestingAi,
         requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<AtomQuest, Stage>({
         moduleCode: "sc1-03",
         buildPool,
@@ -213,6 +220,13 @@ export default function SC1_03_AtomsForge() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={t("sc1_03.title")}
             moduleCode="SC1.03"
             difficulty={difficulty}

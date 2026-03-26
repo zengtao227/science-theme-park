@@ -197,7 +197,14 @@ export default function GB201Neurobiology() {
         next, adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<GB201Quest, Stage>({
     moduleCode: "gb2-01",
         buildPool: buildStagePool,
@@ -243,6 +250,13 @@ export default function GB201Neurobiology() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={gb2_01.title}
             moduleCode="GB2.01"
             currentStage={stage}

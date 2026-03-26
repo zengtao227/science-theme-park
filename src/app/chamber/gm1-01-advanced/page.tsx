@@ -1248,7 +1248,14 @@ export default function G101AdvancedPage() {
     adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<G101AdvQuest, Challenge>({
     moduleCode: "gm1-01-advanced",
     buildPool,
@@ -1287,6 +1294,13 @@ export default function G101AdvancedPage() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={gm1_01_advanced_t.title}
       moduleCode="GM1.01-ADV"
       difficulty={difficulty}

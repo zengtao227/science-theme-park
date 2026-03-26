@@ -48,7 +48,14 @@ export default function SP302Page() {
     adaptiveRecommendation,
     aiFeedback,
     isRequestingAi,
-    requestAiFeedback
+    requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<SP302Quest, Stage>({
     moduleCode: "sp3-02",
     buildPool,
@@ -88,6 +95,13 @@ export default function SP302Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t("sp3_02.title")}
       moduleCode="SP3.02"
       difficulty={difficulty}

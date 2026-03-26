@@ -52,6 +52,13 @@ export default function SC203Page() {
     aiFeedback,
     isRequestingAi,
     requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<SC203QuestType, Stage>({
     moduleCode: "sc2-03",
     buildPool,
@@ -104,6 +111,13 @@ export default function SC203Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t.title}
       moduleCode="SC2.03"
       difficulty={difficulty}

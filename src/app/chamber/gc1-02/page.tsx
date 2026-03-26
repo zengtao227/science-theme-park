@@ -42,6 +42,13 @@ export default function GC102Page() {
         aiFeedback,
         isRequestingAi,
         requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<GC102QuestType, Stage>({
         moduleCode: "gc1-02",
         buildPool,
@@ -79,6 +86,13 @@ export default function GC102Page() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={t("gc1_02.title")}
             moduleCode="GC1.02"
             difficulty={difficulty}

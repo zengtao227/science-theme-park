@@ -99,6 +99,13 @@ export default function SC105Page() {
         aiFeedback,
         isRequestingAi,
         requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<BondQuest, Stage>({
         moduleCode: "sc1-05",
         buildPool,
@@ -155,6 +162,13 @@ export default function SC105Page() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             moduleCode="SC1.05"
             title={sc1_05_t.title}
             difficulty={difficulty}

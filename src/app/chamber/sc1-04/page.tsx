@@ -85,6 +85,13 @@ export default function SC104Page() {
     aiFeedback,
     isRequestingAi,
     requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<PeriodicQuest, Stage>({
     moduleCode: "sc1-04",
     buildPool,
@@ -186,6 +193,13 @@ export default function SC104Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={sc1_04_t.title}
       moduleCode="SC1.04"
       difficulty={difficulty}

@@ -92,7 +92,14 @@ export default function SP102NewtonsLaws() {
         adaptiveRecommendation,
         aiFeedback,
         isRequestingAi,
-        requestAiFeedback
+        requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SP102Quest, Stage>({
         moduleCode: "sp1-02",
         buildPool,
@@ -132,6 +139,13 @@ export default function SP102NewtonsLaws() {
             aiFeedback={aiFeedback}
             isRequestingAi={isRequestingAi}
             onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={sp1_02_t.title}
             moduleCode="SP1.02"
             difficulty={difficulty}

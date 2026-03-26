@@ -321,7 +321,14 @@ export default function GP302Electromagnetism() {
       adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<GP302Quest, Stage>({
     moduleCode: "gp3-02",
         buildPool: (d, s) => buildStagePool(gp3_02_t, d, s),
@@ -366,6 +373,13 @@ export default function GP302Electromagnetism() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={gp3_02_t.title}
             moduleCode="GP3.02"
             difficulty={difficulty}

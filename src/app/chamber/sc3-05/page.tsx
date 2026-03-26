@@ -136,7 +136,14 @@ export default function SC305MolecularForge() {
         lastCheck, adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<SC305Quest, Stage>({
     moduleCode: "sc3-05",
         buildPool: buildStagePool,
@@ -168,6 +175,13 @@ export default function SC305MolecularForge() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={sc3_05_t.title}
             moduleCode="SC3.05"
             currentStage={stage}

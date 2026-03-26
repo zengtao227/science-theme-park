@@ -191,7 +191,14 @@ export default function GB302Immunology() {
         lastCheck, adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<GB302Quest, Stage>({
     moduleCode: "gb3-02",
         buildPool: buildStagePool,
@@ -236,6 +243,13 @@ export default function GB302Immunology() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={t("gb3_02.title")}
             moduleCode="GB3.02"
             currentStage={stage}

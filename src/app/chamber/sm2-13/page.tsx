@@ -168,6 +168,13 @@ export default function SM213Page() {
         previous,
         handleDifficultyChange,
         handleStageChange,
+        feedbackLevel,
+        feedbackContent,
+        feedbackAvailability,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
+        policy,
     } = useQuestManager<SM213Quest, Stage>({
         moduleCode: "SM2.13",
         buildPool: (diff, s) => buildStagePool(diff, s, t),
@@ -219,6 +226,13 @@ export default function SM213Page() {
             checkStatus={lastCheck}
             printSections={printSections}
             translations={sm2_13_t.translations}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             monitorContent={
                 <TransformationMonitor
                     quest={currentQuest}

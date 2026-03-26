@@ -253,6 +253,13 @@ export default function P104Page() {
     aiFeedback,
     isRequestingAi,
     requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<TunnelQuest, Stage>({
     moduleCode: "gp1-04",
     buildPool,
@@ -313,6 +320,13 @@ export default function P104Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={gp1_04_t.title}
       moduleCode="GP1.04"
       difficulty={difficulty}

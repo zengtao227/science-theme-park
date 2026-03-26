@@ -289,7 +289,14 @@ export default function GP303Induction() {
       adaptiveRecommendation,
       aiFeedback,
       isRequestingAi,
-      requestAiFeedback
+      requestAiFeedback,
+    feedbackLevel,
+    feedbackContent,
+    feedbackAvailability,
+    showHintLevel,
+    showStepsLevel,
+    showFullSolution,
+    policy,
     } = useQuestManager<GP303Quest, Stage>({
     moduleCode: "gp3-03",
         buildPool: (d, s) => buildStagePool(gp3_03_t, d, s),
@@ -329,6 +336,13 @@ export default function GP303Induction() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+            feedbackContent={feedbackContent}
+            feedbackLevel={feedbackLevel}
+            feedbackAvailability={feedbackAvailability}
+            feedbackPolicy={policy}
+            onShowHint={showHintLevel}
+            onShowSteps={showStepsLevel}
+            onShowFull={showFullSolution}
             title={gp3_03_t.title}
             moduleCode="GP3.03"
             difficulty={difficulty}

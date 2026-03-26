@@ -65,6 +65,13 @@ export default function SC101Page() {
     aiFeedback,
     isRequestingAi,
     requestAiFeedback,
+  feedbackLevel,
+  feedbackContent,
+  feedbackAvailability,
+  showHintLevel,
+  showStepsLevel,
+  showFullSolution,
+  policy,
   } = useQuestManager<SC101QuestType, Stage>({
     moduleCode: "sc1-01",
     buildPool,
@@ -91,6 +98,13 @@ export default function SC101Page() {
       aiFeedback={aiFeedback}
       isRequestingAi={isRequestingAi}
       onAiDiagnosisRequested={requestAiFeedback}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={policy}
+      onShowHint={showHintLevel}
+      onShowSteps={showStepsLevel}
+      onShowFull={showFullSolution}
       title={t("sc1_01.title")}
       moduleCode="SC1.01"
       difficulty={difficulty}
