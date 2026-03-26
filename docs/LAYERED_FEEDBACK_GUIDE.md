@@ -2,7 +2,7 @@
 
 > **状态**: Phase 1 baseline implemented — 基础设施已落地，待分模块推广
 > **日期**: 2026-03-26
-> **版本**: v3 (经 Codex 二轮审查 + 三方共识修正)
+> **版本**: v3.1 (经多轮三方审查修正)
 
 ---
 
@@ -109,6 +109,19 @@ interface FeedbackAvailability {
 > `correctLatex` 是"正确答案"，`fullSolutionLatex` 是"完整解法"。两者语义不同。
 > 降级到 `correctLatex` 时，UI 标题必须显示"标准答案"（`correct_answer_title`），绝不能显示"完整解法"（`full_solution_title`）。
 
+### 合并规则（provider + 平台 fallback）
+
+当 `feedbackContentProvider` 存在时，各字段按以下固定规则合并：
+
+| 字段 | 来源 | fallback |
+|------|------|----------|
+| `hint` | **平台自动派生**（不受 provider 影响） | `quest.hintLatex[]` → `getHint()` |
+| `steps` | **provider 返回值** | 无 fallback，provider 返回空数组则不显示按钮 |
+| `fullSolutionLatex` | **provider 返回值** | 若 provider 返回 `null`，平台自动 fallback 到 `quest.correctLatex` |
+| `hasFullSolution` | 由 provider 的 `fullSolutionLatex` 是否非空决定 | `false` 当 fallback 到 `correctLatex` |
+
+当 **不传 provider** 时，所有字段走平台 fallback：`hint` 从 `hintLatex` 派生，`steps` 为空，`fullSolutionLatex` 降级为 `correctLatex`。
+
 ---
 
 ## 三、UI 交互规则
@@ -116,8 +129,8 @@ interface FeedbackAvailability {
 ### 答对后行为
 
 - **不自动展开**反馈面板
-- **按钮仍然可见**，但使用暗色/半透明样式（`opacity-60`）
-- 学生可以主动点击按钮回看标准步骤和解法
+- **只有该 quest 实际可用的层级按钮才显示**（不是强制显示三个按钮）
+- 可用按钮使用暗色/半透明样式（`opacity-60`），学生可主动点击回看
 - 此行为由 `feedbackPolicy.showAfterCorrect` 控制（默认 `true`）
 
 ### 防剧透策略
@@ -156,9 +169,10 @@ interface FeedbackAvailability {
 
 ```typescript
 // Provider 只负责 steps + fullSolution（hint 由平台自动处理）
+// 即使没有 steps，也必须返回空数组（不允许返回 null / undefined）
 const myFeedbackProvider = useCallback((quest: MyQuestType) => ({
-    steps: generateSteps(quest).map(toPlatformStep),
-    fullSolutionLatex: quest.fullSolution || null,
+    steps: generateSteps(quest).map(toPlatformStep),  // 无 steps 时返回 []
+    fullSolutionLatex: quest.fullSolution || null,     // null → 平台 fallback 到 correctLatex
     hasFullSolution: !!quest.fullSolution,
 }), []);
 ```
@@ -172,7 +186,7 @@ const { feedbackContent, feedbackLevel, feedbackAvailability, policy, ... } =
         buildPool: ...,
         initialStage: ...,
         feedbackContentProvider: myFeedbackProvider,
-        // 可选：覆盖默认策略（只写差异项）
+        // 可选：partial override，由 DEFAULT_FEEDBACK_POLICY 合并，只写差异项
         feedbackPolicy: { stepsThreshold: 3 },
     });
 ```
@@ -218,10 +232,11 @@ const { feedbackContent, feedbackLevel, feedbackAvailability, policy, ... } =
 每接入一个模块后，必须验证：
 
 - [ ] `npm run build` 无编译错误
-- [ ] 答错 1 次 → 💡 按钮出现
-- [ ] 答错 3 次 → 三个按钮全部出现
+- [ ] 答错 1 次 → 💡 Hint 按钮出现
+- [ ] 答错 2 次 → 📝 Steps 按钮出现（默认 `stepsThreshold: 2`）
+- [ ] 答错 3 次 → 📖 Full Solution 按钮出现，三个按钮全部可见
 - [ ] 点击 📖 → 弹出确认对话框（防剧透）
-- [ ] 答对后 → 按钮仍可见（暗色半透明），可点击回看
-- [ ] 点击 Next → feedbackLevel 重置
+- [ ] 答对后 → 可用按钮仍可见（暗色半透明），可点击回看
+- [ ] 点击 Next → feedbackLevel 重置为 NONE
 - [ ] 切换 EN/DE/CN → 文案正确
 - [ ] `scripts/audit-rendering.sh` 通过
