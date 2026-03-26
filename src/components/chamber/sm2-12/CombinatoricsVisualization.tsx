@@ -106,8 +106,12 @@ export default function CombinatoricsVisualization({
         <div className="text-center text-sm text-amber-300">
           {t("sm2_12.labels.probability_total_outcomes", { n: displayN })}
         </div>
-        <div className="relative w-full h-32">
-          <svg width="100%" height="100%" viewBox="0 0 400 120">
+        <div className="relative flex min-h-[220px] w-full items-center justify-center">
+          <svg
+            viewBox="0 0 400 120"
+            className="h-auto w-full max-w-[720px]"
+            preserveAspectRatio="xMidYMid meet"
+          >
             {/* Probability bar */}
             <rect x="50" y="40" width="300" height="40" fill="#1a1a1a" stroke="#444" strokeWidth="2" rx="4" />
             
@@ -148,8 +152,8 @@ export default function CombinatoricsVisualization({
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-6">
-      <div className="flex-1 flex items-center justify-center">
+    <div className="flex h-full min-h-[680px] flex-col gap-4 p-6">
+      <div className="flex flex-1 items-center justify-center">
         {renderVisualization()}
       </div>
 

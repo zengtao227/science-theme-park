@@ -13,11 +13,16 @@ export default function AcousticsVisualization({ stage }: AcousticsVisualization
     const { t } = useLanguage();
     const visualization = useMemo(() => {
         const canvasSize = 400;
+        const svgClassName = "aspect-square h-auto w-full max-w-[720px] rounded-xl border border-white/10 bg-black/50";
         
         if (stage === "SOUND_WAVES") {
             // Sound wave visualization
             return (
-                <svg width={canvasSize} height={canvasSize} viewBox={`0 0 ${canvasSize} ${canvasSize}`} className="bg-black/50 rounded-xl border border-white/10">
+                <svg
+                    viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                    className={svgClassName}
+                    preserveAspectRatio="xMidYMid meet"
+                >
                     {/* Title */}
                     <text x={canvasSize/2} y={30} fill="#60a5fa" fontSize="16" fontWeight="bold" textAnchor="middle">
                         {t("sp3_06.visualization.sound_waves.title")}
@@ -75,7 +80,11 @@ export default function AcousticsVisualization({ stage }: AcousticsVisualization
         if (stage === "FREQUENCY_PITCH") {
             // Frequency and pitch visualization
             return (
-                <svg width={canvasSize} height={canvasSize} viewBox={`0 0 ${canvasSize} ${canvasSize}`} className="bg-black/50 rounded-xl border border-white/10">
+                <svg
+                    viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                    className={svgClassName}
+                    preserveAspectRatio="xMidYMid meet"
+                >
                     {/* Title */}
                     <text x={canvasSize/2} y={30} fill="#60a5fa" fontSize="16" fontWeight="bold" textAnchor="middle">
                         {t("sp3_06.visualization.frequency_pitch.title")}
@@ -126,7 +135,11 @@ export default function AcousticsVisualization({ stage }: AcousticsVisualization
         
         // LOUDNESS_INTENSITY
         return (
-            <svg width={canvasSize} height={canvasSize} viewBox={`0 0 ${canvasSize} ${canvasSize}`} className="bg-black/50 rounded-xl border border-white/10">
+            <svg
+                viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                className={svgClassName}
+                preserveAspectRatio="xMidYMid meet"
+            >
                 {/* Title */}
                 <text x={canvasSize/2} y={30} fill="#60a5fa" fontSize="16" fontWeight="bold" textAnchor="middle">
                     {t("sp3_06.visualization.loudness_intensity.title")}
@@ -174,7 +187,7 @@ export default function AcousticsVisualization({ stage }: AcousticsVisualization
     }, [stage, t]);
 
     return (
-        <div className="flex flex-col items-center justify-center h-full p-4">
+        <div className="flex min-h-[680px] flex-col items-center justify-center p-4">
             {visualization}
         </div>
     );
