@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { ACHIEVEMENTS, computeStats, formatStudyTime } from "@/lib/achievements";
-import { getHistoryModuleTitle } from "@/lib/historyDisplay";
+import { getHistoryModuleTitle, getHistoryStageLabel } from "@/lib/historyDisplay";
 import { clsx } from "clsx";
 import { ArrowLeft, Zap, Target, Clock, TrendingUp, Award, BookOpen, Star } from "lucide-react";
 
@@ -277,7 +277,7 @@ export default function NexusHubPage() {
                                             {getHistoryModuleTitle(t, entry.moduleCode, entry.moduleId)}
                                         </div>
                                         <div className="text-xs text-white/40 mt-1">
-                                            {entry.moduleCode} · {entry.stage}
+                                            {entry.moduleCode} · {getHistoryStageLabel(t, entry.moduleCode, entry.stage, entry.moduleId)}
                                         </div>
                                     </div>
                                     <div className="text-xs font-mono text-white/40">{Math.round(entry.score * 100)}%</div>

@@ -35,3 +35,34 @@ export function getHistoryModuleTitle(
 
   return moduleCode;
 }
+
+export function getHistoryStageLabel(
+  t: Translator,
+  moduleCode: string,
+  stage: string,
+  moduleId?: string,
+): string {
+  const candidates: string[] = [];
+  const normalizedStage = stage.toLowerCase();
+
+  if (moduleId) {
+    candidates.push(`${moduleId.replace(/-/g, "_")}.stages.${normalizedStage}`);
+  }
+
+  const override = MODULE_TITLE_KEY_OVERRIDES[moduleCode];
+  if (override) {
+    const namespace = override.replace(/\.title$/, "");
+    candidates.push(`${namespace}.stages.${normalizedStage}`);
+  }
+
+  candidates.push(`${moduleCode.toLowerCase().replace(/[.-]/g, "_")}.stages.${normalizedStage}`);
+
+  for (const key of candidates) {
+    const translated = t(key);
+    if (typeof translated === "string" && translated !== key) {
+      return translated;
+    }
+  }
+
+  return stage;
+}

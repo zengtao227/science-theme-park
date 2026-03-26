@@ -218,7 +218,7 @@ export const deCommon = {
         sm2_05_subtitle: "Systematisches Training der Potenzgesetze, negativen Exponenten und wissenschaftlichen Schreibweise.",
         sm1_01_title: "SM1.01 // FLÄCHEN & VOLUMEN",
         sm1_01_subtitle: "Berechne Flächen von Trapezen und Volumen von Prismen und Zylindern.",
-        sm1_02_title: "SM1.02 // ALGEBRA QUEST",
+        sm1_02_title: "SM1.02 // ALGEBRA-WERKSTATT",
         sm1_02_subtitle: "Meistere Variablen, Termvereinfachung und Einsetzen mit visuellen algebraischen Kacheln.",
         sm1_03_title: "SM1.03 // UNTER NULL",
         sm1_03_subtitle: "Meistere ganze Zahlen, Zahlengeraden, rationale Zahlen und 2D-Koordinaten mit Basler Winterszenarien.",

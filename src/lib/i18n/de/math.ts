@@ -945,7 +945,7 @@ export const deMath = {
             x: "x"
         },
         back: "Zurück zum Nexus",
-        title: "ALGEBRA QUEST",
+        title: "ALGEBRA-WERKSTATT",
         next: "Nächste Sequenz ausführen",
         check: "Verifizieren",
         correct: "Verifiziert",
