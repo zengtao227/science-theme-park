@@ -194,7 +194,7 @@ export function solveLinearInequality(expression: string): {
         stepNumber: stepNumber++,
         expression: intervalNotation,
         expressionLatex: intervalToLatex(solution),
-        justification: "Final solution in interval notation",
+        justification: "Final solution",
         reversesInequality: false
     });
     
@@ -418,7 +418,7 @@ export function solveAbsoluteValueInequality(expression: string): {
             stepNumber: stepNumber++,
             expression: intervalNotation,
             expressionLatex: intervalToLatex(solution),
-            justification: "Final solution in interval notation",
+            justification: "Final solution",
             reversesInequality: false
         });
         
@@ -489,7 +489,7 @@ export function solveAbsoluteValueInequality(expression: string): {
             stepNumber: stepNumber++,
             expression: intervalNotation,
             expressionLatex: `${intervalToLatex(solution[0])} \\cup ${intervalToLatex(solution[1])}`,
-            justification: "Final solution in interval notation",
+            justification: "Final solution",
             reversesInequality: false
         });
         

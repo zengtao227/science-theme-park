@@ -55,7 +55,6 @@ export interface SM209Quest extends Quest {
         labelLatex: string;
         placeholder: string;
         expected: string;
-        acceptedFormats: string[];
     }>;
     correctLatex: string;
     answer: string;

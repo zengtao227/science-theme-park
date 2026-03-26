@@ -44,8 +44,7 @@ export const VisualizationDemo: React.FC = () => {
             id: 'answer',
             labelLatex: 'Solution:',
             placeholder: 'Enter interval notation',
-            expected: '(-∞, 4)',
-            acceptedFormats: ['interval', 'set-builder', 'inequality']
+            expected: '(-∞, 4)'
         }],
         correctLatex: '(-\\infty, 4)',
         answer: '(-∞, 4)'

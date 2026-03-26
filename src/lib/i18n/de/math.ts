@@ -3766,10 +3766,8 @@ export const deMath = {
             step: "SCHRITT",
             justification: "BEGRÜNDUNG",
             final_solution: "ENDGÜLTIGE LÖSUNG",
-            enter_solution: "Lösung eingeben",
             answer_options: "Antwortoptionen",
             correct_notation: "Korrekte Lösungsnotation",
-            placeholder_interval: "z.B. (-∞, 5] oder [2, 10)",
             and_connector: "UND",
             empty_set: "Keine Lösung (∅)",
             all_reals: "Alle reellen Zahlen (ℝ)",
@@ -3788,8 +3786,6 @@ export const deMath = {
         feedback: {
             correct: "Lösung verifiziert! Die Ungleichung ist korrekt gelöst.",
             incorrect: "Falsche Lösung. Überprüfen Sie Ihre Arbeit.",
-            invalid_format: "Ungültiges Format. Verwenden Sie Intervallschreibweise wie (-∞, 5] oder [2, 10)",
-            empty_input: "Bitte geben Sie eine Lösung ein, bevor Sie verifizieren.",
             empty_choice: "Wählen Sie vor dem Verifizieren eine Antwortoption aus.",
             hint_direction: "Denken Sie daran: Multiplikation oder Division mit einer negativen Zahl kehrt das Ungleichheitszeichen um."
         },

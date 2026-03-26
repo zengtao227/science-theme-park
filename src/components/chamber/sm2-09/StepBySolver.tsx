@@ -63,31 +63,8 @@ export const StepBySolver: React.FC<StepBySolverProps> = ({
                     <div className="text-lg">
                         <BlockMath math={quest.correctLatex} />
                     </div>
-                    {quest.solutionInterval && (
-                        <div className="mt-4">
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                                Interval notation: {formatInterval(quest.solutionInterval)}
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>
     );
 };
-
-// Helper function to format interval notation
-function formatInterval(interval: any): string {
-    if (Array.isArray(interval)) {
-        return interval.map(i => formatSingleInterval(i)).join(' ∪ ');
-    }
-    return formatSingleInterval(interval);
-}
-
-function formatSingleInterval(interval: any): string {
-    const startBracket = interval.startInclusive ? '[' : '(';
-    const endBracket = interval.endInclusive ? ']' : ')';
-    const start = interval.start === -Infinity ? '-∞' : interval.start;
-    const end = interval.end === Infinity ? '∞' : interval.end;
-    return `${startBracket}${start}, ${end}${endBracket}`;
-}

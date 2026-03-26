@@ -220,16 +220,12 @@ export default function SM209Page() {
     absolute_value_expression: t("sm2_09.labels.absolute_value_expression"),
     inner_expression: t("sm2_09.labels.inner_expression"),
     solution_label: t("sm2_09.labels.solution"),
-    enter_solution: t("sm2_09.labels.enter_solution"),
-    placeholder_interval: t("sm2_09.labels.placeholder_interval"),
     answer_options: t("sm2_09.labels.answer_options"),
     correct_notation: t("sm2_09.labels.correct_notation"),
     and_connector: t("sm2_09.labels.and_connector"),
     feedback: {
       correct: t("sm2_09.feedback.correct"),
       incorrect: t("sm2_09.feedback.incorrect"),
-      format_error: t("sm2_09.feedback.invalid_format"),
-      empty_input: t("sm2_09.feedback.empty_input"),
       empty_choice: t("sm2_09.feedback.empty_choice"),
     }
   };
@@ -291,9 +287,8 @@ export default function SM209Page() {
             {
               id: "solution",
               labelLatex: `\\text{${sm2_09_t.solution_label}}`,
-              placeholder: sm2_09_t.placeholder_interval,
+              placeholder: q.answer || "",
               expected: q.answer || "",
-              acceptedFormats: ["interval", "inequality"]
             }
           ],
           correctLatex: q.answer || "",
@@ -303,7 +298,7 @@ export default function SM209Page() {
         return quest;
       });
     },
-    [sm2_09_t.solution_label, sm2_09_t.placeholder_interval, sm2_09_t.and_connector, t]
+    [sm2_09_t.solution_label, sm2_09_t.and_connector, t]
   );
 
   // Generate solution steps for a quest

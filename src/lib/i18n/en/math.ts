@@ -3789,10 +3789,8 @@ export const enMath = {
             step: "STEP",
             justification: "JUSTIFICATION",
             final_solution: "FINAL SOLUTION",
-            enter_solution: "Enter solution",
             answer_options: "Answer Options",
             correct_notation: "Correct Solution Notation",
-            placeholder_interval: "e.g., (-∞, 5] or [2, 10)",
             and_connector: "AND",
             empty_set: "No solution (∅)",
             all_reals: "All real numbers (ℝ)",
@@ -3811,8 +3809,6 @@ export const enMath = {
         feedback: {
             correct: "Solution verified! The inequality is solved correctly.",
             incorrect: "Incorrect solution. Check your work.",
-            invalid_format: "Invalid format. Use interval notation like (-∞, 5] or [2, 10)",
-            empty_input: "Please enter a solution before verifying.",
             empty_choice: "Choose one answer option before verifying.",
             hint_direction: "Remember: multiplying or dividing by a negative reverses the inequality."
         },

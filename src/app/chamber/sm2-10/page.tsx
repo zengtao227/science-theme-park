@@ -759,7 +759,7 @@ export default function SM210Page() {
                 onAiDiagnosisRequested={requestAiFeedback}
                 title={t("sm2_10.title")}
                 moduleCode="SM2.10"
-                defaultLeftWidth={62}
+                defaultLeftWidth={56}
                 minLeftWidth={35}
                 maxLeftWidth={85}
                 difficulty={difficulty}
@@ -791,7 +791,7 @@ export default function SM210Page() {
             onAiDiagnosisRequested={requestAiFeedback}
             title={t("sm2_10.title")}
             moduleCode="SM2.10"
-            defaultLeftWidth={62}
+            defaultLeftWidth={56}
             minLeftWidth={35}
             maxLeftWidth={85}
             difficulty={difficulty}
