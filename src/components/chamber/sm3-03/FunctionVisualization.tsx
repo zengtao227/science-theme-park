@@ -61,9 +61,13 @@ export default function FunctionVisualization({
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <div className="flex-1 relative bg-black/20 rounded-lg border border-white/10 overflow-hidden">
-        <svg width="100%" height="100%" viewBox="0 0 600 400" className="absolute inset-0">
+    <div className="flex h-full min-h-[680px] flex-col gap-4">
+      <div className="relative flex min-h-[680px] flex-1 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-black/20 p-4">
+        <svg
+          viewBox="0 0 600 400"
+          className="h-auto w-full max-w-[960px]"
+          preserveAspectRatio="xMidYMid meet"
+        >
           {/* Grid */}
           {Array.from({ length: 13 }, (_, i) => (
             <line
