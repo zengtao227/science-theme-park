@@ -372,8 +372,9 @@ export default function S203Page() {
         },
       }}
       monitorContent={
-        <div className="space-y-4">
+        <div className="flex h-full min-h-[860px] flex-col gap-4">
           <LaserCanvas
+            className="flex-1 min-h-[720px]"
             level={level}
             mode={currentQuest?.mode}
             m1={currentQuest?.m1 || 0}
@@ -393,28 +394,30 @@ export default function S203Page() {
               level: sm2_03_t.ui.level
             }}
           />
-          <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
-            {sm2_03_t.target_title}
-          </div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
-              {sm2_03_t.labels.hints}
+          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 space-y-3">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">
+              {sm2_03_t.target_title}
             </div>
-            <div className="text-white/70 text-sm font-mono">
-              {renderMixedText(
-                level === 1
-                  ? sm2_03_t.hints.level1
-                  : level === 2
-                    ? sm2_03_t.hints.level2
-                    : sm2_03_t.hints.level3,
-                "font-mono"
-              )}
-            </div>
-            <div className="text-white text-xs font-mono">
-              {sm2_03_t.hints.drag}
-            </div>
-            <div className="text-white font-black text-lg">
-              <InlineMath math="y = mx + c" />
+            <div className="space-y-2">
+              <div className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">
+                {sm2_03_t.labels.hints}
+              </div>
+              <div className="text-white/70 text-sm font-mono">
+                {renderMixedText(
+                  level === 1
+                    ? sm2_03_t.hints.level1
+                    : level === 2
+                      ? sm2_03_t.hints.level2
+                      : sm2_03_t.hints.level3,
+                  "font-mono"
+                )}
+              </div>
+              <div className="text-white text-xs font-mono">
+                {sm2_03_t.hints.drag}
+              </div>
+              <div className="text-white font-black text-lg">
+                <InlineMath math="y = mx + c" />
+              </div>
             </div>
           </div>
         </div>

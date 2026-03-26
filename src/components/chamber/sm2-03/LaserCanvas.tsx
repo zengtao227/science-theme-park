@@ -26,6 +26,7 @@ interface LaserCanvasProps {
     laser_sim?: string;
     level?: string;
   };
+  className?: string;
 }
 
 const palette = {
@@ -49,14 +50,12 @@ export default function LaserCanvas({
   onHit,
   onLineChange,
   labels,
+  className,
 }: LaserCanvasProps) {
   const { t } = useLanguage();
   void onLineChange;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hitVisible] = useState(false);
-
-  const maxX = 30;  // 30 km — keeps targets near center
-  const maxY = 30;  // 30 CHF
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -79,7 +78,23 @@ export default function LaserCanvas({
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const padding = { left: 60, right: 40, top: 40, bottom: 60 };
+      const lineXSeed = Math.max(8, targetPos.x || 0, 6);
+      const candidateXs = [0, lineXSeed];
+      const candidateYs = [c1];
+      candidateYs.push(m1 * lineXSeed + c1);
+
+      if (m2 !== undefined && c2 !== undefined) {
+        candidateYs.push(c2, m2 * lineXSeed + c2);
+      }
+      if (targetX !== undefined) candidateXs.push(targetX);
+      if (targetY !== undefined) candidateYs.push(targetY);
+
+      const maxDataX = Math.max(...candidateXs.map((value) => Math.abs(value)));
+      const maxDataY = Math.max(...candidateYs.map((value) => Math.abs(value)));
+      const maxX = Math.max(10, Math.ceil(maxDataX * 1.25 + 2));
+      const maxY = Math.max(10, Math.ceil(maxDataY * 1.25 + 2));
+
+      const padding = { left: 52, right: 24, top: 24, bottom: 44 };
       const plotWidth = Math.max(1, cssWidth - padding.left - padding.right);
       const plotHeight = Math.max(1, cssHeight - padding.top - padding.bottom);
       const scale = Math.min(plotWidth / maxX, plotHeight / maxY);
@@ -98,17 +113,19 @@ export default function LaserCanvas({
       ctx.fillRect(0, 0, cssWidth, cssHeight);
 
       // 1. GRID
-      const step = maxX / 10;
+      const gridDivisions = 8;
+      const xStep = maxX / gridDivisions;
+      const yStep = maxY / gridDivisions;
       ctx.strokeStyle = palette.grid;
       ctx.lineWidth = 0.5;
-      for (let i = 0; i <= maxX; i += step) {
+      for (let i = 0; i <= maxX; i += xStep) {
         const { cx } = toCanvas(i, 0);
         ctx.beginPath();
         ctx.moveTo(cx, originY);
         ctx.lineTo(cx, topY);
         ctx.stroke();
       }
-      for (let i = 0; i <= maxY; i += step) {
+      for (let i = 0; i <= maxY; i += yStep) {
         const { cy } = toCanvas(0, i);
         ctx.beginPath();
         ctx.moveTo(originX, cy);
@@ -132,12 +149,12 @@ export default function LaserCanvas({
       ctx.fillStyle = "#ffffff88";
       ctx.font = "11px monospace";
       ctx.textAlign = "center";
-      for (let i = step; i <= maxX; i += step) {
+      for (let i = xStep; i <= maxX; i += xStep) {
         const { cx } = toCanvas(i, 0);
         ctx.fillText(String(Math.round(i)), cx, originY + 18);
       }
       ctx.textAlign = "right";
-      for (let i = step; i <= maxY; i += step) {
+      for (let i = yStep; i <= maxY; i += yStep) {
         const { cy } = toCanvas(0, i);
         ctx.fillText(String(Math.round(i)), originX - 8, cy + 4);
       }
@@ -223,7 +240,7 @@ export default function LaserCanvas({
   }, [level, mode, m1, c1, m2, c2, onHit, targetX, targetY]);
 
   return (
-    <div className="relative w-full h-[800px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className={`relative w-full min-h-[720px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl ${className ?? ""}`}>
       <canvas
         ref={canvasRef}
         width={800}
