@@ -24,7 +24,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "EM1.01_THALES_MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             basics: "BASIS",
             measure: "MESSEN",
@@ -160,7 +160,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        monitor_title: "EM2.01_MATRIX_MONITOR",
+        monitor_title: "ANZEIGE",
         labels: {
             matrix: "MATRIX A",
             properties: "EIGENSCHAFTEN",
@@ -275,7 +275,7 @@ export const deMath = {
             elite: "ELITE"
         },
         hints_title: "Formelreferenz",
-        monitor_title: "GM1.01_MONITOR",
+        monitor_title: "ANZEIGE",
         status: "STATUS: BETRIEBSBEREIT",
         footer_right: "ABLEITUNGS_SIMULATOR",
         stages: {
@@ -371,7 +371,7 @@ export const deMath = {
         },
         back: "Zurück zum Nexus",
         title: "GM1.01-ADV // FORTGESCHRITTENE ANALYSIS",
-        monitor_title: "GM1.01_FORTGESCHRITTEN_MONITOR",
+        monitor_title: "ANZEIGE",
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
         check: "Prüfen",
         next: "Nächste Herausforderung",
@@ -481,7 +481,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "GM2.01_VEKTOR_MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             navigation: "NAVIGATION",
             dot: "SKALARPRODUKT",
@@ -541,7 +541,7 @@ export const deMath = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Fehlermeldung",
-        monitor_title: "GM1.02_INTEGRAL_MONITOR",
+        monitor_title: "ANZEIGE",
         mission: {
             title: "INTEGRALRECHNUNG MISSION",
             description: "Meistere Integration durch Berechnung von Stammfunktionen, bestimmten Integralen und realen Anwendungen. Integration ist die Umkehrung der Differentiation."
@@ -584,7 +584,7 @@ export const deMath = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Fehlermeldung",
-        monitor_title: "GM3.01_WAHRSCHEINLICHKEITSMONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             basic_prob: "GRUNDWAHRSCHEINLICHKEIT",
             binomial: "BINOMIAL",
@@ -765,7 +765,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
-        monitor_title: "GM4.01_KOMPLEX_MONITOR",
+        monitor_title: "ANZEIGE",
         scenario_title: "BASEL INGENIEURSMISSION",
         scenarios: {
             basics: "Roche Pharma-Signalverarbeitung: Sie kalibrieren medizinische Bildgebungsgeräte bei Roche Basel, die komplexe Zahlenanalyse für die MRT-Signalverarbeitung verwenden. Jede komplexe Zahl z = a + bi repräsentiert ein Signal mit Realteil (Amplitude) und Imaginärteil (Phase). Berechnen Sie den Betrag |z|, um die Signalstärke zu bestimmen. Eine genaue Betragsberechnung ist entscheidend für die Erkennung von Gewebeanomalien in Patientenscans.",
@@ -950,7 +950,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
-        monitor_title: "ALGEBRA_MONITOR",
+        monitor_title: "ANZEIGE",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -1030,7 +1030,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        monitor_title: "GANZZAHL_MONITOR",
+        monitor_title: "ANZEIGE",
         basel_scenario: "BASLER WINTERSZENARIO",
         scenario_title: "SZENARIO-KONTEXT",
         objective_title: "MISSIONSZIEL",
@@ -1195,7 +1195,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        monitor_title: "GLEICHUNGS_MONITOR",
+        monitor_title: "ANZEIGE",
         basel_scenario: "BASLER GLEICHUNGSSZENARIO",
         scenario_title: "SZENARIO-KONTEXT",
         objective_title: "MISSIONSZIEL",
@@ -1456,7 +1456,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        monitor_title: "PROPORTION_MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             recipes: "REZEPTE",
             percent: "PROZENT",
@@ -1744,7 +1744,7 @@ export const deMath = {
         incorrect: "Abweichung",
         yes: "JA",
         no: "NEIN",
-        monitor_title: "VISUELLE_UEBERWACHUNG",
+        monitor_title: "ANZEIGE",
         ui: {
             view_2d: "2D-Ansicht",
             view_fluid: "Fluid-Ansicht",
@@ -1851,7 +1851,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "LASER_MONITOR",
+        monitor_title: "ANZEIGE",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -2193,7 +2193,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        monitor_title: "KOORDINATEN_MONITOR",
+        monitor_title: "ANZEIGE",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -2257,7 +2257,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        monitor_title: "WAHRSCHEINLICHKEIT_MONITOR",
+        monitor_title: "ANZEIGE",
         formula_title: "WAHRSCHEINLICHKEITSFORMEL",
         formula_latex: "P(E) = \\frac{n(E)}{n(\\Omega)}",
         scenario_title: "PROBLEM",
@@ -2595,7 +2595,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "TRIG_MONITOR",
+        monitor_title: "ANZEIGE",
         labels: {
             angle: "WINKEL (θ)",
             values: "TRIGONOMETRISCHE WERTE",
@@ -2664,7 +2664,7 @@ export const deMath = {
         check: "Prüfen",
         correct: "Verifiziert",
         incorrect: "Abweichung",
-        monitor_title: "WACHSTUM_MONITOR",
+        monitor_title: "ANZEIGE",
         labels: {
             input: "EINGABE",
             hints: "HINWEISE",
@@ -2747,7 +2747,7 @@ export const deMath = {
         check: "Verifizieren",
         correct: "Verifiziert",
         incorrect: "Fehlreaktion",
-        monitor_title: "LOG_MONITOR",
+        monitor_title: "ANZEIGE",
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an.",
         labels: {
             input: "EINGABE",
@@ -2816,7 +2816,7 @@ export const deMath = {
         title: "DATENANALYSE",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
-        monitor_title: "Datenanalyse-Monitor",
+        monitor_title: "ANZEIGE",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Richtig",
@@ -3217,7 +3217,7 @@ export const deMath = {
         title: "3D-GEOMETRIE FORTGESCHRITTEN",
         difficulty: { basic: "BASIS", core: "KERN", advanced: "FORTGESCHRITTEN", elite: "ELITE" },
         objective_title: "Aktuelles Missionsziel",
-        monitor_title: "3D-Geometrie-Monitor",
+        monitor_title: "ANZEIGE",
         check: "Prüfen",
         next: "Nächste Herausforderung",
         correct: "Richtig",
@@ -3462,7 +3462,7 @@ export const deMath = {
         next: "Nächste Aufgabe",
         correct: "Richtig",
         incorrect: "Falsch",
-        monitor_title: "Folgen & Reihen Monitor",
+        monitor_title: "ANZEIGE",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3518,7 +3518,7 @@ export const deMath = {
         next: "Nächste Aufgabe",
         correct: "Richtig",
         incorrect: "Falsch",
-        monitor_title: "Kombinatorik Monitor",
+        monitor_title: "ANZEIGE",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3572,7 +3572,7 @@ export const deMath = {
         next: "Weiter",
         correct: "Richtig",
         incorrect: "Falsch",
-        monitor_title: "Transformationsmonitor",
+        monitor_title: "ANZEIGE",
         difficulty: {
             basic: "BASIS",
             core: "KERN",
@@ -3746,7 +3746,7 @@ export const deMath = {
         hide_steps: "Schritte verbergen",
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
-        monitor_title: "UNGLEICHUNGEN_MONITOR",
+        monitor_title: "ANZEIGE",
         labels: {
             scenario_title: "Basel-Szenario",
             problem_title: "Aufgabe",
@@ -3831,7 +3831,7 @@ export const deMath = {
         check: "Überprüfen",
         correct: "Verifiziert",
         incorrect: "Nicht übereinstimmend",
-        monitor_title: "GM1.03_GRENZWERT_MONITOR",
+        monitor_title: "ANZEIGE",
         stages: {
             LIMIT_BASICS: "GRENZWERT-GRUNDLAGEN",
             LIMIT_OPERATIONS: "GRENZWERT-OPERATIONEN",
@@ -3891,7 +3891,7 @@ export const deMath = {
     },
     gm2_02: {
         back: "Zurück zum Nexus",
-        monitor_title: "Visualisierung",
+        monitor_title: "ANZEIGE",
         objective_title: "Missionsziel",
         input_tip_2dp: "Antwort mit Genauigkeit auf 2 Dezimalstellen eingeben.",
         title: "GM2.02 - Analytische Geometrie",
