@@ -47,6 +47,7 @@ export interface ModuleProgress {
 
 export interface AiProviderConfig {
   useDefault: boolean;
+  provider?: 'OPENAI' | 'GEMINI' | 'DEEPSEEK' | 'MINIMAX' | 'NVIDIA' | 'CUSTOM';
   baseUrl?: string;
   apiKey?: string;
   modelName?: string;
@@ -104,6 +105,7 @@ export const useAppStore = create<AppState>()(
       },
       aiProviderConfig: {
         useDefault: true,
+        provider: 'NVIDIA',
       },
 
       // User system initial state

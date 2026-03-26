@@ -8,10 +8,10 @@ export async function POST(req: Request) {
         const customBaseUrl = req.headers.get('x-custom-base-url');
         const customModelName = req.headers.get('x-custom-model-name');
 
-        // Default to NVIDIA deepseek if no custom config provided
+        // Default to a current NVIDIA-hosted OpenAI-compatible chat model if no custom config is provided
         const apiKey = customApiKey || process.env.NVIDIA_API_KEY;
         const baseUrl = customBaseUrl || 'https://integrate.api.nvidia.com/v1';
-        const model = customModelName || 'deepseek-ai/deepseek-r1';
+        const model = customModelName || 'meta/llama-3.1-8b-instruct';
 
         if (!apiKey) {
             return NextResponse.json(

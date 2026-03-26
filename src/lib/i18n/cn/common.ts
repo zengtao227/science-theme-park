@@ -453,9 +453,26 @@ export const cnCommon = {
             saved: "已保存",
             open_settings: "打开设置与 AI",
             labels: {
+                provider: "提供方预设",
                 base_url: "API 基础地址",
                 api_key: "API Key",
                 model_name: "模型名称"
+            },
+            providers: {
+                openai: "OpenAI",
+                gemini: "Google Gemini",
+                deepseek: "DeepSeek",
+                minimax: "MiniMax",
+                nvidia: "NVIDIA NIM",
+                custom: "自定义 / 兼容 API"
+            },
+            provider_hints: {
+                openai: "使用你的 OpenAI API Key，并搭配如 gpt-4o-mini 这类 OpenAI 模型。",
+                gemini: "这里使用的是 Google 提供的 OpenAI 兼容 Gemini 接口，需要 Gemini API Key 和 Gemini 模型名。",
+                deepseek: "这里使用的是 DeepSeek 的 OpenAI 兼容接口，需要 DeepSeek API Key 和 deepseek-chat 等模型。",
+                minimax: "这里使用的是 MiniMax 的 OpenAI 兼容接口，需要 MiniMax Key 和对应聊天模型。",
+                nvidia: "这里使用的是 NVIDIA 的 OpenAI 兼容 NIM 接口。服务器默认共享 AI 也走这条链路。",
+                custom: "仅在你的提供方支持 OpenAI 兼容的 /chat/completions 请求时使用。"
             },
             placeholders: {
                 base_url: "例如 https://api.openai.com/v1",

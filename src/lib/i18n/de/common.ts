@@ -456,9 +456,26 @@ export const deCommon = {
             saved: "Gespeichert",
             open_settings: "Einstellungen & KI öffnen",
             labels: {
+                provider: "Provider-Voreinstellung",
                 base_url: "API-Basis-URL",
                 api_key: "API-Schlüssel",
                 model_name: "Modellname"
+            },
+            providers: {
+                openai: "OpenAI",
+                gemini: "Google Gemini",
+                deepseek: "DeepSeek",
+                minimax: "MiniMax",
+                nvidia: "NVIDIA NIM",
+                custom: "Benutzerdefiniert / kompatible API"
+            },
+            provider_hints: {
+                openai: "Verwende deinen OpenAI-API-Schlüssel zusammen mit einem OpenAI-Modell wie gpt-4o-mini.",
+                gemini: "Hier wird Googles OpenAI-kompatibler Gemini-Endpunkt verwendet. Nutze dazu einen Gemini-API-Schlüssel und ein Gemini-Modell.",
+                deepseek: "Hier wird der OpenAI-kompatible Endpunkt von DeepSeek verwendet. Nutze dazu einen DeepSeek-Schlüssel und deepseek-chat oder ein kompatibles Modell.",
+                minimax: "Hier wird der OpenAI-kompatible Endpunkt von MiniMax verwendet. Nutze dazu deinen MiniMax-Schlüssel und ein passendes Chat-Modell.",
+                nvidia: "Hier wird der OpenAI-kompatible NVIDIA-NIM-Endpunkt verwendet. Auch der serverseitige Standardanbieter nutzt diese Route.",
+                custom: "Nur verwenden, wenn dein Anbieter OpenAI-kompatible /chat/completions-Anfragen unterstützt."
             },
             placeholders: {
                 base_url: "z. B. https://api.openai.com/v1",

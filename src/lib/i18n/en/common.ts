@@ -454,9 +454,26 @@ export const enCommon = {
             saved: "Saved",
             open_settings: "Open Settings & AI",
             labels: {
+                provider: "Provider Preset",
                 base_url: "API Base URL",
                 api_key: "API Key",
                 model_name: "Model Name"
+            },
+            providers: {
+                openai: "OpenAI",
+                gemini: "Google Gemini",
+                deepseek: "DeepSeek",
+                minimax: "MiniMax",
+                nvidia: "NVIDIA NIM",
+                custom: "Custom / Compatible API"
+            },
+            provider_hints: {
+                openai: "Use your OpenAI API key with an OpenAI model such as gpt-4o-mini.",
+                gemini: "Uses Google's OpenAI-compatible Gemini endpoint. Pair it with a Gemini API key and a Gemini model.",
+                deepseek: "Uses DeepSeek's OpenAI-compatible endpoint. Pair it with a DeepSeek API key and deepseek-chat or a compatible model.",
+                minimax: "Uses MiniMax's OpenAI-compatible endpoint. Pair it with your MiniMax key and a MiniMax chat model.",
+                nvidia: "Uses NVIDIA's OpenAI-compatible NIM endpoint. This is also the shared default provider used by the server when available.",
+                custom: "Use this only if your provider supports OpenAI-compatible /chat/completions requests."
             },
             placeholders: {
                 base_url: "e.g. https://api.openai.com/v1",
