@@ -12,10 +12,14 @@ export default function EcosystemVisualization({ quest, stage, translations }: E
     const viz = translations.labels.viz;
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-black/40 rounded-3xl p-8 backdrop-blur-md border border-white/10 shadow-2xl overflow-hidden relative group">
+        <div className="relative flex min-h-[680px] w-full items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-4 shadow-2xl backdrop-blur-md group md:p-8">
             <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent pointer-events-none" />
 
-            <svg width={canvasSize} height={canvasSize} viewBox={`0 0 ${canvasSize} ${canvasSize}`} className="drop-shadow-[0_0_15px_rgba(34,197,94,0.1)]">
+            <svg
+                viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                className="aspect-square h-auto w-full max-w-[720px] drop-shadow-[0_0_15px_rgba(34,197,94,0.1)]"
+                preserveAspectRatio="xMidYMid meet"
+            >
                 {stage === "FOOD_CHAINS" && (
                     <g className="animate-in fade-in zoom-in duration-700">
                         {/* Sun */}

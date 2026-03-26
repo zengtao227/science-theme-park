@@ -284,9 +284,13 @@ export default function CircuitVisualization({
     }, [stage, quest.symbol, centerX, centerY]);
 
     return (
-        <div className="flex flex-col h-full gap-4">
-            <div className="flex-1 bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">
-                <svg width={canvasSize} height={canvasSize} className="w-full h-full">
+        <div className="flex h-full flex-col gap-4">
+            <div className="relative flex min-h-[680px] flex-1 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/50 p-2 md:p-4">
+                <svg
+                    viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                    className="aspect-square h-auto w-full max-w-[720px]"
+                    preserveAspectRatio="xMidYMid meet"
+                >
                     {/* Grid background */}
                     <defs>
                         <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -303,7 +307,7 @@ export default function CircuitVisualization({
             </div>
 
             {/* Info Panel */}
-            <div className="bg-black/30 rounded-xl p-4 border border-white/10">
+            <div className="rounded-xl border border-white/10 bg-black/30 p-4">
                 <div className="text-white/70 text-sm">
                     <div className="font-bold text-white mb-2">Current Stage:</div>
                     <div>{translations[stage.toLowerCase() as keyof typeof translations]}</div>

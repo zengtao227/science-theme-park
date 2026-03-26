@@ -36,7 +36,11 @@ export default function IntegerCanvas({
         const mercuryColor = value < 0 ? "#00e5ff" : "#ff2d7d";
 
         return (
-          <svg width={canvasSize} height={250} className="mx-auto bg-black/50 rounded-xl border border-white/10">
+          <svg
+            viewBox={`0 0 ${canvasSize} 250`}
+            className="mx-auto h-auto w-full max-w-[720px] rounded-xl border border-white/10 bg-black/50"
+            preserveAspectRatio="xMidYMid meet"
+          >
             <rect x="180" y="40" width="40" height="140" fill="#ffffff" fillOpacity="0.1" stroke="#ffffff" strokeWidth="2" rx="20" />
             <circle cx="200" cy="190" r="25" fill="#ffffff" fillOpacity="0.1" stroke="#ffffff" strokeWidth="2" />
             <rect x="185" y={vToY(value)} width="30" height={180 - vToY(value)} fill={mercuryColor} fillOpacity="0.6" rx="15" />
@@ -57,8 +61,12 @@ export default function IntegerCanvas({
         );
       }
 
-      return (
-        <svg width={canvasSize} height={200} className="mx-auto bg-black/50 rounded-xl border border-white/10">
+        return (
+        <svg
+          viewBox={`0 0 ${canvasSize} 200`}
+          className="mx-auto h-auto w-full max-w-[720px] rounded-xl border border-white/10 bg-black/50"
+          preserveAspectRatio="xMidYMid meet"
+        >
           <line x1="40" y1="100" x2={canvasSize - 40} y2="100" stroke="#ffffff" strokeWidth="2" />
           {Array.from({ length: 21 }, (_, i) => {
             const v = min + i;
@@ -91,7 +99,11 @@ export default function IntegerCanvas({
       });
 
       return (
-        <svg width={canvasSize} height={canvasSize} className="mx-auto bg-black/50 rounded-xl border border-white/10">
+        <svg
+          viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+          className="mx-auto h-auto w-full max-w-[720px] rounded-xl border border-white/10 bg-black/50"
+          preserveAspectRatio="xMidYMid meet"
+        >
           {Array.from({ length: 2 * gridSize + 1 }, (_, i) => {
             const v = i - gridSize;
             const posX = toCanvas(v, 0).x;
@@ -130,7 +142,7 @@ export default function IntegerCanvas({
   }, [stage, quest, canvasSize, translations.unit_celsius]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 min-h-[680px] flex flex-col justify-center">
       {visualization}
       <div className="text-center text-xs text-white/50 uppercase tracking-wider">
         {stage === "NUMBER_LINE" && translations.integer_number_line}

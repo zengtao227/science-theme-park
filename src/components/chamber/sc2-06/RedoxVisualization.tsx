@@ -38,7 +38,11 @@ export default function RedoxVisualization({
     const radius = 120;
 
     return (
-      <svg width={canvasSize} height={canvasSize} className="w-full h-full">
+      <svg
+        viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+        className="aspect-square h-auto w-full max-w-[720px]"
+        preserveAspectRatio="xMidYMid meet"
+      >
         {/* Background circle */}
         <circle
           cx={centerX}
@@ -148,7 +152,11 @@ export default function RedoxVisualization({
     const y = centerY;
 
     return (
-      <svg width={canvasSize} height={canvasSize} className="w-full h-full">
+      <svg
+        viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+        className="aspect-square h-auto w-full max-w-[720px]"
+        preserveAspectRatio="xMidYMid meet"
+      >
         {/* Oxidation (left side - red) */}
         <g>
           <circle
@@ -294,7 +302,11 @@ export default function RedoxVisualization({
     const electrodeHeight = 100;
 
     return (
-      <svg width={canvasSize} height={canvasSize} className="w-full h-full">
+      <svg
+        viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+        className="aspect-square h-auto w-full max-w-[720px]"
+        preserveAspectRatio="xMidYMid meet"
+      >
         {/* Anode (left - oxidation - red) */}
         <g>
           <rect
@@ -495,9 +507,9 @@ export default function RedoxVisualization({
   }, [checkStatus]);
 
   return (
-    <div className="w-full h-full flex flex-col gap-4">
+    <div className="flex h-full flex-col gap-4">
       {/* Visualization canvas */}
-      <div className="flex-1 relative bg-black/30 rounded-xl border border-white/10 overflow-hidden flex items-center justify-center">
+      <div className="relative flex min-h-[680px] flex-1 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/30 p-2 md:p-4">
         {quest?.stage === "OXIDATION_STATE" && renderOxidationState}
         {quest?.stage === "ELECTRON_TRANSFER" && renderElectronTransfer}
         {quest?.stage === "ELECTROCHEMISTRY" && renderElectrochemistry}

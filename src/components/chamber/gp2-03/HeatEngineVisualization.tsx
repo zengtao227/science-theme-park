@@ -48,13 +48,13 @@ export default function HeatEngineVisualization({ quest, stage, language = "en" 
     const stageTitle = stageLabels[stage as keyof typeof stageLabels]?.[language] ?? stage.replace(/_/g, " ");
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-gray-900/50 rounded-xl p-4">
+        <div className="flex min-h-[680px] w-full items-center justify-center rounded-xl bg-gray-900/50 p-2 md:p-4">
             <svg
-                width={canvasSize}
-                height={canvasSize}
-                className="bg-black/30 rounded-lg"
+                viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                className="aspect-square h-auto w-full max-w-[720px] rounded-lg bg-black/30"
                 aria-label={stageTitle}
                 role="img"
+                preserveAspectRatio="xMidYMid meet"
             >
                 {stage === "EFFICIENCY" && (
                     <>

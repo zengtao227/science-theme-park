@@ -138,13 +138,12 @@ export default function WaveVisualization({
     // Render OPTICS stage with light ray diagrams
     if (quest.stage === "OPTICS") {
         return (
-            <div className="w-full h-full flex flex-col gap-4">
-                <div className="flex-1 relative bg-gray-900/50 rounded-lg p-4">
+            <div className="flex h-full flex-col gap-4">
+                <div className="relative flex min-h-[680px] flex-1 items-center justify-center rounded-lg bg-gray-900/50 p-4">
                     <svg
-                        width="100%"
-                        height="100%"
                         viewBox={`0 0 ${canvasSize} ${canvasSize}`}
-                        className="w-full h-full"
+                        className="aspect-square h-auto w-full max-w-[720px]"
+                        preserveAspectRatio="xMidYMid meet"
                     >
                         {/* Interface line (between two media) */}
                         <line
@@ -250,13 +249,12 @@ export default function WaveVisualization({
     // Render SUPERPOSITION stage with two waves + combined wave
     if (quest.stage === "SUPERPOSITION") {
         return (
-            <div className="w-full h-full flex flex-col gap-4">
-                <div className="flex-1 relative bg-gray-900/50 rounded-lg p-4">
+            <div className="flex h-full flex-col gap-4">
+                <div className="relative flex min-h-[680px] flex-1 items-center justify-center rounded-lg bg-gray-900/50 p-4">
                     <svg
-                        width="100%"
-                        height="100%"
                         viewBox={`0 0 ${canvasSize} ${canvasSize}`}
-                        className="w-full h-full"
+                        className="aspect-square h-auto w-full max-w-[720px]"
+                        preserveAspectRatio="xMidYMid meet"
                     >
                         {/* Axes */}
                         <line
@@ -334,13 +332,12 @@ export default function WaveVisualization({
 
     // Default: WAVE_PROPERTIES stage with single animated wave
     return (
-        <div className="w-full h-full flex flex-col gap-4">
-            <div className="flex-1 relative bg-gray-900/50 rounded-lg p-4">
+        <div className="flex h-full flex-col gap-4">
+            <div className="relative flex min-h-[680px] flex-1 items-center justify-center rounded-lg bg-gray-900/50 p-4">
                 <svg
-                    width="100%"
-                    height="100%"
                     viewBox={`0 0 ${canvasSize} ${canvasSize}`}
-                    className="w-full h-full"
+                    className="aspect-square h-auto w-full max-w-[720px]"
+                    preserveAspectRatio="xMidYMid meet"
                 >
                     {/* Axes */}
                     <line
