@@ -90,7 +90,7 @@ export default function UserSwitcher() {
                   <span className="text-sm font-mono">{userSwitcherT.addUser}</span>
                 </button>
                 <Link
-                  href="/profile"
+                  href="/profile#ai-settings"
                   className="w-full px-4 py-3 text-left border-t border-white/10 text-neon-cyan hover:bg-neon-cyan/10 transition-colors flex items-center gap-2"
                 >
                   <Settings className="w-3 h-3" />

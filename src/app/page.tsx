@@ -288,7 +288,7 @@ export default function Home() {
                 {t("common.achievements_title")}
               </button>
               <Link
-                href="/profile"
+                href="/profile#ai-settings"
                 className="min-h-[44px] flex items-center gap-2 px-3 py-2 text-[10px] font-black tracking-[0.3em] uppercase border border-white/20 text-white/70 bg-white/5 hover:bg-white/10 transition-all"
                 title={t("common.user_switcher.settings_ai")}
               >

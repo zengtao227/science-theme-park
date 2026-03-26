@@ -281,7 +281,7 @@ export default function ChamberLayout({
                                             )}
                                         </button>
                                         <Link
-                                            href="/profile"
+                                            href="/profile#ai-settings"
                                             className="text-[10px] font-black tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors"
                                         >
                                             {common.profile?.ai_provider?.open_settings ?? "OPEN SETTINGS & AI"}
@@ -298,7 +298,7 @@ export default function ChamberLayout({
                                         </div>
                                         <div className="mt-3">
                                             <Link
-                                                href="/profile"
+                                                href="/profile#ai-settings"
                                                 className="text-[10px] font-black tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors"
                                             >
                                                 {common.profile?.ai_provider?.open_settings ?? "OPEN SETTINGS & AI"}

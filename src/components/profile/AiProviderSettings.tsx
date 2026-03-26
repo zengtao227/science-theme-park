@@ -34,7 +34,7 @@ export default function AiProviderSettings() {
   };
 
   return (
-    <div className="border border-white/10 rounded-2xl bg-black/60 backdrop-blur-xl p-6 shadow-[0_0_30px_rgba(0,0,0,0.35)]">
+    <div id="ai-settings" className="scroll-mt-24 border border-white/10 rounded-2xl bg-black/60 backdrop-blur-xl p-6 shadow-[0_0_30px_rgba(0,0,0,0.35)]">
       <div className="flex items-center gap-3 mb-6">
         <Settings className="w-5 h-5 text-neon-purple" />
         <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">

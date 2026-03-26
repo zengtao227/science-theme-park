@@ -75,6 +75,8 @@ export default function ProfilePage() {
           <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-3">{profile_t.subtitle}</h1>
         </div>
 
+        <AiProviderSettings />
+
         <ScienceRadar
           logic={stats.avgAccuracy}
           intuition={stats.speed}
@@ -118,8 +120,6 @@ export default function ProfilePage() {
             },
           ]}
         />
-
-        <AiProviderSettings />
 
         <div className="border border-white/10 rounded-2xl bg-black/60 backdrop-blur-xl p-6 shadow-[0_0_30px_rgba(0,0,0,0.35)]">
           <div className="text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">{profile_t.timeline_title}</div>
