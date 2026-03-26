@@ -10,8 +10,12 @@ export default function EntropyVisualization({ quest, stage }: EntropyVisualizat
     const canvasSize = 400;
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-gray-900/50 rounded-xl p-4">
-            <svg width={canvasSize} height={canvasSize} className="bg-black/30 rounded-lg">
+        <div className="flex min-h-[680px] w-full items-center justify-center rounded-xl bg-gray-900/50 p-2 md:p-4">
+            <svg
+                viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                className="aspect-square h-auto w-full max-w-[720px] rounded-lg bg-black/30"
+                preserveAspectRatio="xMidYMid meet"
+            >
                 {stage === "ENTROPY_CONCEPT" && (
                     <>
                         <g>

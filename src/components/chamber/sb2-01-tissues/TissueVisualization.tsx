@@ -192,7 +192,7 @@ export default function TissueVisualization({ quest, stage }: TissueVisualizatio
     };
 
     return (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-black/60 to-gray-900/40 rounded-xl p-4 border border-white/5">
+        <div className="flex min-h-[680px] w-full items-center justify-center rounded-xl border border-white/5 bg-gradient-to-br from-black/60 to-gray-900/40 p-2 md:p-4">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={`${stage}-${animationKey}`}
@@ -200,9 +200,13 @@ export default function TissueVisualization({ quest, stage }: TissueVisualizatio
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
-                    className="relative"
+                    className="relative w-full max-w-[720px]"
                 >
-                    <svg width={canvasSize} height={canvasSize} className="bg-black/30 rounded-lg border border-neon-green/10">
+                    <svg
+                        viewBox={`0 0 ${canvasSize} ${canvasSize}`}
+                        className="aspect-square h-auto w-full rounded-lg border border-neon-green/10 bg-black/30"
+                        preserveAspectRatio="xMidYMid meet"
+                    >
                         <defs>
                             {/* Glow filter for premium feel */}
                             <filter id="glow">
