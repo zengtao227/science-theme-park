@@ -519,6 +519,15 @@ export const deMath = {
             title: "MISSION: RHEIN-LUFTKORRIDOR",
             description: "Navigiere den Drohnenkorridor über dem Rhein. Gib den 3D-Vektor ein und prüfe die Ausrichtung mit dem Skalarprodukt."
         },
+        reasons: {
+            identify_points: "Bestimmen Sie den Startpunkt und das Ziel.",
+            compute_displacement: "Subtrahieren Sie die Koordinaten, um den Verschiebungsvektor zu erhalten.",
+            compute_magnitude: "Verwenden Sie die Formel für den Betrag eines Vektors.",
+            identify_vectors: "Lesen Sie zuerst die beiden Vektoren ab und berechnen Sie dann das Skalarprodukt.",
+            multiply_components: "Multiplizieren Sie die zugehörigen Komponenten und fassen Sie die Ergebnisse zusammen.",
+            sum_products: "Addieren Sie die Komponentenprodukte zum Skalarprodukt.",
+            identify_points_and_support: "Bestimmen Sie die Routenpunkte und den Unterstützungsvektor."
+        },
         scenarios: {
             navigation: "Basler Drohnen-Liefernetzwerk: Sie programmieren das Navigationssystem für Basels autonome Medikamenten-Lieferdrohnen. Die Drohnen müssen präzise 3D-Vektoren zwischen Krankenhausdächern und Lieferpunkten in der Stadt berechnen. Gegeben sind Koordinaten A (Abflug-Helipad am Universitätsspital Basel) und B (Ankunftspunkt am Claraspital), berechnen Sie den Verschiebungsvektor v und seinen Betrag. Der Betrag stellt die direkte Flugdistanz in Metern dar. Genaue Vektorberechnung ist kritisch für Batteriemanagement und Flugzeitschätzung.",
             dot: "Solarplatten-Optimierung am Roche-Turm: Der Roche-Turm in Basel installiert verstellbare Solarpaneele an seiner Fassade. Die Ausrichtung jedes Paneels wird durch einen Normalenvektor v dargestellt, und die Sonnenrichtung mittags ist Vektor w. Das Skalarprodukt v·w bestimmt, wie viel Sonnenlicht das Paneel empfängt - maximal bei Parallelität (Skalarprodukt = |v||w|), null bei Orthogonalität. Berechnen Sie das Skalarprodukt, um den optimalen Paneel-Winkel zu bestimmen. Ingenieure nutzen dies zur Maximierung der Energieausbeute über den Tag.",

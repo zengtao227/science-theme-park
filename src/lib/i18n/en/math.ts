@@ -519,6 +519,15 @@ export const enMath = {
             title: "MISSION: RHINE AIRSPACE",
             description: "Navigate a drone corridor above the Rhine. Enter the 3D vector and validate alignment with dot products."
         },
+        reasons: {
+            identify_points: "Identify the start point and destination.",
+            compute_displacement: "Subtract the coordinates to build the displacement vector.",
+            compute_magnitude: "Use the vector length formula.",
+            identify_vectors: "Read the two vectors before calculating the dot product.",
+            multiply_components: "Multiply matching components and combine the results.",
+            sum_products: "Add the component products to get the scalar dot product.",
+            identify_points_and_support: "Identify the route points and the support vector."
+        },
         scenarios: {
             navigation: "Basel Drone Delivery Network: You are programming the navigation system for Basel's autonomous medical supply drones. The drones must calculate precise 3D vectors between hospital rooftops and delivery points across the city. Given coordinates A (departure helipad at Basel University Hospital) and B (arrival point at Claraspital), compute the displacement vector v and its magnitude. The magnitude represents the direct flight distance in meters. Accurate vector calculation is critical for battery management and flight time estimation.",
             dot: "Solar Panel Optimization at Roche Tower: The Roche Tower in Basel is installing adjustable solar panels on its facade. Each panel's orientation is represented by a normal vector v, and the sun's direction at noon is vector w. The dot product v·w determines how much sunlight the panel receives - maximum when parallel (dot product = |v||w|), zero when perpendicular. Calculate the dot product to determine the optimal panel angle. Engineers use this to maximize energy capture throughout the day.",
