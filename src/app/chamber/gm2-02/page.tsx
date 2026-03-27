@@ -12,12 +12,12 @@ import { GM202Quest, Stage } from "@/lib/gm2-02-types";
 import { buildStagePool } from "@/lib/gm2-02-quest-builder";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGM202FeedbackProvider } from "@/lib/gm2-02-provider";
 
 export default function GM202Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm2-02"), [t]);
+  const feedbackContentProvider = useMemo(() => createGM202FeedbackProvider(t), [t]);
 
   const gm2_02_t = {
     back: t("gm2_02.back"),
