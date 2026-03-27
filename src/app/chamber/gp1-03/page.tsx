@@ -8,16 +8,14 @@ import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "acceleration" | "collision" | "detection";
-type ColliderQuest = Quest & { stage: Stage };
+import { createGP103FeedbackProvider } from "@/lib/gp1-03/provider";
+import type { ColliderQuest, Stage } from "@/lib/gp1-03/types";
 
 export default function P103Page() {
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp1-03"), [t]);
+  const feedbackContentProvider = useMemo(() => createGP103FeedbackProvider(t), [t]);
   const { completeStage } = useAppStore();
   const gp1_03_prompts = useMemo(() => ({
     acc_gamma_basic: t("gp1_03.prompts.acc_gamma_basic"),

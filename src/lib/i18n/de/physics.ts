@@ -890,6 +890,20 @@ export const dePhysics = {
                         det_mass_core: "Invariante-Masse-Rekonstruktion: Berechnen Sie m aus gemessenem E und p.",
                         det_eta_advanced: "Vorwärtsdetektor-Mapping: Berechnen Sie die Pseudorapidität eta aus theta.",
                         det_delta_m_elite: "Higgs-Kanal-Fit: Berechnen Sie das Massenresiduum Delta m = m_reco - m_H."
+                },
+                reasons: {
+                        select_relativistic_gamma: "Verwende die Lorentzfaktor-Formel für ein Teilchen nahe der Lichtgeschwindigkeit.",
+                        substitute_collider_values: "Setze die Collider-Werte in die gewählte relativistische Beziehung ein.",
+                        select_beam_energy_formula: "Verwende die relativistische Formel für die Strahlenergie.",
+                        select_relativistic_momentum: "Verwende den relativistischen Impulsausdruck für ein hochenergetisches Strahlteilchen.",
+                        use_ultrarelativistic_limit: "Bei Collider-Energien kann die Teilchengeschwindigkeit näherungsweise als c behandelt werden.",
+                        identify_head_on_collision: "Bei einer symmetrischen Frontalkollision addiert sich die Schwerpunktsenergie aus beiden Strahlen.",
+                        select_event_rate_formula: "Verwende die Beziehung aus Luminosität und Wirkungsquerschnitt für die Ereigniszahl.",
+                        select_beta_formula: "Verknüpfe zuerst beta mit dem Lorentzfaktor und bestimme dann das Geschwindigkeitsverhältnis.",
+                        select_track_radius_formula: "Die Krümmung geladener Teilchen im Magnetfeld folgt der Bahnradius-Formel.",
+                        select_invariant_mass_formula: "Verwende die Invariantmassen-Beziehung zwischen Gesamtenergie und Impuls.",
+                        select_pseudorapidity_formula: "Nutze die Umrechnung vom Detektorwinkel zur Pseudorapidität.",
+                        compare_reconstructed_mass: "Vergleiche die rekonstruierte Masse mit der Referenzmasse der Resonanz."
                 }
         },
         gp1_04: {
@@ -947,6 +961,20 @@ export const dePhysics = {
                         re_energy_level_core: "Quantisierte Zustände: Berechnen Sie E_n aus n^2E_1.",
                         re_delta_energy_advanced: "Übergangsanalyse: Berechnen Sie die Energiedifferenz Delta E zwischen zwei Niveaus.",
                         re_frequency_elite: "Photonenemission: Berechnen Sie die Frequenz f = Delta E / h."
+                },
+                reasons: {
+                        compare_energy_with_barrier: "Vergleiche zuerst die Teilchenenergie mit der Höhe der Barriere.",
+                        use_classical_limit: "Im klassischen Grenzfall folgen Transmission und Reflexion direkt aus diesem Energievergleich.",
+                        select_wave_number_formula: "Verwende die Wellenzahl-Beziehung für den Teilchenzustand.",
+                        substitute_quantum_values: "Setze die Werte des Quantensystems in die gewählte Beziehung ein.",
+                        select_de_broglie_relation: "Verwende die de-Broglie-Beziehung für die Wellenlänge eines bewegten Teilchens.",
+                        select_tunneling_formula: "Verwende die exponentielle Näherung für die Tunnel-Transmission.",
+                        select_decay_constant_formula: "Bestimme zuerst die Abklingkonstante in der Barriere, bevor du die Transmission berechnest.",
+                        rearrange_for_barrier_width: "Stelle die Tunnel-Formel nach der Barrierenbreite um.",
+                        select_standing_wave_condition: "Verwende die Resonanzbedingung der stehenden Welle im Potentialtopf.",
+                        select_quantized_energy_rule: "Verwende die Regel für quantisierte Energieniveaus.",
+                        compute_energy_gap: "Bestimme die Übergangsenergie als Differenz zweier Energieniveaus.",
+                        select_photon_frequency_relation: "Verwende die Photonenbeziehung zwischen Frequenz und Energie."
                 }
         },
 

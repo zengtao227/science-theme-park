@@ -826,6 +826,20 @@ export const cnPhysics = {
             det_mass_core: "不变质量重建：根据测得 E 与 p 计算 m。",
             det_eta_advanced: "前向探测映射：根据 theta 计算赝快度 eta。",
             det_delta_m_elite: "希格斯道拟合：计算质量残差 Delta m = m_reco - m_H。"
+        },
+        reasons: {
+            select_relativistic_gamma: "先使用接近光速运动粒子的洛伦兹因子公式。",
+            substitute_collider_values: "把对撞机题目给出的数值代入所选的相对论关系式。",
+            select_beam_energy_formula: "使用相对论束流能量公式。",
+            select_relativistic_momentum: "对高能束流粒子使用相对论动量表达式。",
+            use_ultrarelativistic_limit: "在对撞机能区里，粒子速度可以近似看作等于 c。",
+            identify_head_on_collision: "对称对撞时，质心系能量来自两束粒子的总和。",
+            select_event_rate_formula: "用亮度和截面来计算事件数。",
+            select_beta_formula: "先把 beta 与洛伦兹因子联系起来，再求速度比。",
+            select_track_radius_formula: "磁场中的带电粒子弯曲半径满足轨道半径公式。",
+            select_invariant_mass_formula: "使用总能量与总动量之间的不变质量关系。",
+            select_pseudorapidity_formula: "用探测器角度与赝快度之间的换算公式。",
+            compare_reconstructed_mass: "把重建质量与参考共振质量进行比较。"
         }
     },
     gp1_04: {
@@ -883,6 +897,20 @@ export const cnPhysics = {
             re_energy_level_core: "量子能级计算：根据 n^2E_1 计算 E_n。",
             re_delta_energy_advanced: "跃迁分析：计算两能级间能隙 Delta E。",
             re_frequency_elite: "光子发射校验：计算频率 f = Delta E / h。"
+        },
+        reasons: {
+            compare_energy_with_barrier: "先比较粒子能量与势垒高度。",
+            use_classical_limit: "在经典极限下，透射与反射可直接由能量比较判断。",
+            select_wave_number_formula: "使用粒子状态对应的波数公式。",
+            substitute_quantum_values: "把量子系统中的已知数值代入所选关系式。",
+            select_de_broglie_relation: "对运动粒子使用德布罗意波长关系。",
+            select_tunneling_formula: "使用指数形式的隧穿近似透射公式。",
+            select_decay_constant_formula: "先求势垒内部的衰减常数，再计算透射率。",
+            rearrange_for_barrier_width: "先把隧穿公式整理成势垒宽度单独在一边。",
+            select_standing_wave_condition: "在势阱中使用驻波共振条件。",
+            select_quantized_energy_rule: "使用量子化能级公式。",
+            compute_energy_gap: "把跃迁能量写成两个能级之差。",
+            select_photon_frequency_relation: "使用频率与能量之间的光子关系。"
         }
     },
 

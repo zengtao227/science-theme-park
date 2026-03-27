@@ -891,6 +891,20 @@ export const enPhysics = {
                         det_mass_core: "Invariant-mass reconstruction: compute m from measured E and p.",
                         det_eta_advanced: "Forward detector mapping: compute pseudorapidity eta from theta.",
                         det_delta_m_elite: "Higgs channel fit: compute mass residual Delta m = m_reco - m_H."
+                },
+                reasons: {
+                        select_relativistic_gamma: "Use the Lorentz-factor formula for a particle moving close to the speed of light.",
+                        substitute_collider_values: "Substitute the collider values into the selected relativistic relation.",
+                        select_beam_energy_formula: "Use the relativistic beam-energy relation.",
+                        select_relativistic_momentum: "Use the relativistic momentum expression for a high-energy beam particle.",
+                        use_ultrarelativistic_limit: "At collider energy the particle speed is effectively equal to c.",
+                        identify_head_on_collision: "For a symmetric head-on collision, the center-of-mass energy adds from both beams.",
+                        select_event_rate_formula: "Use the luminosity-cross-section relation for the event count.",
+                        select_beta_formula: "Relate beta to the Lorentz factor before evaluating the speed ratio.",
+                        select_track_radius_formula: "Charged-particle curvature in a magnetic field follows the track-radius relation.",
+                        select_invariant_mass_formula: "Use the invariant-mass relation between total energy and momentum.",
+                        select_pseudorapidity_formula: "Use the detector-angle to pseudorapidity conversion.",
+                        compare_reconstructed_mass: "Compare the reconstructed mass with the reference resonance mass."
                 }
         },
         gp1_04: {
@@ -948,6 +962,20 @@ export const enPhysics = {
                         re_energy_level_core: "Quantized states: compute E_n from n^2 E_1.",
                         re_delta_energy_advanced: "Transition analysis: compute energy gap Delta E between two levels.",
                         re_frequency_elite: "Photon emission check: compute frequency f = Delta E / h."
+                },
+                reasons: {
+                        compare_energy_with_barrier: "First compare the particle energy with the barrier height.",
+                        use_classical_limit: "In the classical regime, transmission and reflection follow directly from that energy comparison.",
+                        select_wave_number_formula: "Use the wave-number relation for the particle state.",
+                        substitute_quantum_values: "Substitute the quantum-system values into the selected relation.",
+                        select_de_broglie_relation: "Use de Broglie's wavelength relation for a moving particle.",
+                        select_tunneling_formula: "Use the exponential tunneling approximation for transmission.",
+                        select_decay_constant_formula: "Compute the decay constant inside the barrier before evaluating transmission.",
+                        rearrange_for_barrier_width: "Rearrange the tunneling formula so the barrier width is isolated.",
+                        select_standing_wave_condition: "Use the standing-wave resonance condition in the well.",
+                        select_quantized_energy_rule: "Use the quantized energy-level rule for the resonance state.",
+                        compute_energy_gap: "Compute the transition energy as the difference between the two levels.",
+                        select_photon_frequency_relation: "Use the photon relation between frequency and energy."
                 }
         },
 

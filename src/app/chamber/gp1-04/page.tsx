@@ -9,16 +9,14 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import TunnellingCanvas from "@/components/chamber/gp1-04/TunnellingCanvas";
 import { calculateTransmissionCoefficient } from "@/lib/physics";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "classical" | "tunneling" | "resonance";
-type TunnelQuest = Quest & { stage: Stage };
+import { createGP104FeedbackProvider } from "@/lib/gp1-04/provider";
+import type { Stage, TunnelQuest } from "@/lib/gp1-04/types";
 
 export default function P104Page() {
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp1-04"), [t]);
+  const feedbackContentProvider = useMemo(() => createGP104FeedbackProvider(t), [t]);
   const { completeStage } = useAppStore();
   const gp1_04_prompts = useMemo(() => ({
     cl_transmission_basic: t("gp1_04.prompts.cl_transmission_basic"),
