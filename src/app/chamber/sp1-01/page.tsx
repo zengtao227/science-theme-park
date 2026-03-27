@@ -12,11 +12,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSP101FeedbackProvider } from "@/lib/sp1-01/provider";
+import type { SP101AdaptedQuest } from "@/lib/sp1-01/types";
 
 export default function SP101_ForcesBasics() {
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp1-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP101FeedbackProvider(t), [t]);
 
   const stages = useMemo(() => [
     { id: "FORCE_CONCEPTS" as Stage, label: t("sp1_01.stages.concepts") },
@@ -69,7 +70,7 @@ export default function SP101_ForcesBasics() {
     showStepsLevel,
     showFullSolution,
     policy,
-    } = useQuestManager<any, Stage>({
+    } = useQuestManager<SP101AdaptedQuest, Stage>({
     moduleCode: "sp1-01",
     buildPool,
     initialStage: "FORCE_CONCEPTS" as Stage,
@@ -78,6 +79,14 @@ export default function SP101_ForcesBasics() {
 
   const hint = getHint();
   const errorCount = getCurrentErrorCount();
+  const fallbackMagnitude =
+    typeof currentQuest?.validation?.correctAnswer?.value === "number"
+      ? currentQuest.validation.correctAnswer.value
+      : 100;
+  const feedbackMath: string = (() => {
+    const rawFeedback = lastCheck?.ok ? currentQuest?.feedback?.correct : currentQuest?.feedback?.incorrect;
+    return typeof rawFeedback === "string" ? rawFeedback : "";
+  })();
 
   return (
     <ChamberLayout
@@ -122,7 +131,7 @@ export default function SP101_ForcesBasics() {
           {currentQuest?.visualization === 'force_vector' && (
             <PhysicsPlayground3D
               forces={currentQuest?.forces || [{
-                magnitude: currentQuest?.validation?.correctAnswer?.value || 100,
+                magnitude: fallbackMagnitude,
                 angle: 45,
                 label: "F"
               }]}
@@ -323,7 +332,7 @@ export default function SP101_ForcesBasics() {
                   </span>
                 </div>
                 <p className="text-sm font-medium leading-relaxed pl-4">
-                  <InlineMath math={lastCheck.ok ? currentQuest?.feedback?.correct : currentQuest?.feedback?.incorrect} />
+                  <InlineMath math={feedbackMath} />
                 </p>
               </motion.div>
             )}

@@ -39,6 +39,15 @@ export const enPhysics = {
                         "ellipsis": "...",
                         "decimal": "0.0"
                 },
+                "reasons": {
+                        "identify_force_concept": "Identify the force concept or definition the prompt is testing first.",
+                        "identify_force_quantity": "Identify the physical quantity and unit required by the prompt.",
+                        "resolve_or_combine_forces": "Resolve the forces into components or combine collinear forces before finding the result.",
+                        "apply_equilibrium_condition": "Use the equilibrium condition that the vector sum of all forces must be zero.",
+                        "match_force_definition_or_unit": "Match the prompt to the correct definition, unit, or directly stated quantity.",
+                        "compute_resultant_from_components": "Compute the resultant from the horizontal and vertical force components.",
+                        "balance_resultant_with_equilibrant": "Balance the known resultant with an equal and opposite equilibrant."
+                },
                 "SP1.01.001": {
                         "prompt": "What is a force?",
                         "feedback": {
@@ -1128,6 +1137,14 @@ export const enPhysics = {
                         first_law: "Basel Fasnacht Parade Float Motion: During Basel's famous Fasnacht carnival at Marktplatz, elaborately decorated parade floats demonstrate Newton's First Law of inertia. A massive float with 3,000 kg mass sits at rest before the parade begins. Despite its colorful appearance, it stubbornly resists motion—it will remain at rest unless acted upon by an external force. When parade participants push with 2,000 N while friction opposes with 500 N, the net 1,500 N force overcomes inertia and accelerates the float at 0.5 m/s^{2}. Once moving at constant velocity through the parade route, if pushers maintain force equal to friction, the float continues at steady speed—demonstrating that objects in motion stay in motion with constant velocity when net force is zero.",
                         second_law: "Basel Tram Acceleration and Braking: Basel's iconic green trams navigate the city's streets, demonstrating Newton's Second Law in action. At Barfüsserplatz, a tram with mass 10,000 kg accelerates from rest to reach cruising speed. The electric motors apply a forward force of 15,000 N while friction and air resistance provide 3,000 N of opposing force. Using F=ma, we calculate the net force (12,000 N) produces an acceleration of 1.2 m/s^{2}. When approaching the next stop, the driver applies brakes generating -10,000 N, combined with -3,000 N friction, creating -13,000 N net force and -1.3 m/s^{2} deceleration. This daily dance of forces and motion keeps Basel's public transport running smoothly.",
                         third_law: "Rhine River Boat Propulsion: Along Basel's Rhine River near Mittlere Brücke, passenger boats demonstrate Newton's Third Law through their propulsion systems. When a boat's propeller rotates, it pushes water backward with tremendous force—perhaps 3,000 N for a typical Rhine ferry. According to Newton's Third Law, the water simultaneously pushes the boat forward with an equal 3,000 N force in the opposite direction. This action-reaction pair acts on different objects: the propeller acts on the water, while the water acts on the boat. The boat's 1,500 kg mass accelerates forward at 2 m/s^{2} as a result. This same principle powers everything from swimming to rocket propulsion."
+                },
+                reasons: {
+                        state_equilibrium_principle: "State the force-balance principle that applies in this situation.",
+                        match_balancing_force: "Match the balancing force to the condition for zero net force.",
+                        compute_net_force: "Compute the net force before solving for acceleration.",
+                        apply_newton_second_law: "Apply Newton's second law to connect net force, mass, and acceleration.",
+                        state_action_reaction_pair: "State Newton's third-law pair for the two interacting objects.",
+                        match_equal_magnitude: "Use equal magnitude and opposite direction for the reaction force."
                 }
         },
 
@@ -3002,7 +3019,13 @@ export const enPhysics = {
         monitor_title: "METEOROLOGY_V1",
         loading: "Loading...",
         labels: { mission_objective: "METEOROLOGICAL ANALYSIS", terminal_input: "DATA INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
-        prompts: {}
+        prompts: {},
+        reasons: {
+                atmosphere_focus: "Identify which atmospheric layer or region the prompt refers to.",
+                weather_focus: "Identify the weather quantity or standard value described in the prompt.",
+                climate_focus: "Identify the climate-system concept or greenhouse relation being tested.",
+                match_expected_term: "Match the scientific term or value to the quantity shown in the expression."
+        }
         },
 
         // SP1.04: Astronomy Basics
@@ -3026,6 +3049,12 @@ export const enPhysics = {
         monitor_title: "ASTRONOMY_V1",
         loading: "Loading...",
         labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
-        prompts: {}
+        prompts: {},
+        reasons: {
+                solar_system_focus: "Identify the solar-system fact or object requested by the prompt.",
+                moon_phases_focus: "Identify the lunar phase that matches the described illumination pattern.",
+                seasons_focus: "Identify the Earth-sun geometry value that explains the seasons.",
+                identify_expected_astronomy_term: "Match the expected astronomical term or value to the target quantity."
+        }
         }
 };

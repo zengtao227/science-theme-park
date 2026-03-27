@@ -38,6 +38,15 @@ export const dePhysics = {
                         "ellipsis": "...",
                         "decimal": "0.0"
                 },
+                "reasons": {
+                        "identify_force_concept": "Bestimme zuerst, welches Kraftkonzept oder welche Definition abgefragt wird.",
+                        "identify_force_quantity": "Bestimme zuerst die gesuchte physikalische Größe und ihre Einheit.",
+                        "resolve_or_combine_forces": "Zerlege die Kräfte in Komponenten oder fasse gleichgerichtete Kräfte zusammen.",
+                        "apply_equilibrium_condition": "Nutze die Gleichgewichtsbedingung, dass die Vektorsumme aller Kräfte null ist.",
+                        "match_force_definition_or_unit": "Ordne die Aufgabe der passenden Definition, Einheit oder direkt angegebenen Größe zu.",
+                        "compute_resultant_from_components": "Berechne die Resultierende aus den horizontalen und vertikalen Komponenten.",
+                        "balance_resultant_with_equilibrant": "Gleiche die bekannte Resultierende mit einer gleich großen, entgegengesetzten Gleichgewichtskraft aus."
+                },
                 "SP1.01.001": {
                         "prompt": "Was ist eine Kraft?",
                         "feedback": {
@@ -1127,6 +1136,14 @@ export const dePhysics = {
                         first_law: "Basel Fasnacht Umzugswagen Bewegung: Während Basels berühmter Fasnacht am Marktplatz demonstrieren aufwendig dekorierte Umzugswagen Newtons Erstes Gesetz der Trägheit. Ein massiver Wagen mit 3.000 kg Masse ruht vor Beginn des Umzugs. Trotz seines farbenfrohen Aussehens widersteht er hartnäckig der Bewegung – er bleibt in Ruhe, es sei denn, eine äußere Kraft wirkt auf ihn ein. Wenn Umzugsteilnehmer mit 2.000 N schieben, während Reibung mit 500 N entgegenwirkt, überwindet die Nettokraft von 1.500 N die Trägheit und beschleunigt den Wagen mit 0,5 m/s^{2}. Sobald er sich mit konstanter Geschwindigkeit durch die Umzugsroute bewegt, fährt der Wagen mit gleichmäßiger Geschwindigkeit weiter, wenn die Schieber eine Kraft gleich der Reibung aufrechterhalten.",
                         second_law: "Basel Tram Beschleunigung und Bremsen: Basels ikonische grüne Trams navigieren durch die Straßen der Stadt und demonstrieren Newtons Zweites Gesetz in Aktion. Am Barfüsserplatz beschleunigt eine Tram mit einer Masse von 10.000 kg aus dem Stillstand, um Reisegeschwindigkeit zu erreichen. Die Elektromotoren erzeugen eine Vorwärtskraft von 15.000 N, während Reibung und Luftwiderstand 3.000 N Gegenkraft liefern. Mit F=ma berechnen wir, dass die Nettokraft (12.000 N) eine Beschleunigung von 1,2 m/s^{2} erzeugt. Beim Annähern an die nächste Haltestelle betätigt der Fahrer die Bremsen mit -10.000 N, kombiniert mit -3.000 N Reibung, was -13.000 N Nettokraft und -1,3 m/s^{2} Verzögerung erzeugt.",
                         third_law: "Rhein Schiffspropulsion: Entlang des Basler Rheins in der Nähe der Mittleren Brücke demonstrieren Passagierschiffe Newtons Drittes Gesetz durch ihre Antriebssysteme. Wenn sich der Propeller eines Bootes dreht, drückt er das Wasser mit enormer Kraft nach hinten – vielleicht 3.000 N für eine typische Rheinfähre. Gemäß Newtons Drittem Gesetz drückt das Wasser gleichzeitig das Boot mit einer gleichen Kraft von 3.000 N in die entgegengesetzte Richtung nach vorne. Dieses Aktions-Reaktions-Paar wirkt auf verschiedene Objekte: Der Propeller wirkt auf das Wasser, während das Wasser auf das Boot wirkt. Die 1.500 kg Masse des Bootes beschleunigt dadurch mit 2 m/s^{2} nach vorne."
+                },
+                reasons: {
+                        state_equilibrium_principle: "Formulieren Sie zuerst das Kraftgleichgewicht, das in dieser Situation gilt.",
+                        match_balancing_force: "Bestimmen Sie die Ausgleichskraft aus der Bedingung der verschwindenden Nettokraft.",
+                        compute_net_force: "Berechnen Sie zunächst die Nettokraft und danach die Beschleunigung.",
+                        apply_newton_second_law: "Wenden Sie Newtons zweites Gesetz an, um Nettokraft, Masse und Beschleunigung zu verknüpfen.",
+                        state_action_reaction_pair: "Schreiben Sie zuerst das Wirkungs-Gegenwirkungs-Paar der beiden wechselwirkenden Objekte auf.",
+                        match_equal_magnitude: "Nutzen Sie, dass die Gegenkraft gleich groß und entgegengesetzt gerichtet ist."
                 }
         },
 
@@ -2960,6 +2977,12 @@ export const dePhysics = {
                         sp1_03_q1: "Identifizieren Sie die Schicht der Atmosphäre.",
                         sp1_03_q2: "Was ist der Standard-Luftdruck auf Meereshöhe (hPa)?",
                         sp1_03_q3: "Identifizieren Sie das wichtigste Treibhausgas (Formel)."
+                },
+                reasons: {
+                        atmosphere_focus: "Bestimmen Sie zuerst, auf welche Atmosphärenschicht oder Region sich die Aufgabe bezieht.",
+                        weather_focus: "Bestimmen Sie zuerst die Wettergröße oder den Standardwert, der in der Aufgabe beschrieben wird.",
+                        climate_focus: "Bestimmen Sie zuerst das Klimasystem-Konzept oder die Treibhausbeziehung, die geprüft wird.",
+                        match_expected_term: "Ordnen Sie der gesuchten Größe den passenden Fachbegriff oder Standardwert zu."
                 }
         },
 
@@ -2988,6 +3011,12 @@ export const dePhysics = {
                         sp1_04_q1: "Identifizieren Sie den größten Planeten im Sonnensystem.",
                         sp1_04_q2: "Identifizieren Sie die Phase, wenn der Mond voll beleuchtet ist.",
                         sp1_04_q3: "Wie groß ist die Achsneigung der Erde in Grad?"
+                },
+                reasons: {
+                        solar_system_focus: "Bestimmen Sie zuerst, nach welchem Himmelskörper oder welcher Tatsache des Sonnensystems gefragt wird.",
+                        moon_phases_focus: "Bestimmen Sie zuerst, welche Mondphase zur beschriebenen Beleuchtung passt.",
+                        seasons_focus: "Bestimmen Sie zuerst die geometrische Größe des Erde-Sonne-Systems, die die Jahreszeiten erklärt.",
+                        identify_expected_astronomy_term: "Ordnen Sie der Zielgröße den passenden astronomischen Begriff oder Zahlenwert zu."
                 }
         }
 };

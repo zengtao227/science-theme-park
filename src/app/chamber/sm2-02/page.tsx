@@ -693,31 +693,6 @@ export default function S202Page() {
     }
   }, [lastCheck, completeStage, stage]);
 
-  if (!currentQuest) return null;
-
-  const isPythagorasTab = currentQuest?.tab === "PYTHAGORAS";
-
-  // Stage definitions
-  const pythagorasStages = [
-    { id: "SOLVE_HYP", label: sm2_02_t.pythagoras.solve_hyp },
-    { id: "SOLVE_LEG", label: sm2_02_t.pythagoras.solve_leg },
-    { id: "CHECK_RIGHT", label: sm2_02_t.pythagoras.check_right },
-    { id: "MISSION", label: sm2_02_t.mission.title },
-    { id: "MENTAL", label: sm2_02_t.mental.title },
-    ...(difficulty === "ADVANCED" || difficulty === "ELITE" ? [
-      { id: "CHAIN", label: sm2_02_t.mental.chain },
-      { id: "DISTANCE", label: sm2_02_t.pythagoras.distance },
-    ] : []),
-    ...(difficulty === "ELITE" ? [{ id: "ELITE_SPACE", label: sm2_02_t.pythagoras.elite_space }] : []),
-  ];
-
-  const sqrtStages = [
-    { id: "PERFECT", label: sm2_02_t.sqrt.perfect },
-    { id: "SIMPLIFY", label: sm2_02_t.sqrt.simplify },
-    ...(difficulty !== "BASIC" ? [{ id: "ESTIMATE", label: sm2_02_t.sqrt.estimate }] : []),
-  ];
-
-  const currentStages = isPythagorasTab ? pythagorasStages : sqrtStages;
   const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
     BASIC: sm2_02_t.difficulty.basic,
     CORE: sm2_02_t.difficulty.core,
@@ -746,6 +721,32 @@ export default function S202Page() {
     showHints: true,
     maxHints: 1,
   }), [buildPool, difficultyLabelMap, printStages, sm2_02_t.title]);
+
+  if (!currentQuest) return null;
+
+  const isPythagorasTab = currentQuest?.tab === "PYTHAGORAS";
+
+  // Stage definitions
+  const pythagorasStages = [
+    { id: "SOLVE_HYP", label: sm2_02_t.pythagoras.solve_hyp },
+    { id: "SOLVE_LEG", label: sm2_02_t.pythagoras.solve_leg },
+    { id: "CHECK_RIGHT", label: sm2_02_t.pythagoras.check_right },
+    { id: "MISSION", label: sm2_02_t.mission.title },
+    { id: "MENTAL", label: sm2_02_t.mental.title },
+    ...(difficulty === "ADVANCED" || difficulty === "ELITE" ? [
+      { id: "CHAIN", label: sm2_02_t.mental.chain },
+      { id: "DISTANCE", label: sm2_02_t.pythagoras.distance },
+    ] : []),
+    ...(difficulty === "ELITE" ? [{ id: "ELITE_SPACE", label: sm2_02_t.pythagoras.elite_space }] : []),
+  ];
+
+  const sqrtStages = [
+    { id: "PERFECT", label: sm2_02_t.sqrt.perfect },
+    { id: "SIMPLIFY", label: sm2_02_t.sqrt.simplify },
+    ...(difficulty !== "BASIC" ? [{ id: "ESTIMATE", label: sm2_02_t.sqrt.estimate }] : []),
+  ];
+
+  const currentStages = isPythagorasTab ? pythagorasStages : sqrtStages;
   const is3DVisual =
     currentQuest?.visual.kind === "space" ||
     currentQuest?.visual.kind === "box" ||
