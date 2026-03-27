@@ -11,7 +11,7 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import P308OpticsCanvas from "@/components/chamber/sp3-08/OpticsCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSP308FeedbackProvider } from "@/lib/sp3-08/provider";
 import {
   Stage,
   SP308Quest,
@@ -27,7 +27,7 @@ import {
 export default function P301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-08"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP308FeedbackProvider(t), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => {
     if (s === "REFLECTION") return generateReflectionQuests(t, d);

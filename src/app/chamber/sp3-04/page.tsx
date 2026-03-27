@@ -7,25 +7,16 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PressureBuoyancyCanvas from "@/components/chamber/sp1-07/PressureBuoyancyCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSP304FeedbackProvider } from "@/lib/sp3-04/provider";
+import type { Stage, SP304Quest } from "@/lib/sp3-04/types";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "PRESSURE" | "BUOYANCY" | "HYDRAULICS";
-
-interface SP304Quest extends Quest {
-    stage: Stage;
-    depth?: number;
-    area?: number;
-    force?: number;
-    volume?: number;
-}
 
 export default function SP304Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-04"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP304FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage, t: (key: string) => string): SP304Quest[] => {
         const quests: SP304Quest[] = [];

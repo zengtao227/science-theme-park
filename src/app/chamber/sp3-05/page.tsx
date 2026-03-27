@@ -7,23 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import SimpleMachineCanvas from "@/components/chamber/sp3-05/SimpleMachineCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSP305FeedbackProvider } from "@/lib/sp3-05/provider";
+import type { Stage, SP305Quest } from "@/lib/sp3-05/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "LEVERS" | "PULLEYS" | "INCLINED_PLANES";
-
-interface SP305Quest extends Quest {
-    stage: Stage;
-    machineType?: string;
-}
 
 export default function SP305Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-05"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP305FeedbackProvider(t), [t]);
     
     const sp3_05_t = {
         title: t("sp3_05.title"),
@@ -86,6 +80,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
+                        ...lever,
                         promptLatex: t("sp3_05.prompts.lever", {
                             load: lever.load.toString(),
                             loadArm: lever.loadArm.toString(),
@@ -116,6 +111,8 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
+                        ...lever,
+                        leverClass: lever.class,
                         promptLatex: t("sp3_05.prompts.lever_class", {
                             class: lever.class.toString(),
                             load: lever.load.toString(),
@@ -147,6 +144,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
+                        ...lever,
                         promptLatex: t("sp3_05.prompts.lever_efficiency", {
                             efficiency: (lever.efficiency * 100).toString(),
                             load: lever.load.toString(),
@@ -177,6 +175,8 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "lever",
+                        ...lever,
+                        stagesCount: lever.stages,
                         promptLatex: t("sp3_05.prompts.lever_two_stage", {
                             ma: lever.effortArm.toString(),
                             load: lever.load.toString(),
@@ -208,6 +208,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
+                        ...pulley,
                         promptLatex: t("sp3_05.prompts.pulley", {
                             strands: pulley.strands.toString(),
                             load: pulley.load.toString(),
@@ -237,6 +238,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
+                        ...pulley,
                         promptLatex: t("sp3_05.prompts.pulley_fixed_movable", {
                             movable: pulley.movable.toString(),
                             fixed: pulley.fixed.toString(),
@@ -267,6 +269,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
+                        ...pulley,
                         promptLatex: t("sp3_05.prompts.pulley_efficiency", {
                             strands: pulley.strands.toString(),
                             efficiency: (pulley.efficiency * 100).toString(),
@@ -297,6 +300,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "pulley",
+                        ...pulley,
                         promptLatex: t("sp3_05.prompts.pulley_block_tackle", {
                             blocks: pulley.blocks.toString(),
                             strands: pulley.strands.toString(),
@@ -329,6 +333,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
+                        ...plane,
                         promptLatex: t("sp3_05.prompts.inclined_plane", {
                             load: plane.load.toString(),
                             height: plane.height.toString(),
@@ -359,6 +364,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
+                        ...plane,
                         promptLatex: t("sp3_05.prompts.inclined_angle", {
                             angle: plane.angle.toString(),
                             load: plane.load.toString(),
@@ -388,6 +394,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
+                        ...plane,
                         promptLatex: t("sp3_05.prompts.inclined_friction", {
                             height: plane.height.toString(),
                             length: plane.length.toString(),
@@ -419,6 +426,7 @@ export default function SP305Page() {
                         difficulty,
                         stage,
                         machineType: "inclined_plane",
+                        ...plane,
                         promptLatex: t("sp3_05.prompts.screw_jack", {
                             pitch: plane.pitch.toString(),
                             radius: plane.radius.toString(),

@@ -7,25 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FerryCanvas from "@/components/chamber/sp3-07/FerryCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSP307FeedbackProvider } from "@/lib/sp3-07/provider";
+import type { Stage, SP307Quest } from "@/lib/sp3-07/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "COMPOSITION" | "DRIFT" | "NAVIGATION";
-
-interface SP307Quest extends Quest {
-    stage: Stage;
-    vRiver: number;
-    vFerry: number;
-    theta: number; // degrees
-}
 
 export default function SP307Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-07"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP307FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP307Quest[] => {
         const quests: SP307Quest[] = [];

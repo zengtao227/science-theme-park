@@ -1,8 +1,8 @@
-import { Difficulty } from "@/hooks/useQuestManager";
+import type { Difficulty, Quest } from "@/hooks/useQuestManager";
 
 export type Stage = "REFLECTION" | "REFRACTION" | "LENSES";
 
-export interface SP308Quest {
+export interface SP308Quest extends Quest {
     id: string;
     difficulty: Difficulty;
     stage: Stage;
@@ -11,6 +11,7 @@ export interface SP308Quest {
     n1?: number;
     n2?: number;
     focalLength?: number;
+    objectDistance?: number;
     targetAngle: number;
 
     promptLatex: string;
@@ -136,6 +137,7 @@ export function generateLensQuests(t: any, difficulty: Difficulty): SP308Quest[]
             scenario: "lens",
             angle: 0,
             focalLength: f,
+            objectDistance: u,
             targetAngle: round1(v),
             promptLatex: t("sp3_08.prompts.lens_setup", { f, u }),
             expressionLatex: "\\frac{1}{f} = \\frac{1}{u} + \\frac{1}{v}",
