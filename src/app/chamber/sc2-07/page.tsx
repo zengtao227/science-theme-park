@@ -11,14 +11,13 @@
 
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { useQuestManager, Difficulty } from '@/hooks/useQuestManager';
 import ChamberLayout from '@/components/layout/ChamberLayout';
 import { SC207Quest, Stage } from '@/lib/sc2-07-types';
 import { buildStagePool } from '@/lib/sc2-07-quest-builder';
-import { verifyAnswer } from '@/lib/sc2-07-utils';
 import { InlineMath, BlockMath } from 'react-katex';
 import 'katex/dist/katex.min.css';
 import { EnergyDiagram } from '@/components/sc2-07/EnergyDiagram';
@@ -26,16 +25,12 @@ import { HessCycleView } from '@/components/sc2-07/HessCycleView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC207FeedbackProvider } from "@/lib/sc2-07-provider";
 
 export default function SC207Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-07"), [t]);
-
-  // User input state
-  const [userAnswer, setUserAnswer] = useState('');
-  const [feedback, setFeedback] = useState<{ correct: boolean; message: string } | null>(null);
+  const feedbackContentProvider = useMemo(() => createSC207FeedbackProvider(t), [t]);
 
   // Build quest pool callback
   const buildPoolCallback = useCallback(
@@ -47,6 +42,10 @@ export default function SC207Page() {
     difficulty,
     stage,
     currentQuest,
+    inputs,
+    setInputs,
+    lastCheck,
+    verify,
     next,
     handleDifficultyChange,
     handleStageChange,
@@ -68,46 +67,11 @@ export default function SC207Page() {
     feedbackContentProvider,
   });
 
-  // Reset input when quest changes
   useEffect(() => {
-    setUserAnswer('');
-    setFeedback(null);
-  }, [currentQuest]);
-
-  // Handle verification
-  const handleVerify = () => {
-    if (!currentQuest || !userAnswer) return;
-
-    const numericAnswer = parseFloat(userAnswer);
-    if (isNaN(numericAnswer)) {
-      setFeedback({
-        correct: false,
-        message: t('sc2_07.feedback.invalid_number')
-      });
-      return;
+    if (lastCheck?.ok) {
+      completeStage('sc2-07', stage);
     }
-
-    const expected = currentQuest?.slots?.[0]?.expected || currentQuest?.deltaH || 0;
-    const isCorrect = verifyAnswer(numericAnswer, expected);
-
-    setFeedback({
-      correct: isCorrect,
-      message: isCorrect
-        ? t('sc2_07.feedback.correct')
-        : t('sc2_07.feedback.incorrect', { expected: expected.toFixed(1) })
-    });
-
-    if (isCorrect) {
-      completeStage('sc2_07', stage);
-    }
-  };
-
-  // Handle next quest
-  const handleNext = () => {
-    if (feedback?.correct) {
-      next();
-    }
-  };
+  }, [completeStage, lastCheck, stage]);
 
   // Get current scenario
   const getCurrentScenario = () => {
@@ -171,9 +135,9 @@ export default function SC207Page() {
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
       printSections={printSections}
-      onVerify={handleVerify}
-      onNext={handleNext}
-      checkStatus={feedback ? { ok: feedback.correct, correct: feedback.message } : null}
+      onVerify={verify}
+      onNext={next}
+      checkStatus={lastCheck}
       translations={{
         back: t('sc2_07.back'),
         check: t('sc2_07.check'),
@@ -287,8 +251,12 @@ export default function SC207Page() {
               </label>
               <input
                 type="number"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
+                value={inputs[currentQuest?.slots?.[0]?.id || 'ans'] || ''}
+                onChange={(e) => {
+                  const slotId = currentQuest?.slots?.[0]?.id;
+                  if (!slotId) return;
+                  setInputs({ ...inputs, [slotId]: e.target.value });
+                }}
                 placeholder={currentQuest?.slots?.[0]?.placeholder || t('sc2_07.prompts.enter_value_placeholder')}
                 className="w-40 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-center text-lg min-h-[44px]"
               />
@@ -298,12 +266,12 @@ export default function SC207Page() {
             </div>
 
             {/* Feedback */}
-            {feedback && (
-              <div className={`rounded-lg p-4 text-center ${feedback.correct
+            {lastCheck && (
+              <div className={`rounded-lg p-4 text-center ${lastCheck.ok
                 ? 'bg-green-500/20 border border-green-500/50 text-green-300'
                 : 'bg-red-500/20 border border-red-500/50 text-red-300'
                 }`}>
-                {feedback.message}
+                {lastCheck.ok ? t('sc2_07.feedback.correct') : t('sc2_07.incorrect')}
               </div>
             )}
           </div>
