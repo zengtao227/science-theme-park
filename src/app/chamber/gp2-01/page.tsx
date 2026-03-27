@@ -10,6 +10,7 @@ import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualizati
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "IDEAL_GAS" | "BOYLES_LAW" | "CHARLES_LAW";
 
@@ -385,6 +386,7 @@ function buildStagePool(
 
 export default function GP201Page() {
     const { t: getT } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "gp2-01"), [getT]);
     const t = getT("gp2_01");
     const { completeStage } = useAppStore();
 
@@ -416,6 +418,7 @@ export default function GP201Page() {
     moduleCode: "gp2-01",
         buildPool,
         initialStage: "IDEAL_GAS",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

@@ -10,12 +10,14 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "acceleration" | "collision" | "detection";
 type ColliderQuest = Quest & { stage: Stage };
 
 export default function P103Page() {
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp1-03"), [t]);
   const { completeStage } = useAppStore();
   const gp1_03_prompts = useMemo(() => ({
     acc_gamma_basic: t("gp1_03.prompts.acc_gamma_basic"),
@@ -260,6 +262,7 @@ export default function P103Page() {
     moduleCode: "gp1-03",
     buildPool,
     initialStage: "acceleration",
+    feedbackContentProvider,
     tolerance: 0.02,
   });
 

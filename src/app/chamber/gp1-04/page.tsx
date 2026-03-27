@@ -11,12 +11,14 @@ import TunnellingCanvas from "@/components/chamber/gp1-04/TunnellingCanvas";
 import { calculateTransmissionCoefficient } from "@/lib/physics";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "classical" | "tunneling" | "resonance";
 type TunnelQuest = Quest & { stage: Stage };
 
 export default function P104Page() {
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp1-04"), [t]);
   const { completeStage } = useAppStore();
   const gp1_04_prompts = useMemo(() => ({
     cl_transmission_basic: t("gp1_04.prompts.cl_transmission_basic"),
@@ -264,6 +266,7 @@ export default function P104Page() {
     moduleCode: "gp1-04",
     buildPool,
     initialStage: "classical",
+    feedbackContentProvider,
     tolerance: 0.02,
   });
 

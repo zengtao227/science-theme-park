@@ -26,10 +26,12 @@ import { HessCycleView } from '@/components/sc2-07/HessCycleView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 export default function SC207Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-07"), [t]);
 
   // User input state
   const [userAnswer, setUserAnswer] = useState('');
@@ -63,6 +65,7 @@ export default function SC207Page() {
     moduleCode: "sc2-07",
     buildPool: buildPoolCallback,
     initialStage: 'ENERGY_CHANGES',
+    feedbackContentProvider,
   });
 
   // Reset input when quest changes

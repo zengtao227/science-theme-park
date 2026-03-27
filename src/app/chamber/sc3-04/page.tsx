@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import FunctionalGroupCanvas from "@/components/chamber/sc3-04/FunctionalGroupCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -24,6 +25,7 @@ interface SC304Quest extends Quest {
 export default function SC304Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-04"), [t]);
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methanol");
     const [showHighlight, setShowHighlight] = useState(true);
 
@@ -206,6 +208,7 @@ export default function SC304Page() {
     moduleCode: "sc3-04",
         buildPool,
         initialStage: "ALCOHOLS",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

@@ -6,6 +6,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 import {
     Stage,
@@ -20,6 +21,7 @@ import "katex/dist/katex.min.css";
 
 export default function SP103WeatherClimate() {
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp1-03"), [t]);
 
     const sp1_03_t = useMemo(() => ({
         title: t("sp1_03.title"),
@@ -93,6 +95,7 @@ export default function SP103WeatherClimate() {
     } = useQuestManager<SP103Quest, Stage>({
         moduleCode: "SP1.03",
         initialStage: "ATMOSPHERE",
+    feedbackContentProvider,
         buildPool
     });
 

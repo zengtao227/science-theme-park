@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 const OrbitalCanvas = dynamic(() => import("@/components/chamber/sc1-03/OrbitalCanvas"), {
     ssr: false,
@@ -42,6 +43,7 @@ type AtomQuest = Quest & { stage: Stage };
 
 export default function SC1_03_AtomsForge() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-03"), [t]);
     const { completeStage } = useAppStore();
 
     const [selectedElement, setSelectedElement] = useState(elements[5]);
@@ -186,6 +188,7 @@ export default function SC1_03_AtomsForge() {
         moduleCode: "sc1-03",
         buildPool,
         initialStage: "build",
+    feedbackContentProvider,
         tolerance: 0.02,
     });
 

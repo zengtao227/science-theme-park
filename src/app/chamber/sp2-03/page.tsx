@@ -8,6 +8,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "POWER_BASICS" | "ENERGY_CONSUMPTION" | "EFFICIENCY";
 
@@ -45,6 +46,7 @@ interface EfficiencyDataItem {
 
 export default function SP203ElectricPower() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp2-03"), [t]);
     const [currentPower, setCurrentPower] = useState(0);
 
     const sp2_03_t = useMemo(() => ({
@@ -416,6 +418,7 @@ export default function SP203ElectricPower() {
     moduleCode: "sp2-03",
         buildPool,
         initialStage: "POWER_BASICS",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

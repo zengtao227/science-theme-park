@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import {
   Stage,
   SP302Quest,
@@ -24,6 +25,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 export default function SP302Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-02"), [t]);
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP302Quest[] => {
     if (stage === "NEWTON_1") return generateNewton1Quests(t, difficulty);
@@ -60,6 +62,7 @@ export default function SP302Page() {
     moduleCode: "sp3-02",
     buildPool,
     initialStage: "NEWTON_1",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 import {
     Stage,
@@ -20,6 +21,7 @@ import "katex/dist/katex.min.css";
 
 export default function SC107Sustainability() {
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-07"), [t]);
 
     const sc1_07_t = useMemo(() => ({
         title: t("sc1_07.title"),
@@ -93,6 +95,7 @@ export default function SC107Sustainability() {
     } = useQuestManager<SC107Quest, Stage>({
         moduleCode: "SC1.07",
         initialStage: "RECYCLING",
+    feedbackContentProvider,
         buildPool
     });
 

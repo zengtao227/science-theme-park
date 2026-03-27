@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Challenge = "COMPOSITE" | "MODELING" | "OPTIMIZATION" | "ANALYSIS";
 
@@ -1130,6 +1131,7 @@ function buildChallengePool(gm1_01_advanced_t: any, difficulty: Difficulty, chal
 export default function G101AdvancedPage() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm1-01-advanced"), [t]);
   
   const gm1_01_advanced_t = {
     title: t("gm1_01_advanced.title"),
@@ -1260,6 +1262,7 @@ export default function G101AdvancedPage() {
     moduleCode: "gm1-01-advanced",
     buildPool,
     initialStage: "COMPOSITE",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

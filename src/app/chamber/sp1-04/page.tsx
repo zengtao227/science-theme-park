@@ -6,6 +6,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 import {
     Stage,
@@ -20,6 +21,7 @@ import "katex/dist/katex.min.css";
 
 export default function SP104AstronomyBasics() {
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp1-04"), [t]);
 
     const sp1_04_t = useMemo(() => ({
         title: t("sp1_04.title"),
@@ -93,6 +95,7 @@ export default function SP104AstronomyBasics() {
     } = useQuestManager<SP104Quest, Stage>({
         moduleCode: "SP1.04",
         initialStage: "SOLAR_SYSTEM",
+    feedbackContentProvider,
         buildPool
     });
 

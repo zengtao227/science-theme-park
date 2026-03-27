@@ -12,9 +12,11 @@ import { HelpCircle, BrainCircuit, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 export default function OlympiadChallenge() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "em3-01"), [t]);
     const categoryLabelMap: Record<OlympiadQuest["category"], string> = {
         logic: t("em3_01.categories.logic"),
         geometry: t("em3_01.categories.geometry"),
@@ -66,6 +68,7 @@ export default function OlympiadChallenge() {
         moduleCode: "EM3.01",
         buildPool,
         initialStage: "logic",
+        feedbackContentProvider,
     });
 
     const translations = {

@@ -10,6 +10,7 @@ import ThermodynamicsVisualization from "@/components/chamber/gp2-02/Thermodynam
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "FIRST_LAW" | "INTERNAL_ENERGY" | "WORK_HEAT";
 
@@ -140,6 +141,7 @@ function buildStagePool(
 
 export default function GP202Page() {
     const { t: getT } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "gp2-02"), [getT]);
     const t = getT("gp2_02");
     const { completeStage } = useAppStore();
 
@@ -171,6 +173,7 @@ export default function GP202Page() {
     moduleCode: "gp2-02",
         buildPool,
         initialStage: "FIRST_LAW",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

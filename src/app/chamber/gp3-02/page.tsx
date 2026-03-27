@@ -10,6 +10,7 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "ELECTRIC_FIELD" | "MAGNETIC_FIELD" | "PARTICLE_MOTION";
 
@@ -24,6 +25,7 @@ interface GP302Quest extends Quest {
 
 export default function GP302Electromagnetism() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp3-02"), [t]);
     const [fieldIntensity, setFieldIntensity] = useState(0);
 
     const formatValue = useCallback((value: number) => {
@@ -333,6 +335,7 @@ export default function GP302Electromagnetism() {
     moduleCode: "gp3-02",
         buildPool: (d, s) => buildStagePool(gp3_02_t, d, s),
         initialStage: "ELECTRIC_FIELD",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

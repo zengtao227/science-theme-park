@@ -20,6 +20,7 @@ import {
 } from "@/lib/gm1-01/quests";
 import { normalizePlainMathNotation, renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 function getFunctionTypeFromStage(stage: Stage): "power" | "factor" | "sum" | "product" | "quotient" | "chain" {
   if (stage === "POWER_RULE") return "power";
@@ -44,6 +45,7 @@ function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G1
 export default function G101Page() {
   const { completeStage, currentLanguage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm1-01"), [t]);
   
   const gm1_01_t = {
     title: t("gm1_01.title"),
@@ -158,6 +160,7 @@ export default function G101Page() {
     moduleCode: "gm1-01",
     buildPool,
     initialStage: "POWER_RULE",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

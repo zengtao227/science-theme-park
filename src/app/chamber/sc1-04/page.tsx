@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import AtomBuilder from "@/components/chamber/sc1-04/AtomBuilder";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "build" | "periodic" | "groups";
 type PeriodicQuest = Quest & { stage: Stage };
@@ -39,6 +40,7 @@ const elements = [
 
 export default function SC104Page() {
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-04"), [t]);
   const { completeStage } = useAppStore();
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): PeriodicQuest[] => {
@@ -96,6 +98,7 @@ export default function SC104Page() {
     moduleCode: "sc1-04",
     buildPool,
     initialStage: "build",
+    feedbackContentProvider,
     tolerance: 0.02,
   });
 

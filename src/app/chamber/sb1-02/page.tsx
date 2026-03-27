@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "EQUATION" | "FACTORS" | "CHLOROPLAST";
 
@@ -23,6 +24,7 @@ interface SB102Quest extends Quest {
 export default function SB102Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb1-02"), [t]);
     const [lightIntensity, setLightIntensity] = useState(50);
     const [co2Level, setCo2Level] = useState(50);
     const [temperature, setTemperature] = useState(25);
@@ -212,6 +214,7 @@ export default function SB102Page() {
     moduleCode: "sb1-02",
         buildPool,
         initialStage: "EQUATION",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

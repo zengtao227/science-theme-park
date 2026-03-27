@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "ANATOMY" | "POTENTIAL" | "SYNAPSE";
 
@@ -23,6 +24,7 @@ interface GB201Quest extends Quest {
 export default function GB201Neurobiology() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gb2-01"), [t]);
     const gb2_01 = t('gb2_01');
     const [voltage] = useState(-70);
 
@@ -209,6 +211,7 @@ export default function GB201Neurobiology() {
     moduleCode: "gb2-01",
         buildPool: buildStagePool,
         initialStage: "ANATOMY",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

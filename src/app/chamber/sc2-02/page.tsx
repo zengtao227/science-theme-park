@@ -11,6 +11,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/TitrationCanvas"), {
     ssr: false,
@@ -209,6 +210,7 @@ function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): Titrat
 export default function SC202Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-02"), [t]);
     const sc2_02_t = {
         translate: t,
         title: t("sc2_02.title"),
@@ -348,6 +350,7 @@ export default function SC202Page() {
     moduleCode: "sc2-02",
         buildPool: (d, s) => buildStagePool(sc2_02_t, d, s),
         initialStage: "CURVES",
+    feedbackContentProvider,
         tolerance: 0.05
     });
 

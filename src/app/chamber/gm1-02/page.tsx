@@ -17,6 +17,7 @@ import {
 } from "@/lib/gm1-02/quests";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 
 
@@ -35,6 +36,7 @@ function buildStagePool(
 
 export default function GM102Page() {
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm1-02"), [t]);
   const { completeStage } = useAppStore();
 
   const buildPoolCallback = useCallback(
@@ -68,6 +70,7 @@ export default function GM102Page() {
     moduleCode: "gm1-02",
     buildPool: buildPoolCallback,
     initialStage: "ANTIDERIVATIVE",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

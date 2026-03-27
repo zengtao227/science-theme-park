@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "INNATE" | "ADAPTIVE" | "VACCINES";
 
@@ -23,6 +24,7 @@ interface GB302Quest extends Quest {
 export default function GB302Immunology() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gb3-02"), [t]);
     const [antigenLoad] = useState(100);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB302Quest[] => {
@@ -203,6 +205,7 @@ export default function GB302Immunology() {
     moduleCode: "gb3-02",
         buildPool: buildStagePool,
         initialStage: "INNATE",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

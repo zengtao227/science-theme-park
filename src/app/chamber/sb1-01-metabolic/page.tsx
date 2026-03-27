@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "OSMOSIS" | "RESPIRATION" | "HOMEOSTASIS";
 
@@ -23,6 +24,7 @@ interface MetabolicQuest extends Quest {
 export default function SB101MetabolicPage() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb1-01-metabolic"), [t]);
 
     const [osmolarity, setOsmolarity] = useState(0);
     const [showATP, setShowATP] = useState(true);
@@ -213,6 +215,7 @@ export default function SB101MetabolicPage() {
     moduleCode: "sb1-01-metabolic",
         buildPool,
         initialStage: "OSMOSIS",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicReactionCanvas from "@/components/chamber/sc3-03/OrganicReactionCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -23,6 +24,7 @@ interface SC303Quest extends Quest {
 export default function SC303Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-03"), [t]);
     const [animationSpeed, setAnimationSpeed] = useState(1);
     const [showMechanism, setShowMechanism] = useState(true);
 
@@ -206,6 +208,7 @@ export default function SC303Page() {
     moduleCode: "sc3-03",
         buildPool,
         initialStage: "COMBUSTION",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

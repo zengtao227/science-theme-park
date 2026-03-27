@@ -11,12 +11,14 @@ import { motion } from "framer-motion";
 import BondingVisualization3D from "@/components/chamber/sc1-05/BondingVisualization3D";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "IONIC" | "COVALENT" | "METALLIC";
 type BondQuest = Quest & { stage: Stage };
 
 export default function SC105Page() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-05"), [t]);
     const { completeStage } = useAppStore();
 
     const sc1_05_t = {
@@ -110,6 +112,7 @@ export default function SC105Page() {
         moduleCode: "sc1-05",
         buildPool,
         initialStage: "IONIC",
+    feedbackContentProvider,
         tolerance: 0.02,
     });
 

@@ -12,9 +12,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 export default function SP101_ForcesBasics() {
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp1-01"), [t]);
 
   const stages = useMemo(() => [
     { id: "FORCE_CONCEPTS" as Stage, label: t("sp1_01.stages.concepts") },
@@ -71,6 +73,7 @@ export default function SP101_ForcesBasics() {
     moduleCode: "sp1-01",
     buildPool,
     initialStage: "FORCE_CONCEPTS" as Stage,
+    feedbackContentProvider,
   });
 
   const hint = getHint();

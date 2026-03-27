@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import SimpleMachineCanvas from "@/components/chamber/sp3-05/SimpleMachineCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -22,6 +23,7 @@ interface SP305Quest extends Quest {
 export default function SP305Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-05"), [t]);
     
     const sp3_05_t = {
         title: t("sp3_05.title"),
@@ -465,6 +467,7 @@ export default function SP305Page() {
     moduleCode: "sp3-05",
         buildPool,
         initialStage: "LEVERS",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

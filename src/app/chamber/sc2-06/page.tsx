@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -28,6 +29,7 @@ const round2 = (v: number) => Math.round(v * 100) / 100;
 export default function SC206Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-06"), [t]);
 
   const buildStagePool = useCallback(
     (difficulty: Difficulty, stage: Stage): SC206Quest[] => {
@@ -386,6 +388,7 @@ export default function SC206Page() {
     moduleCode: "sc2-06",
     buildPool: buildStagePool,
     initialStage: "OXIDATION_STATE",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

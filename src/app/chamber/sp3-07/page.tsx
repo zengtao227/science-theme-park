@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import FerryCanvas from "@/components/chamber/sp3-07/FerryCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
@@ -24,6 +25,7 @@ interface SP307Quest extends Quest {
 export default function SP307Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-07"), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP307Quest[] => {
         const quests: SP307Quest[] = [];
@@ -554,6 +556,7 @@ export default function SP307Page() {
     moduleCode: "sp3-07",
         buildPool,
         initialStage: "COMPOSITION",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "SI_UNITS" | "CONVERSION" | "PRECISION";
 
@@ -25,6 +26,7 @@ interface SP301Quest extends Quest {
 export default function SP301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-01"), [t]);
 
     const sp3_01_t = {
         title: t("sp3_01.title"),
@@ -491,6 +493,7 @@ export default function SP301Page() {
     moduleCode: "sp3-01",
         buildPool,
         initialStage: "SI_UNITS",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

@@ -10,6 +10,7 @@ import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "BASICS" | "MEASURE" | "SURVEY";
 
@@ -142,6 +143,7 @@ function buildStagePool(
 
 export default function EM101Page() {
   const { t: getT } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "em1-01"), [getT]);
   const t = getT("em1_01");
   const { completeStage } = useAppStore();
 
@@ -176,6 +178,7 @@ export default function EM101Page() {
     moduleCode: "em1-01",
     buildPool,
     initialStage: "MEASURE", // Default to Measure (Middle stage) or Basics? Let's sticky to existing default if logical, or Basics
+    feedbackContentProvider,
   });
 
   // Reset sun/shadow for visual variety on next

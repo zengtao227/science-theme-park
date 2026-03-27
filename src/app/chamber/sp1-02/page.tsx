@@ -7,6 +7,7 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 
 import P102LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
@@ -22,6 +23,7 @@ import {
 
 export default function SP102NewtonsLaws() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp1-02"), [t]);
     const [canvasScenario, setCanvasScenario] = useState<"friction" | "acceleration" | "collision">("acceleration");
     const [mass, setMass] = useState(10);
     const [friction, setFriction] = useState(0.3);
@@ -104,6 +106,7 @@ export default function SP102NewtonsLaws() {
         moduleCode: "sp1-02",
         buildPool,
         initialStage: "FIRST_LAW",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

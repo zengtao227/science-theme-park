@@ -8,6 +8,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrbitalCanvas from "@/components/chamber/sc3-05/OrbitalCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
@@ -20,6 +21,7 @@ interface SC305Quest extends Quest {
 
 export default function SC305MolecularForge() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-05"), [t]);
     const sc3_05_t = {
         title: t("sc3_05.title"),
         back: t("sc3_05.back"),
@@ -148,6 +150,7 @@ export default function SC305MolecularForge() {
     moduleCode: "sc3-05",
         buildPool: buildStagePool,
         initialStage: "VSEPR",
+    feedbackContentProvider,
     });
 
     const stages = useMemo(() => [

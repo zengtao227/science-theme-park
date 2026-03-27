@@ -10,10 +10,12 @@ import { buildStagePool } from "@/lib/gb2-02-quest-builder";
 import "katex/dist/katex.min.css";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 export default function GB202Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gb2-02"), [t]);
   const optionLabelMap: Record<string, string> = {
     peptide: t("gb2_02.options.peptide"),
     steroid: t("gb2_02.options.steroid"),
@@ -83,6 +85,7 @@ export default function GB202Page() {
     moduleCode: "gb2-02",
     buildPool,
     initialStage: "HORMONE_IDENTIFICATION",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

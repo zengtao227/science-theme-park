@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "TISSUES" | "ORGANS" | "SYSTEMS";
 
@@ -142,6 +143,7 @@ const SYSTEM_DATA: Record<Difficulty, SystemData[]> = {
 export default function SB201TissuesPage() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb2-01-tissues"), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB201TissuesQuest[] => {
         const quests: SB201TissuesQuest[] = [];
@@ -234,6 +236,7 @@ export default function SB201TissuesPage() {
     moduleCode: "sb2-01-tissues",
         buildPool,
         initialStage: "TISSUES",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

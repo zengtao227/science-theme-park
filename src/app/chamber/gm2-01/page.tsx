@@ -17,6 +17,7 @@ import {
 } from "@/lib/gm2-01/quests";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 
 
@@ -32,6 +33,7 @@ function buildStagePool(gm2_01_t: any, difficulty: Difficulty, stage: Stage): G2
 export default function G201Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm2-01"), [t]);
   
   const gm2_01_t = {
     title: t("gm2_01.title"),
@@ -117,6 +119,7 @@ export default function G201Page() {
     moduleCode: "gm2-01",
     buildPool,
     initialStage: "NAVIGATION",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

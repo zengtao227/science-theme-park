@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcousticsVisualization from "@/components/chamber/sp3-06/AcousticsVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 type Stage = "SOUND_WAVES" | "FREQUENCY_PITCH" | "LOUDNESS_INTENSITY";
@@ -21,6 +22,7 @@ interface SP306Quest extends Quest {
 export default function SP306Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-06"), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP306Quest[] => {
         const quests: SP306Quest[] = [];
@@ -653,6 +655,7 @@ export default function SP306Page() {
     moduleCode: "sp3-06",
         buildPool,
         initialStage: "SOUND_WAVES",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

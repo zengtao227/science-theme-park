@@ -9,6 +9,7 @@ import "katex/dist/katex.min.css";
 import { useMemo, useCallback } from "react";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "BASIC_TRANSFORMS" | "DETERMINANT" | "COMPOSITION";
 
@@ -169,6 +170,7 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
 
 export default function EM201Page() {
   const { t: getT } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "em2-01"), [getT]);
   const t = getT("em2_01");
   const buildPool = useCallback(
     (difficulty: Difficulty, currentStage: Stage) => buildMatrixPool(getT, t, difficulty, currentStage),
@@ -201,6 +203,7 @@ export default function EM201Page() {
     moduleCode: "em2-01",
     buildPool,
     initialStage: "BASIC_TRANSFORMS",
+    feedbackContentProvider,
   });
 
   const stagesProps = useMemo(() => [

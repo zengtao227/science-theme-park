@@ -14,6 +14,7 @@ import {
 } from "@/lib/gm4-01/quests";
 import { useCallback, useMemo } from "react";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 
 import { InlineMath } from "react-katex";
@@ -34,6 +35,7 @@ function buildStagePool(
 
 export default function GM401Page() {
   const { t: getT, currentLanguage } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "gm4-01"), [getT]);
   const gm4_01_t = getT("gm4_01");
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm4_01_t, d, s), [gm4_01_t]);
 
@@ -63,6 +65,7 @@ export default function GM401Page() {
     moduleCode: "gm4-01",
     buildPool,
     initialStage: "BASICS",
+    feedbackContentProvider,
   });
 
   const currentScenario =

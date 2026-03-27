@@ -8,6 +8,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "OHMS_LAW" | "SERIES_CIRCUITS" | "PARALLEL_CIRCUITS";
 
@@ -34,6 +35,7 @@ interface CircuitDataItem {
 
 export default function SP202OhmsLaw() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp2-02"), [t]);
     const [currentVoltage, setCurrentVoltage] = useState(0);
     const [currentCurrent, setCurrentCurrent] = useState(0);
 
@@ -318,6 +320,7 @@ export default function SP202OhmsLaw() {
     moduleCode: "sp2-02",
         buildPool,
         initialStage: "OHMS_LAW",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

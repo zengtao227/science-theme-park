@@ -13,10 +13,12 @@ import { Stage, SB204Quest } from "@/lib/sb2-04-types";
 import { buildStagePool } from "@/lib/sb2-04-quest-builder";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 export default function SB204Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb2-04"), [t]);
 
   const buildPool = useCallback(
     (d: Difficulty, s: Stage) => buildStagePool(t, d, s),
@@ -50,6 +52,7 @@ export default function SB204Page() {
     moduleCode: "sb2-04",
     buildPool,
     initialStage: "DIGESTIVE_SYSTEM",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

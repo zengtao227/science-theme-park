@@ -3,15 +3,15 @@ import type { FeedbackContent, PlatformSolutionStep, Quest } from "@/hooks/useQu
 type Translator = (key: string, params?: Record<string, string | number>) => string;
 
 export type GenericFeedbackQuest = Quest & {
-  stage?: string;
-  equation?: string;
-  context?: string;
-  scenario?: string;
-  type?: string;
-  dataType?: string;
-  chartMode?: string;
-  geometryType?: string;
-  promptKey?: string;
+  stage?: string | number | symbol;
+  equation?: unknown;
+  context?: unknown;
+  scenario?: string | number | symbol;
+  type?: string | number | symbol;
+  dataType?: string | number | symbol;
+  chartMode?: string | number | symbol;
+  geometryType?: string | number | symbol;
+  promptKey?: string | number | symbol;
   visual?: { kind?: string; mode?: string } | unknown;
   visualMeta?: { type?: string } | unknown;
 };
@@ -42,7 +42,7 @@ function getGivenLatex<T extends GenericFeedbackQuest>(quest: T) {
 }
 
 function resolveRuleLatex<T extends GenericFeedbackQuest>(quest: T, stageRules: StageRuleMap<T>) {
-  const stageKey = quest.stage ?? "";
+  const stageKey = String(quest.stage ?? "");
   const resolved = stageRules[stageKey];
   if (typeof resolved === "function") return resolved(quest);
   return resolved ?? null;

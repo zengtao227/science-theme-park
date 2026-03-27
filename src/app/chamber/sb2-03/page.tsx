@@ -11,6 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "MONOHYBRID" | "PROBABILITY" | "DIHYBRID";
 type Genotype = "RR" | "Rr" | "rr" | "AA" | "Aa" | "aa" | "BB" | "Bb" | "bb";
@@ -118,6 +119,7 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, Array<{ p1: Genotype; p2: Gen
 export default function SB203Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb2-03"), [t]);
     const [p1, setP1] = useState<Genotype>("Rr");
     const [p2, setP2] = useState<Genotype>("Rr");
 
@@ -200,6 +202,7 @@ export default function SB203Page() {
     moduleCode: "sb2-03",
         buildPool,
         initialStage: "MONOHYBRID",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

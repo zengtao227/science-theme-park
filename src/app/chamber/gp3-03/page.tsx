@@ -8,6 +8,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "FARADAYS_LAW" | "LENZS_LAW" | "GENERATORS";
 
@@ -21,6 +22,7 @@ interface GP303Quest extends Quest {
 
 export default function GP303Induction() {
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp3-03"), [t]);
 
     const gp3_03_t = useMemo(() => ({
         title: t("gp3_03.title"),
@@ -301,6 +303,7 @@ export default function GP303Induction() {
     moduleCode: "gp3-03",
         buildPool: (d, s) => buildStagePool(gp3_03_t, d, s),
         initialStage: "FARADAYS_LAW",
+    feedbackContentProvider,
     });
 
     const stages = useMemo(() => [

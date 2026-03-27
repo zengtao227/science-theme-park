@@ -16,10 +16,12 @@ import {
     generateCorrosionQuests,
 } from "@/lib/gc1-02/quests";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 export default function GC102Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gc1-02"), [t]);
     const buildPool = useCallback((difficulty: Difficulty, currentStage: Stage) => {
         if (currentStage === "PRINCIPLES") return generatePrinciplesQuests(t, difficulty);
         if (currentStage === "PLATING") return generatePlatingQuests(t, difficulty);
@@ -53,6 +55,7 @@ export default function GC102Page() {
         moduleCode: "gc1-02",
         buildPool,
         initialStage: "PRINCIPLES",
+    feedbackContentProvider,
     });
 
     useEffect(() => {

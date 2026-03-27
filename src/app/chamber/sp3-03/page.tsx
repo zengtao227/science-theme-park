@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import FlowMonitor from "@/components/shared/FlowMonitor";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import {
   Stage,
@@ -24,6 +25,7 @@ import {
 export default function SP303Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-03"), [t]);
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SP303Quest[] => {
     if (stage === "POTENTIAL") return generatePotentialQuests(t, difficulty);
@@ -60,6 +62,7 @@ export default function SP303Page() {
     moduleCode: "sp3-03",
     buildPool,
     initialStage: "POTENTIAL",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

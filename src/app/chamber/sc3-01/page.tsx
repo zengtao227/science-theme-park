@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
@@ -23,6 +24,7 @@ interface SC301Quest extends Quest {
 export default function SC301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-01"), [t]);
 
   const buildStagePool = useCallback((difficulty: Difficulty, currentStage: Stage): SC301Quest[] => {
     const quests: SC301Quest[] = [];
@@ -225,6 +227,7 @@ export default function SC301Page() {
     moduleCode: "sc3-01",
     buildPool,
     initialStage: "ASPIRIN",
+    feedbackContentProvider,
   });
 
   useEffect(() => {
