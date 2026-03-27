@@ -514,6 +514,14 @@ export const cnCommon = {
             status: "状态",
             ready_for_deployment: "已准备就绪"
         },
+        reasons: {
+            identify_logic_family: "先判断这是哪一类逻辑问题。",
+            identify_geometry_family: "先识别题目的几何结构再计算。",
+            identify_arithmetic_family: "先找出数值模式或算术关系。",
+            identify_combinatorics_family: "先识别计数或概率结构。",
+            extract_key_relation: "利用核心关系或提示缩小推理范围。",
+            confirm_final_conclusion: "清楚写出最终结论。"
+        },
         placeholders: {
             name: "姓名",
             position: "名次",

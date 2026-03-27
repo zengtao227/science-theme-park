@@ -107,6 +107,14 @@ export const enMath = {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "Measure the tower height using Thales' theorem and shadow ratios."
         },
+        reasons: {
+            select_similarity_rule: "Choose the similarity or scaling rule that fits the figure.",
+            select_scale_rule: "Identify how the scale factor changes length, area, or volume.",
+            select_shadow_rule: "Use shadow proportionality or Thales' theorem for the setup.",
+            select_trigonometry_rule: "Choose the matching trigonometric relation for the measured angle or side.",
+            select_survey_rule: "Choose the surveying relation that matches the geometric situation.",
+            apply_proportional_or_trig_relation: "Substitute the given values into the proportional or trigonometric relation."
+        },
         placeholders: {
             yes: "yes",
         
@@ -233,6 +241,13 @@ export const enMath = {
             basic_transforms: "Roche Pharmaceutical Molecular Analysis: You are working in Roche Basel's computational chemistry department, using linear transformations to analyze protein molecule symmetry. Each matrix represents a symmetry operation (rotation, reflection, scaling). Identifying transformation types is critical for predicting molecular optical properties.",
             determinant: "Novartis Crystal Structure: You are analyzing drug crystal unit cell structures at Novartis Basel. The determinant represents lattice volume change. det(A)=0 indicates crystal structure collapse, det(A)<0 indicates chirality inversion. Accurate determinant calculation is crucial for predicting drug bioactivity.",
             composition: "University of Basel Robotics: You are programming a robotic arm at Basel University robotics lab. Each joint's motion is represented by a transformation matrix. Composite transformation AB means executing joint A's motion first, then joint B's motion. Matrix multiplication order determines the robot arm's final position."
+        },
+        reasons: {
+            inspect_matrix_structure: "Inspect the matrix structure to identify the represented transformation.",
+            select_transformation_rule: "Choose the matrix form that matches the requested transformation.",
+            select_determinant_rule: "Use the 2x2 determinant rule det(A)=ad-bc.",
+            select_matrix_composition_rule: "Choose the matrix product or inverse rule that matches the task.",
+            apply_matrix_calculation: "Carry out the determinant, product, or inverse calculation step by step."
         },
         explanation_label: "EXPLANATION"
     },

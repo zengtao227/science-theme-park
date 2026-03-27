@@ -515,6 +515,14 @@ export const enCommon = {
             status: "Status",
             ready_for_deployment: "READY_FOR_DEPLOYMENT"
         },
+        reasons: {
+            identify_logic_family: "Identify the logic structure of the problem first.",
+            identify_geometry_family: "Recognize the geometric structure before computing.",
+            identify_arithmetic_family: "Identify the number pattern or arithmetic relation in the task.",
+            identify_combinatorics_family: "Recognize the counting or probability structure first.",
+            extract_key_relation: "Use the core relation or hint to narrow the reasoning path.",
+            confirm_final_conclusion: "State the final conclusion clearly."
+        },
         placeholders: {
             name: "Name",
             position: "position",

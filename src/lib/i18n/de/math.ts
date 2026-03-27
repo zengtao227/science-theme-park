@@ -143,6 +143,14 @@ export const deMath = {
         mission: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "Bestimme die Turmhöhe mit dem Satz des Thales und Schattenverhältnissen."
+        },
+        reasons: {
+            select_similarity_rule: "Wähle zuerst die passende Ähnlichkeits- oder Skalierungsregel.",
+            select_scale_rule: "Bestimme, wie der Maßstab Länge, Fläche oder Volumen verändert.",
+            select_shadow_rule: "Nutze für Schattenaufgaben Schattenproportionen oder den Satz des Thales.",
+            select_trigonometry_rule: "Wähle die passende trigonometrische Beziehung zu Winkel und Seiten.",
+            select_survey_rule: "Wähle zuerst die Vermessungsbeziehung, die zur Situation passt.",
+            apply_proportional_or_trig_relation: "Setze die gegebenen Werte in die Proportion oder trigonometrische Beziehung ein."
         }
     },
     em2_01: {
@@ -233,6 +241,13 @@ export const deMath = {
             basic_transforms: "Roche Pharma-Molekülanalyse: Sie arbeiten in der Abteilung für Computerchemie von Roche Basel und verwenden lineare Transformationen zur Analyse der Symmetrie von Proteinmolekülen. Jede Matrix repräsentiert eine Symmetrieoperation (Rotation, Reflexion, Skalierung). Die Identifizierung von Transformationstypen ist entscheidend für die Vorhersage molekularer optischer Eigenschaften.",
             determinant: "Novartis Kristallstruktur: Sie analysieren Arzneimittelkristall-Einheitszellstrukturen bei Novartis Basel. Die Determinante repräsentiert die Gittervolumenänderung. det(A)=0 zeigt einen Kristallstrukturkollaps an, det(A)<0 zeigt eine Chiralitätsinversion an. Eine genaue Determinantenberechnung ist entscheidend für die Vorhersage der Bioaktivität von Arzneimitteln.",
             composition: "Universität Basel Robotik: Sie programmieren einen Roboterarm im Robotiklabor der Universität Basel. Die Bewegung jedes Gelenks wird durch eine Transformationsmatrix dargestellt. Die zusammengesetzte Transformation AB bedeutet, zuerst die Bewegung von Gelenk A auszuführen, dann die Bewegung von Gelenk B. Die Reihenfolge der Matrixmultiplikation bestimmt die endgültige Position des Roboterarms."
+        },
+        reasons: {
+            inspect_matrix_structure: "Untersuche zuerst die Matrixstruktur, um die Transformation zu erkennen.",
+            select_transformation_rule: "Wähle die Matrixform, die zur geforderten Transformation passt.",
+            select_determinant_rule: "Nutze für 2x2-Matrizen die Determinantenregel det(A)=ad-bc.",
+            select_matrix_composition_rule: "Wähle passend zur Aufgabe das Produkt- oder Inversionsschema.",
+            apply_matrix_calculation: "Führe die Determinanten-, Produkt- oder Inversionsrechnung schrittweise aus."
         },
         explanation_label: "ERKLÄRUNG"
     },

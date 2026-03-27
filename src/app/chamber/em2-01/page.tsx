@@ -2,28 +2,15 @@
 
 import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import MatrixVisualization2D from "@/components/chamber/em2-01/MatrixVisualization2D";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useMemo, useCallback } from "react";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "BASIC_TRANSFORMS" | "DETERMINANT" | "COMPOSITION";
-
-interface MatrixQuest extends Quest {
-  stage: Stage;
-  type: "identify" | "calculate_det" | "calculate_matrix" | "predict";
-  matrix?: number[][];
-  matrixA?: number[][];
-  matrixB?: number[][];
-  question: string;
-  options?: string[];
-  answer: string | number;
-  explanation: string;
-}
+import { createEM201FeedbackProvider } from "@/lib/em2-01/provider";
+import type { MatrixQuest, Stage } from "@/lib/em2-01/types";
 
 // Build quest pool
 function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty: Difficulty, stage: Stage): MatrixQuest[] {
@@ -170,7 +157,7 @@ function buildMatrixPool(getT: any, tObj: TranslationKeys['em2_01'], difficulty:
 
 export default function EM201Page() {
   const { t: getT } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "em2-01"), [getT]);
+  const feedbackContentProvider = useMemo(() => createEM201FeedbackProvider(getT), [getT]);
   const t = getT("em2_01");
   const buildPool = useCallback(
     (difficulty: Difficulty, currentStage: Stage) => buildMatrixPool(getT, t, difficulty, currentStage),

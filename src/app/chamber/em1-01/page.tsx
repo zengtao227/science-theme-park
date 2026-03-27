@@ -7,17 +7,11 @@ import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "BASICS" | "MEASURE" | "SURVEY";
-
-interface ThalesQuest extends Quest {
-  stage: Stage;
-  concept?: string;
-}
+import { createEM101FeedbackProvider } from "@/lib/em1-01/provider";
+import type { Stage, ThalesQuest } from "@/lib/em1-01/types";
 
 const POLE_HEIGHT = 2; // Fixed pole height for visualization context
 
@@ -143,7 +137,7 @@ function buildStagePool(
 
 export default function EM101Page() {
   const { t: getT } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "em1-01"), [getT]);
+  const feedbackContentProvider = useMemo(() => createEM101FeedbackProvider(getT), [getT]);
   const t = getT("em1_01");
   const { completeStage } = useAppStore();
 

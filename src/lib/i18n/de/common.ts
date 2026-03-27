@@ -517,6 +517,14 @@ export const deCommon = {
             status: "Status",
             ready_for_deployment: "BEREIT_FÜR_EINSATZ"
         },
+        reasons: {
+            identify_logic_family: "Bestimme zuerst die logische Grundstruktur der Aufgabe.",
+            identify_geometry_family: "Erkenne zuerst die geometrische Struktur, bevor du rechnest.",
+            identify_arithmetic_family: "Ermittle zuerst das Zahlenmuster oder die arithmetische Beziehung.",
+            identify_combinatorics_family: "Bestimme zuerst die Zähl- oder Wahrscheinlichkeitsstruktur.",
+            extract_key_relation: "Nutze die Kernbeziehung oder den Hinweis, um den Lösungsweg einzugrenzen.",
+            confirm_final_conclusion: "Formuliere das Endergebnis klar."
+        },
         placeholders: {
             name: "Name",
             position: "Position",

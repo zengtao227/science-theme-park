@@ -143,6 +143,14 @@ export const cnMath = {
         mission: {
             title: "MISSION: BASEL CATHEDRAL SURVEY",
             description: "使用泰勒斯定理和影长比例测量塔楼高度。"
+        },
+        reasons: {
+            select_similarity_rule: "先判断应使用相似形或缩放关系。",
+            select_scale_rule: "先识别比例尺对长度、面积或体积的影响。",
+            select_shadow_rule: "对影长问题使用影子比例或泰勒斯定理。",
+            select_trigonometry_rule: "根据已知角和边选择合适的三角关系。",
+            select_survey_rule: "先选出与测量情境对应的测绘关系。",
+            apply_proportional_or_trig_relation: "把题目给出的量代入比例式或三角关系中。"
         }
     },
     em2_01: {
@@ -233,6 +241,13 @@ export const cnMath = {
             basic_transforms: "罗氏制药分子分析：您在罗氏巴塞尔的计算化学部门工作，使用线性变换分析蛋白质分子的对称性。每个矩阵代表一个对称操作（旋转、反射、缩放）。识别变换类型对于预测分子的光学性质至关重要。",
             determinant: "诺华晶体结构：您在诺华巴塞尔分析药物晶体的单元格结构。行列式表示晶格的体积变化。det(A)=0 表示晶体结构坍缩，det(A)<0 表示手性反转。准确计算行列式对于预测药物的生物活性至关重要。",
             composition: "巴塞尔大学机器人学：您在巴塞尔大学机器人实验室编程机械臂。每个关节的运动由一个变换矩阵表示。复合变换 AB 表示先执行关节A的运动，再执行关节B的运动。矩阵乘法的顺序决定了机械臂的最终位置。"
+        },
+        reasons: {
+            inspect_matrix_structure: "先观察矩阵结构，判断它代表的变换类型。",
+            select_transformation_rule: "选择与题目要求一致的变换矩阵形式。",
+            select_determinant_rule: "使用二阶矩阵行列式公式 det(A)=ad-bc。",
+            select_matrix_composition_rule: "根据题意选择矩阵乘法或逆矩阵规则。",
+            apply_matrix_calculation: "逐步完成行列式、乘积或逆矩阵计算。"
         },
         explanation_label: "解释"
     },
