@@ -556,6 +556,17 @@ export const cnMath = {
             title: "积分微积分任务",
             description: "通过计算不定积分、定积分和实际应用来掌握积分。积分是微分的逆运算。"
         },
+        reasons: {
+            identify_integrand: "先识别被积函数和目标量。",
+            apply_antiderivative_rule: "逐项使用幂函数积分规则构造原函数。",
+            evaluate_at_point: "把指定点代入原函数。",
+            apply_bounds: "使用微积分基本定理代入上下限。",
+            identify_application_model: "为实际问题选择正确的积分模型。",
+            compute_upper_area: "先计算上方函数对应的面积贡献。",
+            compute_lower_area: "再计算下方函数对应的面积贡献。",
+            square_function: "使用圆盘体公式前，先把函数平方。",
+            combine_application_result: "把各部分结果合并，得到最终应用量。"
+        },
         stages: {
             antiderivative: "不定积分",
             definite_integral: "定积分",

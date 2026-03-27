@@ -555,6 +555,17 @@ export const deMath = {
             title: "INTEGRALRECHNUNG MISSION",
             description: "Meistere Integration durch Berechnung von Stammfunktionen, bestimmten Integralen und realen Anwendungen. Integration ist die Umkehrung der Differentiation."
         },
+        reasons: {
+            identify_integrand: "Bestimmen Sie den Integranden und die Zielgröße.",
+            apply_antiderivative_rule: "Wenden Sie die Potenzregel Glied für Glied an, um eine Stammfunktion zu bilden.",
+            evaluate_at_point: "Setzen Sie den geforderten Punkt in die Stammfunktion ein.",
+            apply_bounds: "Verwenden Sie den Hauptsatz der Differential- und Integralrechnung mit den gegebenen Grenzen.",
+            identify_application_model: "Wählen Sie das passende Integralmodell für die Anwendung.",
+            compute_upper_area: "Berechnen Sie zuerst den Beitrag der oberen Funktion.",
+            compute_lower_area: "Berechnen Sie danach den Beitrag der unteren Funktion.",
+            square_function: "Quadrieren Sie die Funktion, bevor Sie die Scheibenformel anwenden.",
+            combine_application_result: "Fassen Sie die Zwischenergebnisse zum endgültigen Anwendungswert zusammen."
+        },
         stages: {
             antiderivative: "STAMMFUNKTION",
             definite_integral: "BESTIMMTES INTEGRAL",

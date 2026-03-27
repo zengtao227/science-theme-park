@@ -555,6 +555,17 @@ export const enMath = {
             title: "INTEGRAL CALCULUS MISSION",
             description: "Master integration by calculating antiderivatives, definite integrals, and real-world applications. Integration is the inverse of differentiation."
         },
+        reasons: {
+            identify_integrand: "Identify the integrand and the target quantity.",
+            apply_antiderivative_rule: "Apply the power rule term by term to build an antiderivative.",
+            evaluate_at_point: "Substitute the requested point into the antiderivative.",
+            apply_bounds: "Use the Fundamental Theorem of Calculus with the given bounds.",
+            identify_application_model: "Choose the correct integral model for the application.",
+            compute_upper_area: "Compute the contribution from the upper function.",
+            compute_lower_area: "Compute the contribution from the lower function.",
+            square_function: "Square the function before applying the disk formula.",
+            combine_application_result: "Combine the accumulated results to obtain the final application value."
+        },
         stages: {
             antiderivative: "ANTIDERIVATIVE",
             definite_integral: "DEFINITE INTEGRAL",
