@@ -2553,6 +2553,22 @@ export const deMath = {
                 zero_product_latex: "\\text{Wenn }pq=0\\text{ dann }p=0\\text{ oder }q=0."
             }
         },
+        reasons: {
+            group_like_terms: "Fasse zuerst Terme mit gleicher Variablen und gleichem Grad zusammen.",
+            read_combined_coefficients: "Lies nach dem Zusammenfassen die neuen Koeffizienten ab.",
+            final_simplified_form: "Schreibe die vereinfachte quadratische Form mit den berechneten Koeffizienten auf.",
+            use_factor_identity: "Verwende die Faktorform, die den quadratischen Ausdruck wieder ergibt.",
+            match_middle_constant_terms: "Prüfe, dass die gewählten Parameter Mittel- und Konstantterm korrekt erzeugen.",
+            recognize_special_identity: "Erkenne, ob ein binomisches Quadrat oder eine Differenz von Quadraten vorliegt.",
+            identify_factor_parameters: "Lies die Faktorparameter aus der erkannten Identität ab.",
+            factor_numerator_denominator: "Faktorisiere Zähler und Nenner, bevor du kürzt.",
+            cancel_common_factor: "Kürze nur Faktoren, die in Zähler und Nenner vorkommen.",
+            rewrite_quadratic_zero: "Bringe die quadratische Gleichung zuerst in eine lösbare Form.",
+            apply_zero_product_rule: "Wende nach der Faktorisierung den Satz vom Nullprodukt an.",
+            solve_required_values: "Lies die geforderten Nullstellen oder Parameter aus der vereinfachten Gleichung ab.",
+            substitute_known_root: "Setze die gegebene Nullstelle in die Gleichung ein, um den unbekannten Parameter zu bestimmen.",
+            recognize_double_root: "Ein doppelter Faktor zeigt eine doppelte Nullstelle an."
+        },
         ui: {
             loading: "Wird geladen..."
         },

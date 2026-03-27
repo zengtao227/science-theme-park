@@ -2582,6 +2582,22 @@ export const enMath = {
                 zero_product_latex: "\\text{If }pq=0\\text{ then }p=0\\text{ or }q=0."
             }
         },
+        reasons: {
+            group_like_terms: "Collect terms with the same variable and power before simplifying.",
+            read_combined_coefficients: "Read off the combined coefficients after grouping matching terms.",
+            final_simplified_form: "Write the simplified quadratic form with the computed coefficients.",
+            use_factor_identity: "Use the factor form that reproduces the quadratic expression.",
+            match_middle_constant_terms: "Check that the factor parameters reproduce the middle and constant terms.",
+            recognize_special_identity: "Recognize whether the expression matches a perfect square or a difference of squares.",
+            identify_factor_parameters: "Read the factor parameters directly from the chosen identity.",
+            factor_numerator_denominator: "Factor numerator and denominator before attempting any cancellation.",
+            cancel_common_factor: "Cancel only factors that appear in both numerator and denominator.",
+            rewrite_quadratic_zero: "Rewrite the quadratic equation in a form ready for solving.",
+            apply_zero_product_rule: "Use the zero-product rule once the quadratic is factored.",
+            solve_required_values: "Read off the required roots or parameter from the simplified equation.",
+            substitute_known_root: "Substitute the given root into the equation to determine the unknown parameter.",
+            recognize_double_root: "A repeated factor indicates a double root."
+        },
         ui: {
             loading: "Loading..."
         },

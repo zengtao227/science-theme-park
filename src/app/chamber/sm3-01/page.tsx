@@ -12,6 +12,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S301QuadraticCanvas from "@/components/chamber/sm3-01/QuadraticCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM301FeedbackProvider } from "@/lib/sm3-01/provider";
 
 type Stage = "TERMS" | "FACTORIZE" | "FRACTIONS" | "EQUATIONS";
 
@@ -232,6 +233,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
 export default function S301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM301FeedbackProvider(t), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t("sm3_01"), d, s), [t]);
 
@@ -263,6 +265,7 @@ export default function S301Page() {
     moduleCode: "sm3-01",
     buildPool,
     initialStage: "TERMS",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

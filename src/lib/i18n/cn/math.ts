@@ -2576,6 +2576,22 @@ export const cnMath = {
                 zero_product_latex: "\\text{若 }pq=0\\text{ 则 }p=0\\text{ 或 }q=0."
             }
         },
+        reasons: {
+            group_like_terms: "先把变量和次数相同的项归并在一起。",
+            read_combined_coefficients: "合并同类项后，读取新的系数。",
+            final_simplified_form: "把得到的系数写成标准二次式。",
+            use_factor_identity: "使用能够还原原二次式的因式形式。",
+            match_middle_constant_terms: "检查所选参数是否同时满足中间项和常数项。",
+            recognize_special_identity: "判断该式是否属于完全平方或平方差结构。",
+            identify_factor_parameters: "根据识别出的结构读出因式参数。",
+            factor_numerator_denominator: "先把分子和分母都因式分解，再考虑约分。",
+            cancel_common_factor: "只约去分子和分母中都出现的公因式。",
+            rewrite_quadratic_zero: "先把二次方程整理到便于求解的形式。",
+            apply_zero_product_rule: "因式分解后应用零乘积定理。",
+            solve_required_values: "从化简后的方程中读出题目要求的根或参数。",
+            substitute_known_root: "把已知根代回方程，求出未知参数。",
+            recognize_double_root: "重复因式说明该方程有重根。"
+        },
         ui: {
             loading: "加载中..."
         },
