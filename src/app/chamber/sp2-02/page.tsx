@@ -4,22 +4,12 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OhmsLawVisualization from "@/components/chamber/sp2-02/OhmsLawVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "OHMS_LAW" | "SERIES_CIRCUITS" | "PARALLEL_CIRCUITS";
-
-interface SP202Quest extends Quest {
-    stage: Stage;
-    voltage?: number;
-    current?: number;
-    resistance?: number;
-    circuitType?: "series" | "parallel" | "mixed";
-    components?: number[];
-}
+import { createSP202FeedbackProvider } from "@/lib/sp2-02/provider";
+import type { SP202Quest, Stage } from "@/lib/sp2-02/types";
 
 interface OhmsDataItem {
     voltage: number | string;
@@ -35,7 +25,7 @@ interface CircuitDataItem {
 
 export default function SP202OhmsLaw() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp2-02"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP202FeedbackProvider(t), [t]);
     const [currentVoltage, setCurrentVoltage] = useState(0);
     const [currentCurrent, setCurrentCurrent] = useState(0);
 

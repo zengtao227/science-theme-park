@@ -4,23 +4,12 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PowerVisualization from "@/components/chamber/sp2-03/PowerVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "POWER_BASICS" | "ENERGY_CONSUMPTION" | "EFFICIENCY";
-
-interface SP203Quest extends Quest {
-    stage: Stage;
-    voltage?: number;
-    current?: number;
-    power?: number;
-    time?: number;
-    energy?: number;
-    cost?: number;
-}
+import { createSP203FeedbackProvider } from "@/lib/sp2-03/provider";
+import type { SP203Quest, Stage } from "@/lib/sp2-03/types";
 
 interface PowerDataItem {
     voltage: number | string;
@@ -46,7 +35,7 @@ interface EfficiencyDataItem {
 
 export default function SP203ElectricPower() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp2-03"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP203FeedbackProvider(t), [t]);
     const [currentPower, setCurrentPower] = useState(0);
 
     const sp2_03_t = useMemo(() => ({

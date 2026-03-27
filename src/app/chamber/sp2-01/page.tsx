@@ -10,12 +10,12 @@ import { SP201Quest, Stage } from "@/types/sp2-01-types";
 import { buildStagePool } from "@/lib/sp2-01-quest-data";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSP201FeedbackProvider } from "@/lib/sp2-01/provider";
 
 export default function SP201CircuitBasics() {
   useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp2-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP201FeedbackProvider(t), [t]);
 
   const sp2_01_t = useMemo(() => ({
     title: t("sp2_01.title"),

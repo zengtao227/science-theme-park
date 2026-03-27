@@ -1243,6 +1243,14 @@ export const dePhysics = {
                         design_emergency_backup: "Krankenhaus-Notbeleuchtung: Entwerfen Sie eine Backup-Versorgung, sodass bei Ausfall einer Batterie mindestens eine Lampe für die Evakuierung aktiv bleibt.",
                         design_mixed_series_parallel: "Integrationsaufgabe: Entwerfen Sie eine Mischschaltung, bei der Schalter 1 zwei Lampen in Reihe und Schalter 2 zwei Lampen parallel steuert; beide Gruppen sollen unabhängig laufen."
                 },
+                reasons: {
+                        identify_component_feature: "Bestimmen Sie zuerst das entscheidende Merkmal des Bauteils, bevor Sie es benennen.",
+                        match_component_role: "Ordnen Sie das Bauteil seiner Funktion oder seinem Standardsymbol zu.",
+                        confirm_series_or_parallel: "Prüfen Sie zuerst, ob eine einzelne Schleife oder unabhängige Zweige gefordert sind.",
+                        read_iec_diagram: "Lesen Sie zuerst die IEC-Symbole und Leitungsverbindungen, bevor Sie den Aufbau festlegen.",
+                        identify_fault_and_fix: "Bestimmen Sie die Störung, die den Stromkreis unterbricht, und nennen Sie die Reparatur.",
+                        check_design_requirements: "Prüfen Sie jede Anforderung, bevor Sie die endgültige Schaltung bestätigen."
+                },
                 feedback: { correct: "Schaltungsanalyse bestätigt.", incorrect: "Schaltungskonfigurationsfehler erkannt." }
         },
 
@@ -1292,6 +1300,14 @@ export const dePhysics = {
                         ohms_find_resistance: "Sicherheitsprüfung im Labor: Gegeben I = {current} A und U = {voltage} V, verwenden Sie R = U/I und geben Sie R in Ω an.",
                         series_find_current: "Novartis-Gerätekette (Reihe): {components}, Quellspannung U = {voltage} V. Berechnen Sie zuerst R_total, dann den Strom I.",
                         parallel_find_total_current: "Roche-Notbeleuchtung (Parallelzweige): {components}, Quellspannung U = {voltage} V. Berechnen Sie die Zweigströme und den Gesamtstrom I_total."
+                },
+                reasons: {
+                        select_ohms_formula: "Wählen Sie zuerst die elektrische Beziehung, die zur gesuchten Größe passt.",
+                        solve_for_missing_electrical_quantity: "Setzen Sie die bekannten Werte ein und lösen Sie nach der fehlenden Größe auf.",
+                        add_series_resistances: "Addieren Sie die Reihenwiderstände zum Gesamtwiderstand.",
+                        divide_voltage_by_total_resistance: "Teilen Sie die Versorgungsspannung durch den Gesamtwiderstand, um den Reihenstrom zu bestimmen.",
+                        compute_branch_currents: "Berechnen Sie für jeden Parallelzweig den Strom mit derselben Spannung.",
+                        sum_parallel_currents: "Addieren Sie die Teilströme zum Gesamtstrom."
                 }
         },
 
@@ -1342,6 +1358,16 @@ export const dePhysics = {
                         e3: "Bäckerei-Energiecheck: Basler Läckerli-Ofen läuft mit P=2 kW für 5 h bei 0.28 CHF/kWh. Aufgabe: Gesamtkosten berechnen.",
                         e4: "E-Auto-Niedertarifprüfung: Laden mit P=11 kW für 50 h bei 0.24 CHF/kWh. Aufgabe: Gesamtkosten berechnen.",
                         e5: "Fasnachtsbeleuchtung-Schätzung: Laternen laufen mit P=0.5 kW für 72 h bei 0.28 CHF/kWh. Aufgabe: Gesamtkosten berechnen."
+                },
+                reasons: {
+                        choose_power_formula: "Wählen Sie zuerst die Leistungsbeziehung zwischen Spannung, Strom und Leistung.",
+                        solve_for_missing_electrical_quantity: "Setzen Sie die bekannten elektrischen Größen ein und lösen Sie die fehlende Größe.",
+                        convert_power_time_to_energy: "Multiplizieren Sie Leistung und Betriebszeit, um die verbrauchte elektrische Energie zu erhalten.",
+                        convert_wh_to_kwh: "Wandeln Sie Wattstunden in Kilowattstunden um, bevor Sie den Endwert angeben.",
+                        compute_running_cost: "Multiplizieren Sie den Energieverbrauch in Kilowattstunden mit dem Tarif.",
+                        apply_efficiency_ratio: "Verwenden Sie das Verhältnis von Nutzleistung zu Eingangsleistung.",
+                        solve_for_missing_efficiency_quantity: "Stellen Sie die Wirkungsgradgleichung nach der gesuchten Größe um.",
+                        compute_power_loss: "Bestimmen Sie die Verlustleistung als Differenz zwischen Eingangs- und Nutzleistung."
                 }
         },
 

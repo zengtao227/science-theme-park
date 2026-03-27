@@ -1179,6 +1179,14 @@ export const cnPhysics = {
             design_emergency_backup: "医院应急照明：设计带备用电源的电路，已知一节电池可能失效，要求至少一盏灯持续工作。",
             design_mixed_series_parallel: "综合训练：设计混合电路（开关1控制2灯串联，开关2控制2灯并联），用于演示两种拓扑独立运行。"
         },
+        reasons: {
+            identify_component_feature: "先识别题目中给出的关键元件特征，再判断元件名称。",
+            match_component_role: "把该元件与它的电路作用或符号约定对应起来。",
+            confirm_series_or_parallel: "先判断题目要求的是单回路还是独立支路。",
+            read_iec_diagram: "先读懂 IEC 电路符号和连线关系，再确定电路布局。",
+            identify_fault_and_fix: "找出阻断电流的故障元件，并给出修复方式。",
+            check_design_requirements: "先逐条核对设计要求，再确认最终电路。"
+        },
         feedback: { correct: "电路分析确认。", incorrect: "检测到电路配置错误。" }
     },
 
@@ -1228,6 +1236,14 @@ export const cnPhysics = {
             ohms_find_resistance: "实验室安全检查：已知 I={current}A、U={voltage}V，使用 R=U/I 计算电阻 R（单位 Ω）。",
             series_find_current: "诺华串联设备链路：{components}，电源电压 U={voltage}V。先求 R_total，再求电流 I。",
             parallel_find_total_current: "罗氏并联应急照明：{components}，电源电压 U={voltage}V。计算各支路电流并求总电流 I_total。"
+        },
+        reasons: {
+            select_ohms_formula: "先选择与未知量对应的电学关系式。",
+            solve_for_missing_electrical_quantity: "代入已知数值，并解出未知的电学量。",
+            add_series_resistances: "先把串联电阻相加，得到总电阻。",
+            divide_voltage_by_total_resistance: "用电源电压除以总电阻，得到串联电流。",
+            compute_branch_currents: "利用并联各支路电压相同，先求每条支路的电流。",
+            sum_parallel_currents: "把各支路电流相加，得到总电流。"
         }
     },
 
@@ -1278,6 +1294,16 @@ export const cnPhysics = {
             e3: "烘焙能耗核算：巴塞尔 Läckerli 烤箱以 P=2 kW 运行 5 h，电价 0.28 CHF/kWh。任务：计算总费用。",
             e4: "电动车谷电充电审计：充电器以 P=11 kW 运行 50 h，电价 0.24 CHF/kWh。任务：计算总费用。",
             e5: "Fasnacht 彩灯用电估算：灯组以 P=0.5 kW 运行 72 h，电价 0.28 CHF/kWh。任务：计算总费用。"
+        },
+        reasons: {
+            choose_power_formula: "先选择连接电压、电流和功率的公式。",
+            solve_for_missing_electrical_quantity: "把已知电学量代入并解出未知量。",
+            convert_power_time_to_energy: "用功率乘以运行时间，求出消耗的电能。",
+            convert_wh_to_kwh: "在报告最终结果前，把瓦时换算成千瓦时。",
+            compute_running_cost: "用耗电量（千瓦时）乘以电价，求出运行费用。",
+            apply_efficiency_ratio: "使用有效输出功率与输入功率的比值关系。",
+            solve_for_missing_efficiency_quantity: "整理效率公式，解出题目要求的量。",
+            compute_power_loss: "用输入功率减去有效输出功率，求出损耗功率。"
         }
     },
 

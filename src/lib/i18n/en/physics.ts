@@ -1244,6 +1244,14 @@ export const enPhysics = {
                         design_emergency_backup: "Hospital emergency-lighting task: design backup power so if one battery fails, at least one bulb remains on for evacuation guidance.",
                         design_mixed_series_parallel: "Integration exercise: design a mixed circuit where Switch 1 controls 2 bulbs in series and Switch 2 controls 2 bulbs in parallel, and both groups run independently."
                 },
+                reasons: {
+                        identify_component_feature: "Identify the key component feature shown in the prompt before naming it.",
+                        match_component_role: "Match the component to its function or standard symbol convention.",
+                        confirm_series_or_parallel: "Check whether the required circuit needs a single loop or independent branches.",
+                        read_iec_diagram: "Read the IEC symbols and the wire connections before deciding the circuit layout.",
+                        identify_fault_and_fix: "Identify the fault that breaks the current path and state the repair.",
+                        check_design_requirements: "Check each design requirement before confirming the final circuit."
+                },
                 feedback: { correct: "Circuit analysis confirmed.", incorrect: "Circuit configuration error detected." }
         },
 
@@ -2317,6 +2325,14 @@ export const enPhysics = {
                         ohms_find_resistance: "Lab safety check: identify resistor value. Given I = {current} A and U = {voltage} V, apply R = U/I and report R in Ω.",
                         series_find_current: "Novartis instrument chain (series): {components}, source voltage U = {voltage} V. Compute R_total then find current I.",
                         parallel_find_total_current: "Roche emergency lighting branches (parallel): {components}, source voltage U = {voltage} V. Compute branch currents and total current I_total."
+                },
+                reasons: {
+                        select_ohms_formula: "Choose the electrical relation that matches the unknown quantity.",
+                        solve_for_missing_electrical_quantity: "Substitute the known values and isolate the missing electrical quantity.",
+                        add_series_resistances: "Add the resistors in series to find the total resistance.",
+                        divide_voltage_by_total_resistance: "Use the supply voltage and total resistance to find the series current.",
+                        compute_branch_currents: "Compute each branch current using the common parallel voltage.",
+                        sum_parallel_currents: "Add the branch currents to obtain the total current."
                 }
         },
 
@@ -2367,6 +2383,16 @@ export const enPhysics = {
                         e3: "Bakery energy check: Basler Lackerli oven runs at P=2 kW for 5 h with tariff 0.28 CHF/kWh. Task: compute total cost.",
                         e4: "EV off-peak charging audit: charger runs at P=11 kW for 50 h with tariff 0.24 CHF/kWh. Task: compute total cost.",
                         e5: "Fasnacht lighting estimate: lantern system runs at P=0.5 kW for 72 h with tariff 0.28 CHF/kWh. Task: compute total cost."
+                },
+                reasons: {
+                        choose_power_formula: "Choose the formula that connects voltage, current, and electric power.",
+                        solve_for_missing_electrical_quantity: "Substitute the known electrical values and isolate the missing one.",
+                        convert_power_time_to_energy: "Multiply the power by the operating time to get the energy used.",
+                        convert_wh_to_kwh: "Convert watt-hours to kilowatt-hours before reporting the result.",
+                        compute_running_cost: "Multiply the energy consumption in kilowatt-hours by the tariff.",
+                        apply_efficiency_ratio: "Use the ratio of useful output power to input power.",
+                        solve_for_missing_efficiency_quantity: "Rearrange the efficiency equation for the requested quantity.",
+                        compute_power_loss: "Compute the power loss as input power minus useful output."
                 }
         },
 
