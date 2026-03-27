@@ -16,6 +16,7 @@ export interface GM103Quest extends Quest {
   limitValue?: number | string;  // Expected limit value ("DNE" for does not exist)
   leftLimit?: number | string;   // Left-hand limit
   rightLimit?: number | string;  // Right-hand limit
+  functionValue?: number | string;
   isContinuous?: boolean;        // Whether function is continuous at point
   discontinuityType?: DiscontinuityType;
 }

@@ -4095,6 +4095,23 @@ export const cnMath = {
             value: "数值",
             yes_no: "是/否"
         },
+        reasons: {
+            identify_limit_target: "识别极限点与目标函数",
+            direct_substitution: "将趋近值直接代入",
+            simplify_expression: "先化简表达式再求极限",
+            compare_leading_terms: "比较无穷远处的最高次项",
+            compare_one_sided_limits: "比较左极限与右极限",
+            evaluate_component_limits: "分别求各部分的极限",
+            apply_limit_law: "应用相应的极限法则",
+            evaluate_inner_limit: "先求内部函数的极限",
+            apply_composition_rule: "将内部极限代入外部函数",
+            recognize_indeterminate_form: "识别未定式",
+            apply_lhopital: "应用洛必达法则",
+            check_function_value: "检查该点的函数值",
+            check_one_sided_continuity: "检查左右两侧的函数行为",
+            compare_limit_and_value: "比较极限值与函数值",
+            classify_discontinuity: "判定间断类型"
+        },
         input_tip_2dp: "提示：输入结果保留2位小数。不存在时使用'DNE'。",
         visualization: {
             title: "极限可视化器",

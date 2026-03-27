@@ -12,12 +12,12 @@ import { GM103Quest, Stage } from "@/lib/gm1-03-types";
 import { buildStagePool } from "@/lib/gm1-03-quest-builder";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGM103FeedbackProvider } from "@/lib/gm1-03-provider";
 
 export default function GM103Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm1-03"), [t]);
+  const feedbackContentProvider = useMemo(() => createGM103FeedbackProvider(t), [t]);
 
   // Build translations object
   const gm1_03_t = {

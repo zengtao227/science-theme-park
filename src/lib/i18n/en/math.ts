@@ -4100,6 +4100,23 @@ export const enMath = {
             value: "value",
             yes_no: "yes/no"
         },
+        reasons: {
+            identify_limit_target: "Identify the limit point and target function",
+            direct_substitution: "Substitute the approaching value directly",
+            simplify_expression: "Simplify the expression before evaluating the limit",
+            compare_leading_terms: "Compare the leading terms at infinity",
+            compare_one_sided_limits: "Compare the left-hand and right-hand limits",
+            evaluate_component_limits: "Evaluate the component limits separately",
+            apply_limit_law: "Apply the appropriate limit law",
+            evaluate_inner_limit: "Evaluate the inner limit first",
+            apply_composition_rule: "Substitute the inner limit into the outer function",
+            recognize_indeterminate_form: "Recognize the indeterminate form",
+            apply_lhopital: "Apply L'Hopital's rule",
+            check_function_value: "Check the function value at the point",
+            check_one_sided_continuity: "Check the left-hand and right-hand behavior",
+            compare_limit_and_value: "Compare the limit with the function value",
+            classify_discontinuity: "Classify the type of discontinuity"
+        },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places. Use 'DNE' for does not exist.",
         visualization: {
             title: "LIMIT VISUALIZER",

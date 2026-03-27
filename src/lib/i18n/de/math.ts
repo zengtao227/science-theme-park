@@ -4077,6 +4077,23 @@ export const deMath = {
             value: "Wert",
             yes_no: "ja/nein"
         },
+        reasons: {
+            identify_limit_target: "Bestimme Grenzwertstelle und Zielfunktion",
+            direct_substitution: "Setze den Annäherungswert direkt ein",
+            simplify_expression: "Vereinfache den Ausdruck vor der Grenzwertberechnung",
+            compare_leading_terms: "Vergleiche die führenden Terme im Unendlichen",
+            compare_one_sided_limits: "Vergleiche links- und rechtsseitigen Grenzwert",
+            evaluate_component_limits: "Berechne die Teilgrenzwerte getrennt",
+            apply_limit_law: "Wende das passende Grenzwertgesetz an",
+            evaluate_inner_limit: "Bestimme zuerst den inneren Grenzwert",
+            apply_composition_rule: "Setze den inneren Grenzwert in die äußere Funktion ein",
+            recognize_indeterminate_form: "Erkenne die unbestimmte Form",
+            apply_lhopital: "Wende die Regel von L'Hospital an",
+            check_function_value: "Prüfe den Funktionswert an der Stelle",
+            check_one_sided_continuity: "Prüfe das Verhalten von links und rechts",
+            compare_limit_and_value: "Vergleiche Grenzwert und Funktionswert",
+            classify_discontinuity: "Bestimme die Art der Unstetigkeit"
+        },
         input_tip_2dp: "Tipp: Ergebnis auf 2 Dezimalstellen gerundet eingeben. Verwende 'DNE' für nicht existent.",
         visualization: {
             title: "GRENZWERT-VISUALISIERER",

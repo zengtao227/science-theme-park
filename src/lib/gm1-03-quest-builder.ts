@@ -251,6 +251,7 @@ export function buildStagePool(
       leftLimit: item.leftLimit,
       rightLimit: item.rightLimit,
       limitValue: item.limitValue,
+      functionValue: item.functionValue,
       promptLatex,
       expressionLatex: `f(x) = ${expressionLatex}`,
       targetLatex: "\\text{Continuous?}",
