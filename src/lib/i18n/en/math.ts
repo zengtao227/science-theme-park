@@ -818,6 +818,17 @@ export const enMath = {
             value: "value",
             decimal_2dp: "0.00"
         },
+        reasons: {
+            identify_complex_components: "Read the real and imaginary components of the complex number.",
+            apply_modulus_formula: "Apply the modulus formula |z| = sqrt(a^2 + b^2).",
+            compute_square_sum: "Square both components and add them inside the square root.",
+            identify_complex_numbers: "Write both complex numbers in rectangular form.",
+            add_components: "Add the real parts and imaginary parts separately.",
+            apply_complex_product: "Use the complex multiplication rule (a+bi)(c+di)=(ac-bd)+(ad+bc)i.",
+            compute_rectangular_result: "Simplify the expression and write the result in rectangular form.",
+            convert_to_polar_form: "Convert the complex number into polar form by computing r and theta.",
+            apply_de_moivre: "Use De Moivre's formula to raise the complex number to the given power.",
+        },
         visualization: {
             pythagorean: "PYTHAGOREAN THEOREM",
             vector_addition: "VECTOR ADDITION",

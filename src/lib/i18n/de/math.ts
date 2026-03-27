@@ -828,6 +828,17 @@ export const deMath = {
             value: "Wert",
             decimal_2dp: "0.00"
         },
+        reasons: {
+            identify_complex_components: "Lies zuerst Realteil und Imaginärteil der komplexen Zahl ab.",
+            apply_modulus_formula: "Verwende die Betragsformel |z| = sqrt(a^2 + b^2).",
+            compute_square_sum: "Quadriere beide Komponenten und addiere sie unter der Wurzel.",
+            identify_complex_numbers: "Schreibe beide komplexen Zahlen in kartesischer Form auf.",
+            add_components: "Addiere Realteile und Imaginärteile getrennt.",
+            apply_complex_product: "Nutze die Multiplikationsregel (a+bi)(c+di)=(ac-bd)+(ad+bc)i.",
+            compute_rectangular_result: "Vereinfache den Ausdruck und gib das Ergebnis in kartesischer Form an.",
+            convert_to_polar_form: "Bestimme r und theta, um die Zahl in Polarform umzuschreiben.",
+            apply_de_moivre: "Verwende die Formel von de Moivre für die Potenz.",
+        },
         visualization: {
             pythagorean: "SATZ DES PYTHAGORAS",
             vector_addition: "VEKTORADDITION",

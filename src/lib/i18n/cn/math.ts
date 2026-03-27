@@ -799,6 +799,17 @@ export const cnMath = {
             value: "数值",
             decimal_2dp: "0.00"
         },
+        reasons: {
+            identify_complex_components: "先读出复数的实部和虚部。",
+            apply_modulus_formula: "应用模长公式 |z| = sqrt(a^2 + b^2)。",
+            compute_square_sum: "分别平方后相加，再写入根号中。",
+            identify_complex_numbers: "先把两个复数写成直角坐标形式。",
+            add_components: "分别相加实部和虚部。",
+            apply_complex_product: "使用复数乘法公式 (a+bi)(c+di)=(ac-bd)+(ad+bc)i。",
+            compute_rectangular_result: "化简表达式，并写成直角坐标形式。",
+            convert_to_polar_form: "先求 r 和 theta，把复数改写成极坐标形式。",
+            apply_de_moivre: "使用棣莫弗公式把复数提升到指定幂次。",
+        },
         visualization: {
             pythagorean: "勾股定理",
             vector_addition: "向量加法",
