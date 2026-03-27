@@ -9,27 +9,17 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC206FeedbackProvider } from "@/lib/sc2-06/provider";
+import type { SC206Quest, Stage } from "@/lib/sc2-06/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "OXIDATION_STATE" | "ELECTRON_TRANSFER" | "ELECTROCHEMISTRY";
-
-interface SC206Quest extends Quest {
-  stage: Stage;
-  reactants: Array<{ formula: string; oxidationState: number }>;
-  products: Array<{ formula: string; oxidationState: number }>;
-  oxidationStates: { [key: string]: number };
-  electronsTransferred: number;
-  cellPotential?: number;
-}
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
 export default function SC206Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-06"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC206FeedbackProvider(t), [t]);
 
   const buildStagePool = useCallback(
     (difficulty: Difficulty, stage: Stage): SC206Quest[] => {

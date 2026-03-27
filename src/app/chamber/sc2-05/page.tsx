@@ -10,26 +10,14 @@ import AcidBaseVisualization from "@/components/chamber/sc2-05/AcidBaseVisualiza
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "PH_BASICS" | "NEUTRALIZATION" | "TITRATION";
-
-type AcidBaseQuest = Quest & {
-  stage: Stage;
-  context?: string;
-  scenario?: string;
-  substance?: string;
-  concentration?: number;
-  volume?: number;
-  pH?: number;
-  reactionType?: string;
-};
+import { createSC205FeedbackProvider } from "@/lib/sc2-05/provider";
+import type { AcidBaseQuest, Stage } from "@/lib/sc2-05/types";
 
 export default function SC205Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const sc2_05_t = t("sc2_05");
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-05"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC205FeedbackProvider(t), [t]);
 
   const buildStagePool = useCallback(
     (difficulty: Difficulty, stage: Stage): AcidBaseQuest[] => {

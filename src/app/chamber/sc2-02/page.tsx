@@ -11,24 +11,12 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC202FeedbackProvider } from "@/lib/sc2-02/provider";
+import type { Stage, TitrationQuest } from "@/lib/sc2-02/types";
 
 const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/TitrationCanvas"), {
     ssr: false,
 });
-
-type Stage = "CURVES" | "EQUIVALENCE" | "INDICATORS";
-
-interface TitrationQuest extends Quest {
-    stage: Stage;
-    simConfig: {
-        acidType: "strong" | "weak";
-        acidConc: number;
-        baseConc: number;
-        volumeAdded: number;
-        indicator: "phenolphthalein" | "methyl_orange" | "universal";
-    };
-}
 
 function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): TitrationQuest[] {
     const quests: TitrationQuest[] = [];
@@ -210,7 +198,7 @@ function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): Titrat
 export default function SC202Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-02"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC202FeedbackProvider(t), [t]);
     const sc2_02_t = {
         translate: t,
         title: t("sc2_02.title"),
