@@ -1413,6 +1413,16 @@ export const dePhysics = {
                         lab_pharma: "Novartis Qualitätssicherung: In den Basler Pharma-Labors ist die korrekte Massenbeurteilung entscheidend. Ein kleiner Fehler kann eine chemische Reaktion verändern.",
                         basel_watch: "Schweizer Präzision: Die Herstellung von Luxusuhren in Basel erfordert Messungen im Mikrometerbereich. Präzision ist die Seele der Basler Industrie."
                 },
+                reasons: {
+                        identify_measurement_category: "Bestimmen Sie zuerst, welche physikalische Größe oder Einheitengruppe gefragt ist.",
+                        state_unit_equivalence: "Ordnen Sie die Größe oder den Ausdruck der passenden SI-Einheit oder abgeleiteten Einheit zu.",
+                        identify_conversion_factor: "Wählen Sie zuerst den Umrechnungsfaktor zwischen Ausgangs- und Zieleinheit.",
+                        apply_squared_or_cubed_factor: "Quadrieren oder kubieren Sie den Umrechnungsfaktor bei Flächen- oder Volumeneinheiten.",
+                        count_significant_figures: "Ignorieren Sie führende Nullen und zählen Sie die Ziffern, die die Genauigkeit festlegen.",
+                        round_to_requested_sig_figs: "Bestimmen Sie die geforderte signifikante Stelle und runden Sie mit der nächsten Ziffer.",
+                        evaluate_expression_with_rounding_rule: "Berechnen Sie zuerst den Rohwert und wenden Sie dann die geforderte Rundungsregel an.",
+                        apply_uncertainty_ratio: "Teilen Sie die absolute Unsicherheit durch den Messwert und wandeln Sie das Ergebnis in Prozent um."
+                },
                 feedback: { correct: "Messung bestätigt.", incorrect: "Kalibrierungsfehler erkannt." },
                 hints: {
                         use_metric_prefixes: "Metrische Präfixe verwenden",
@@ -1555,6 +1565,14 @@ export const dePhysics = {
                         roche_tower_structural: "Verwenden Sie F = ma mit Vektorzerlegung. F_net = F - f wobei f = μN. Zerlegen Sie Windkraft: F_x = F sin θ, F_y = F cos θ. Dann a = F_net/m.",
                         basel_port_crane: "Vektorsumme: F_net = T - W - f. Zerlegen Sie Spannung im Winkel θ: T_y = T cos θ (vertikal), T_x = T sin θ (horizontal). Reibung f = μT. Beschleunigung a = F_net/m.",
                         hospital_equipment_3d: "Auf geneigter Ebene: N = mg cos θ (Normalkraft senkrecht zur Oberfläche). Reibungskraft f = μN = μ(mg cos θ) wirkt parallel zur Oberfläche, entgegen der Bewegung."
+                },
+                reasons: {
+                        apply_equilibrium_condition: "Bei Situationen des ersten Newtonschen Gesetzes muss die Nettokraft null sein, wenn sich die Bewegung nicht ändert.",
+                        resolve_perpendicular_forces: "Fassen Sie senkrechte Kraftkomponenten mit Vektoraddition zusammen.",
+                        apply_newtons_second_law: "Verwenden Sie das zweite Newtonsche Gesetz, um Nettokraft, Masse und Beschleunigung zu verknüpfen.",
+                        subtract_resistive_force: "Ziehen Sie Reibung oder andere Widerstandskräfte von der antreibenden Kraft ab, um die Nettokraft zu erhalten.",
+                        compute_normal_force: "Bestimmen Sie zuerst die Normalkraft, bevor Sie Reibung oder Komponenten berechnen.",
+                        apply_friction_law: "Verwenden Sie das Reibungsgesetz f = μN, sobald die Normalkraft bekannt ist."
                 }
         },
 
@@ -1629,6 +1647,14 @@ export const dePhysics = {
                         basic_power: "Leistung P = W/t = Fs/t",
                         power_lifting: "P = W/t = mgh/t",
                         rhine_power_station: "Leistung P = mgh/t"
+                },
+                reasons: {
+                        apply_gravitational_potential_formula: "Verwenden Sie die Formel der potenziellen Energie E_p = mgh.",
+                        add_mechanical_energy_terms: "Addieren Sie potenzielle und kinetische Energie zur gesamten mechanischen Energie.",
+                        apply_kinetic_energy_formula: "Verwenden Sie die Formel der kinetischen Energie E_k = 1/2 mv^2.",
+                        apply_energy_conservation: "Wenden Sie die Erhaltung der mechanischen Energie zwischen Anfangs- und Endzustand an.",
+                        apply_work_formula: "Berechnen Sie die Arbeit als Kraft mal Weg.",
+                        divide_work_by_time_for_power: "Teilen Sie die verrichtete Arbeit durch die benötigte Zeit, um die Leistung zu erhalten."
                 }
         },
 

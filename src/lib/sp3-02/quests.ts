@@ -85,6 +85,7 @@ export function generateNewton1Quests(t: any, difficulty: Difficulty): SP302Ques
             targetLatex: "F_{req}",
             slots: [{ id: "ans", labelLatex: "F", placeholder: t("sp3_02.placeholders.force_n"), expected: expected.toString() }],
             correctLatex: `F = ${expected} \\text{ N}`,
+            scenarioKey: scen,
         });
     }
     return quests;
@@ -132,6 +133,7 @@ export function generateNewton2Quests(t: any, difficulty: Difficulty): SP302Ques
             targetLatex: "a",
             slots: [{ id: "ans", labelLatex: "a", placeholder: t("sp3_02.placeholders.acceleration_ms2"), expected: a.toString() }],
             correctLatex: `a = ${a} \\text{ m/s}^{2}`,
+            scenarioKey: scen,
         });
     }
     return quests;
@@ -178,6 +180,7 @@ export function generateFrictionQuests(t: any, difficulty: Difficulty): SP302Que
             targetLatex: "f",
             slots: [{ id: "ans", labelLatex: "f", placeholder: t("sp3_02.placeholders.force_n"), expected: expected.toString() }],
             correctLatex: `f = ${expected} \\text{ N}`,
+            scenarioKey: scen,
         });
     }
     return quests;

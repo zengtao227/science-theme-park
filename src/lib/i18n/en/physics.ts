@@ -1305,6 +1305,16 @@ export const enPhysics = {
                         lab_pharma: "Novartis Quality Control: In Basel's pharmaceutical labs, measuring mass correctly is critical. A tiny error can change the entire chemical reaction.",
                         basel_watch: "Swiss Watchmaking Precision: Crafting luxury watches in Basel requires measurements in micrometers. Precision is the soul of Basel's industry."
                 },
+                reasons: {
+                        identify_measurement_category: "Identify which physical quantity or unit family the prompt is asking about.",
+                        state_unit_equivalence: "Match the quantity or expression to its SI unit or equivalent derived unit.",
+                        identify_conversion_factor: "Choose the metric conversion factor that links the starting unit to the target unit.",
+                        apply_squared_or_cubed_factor: "Square or cube the conversion factor when the unit represents area or volume.",
+                        count_significant_figures: "Ignore leading zeros and count the digits that determine the stated precision.",
+                        round_to_requested_sig_figs: "Locate the requested significant digit and round using the next digit.",
+                        evaluate_expression_with_rounding_rule: "Calculate the raw result first, then apply the stated significant-figure or decimal-place rule.",
+                        apply_uncertainty_ratio: "Divide the absolute uncertainty by the measured value and convert to a percentage."
+                },
                 feedback: { correct: "Measurement confirmed.", incorrect: "Calibration error detected." },
                 hints: {
                         use_metric_prefixes: "Use metric prefixes",
@@ -1439,6 +1449,14 @@ export const enPhysics = {
                         roche_tower_structural: "Use F = ma with vector decomposition. F_net = F - f where f = μN. Decompose wind force: F_x = F sin θ, F_y = F cos θ. Then a = F_net/m.",
                         basel_port_crane: "Vector sum: F_net = T - W - f. Decompose tension at angle θ: T_y = T cos θ (vertical), T_x = T sin θ (horizontal). Friction f = μT. Acceleration a = F_net/m.",
                         hospital_equipment_3d: "On inclined plane: N = mg cos θ (normal force perpendicular to surface). Friction force f = μN = μ(mg cos θ) acts parallel to surface, opposing motion."
+                },
+                reasons: {
+                        apply_equilibrium_condition: "For Newton's first law situations, the net force must balance to zero when motion does not change.",
+                        resolve_perpendicular_forces: "Combine perpendicular force components with vector addition.",
+                        apply_newtons_second_law: "Use Newton's second law to relate net force, mass, and acceleration.",
+                        subtract_resistive_force: "Subtract friction or other resistive forces from the applied force to get the net force.",
+                        compute_normal_force: "Find the normal force before using it in friction or component calculations.",
+                        apply_friction_law: "Use the friction model f = μN once the normal force is known."
                 }
         },
 
@@ -1513,6 +1531,14 @@ export const enPhysics = {
                         basic_power: "Power P = W/t = Fs/t",
                         power_lifting: "P = W/t = mgh/t",
                         rhine_power_station: "Power P = mgh/t"
+                },
+                reasons: {
+                        apply_gravitational_potential_formula: "Use the gravitational potential energy formula E_p = mgh.",
+                        add_mechanical_energy_terms: "Add the potential and kinetic energy terms to get total mechanical energy.",
+                        apply_kinetic_energy_formula: "Use the kinetic energy formula E_k = 1/2 mv^2.",
+                        apply_energy_conservation: "Apply conservation of mechanical energy between the initial and final states.",
+                        apply_work_formula: "Compute work from force times displacement.",
+                        divide_work_by_time_for_power: "Divide the work transferred by the elapsed time to obtain power."
                 }
         },
 

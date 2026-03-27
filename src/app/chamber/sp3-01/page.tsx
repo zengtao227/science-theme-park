@@ -7,26 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MeasurementCanvas from "@/components/chamber/sp3-01/MeasurementCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "SI_UNITS" | "CONVERSION" | "PRECISION";
-
-interface SP301Quest extends Quest {
-    stage: Stage;
-    value?: number;
-    fromUnit?: string;
-    toUnit?: string;
-    measurement?: string;
-}
+import { createSP301FeedbackProvider } from "@/lib/sp3-01/provider";
+import type { Stage, SP301Quest } from "@/lib/sp3-01/types";
 
 export default function SP301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sp3-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createSP301FeedbackProvider(t), [t]);
 
     const sp3_01_t = {
         title: t("sp3_01.title"),
@@ -181,6 +172,8 @@ export default function SP301Page() {
                         difficulty,
                         stage,
                         measurement: u.measurement,
+                        value: u.measurement,
+                        scenarioKey: "si_base_unit",
                         promptLatex: t("sp3_01.prompts.si_unit", { measurement: u.measurement }),
                         expressionLatex: `\\text{${u.measurement}} \\rightarrow \\text{?}`,
                         targetLatex: u.unit,
@@ -197,6 +190,7 @@ export default function SP301Page() {
                         id: `SI-C${idx}`,
                         difficulty,
                         stage,
+                        scenarioKey: "si_derived_unit",
                         promptLatex: t("sp3_01.prompts.si_unit", { measurement: d.quantity }),
                         expressionLatex: `\\text{${d.quantity}} = ${d.formula}`,
                         targetLatex: d.unit,
@@ -216,6 +210,7 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
+                        scenarioKey: "single_conversion",
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
@@ -232,6 +227,7 @@ export default function SP301Page() {
                         id: `SI-E${idx}`,
                         difficulty,
                         stage,
+                        scenarioKey: "equivalent_unit",
                         promptLatex: t("sp3_01.prompts.equivalent_unit", { expr: c.expr }),
                         expressionLatex: `${c.expr} = \\text{?}`,
                         targetLatex: c.unit,
@@ -263,6 +259,7 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
+                        scenarioKey: "single_conversion",
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: result,
@@ -291,6 +288,7 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
+                        scenarioKey: "multi_step_conversion",
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
@@ -319,6 +317,7 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
+                        scenarioKey: "area_volume_conversion",
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
@@ -347,6 +346,7 @@ export default function SP301Page() {
                         value: c.value,
                         fromUnit: c.from,
                         toUnit: c.to,
+                        scenarioKey: "compound_conversion",
                         promptLatex: t("sp3_01.prompts.convert", { value: c.value, from: c.from, to: c.to }),
                         expressionLatex: `${c.value}\\,\\text{${c.from}} = \\text{?}\\,\\text{${c.to}}`,
                         targetLatex: c.answer,
@@ -374,6 +374,9 @@ export default function SP301Page() {
                         id: `PREC-B${idx}`,
                         difficulty,
                         stage,
+                        value: p.value,
+                        measurement: p.measurement,
+                        scenarioKey: "count_sig_figs",
                         promptLatex: t("sp3_01.prompts.sigfigs", { value: p.value }),
                         expressionLatex: `${p.value} \\rightarrow \\text{? sig figs}`,
                         targetLatex: p.sigfigs,
@@ -399,6 +402,9 @@ export default function SP301Page() {
                         id: `PREC-C${idx}`,
                         difficulty,
                         stage,
+                        value: r.value,
+                        sigfigsCount: r.sigfigs,
+                        scenarioKey: "round_sig_figs",
                         promptLatex: t("sp3_01.prompts.round_sigfigs", { value: r.value, sigfigs: r.sigfigs }),
                         expressionLatex: `${r.value} \\rightarrow ${r.sigfigs}\\text{ sig figs}`,
                         targetLatex: r.answer,
@@ -424,6 +430,8 @@ export default function SP301Page() {
                         id: `PREC-A${idx}`,
                         difficulty,
                         stage,
+                        rule: c.rule,
+                        scenarioKey: "calculate_sig_figs",
                         promptLatex: t("sp3_01.prompts.calculate_with_sigfigs", { expr: c.expr }),
                         expressionLatex: `${c.expr}`,
                         targetLatex: c.answer,
@@ -449,6 +457,8 @@ export default function SP301Page() {
                         id: `PREC-E${idx}`,
                         difficulty,
                         stage,
+                        measurement: u.measurement,
+                        scenarioKey: "percent_uncertainty",
                         promptLatex: t("sp3_01.prompts.percent_uncertainty", { measurement: u.measurement, unit: u.unit }),
                         expressionLatex: `\\frac{\\text{uncertainty}}{\\text{value}} \\times 100\\%`,
                         targetLatex: u.percent,

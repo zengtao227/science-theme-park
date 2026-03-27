@@ -1349,6 +1349,16 @@ export const cnPhysics = {
             lab_pharma: "诺华制药实验室：在巴塞尔的制药研发中，质量测量的准确性至关重要。哪怕是毫克的误差也会导致整个化学反应失败。",
             basel_watch: "瑞士制造精度：巴塞尔的奢侈钟表制造业要求达到微米级的测量标准。精度是瑞士工业的灵魂。"
         },
+        reasons: {
+            identify_measurement_category: "先判断题目询问的是哪一种物理量或单位类别。",
+            state_unit_equivalence: "把该物理量或表达式与对应的 SI 单位或导出单位对应起来。",
+            identify_conversion_factor: "先选出连接原单位和目标单位的换算因子。",
+            apply_squared_or_cubed_factor: "当单位表示面积或体积时，要把换算因子平方或立方。",
+            count_significant_figures: "忽略前导零，再统计真正决定精度的数字个数。",
+            round_to_requested_sig_figs: "找到要求保留的有效数字位置，再根据下一位进行四舍五入。",
+            evaluate_expression_with_rounding_rule: "先算出原始结果，再按题目要求的有效数字或小数位规则处理。",
+            apply_uncertainty_ratio: "用绝对不确定度除以测量值，再换算成百分比。"
+        },
         feedback: { correct: "测量精度已确认。", incorrect: "检测到校准偏误。" },
         hints: {
             use_metric_prefixes: "使用公制前缀",
@@ -1491,6 +1501,14 @@ export const cnPhysics = {
             roche_tower_structural: "使用 F = ma 和向量分解。F_net = F - f，其中 f = μN。分解风力：F_x = F sin θ，F_y = F cos θ。然后 a = F_net/m。",
             basel_port_crane: "向量和：F_net = T - W - f。分解角度 θ 的张力：T_y = T cos θ（垂直），T_x = T sin θ（水平）。摩擦 f = μT。加速度 a = F_net/m。",
             hospital_equipment_3d: "在斜面上：N = mg cos θ（垂直于表面的支持力）。摩擦力 f = μN = μ(mg cos θ) 平行于表面，阻碍运动。"
+        },
+        reasons: {
+            apply_equilibrium_condition: "在牛顿第一定律情景中，若运动状态不变，则合力必须为零。",
+            resolve_perpendicular_forces: "对相互垂直的力分量使用矢量合成。",
+            apply_newtons_second_law: "用牛顿第二定律把合力、质量和加速度联系起来。",
+            subtract_resistive_force: "先从外力中减去摩擦力或其他阻力，得到合力。",
+            compute_normal_force: "在处理摩擦力或分力前，先求支持力。",
+            apply_friction_law: "当支持力已知后，使用 f = μN 求摩擦力。"
         }
     },
 
@@ -1569,6 +1587,14 @@ export const cnPhysics = {
             basic_power: "功率 P = W/t = Fs/t",
             power_lifting: "P = W/t = mgh/t",
             rhine_power_station: "功率 P = mgh/t"
+        },
+        reasons: {
+            apply_gravitational_potential_formula: "使用重力势能公式 E_p = mgh。",
+            add_mechanical_energy_terms: "把势能和动能相加，得到总机械能。",
+            apply_kinetic_energy_formula: "使用动能公式 E_k = 1/2 mv^2。",
+            apply_energy_conservation: "在初态和末态之间应用机械能守恒。",
+            apply_work_formula: "根据力乘位移计算做功。",
+            divide_work_by_time_for_power: "用做功除以所用时间，得到功率。"
         }
     },
 
