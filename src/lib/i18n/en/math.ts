@@ -1101,6 +1101,18 @@ export const enMath = {
             perimeter: "Perimeter",
             area: "Area"
         },
+        reasons: {
+            read_number_line_expression: "Read the marked value or expression from the number line.",
+            identify_absolute_or_distance: "Use absolute value to represent the distance from zero or between two points.",
+            evaluate_numeric_expression: "Compute the expression to get the requested value.",
+            compare_positions_on_line: "Compare the numbers by their positions on the number line.",
+            convert_or_compare_rational_form: "Convert the rational form or compare the rational numbers before selecting the answer.",
+            select_requested_value: "State the requested value in the form asked by the task.",
+            read_point_coordinates: "Read the coordinates of the point from the coordinate plane.",
+            determine_quadrant: "Use the signs of x and y to determine the quadrant.",
+            apply_coordinate_transformation: "Apply the indicated coordinate transformation to the point.",
+            use_coordinate_formula: "Use the coordinate relation or formula shown in the expression."
+        },
         stages: {
             number_line: "NUMBER LINE",
             rationals: "RATIONALS",

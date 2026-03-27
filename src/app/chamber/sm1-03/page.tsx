@@ -8,15 +8,15 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import IntegerCanvas from "@/components/chamber/sm1-03/IntegerCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
-
-type Stage = "NUMBER_LINE" | "RATIONALS" | "QUADRANTS";
-type IntegerQuest = Quest & { stage: Stage; context?: string; scenario?: string; value?: number; x?: number; y?: number };
+import { createSM103FeedbackProvider } from "@/lib/sm1-03/provider";
+import type { IntegerQuest, SM103Stage as Stage } from "@/lib/sm1-03/types";
 
 export default function SM103Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM103FeedbackProvider(t), [t]);
 
   // Pre-extract all translations
   const sm1_03_t = useMemo(() => ({
@@ -986,6 +986,7 @@ export default function SM103Page() {
     buildPool,
     initialStage: "NUMBER_LINE",
     tolerance: 0.01,
+    feedbackContentProvider,
   });
 
   useEffect(() => {

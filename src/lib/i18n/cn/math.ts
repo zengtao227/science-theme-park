@@ -1086,6 +1086,18 @@ export const cnMath = {
             perimeter: "周长",
             area: "面积"
         },
+        reasons: {
+            read_number_line_expression: "先从数轴上读出标记的数值或表达式。",
+            identify_absolute_or_distance: "用绝对值表示到 0 或两点之间的距离。",
+            evaluate_numeric_expression: "计算表达式，得到所求的数值。",
+            compare_positions_on_line: "根据数在数轴上的位置进行比较。",
+            convert_or_compare_rational_form: "先转换有理数形式，或比较有理数大小，再确定答案。",
+            select_requested_value: "按题目要求写出最终结果。",
+            read_point_coordinates: "先从坐标平面读出点的坐标。",
+            determine_quadrant: "根据 x 与 y 的正负判断所在象限。",
+            apply_coordinate_transformation: "对该点应用题目给出的坐标变换。",
+            use_coordinate_formula: "利用表达式中的坐标关系或公式求出结果。"
+        },
         scenarios: {
             number_line: "巴塞尔冬季温度：你正在监测巴塞尔欧洲机场的冬季温度。温度经常降到零度以下。理解负数对于读取温度计和比较温度至关重要。数轴帮助可视化整数及其关系。",
             rationals: "莱茵河水位：巴塞尔莱茵河的水位计显示水深。正常水位是+5米。干旱时会下降。潜水员将水面以下的深度测量为负值。有理数（分数和小数）提供精确测量。",

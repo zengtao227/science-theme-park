@@ -1112,6 +1112,18 @@ export const deMath = {
             perimeter: "Umfang",
             area: "Fläche"
         },
+        reasons: {
+            read_number_line_expression: "Lies zuerst den markierten Wert oder Ausdruck auf der Zahlengeraden ab.",
+            identify_absolute_or_distance: "Verwende den Absolutwert, um den Abstand zu Null oder zwischen zwei Punkten zu bestimmen.",
+            evaluate_numeric_expression: "Berechne den Ausdruck und bestimme den gesuchten Wert.",
+            compare_positions_on_line: "Vergleiche die Zahlen anhand ihrer Positionen auf der Zahlengeraden.",
+            convert_or_compare_rational_form: "Wandle die rationale Form um oder vergleiche die rationalen Zahlen, bevor du die Antwort auswählst.",
+            select_requested_value: "Gib den geforderten Wert in der verlangten Form an.",
+            read_point_coordinates: "Lies zuerst die Koordinaten des Punktes aus dem Koordinatensystem ab.",
+            determine_quadrant: "Bestimme mit den Vorzeichen von x und y den Quadranten.",
+            apply_coordinate_transformation: "Wende die angegebene Koordinatentransformation auf den Punkt an.",
+            use_coordinate_formula: "Verwende die im Ausdruck angegebene Koordinatenbeziehung oder Formel."
+        },
         stages: {
             number_line: "ZAHLENGERADE",
             rationals: "RATIONALE ZAHLEN",
