@@ -2606,6 +2606,19 @@ export const cnPhysics = {
             spectral_resolution: "光谱分析规划：m=2、N=5000 条线。任务：求光谱分辨率 R。",
             blazed_grating: "仪器概念题：任务是说明闪耀光栅在光谱仪中的核心用途。"
         },
+        reasons: {
+            select_wave_equation: "先选出与未知量对应的波动公式。",
+            substitute_wave_values: "把题目给出的波动数据代入所选公式。",
+            link_period_and_frequency: "利用周期与频率互为倒数的关系。",
+            interpret_wave_concept: "先判断控制此题的波动概念，再给出结论。",
+            select_superposition_rule: "根据相位关系选择正确的叠加规则。",
+            select_interference_formula: "使用与干涉图样相符的干涉关系。",
+            select_thin_film_rule: "针对题目情形选择薄膜干涉条件。",
+            select_reflection_refraction_rule: "选择适用的反射或折射定律。",
+            select_critical_angle_rule: "对全反射问题使用临界角条件。",
+            select_diffraction_rule: "对缝或孔径问题应用衍射关系。",
+            select_grating_rule: "对光栅问题使用光栅方程。"
+        },
         hints: {
             wave_equation: "使用 v = fλ",
             wavelength_calc: "λ = v/f",
@@ -2775,6 +2788,12 @@ export const cnPhysics = {
             pm_magnetic_force: "束流转向场景：计算洛伦兹力大小。已知 q={q} C、v={v} m/s、B={B} T（垂直）。使用 F=qvB。",
             pm_radius: "回旋轨道估算场景：计算带电粒子圆周半径。已知 m={m} kg、v={v} m/s、q={q} C、B={B} T。使用 r=mv/(qB)。",
             pm_velocity_from_voltage: "加速管调试场景：计算粒子经电压加速后的速度。已知 q={q} C、V={V} V、m={m} kg。使用 v=sqrt(2qV/m)。"
+        },
+        reasons: {
+            select_field_or_force_formula: "先判断题目要求电场强度还是电场力。",
+            substitute_em_values: "把题目给出的电磁数据代入所选公式。",
+            select_magnetic_field_formula: "根据导线或螺线管情形选择磁场公式。",
+            select_particle_motion_formula: "根据所求物理量选择粒子运动公式。"
         }
     },
 
@@ -2861,6 +2880,12 @@ export const cnPhysics = {
             generator_type_thermal: "火电",
             generator_type_solar: "太阳能",
             generator_type_nuclear: "核电"
+        },
+        reasons: {
+            select_faraday_formula: "先选出与磁通变化情形对应的法拉第公式。",
+            substitute_induction_values: "把题目给出的感应数据代入所选公式。",
+            apply_lenz_direction_rule: "利用楞次定律判断感应电流的方向或物理效果。",
+            select_generator_formula: "根据电压、功率或效率选择对应的发电机关系式。"
         }
     },
 

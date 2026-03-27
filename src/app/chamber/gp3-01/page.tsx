@@ -7,27 +7,16 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import WaveVisualization from "@/components/chamber/gp3-01/WaveVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "WAVE_PROPERTIES" | "SUPERPOSITION" | "OPTICS";
-
-interface GP301Quest extends Quest {
-    stage: Stage;
-    amplitude?: number;
-    frequency?: number;
-    wavelength?: number;
-    velocity?: number;
-    medium?: string;
-    waveType?: string;
-}
+import { createGP301FeedbackProvider } from "@/lib/gp3-01/provider";
+import type { GP301Quest, Stage } from "@/lib/gp3-01/types";
 
 export default function GP301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp3-01"), [t]);
+    const feedbackContentProvider = useMemo(() => createGP301FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GP301Quest[] => {
         const quests: GP301Quest[] = [];

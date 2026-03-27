@@ -2651,6 +2651,19 @@ export const dePhysics = {
                         spectral_resolution: "Spektralplanung: Ordnung m=2 und N=5000 Linien. Aufgabe: spektrale Auflösung R berechnen.",
                         blazed_grating: "Instrumenten-Konzeptfrage: Aufgabe ist den Zweck eines Blazegitters im Spektrometer zu benennen."
                 },
+                reasons: {
+                        select_wave_equation: "Wähle die Wellengleichung, die zur gesuchten Größe passt.",
+                        substitute_wave_values: "Setze die gegebenen Wellengrößen in die gewählte Gleichung ein.",
+                        link_period_and_frequency: "Nutze die Kehrwertbeziehung zwischen Periodendauer und Frequenz.",
+                        interpret_wave_concept: "Bestimme zuerst das maßgebliche Wellenkonzept und bewerte dann die Aussage.",
+                        select_superposition_rule: "Wähle die Überlagerungsregel passend zur Phasenlage.",
+                        select_interference_formula: "Nutze die Interferenzbeziehung, die zum beschriebenen Muster gehört.",
+                        select_thin_film_rule: "Wähle die passende Dünnschichtbedingung für den angegebenen Fall.",
+                        select_reflection_refraction_rule: "Wähle das hier passende Reflexions- oder Brechungsgesetz.",
+                        select_critical_angle_rule: "Verwende für Totalreflexion die Bedingung zum Grenzwinkel.",
+                        select_diffraction_rule: "Wende für Spalt- oder Blendenaufgaben die Beugungsbeziehung an.",
+                        select_grating_rule: "Verwende für die angefragte Ordnung die Gittergleichung."
+                },
                 hints: {
                         wave_equation: "Verwende v = fλ",
                         wavelength_calc: "λ = v/f",
@@ -2820,6 +2833,12 @@ export const dePhysics = {
                         pm_magnetic_force: "Strahlablenkung: Berechne die Lorentzkraft (Betrag). Gegeben q={q} C, v={v} m/s und B={B} T (senkrecht). Nutze F=qvB.",
                         pm_radius: "Zyklotronbahn: Berechne den Kreisradius eines geladenen Teilchens. Gegeben m={m} kg, v={v} m/s, q={q} C und B={B} T. Nutze r=mv/(qB).",
                         pm_velocity_from_voltage: "Beschleunigungsrohr: Bestimme die Endgeschwindigkeit nach Spannungsgewinn. Gegeben q={q} C, V={V} V und m={m} kg. Nutze v=sqrt(2qV/m)."
+                },
+                reasons: {
+                        select_field_or_force_formula: "Entscheide zuerst, ob nach Feldstärke oder nach Kraft gefragt ist.",
+                        substitute_em_values: "Setze die gegebenen elektromagnetischen Größen in die gewählte Gleichung ein.",
+                        select_magnetic_field_formula: "Wähle die Magnetfeldformel passend zu Leiter oder Solenoid.",
+                        select_particle_motion_formula: "Nutze die Bewegungsgleichung, die zur gesuchten Größe passt."
                 }
         },
 
@@ -2906,6 +2925,12 @@ export const dePhysics = {
                         generator_type_thermal: "Thermisch",
                         generator_type_solar: "Solar",
                         generator_type_nuclear: "Kernkraft"
+                },
+                reasons: {
+                        select_faraday_formula: "Wähle die Form des Faraday-Gesetzes passend zur Flussänderung.",
+                        substitute_induction_values: "Setze die gegebenen Induktionsgrößen in die gewählte Formel ein.",
+                        apply_lenz_direction_rule: "Nutze die Lenzsche Regel, um Richtung oder Effekt des induzierten Stroms zu bestimmen.",
+                        select_generator_formula: "Wähle die Generatorgleichung passend zu Spannung, Leistung oder Wirkungsgrad."
                 }
         },
 

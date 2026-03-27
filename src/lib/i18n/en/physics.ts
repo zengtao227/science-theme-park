@@ -2698,6 +2698,19 @@ export const enPhysics = {
                         spectral_resolution: "Spectral-analysis planning: grating order m=2 with N=5000 lines. Task: compute resolution R.",
                         blazed_grating: "Instrumentation concept check: task is to state the purpose of a blazed grating in spectrometer design."
                 },
+                reasons: {
+                        select_wave_equation: "Choose the wave relation that matches the unknown quantity.",
+                        substitute_wave_values: "Substitute the given wave values into the selected equation.",
+                        link_period_and_frequency: "Use the reciprocal relation between period and frequency.",
+                        interpret_wave_concept: "Identify the governing wave concept before evaluating the answer.",
+                        select_superposition_rule: "Choose the superposition rule that matches the phase relationship.",
+                        select_interference_formula: "Use the interference relation that fits the observed pattern.",
+                        select_thin_film_rule: "Select the thin-film interference condition for the stated case.",
+                        select_reflection_refraction_rule: "Choose the reflection or refraction law that applies here.",
+                        select_critical_angle_rule: "Use the critical-angle condition for total internal reflection.",
+                        select_diffraction_rule: "Apply the diffraction relation for the aperture or slit setup.",
+                        select_grating_rule: "Use the diffraction-grating equation for the requested order."
+                },
                 hints: {
                         wave_equation: "Use v = fλ",
                         wavelength_calc: "λ = v/f",
@@ -2867,6 +2880,12 @@ export const enPhysics = {
                         pm_magnetic_force: "Beam steering check in a magnetic channel: compute Lorentz force magnitude. Given q={q} C, v={v} m/s, and B={B} T (perpendicular). Use F=qvB.",
                         pm_radius: "Cyclotron trajectory estimate: compute circular radius of a charged particle. Given m={m} kg, v={v} m/s, q={q} C, and B={B} T. Use r=mv/(qB).",
                         pm_velocity_from_voltage: "Acceleration tube commissioning: find particle exit speed after voltage gain. Given q={q} C, V={V} V, and m={m} kg. Use v=sqrt(2qV/m)."
+                },
+                reasons: {
+                        select_field_or_force_formula: "Choose whether the task asks for electric field strength or electric force.",
+                        substitute_em_values: "Insert the given electromagnetic values into the selected equation.",
+                        select_magnetic_field_formula: "Choose the magnetic-field formula that matches the wire or solenoid setup.",
+                        select_particle_motion_formula: "Use the particle-motion relation that matches the requested quantity."
                 }
         },
 
@@ -2953,6 +2972,12 @@ export const enPhysics = {
                         generator_type_thermal: "Thermal",
                         generator_type_solar: "Solar",
                         generator_type_nuclear: "Nuclear"
+                },
+                reasons: {
+                        select_faraday_formula: "Choose the Faraday-law form that matches the changing-flux situation.",
+                        substitute_induction_values: "Substitute the given induction values into the selected formula.",
+                        apply_lenz_direction_rule: "Use Lenz's law to determine the direction or physical effect of the induced current.",
+                        select_generator_formula: "Choose the generator relation that matches voltage, power, or efficiency."
                 }
         },
         // SP1.03: Weather & Climate

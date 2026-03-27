@@ -4,25 +4,16 @@ import { useCallback, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import InductionVisualization from "@/components/chamber/gp3-03/InductionVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "FARADAYS_LAW" | "LENZS_LAW" | "GENERATORS";
-
-interface GP303Quest extends Quest {
-    stage: Stage;
-    flux?: number;
-    time?: number;
-    emf?: number;
-    turns?: number;
-}
+import { createGP303FeedbackProvider } from "@/lib/gp3-03/provider";
+import type { GP303Quest, Stage } from "@/lib/gp3-03/types";
 
 export default function GP303Induction() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp3-03"), [t]);
+    const feedbackContentProvider = useMemo(() => createGP303FeedbackProvider(t), [t]);
 
     const gp3_03_t = useMemo(() => ({
         title: t("gp3_03.title"),

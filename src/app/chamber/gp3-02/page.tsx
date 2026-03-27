@@ -4,28 +4,18 @@ import { useState, useCallback, useMemo, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectromagnetismVisualization from "@/components/chamber/gp3-02/ElectromagnetismVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "ELECTRIC_FIELD" | "MAGNETIC_FIELD" | "PARTICLE_MOTION";
-
-interface GP302Quest extends Quest {
-    stage: Stage;
-    charge?: number;
-    distance?: number;
-    fieldStrength?: number;
-    velocity?: number;
-    magneticField?: number;
-}
+import { createGP302FeedbackProvider } from "@/lib/gp3-02/provider";
+import type { GP302Quest, Stage } from "@/lib/gp3-02/types";
 
 export default function GP302Electromagnetism() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gp3-02"), [t]);
+    const feedbackContentProvider = useMemo(() => createGP302FeedbackProvider(t), [t]);
     const [fieldIntensity, setFieldIntensity] = useState(0);
 
     const formatValue = useCallback((value: number) => {
