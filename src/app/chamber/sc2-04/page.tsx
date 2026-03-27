@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import BeakerCanvas from "@/components/chamber/sc2-04/BeakerCanvas";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC204FeedbackProvider } from "@/lib/sc2-04/provider";
 import {
   Stage,
   SC204Quest as SC204QuestType,
@@ -28,7 +28,7 @@ function getSolubility(temperature: number): number {
 
 export default function SC204Page() {
   const { t: getT } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "sc2-04"), [getT]);
+  const feedbackContentProvider = useMemo(() => createSC204FeedbackProvider(getT), [getT]);
   const t = getT("sc2_04");
   const { completeStage } = useAppStore();
 

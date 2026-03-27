@@ -7,24 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import KineticsCanvas from "@/components/chamber/sc2-01/KineticsCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC201FeedbackProvider } from "@/lib/sc2-01/provider";
+import type { SC201Quest as KineticsQuest, SC201Stage as Stage } from "@/lib/sc2-01/types";
 
-type Stage = "ARRHENIUS" | "RATE_LAW" | "HALF_LIFE";
-type KineticsQuest = Quest & { 
-  stage: Stage; 
-  context?: string; 
-  scenario?: string;
-  temperature?: number;
-  activationEnergy?: number;
-};
 
 export default function SC201Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const sc2_01_t = t("sc2_01");
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC201FeedbackProvider(t), [t]);
 
   const buildStagePool = useCallback((tObj: typeof sc2_01_t, difficulty: Difficulty, stage: Stage): KineticsQuest[] => {
     const pools: Record<Stage, Record<Difficulty, KineticsQuest[]>> = {
@@ -209,7 +202,7 @@ export default function SC201Page() {
     showStepsLevel,
     showFullSolution,
     policy,
-    } = useQuestManager({
+    } = useQuestManager<KineticsQuest, Stage>({
     moduleCode: "sc2-01",
     buildPool,
     initialStage: "ARRHENIUS" as Stage,

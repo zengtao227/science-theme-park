@@ -10,7 +10,7 @@ import GasTankCanvas from "@/components/chamber/sc2-03/GasTankCanvas";
 import { idealGasPressure } from "@/lib/physics";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC203FeedbackProvider } from "@/lib/sc2-03/provider";
 import {
   Stage,
   SC203Quest as SC203QuestType,
@@ -23,7 +23,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SC203Page() {
   const { t: getT } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "sc2-03"), [getT]);
+  const feedbackContentProvider = useMemo(() => createSC203FeedbackProvider(getT), [getT]);
   const t = getT("sc2_03");
   const { completeStage } = useAppStore();
 
