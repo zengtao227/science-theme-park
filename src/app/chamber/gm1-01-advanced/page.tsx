@@ -5,22 +5,13 @@ import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Challenge = "COMPOSITE" | "MODELING" | "OPTIMIZATION" | "ANALYSIS";
-
-interface G101AdvQuest extends Quest {
-  challenge: Challenge;
-  scenario: string;
-  functionLatex: string;
-  question: string;
-  hint: string;
-}
+import { createGM101AdvancedFeedbackProvider } from "@/lib/gm1-01-advanced/provider";
+import type { Challenge, G101AdvQuest } from "@/lib/gm1-01-advanced/types";
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
@@ -1131,7 +1122,7 @@ function buildChallengePool(gm1_01_advanced_t: any, difficulty: Difficulty, chal
 export default function G101AdvancedPage() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm1-01-advanced"), [t]);
+  const feedbackContentProvider = useMemo(() => createGM101AdvancedFeedbackProvider(t), [t]);
   
   const gm1_01_advanced_t = {
     title: t("gm1_01_advanced.title"),
