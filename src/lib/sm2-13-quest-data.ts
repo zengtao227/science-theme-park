@@ -2,8 +2,27 @@ import { Quest } from "@/hooks/useQuestManager";
 
 export type Stage = "reflection" | "translation" | "rotation" | "composition";
 
+export type SM213FeedbackData =
+    | { kind: "reflection-basic"; x: number; y: number; axis: "x" | "y"; xPrime: number; yPrime: number }
+    | { kind: "reflection-core"; x: number; y: number; line: "y = x" | "y = -x"; xPrime: number; yPrime: number }
+    | { kind: "reflection-advanced"; x: number; y: number; lineAxis: "x" | "y"; offset: number; xPrime: number; yPrime: number }
+    | { kind: "reflection-elite"; x: number; y: number; slope: number; intercept: number; xIntersect: number; xPrime: number }
+    | { kind: "translation-basic"; x: number; y: number; dx: number; dy: number; xPrime: number; yPrime: number }
+    | { kind: "translation-core"; xPrime: number; yPrime: number; dx: number; dy: number; x: number; y: number }
+    | { kind: "translation-advanced"; slope: number; intercept: number; dx: number; dy: number; newIntercept: number }
+    | { kind: "translation-elite"; centerX: number; centerY: number; dx: number; dy: number; translatedX: number; translatedY: number; distance: number }
+    | { kind: "rotation-basic"; x: number; y: number; angle: 90 | 180 | 270; clockwise: boolean; xPrime: number; yPrime: number }
+    | { kind: "rotation-core"; x: number; y: number; center: number; angle: 90 | 180 | 270; clockwise: boolean; translatedX: number; translatedY: number; rotatedX: number; rotatedY: number; xPrime: number; yPrime: number }
+    | { kind: "rotation-advanced"; x: number; y: number; clockwise: boolean; thetaDegrees: 30; xPrime: number }
+    | { kind: "rotation-elite"; intercept: number; thetaDegrees: 45; clockwise: boolean; transformedIntercept: number }
+    | { kind: "composition-basic"; x: number; y: number; dx: number; translatedX: number; yPrime: number }
+    | { kind: "composition-core"; x: number; y: number; clockwise: boolean; reflectedX: number; reflectedY: number; xPrime: number; yPrime: number }
+    | { kind: "composition-advanced"; dx: number; dy: number; deltaX: number }
+    | { kind: "composition-elite"; dx: number; dy: number; sum: number };
+
 export interface SM213Quest extends Quest {
     stage: Stage;
+    feedbackData?: SM213FeedbackData;
 }
 
 type TranslationFn = (key: string, params?: Record<string, string | number>) => string;
@@ -51,7 +70,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: axis === "x" ? x : -x },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: axis === "x" ? -y : y }
                     ],
-                    correctLatex: `P'(${axis === "x" ? x : -x}, ${axis === "x" ? -y : y})`
+                    correctLatex: `P'(${axis === "x" ? x : -x}, ${axis === "x" ? -y : y})`,
+                    feedbackData: { kind: "reflection-basic", x, y, axis, xPrime: axis === "x" ? x : -x, yPrime: axis === "x" ? -y : y }
                 });
             } else if (difficulty === "CORE") {
                 const line = Math.random() > 0.5 ? "y = x" : "y = -x";
@@ -68,7 +88,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: aX },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: aY }
                     ],
-                    correctLatex: `P'(${aX}, ${aY})`
+                    correctLatex: `P'(${aX}, ${aY})`,
+                    feedbackData: { kind: "reflection-core", x, y, line: line as "y = x" | "y = -x", xPrime: aX, yPrime: aY }
                 });
             } else if (difficulty === "ADVANCED") {
                 const offset = Math.floor(Math.random() * 6) - 3;
@@ -86,7 +107,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: aX },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: aY }
                     ],
-                    correctLatex: `P'(${aX}, ${aY})`
+                    correctLatex: `P'(${aX}, ${aY})`,
+                    feedbackData: { kind: "reflection-advanced", x, y, lineAxis, offset, xPrime: aX, yPrime: aY }
                 });
             } else if (difficulty === "ELITE") {
                 const m = Math.random() > 0.5 ? 2 : -2;
@@ -110,7 +132,16 @@ export const buildStagePool = (
                     slots: [
                         { id: "x", labelLatex: "x'\\approx", placeholder: placeholders.x, expected: Math.round(px * 10) / 10 }
                     ],
-                    correctLatex: `${Math.round(px * 10) / 10}`
+                    correctLatex: `${Math.round(px * 10) / 10}`,
+                    feedbackData: {
+                        kind: "reflection-elite",
+                        x,
+                        y,
+                        slope: m,
+                        intercept: b,
+                        xIntersect: Math.round(x_int * 100) / 100,
+                        xPrime: Math.round(px * 10) / 10,
+                    }
                 });
             }
         } else if (stage === "translation") {
@@ -126,7 +157,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: x + dx },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: y + dy }
                     ],
-                    correctLatex: `P'(${x + dx}, ${y + dy})`
+                    correctLatex: `P'(${x + dx}, ${y + dy})`,
+                    feedbackData: { kind: "translation-basic", x, y, dx, dy, xPrime: x + dx, yPrime: y + dy }
                 });
             } else if (difficulty === "CORE") {
                 pool.push({
@@ -140,7 +172,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x=", placeholder: placeholders.x, expected: x - dx },
                         { id: "y", labelLatex: "y=", placeholder: placeholders.y, expected: y - dy }
                     ],
-                    correctLatex: `P(${x - dx}, ${y - dy})`
+                    correctLatex: `P(${x - dx}, ${y - dy})`,
+                    feedbackData: { kind: "translation-core", xPrime: x, yPrime: y, dx, dy, x: x - dx, y: y - dy }
                 });
             } else if (difficulty === "ADVANCED") {
                 const m = Math.floor(Math.random() * 4) - 2 || 1;
@@ -157,7 +190,8 @@ export const buildStagePool = (
                     slots: [
                         { id: "b", labelLatex: "b'=", placeholder: placeholders.b, expected: new_b }
                     ],
-                    correctLatex: `${new_b}`
+                    correctLatex: `${new_b}`,
+                    feedbackData: { kind: "translation-advanced", slope: m, intercept: b, dx, dy, newIntercept: new_b }
                 });
             } else if (difficulty === "ELITE") {
                 const r = Math.floor(Math.random() * 5) + 1;
@@ -174,7 +208,17 @@ export const buildStagePool = (
                     slots: [
                         { id: "d", labelLatex: "d\\approx", placeholder: placeholders.d, expected: Math.round(dist * 10) / 10 }
                     ],
-                    correctLatex: `${Math.round(dist * 10) / 10}`
+                    correctLatex: `${Math.round(dist * 10) / 10}`,
+                    feedbackData: {
+                        kind: "translation-elite",
+                        centerX: x,
+                        centerY: y,
+                        dx,
+                        dy,
+                        translatedX: new_cx,
+                        translatedY: new_cy,
+                        distance: Math.round(dist * 10) / 10,
+                    }
                 });
             }
         } else if (stage === "rotation") {
@@ -199,7 +243,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: ax },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: ay }
                     ],
-                    correctLatex: `P'(${ax}, ${ay})`
+                    correctLatex: `P'(${ax}, ${ay})`,
+                    feedbackData: { kind: "rotation-basic", x, y, angle: angle as 90 | 180 | 270, clockwise: cw, xPrime: ax, yPrime: ay }
                 });
             } else if (difficulty === "CORE") {
                 const ax = x - cx; const ay = y - cx; // using cx for both center x and y to simplify
@@ -224,7 +269,21 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: rx + cx },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: ry + cx }
                     ],
-                    correctLatex: `P'(${rx + cx}, ${ry + cx})`
+                    correctLatex: `P'(${rx + cx}, ${ry + cx})`,
+                    feedbackData: {
+                        kind: "rotation-core",
+                        x,
+                        y,
+                        center: cx,
+                        angle: angle as 90 | 180 | 270,
+                        clockwise: cw,
+                        translatedX: ax,
+                        translatedY: ay,
+                        rotatedX: rx,
+                        rotatedY: ry,
+                        xPrime: rx + cx,
+                        yPrime: ry + cx,
+                    }
                 });
             } else if (difficulty === "ADVANCED") {
                 const theta = cw ? -Math.PI / 6 : Math.PI / 6; // 30 deg
@@ -243,7 +302,8 @@ export const buildStagePool = (
                     slots: [
                         { id: "x", labelLatex: "x'\\approx", placeholder: placeholders.x, expected: Math.round(rx * 10) / 10 }
                     ],
-                    correctLatex: `${Math.round(rx * 10) / 10}`
+                    correctLatex: `${Math.round(rx * 10) / 10}`,
+                    feedbackData: { kind: "rotation-advanced", x, y, clockwise: cw, thetaDegrees: 30, xPrime: Math.round(rx * 10) / 10 }
                 });
             } else if (difficulty === "ELITE") {
                 const thetaStr = cw ? "-45^\\circ" : "45^\\circ";
@@ -262,7 +322,14 @@ export const buildStagePool = (
                     slots: [
                         { id: "b", labelLatex: "b'\\approx", placeholder: placeholders.b, expected: Math.round(b / Math.cos(theta) * 10) / 10 }
                     ],
-                    correctLatex: `${Math.round(b / Math.cos(theta) * 10) / 10}` // Rough approximation assuming rotation by -theta makes it horizontal.
+                    correctLatex: `${Math.round(b / Math.cos(theta) * 10) / 10}`, // Rough approximation assuming rotation by -theta makes it horizontal.
+                    feedbackData: {
+                        kind: "rotation-elite",
+                        intercept: b,
+                        thetaDegrees: 45,
+                        clockwise: cw,
+                        transformedIntercept: Math.round(b / Math.cos(theta) * 10) / 10,
+                    }
                 });
             }
         } else if (stage === "composition") {
@@ -278,7 +345,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: x + dx },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: -y }
                     ],
-                    correctLatex: `P'(${x + dx}, ${-y})`
+                    correctLatex: `P'(${x + dx}, ${-y})`,
+                    feedbackData: { kind: "composition-basic", x, y, dx, translatedX: x + dx, yPrime: -y }
                 });
             } else if (difficulty === "CORE") {
                 const rotY = cw ? x : -x;
@@ -298,7 +366,8 @@ export const buildStagePool = (
                         { id: "x", labelLatex: "x'=", placeholder: placeholders.x, expected: rotX },
                         { id: "y", labelLatex: "y'=", placeholder: placeholders.y, expected: rotY }
                     ],
-                    correctLatex: `P'(${rotX}, ${rotY})`
+                    correctLatex: `P'(${rotX}, ${rotY})`,
+                    feedbackData: { kind: "composition-core", x, y, clockwise: cw, reflectedX: y, reflectedY: x, xPrime: rotX, yPrime: rotY }
                 });
             } else if (difficulty === "ADVANCED") {
                 pool.push({
@@ -311,7 +380,8 @@ export const buildStagePool = (
                     slots: [
                         { id: "x", labelLatex: "\\Delta x=", placeholder: placeholders.val, expected: 2 * (dy - dx) }
                     ],
-                    correctLatex: `${2 * (dy - dx)}`
+                    correctLatex: `${2 * (dy - dx)}`,
+                    feedbackData: { kind: "composition-advanced", dx, dy, deltaX: 2 * (dy - dx) }
                 });
             } else if (difficulty === "ELITE") {
                 pool.push({
@@ -324,7 +394,8 @@ export const buildStagePool = (
                     slots: [
                         { id: "val", labelLatex: "Sum=", placeholder: placeholders.val, expected: dx + dy }
                     ],
-                    correctLatex: `${dx + dy}`
+                    correctLatex: `${dx + dy}`,
+                    feedbackData: { kind: "composition-elite", dx, dy, sum: dx + dy }
                 });
             }
         }

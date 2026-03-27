@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Stage, SM213Quest, buildStagePool } from "@/lib/sm2-13-quest-data";
+import { createSM213FeedbackProvider } from "@/lib/sm2-13/provider";
 import { InlineMath, BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { AnimatePresence, motion } from "framer-motion";
@@ -106,6 +107,7 @@ function TransformationMonitor({
 export default function SM213Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = React.useMemo(() => createSM213FeedbackProvider(t), [t]);
 
     const sm2_13_t = {
         title: t("sm2_13.title"),
@@ -179,7 +181,8 @@ export default function SM213Page() {
         moduleCode: "SM2.13",
         buildPool: (diff, s) => buildStagePool(diff, s, t),
         initialStage: "reflection",
-        tolerance: 0.1
+        tolerance: 0.1,
+        feedbackContentProvider,
     });
 
     // Mark stage complete when verified
