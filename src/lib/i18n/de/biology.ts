@@ -1474,7 +1474,10 @@ export const deBiology = {
             correct: "Richtig!",
             incorrect: "Noch nicht ganz richtig",
             try_again: "Erneut versuchen",
-            explanation: "Erklärung"
+            explanation: "Erklärung",
+            hint: "Prüfen Sie zuerst das Biodiversitätskonzept in der Aufgabe und vergleichen Sie dann die Optionen sorgfältig.",
+            question_label: "Frage",
+            correct_option: "Richtige Option"
         },
         diversity_calculator: {
             title: "Artenvielfalt-Rechner",

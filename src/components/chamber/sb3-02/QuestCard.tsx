@@ -5,7 +5,14 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import LayeredFeedbackPanel from '@/components/feedback/LayeredFeedbackPanel';
+import {
+  DEFAULT_FEEDBACK_POLICY,
+  type FeedbackContent,
+  type FeedbackLevel,
+  type PlatformSolutionStep,
+} from '@/hooks/useQuestManager';
 import { useLanguage } from '@/lib/i18n';
 import { Quest, Language, Question } from '@/lib/sb3-02/types';
 import { LaTeXRenderer, LaTeXErrorBoundary } from './LaTeXRenderer';
@@ -17,13 +24,92 @@ interface QuestCardProps {
   language: Language;
 }
 
+const FEEDBACK_POLICY = DEFAULT_FEEDBACK_POLICY;
+
+function escapeLatexText(text: string) {
+  return text
+    .replace(/\\/g, '\\textbackslash{}')
+    .replace(/([{}%$&#_^])/g, '\\$1')
+    .replace(/~/g, '\\textasciitilde{}')
+    .replace(/\n/g, ' ');
+}
+
+function toLatexText(text: string) {
+  return `\\text{${escapeLatexText(text)}}`;
+}
+
+function getOptionLabel(index: number) {
+  return String.fromCharCode(65 + index);
+}
+
+function buildQuestFeedbackContent(quest: Quest, language: Language, cardCopy: Record<string, string>): FeedbackContent {
+  const steps: PlatformSolutionStep[] = quest.questions.map((question, index) => {
+    const answerIndex = Number(question.correctAnswer);
+    const optionLabel = Number.isFinite(answerIndex) ? getOptionLabel(answerIndex) : String(question.correctAnswer);
+    const optionText = question.options?.[answerIndex]?.[language] ?? String(question.correctAnswer);
+
+    return {
+      stepNumber: index + 1,
+      expressionLatex: toLatexText(
+        `${cardCopy.question_label} ${index + 1}: ${cardCopy.correct_option} ${optionLabel} - ${optionText}`
+      ),
+      justification: question.explanation[language],
+      emphasis: 'key',
+    };
+  });
+
+  const fullSolutionLines = quest.questions.flatMap((question, index) => {
+    const answerIndex = Number(question.correctAnswer);
+    const optionLabel = Number.isFinite(answerIndex) ? getOptionLabel(answerIndex) : String(question.correctAnswer);
+    const optionText = question.options?.[answerIndex]?.[language] ?? String(question.correctAnswer);
+
+    return [
+      toLatexText(`${cardCopy.question_label} ${index + 1}: ${cardCopy.correct_option} ${optionLabel} - ${optionText}`),
+      toLatexText(question.explanation[language]),
+    ];
+  });
+
+  return {
+    hint: toLatexText(cardCopy.hint),
+    steps,
+    fullSolutionLatex: fullSolutionLines.join('\\\\[6pt] '),
+    hasFullSolution: true,
+  };
+}
+
 export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCardProps) {
   const { t } = useLanguage();
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [lastCheck, setLastCheck] = useState<null | { ok: boolean }>(null);
+  const [errorCount, setErrorCount] = useState(0);
+  const [feedbackLevel, setFeedbackLevel] = useState<FeedbackLevel>('NONE');
   const cardCopy = t('sb3_02.quest_card');
   const difficultyCopy = t('sb3_02.difficulty');
+  const feedbackCopy = t('common.chamber_layout.feedback');
+
+  const feedbackContent = useMemo(
+    () => buildQuestFeedbackContent(quest, language, cardCopy),
+    [quest, language, cardCopy]
+  );
+
+  const feedbackAvailability = useMemo(() => {
+    const isCorrect = lastCheck?.ok === true;
+    const isWrong = lastCheck?.ok === false;
+
+    if (isCorrect && FEEDBACK_POLICY.showAfterCorrect) {
+      return {
+        canShowHint: feedbackContent.hint !== null,
+        canShowSteps: feedbackContent.steps.length > 0,
+        canShowFull: !!feedbackContent.fullSolutionLatex,
+      };
+    }
+
+    return {
+      canShowHint: isWrong && errorCount >= FEEDBACK_POLICY.hintThreshold && feedbackContent.hint !== null,
+      canShowSteps: isWrong && errorCount >= FEEDBACK_POLICY.stepsThreshold && feedbackContent.steps.length > 0,
+      canShowFull: isWrong && errorCount >= FEEDBACK_POLICY.fullThreshold && !!feedbackContent.fullSolutionLatex,
+    };
+  }, [errorCount, feedbackContent, lastCheck]);
 
   const handleAnswerSelect = (questionId: string, answer: string) => {
     setSelectedAnswers(prev => ({ ...prev, [questionId]: answer }));
@@ -35,11 +121,16 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
       return selected === String(q.correctAnswer);
     });
 
-    setIsCorrect(allCorrect);
-    setShowFeedback(true);
+    setLastCheck({ ok: allCorrect });
+    setFeedbackLevel('NONE');
 
     if (allCorrect && !isCompleted) {
       onComplete();
+      return;
+    }
+
+    if (!allCorrect) {
+      setErrorCount((prev) => prev + 1);
     }
   };
 
@@ -100,17 +191,16 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
             question={question}
             questionNumber={qIdx + 1}
             language={language}
-            explanationLabel={cardCopy.explanation}
             selectedAnswer={selectedAnswers[question.id]}
             onAnswerSelect={(answer) => handleAnswerSelect(question.id, answer)}
-            showExplanation={showFeedback}
-            isCorrect={selectedAnswers[question.id] === String(question.correctAnswer)}
+            isLocked={lastCheck !== null}
+            revealCorrectAnswer={lastCheck?.ok === true || feedbackLevel === 'FULL'}
           />
         ))}
       </div>
 
       {/* Submit Button */}
-      {!showFeedback && (
+      {lastCheck === null && (
         <button
           onClick={handleSubmit}
           disabled={quest.questions.some(q => !selectedAnswers[q.id])}
@@ -121,18 +211,19 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
       )}
 
       {/* Feedback */}
-      {showFeedback && (
-        <div className={`mt-6 p-4 rounded-lg border ${isCorrect ? 'bg-green-50 border-green-300' : 'bg-amber-50 border-amber-300'}`}>
-          <p className={`font-semibold ${isCorrect ? 'text-green-800' : 'text-amber-800'}`}>
-            {isCorrect ? `✓ ${cardCopy.correct}` : `✗ ${cardCopy.incorrect}`}
+      {lastCheck && (
+        <div className={`mt-6 p-4 rounded-lg border ${lastCheck.ok ? 'bg-green-50 border-green-300' : 'bg-amber-50 border-amber-300'}`}>
+          <p className={`font-semibold ${lastCheck.ok ? 'text-green-800' : 'text-amber-800'}`}>
+            {lastCheck.ok ? `✓ ${cardCopy.correct}` : `✗ ${cardCopy.incorrect}`}
           </p>
-          <p className={`text-sm mt-2 ${isCorrect ? 'text-green-700' : 'text-amber-700'}`}>
-            {quest.feedback[language]}
-          </p>
-          {!isCorrect && (
+          {lastCheck.ok && (
+            <p className="text-sm mt-2 text-green-700">{quest.feedback[language]}</p>
+          )}
+          {!lastCheck.ok && (
             <button
               onClick={() => {
-                setShowFeedback(false);
+                setLastCheck(null);
+                setFeedbackLevel('NONE');
                 setSelectedAnswers({});
               }}
               className="mt-3 px-4 py-2 bg-white border border-amber-300 text-amber-800 rounded font-semibold hover:bg-amber-50 transition-colors"
@@ -142,6 +233,18 @@ export function QuestCard({ quest, isCompleted, onComplete, language }: QuestCar
           )}
         </div>
       )}
+
+      <LayeredFeedbackPanel
+        feedbackContent={feedbackContent}
+        feedbackLevel={feedbackLevel}
+        feedbackAvailability={feedbackAvailability}
+        policy={FEEDBACK_POLICY}
+        isCorrect={lastCheck?.ok === true}
+        onShowHint={() => setFeedbackLevel('HINT')}
+        onShowSteps={() => setFeedbackLevel('STEPS')}
+        onShowFull={() => setFeedbackLevel('FULL')}
+        translations={feedbackCopy}
+      />
     </div>
   );
 }
@@ -150,22 +253,20 @@ interface QuestionItemProps {
   question: Question;
   questionNumber: number;
   language: Language;
-  explanationLabel: string;
   selectedAnswer?: string;
   onAnswerSelect: (answer: string) => void;
-  showExplanation: boolean;
-  isCorrect: boolean;
+  isLocked: boolean;
+  revealCorrectAnswer: boolean;
 }
 
 function QuestionItem({
   question,
   questionNumber,
   language,
-  explanationLabel,
   selectedAnswer,
   onAnswerSelect,
-  showExplanation,
-  isCorrect,
+  isLocked,
+  revealCorrectAnswer,
 }: QuestionItemProps) {
   return (
     <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
@@ -181,10 +282,10 @@ function QuestionItem({
             const isCorrectAnswer = optionValue === String(question.correctAnswer);
             
             let optionClass = 'border-gray-300 hover:border-blue-400';
-            if (showExplanation) {
+            if (revealCorrectAnswer) {
               if (isCorrectAnswer) {
                 optionClass = 'border-green-500 bg-green-50';
-              } else if (isSelected && !isCorrect) {
+              } else if (isSelected) {
                 optionClass = 'border-red-500 bg-red-50';
               }
             } else if (isSelected) {
@@ -202,24 +303,16 @@ function QuestionItem({
                   value={optionValue}
                   checked={isSelected}
                   onChange={(e) => onAnswerSelect(e.target.value)}
-                  disabled={showExplanation}
+                  disabled={isLocked}
                   className="mr-3"
                 />
                 <span className="text-gray-800">{option[language]}</span>
-                {showExplanation && isCorrectAnswer && (
+                {revealCorrectAnswer && isCorrectAnswer && (
                   <span className="ml-auto text-green-600 font-semibold">✓</span>
                 )}
               </label>
             );
           })}
-        </div>
-      )}
-
-      {showExplanation && (
-        <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded">
-          <p className="text-sm text-blue-900">
-            <span className="font-semibold">{explanationLabel}:</span> {question.explanation[language]}
-          </p>
         </div>
       )}
     </div>

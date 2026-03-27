@@ -1534,7 +1534,10 @@ export const enBiology = {
             correct: "Correct!",
             incorrect: "Not quite right",
             try_again: "Try Again",
-            explanation: "Explanation"
+            explanation: "Explanation",
+            hint: "Review the biodiversity concept in the prompt and compare each option carefully before deciding.",
+            question_label: "Question",
+            correct_option: "Correct option"
         },
         diversity_calculator: {
             title: "Species Diversity Calculator",

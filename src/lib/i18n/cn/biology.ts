@@ -1474,7 +1474,10 @@ export const cnBiology = {
             correct: "正确！",
             incorrect: "还不完全正确",
             try_again: "再试一次",
-            explanation: "解释"
+            explanation: "解释",
+            hint: "先回看题目中的生物多样性概念，再逐个比较选项后作答。",
+            question_label: "问题",
+            correct_option: "正确选项"
         },
         diversity_calculator: {
             title: "物种多样性计算器",
