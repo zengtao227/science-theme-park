@@ -7,24 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC301FeedbackProvider } from "@/lib/sc3-01/provider";
+import type { SC301Quest, Stage } from "@/lib/sc3-01/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
-
-type Stage = "ASPIRIN" | "CAFFEINE" | "ADRENALINE";
-
-interface SC301Quest extends Quest {
-  stage: Stage;
-  moleculeName: string;
-  scenario?: string;
-}
 
 export default function SC301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC301FeedbackProvider(t), [t]);
 
   const buildStagePool = useCallback((difficulty: Difficulty, currentStage: Stage): SC301Quest[] => {
     const quests: SC301Quest[] = [];

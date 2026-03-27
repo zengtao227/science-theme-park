@@ -7,24 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicReactionCanvas from "@/components/chamber/sc3-03/OrganicReactionCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC303FeedbackProvider } from "@/lib/sc3-03/provider";
+import type { SC303Quest, Stage } from "@/lib/sc3-03/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "COMBUSTION" | "SUBSTITUTION" | "ADDITION";
-
-interface SC303Quest extends Quest {
-    stage: Stage;
-    reactionType?: string;
-    scenario?: string;
-}
 
 export default function SC303Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-03"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC303FeedbackProvider(t), [t]);
     const [animationSpeed, setAnimationSpeed] = useState(1);
     const [showMechanism, setShowMechanism] = useState(true);
 

@@ -7,25 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC302FeedbackProvider } from "@/lib/sc3-02/provider";
+import type { SC302Quest, Stage } from "@/lib/sc3-02/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "HYDROCARBONS" | "FUNCTIONAL_GROUPS" | "ISOMERS";
-
-interface SC302Quest extends Quest {
-    stage: Stage;
-    molecule?: string;
-    formula?: string;
-    scenario?: string;
-}
 
 export default function SC302Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-02"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC302FeedbackProvider(t), [t]);
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methane");
     const [show3D, setShow3D] = useState(true);
 
