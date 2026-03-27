@@ -308,6 +308,16 @@ export const deMath = {
         placeholders: {
             derivative: "Ableitung"
         },
+        reasons: {
+            identify_function: "Bestimme Zielfunktion und Auswertungsstelle",
+            apply_power_rule: "Wende die Potenzregel an",
+            include_constant_factor: "Behalte den konstanten Faktor außerhalb der Ableitung",
+            differentiate_termwise: "Leite Glied für Glied ab",
+            apply_product_rule: "Wende die Produktregel an",
+            apply_quotient_rule: "Wende die Quotientenregel an",
+            apply_chain_rule: "Wende die Kettenregel an",
+            substitute_x_value: "Setze den gegebenen x-Wert ein"
+        },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
             factor_rule: "(a\\cdot f)' = a\\cdot f'",

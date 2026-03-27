@@ -308,6 +308,16 @@ export const enMath = {
         placeholders: {
             derivative: "derivative"
         },
+        reasons: {
+            identify_function: "Identify the target function and evaluation point",
+            apply_power_rule: "Apply the power rule",
+            include_constant_factor: "Keep the constant factor outside the derivative",
+            differentiate_termwise: "Differentiate each term separately",
+            apply_product_rule: "Apply the product rule",
+            apply_quotient_rule: "Apply the quotient rule",
+            apply_chain_rule: "Apply the chain rule",
+            substitute_x_value: "Substitute the given x-value"
+        },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
             factor_rule: "(a\\cdot f)' = a\\cdot f'",

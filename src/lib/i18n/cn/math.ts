@@ -308,6 +308,16 @@ export const cnMath = {
         placeholders: {
             derivative: "导数"
         },
+        reasons: {
+            identify_function: "识别目标函数与求值点",
+            apply_power_rule: "应用幂函数求导法则",
+            include_constant_factor: "将常数因子保留在导数外",
+            differentiate_termwise: "逐项求导",
+            apply_product_rule: "应用乘积求导法则",
+            apply_quotient_rule: "应用商求导法则",
+            apply_chain_rule: "应用链式法则",
+            substitute_x_value: "代入给定的 x 值"
+        },
         formulas: {
             power_rule: "f'(x) = n\\cdot x^{n-1}",
             factor_rule: "(a\\cdot f)' = a\\cdot f'",
