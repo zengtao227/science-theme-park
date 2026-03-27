@@ -7,25 +7,17 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FunctionalGroupCanvas from "@/components/chamber/sc3-04/FunctionalGroupCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC304FeedbackProvider } from "@/lib/sc3-04/provider";
+import type { SC304Quest, SC304Stage as Stage } from "@/lib/sc3-04/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-
-type Stage = "ALCOHOLS" | "ACIDS" | "ESTERS";
-
-interface SC304Quest extends Quest {
-    stage: Stage;
-    molecule?: string;
-    propA?: string;
-    propB?: string;
-}
 
 export default function SC304Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-04"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC304FeedbackProvider(t), [t]);
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methanol");
     const [showHighlight, setShowHighlight] = useState(true);
 
@@ -69,6 +61,9 @@ export default function SC304Page() {
                     difficulty,
                     stage,
                     molecule: m.id,
+                    moleculeName: m.name,
+                    formula: m.formula,
+                    characteristicGroup: m.expected as SC304Quest["characteristicGroup"],
                     promptLatex: t("sc3_04.prompts.identify_group", { molecule: m.name }),
                     expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
                     targetLatex: m.expected,
@@ -116,6 +111,9 @@ export default function SC304Page() {
                     difficulty,
                     stage,
                     molecule: m.id,
+                    moleculeName: m.name,
+                    formula: m.formula,
+                    characteristicGroup: m.expected as SC304Quest["characteristicGroup"],
                     promptLatex: t("sc3_04.prompts.identify_group", { molecule: m.name }),
                     expressionLatex: `\\text{${m.name}} \\rightarrow \\text{?}`,
                     targetLatex: m.expected,
@@ -164,6 +162,7 @@ export default function SC304Page() {
                     stage,
                     propA: c.a,
                     propB: c.b,
+                    comparisonType: c.type as SC304Quest["comparisonType"],
                     promptLatex: c.q.replace('{a}', c.a).replace('{b}', c.b),
                     expressionLatex: `\\text{A: } ${c.a} \\text{ vs B: } ${c.b}`,
                     targetLatex: c.expected,

@@ -6,22 +6,16 @@ import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrbitalCanvas from "@/components/chamber/sc3-05/OrbitalCanvas";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC305FeedbackProvider } from "@/lib/sc3-05/provider";
+import type { SC305Quest, SC305Stage as Stage } from "@/lib/sc3-05/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
-type Stage = "VSEPR" | "HYBRIDIZATION" | "MO_THEORY";
-
-interface SC305Quest extends Quest {
-    stage: Stage;
-    data?: any;
-}
-
 export default function SC305MolecularForge() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc3-05"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC305FeedbackProvider(t), [t]);
     const sc3_05_t = {
         title: t("sc3_05.title"),
         back: t("sc3_05.back"),
@@ -65,6 +59,7 @@ export default function SC305MolecularForge() {
                     id: `VS-${idx}`,
                     difficulty,
                     stage,
+                    data: { kind: "VSEPR", molecule: m.name, lonePairs: m.lone, bondedAtoms: m.bonded },
                     promptLatex: t("sc3_05.prompts.vsepr_geometry", { molecule: m.name, lone: m.lone, bonded: m.bonded }),
                     expressionLatex: "",
                     targetLatex: `\\text{${m.shape}}`,
@@ -89,6 +84,7 @@ export default function SC305MolecularForge() {
                     id: `HY-${idx}`,
                     difficulty,
                     stage,
+                    data: { kind: "HYBRIDIZATION", molecule: h.m, electronDomains: h.h === "sp" ? 2 : h.h === "sp2" ? 3 : h.h === "sp3" ? 4 : h.h === "sp3d" ? 5 : 6 },
                     promptLatex: t("sc3_05.prompts.hybridization_type", { molecule: h.m }),
                     expressionLatex: "",
                     targetLatex: h.h,
@@ -112,6 +108,7 @@ export default function SC305MolecularForge() {
                     id: `MO-${idx}`,
                     difficulty,
                     stage,
+                    data: { kind: "MO_THEORY", species: m.ion, bondingElectrons: m.b, antibondingElectrons: m.ab },
                     promptLatex: t("sc3_05.prompts.bond_order_calc", { ion: m.ion }),
                     expressionLatex: "\\text{Bond Order} = \\frac{1}{2}(n_b - n_a)",
                     targetLatex: m.order,
