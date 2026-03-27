@@ -10,6 +10,7 @@ import AcidBaseVisualization from "@/components/chamber/sc2-05/AcidBaseVisualiza
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "PH_BASICS" | "NEUTRALIZATION" | "TITRATION";
 
@@ -28,6 +29,7 @@ export default function SC205Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const sc2_05_t = t("sc2_05");
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-05"), [t]);
 
   const buildStagePool = useCallback(
     (difficulty: Difficulty, stage: Stage): AcidBaseQuest[] => {
@@ -839,6 +841,7 @@ export default function SC205Page() {
     moduleCode: "sc2-05",
     buildPool,
     initialStage: "PH_BASICS" as Stage,
+    feedbackContentProvider,
   });
 
   const isCorrect = lastCheck?.ok || null;

@@ -313,11 +313,21 @@ export const MODULE_STAGE_RULES: Record<string, Record<string, string>> = {
     EQUIVALENCE: "\\text{Find the equivalence point}",
     INDICATORS: "\\text{Select a suitable indicator}",
   },
+  "sc2-01": {
+    ARRHENIUS: "k=Ae^{-E_a/(RT)}",
+    RATE_LAW: "\\text{rate}=k[A]^m[B]^n",
+    HALF_LIFE: "t_{1/2}",
+  },
   "sc2-03": {
     boyle: "p_1V_1=p_2V_2",
   },
   "sc2-04": {
     dissolve: "\\text{Solubility depends on conditions}",
+  },
+  "sc2-05": {
+    PH_BASICS: "\\text{pH}=-\\log[H^+]",
+    NEUTRALIZATION: "\\text{acid} + \\text{base} \\to \\text{salt} + \\text{water}",
+    TITRATION: "\\text{Use stoichiometry at equivalence}",
   },
   "sc2-06": {
     OXIDATION_STATE: "\\text{Assign oxidation states}",

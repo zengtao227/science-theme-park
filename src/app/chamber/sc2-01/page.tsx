@@ -9,6 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import KineticsCanvas from "@/components/chamber/sc2-01/KineticsCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
 
 type Stage = "ARRHENIUS" | "RATE_LAW" | "HALF_LIFE";
 type KineticsQuest = Quest & { 
@@ -23,6 +24,7 @@ export default function SC201Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const sc2_01_t = t("sc2_01");
+  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc2-01"), [t]);
 
   const buildStagePool = useCallback((tObj: typeof sc2_01_t, difficulty: Difficulty, stage: Stage): KineticsQuest[] => {
     const pools: Record<Stage, Record<Difficulty, KineticsQuest[]>> = {
@@ -211,6 +213,7 @@ export default function SC201Page() {
     moduleCode: "sc2-01",
     buildPool,
     initialStage: "ARRHENIUS" as Stage,
+    feedbackContentProvider,
   });
 
   const isCorrect = lastCheck?.ok || null;
