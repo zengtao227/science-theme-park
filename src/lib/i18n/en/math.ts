@@ -989,6 +989,16 @@ export const enMath = {
             substitute_both: "Substitute both variables",
             multiply_coeffs: "Multiply coefficients first"
         },
+        reasons: {
+            identify_given_values: "Read the given variable values from the prompt.",
+            substitute_values: "Substitute the known values into the algebraic expression.",
+            compute_final_result: "Carry out the arithmetic to obtain the requested result.",
+            identify_like_terms: "Identify which terms have the same variable part.",
+            combine_variable_terms: "Add or subtract the coefficients of the like variable terms.",
+            combine_constant_terms: "Combine the constant numbers separately.",
+            rewrite_simplified_expression: "Rewrite the expression in simplified form.",
+            evaluate_power_terms: "Square the substituted value before combining the remaining terms."
+        },
         objective_title: "MISSION OBJECTIVE",
         scenario_title: "SCENARIO CONTEXT",
         scenarios: {

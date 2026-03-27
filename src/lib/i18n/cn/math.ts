@@ -969,6 +969,16 @@ export const cnMath = {
             substitute_both: "代入两个变量",
             multiply_coeffs: "先计算系数乘法"
         },
+        reasons: {
+            identify_given_values: "先从题目中读出已知变量的取值。",
+            substitute_values: "把已知数值代入代数表达式。",
+            compute_final_result: "完成算术计算，得到所求结果。",
+            identify_like_terms: "先判断哪些项属于同类项。",
+            combine_variable_terms: "把同类变量项的系数相加或相减。",
+            combine_constant_terms: "把常数项单独合并。",
+            rewrite_simplified_expression: "把表达式改写成最简形式。",
+            evaluate_power_terms: "先计算代入后的平方项，再合并其余部分。"
+        },
         objective_title: "任务目标",
         scenario_title: "场景说明",
         scenarios: {

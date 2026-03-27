@@ -998,6 +998,16 @@ export const deMath = {
             substitute_both: "Setze beide Variablen ein",
             multiply_coeffs: "Koeffizienten zuerst multiplizieren"
         },
+        reasons: {
+            identify_given_values: "Lies zuerst die gegebenen Variablenwerte aus der Aufgabe ab.",
+            substitute_values: "Setze die bekannten Werte in den algebraischen Ausdruck ein.",
+            compute_final_result: "Führe die Rechnung aus und bestimme das gesuchte Ergebnis.",
+            identify_like_terms: "Bestimme zuerst, welche Terme den gleichen Variablenteil haben.",
+            combine_variable_terms: "Addiere oder subtrahiere die Koeffizienten der gleichartigen Terme.",
+            combine_constant_terms: "Fasse die konstanten Zahlen getrennt zusammen.",
+            rewrite_simplified_expression: "Schreibe den Ausdruck in vereinfachter Form neu auf.",
+            evaluate_power_terms: "Berechne zuerst den quadrierten Wert und kombiniere danach die übrigen Terme."
+        },
         objective_title: "MISSIONSZIEL",
         scenario_title: "SZENARIO-KONTEXT",
         scenarios: {

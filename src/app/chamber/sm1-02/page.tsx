@@ -5,24 +5,13 @@ import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlgebraCanvas, { type AlgebraVisualMode } from "@/components/chamber/sm1-02/AlgebraCanvas";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-
-type Stage = "VARIABLES" | "TERMS" | "SUBSTITUTION";
-
-interface S102Quest extends Quest {
-    visualMode: AlgebraVisualMode;
-    visualData: {
-        variables?: { label: string; value: number | string; color: string }[];
-        expression?: string;
-        items?: { type: string; count: number; color: string }[];
-        inputValue?: number;
-        formula?: string;
-    };
-}
+import { createSM102FeedbackProvider } from "@/lib/sm1-02/provider";
+import type { S102Quest, SM102Stage as Stage } from "@/lib/sm1-02/types";
 
 const VAR_COLORS = {
     x: '#3b82f6', // blue
@@ -276,6 +265,7 @@ export default function SM102Page() {
     const { t } = useLanguage();
 
     const sm1_02_t = useMemo(() => t("sm1_02"), [t]);
+    const feedbackContentProvider = useMemo(() => createSM102FeedbackProvider(t), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_02_t, d, s), [sm1_02_t]);
 
@@ -298,7 +288,8 @@ export default function SM102Page() {
         moduleCode: "SM1.02",
         buildPool,
         initialStage: "VARIABLES",
-        tolerance: 0.1
+        tolerance: 0.1,
+        feedbackContentProvider,
     });
 
     useEffect(() => {
