@@ -2313,6 +2313,23 @@ export const cnPhysics = {
         hints: {
             stp_conditions: "标准状态条件"
         },
+        reasons: {
+            select_ideal_gas_equation: "先从联系压强、体积、物质的量和温度的理想气体方程开始。",
+            select_boyle_law: "这是恒温过程，因此使用波义耳定律。",
+            select_charles_law: "这是恒压过程，因此使用查理定律。",
+            rearrange_for_target: "先把公式整理成目标量单独在一边。",
+            substitute_known_values: "把题目给出的数值代入整理后的关系式。",
+            apply_inverse_law: "利用恒温下压强与体积成反比的关系。",
+            apply_direct_law: "利用该气体定律中的正比例关系。",
+            convert_temperatures_to_kelvin: "代入前先把所有温度统一换成开尔文。",
+            identify_constant_condition: "先辨认这条定律要求保持不变的物理量。",
+            interpret_physical_condition: "先解释物理条件，再写出最终结论。",
+            link_combined_gas_law: "用联合气体定律把初态和末态联系起来。",
+            convert_amount_to_mass: "先求气体的物质的量，再用摩尔质量换算成质量。",
+            interpret_concept: "把题目的物理描述翻译成对应的气体定律关系。",
+            state_model_limit: "判断理想化模型在什么条件下会明显失效。",
+            interpret_work_sign: "根据过程方向判断做功的正负号。"
+        },
         labels: {
             factor: "因子",
             symbol: "符号",
@@ -2377,6 +2394,19 @@ export const cnPhysics = {
         incorrect: "不匹配",
         monitor_title: "GP2.02_热力学监视器",
         stages: { first_law: "能量守恒", internal_energy: "系统内能", work_heat: "功与热量" },
+        reasons: {
+            select_first_law_balance: "先写出系统的第一定律能量守恒式。",
+            rearrange_energy_balance: "把第一定律整理成目标量单独在一边。",
+            apply_process_constraint: "利用该热力学过程的定义约束。",
+            select_internal_energy_model: "选择与自由度相匹配的内能模型。",
+            evaluate_temperature_change: "利用给定热容计算由温度变化带来的能量变化。",
+            identify_state_function_behavior: "用状态函数的性质判断内能的变化方式。",
+            select_work_formula: "选择与该过程路径相匹配的功公式。",
+            relate_heat_and_work: "结合第一定律，建立热量与功之间的关系。",
+            interpret_sign_convention: "按本模块的符号约定解释结果。",
+            read_pv_area: "把 PV 图像下的面积解释为热力学功。",
+            substitute_known_values: "把题目给出的数值代入选定的关系式。"
+        },
         prompts: {
             fl_calc_du: "巴塞尔热学实验记录：系统吸收 Q={q} J，同时对外做功 W={w} J。任务：计算内能变化。使用 ΔU=Q-W。",
             fl_calc_q: "过程复盘：已知 ΔU={du} J、系统做功 W={w} J。任务：反求交换热量 Q。使用 Q=ΔU+W。",

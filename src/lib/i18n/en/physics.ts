@@ -2391,6 +2391,23 @@ export const enPhysics = {
                 hints: {
                         stp_conditions: "STP conditions"
                 },
+                reasons: {
+                        select_ideal_gas_equation: "Start from the ideal-gas equation that links pressure, volume, amount, and temperature.",
+                        select_boyle_law: "Use Boyle's law because the process is isothermal.",
+                        select_charles_law: "Use Charles's law because the pressure stays constant.",
+                        rearrange_for_target: "Rearrange the law so the required quantity stands alone.",
+                        substitute_known_values: "Substitute the known values into the rearranged relation.",
+                        apply_inverse_law: "Use the inverse proportionality between pressure and volume at constant temperature.",
+                        apply_direct_law: "Use the direct proportionality in this gas-law relationship.",
+                        convert_temperatures_to_kelvin: "Convert every temperature to Kelvin before applying the law.",
+                        identify_constant_condition: "Identify the quantity that must remain constant for this law.",
+                        interpret_physical_condition: "Interpret the physical condition before stating the answer.",
+                        link_combined_gas_law: "Use the combined gas-law relation to connect the initial and final states.",
+                        convert_amount_to_mass: "After finding the amount of gas, convert it to mass with the molar mass.",
+                        interpret_concept: "Translate the physical statement into the matching gas-law idea.",
+                        state_model_limit: "Check when the idealized model no longer matches real-gas behavior.",
+                        interpret_work_sign: "Use the process direction to determine the work sign."
+                },
                 labels: {
                         factor: "Factor",
                         symbol: "Symbol",
@@ -2455,6 +2472,19 @@ export const enPhysics = {
                 incorrect: "Mismatch",
                 monitor_title: "GP2.02_THERMO_MONITOR",
                 stages: { first_law: "FIRST LAW", internal_energy: "INTERNAL ENERGY", work_heat: "WORK & HEAT" },
+                reasons: {
+                        select_first_law_balance: "Begin with the first-law energy balance for the system.",
+                        rearrange_energy_balance: "Rearrange the first-law equation to isolate the target quantity.",
+                        apply_process_constraint: "Use the defining constraint of this thermodynamic process.",
+                        select_internal_energy_model: "Choose the internal-energy model that matches the degrees of freedom.",
+                        evaluate_temperature_change: "Evaluate the temperature-driven energy change with the given heat capacity.",
+                        identify_state_function_behavior: "Use the state-function idea to interpret how internal energy behaves.",
+                        select_work_formula: "Choose the work relation that matches the process path.",
+                        relate_heat_and_work: "Connect heat and work through the first-law balance for this special case.",
+                        interpret_sign_convention: "Apply the module's sign convention before stating the result.",
+                        read_pv_area: "Interpret the PV-diagram area as thermodynamic work.",
+                        substitute_known_values: "Substitute the given numerical values into the selected relation."
+                },
                 prompts: {
                         fl_calc_du: "Basel lab energy audit: the system absorbs Q={q} J and does W={w} J on surroundings. Task: compute internal-energy change. Use ΔU=Q-W.",
                         fl_calc_q: "Thermal-process report: ΔU={du} J and system work W={w} J are measured. Task: recover exchanged heat. Use Q=ΔU+W.",

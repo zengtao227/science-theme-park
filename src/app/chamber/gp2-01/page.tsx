@@ -7,18 +7,11 @@ import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "IDEAL_GAS" | "BOYLES_LAW" | "CHARLES_LAW";
-
-interface GP201Quest extends Quest {
-    stage: Stage;
-    gasType?: string;
-    lawType?: string;
-}
+import { createGP201FeedbackProvider } from "@/lib/gp2-01/provider";
+import type { GP201Quest, Stage } from "@/lib/gp2-01/types";
 
 function buildStagePool(
     getT: any, // The main t function from useLanguage
@@ -386,7 +379,7 @@ function buildStagePool(
 
 export default function GP201Page() {
     const { t: getT } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "gp2-01"), [getT]);
+    const feedbackContentProvider = useMemo(() => createGP201FeedbackProvider(getT), [getT]);
     const t = getT("gp2_01");
     const { completeStage } = useAppStore();
 

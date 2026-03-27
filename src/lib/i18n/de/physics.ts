@@ -2363,6 +2363,23 @@ export const dePhysics = {
                 hints: {
                         stp_conditions: "STP-Bedingungen"
                 },
+                reasons: {
+                        select_ideal_gas_equation: "Beginne mit der idealen Gasgleichung für Druck, Volumen, Stoffmenge und Temperatur.",
+                        select_boyle_law: "Verwende das Boyle-Mariotte-Gesetz, weil der Prozess isotherm ist.",
+                        select_charles_law: "Verwende das Charles-Gesetz, weil der Druck konstant bleibt.",
+                        rearrange_for_target: "Stelle die Gleichung so um, dass die gesuchte Größe allein steht.",
+                        substitute_known_values: "Setze die bekannten Werte in die umgestellte Beziehung ein.",
+                        apply_inverse_law: "Nutze die umgekehrte Proportionalität zwischen Druck und Volumen bei konstanter Temperatur.",
+                        apply_direct_law: "Nutze die direkte Proportionalität in diesem Gasgesetz.",
+                        convert_temperatures_to_kelvin: "Wandle alle Temperaturen zuerst in Kelvin um.",
+                        identify_constant_condition: "Bestimme die Größe, die für dieses Gesetz konstant bleiben muss.",
+                        interpret_physical_condition: "Deute zuerst die physikalische Bedingung, bevor du das Ergebnis angibst.",
+                        link_combined_gas_law: "Verknüpfe Anfangs- und Endzustand mit dem kombinierten Gasgesetz.",
+                        convert_amount_to_mass: "Wandle nach der Stoffmengenberechnung mit der molaren Masse in eine Masse um.",
+                        interpret_concept: "Übersetze die physikalische Aussage in die passende Gasgesetz-Idee.",
+                        state_model_limit: "Prüfe, wann das ideale Modell vom Verhalten realer Gase abweicht.",
+                        interpret_work_sign: "Nutze die Prozessrichtung, um das Vorzeichen der Arbeit festzulegen."
+                },
                 labels: {
                         factor: "Faktor",
                         symbol: "Symbol",
@@ -2427,6 +2444,19 @@ export const dePhysics = {
                 incorrect: "Abweichung",
                 monitor_title: "GP2.02_THERMO_MONITOR",
                 stages: { first_law: "ERSTER HAUPTSATZ", internal_energy: "INNERE ENERGIE", work_heat: "ARBEIT & WÄRME" },
+                reasons: {
+                        select_first_law_balance: "Beginne mit der Energiebilanz des ersten Hauptsatzes.",
+                        rearrange_energy_balance: "Stelle die Bilanz so um, dass die gesuchte Größe isoliert wird.",
+                        apply_process_constraint: "Nutze die definierende Bedingung dieses thermodynamischen Prozesses.",
+                        select_internal_energy_model: "Wähle das Modell der inneren Energie passend zu den Freiheitsgraden.",
+                        evaluate_temperature_change: "Berechne die temperaturbedingte Energieänderung mit der gegebenen Wärmekapazität.",
+                        identify_state_function_behavior: "Nutze die Eigenschaft der Zustandsgröße, um das Verhalten der inneren Energie zu beurteilen.",
+                        select_work_formula: "Wähle die Arbeitsformel, die zum Prozessweg passt.",
+                        relate_heat_and_work: "Verknüpfe Wärme und Arbeit über die Bilanz des ersten Hauptsatzes.",
+                        interpret_sign_convention: "Wende die Vorzeichenkonvention des Moduls auf das Ergebnis an.",
+                        read_pv_area: "Deute die Fläche im PV-Diagramm als thermodynamische Arbeit.",
+                        substitute_known_values: "Setze die gegebenen Zahlenwerte in die gewählte Beziehung ein."
+                },
                 prompts: {
                         fl_calc_du: "Energieprotokoll im Basler Labor: Das System absorbiert Q={q} J und leistet W={w} J an die Umgebung. Aufgabe: Berechne die innere Energieänderung mit ΔU=Q-W.",
                         fl_calc_q: "Prozessauswertung: Gegeben sind ΔU={du} J und Systemarbeit W={w} J. Aufgabe: Bestimme die zugeführte/abgeführte Wärme Q über Q=ΔU+W.",
