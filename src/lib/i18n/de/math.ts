@@ -3554,6 +3554,15 @@ export const deMath = {
             geometric_formula: "a_n = a_1 \\cdot r^{n-1}",
             series_formula: "S_n = \\frac{n}{2}(2a_1 + (n-1)d)"
         },
+        reasons: {
+            choose_arithmetic_formula: "Verwende die Formel für das n-te Glied einer arithmetischen Folge.",
+            choose_geometric_formula: "Verwende die Formel für das n-te Glied einer geometrischen Folge.",
+            choose_series_formula: "Verwende die Summenformel für die ersten n Glieder einer arithmetischen Reihe.",
+            compute_position_offset: "Berechne zuerst n-1, um den Abstand des Zielglieds vom Anfangsglied zu bestimmen.",
+            compute_power_factor: "Berechne zuerst den Exponenten n-1 und dann die Potenz des Quotienten.",
+            simplify_series_bracket: "Vereinfache zuerst den Ausdruck in der Klammer der Reihenformel.",
+            compute_sequence_result: "Führe die letzte Rechnung aus und bestimme das gesuchte Ergebnis."
+        },
         labels: {
             sequence_data: "FOLGENDATEN",
             progress: "FORTSCHRITT",

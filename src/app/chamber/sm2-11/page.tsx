@@ -11,19 +11,13 @@ import SequenceVisualization from "@/components/chamber/sm2-11/SequenceVisualiza
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM211FeedbackProvider } from "@/lib/sm2-11/provider";
+import type { SM211SequenceData } from "@/lib/sm2-11/solver";
 
 type Stage = "ARITHMETIC" | "GEOMETRIC" | "SERIES";
-type SequenceQuest = Quest & { stage: Stage; context?: string; scenario?: string };
+type SequenceQuest = Quest & { stage: Stage; context?: string; scenario?: string; sequenceData?: SM211SequenceData };
 
-interface SequenceData {
-  a1: number;
-  d?: number;
-  r?: number;
-  n: number;
-  answer: number;
-}
-
-const QUEST_DATA: Record<Stage, Record<Difficulty, SequenceData[]>> = {
+const QUEST_DATA: Record<Stage, Record<Difficulty, SM211SequenceData[]>> = {
   ARITHMETIC: {
     BASIC: [
       { a1: 2, d: 3, n: 5, answer: 14 },
@@ -119,6 +113,7 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SequenceData[]>> = {
 export default function SM211Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM211FeedbackProvider(t), [t]);
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SequenceQuest[] => {
     const quests: SequenceQuest[] = [];
@@ -137,6 +132,7 @@ export default function SM211Page() {
           slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: t("sm2_11.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `a_{${data.n}} = ${data.answer}`,
           hintLatex: [t("sm2_11.hints.arithmetic_formula")],
+          sequenceData: data,
         });
       } else if (stage === "GEOMETRIC") {
         quests.push({
@@ -150,6 +146,7 @@ export default function SM211Page() {
           slots: [{ id: "ans", labelLatex: `a_{${data.n}}`, placeholder: t("sm2_11.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `a_{${data.n}} = ${data.answer}`,
           hintLatex: [t("sm2_11.hints.geometric_formula")],
+          sequenceData: data,
         });
       } else {
         quests.push({
@@ -163,6 +160,7 @@ export default function SM211Page() {
           slots: [{ id: "ans", labelLatex: `S_{${data.n}}`, placeholder: t("sm2_11.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `S_{${data.n}} = ${data.answer}`,
           hintLatex: [t("sm2_11.hints.series_formula")],
+          sequenceData: data,
         });
       }
     });
@@ -200,6 +198,7 @@ export default function SM211Page() {
     moduleCode: "sm2-11",
     buildPool,
     initialStage: "ARITHMETIC",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

@@ -3577,6 +3577,15 @@ export const enMath = {
             geometric_formula: "a_n = a_1 \\cdot r^{n-1}",
             series_formula: "S_n = \\frac{n}{2}(2a_1 + (n-1)d)"
         },
+        reasons: {
+            choose_arithmetic_formula: "Use the nth-term formula for an arithmetic sequence.",
+            choose_geometric_formula: "Use the nth-term formula for a geometric sequence.",
+            choose_series_formula: "Use the sum formula for the first n terms of an arithmetic series.",
+            compute_position_offset: "First compute n-1 to find how many steps separate the target term from the first term.",
+            compute_power_factor: "Compute the exponent n-1 and evaluate the common ratio power.",
+            simplify_series_bracket: "Simplify the expression inside the series formula before multiplying.",
+            compute_sequence_result: "Carry out the final arithmetic to obtain the requested result."
+        },
         labels: {
             sequence_data: "SEQUENCE DATA",
             progress: "PROGRESS",

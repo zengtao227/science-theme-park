@@ -3572,6 +3572,15 @@ export const cnMath = {
             geometric_formula: "a_n = a_1 \\cdot r^{n-1}",
             series_formula: "S_n = \\frac{n}{2}(2a_1 + (n-1)d)"
         },
+        reasons: {
+            choose_arithmetic_formula: "使用等差数列的第 n 项公式。",
+            choose_geometric_formula: "使用等比数列的第 n 项公式。",
+            choose_series_formula: "使用等差级数前 n 项和公式。",
+            compute_position_offset: "先计算 n-1，确定目标项距离首项相隔多少步。",
+            compute_power_factor: "先求出指数 n-1，再计算公比的幂。",
+            simplify_series_bracket: "先化简级数公式括号中的部分，再进行乘法。",
+            compute_sequence_result: "完成最后的计算，得到题目要求的结果。"
+        },
         labels: {
             sequence_data: "数列数据",
             progress: "进度",
