@@ -9,16 +9,14 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import "katex/dist/katex.min.css";
 import { motion } from "framer-motion";
 import BondingVisualization3D from "@/components/chamber/sc1-05/BondingVisualization3D";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "IONIC" | "COVALENT" | "METALLIC";
-type BondQuest = Quest & { stage: Stage };
+import { createSC105FeedbackProvider } from "@/lib/sc1-05/provider";
+import type { BondQuest, Stage } from "@/lib/sc1-05/types";
 
 export default function SC105Page() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-05"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC105FeedbackProvider(t), [t]);
     const { completeStage } = useAppStore();
 
     const sc1_05_t = {

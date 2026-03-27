@@ -26,12 +26,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, Beaker, Zap, Info } from 'lucide-react';
 import { clsx } from 'clsx';
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC106FeedbackProvider } from "@/lib/sc1-06-provider";
 
 export default function SC106Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-06"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC106FeedbackProvider(t), [t]);
 
   // Track completion state for each stage component
   const [componentCompleted, setComponentCompleted] = useState(false);
