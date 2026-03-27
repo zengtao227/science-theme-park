@@ -830,6 +830,12 @@ export const cnMath = {
             prism: "棱柱",
             cylinder: "圆柱体"
         },
+        reasons: {
+            identify_shape_and_dimensions: "识别图形及已知尺寸。",
+            select_geometry_formula: "选择对应的几何公式。",
+            substitute_into_formula: "把已知数值代入公式。",
+            compute_final_geometry_result: "计算最终的几何结果。"
+        },
         quests: {
             ski: "圣莫里茨滑雪巡逻队在清晨前要为初学者雪道补雪。该雪道近似为长方形，负责人需要根据长度和宽度计算面积，估算造雪机需要喷洒的雪量。请计算雪道面积。结果将用于安排造雪机运行时长和燃料补给。",
             sail: "苏黎世帆船俱乐部的学员帆匠正在裁剪青少年比赛训练帆。帆布是三角形，她需要根据底和高计算面积，才能准确下单布料。请计算三角形帆面积。结果将用于控制材料成本并保证船帆重量符合比赛要求。",
@@ -1246,6 +1252,16 @@ export const cnMath = {
             liters_solution: "溶液升数",
             principal_amount: "本金金额",
             time_to_meet: "相遇时间"
+        },
+        reasons: {
+            identify_balance_equation: "先识别保持平衡的等式。",
+            apply_same_operation: "对等式两边执行同样的运算。",
+            identify_target_equation: "识别目标方程和未知量。",
+            simplify_and_isolate: "化简方程并孤立未知数。",
+            rearrange_equation: "把方程整理成可求解的形式。",
+            model_word_problem: "把情境题转化为方程模型。",
+            solve_model_equation: "逐步求解这个方程模型。",
+            state_final_solution: "清楚写出最终答案。"
         },
         visualization: {
             no_data: "暂无数据",

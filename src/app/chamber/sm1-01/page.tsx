@@ -8,17 +8,12 @@ import { useEffect, useCallback, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import S101_GeometryCanvas, { GeometryMeta } from "@/components/chamber/sm1-01/GeometryCanvas";
+import S101_GeometryCanvas from "@/components/chamber/sm1-01/GeometryCanvas";
 import Cube3D from "@/components/chamber/sm1-01/Cube3D";
-
-type Stage = "AREAS" | "VOLUMES" | "COMPLEX";
-
-interface S101Quest extends Quest {
-    stage: Stage;
-    visualMeta?: GeometryMeta;
-}
+import { createSM101FeedbackProvider } from "@/lib/sm1-01/provider";
+import type { S101Quest, SM101Stage as Stage } from "@/lib/sm1-01/types";
 
 const PRINT_DIFFICULTIES: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
 const PRINT_STAGES: Stage[] = ["AREAS", "VOLUMES", "COMPLEX"];
@@ -878,6 +873,7 @@ export default function S101Page() {
     }), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm1_01_t, d, s), [sm1_01_t]);
+    const feedbackContentProvider = useMemo(() => createSM101FeedbackProvider(t), [t]);
 
     const {
         difficulty,
@@ -906,6 +902,7 @@ export default function S101Page() {
         moduleCode: "sm1-01",
         buildPool,
         initialStage: "AREAS",
+        feedbackContentProvider,
     });
 
     useEffect(() => {

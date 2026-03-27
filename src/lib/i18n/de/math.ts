@@ -859,6 +859,12 @@ export const deMath = {
             prism: "Prisma",
             cylinder: "Zylinder"
         },
+        reasons: {
+            identify_shape_and_dimensions: "Bestimme die Figur und die gegebenen Maße.",
+            select_geometry_formula: "Wähle die passende geometrische Formel aus.",
+            substitute_into_formula: "Setze die bekannten Werte in die Formel ein.",
+            compute_final_geometry_result: "Berechne das endgültige geometrische Ergebnis."
+        },
         quests: {
             ski: "Ein Pistenpatrouillenleiter in St. Moritz bereitet vor Sonnenaufgang eine rechteckige Anfängerpiste vor. Er muss die Fläche aus Länge und Breite berechnen, um den Bedarf an Kunstschnee zu bestimmen. Berechne die Pistenfläche. Das Ergebnis wird zur Planung von Laufzeit und Treibstoff der Schneekanonen verwendet.",
             sail: "Im Zürcher Segelclub schneidet eine Auszubildende ein dreieckiges Trainingssegel für eine Jugendregatta. Sie muss die Dreiecksfläche aus Grundseite und Höhe berechnen, um die richtige Menge Segeltuch zu bestellen. Berechne die Segelfläche. So bleiben Materialkosten und Segelgewicht im zulässigen Bereich.",
@@ -1271,6 +1277,16 @@ export const deMath = {
             liters_solution: "Liter der Lösung",
             principal_amount: "Kapitalbetrag",
             time_to_meet: "Zeit bis zum Treffen"
+        },
+        reasons: {
+            identify_balance_equation: "Bestimme die ausgeglichene Gleichung.",
+            apply_same_operation: "Führe auf beiden Seiten die gleiche Operation aus.",
+            identify_target_equation: "Bestimme die Zielgleichung und die Unbekannte.",
+            simplify_and_isolate: "Vereinfache die Gleichung und isoliere die Variable.",
+            rearrange_equation: "Forme die Gleichung in eine lösbare Form um.",
+            model_word_problem: "Übersetze die Sachaufgabe in ein Gleichungsmodell.",
+            solve_model_equation: "Löse das Gleichungsmodell Schritt für Schritt.",
+            state_final_solution: "Formuliere die endgültige Lösung klar."
         },
         visualization: {
             no_data: "Keine Daten",

@@ -850,6 +850,12 @@ export const enMath = {
             prism: "Prism",
             cylinder: "Cylinder"
         },
+        reasons: {
+            identify_shape_and_dimensions: "Identify the shape and given dimensions.",
+            select_geometry_formula: "Choose the matching geometry formula.",
+            substitute_into_formula: "Substitute the known values into the formula.",
+            compute_final_geometry_result: "Compute the final geometric result."
+        },
         quests: {
             ski: "A ski patrol supervisor in St. Moritz is preparing a beginner rectangular slope before sunrise. The slope section is represented as a rectangle, and she must calculate the area to estimate how much artificial snow to deploy. Given the measured length and width, find the slope area. The result is used to schedule snow machine runtime and fuel.",
             sail: "At the Zurich Sailing Club, a trainee sailmaker is cutting a triangular training sail for a youth regatta. She must calculate the triangle area from the measured base and height to order the correct amount of canvas. Find the sail area. This ensures material cost and weight stay within race limits.",
@@ -1260,6 +1266,16 @@ export const enMath = {
             liters_solution: "Liters of solution",
             principal_amount: "Principal amount",
             time_to_meet: "Time to meet"
+        },
+        reasons: {
+            identify_balance_equation: "Identify the balanced equation.",
+            apply_same_operation: "Apply the same operation to both sides.",
+            identify_target_equation: "Identify the target equation and unknown.",
+            simplify_and_isolate: "Simplify the equation and isolate the variable.",
+            rearrange_equation: "Rearrange the equation into a solvable form.",
+            model_word_problem: "Translate the scenario into an equation model.",
+            solve_model_equation: "Solve the model equation step by step.",
+            state_final_solution: "State the final solution clearly."
         },
         visualization: {
             no_data: "No data",

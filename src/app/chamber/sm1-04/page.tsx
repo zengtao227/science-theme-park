@@ -8,19 +8,10 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquationBalance from "@/components/chamber/sm1-04/EquationBalance";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
-
-type Stage = "BALANCE" | "SOLVE" | "TRANSFORM" | "APPLICATIONS";
-type EquationQuest = Quest & {
-  stage: Stage;
-  context?: string;
-  scenario?: string;
-  equation?: string;
-  leftSide?: number;
-  rightSide?: number;
-  operation?: string;
-};
+import { createSM104FeedbackProvider } from "@/lib/sm1-04/provider";
+import type { EquationQuest, SM104Stage as Stage } from "@/lib/sm1-04/types";
 
 export default function SM104Page() {
   const { completeStage } = useAppStore();
@@ -1196,6 +1187,7 @@ export default function SM104Page() {
   }, [t]);
 
   const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => buildStagePool(sm1_04_t, difficulty, stage), [sm1_04_t, buildStagePool]);
+  const feedbackContentProvider = useMemo(() => createSM104FeedbackProvider(t), [t]);
 
   const {
     currentQuest: quest,
@@ -1224,6 +1216,7 @@ export default function SM104Page() {
     buildPool,
     initialStage: "BALANCE",
     tolerance: 0.01,
+    feedbackContentProvider,
   });
 
   useEffect(() => {
