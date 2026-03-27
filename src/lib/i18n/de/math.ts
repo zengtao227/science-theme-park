@@ -3636,6 +3636,14 @@ export const deMath = {
             combination_formula: "C(n,r) = \\frac{n!}{r!(n-r)!}",
             probability_formula: "P = \\frac{\\text{günstig}}{\\text{gesamt}}"
         },
+        reasons: {
+            choose_permutation_formula: "Verwende die Permutationsformel, weil die Reihenfolge zählt.",
+            expand_permutation_product: "Schreibe den Fakultätsquotienten als fallendes Produkt um.",
+            choose_combination_formula: "Verwende die Kombinationsformel, weil die Reihenfolge nicht zählt.",
+            divide_by_orderings: "Teile die Anzahl der Permutationen durch die internen Anordnungen.",
+            identify_probability_ratio: "Wahrscheinlichkeit ist das Verhältnis von günstigen zu allen Ergebnissen.",
+            compute_combinatorics_result: "Führe die Rechnung aus und bestimme das Endergebnis."
+        },
         labels: {
             formula: "FORMEL",
             progress: "FORTSCHRITT",

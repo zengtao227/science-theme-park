@@ -3654,6 +3654,14 @@ export const cnMath = {
             combination_formula: "C(n,r) = \\frac{n!}{r!(n-r)!}",
             probability_formula: "P = \\frac{\\text{有利结果}}{\\text{总结果}}"
         },
+        reasons: {
+            choose_permutation_formula: "因为顺序有关，所以使用排列公式。",
+            expand_permutation_product: "把阶乘商改写成递减连乘积。",
+            choose_combination_formula: "因为顺序无关，所以使用组合公式。",
+            divide_by_orderings: "把排列数除以内部不同排序的数量。",
+            identify_probability_ratio: "概率等于有利结果数除以总结果数。",
+            compute_combinatorics_result: "完成计算，得到最终结果。"
+        },
         labels: {
             formula: "公式",
             progress: "进度",

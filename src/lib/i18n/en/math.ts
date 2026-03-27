@@ -3659,6 +3659,14 @@ export const enMath = {
             combination_formula: "C(n,r) = \\frac{n!}{r!(n-r)!}",
             probability_formula: "P = \\frac{\\text{favorable}}{\\text{total}}"
         },
+        reasons: {
+            choose_permutation_formula: "Use the permutation formula because order matters.",
+            expand_permutation_product: "Rewrite the factorial quotient as a falling product.",
+            choose_combination_formula: "Use the combination formula because order does not matter.",
+            divide_by_orderings: "Divide the permutation count by the number of internal orderings.",
+            identify_probability_ratio: "Probability is the ratio of favorable outcomes to total outcomes.",
+            compute_combinatorics_result: "Carry out the arithmetic to obtain the final result."
+        },
         labels: {
             formula: "FORMULA",
             progress: "PROGRESS",

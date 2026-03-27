@@ -11,15 +11,11 @@ import CombinatoricsVisualization from "@/components/chamber/sm2-12/Combinatoric
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM212FeedbackProvider } from "@/lib/sm2-12/provider";
+import type { SM212ComboData } from "@/lib/sm2-12/solver";
 
 type Stage = "PERMUTATIONS" | "COMBINATIONS" | "PROBABILITY";
-type ComboQuest = Quest & { stage: Stage; context?: string; scenario?: string };
-
-interface ComboData {
-  n: number;
-  r: number;
-  answer: number;
-}
+type ComboQuest = Quest & { stage: Stage; context?: string; scenario?: string; comboData?: SM212ComboData };
 
 const factorial = (n: number): number => {
   if (n <= 1) return 1;
@@ -34,7 +30,7 @@ const combination = (n: number, r: number): number => {
   return factorial(n) / (factorial(r) * factorial(n - r));
 };
 
-const QUEST_DATA: Record<Stage, Record<Difficulty, ComboData[]>> = {
+const QUEST_DATA: Record<Stage, Record<Difficulty, SM212ComboData[]>> = {
   PERMUTATIONS: {
     BASIC: [
       { n: 5, r: 2, answer: permutation(5, 2) },
@@ -130,6 +126,7 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, ComboData[]>> = {
 export default function SM212Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM212FeedbackProvider(t), [t]);
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): ComboQuest[] => {
     const quests: ComboQuest[] = [];
@@ -148,6 +145,7 @@ export default function SM212Page() {
           slots: [{ id: "ans", labelLatex: `P(${data.n}, ${data.r})`, placeholder: t("sm2_12.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `P(${data.n}, ${data.r}) = ${data.answer}`,
           hintLatex: [t("sm2_12.hints.permutation_formula")],
+          comboData: data,
         });
       } else if (stage === "COMBINATIONS") {
         quests.push({
@@ -161,6 +159,7 @@ export default function SM212Page() {
           slots: [{ id: "ans", labelLatex: `C(${data.n}, ${data.r})`, placeholder: t("sm2_12.placeholders.ellipsis"), expected: data.answer }],
           correctLatex: `C(${data.n}, ${data.r}) = ${data.answer}`,
           hintLatex: [t("sm2_12.hints.combination_formula")],
+          comboData: data,
         });
       } else {
         quests.push({
@@ -174,6 +173,7 @@ export default function SM212Page() {
           slots: [{ id: "ans", labelLatex: "P", placeholder: t("sm2_12.placeholders.v_0_dot_xxx"), expected: data.answer }],
           correctLatex: `P = ${data.answer}`,
           hintLatex: [t("sm2_12.hints.probability_formula")],
+          comboData: data,
         });
       }
     });
@@ -211,6 +211,7 @@ export default function SM212Page() {
     moduleCode: "sm2-12",
     buildPool,
     initialStage: "PERMUTATIONS",
+    feedbackContentProvider,
   });
 
   useEffect(() => {
