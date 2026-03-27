@@ -633,6 +633,16 @@ export const enMath = {
         placeholders: {
             probability_4dp: "0.0000"
         },
+        reasons: {
+            identify_sample_space: "Identify the favorable outcomes and the total number of equally likely outcomes.",
+            apply_probability_ratio: "Use the basic probability formula P(E) = favorable / total.",
+            compute_decimal_probability: "Evaluate the expression and write the probability to four decimal places.",
+            identify_binomial_parameters: "Read the binomial parameters n, k, and p from the quest.",
+            apply_binomial_formula: "Apply the binomial probability formula.",
+            compute_binomial_coefficient: "Calculate the combination term.",
+            identify_conditional_components: "Extract P(B) and P(A intersection B) from the given data.",
+            apply_conditional_formula: "Use the conditional probability formula P(A|B)=P(A intersection B)/P(B).",
+        },
         viz: {
             sampleSpace: "Sample Space",
             outcomes: "outcomes",

@@ -633,6 +633,16 @@ export const deMath = {
         placeholders: {
             probability_4dp: "0.0000"
         },
+        reasons: {
+            identify_sample_space: "Bestimme zuerst die Anzahl der günstigen und der insgesamt gleich wahrscheinlichen Ergebnisse.",
+            apply_probability_ratio: "Verwende die Grundformel der Wahrscheinlichkeit P(E) = günstig / gesamt.",
+            compute_decimal_probability: "Berechne den Ausdruck und gib die Wahrscheinlichkeit mit vier Dezimalstellen an.",
+            identify_binomial_parameters: "Lies die Binomialparameter n, k und p aus der Aufgabe ab.",
+            apply_binomial_formula: "Setze die Werte in die Binomialformel ein.",
+            compute_binomial_coefficient: "Berechne den Binomialkoeffizienten.",
+            identify_conditional_components: "Entnimm aus den Angaben P(B) und P(A∩B).",
+            apply_conditional_formula: "Nutze die Formel der bedingten Wahrscheinlichkeit P(A|B)=P(A∩B)/P(B).",
+        },
         viz: {
             sampleSpace: "Stichprobenraum",
             outcomes: "Ergebnisse",

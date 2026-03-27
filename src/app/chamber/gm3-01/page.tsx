@@ -18,7 +18,7 @@ import {
 } from "@/lib/gm3-01/quests";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGM301FeedbackProvider } from "@/lib/gm3-01/provider";
 
 
 
@@ -34,7 +34,7 @@ function buildStagePool(gm3_01_t: any, difficulty: Difficulty, stage: Stage): G3
 export default function G301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gm3-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createGM301FeedbackProvider(t), [t]);
 
   const gm3_01_t = {
     title: t("gm3_01.title"),

@@ -634,6 +634,16 @@ export const cnMath = {
         placeholders: {
             probability_4dp: "0.0000"
         },
+        reasons: {
+            identify_sample_space: "先识别有利结果数与等可能结果总数。",
+            apply_probability_ratio: "使用基础概率公式 P(E)=有利结果数/总结果数。",
+            compute_decimal_probability: "计算表达式，并把概率写成四位小数。",
+            identify_binomial_parameters: "先读出题目中的二项分布参数 n、k 和 p。",
+            apply_binomial_formula: "应用二项分布概率公式。",
+            compute_binomial_coefficient: "计算组合数项。",
+            identify_conditional_components: "从已知条件中提取 P(B) 与 P(A∩B)。",
+            apply_conditional_formula: "使用条件概率公式 P(A|B)=P(A∩B)/P(B)。",
+        },
         viz: {
             sampleSpace: "样本空间",
             outcomes: "个结果",
