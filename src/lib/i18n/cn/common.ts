@@ -155,6 +155,12 @@ export const cnCommon = {
                 confirm_yes: "确认查看",
                 confirm_cancel: "取消"
             }
+        },
+        feedback_reasons: {
+            identify_given_values: "先识别已知量和目标量。",
+            select_formula_or_rule: "选择对应的公式或规则。",
+            solve_step_by_step: "按步骤完成计算或推导。",
+            state_final_result: "清楚写出最终结果。"
         }
     },
     home: {

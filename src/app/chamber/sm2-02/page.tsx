@@ -16,6 +16,7 @@ import RadicalSlotInput, { Radical } from "@/components/chamber/sm2-02/RadicalIn
 import { renderMixedText, normalizeInlineMath } from "@/lib/latex-utils";
 import { formatRadicalLatex, simplifyRadical, toRadical } from "@/lib/math";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM202FeedbackProvider } from "@/lib/sm2-02/provider";
 
 type Stage =
   | "EXPLORER"
@@ -552,6 +553,7 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 export default function S202Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM202FeedbackProvider(t), [t]);
 
   const sm2_02_t = useMemo(() => ({
     translate: t,
@@ -678,6 +680,7 @@ export default function S202Page() {
     moduleCode: "sm2-02",
     buildPool,
     initialStage: "SOLVE_HYP",
+    feedbackContentProvider,
   });
 
   const [explorerA, setExplorerA] = useState(3);

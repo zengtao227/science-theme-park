@@ -11,6 +11,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import dynamic from "next/dynamic";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM302FeedbackProvider } from "@/lib/sm3-02/provider";
 
 const TrigCanvas = dynamic(() => import("@/components/chamber/sm3-02/TrigCanvas"), {
     ssr: false,
@@ -211,6 +212,7 @@ function TrigMonitorPanel({
 export default function S302Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createSM302FeedbackProvider(t), [t]);
 
     // Canvas State
     const [angle, setAngle] = useState(45);
@@ -248,6 +250,7 @@ export default function S302Page() {
     moduleCode: "sm3-02",
         buildPool,
         initialStage: "UNIT_CIRCLE",
+        feedbackContentProvider,
     });
 
     // Sync angle from quest - using the "adjust state during render" pattern to satisfy React Compiler

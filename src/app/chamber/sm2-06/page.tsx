@@ -10,6 +10,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AlchemistCanvas, { type SystemsVisual } from "@/components/chamber/sm2-06/AlchemistCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM206FeedbackProvider } from "@/lib/sm2-06/provider";
 
 type Stage = "SUBSTITUTION" | "ELIMINATION" | "MISSION";
 
@@ -1052,6 +1053,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
 export default function S206Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM206FeedbackProvider(t), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
@@ -1082,6 +1084,7 @@ export default function S206Page() {
     moduleCode: "sm2-06",
     buildPool,
     initialStage: "SUBSTITUTION",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

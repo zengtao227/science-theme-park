@@ -155,6 +155,12 @@ export const deCommon = {
                 confirm_yes: "JA, ZEIGEN",
                 confirm_cancel: "ABBRECHEN"
             }
+        },
+        feedback_reasons: {
+            identify_given_values: "Bestimme die gegebenen Werte und das Ziel.",
+            select_formula_or_rule: "Wähle die passende Formel oder Regel aus.",
+            solve_step_by_step: "Arbeite die Rechnung Schritt für Schritt durch.",
+            state_final_result: "Formuliere das Endergebnis klar."
         }
     },
     home: {

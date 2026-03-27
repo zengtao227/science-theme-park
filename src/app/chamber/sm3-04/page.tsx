@@ -15,6 +15,7 @@ import {
     generateDecibelQuests,
     generateRichterQuests,
 } from "@/lib/sm3-04/quests";
+import { createSM304FeedbackProvider } from "@/lib/sm3-04/provider";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
@@ -28,6 +29,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>["t"], difficulty: Diff
 export default function S304Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM304FeedbackProvider(t), [t]);
 
   const {
     difficulty,
@@ -55,6 +57,7 @@ export default function S304Page() {
     moduleCode: "sm3-04",
     buildPool: (d, s) => buildStagePool(t, d, s),
     initialStage: "PH",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

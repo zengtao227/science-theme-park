@@ -10,6 +10,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ProbabilityVisualizer from "@/components/chamber/sm2-08/ProbabilityVisualizer";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM208FeedbackProvider } from "@/lib/sm2-08/provider";
 
 type Stage = "BASIC_PROB" | "LOTTERY" | "COMBINED" | "DATA_STATS";
 type ProbQuest = Quest & { stage: Stage; context?: string; scenario?: string };
@@ -17,6 +18,7 @@ type ProbQuest = Quest & { stage: Stage; context?: string; scenario?: string };
 export default function SM208Page() {
   const { completeStage } = useAppStore();
   const { t, currentLanguage } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM208FeedbackProvider(t), [t]);
 
   const sm2_08_t = useMemo(() => ({
     scenarios: {
@@ -1167,6 +1169,7 @@ export default function SM208Page() {
     buildPool,
     initialStage: "BASIC_PROB",
     tolerance: 0.01,
+    feedbackContentProvider,
   });
 
   useEffect(() => {

@@ -155,6 +155,12 @@ export const enCommon = {
                 confirm_yes: "YES, SHOW ME",
                 confirm_cancel: "CANCEL"
             }
+        },
+        feedback_reasons: {
+            identify_given_values: "Identify the given values and target.",
+            select_formula_or_rule: "Choose the matching formula or rule.",
+            solve_step_by_step: "Work through the calculation step by step.",
+            state_final_result: "State the final result clearly."
         }
     },
     home: {

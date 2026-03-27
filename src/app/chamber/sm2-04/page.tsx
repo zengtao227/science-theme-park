@@ -12,6 +12,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S204_SimilarityCanvas, { SimilarityVisual } from "@/components/chamber/sm2-04/SimilarityCanvas";
 import { buildQuestPrintSections } from "@/components/print/QuestPrintSections";
+import { createSM204FeedbackProvider } from "@/lib/sm2-04/provider";
 
 type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
 
@@ -697,6 +698,7 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
 export default function S204Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createSM204FeedbackProvider(t), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
@@ -727,6 +729,7 @@ export default function S204Page() {
         moduleCode: "sm2-04",
         buildPool,
         initialStage: "SCALE_FACTOR",
+        feedbackContentProvider,
     });
 
     useEffect(() => {

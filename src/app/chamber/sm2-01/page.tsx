@@ -12,6 +12,7 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { Lock, Unlock, Settings2, Info, Zap } from "lucide-react";
 import { clsx } from "clsx";
+import { createSM201FeedbackProvider } from "@/lib/sm2-01/provider";
 
 type QuestMode = "EXPLORE" | "ARCHITECT" | "SCRAPPER" | "SPEEDSTER" | "ELITE" | "VOYAGER";
 
@@ -274,6 +275,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: QuestMode): S201Q
 
 export default function S201Page() {
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM201FeedbackProvider(t), [t]);
 
   const sm2_01_t = useMemo(() => ({
     title: t("sm2_01.title"),
@@ -433,6 +435,7 @@ export default function S201Page() {
     moduleCode: "sm2-01",
     buildPool,
     initialStage: questMode,
+    feedbackContentProvider,
   });
 
   const stages = useMemo<{ id: QuestMode; label: string }[]>(() => [

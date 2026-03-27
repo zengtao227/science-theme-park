@@ -11,6 +11,7 @@ import ExponentialChart from "@/components/chamber/sm3-03/ExponentialChart";
 import { clsx } from "clsx";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM303FeedbackProvider } from "@/lib/sm3-03/provider";
 
 type Stage = "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS";
 
@@ -231,6 +232,7 @@ function buildStagePool(sm3_03_t: any, d: Difficulty, s: Stage): S303Quest[] {
 export default function S303Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM303FeedbackProvider(t), [t]);
   
   const sm3_03_t = useMemo(() => ({
     title: t("sm3_03.title"),
@@ -321,6 +323,7 @@ export default function S303Page() {
     moduleCode: "sm3-03",
     buildPool,
     initialStage: "EXPONENTIAL",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CoordinateCanvas2D from "@/components/chamber/sm2-07/CoordinateCanvas2D";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM207FeedbackProvider } from "@/lib/sm2-07/provider";
 
 type Stage = "DISTANCE" | "MIDPOINT" | "SLOPE";
 
@@ -306,6 +307,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
 export default function S207Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM207FeedbackProvider(t), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
@@ -336,6 +338,7 @@ export default function S207Page() {
     moduleCode: "sm2-07",
     buildPool,
     initialStage: "DISTANCE",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

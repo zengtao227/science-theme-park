@@ -10,6 +10,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S205_PowerCanvas, { type PowerVisual } from "@/components/chamber/sm2-05/PowerCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM205FeedbackProvider } from "@/lib/sm2-05/provider";
 
 type Stage = "RULES" | "NEGATIVE" | "SCIENTIFIC";
 
@@ -658,6 +659,7 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
 export default function S205Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createSM205FeedbackProvider(t), [t]);
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 
@@ -680,6 +682,7 @@ export default function S205Page() {
         moduleCode: "sm2-05",
         buildPool,
         initialStage: "RULES",
+        feedbackContentProvider,
     });
     const [showExperimental, setShowExperimental] = useState(false);
 

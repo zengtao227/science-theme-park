@@ -10,6 +10,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import LaserCanvas from "@/components/chamber/sm2-03/LaserCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM203FeedbackProvider } from "@/lib/sm2-03/provider";
 
 type Stage = "LEVEL1" | "LEVEL2" | "LEVEL3";
 
@@ -222,6 +223,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S203Quest
 export default function S203Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
+  const feedbackContentProvider = useMemo(() => createSM203FeedbackProvider(t), [t]);
 
   const sm2_03_t = useMemo(() => ({
     title: t("sm2_03.title"),
@@ -302,6 +304,7 @@ export default function S203Page() {
     moduleCode: "sm2-03",
     buildPool,
     initialStage: "LEVEL1",
+    feedbackContentProvider,
   });
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import GeometryVisualization from "@/components/chamber/sm3-05/GeometryVisualiza
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { createSM305FeedbackProvider } from "@/lib/sm3-05/provider";
 
 type Stage = "BASEL_ARCH" | "CROSS_SECTIONS" | "CURVED_SOLIDS";
 
@@ -21,6 +22,7 @@ interface SM305Quest extends Quest {
 export default function SM305Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createSM305FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SM305Quest[] => {
         const quests: SM305Quest[] = [];
@@ -653,6 +655,7 @@ export default function SM305Page() {
     moduleCode: "sm3-05",
         buildPool,
         initialStage: "BASEL_ARCH",
+        feedbackContentProvider,
     });
 
     useEffect(() => {
