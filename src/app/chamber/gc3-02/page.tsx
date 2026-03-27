@@ -15,7 +15,7 @@ import {
   generateCrystalQuests,
 } from "@/lib/gc3-02/quests";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGC302FeedbackProvider } from "@/lib/gc3-02/provider";
 
 const CrystalCanvas = dynamic(() => import("@/components/chamber/gc3-02/CrystalCanvas"), {
   ssr: false,
@@ -24,7 +24,7 @@ const CrystalCanvas = dynamic(() => import("@/components/chamber/gc3-02/CrystalC
 export default function GC302Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gc3-02"), [t]);
+  const feedbackContentProvider = useMemo(() => createGC302FeedbackProvider(t), [t]);
   const buildPool = useCallback(
     (difficulty: Difficulty, currentStage: Stage) => generateCrystalQuests(t, difficulty, currentStage),
     [t]

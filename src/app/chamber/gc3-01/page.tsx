@@ -16,12 +16,12 @@ import {
   generateEquilibriumQuests,
 } from "@/lib/gc3-01/quests";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGC301FeedbackProvider } from "@/lib/gc3-01/provider";
 
 export default function GC301Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gc3-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createGC301FeedbackProvider(t), [t]);
   const buildPool = useCallback(
     (difficulty: Difficulty, currentStage: Stage) => generateEquilibriumQuests(t, difficulty, currentStage),
     [t]

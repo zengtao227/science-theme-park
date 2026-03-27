@@ -10,7 +10,7 @@ import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGC201FeedbackProvider } from "@/lib/gc2-01/provider";
 
 const OrganicCanvas = dynamic(() => import("@/components/chamber/gc2-01/OrganicCanvas"), {
     ssr: false,
@@ -87,7 +87,7 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): OrganicQu
 export default function GC201Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gc2-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createGC201FeedbackProvider(t), [t]);
     const buildPool = useCallback((difficulty: Difficulty, currentStage: Stage) => buildStagePool(t, difficulty, currentStage), [t]);
 
     const {
