@@ -8,12 +8,10 @@ import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AtomBuilder from "@/components/chamber/sc1-04/AtomBuilder";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
-
-type Stage = "build" | "periodic" | "groups";
-type PeriodicQuest = Quest & { stage: Stage };
+import { createSC104FeedbackProvider } from "@/lib/sc1-04/provider";
+import type { PeriodicQuest, Stage } from "@/lib/sc1-04/types";
 
 const elements = [
   { symbol: "H", name: "Hydrogen", protons: 1, neutrons: 0, electrons: 1, group: 1, period: 1 },
@@ -40,7 +38,7 @@ const elements = [
 
 export default function SC104Page() {
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-04"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC104FeedbackProvider(t), [t]);
   const { completeStage } = useAppStore();
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): PeriodicQuest[] => {

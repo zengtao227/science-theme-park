@@ -28,6 +28,26 @@ export interface SC102Quest {
 }
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
+const ATOMIC_MASSES: Record<string, number> = {
+    H: 1.008,
+    C: 12.01,
+    O: 16,
+    Na: 23,
+    Cl: 35.45,
+    Ca: 40.08,
+    S: 32.06,
+};
+
+function parseFormula(formula: string) {
+    return [...formula.matchAll(/([A-Z][a-z]*)(\d*)/g)].map(([, symbol, count]) => ({
+        symbol,
+        count: count ? Number(count) : 1,
+    }));
+}
+
+function computeMolarMass(formula: string) {
+    return round2(parseFormula(formula).reduce((sum, part) => sum + (ATOMIC_MASSES[part.symbol] ?? 0) * part.count, 0));
+}
 
 export function generateMolarMassQuests(t: any, difficulty: Difficulty): SC102Quest[] {
     const quests: SC102Quest[] = [];
@@ -40,10 +60,7 @@ export function generateMolarMassQuests(t: any, difficulty: Difficulty): SC102Qu
         const item = formulas[Math.floor(Math.random() * formulas.length)];
         const id = `M-${difficulty.charAt(0)}-${i + 1}`;
 
-        // Simplified mass calculation for demo
-        let mass = 18.02;
-        if (item.f === "CO2") mass = 44.01;
-        if (item.f === "NaCl") mass = 58.44;
+        const mass = computeMolarMass(item.f);
 
         quests.push({
             id, difficulty, stage: "MOLAR_MASS",
@@ -65,7 +82,7 @@ export function generateStoichiometryQuests(t: any, difficulty: Difficulty): SC1
     for (let i = 0; i < 60; i++) {
         const id = `S-${difficulty.charAt(0)}-${i + 1}`;
         const moles = round2(1 + Math.random() * 5);
-        const result = round2(moles * 2);
+        const result = round2(moles);
 
         quests.push({
             id, difficulty, stage: "STOICHIOMETRY",
@@ -87,7 +104,7 @@ export function generateYieldQuests(t: any, difficulty: Difficulty): SC102Quest[
     for (let i = 0; i < 60; i++) {
         const id = `Y-${difficulty.charAt(0)}-${i + 1}`;
         const mass = round2(10 + Math.random() * 90);
-        const yield_val = round2(mass * 0.9);
+        const yield_val = round2((mass / 28.02) * 2 * 17.03);
 
         quests.push({
             id, difficulty, stage: "YIELD",

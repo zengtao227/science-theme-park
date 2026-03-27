@@ -11,7 +11,7 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import C101LabCanvas, { Substance, Tool } from "@/components/chamber/sc1-01/LabCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC101FeedbackProvider } from "@/lib/sc1-01/provider";
 import {
   Stage,
   SC101Quest as SC101QuestType,
@@ -23,7 +23,7 @@ import {
 export default function SC101Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-01"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC101FeedbackProvider(t), [t]);
   const [testedReactions, setTestedReactions] = useState<Array<{ substance: Substance; tool: Tool }>>([]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => {

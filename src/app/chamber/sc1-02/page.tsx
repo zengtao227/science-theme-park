@@ -9,7 +9,7 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleCanvas from "@/components/chamber/sc1-02/MoleCanvas";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC102FeedbackProvider } from "@/lib/sc1-02/provider";
 import {
   Stage,
   SC102Quest as SC102QuestType,
@@ -22,7 +22,7 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 export default function C102Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-02"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC102FeedbackProvider(t), [t]);
 
   const sc1_02_t = {
     title: t("sc1_02.title"),

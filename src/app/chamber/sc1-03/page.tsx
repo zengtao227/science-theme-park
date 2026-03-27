@@ -7,9 +7,10 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { InlineMath } from "react-katex";
 import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSC103FeedbackProvider } from "@/lib/sc1-03/provider";
+import type { AtomQuest, Stage } from "@/lib/sc1-03/types";
 
 const OrbitalCanvas = dynamic(() => import("@/components/chamber/sc1-03/OrbitalCanvas"), {
     ssr: false,
@@ -38,12 +39,9 @@ const elements = [
     { symbol: "Ca", name: "Calcium", z: 20, orbital: "s" },
 ];
 
-type Stage = "build" | "elements" | "isotopes";
-type AtomQuest = Quest & { stage: Stage };
-
 export default function SC1_03_AtomsForge() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sc1-03"), [t]);
+  const feedbackContentProvider = useMemo(() => createSC103FeedbackProvider(t), [t]);
     const { completeStage } = useAppStore();
 
     const [selectedElement, setSelectedElement] = useState(elements[5]);
