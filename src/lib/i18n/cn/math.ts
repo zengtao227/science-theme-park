@@ -1560,6 +1560,18 @@ export const cnMath = {
             mix_total_100: "总体积是 100ml。",
             mix_dilute: "体积翻倍 -> 浓度减半。",
             mix_avg: "质量相等时，取简单平均值。"
+        },
+        reasons: {
+            identify_recipe_quantities: "先找出题目给出的配方或比例数据。",
+            setup_scaling_or_ratio: "根据比例关系列出缩放或比例计算式。",
+            resolve_requested_quantities: "按照比例求出题目要求的各个量。",
+            compute_recipe_result: "计算出题目要求的配方结果。",
+            identify_percent_values: "先识别百分率、部分量和总量。",
+            convert_or_apply_percentage: "把百分率转成可计算形式并代入数量。",
+            compute_percent_result: "算出题目要求的百分比结果。",
+            identify_solution_components: "先确定溶质、溶剂和总混合量。",
+            apply_mixture_formula: "应用浓度或稀释公式进行计算。",
+            compute_mixture_result: "算出最终混合结果。"
         }
     },
     sm2_01: {

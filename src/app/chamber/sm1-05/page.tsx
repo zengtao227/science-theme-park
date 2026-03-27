@@ -11,18 +11,15 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import type { S105Quest, SM105Stage } from "@/lib/sm1-05/types";
+import { createSM105FeedbackProvider } from "@/lib/sm1-05/provider";
 
-type Stage = "RECIPES" | "PERCENT" | "MIXTURES";
-
-interface S105Quest extends Quest {
-    stage: Stage;
-    visualMode: "RECIPES" | "PERCENT" | "MIXTURES";
-    visualData: any;
-}
+type Stage = SM105Stage;
 
 export default function SM105Page() {
     const { completeStage, currentLanguage } = useAppStore();
     const { t } = useLanguage();
+    const feedbackContentProvider = useMemo(() => createSM105FeedbackProvider(t), [t]);
 
     // Translation object for SM1.05
     const sm1_05_t = useMemo(() => ({
@@ -584,6 +581,7 @@ export default function SM105Page() {
         moduleCode: "sm1-05",
         buildPool,
         initialStage: "RECIPES",
+        feedbackContentProvider,
     });
 
     useEffect(() => {

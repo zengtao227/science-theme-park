@@ -1591,6 +1591,18 @@ export const deMath = {
             mix_total_100: "Gesamtvolumen ist 100ml.",
             mix_dilute: "Volumen verdoppelt -> Konzentration halbiert.",
             mix_avg: "Einfacher Durchschnitt bei gleicher Masse."
+        },
+        reasons: {
+            identify_recipe_quantities: "Bestimme zuerst die gegebenen Rezept- oder Verhältniswerte.",
+            setup_scaling_or_ratio: "Stelle die Skalierung oder Verhältnisrechnung auf.",
+            resolve_requested_quantities: "Bestimme daraus alle gefragten Grössen.",
+            compute_recipe_result: "Berechne das gesuchte Rezept-Ergebnis.",
+            identify_percent_values: "Bestimme Prozentsatz, Teilwert und Grundwert.",
+            convert_or_apply_percentage: "Wandle die Prozentangabe in eine Rechenform um und wende sie an.",
+            compute_percent_result: "Berechne das gefragte Prozent-Ergebnis.",
+            identify_solution_components: "Bestimme gelösten Stoff, Lösungsmittel und Gesamtmenge.",
+            apply_mixture_formula: "Wende die Formel für Konzentration oder Verdünnung an.",
+            compute_mixture_result: "Berechne das Endergebnis der Mischung."
         }
     },
     sm2_01: {

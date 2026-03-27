@@ -1580,6 +1580,18 @@ export const enMath = {
             mix_total_100: "Total volume is 100ml.",
             mix_dilute: "Vol doubles -> Conc halves.",
             mix_avg: "Simple average for equal mass."
+        },
+        reasons: {
+            identify_recipe_quantities: "Identify the given recipe or ratio values.",
+            setup_scaling_or_ratio: "Set up the scaling or ratio calculation.",
+            resolve_requested_quantities: "Resolve each requested quantity from the ratio.",
+            compute_recipe_result: "Compute the requested recipe result.",
+            identify_percent_values: "Identify the percentage, part, and total values.",
+            convert_or_apply_percentage: "Convert the percentage form and apply it to the quantity.",
+            compute_percent_result: "Compute the requested percentage result.",
+            identify_solution_components: "Identify the solute, solvent, and total mixture.",
+            apply_mixture_formula: "Apply the concentration or dilution formula.",
+            compute_mixture_result: "Compute the final mixture result."
         }
     },
     sm2_01: {
