@@ -129,7 +129,6 @@ function parseEvaluationValue(targetLatex: string) {
 }
 
 function finalValueLatex(quest: G101AdvQuest) {
-  if (quest.correctLatex) return quest.correctLatex;
   if (quest.slots.length === 1) {
     const slot = quest.slots[0];
     return `${slot.labelLatex}=${formatNumber(Number(slot.expected))}`;

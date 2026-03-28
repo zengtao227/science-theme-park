@@ -90,9 +90,9 @@ export function solveSM301(
       const b = getExpectedNumber(quest, "b");
       rawSteps.push({
         justification: t("sm3_01.reasons.recognize_special_identity"),
-        expressionLatex: correctLatex.includes(")^2")
-          ? `(ax+b)^2 = a^2x^2 + 2abx + b^2`
-          : `(ax+b)(ax-b) = a^2x^2 - b^2`,
+        expressionLatex: quest.b === 0
+          ? `(ax+b)(ax-b) = a^2x^2 - b^2`
+          : `(ax+b)^2 = a^2x^2 + 2abx + b^2`,
       });
       rawSteps.push({
         justification: t("sm3_01.reasons.identify_factor_parameters"),
