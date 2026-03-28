@@ -35,10 +35,13 @@ function buildRuleLatex(quest: GB301SolverQuest) {
 
 function buildSolveLatex(quest: GB301SolverQuest) {
   if (quest.stage === "PAIRING" && quest.base) {
-    return `\\text{Match } ${quest.base} \\text{ to its complementary base}`;
+    const partner = quest.base === "A" ? "T" : quest.base === "T" ? "A" : quest.base === "G" ? "C" : "G";
+    return `\\text{Using } A\\leftrightarrow T \\text{ and } G\\leftrightarrow C,\\ ${quest.base} \\mapsto ${partner}`;
   }
   if (quest.stage === "BONDS" && quest.b1 && quest.b2) {
-    return `\\text{Classify the pair } ${quest.b1}-${quest.b2} \\text{ as either A-T or G-C, then count its bonds}`;
+    const bonds = quest.b1 === "A" || quest.b1 === "T" ? 2 : 3;
+    const pairType = quest.b1 === "A" || quest.b1 === "T" ? "A-T" : "G-C";
+    return `\\text{The pair } ${quest.b1}-${quest.b2} \\text{ is } ${pairType}\\text{, so it forms } ${bonds} \\text{ hydrogen bonds}`;
   }
   if (quest.stage === "SEQUENCE" && quest.seq) {
     const mapped = quest.seq

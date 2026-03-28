@@ -2,6 +2,7 @@ import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
 import {
   buildFullSolution,
   escapeLatexText,
+  formatNumber,
   makeStep,
   type Translator,
 } from "@/lib/feedback/solverSupport";
@@ -55,7 +56,8 @@ function buildSolveLatex(quest: GB302SolverQuest) {
     return `\\text{The function } ${escapeLatexText(quest.data.role)} \\text{ is the hallmark of } ${escapeLatexText(quest.data.cell)}`;
   }
   if (quest.stage === "VACCINES" && quest.data) {
-    return `\\text{Compute } \\frac{${quest.data.prim}}{${quest.data.lag}}`;
+    const factor = (quest.data.prim ?? 0) / (quest.data.lag ?? 1);
+    return `\\text{Memory factor} = \\frac{${quest.data.prim}}{${quest.data.lag}} = ${formatNumber(factor)}`;
   }
   return null;
 }

@@ -2,6 +2,7 @@ import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
 import {
   buildFullSolution,
   escapeLatexText,
+  formatNumber,
   makeStep,
   type Translator,
 } from "@/lib/feedback/solverSupport";
@@ -56,7 +57,9 @@ function buildSolveLatex(quest: GB201SolverQuest) {
     return `\\text{The function } ${escapeLatexText(quest.data.func || "")} \\text{ corresponds to } ${escapeLatexText(quest.data.name || "")}`;
   }
   if (quest.stage === "POTENTIAL" && quest.data) {
-    return `\\text{Use } [${escapeLatexText(quest.data.ion || "")}]_{out}=${quest.data.cout},\\ [${escapeLatexText(quest.data.ion || "")}]_{in}=${quest.data.cin}`;
+    const ratio = (quest.data.cout ?? 0) / (quest.data.cin ?? 1);
+    const potential = 61 * Math.log10(ratio);
+    return `E = 61\\log_{10}\\!\\left(\\frac{${quest.data.cout}}{${quest.data.cin}}\\right) = 61\\log_{10}\\!(${formatNumber(ratio)}) \\approx ${formatNumber(potential)}`;
   }
   if (quest.stage === "SYNAPSE" && quest.data) {
     return `\\text{An effect such as } ${escapeLatexText(quest.data.nt_effect || "")} \\text{ indicates a } ${escapeLatexText(quest.data.nt_type || "")} \\text{ response}`;

@@ -11,6 +11,32 @@ export interface GB101SolverQuest extends Quest {
   stage: Stage;
 }
 
+function solveSelectionLatex(quest: GB101SolverQuest) {
+  const slot = quest.slots[0];
+  const expected = slot?.expected;
+  if (!slot || expected === undefined) return null;
+
+  if (
+    quest.targetLatex === "w" ||
+    quest.targetLatex === "s" ||
+    quest.targetLatex === "2pq" ||
+    quest.targetLatex === "q" ||
+    quest.targetLatex === "\\Delta p" ||
+    quest.targetLatex === "W"
+  ) {
+    return `${quest.expressionLatex} = ${expected}`;
+  }
+
+  return `\\text{Evaluate the population-genetics expression and isolate } ${slot.labelLatex}`;
+}
+
+function solveDirectExpressionLatex(quest: GB101SolverQuest) {
+  const slot = quest.slots[0];
+  const expected = slot?.expected;
+  if (!slot || expected === undefined) return null;
+  return `${quest.expressionLatex} = ${expected}`;
+}
+
 function buildRuleLatex(quest: GB101SolverQuest) {
   const target = quest.targetLatex;
   const expression = quest.expressionLatex;
@@ -52,6 +78,8 @@ function buildRuleLatex(quest: GB101SolverQuest) {
 }
 
 function buildSolveLatex(quest: GB101SolverQuest) {
+  if (quest.stage === "NATURAL_SELECTION") return solveSelectionLatex(quest);
+  if (quest.stage === "SPECIATION" || quest.stage === "EVIDENCE") return solveDirectExpressionLatex(quest);
   const slot = quest.slots[0];
   if (!slot) return null;
   return `\\text{Substitute the given values from } ${quest.expressionLatex} \\text{ and solve for } ${slot.labelLatex}`;

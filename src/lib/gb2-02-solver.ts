@@ -7,6 +7,25 @@ import {
 } from "@/lib/feedback/solverSupport";
 import type { GB202Quest } from "./gb2-02-types";
 
+function buildFeedbackChainLatex(quest: GB202Quest) {
+  if (!quest.feedbackLoop?.components?.length) return null;
+  return quest.feedbackLoop.components
+    .map((component, index) => `${index + 1}.\\;\\text{${escapeLatexText(component.name)}}`)
+    .join(" \\to ");
+}
+
+function buildAbnormalLabsLatex(quest: GB202Quest) {
+  if (!quest.clinicalCase?.labResults?.length) return null;
+  const abnormal = quest.clinicalCase.labResults.filter((lab) => lab.status !== "normal");
+  if (!abnormal.length) return null;
+  return abnormal
+    .map(
+      (lab) =>
+        `\\text{${escapeLatexText(lab.hormone)}}=${lab.value}\\,${escapeLatexText(lab.unit)}\\;(${escapeLatexText(lab.status)})`
+    )
+    .join(",\\; ");
+}
+
 function buildIdentifyLatex(quest: GB202Quest) {
   if (quest.hormone) {
     return quest.hormone.nameLatex || `\\text{${escapeLatexText(quest.hormone.name)}}`;
@@ -50,18 +69,18 @@ function buildSolveLatex(quest: GB202Quest) {
     return `\\text{Use the known endocrine classification or gland assignment for } ${quest.hormone.nameLatex}`;
   }
   if (quest.stage === "FEEDBACK_MECHANISMS" && quest.feedbackLoop) {
-    return `\\text{Stimulus: } ${escapeLatexText(quest.feedbackLoop.stimulus)} \\to \\text{ response: } ${escapeLatexText(quest.feedbackLoop.response)}`;
+    const chain = buildFeedbackChainLatex(quest);
+    return chain
+      ? `${chain} \\Rightarrow \\text{response: } ${escapeLatexText(quest.feedbackLoop.response)}`
+      : `\\text{Stimulus: } ${escapeLatexText(quest.feedbackLoop.stimulus)} \\to \\text{ response: } ${escapeLatexText(quest.feedbackLoop.response)}`;
   }
   if (quest.stage === "CLINICAL_APPLICATIONS" && quest.clinicalCase) {
-    const abnormalLabs = quest.clinicalCase.labResults
-      .filter((lab) => lab.status !== "normal")
-      .map((lab) => `\\text{${escapeLatexText(lab.hormone)}: ${lab.status}}`)
-      .join(", ");
+    const abnormalLabs = buildAbnormalLabsLatex(quest);
     return abnormalLabs
       ? `\\text{Focus on the abnormal labs } ${abnormalLabs}`
       : "\\text{Use the symptom pattern and case context to determine the diagnosis}";
   }
-  return `\\text{Use the endocrine context given in the prompt to justify } ${quest.correctLatex}`;
+  return "\\text{Use the endocrine context given in the prompt to justify the matching endocrine classification or diagnosis}";
 }
 
 export function solveGB202(quest: GB202Quest, t: Translator) {
