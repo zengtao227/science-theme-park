@@ -2794,6 +2794,24 @@ export const deMath = {
             unit_circle_prompt_latex: "\\text{Navigationswinkel-Check: bestimme Quadrant und Vorzeichen ueber die Endlage.}",
             projections_prompt_latex: "\\text{Projektionsaufgabe: nutze Einheitskreis-Koordinaten fuer den exakten Trigonometriewert.}",
             waves_prompt_latex: "\\text{Wellen-Diagnose: bestimme Amplitude oder Periode aus dem Sinusverlauf.}"
+        },
+        solver: {
+            quadrant_rule: "Bestimmen Sie den Quadranten aus der Endlage des Winkels",
+            quadrant_solve: "Der Winkel {angle}° endet im Quadranten {quadrant}",
+            sign_rule: "Jeder Quadrant legt das Vorzeichen der trigonometrischen Funktion fest",
+            sign_solve: "Der Winkel {angle}° liegt im Quadranten {quadrant}, daher gilt die Vorzeichenregel dieses Quadranten",
+            degrees_to_radians_rule: "Bogenmass",
+            degrees_label: "Grad",
+            radians_to_degrees_rule: "Grad",
+            radians_label: "Bogenmass",
+            reference_angle_rule: "Verwenden Sie den Bezugswinkel {ref}°",
+            projection_quadrant_sign: "Nutzen Sie Quadrant {quadrant}, um das richtige Vorzeichen von {trigFunc} festzulegen",
+            amplitude_rule: "Koeffizient vor dem Sinus- oder Kosinus-Term",
+            period_rule: "Die Periode ergibt sich aus dem Frequenzfaktor",
+            max_rule: "Maximum",
+            min_rule: "Minimum",
+            substitute_angle_rule: "Setzen Sie den gegebenen Winkel in die Wellenfunktion ein",
+            derivative_rule: "Wenden Sie die Standard-Ableitungsregel fuer Sinus oder Kosinus an"
         }
     },
     sm3_03: {

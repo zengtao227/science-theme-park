@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SC101Quest } from "./quests";
 
 function identificationLatex(quest: SC101Quest) {
@@ -15,18 +15,18 @@ export function solveSC101(quest: SC101Quest, t: Translator) {
 
   if (quest.stage === "IDENTIFY") {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Match each powder to its characteristic lab response.}"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc1_01.solver.rule_identify"))}}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), identificationLatex(quest)),
     );
   } else if (quest.stage === "PROPERTIES") {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use the observed property to identify the substance.}"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Answer} = \\text{${String(quest.slots[0]?.expected ?? "")}}`),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc1_01.solver.rule_properties"))}}`),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc1_01.solver.answer_label"))}} = \\text{${escapeLatexText(String(quest.slots[0]?.expected ?? ""))}}`),
     );
   } else if (quest.stage === "REACTIONS") {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Determine the product from the described reaction sequence.}"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Product} = \\text{${String(quest.slots[0]?.expected ?? "")}}`),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc1_01.solver.rule_reactions"))}}`),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc1_01.solver.product_label"))}} = \\text{${escapeLatexText(String(quest.slots[0]?.expected ?? ""))}}`),
     );
   }
 

@@ -821,6 +821,16 @@ export const enBiology = {
             reactant: "Reactant",
             target_osmolarity: "Target Osmolarity",
             current_error: "Current Error: "
+        },
+        solver: {
+            rule_osmosis: "Match the surrounding solution to the resulting net water movement",
+            rule_respiration: "Use the overall respiration relationship between reactants and products",
+            rule_homeostasis: "Compare the physiological value to the normal set point and infer the response",
+            solve_osmosis_hypertonic: "A hypertonic environment draws water out of the cell",
+            solve_osmosis_hypotonic: "A hypotonic environment drives water into the cell",
+            solve_osmosis_isotonic: "An isotonic environment gives no net water movement",
+            solve_respiration: "Use the respiration clue to identify the required reactant or product",
+            solve_homeostasis: "Use the stated body variable and normal range to determine the corrective response"
         }
     },
     sb1_02: {
@@ -879,6 +889,16 @@ export const enBiology = {
         feedback: {
             correct: "Photosynthesis equation balanced!",
             incorrect: "Review the photosynthesis reaction."
+        },
+        solver: {
+            rule_equation: "Use the balanced photosynthesis equation to compare the required stoichiometric coefficients",
+            rule_factors: "A limiting factor reduces the photosynthesis rate when its availability drops",
+            rule_chloroplast: "Match each chloroplast structure to the process that occurs there",
+            solve_equation: "Apply the 6:1:6 stoichiometric relationship in the photosynthesis equation",
+            solve_factor_effect: "Identify how the named factor changes the rate of photosynthesis",
+            solve_chloroplast_structure: "Use the process clue to identify the correct chloroplast structure",
+            default_factor: "the limiting factor",
+            default_structure: "the chloroplast structure"
         }
     },
     sb1_03: {
@@ -968,6 +988,15 @@ export const enBiology = {
             structure_label: "Structure:",
             water_transport_title: "Water Transport Mechanism",
             nutrient_transport_title: "Nutrient Transport"
+        },
+        solver: {
+            rule_plant_structure: "Match the named plant organ or tissue to its structural role",
+            rule_water_transport: "Use xylem transport, transpiration pull, and cohesion-tension to identify the mechanism",
+            rule_nutrient_transport: "Use source-to-sink transport in phloem to identify nutrient movement",
+            solve_plant_structure: "Match the structural clue to the plant organ or tissue that performs that function",
+            solve_water_transport: "Use the water-transport clue to identify the correct movement process",
+            solve_nutrient_transport: "Use the nutrient-transport clue to identify how sugars move through the plant",
+            default_structure: "the plant structure"
         },
         formulas: {
             structure_label: "\\text{Structure: }",
@@ -1276,7 +1305,11 @@ export const enBiology = {
             rule_circulatory: "Match each circulatory structure to pumping, transport, or exchange",
             rule_respiratory: "Match each respiratory structure to ventilation or gas exchange",
             solve_with_organ: "Match the function clue to the structure {organ} within the current body system",
-            solve_default: "Use the anatomy and function clue in the prompt to identify the correct structure"
+            solve_default: "Use the anatomy and function clue in the prompt to identify the correct structure",
+            trace_route: "Trace the route through the listed organs",
+            identify_missing_component: "Then identify the missing structure in that pathway",
+            solve_system_clue: "Use the clue from the {system} system to identify the correct structure",
+            default_system: "body system"
         },
         corrects: {
             carbon_dioxide: "\\text{Carbon dioxide (CO}_2\\text{)}",

@@ -1,12 +1,13 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
 import {
   buildFullSolution,
+  escapeLatexText,
   makeStep,
   type Translator,
 } from "@/lib/feedback/solverSupport";
 import type { SC201Quest } from "./types";
 
-function buildStageRule(quest: SC201Quest) {
+function buildStageRule(quest: SC201Quest, t: Translator) {
   const id = quest.id;
 
   if (quest.stage === "ARRHENIUS") {
@@ -19,18 +20,18 @@ function buildStageRule(quest: SC201Quest) {
     if (id.includes("A3") || id.includes("A5") || id.includes("E1") || id.includes("E3") || id.includes("E4")) {
       return "k = A e^{-E_a/(RT)}";
     }
-    return "\\text{Higher } T \\text{ or lower } E_a \\text{ increases } k \\text{ through the Arrhenius relation}";
+    return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.arrhenius_trend"))}}`;
   }
 
   if (quest.stage === "RATE_LAW") {
-    if (id.includes("B1") || id.includes("B5")) return "\\text{First-order rate law: } \\text{rate} = k[A]";
-    if (id.includes("B2") || id.includes("C2")) return "\\text{Second-order behavior: } \\text{rate} = k[A]^2";
-    if (id.includes("B3")) return "\\text{Zero-order rate law: } \\text{rate} = k";
-    if (id.includes("C1") || id.includes("A1")) return "\\text{Mixed rate law: combine the concentration terms with } k";
+    if (id.includes("B1") || id.includes("B5")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_first_order"))}}\\; \\text{rate} = k[A]`;
+    if (id.includes("B2") || id.includes("C2")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_second_order"))}}\\; \\text{rate} = k[A]^2`;
+    if (id.includes("B3")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_zero_order"))}}\\; \\text{rate} = k`;
+    if (id.includes("C1") || id.includes("A1")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_mixed"))}}`;
     if (id.includes("C3")) return "\\ln[A] = \\ln[A]_0 - kt";
     if (id.includes("C4")) return "t = \\frac{\\ln 2}{k}";
     if (id.includes("C5")) return "k = \\frac{\\text{rate}}{[A]^n}";
-    return "\\text{Use the rate-law form or integrated rate equation that matches the reaction order}";
+    return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_generic"))}}`;
   }
 
   if (quest.stage === "HALF_LIFE") {
@@ -38,24 +39,26 @@ function buildStageRule(quest: SC201Quest) {
     if (id.includes("B2")) return "t_{1/2} = \\frac{1}{k[A]_0}";
     if (id.includes("B3")) return "t_{1/2} = \\frac{[A]_0}{2k}";
     if (id.includes("C2") || id.includes("C3") || id.includes("C4") || id.includes("E1") || id.includes("E5")) {
-      return "\\text{Each half-life reduces the amount to one half of the previous value}";
+      return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.half_life_repeated_halving"))}}`;
     }
-    if (id.includes("C5")) return "\\text{Compare half-lives inversely with the rate constants}";
-    return "\\text{Use the half-life model that matches the reaction or decay process}";
+    if (id.includes("C5")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.half_life_compare_rate_constants"))}}`;
+    return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.half_life_generic"))}}`;
   }
 
   return null;
 }
 
-function buildSolveLatex(quest: SC201Quest) {
+function buildSolveLatex(quest: SC201Quest, t: Translator) {
   const slot = quest.slots[0];
   if (!slot) return null;
-  return `\\text{Solve for } ${slot.labelLatex} \\text{ using the given data } ${quest.expressionLatex}`;
+  return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.solve_for_with_data", {
+    target: slot.labelLatex,
+  }))}}\\; ${quest.expressionLatex}`;
 }
 
 export function solveSC201(quest: SC201Quest, t: Translator) {
-  const ruleLatex = buildStageRule(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildStageRule(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) {
     return { steps: [], fullSolutionLatex: null };
   }

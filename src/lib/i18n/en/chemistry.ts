@@ -250,6 +250,11 @@ export const enChemistry = {
             corrosion_protection: "Rhine Bridge Maintenance: You are a structural preservation specialist for the Basel Civil Engineering Department. You are inspecting the historic Mittlere Brücke spanning the Rhine. The underwater steel supports are prone to electrochemical corrosion, where iron atoms lose electrons to form rust. To prevent this, we use 'sacrificial anodes' made of zinc, creating a galvanic cell where the zinc corrodes instead of the bridge's steel. You need to verify if the potential difference between the river water (electrolyte) and the supports is high enough to maintain protection. If the river's ion concentration changes due to seasonal runoff, your protection system might fail, risking the structural integrity of this 800-year-old landmark. It’s exactly like putting a shield in front of a target; the shield takes the hits (corrosion) so the target stays safe.",
             analytical_electrochem: "Lonza Basel: You are a forensic analyst at the Basel-Stadt Cantonal Laboratory. We have received a sample from an industrial site near the border, suspected of discharging heavy metal pollutants into the Rhine. Using a technique called anodic stripping voltammetry, you create a tiny electrochemical cell to detect trace levels of copper and lead. The current produced during the redox reaction is proportional to the pollutant concentration. You must calibrate the sensor by measuring the potential response of a 1.0M standard solution versus our unknown sample. Accurate measurement here is vital for enforcing environmental laws and protecting the Rhine's ecosystem for the swimmers at Rheinbad. This precision is like a digital scale that can detect a single grain of salt in a swimming pool.",
             fuel_cell_innovation: "Swiss Hydrogen Hub: You are a chemical engineer at the Swiss Hydrogen Hub in Basel. We are developing high-efficiency proton-exchange membrane (PEM) fuel cells to power the next generation of Swiss national trains (SBB). In these cells, hydrogen is oxidized at the anode and oxygen is reduced at the cathode, producing only water and electricity. Your project involves testing a new platinum-alloy catalyst that operates at 80°C. You must calculate the efficiency loss due to the concentration gradient across the membrane. If the hydrogen pressure drops, the cell potential E decreases according to the Nernst equation, potentially stalling the train on the steep tracks near Jura. This technology represents the future of clean transport in Europe, similar to how your laptop battery powers your work, but using hydrogen as the ultimate clean fuel."
+        },
+        solver: {
+            rule_build: "Use the galvanic-cell setup rules to identify anode, cathode, and overall electron flow",
+            zn_cu_cell_at_temp: "For the Zn/Cu cell at the stated temperature, apply the standard setup and the Nernst relation if concentrations are given",
+            solve_use_cell_rule: "Use the galvanic-cell rule from the prompt to determine the requested quantity"
         }
     },
     gc2_01: {
@@ -484,6 +489,13 @@ export const enChemistry = {
                 action: "Purify rock salt.",
                 target: "Crystallization"
             }
+        },
+        solver: {
+            rule_identify: "Match each observed test result to the corresponding powder identity",
+            rule_properties: "Use the defining property or reaction clue to identify the correct substance",
+            rule_reactions: "Use the described chemical reaction to identify the correct product or substance",
+            answer_label: "Answer",
+            product_label: "Product"
         }
     },
     sc1_02: {
@@ -812,6 +824,18 @@ export const enChemistry = {
             arrhenius: "Novartis Kinetics Lab: Study how temperature and activation energy affect reaction rates. The Arrhenius equation k = A·exp(-Ea/RT) describes the temperature dependence of rate constants. Higher temperatures increase molecular kinetic energy, leading to more successful collisions.",
             rate_law: "Roche Pharmaceutical Research: Determine reaction orders and rate laws from experimental data. The rate law expresses how reaction rate depends on reactant concentrations. Understanding rate laws is crucial for optimizing drug synthesis and predicting reaction behavior.",
             half_life: "Basel University Hospital: Calculate drug elimination half-lives for pharmacokinetics. Half-life is the time required for a quantity to reduce to half its initial value. First-order kinetics are common in drug metabolism, where t_1/_2 = ln(2)/k."
+        },
+        solver: {
+            arrhenius_trend: "Higher temperature or lower activation energy increases the rate constant",
+            rate_law_first_order: "First-order relationship",
+            rate_law_second_order: "Second-order relationship",
+            rate_law_zero_order: "Zero-order relationship",
+            rate_law_mixed: "Use the mixed rate-law pattern from the prompt",
+            rate_law_generic: "Use the stated rate law to relate concentration and rate",
+            half_life_repeated_halving: "Apply repeated halving or exponential decay to the remaining amount",
+            half_life_compare_rate_constants: "Compare half-lives by comparing the corresponding rate constants",
+            half_life_generic: "Use the half-life relationship that matches the reaction order",
+            solve_for_with_data: "Solve for {target} using the given data and the selected kinetics relation"
         },
         prompts: {
             arr_b: "Calculate the rate constant k using the Arrhenius equation.",
@@ -1604,6 +1628,15 @@ export const enChemistry = {
             neutralization: "NEUTRALIZATION",
             titration: "TITRATION"
         },
+        solver: {
+            ph_special_case: "Use the pH or pOH relation that matches the given strong or weak acid/base case",
+            neutralization_rule_full: "Neutralization uses acid-base stoichiometry and any remaining excess species determines the final pH",
+            neutralization_ph: "After finding the excess acid or base, convert concentration to the final pH",
+            neutralization_volume: "Add the volumes to obtain the total solution volume before finding concentration",
+            neutralization_generic: "Use neutralization stoichiometry to determine the requested result",
+            titration_ph: "At the selected titration point, use stoichiometry and the appropriate acid-base relation to find pH",
+            titration_generic: "Use the equivalence-point relationship that matches the titration setup"
+        },
         scenarios: {
             ph_basics: "Novartis Pharmaceutical pH Control — You are a formulation scientist at Novartis Basel, developing a new oral medication. The drug's stability and bioavailability critically depend on pH: in the stomach (pH 1.5), the active ingredient must remain stable, while in the bloodstream (pH 7.4), it must dissolve rapidly. You have a target pH window of ±0.2 units during manufacturing. Using precision pH meters and Henderson-Hasselbalch calculations, you adjust the ratio of weak acid to conjugate base in the buffer. Calculate the required pH values and buffer ratios so the formulation team can confirm whether the batch meets release specifications and can proceed to packaging.",
             neutralization: "University Hospital Basel — Gastric Treatment: You are a clinical pharmacist at the Universitätsspital Basel, preparing an antacid formulation for a patient with severe acid reflux. The stomach contains approximately 50 mL of HCl solution at pH 1.5 (roughly 0.03 M). Your task is to calculate the exact moles of sodium bicarbonate (NaHCO₃) needed to neutralize the excess acid without overshooting to alkaline pH, which could cause different complications. The neutralization reaction also produces CO₂ gas. Calculate the required amount of NaHCO₃ so that the pharmacist can prepare the correct dosage that relieves symptoms effectively while avoiding side effects.",
@@ -2122,6 +2155,11 @@ export const enChemistry = {
             energy_changes: "ENERGY CHANGES",
             hess_law: "HESS'S LAW",
             calorimetry: "CALORIMETRY"
+        },
+        solver: {
+            solve_energy_changes: "Determine whether the process releases or absorbs energy and use the stated enthalpy relation",
+            rule_hess_law: "Reverse, scale, and add reactions so the intermediates cancel and the target reaction remains",
+            solve_calorimetry_enthalpy: "Use q = mc\\Delta T and the sign convention to determine the enthalpy change"
         },
         prompts: {
             calculate_enthalpy: "Calculate the enthalpy change (ΔH) for this reaction",

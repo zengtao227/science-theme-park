@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "EQUATION" | "FACTORS" | "CHLOROPLAST";
 
@@ -9,32 +9,36 @@ export interface SB102SolverQuest extends Quest {
   structure?: string;
 }
 
-function buildRuleLatex(quest: SB102SolverQuest) {
+function buildRuleLatex(quest: SB102SolverQuest, t: Translator) {
   if (quest.stage === "EQUATION") {
-    return "\\text{Use the balanced photosynthesis equation and the light-reaction / Calvin-cycle facts}";
+    return `\\text{${escapeLatexText(t("biology.sb1_02.solver.rule_equation"))}}`;
   }
   if (quest.stage === "FACTORS") {
-    return "\\text{Rate changes depend on limiting factors such as light, CO}_2\\text{, temperature, and stomata}";
+    return `\\text{${escapeLatexText(t("biology.sb1_02.solver.rule_factors"))}}`;
   }
   if (quest.stage === "CHLOROPLAST") {
-    return "\\text{Match each chloroplast structure to the process or role it performs}";
+    return `\\text{${escapeLatexText(t("biology.sb1_02.solver.rule_chloroplast"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: SB102SolverQuest) {
+function buildSolveLatex(quest: SB102SolverQuest, t: Translator) {
   if (quest.stage === "EQUATION") {
-    return "\\text{Identify the missing molecule, count, or process from the photosynthesis pathway}";
+    return `\\text{${escapeLatexText(t("biology.sb1_02.solver.solve_equation"))}}`;
   }
   if (quest.stage === "FACTORS") {
-    return `\\text{Use the effect of } \\text{${quest.factor || "the factor"}} \\text{ on photosynthesis to determine the answer}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_02.solver.solve_factor_effect", {
+      factor: quest.factor || t("biology.sb1_02.solver.default_factor"),
+    }))}}`;
   }
-  return `\\text{The chloroplast structure } \\text{${quest.structure || "in the prompt"}} \\text{ is recognized by its function}`;
+  return `\\text{${escapeLatexText(t("biology.sb1_02.solver.solve_chloroplast_structure", {
+    structure: quest.structure || t("biology.sb1_02.solver.default_structure"),
+  }))}}`;
 }
 
 export function solveSB102(quest: SB102SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

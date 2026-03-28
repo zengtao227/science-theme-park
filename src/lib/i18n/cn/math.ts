@@ -2812,6 +2812,24 @@ export const cnMath = {
             unit_circle_prompt_latex: "\\text{导航角度校验：根据终边位置判断象限与正负号。}",
             projections_prompt_latex: "\\text{投影计算任务：利用单位圆坐标求三角函数精确值。}",
             waves_prompt_latex: "\\text{波形诊断任务：根据正弦曲线识别振幅或周期。}"
+        },
+        solver: {
+            quadrant_rule: "根据角的终边位置判断所在象限",
+            quadrant_solve: "角 {angle}° 的终边落在第 {quadrant} 象限",
+            sign_rule: "不同象限决定三角函数值的正负号",
+            sign_solve: "角 {angle}° 位于第 {quadrant} 象限，因此按象限规则判断符号",
+            degrees_to_radians_rule: "弧度",
+            degrees_label: "角度",
+            radians_to_degrees_rule: "角度",
+            radians_label: "弧度",
+            reference_angle_rule: "先取参考角 {ref}°",
+            projection_quadrant_sign: "利用第 {quadrant} 象限判断 {trigFunc} 的符号",
+            amplitude_rule: "正弦或余弦项前面的系数",
+            period_rule: "周期由频率因子决定",
+            max_rule: "最大值",
+            min_rule: "最小值",
+            substitute_angle_rule: "把给定角代入波函数",
+            derivative_rule: "应用正弦或余弦的标准求导法则"
         }
     },
     sm3_03: {

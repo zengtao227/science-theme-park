@@ -761,6 +761,16 @@ export const deBiology = {
             reactant: "Reaktant",
             target_osmolarity: "Ziel-Osmolarität",
             current_error: "Aktueller Fehler: "
+        },
+        solver: {
+            rule_osmosis: "Ordnen Sie die äußere Lösung der resultierenden Nettowasserbewegung zu",
+            rule_respiration: "Verwenden Sie die Gesamtbeziehung zwischen Edukten und Produkten der Zellatmung",
+            rule_homeostasis: "Vergleichen Sie den physiologischen Wert mit dem normalen Sollwert und leiten Sie die Reaktion ab",
+            solve_osmosis_hypertonic: "Eine hypertonische Umgebung zieht Wasser aus der Zelle",
+            solve_osmosis_hypotonic: "Eine hypotonische Umgebung treibt Wasser in die Zelle",
+            solve_osmosis_isotonic: "Eine isotone Umgebung bewirkt keine Nettowasserbewegung",
+            solve_respiration: "Nutzen Sie den Hinweis zur Zellatmung, um das benötigte Edukt oder Produkt zu bestimmen",
+            solve_homeostasis: "Nutzen Sie die angegebene Körpervariable und den Normalbereich, um die Gegenreaktion zu bestimmen"
         }
     },
     sb1_02: {
@@ -819,6 +829,16 @@ export const deBiology = {
         feedback: {
             correct: "Photosynthese-Gleichung ausbalanciert!",
             incorrect: "Überprüfen Sie die Photosynthese-Reaktion."
+        },
+        solver: {
+            rule_equation: "Nutzen Sie die ausgeglichene Photosynthese-Gleichung, um die benötigten stöchiometrischen Koeffizienten zu vergleichen",
+            rule_factors: "Ein limitierender Faktor senkt die Photosyntheserate, wenn seine Verfügbarkeit abnimmt",
+            rule_chloroplast: "Ordnen Sie jede Chloroplastenstruktur dem dort ablaufenden Prozess zu",
+            solve_equation: "Wenden Sie das stöchiometrische Verhältnis 6:1:6 der Photosynthese-Gleichung an",
+            solve_factor_effect: "Bestimmen Sie, wie der genannte Faktor die Photosyntheserate verändert",
+            solve_chloroplast_structure: "Nutzen Sie den Prozesshinweis, um die richtige Chloroplastenstruktur zu bestimmen",
+            default_factor: "der limitierende Faktor",
+            default_structure: "die Chloroplastenstruktur"
         }
     },
     sb1_03: {
@@ -908,6 +928,15 @@ export const deBiology = {
             structure_label: "Struktur:",
             water_transport_title: "Wassertransportmechanismus",
             nutrient_transport_title: "Nährstofftransport"
+        },
+        solver: {
+            rule_plant_structure: "Ordnen Sie das genannte Pflanzenorgan oder Gewebe seiner strukturellen Funktion zu",
+            rule_water_transport: "Nutzen Sie Xylemtransport, Transpirationssog und Kohäsions-Spannungs-Theorie, um den Mechanismus zu bestimmen",
+            rule_nutrient_transport: "Nutzen Sie den Source-Sink-Transport im Phloem, um die Nährstoffbewegung zu bestimmen",
+            solve_plant_structure: "Ordnen Sie den Strukturhinweis dem Pflanzenorgan oder Gewebe zu, das diese Funktion erfüllt",
+            solve_water_transport: "Nutzen Sie den Hinweis zum Wassertransport, um den richtigen Transportprozess zu bestimmen",
+            solve_nutrient_transport: "Nutzen Sie den Hinweis zum Nährstofftransport, um die Zuckerbewegung in der Pflanze zu bestimmen",
+            default_structure: "die Pflanzenstruktur"
         },
         formulas: {
             structure_label: "\\text{Struktur: }",
@@ -1211,17 +1240,21 @@ export const deBiology = {
             mv_l_min: "MV (L/min)",
             area_m2: "\\text{Fläche (m}^{2}\\text{)}"
         },
-        solver: {
-            rule_digestive: "Ordne jedes Verdauungsorgan seiner Rolle bei Aufspaltung, Sekretion oder Resorption zu",
-            rule_circulatory: "Ordne jede Kreislaufstruktur Pumpen, Transport oder Austausch zu",
-            rule_respiratory: "Ordne jede Atemstruktur der Ventilation oder dem Gasaustausch zu",
-            solve_with_organ: "Ordne den Funktionshinweis der Struktur {organ} im aktuellen Körpersystem zu",
-            solve_default: "Nutze den Anatomie- und Funktionshinweis in der Aufgabe, um die richtige Struktur zu bestimmen"
-        },
         corrects: {
             carbon_dioxide: "\\text{Kohlendioxid (CO}_2\\text{)}",
             baroreceptors_raas_anp: "\\text{Barorezeptoren, RAAS, ANP}",
             oxygen: "\\text{Sauerstoff (O}_2\\text{)}"
+        },
+        solver: {
+            rule_digestive: "Ordnen Sie jedes Verdauungsorgan seiner Rolle bei Abbau, Sekretion oder Absorption zu",
+            rule_circulatory: "Ordnen Sie jede Kreislaufstruktur Pumpen, Transport oder Austausch zu",
+            rule_respiratory: "Ordnen Sie jede Atemstruktur Ventilation oder Gasaustausch zu",
+            solve_with_organ: "Ordnen Sie den Funktionshinweis der Struktur {organ} im aktuellen Körpersystem zu",
+            solve_default: "Nutzen Sie den Anatomie- und Funktionshinweis im Prompt, um die richtige Struktur zu bestimmen",
+            trace_route: "Verfolgen Sie den Weg durch die aufgeführten Organe",
+            identify_missing_component: "Bestimmen Sie dann die fehlende Struktur in diesem Verlauf",
+            solve_system_clue: "Nutzen Sie den Hinweis aus dem System {system}, um die richtige Struktur zu bestimmen",
+            default_system: "Körpersystem"
         },
         prompts: {
             // VERDAUUNGSSYSTEM - BASIS (5 Fragen)

@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { AcidBaseQuest } from "./types";
 
 function isBase(quest: AcidBaseQuest) {
@@ -19,24 +19,24 @@ export function solveSC205(quest: AcidBaseQuest, t: Translator) {
         steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex));
       } else {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use the characteristic relation for polyprotic or amphoteric systems}"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Set up the equilibrium expression and solve for the requested pH quantity}"));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.ph_special_case"))}}`));
       }
       break;
     case "NEUTRALIZATION":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "n(H^+) \\text{ and } n(OH^-) \\text{ determine the excess species}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.neutralization_rule_full"))}}`));
       if (quest.targetLatex.includes("pH")) {
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Find excess acid/base, then convert concentration to pH}"));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.neutralization_ph"))}}`));
       } else if (quest.targetLatex.includes("V")) {
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Add or solve volumes by stoichiometric equivalence}"));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.neutralization_volume"))}}`));
       } else if (quest.targetLatex.includes("Q")) {
         steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "Q = n \\Delta H_{neut}"));
       } else {
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Apply neutralization stoichiometry}"));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.neutralization_generic"))}}`));
       }
       break;
     case "TITRATION":
       steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "C_a V_a = C_b V_b"));
-      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.targetLatex.includes("pH") ? "\\text{Locate the titration point and evaluate pH there}" : "\\text{Solve the missing titration quantity from equivalence}"));
+      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.targetLatex.includes("pH") ? `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.titration_ph"))}}` : `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.titration_generic"))}}`));
       break;
     default:
       return { steps: [], fullSolutionLatex: null };

@@ -2818,6 +2818,24 @@ export const enMath = {
             unit_circle_prompt_latex: "\\text{Navigation-angle check: determine the quadrant and sign from the terminal side.}",
             projections_prompt_latex: "\\text{Projection task: use unit-circle coordinates to compute the exact trig value.}",
             waves_prompt_latex: "\\text{Wave diagnostic: identify amplitude or period from the sinusoidal pattern.}"
+        },
+        solver: {
+            quadrant_rule: "Determine the quadrant from the terminal side of the angle",
+            quadrant_solve: "The angle {angle}° ends in Quadrant {quadrant}",
+            sign_rule: "Each quadrant fixes the sign of the trigonometric function",
+            sign_solve: "The angle {angle}° lies in Quadrant {quadrant}, so use the quadrant sign rule",
+            degrees_to_radians_rule: "Radians",
+            degrees_label: "degrees",
+            radians_to_degrees_rule: "Degrees",
+            radians_label: "radians",
+            reference_angle_rule: "Use the reference angle {ref}°",
+            projection_quadrant_sign: "Use Quadrant {quadrant} to assign the correct sign to {trigFunc}",
+            amplitude_rule: "coefficient in front of the sine/cosine term",
+            period_rule: "Period comes from the frequency factor",
+            max_rule: "Maximum",
+            min_rule: "Minimum",
+            substitute_angle_rule: "Substitute the given angle into the wave function",
+            derivative_rule: "Apply the standard derivative rule for sine or cosine"
         }
     },
     sm3_03: {

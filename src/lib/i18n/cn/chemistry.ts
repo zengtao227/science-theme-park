@@ -250,6 +250,11 @@ export const cnChemistry = {
             corrosion_protection: "莱茵河桥梁维护：你是巴塞尔土木工程局的一名结构保护专家。你正在检查横跨莱茵河的历史悠久的 Mittlere Brücke 桥。水下钢制支撑容易发生电化学腐蚀，铁原子失去电子形成铁锈。为了防止这种情况，我们使用锌制成的“牺牲阳极”，创建一个原电池，让锌代替桥梁的钢材发生腐蚀。你需要验证河水（电解质）与支撑件之间的电位差是否足够高以维持保护。如果由于季节性径流导致河流离子浓度发生变化，你的保护系统可能会失效，危及这座拥有 800 年历史的地标性建筑的结构完整性。这就像在目标前面放一个护盾；护盾承受攻击（腐蚀），从而保护目标安全。",
             analytical_electrochem: "巴塞尔龙沙：你是巴塞尔城市州实验室的一名法医分析师。我们收到了来自边界附近一个工业地点的样本，怀疑其向莱茵河排放重金属污染物。使用一种称为阳极溶出伏安的技术，你创建了一个微型电化学电池来检测痕量的铜和铅。氧化还原反应过程中产生的电流与污染物浓度成正比。你必须通过测量 1.0M 标准溶液与我们未知样本的电位响应来校准传感器。这里的精确测量对于执行环境法律和保护莱茵河浴场游泳者的莱茵河生态系统至关重要。这种精度就像一台可以检测游泳池里单粒盐的数字天平。",
             fuel_cell_innovation: "瑞士氢枢纽：你是巴塞尔瑞士氢枢纽 (Swiss Hydrogen Hub) 的一名化学工程师。我们正在开发高效质子交换膜 (PEM) 燃料电池，为下一代瑞士国家列车 (SBB) 提供动力。在这些电池中，氢气在阳极被氧化，氧气在阴极被还原，仅产生水和电。你的项目涉及测试一种在 80°C 下运行的新型铂合金催化剂。你必须计算由于跨膜浓度梯度造成的效率损失。如果氢气压力下降，电池电位 E 会根据能斯特方程降低，从而可能导致列车在汝拉 (Jura) 附近的陡峭轨道上抛锚。这项技术代表了欧洲清洁运输的未来，类似于你的笔记本电脑电池为你的工作提供动力，但使用氢气作为终极清洁燃料。"
+        },
+        solver: {
+            rule_build: "利用原电池构建规则判断阳极、阴极以及电子流方向",
+            zn_cu_cell_at_temp: "对于题目给定温度下的 Zn/Cu 原电池，若给出浓度则使用标准构型和能斯特关系",
+            solve_use_cell_rule: "根据题目中的原电池规则求出所需量"
         }
     },
     gc2_01: {
@@ -484,6 +489,13 @@ export const cnChemistry = {
                 action: "提纯岩盐。",
                 target: "结晶"
             }
+        },
+        solver: {
+            rule_identify: "将观察到的测试现象与对应的粉末身份匹配",
+            rule_properties: "利用特征性质或反应线索确定正确物质",
+            rule_reactions: "利用描述的化学反应确定正确的产物或物质",
+            answer_label: "答案",
+            product_label: "产物"
         }
     },
     sc1_02: {
@@ -788,6 +800,18 @@ export const cnChemistry = {
             arrhenius_prompt_latex: "\\text{使用阿伦尼乌斯方程计算速率常数 }k\\text{。}",
             concentration_prompt_latex: "\\text{根据浓度变化计算反应速率。}",
             collision_prompt_latex: "\\text{确定有效碰撞的比例。}"
+        },
+        solver: {
+            arrhenius_trend: "温度升高或活化能降低都会使速率常数增大",
+            rate_law_first_order: "一级反应关系",
+            rate_law_second_order: "二级反应关系",
+            rate_law_zero_order: "零级反应关系",
+            rate_law_mixed: "按照题目给出的混合速率方程作答",
+            rate_law_generic: "利用题目给出的速率方程联系浓度与反应速率",
+            half_life_repeated_halving: "用反复减半或指数衰减来求剩余量",
+            half_life_compare_rate_constants: "通过比较对应速率常数来比较半衰期",
+            half_life_generic: "使用与该反应级数对应的半衰期关系",
+            solve_for_with_data: "利用已知数据和所选动力学关系求解 {target}"
         },
         labels: {
             input: "输入",
@@ -1604,6 +1628,15 @@ export const cnChemistry = {
             neutralization: "中和反应",
             titration: "滴定分析"
         },
+        solver: {
+            ph_special_case: "根据题目给出的强酸、强碱、弱酸或弱碱情形选择对应的 pH 或 pOH 关系",
+            neutralization_rule_full: "中和计算要先做酸碱化学计量，再由剩余过量物种决定最终 pH",
+            neutralization_ph: "先求过量酸或碱的浓度，再换算最终 pH",
+            neutralization_volume: "先把各溶液体积相加得到总体积，再求浓度",
+            neutralization_generic: "利用中和反应的化学计量关系求题目要求的结果",
+            titration_ph: "在给定滴定位置，用化学计量关系和对应的酸碱公式求 pH",
+            titration_generic: "根据滴定装置选择合适的等当点关系"
+        },
         scenarios: {
             ph_basics: "诺华制药pH控制——您是诺华巴塞尔的配方科学家，正在开发一种新型口服药物。药物的稳定性和生物利用度严格依赖于pH值：在胃部（pH 1.5），活性成分必须保持稳定；在血液中（pH 7.4），它必须快速溶解。生产过程中pH允许偏差仅为±0.2单位。使用精密pH计和亨德森-哈塞尔巴赫方程，您调整弱酸与共轭碱的比例。计算所需的pH值和缓冲比例，使配方团队能够确认该批次是否符合放行规格，并决定是否可以继续包装。",
             neutralization: "巴塞尔大学医院——胃部治疗：您是巴塞尔大学医院的临床药剂师，为一名严重胃酸反流患者配制抗酸剂。患者胃部约含50 mL pH 1.5的盐酸溶液（约0.03 M）。您的任务是计算中和过量酸所需碳酸氢钠（NaHCO₃）的确切摩尔数，同时不得使pH过度偏向碱性，否则会引发其他并发症。中和反应还会产生CO₂气体。计算所需NaHCO₃的用量，以便药剂师配制出能有效缓解症状、同时避免副作用的正确剂量。",
@@ -2121,6 +2154,11 @@ export const cnChemistry = {
             energy_changes: "能量变化",
             hess_law: "赫斯定律",
             calorimetry: "量热法"
+        },
+        solver: {
+            solve_energy_changes: "先判断过程是放热还是吸热，再使用相应的焓变关系",
+            rule_hess_law: "翻转、倍乘并相加反应方程，使中间物质抵消并留下目标反应",
+            solve_calorimetry_enthalpy: "利用 q = mc\\Delta T 和符号约定求出焓变"
         },
         prompts: {
             calculate_enthalpy: "计算此反应的焓变 (ΔH)",

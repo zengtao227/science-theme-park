@@ -1,5 +1,5 @@
 import type { FeedbackContent } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { S302Quest } from "@/lib/sm3-02/quests";
 
 function getSlot(quest: S302Quest, id?: string) {
@@ -65,8 +65,8 @@ function solveUnitCircle(quest: S302Quest, t: Translator) {
   if (slot.id === "q") {
     const quadrant = getQuadrant(quest.angle);
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Quadrant depends on the terminal side of the angle}"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${quest.angle}^\\circ \\text{ lies in quadrant } ${quadrant}`),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.quadrant_rule"))}}`),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("math.sm3_02.solver.quadrant_solve", { angle: quest.angle, quadrant }))}}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `Q=${quadrant}`, "key")
     );
     return steps;
@@ -76,8 +76,8 @@ function solveUnitCircle(quest: S302Quest, t: Translator) {
     const quadrant = getQuadrant(quest.angle);
     const sign = String(slot.expected);
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use the quadrant to determine the sign of the trig function}"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Angle } ${quest.angle}^\\circ \\text{ is in quadrant } ${quadrant}`),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.sign_rule"))}}`),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("math.sm3_02.solver.sign_solve", { angle: quest.angle, quadrant }))}}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), sign, "key")
     );
     return steps;
@@ -85,7 +85,7 @@ function solveUnitCircle(quest: S302Quest, t: Translator) {
 
   if (slot.id === "r") {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Radians} = \\text{Degrees}\\cdot \\frac{\\pi}{180}"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.degrees_to_radians_rule"))}}\\; = \\text{${escapeLatexText(t("math.sm3_02.solver.degrees_label"))}}\\cdot \\frac{\\pi}{180}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${quest.angle}^\\circ \\cdot \\frac{\\pi}{180}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
     );
@@ -94,7 +94,7 @@ function solveUnitCircle(quest: S302Quest, t: Translator) {
 
   if (slot.id === "d") {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Degrees} = \\text{Radians}\\cdot \\frac{180}{\\pi}"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.radians_to_degrees_rule"))}}\\; = \\text{${escapeLatexText(t("math.sm3_02.solver.radians_label"))}}\\cdot \\frac{180}{\\pi}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${quest.expressionLatex} \\cdot \\frac{180}{\\pi}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
     );
@@ -112,8 +112,8 @@ function solveProjections(quest: S302Quest, t: Translator) {
   const ref = getReferenceAngle(quest.angle);
   const steps = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex),
-    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Use the exact unit-circle value for the reference angle } ${ref}^\\circ`),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Quadrant } ${quadrant} \\text{ determines the sign of } \\${quest.trigFunc}`),
+    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.reference_angle_rule", { ref }))}}`),
+    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("math.sm3_02.solver.projection_quadrant_sign", { quadrant, trigFunc: quest.trigFunc }))}}`),
     makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${quest.correctLatex}`, "key")
   ];
   return steps;
@@ -131,7 +131,7 @@ function solveWaves(quest: S302Quest, t: Translator) {
     const coefficient = parseWaveCoefficient(quest.expressionLatex);
     if (coefficient == null) return null;
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "A = |\\text{coefficient in front of }\\sin\\text{ or }\\cos|"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `A = |\\text{${escapeLatexText(t("math.sm3_02.solver.amplitude_rule"))}}|`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `A = |${coefficient}|`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `A = ${slot.expected}`, "key")
     );
@@ -141,7 +141,7 @@ function solveWaves(quest: S302Quest, t: Translator) {
   if (slot.id === "p") {
     const frequency = parseWaveFrequency(quest.expressionLatex);
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "T = \\frac{2\\pi}{b}"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `T = \\frac{2\\pi}{b}\\; \\text{${escapeLatexText(t("math.sm3_02.solver.period_rule"))}}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `T = \\frac{2\\pi}{${Number.isInteger(frequency) ? frequency : frequency.toFixed(3)}}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `T = ${quest.correctLatex}`, "key")
     );
@@ -154,7 +154,7 @@ function solveWaves(quest: S302Quest, t: Translator) {
     if (!Number.isFinite(amplitude)) return null;
     const isMax = String(slot.labelLatex).includes("max");
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), isMax ? "\\text{max} = d + A" : "\\text{min} = d - A"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), isMax ? `\\text{${escapeLatexText(t("math.sm3_02.solver.max_rule"))}} = d + A` : `\\text{${escapeLatexText(t("math.sm3_02.solver.min_rule"))}} = d - A`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), isMax ? `${shift} + ${amplitude}` : `${shift} - ${amplitude}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${slot.expected}`, "key")
     );
@@ -166,7 +166,7 @@ function solveWaves(quest: S302Quest, t: Translator) {
     const xAngle = pointMatch ? Number(pointMatch[1]) : null;
     if (xAngle === null) return null;
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Substitute the given angle into the trig function}"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.substitute_angle_rule"))}}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `x = ${xAngle}^\\circ`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `y = ${quest.correctLatex}`, "key")
     );
@@ -175,7 +175,7 @@ function solveWaves(quest: S302Quest, t: Translator) {
 
   if (slot.id === "d") {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "(\\sin x)' = \\cos x,\\quad (\\cos x)' = -\\sin x"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `(\\sin x)' = \\cos x,\\quad (\\cos x)' = -\\sin x\\; \\text{${escapeLatexText(t("math.sm3_02.solver.derivative_rule"))}}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `y' = ${quest.correctLatex}`, "key")
     );

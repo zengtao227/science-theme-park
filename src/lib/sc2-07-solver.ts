@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SC207Quest } from "./sc2-07-types";
 
 export function solveSC207(quest: SC207Quest, t: Translator) {
@@ -19,7 +19,7 @@ export function solveSC207(quest: SC207Quest, t: Translator) {
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          `\\text{Use the sign and magnitude of } \\Delta H \\text{ to classify the reaction and report the enthalpy change}`
+          `\\text{${escapeLatexText(t("chemistry.sc2_07.solver.solve_energy_changes"))}}`
         )
       );
       break;
@@ -32,7 +32,7 @@ export function solveSC207(quest: SC207Quest, t: Translator) {
         makeStep(
           2,
           t("common.feedback_reasons.select_formula_or_rule"),
-          "\\text{Hess's Law: add the enthalpy changes of the manipulated equations to obtain the target reaction}"
+          `\\text{${escapeLatexText(t("chemistry.sc2_07.solver.rule_hess_law"))}}`
         )
       );
       steps.push(
@@ -68,7 +68,7 @@ export function solveSC207(quest: SC207Quest, t: Translator) {
           3,
           t("common.feedback_reasons.solve_step_by_step"),
           quest.calorimetryData.moles
-            ? `\\text{First compute } q, \\text{ then } \\Delta H = -\\frac{q}{1000\\,n}`
+            ? `\\text{${escapeLatexText(t("chemistry.sc2_07.solver.solve_calorimetry_enthalpy"))}}`
             : `q = ${quest.calorimetryData.heat}`
         )
       );

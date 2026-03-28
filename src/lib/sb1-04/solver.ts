@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "PLANT_STRUCTURE" | "WATER_TRANSPORT" | "NUTRIENT_TRANSPORT";
 
@@ -9,32 +9,34 @@ export interface SB104SolverQuest extends Quest {
   function?: string;
 }
 
-function buildRuleLatex(quest: SB104SolverQuest) {
+function buildRuleLatex(quest: SB104SolverQuest, t: Translator) {
   if (quest.stage === "PLANT_STRUCTURE") {
-    return "\\text{Match each plant structure to the function it performs}";
+    return `\\text{${escapeLatexText(t("biology.sb1_04.solver.rule_plant_structure"))}}`;
   }
   if (quest.stage === "WATER_TRANSPORT") {
-    return "\\text{Use transpiration, cohesion-tension, or adaptation concepts to explain the response}";
+    return `\\text{${escapeLatexText(t("biology.sb1_04.solver.rule_water_transport"))}}`;
   }
   if (quest.stage === "NUTRIENT_TRANSPORT") {
-    return "\\text{Apply phloem source-sink transport and plant signaling concepts}";
+    return `\\text{${escapeLatexText(t("biology.sb1_04.solver.rule_nutrient_transport"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: SB104SolverQuest) {
+function buildSolveLatex(quest: SB104SolverQuest, t: Translator) {
   if (quest.stage === "PLANT_STRUCTURE") {
-    return `\\text{Use the role of } \\text{${quest.structure || "the structure"}} \\text{ to determine the answer}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_04.solver.solve_plant_structure", {
+      structure: quest.structure || t("biology.sb1_04.solver.default_structure"),
+    }))}}`;
   }
   if (quest.stage === "WATER_TRANSPORT") {
-    return "\\text{Relate the prompt to water uptake, transpiration, or the plant adaptation being described}";
+    return `\\text{${escapeLatexText(t("biology.sb1_04.solver.solve_water_transport"))}}`;
   }
-  return "\\text{Relate the prompt to phloem transport, source-sink behavior, or plant hormonal signaling}";
+  return `\\text{${escapeLatexText(t("biology.sb1_04.solver.solve_nutrient_transport"))}}`;
 }
 
 export function solveSB104(quest: SB104SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

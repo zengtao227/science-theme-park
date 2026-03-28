@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "OSMOSIS" | "RESPIRATION" | "HOMEOSTASIS";
 
@@ -9,34 +9,34 @@ export interface MetabolicSolverQuest extends Quest {
   statusKey?: "hypertonic" | "hypotonic" | "isotonic";
 }
 
-function buildRuleLatex(quest: MetabolicSolverQuest) {
+function buildRuleLatex(quest: MetabolicSolverQuest, t: Translator) {
   if (quest.stage === "OSMOSIS") {
-    return "\\text{Water moves from lower solute concentration to higher solute concentration}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.rule_osmosis"))}}`;
   }
   if (quest.stage === "RESPIRATION") {
-    return "\\text{Use the cellular-respiration equation or the matching pathway fact}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.rule_respiration"))}}`;
   }
   if (quest.stage === "HOMEOSTASIS") {
-    return "\\text{Homeostasis uses set points and negative feedback to stabilize internal conditions}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.rule_homeostasis"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: MetabolicSolverQuest) {
+function buildSolveLatex(quest: MetabolicSolverQuest, t: Translator) {
   if (quest.stage === "OSMOSIS") {
-    if (quest.statusKey === "hypertonic") return "\\text{The external solution is more concentrated, so water leaves the cell}";
-    if (quest.statusKey === "hypotonic") return "\\text{The external solution is less concentrated, so water enters the cell}";
-    return "\\text{Equal concentrations on both sides mean no net water movement}";
+    if (quest.statusKey === "hypertonic") return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.solve_osmosis_hypertonic"))}}`;
+    if (quest.statusKey === "hypotonic") return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.solve_osmosis_hypotonic"))}}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.solve_osmosis_isotonic"))}}`;
   }
   if (quest.stage === "RESPIRATION") {
-    return "\\text{Identify the missing reactant, product, ATP yield, or respiration location from the pathway}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.solve_respiration"))}}`;
   }
-  return "\\text{Connect the physiological variable or hormone to its homeostatic role}";
+  return `\\text{${escapeLatexText(t("biology.sb1_01_metabolic.solver.solve_homeostasis"))}}`;
 }
 
 export function solveSB101Metabolic(quest: MetabolicSolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

@@ -248,6 +248,11 @@ export const deChemistry = {
             corrosion_protection: "Instandhaltung der Rheinbrücken: Sie sind Spezialist für Denkmalpflege beim Basler Tiefbauamt. Sie inspizieren die historische Mittlere Brücke über den Rhein. Die stählernen Pfeiler unter Wasser sind anfällig für elektrochemische Korrosion, bei der Eisenatome Elektronen verlieren und zu Rost werden. Um dies zu verhindern, verwenden wir 'Opferanoden' aus Zink und schaffen so eine galvanische Zelle, in der das Zink anstelle des Brückenstahls korrodiert. Sie müssen überprüfen, ob die Potenzialdifferenz zwischen dem Flusswasser und den Stützen hoch genug ist, um den Schutz aufrechtzuerhalten. Wenn sich die Ionenkonzentration des Rheins durch saisonale Abflüsse ändert, könnte Ihr Schutzsystem versagen und die strukturelle Integrität dieses 800 Jahre alten Wahrzeichens gefährden. Es ist genau so, als würde man einen Schild vor ein Ziel stellen; der Schild fängt die Treffer (Korrosion) ab, damit das Ziel sicher bleibt.",
             analytical_electrochem: "Lonza Basel: Sie sind Forensik-Analyst im Kantonslabor Basel-Stadt. Wir haben eine Probe von einem Industriestandort nahe der Grenze erhalten, der im Verdacht steht, Schwermetalle in den Rhein einzuleiten. Mit einer Technik namens Anodic Stripping Voltammetry erstellen Sie eine winzige elektrochemische Zelle, um Spuren von Kupfer und Blei nachzuweisen. Der während der Redoxreaktion erzeugte Strom ist proportional zur Schadstoffkonzentration. Sie müssen den Sensor kalibrieren, indem Sie die Potenzialantwort einer 1,0-M-Standardlösung im Vergleich zu unserer unbekannten Probe messen. Eine genaue Messung ist hierbei entscheidend für die Durchsetzung von Umweltgesetzen und den Schutz des Rhein-Ökosystems für die Schwimmer im Rheinbad. Diese Präzision ist wie eine digitale Waage, die ein einzelnes Salzkorn in einem Schwimmbecken erkennen kann.",
             fuel_cell_innovation: "Swiss Hydrogen Hub: Sie sind Chemieingenieur am Swiss Hydrogen Hub in Basel. Wir entwickeln hocheffiziente Protonenaustauschmembran-Brennstoffzellen (PEM), um die nächste Generation der Schweizer Züge (SBB) anzutreiben. In diesen Zellen wird Wasserstoff an der Anode oxidiert und Sauerstoff an der Kathode reduziert, wobei nur Wasser und Strom entstehen. Ihr Projekt umfasst das Testen eines neuen Platin-Legierungskatalysators, der bei 80 °C arbeitet. Sie müssen den Effizienzverlust aufgrund des Konzentrationsgradienten über die Membran berechnen. Wenn der Wasserstoffdruck abfällt, sinkt das Zellpotential E gemäß der Nernst-Gleichung, was den Zug auf den steilen Strecken in der Nähe des Jura zum Stillstand bringen könnte. Diese Technologie repräsentiert die Zukunft des sauberen Verkehrs in Europa, ähnlich wie der Akku Ihres Laptops Ihre Arbeit antreibt, aber mit Wasserstoff als ultimativem sauberem Brennstoff."
+        },
+        solver: {
+            rule_build: "Nutzen Sie die Regeln der galvanischen Zelle, um Anode, Kathode und die Richtung des Elektronenflusses zu bestimmen",
+            zn_cu_cell_at_temp: "Wenden Sie fuer die Zn/Cu-Zelle bei der angegebenen Temperatur den Standardaufbau und bei gegebenen Konzentrationen die Nernst-Beziehung an",
+            solve_use_cell_rule: "Nutzen Sie die Zellregel aus dem Prompt, um die gesuchte Groesse zu bestimmen"
         }
     },
     gc2_01: {
@@ -476,6 +481,13 @@ export const deChemistry = {
                 action: "Steinsalz reinigen.",
                 target: "Kristallisation"
             }
+        },
+        solver: {
+            rule_identify: "Ordnen Sie jede beobachtete Testreaktion der passenden Pulveridentitaet zu",
+            rule_properties: "Nutzen Sie die kennzeichnende Eigenschaft oder den Reaktionshinweis, um die richtige Substanz zu bestimmen",
+            rule_reactions: "Nutzen Sie die beschriebene chemische Reaktion, um das richtige Produkt oder die richtige Substanz zu bestimmen",
+            answer_label: "Antwort",
+            product_label: "Produkt"
         }
     },
     sc1_02: {
@@ -780,6 +792,18 @@ export const deChemistry = {
             arrhenius_prompt_latex: "\\text{Berechnen Sie die Geschwindigkeitskonstante }k\\text{ mit der Arrhenius-Gleichung.}",
             concentration_prompt_latex: "\\text{Berechnen Sie die Reaktionsgeschwindigkeit basierend auf Konzentrationsänderungen.}",
             collision_prompt_latex: "\\text{Bestimmen Sie den Anteil effektiver Kollisionen.}"
+        },
+        solver: {
+            arrhenius_trend: "Eine hoehere Temperatur oder kleinere Aktivierungsenergie vergroessert die Geschwindigkeitskonstante",
+            rate_law_first_order: "Reaktion erster Ordnung",
+            rate_law_second_order: "Reaktion zweiter Ordnung",
+            rate_law_zero_order: "Reaktion nullter Ordnung",
+            rate_law_mixed: "Nutzen Sie das gemischte Geschwindigkeitsgesetz aus dem Prompt",
+            rate_law_generic: "Verwenden Sie das angegebene Geschwindigkeitsgesetz, um Konzentration und Reaktionsrate zu verknuepfen",
+            half_life_repeated_halving: "Wenden Sie wiederholtes Halbieren oder exponentiellen Zerfall auf die Restmenge an",
+            half_life_compare_rate_constants: "Vergleichen Sie Halbwertszeiten ueber die zugehoerigen Geschwindigkeitskonstanten",
+            half_life_generic: "Verwenden Sie die zur Reaktionsordnung passende Halbwertszeit-Beziehung",
+            solve_for_with_data: "Bestimmen Sie {target} mit den gegebenen Daten und der gewaehlten kinetischen Beziehung"
         },
         labels: {
             input: "EINGABE",
@@ -1597,6 +1621,15 @@ export const deChemistry = {
             neutralization: "NEUTRALISATION",
             titration: "TITRATION"
         },
+        solver: {
+            ph_special_case: "Verwenden Sie die pH- oder pOH-Beziehung, die zum gegebenen starken oder schwachen Saeure- bzw. Basenfall passt",
+            neutralization_rule_full: "Bei der Neutralisation zaehlt zuerst die Saeure-Base-Stoechiometrie; ein verbleibender Ueberschuss bestimmt den End-pH",
+            neutralization_ph: "Bestimmen Sie nach dem Ueberschuss von Saeure oder Base die Konzentration und daraus den End-pH",
+            neutralization_volume: "Addieren Sie die Volumina, um vor der Konzentrationsberechnung das Gesamtvolumen zu erhalten",
+            neutralization_generic: "Nutzen Sie die Neutralisationsstoechiometrie fuer das gefragte Ergebnis",
+            titration_ph: "Verwenden Sie am gewaehlten Titrationspunkt Stoechiometrie und die passende Saeure-Base-Beziehung zur pH-Berechnung",
+            titration_generic: "Nutzen Sie die zum Titrationsaufbau passende Aequivalenzpunkt-Beziehung"
+        },
         scenarios: {
             ph_basics: "Novartis Pharmazeutische pH-Kontrolle — Sie sind Formulierungswissenschaftlerin bei Novartis Basel und entwickeln ein neues orales Arzneimittel. Stabilität und Bioverfügbarkeit des Wirkstoffs hängen entscheidend vom pH-Wert ab: Im Magen (pH 1,5) muss der Wirkstoff stabil bleiben, im Blutkreislauf (pH 7,4) muss er schnell löslich sein. Die erlaubte pH-Abweichung im Herstellungsprozess beträgt ±0,2 Einheiten. Mit Präzisions-pH-Metern und Henderson-Hasselbalch-Berechnungen passen Sie das Verhältnis von schwacher Säure zu konjugierter Base an. Berechnen Sie die erforderlichen pH-Werte und Pufferverhältnisse, damit das Formulierungsteam bestätigen kann, ob die Charge die Freigabespezifikationen erfüllt und verpackt werden darf.",
             neutralization: "Universitätsspital Basel — Magenbehandlung: Sie sind klinische Apothekerin am Universitätsspital Basel und bereiten ein Antazidum für einen Patienten mit schwerem Säurereflux vor. Der Magen enthält ca. 50 mL HCl-Lösung bei pH 1,5 (ca. 0,03 M). Ihre Aufgabe ist es, die exakte Molzahl Natriumbicarbonat (NaHCO₃) zu berechnen, die benötigt wird, um die überschüssige Säure zu neutralisieren, ohne den pH-Wert in den alkalischen Bereich zu verschieben, was andere Komplikationen verursachen könnte. Die Neutralisationsreaktion erzeugt außerdem CO₂-Gas. Berechnen Sie die erforderliche NaHCO₃-Menge, damit die Apotheke die korrekte Dosis zubereiten kann, die Symptome effektiv lindert und Nebenwirkungen vermeidet.",
@@ -2114,6 +2147,11 @@ export const deChemistry = {
             energy_changes: "ENERGIEÄNDERUNGEN",
             hess_law: "HESS'SCHES GESETZ",
             calorimetry: "KALORIMETRIE"
+        },
+        solver: {
+            solve_energy_changes: "Bestimmen Sie, ob der Prozess Energie freisetzt oder aufnimmt, und nutzen Sie die passende Enthalpiebeziehung",
+            rule_hess_law: "Drehen, skalieren und addieren Sie Reaktionen so, dass Zwischenstoffe wegfallen und die Zielreaktion bleibt",
+            solve_calorimetry_enthalpy: "Verwenden Sie q = mc\\Delta T und die Vorzeichenkonvention, um die Enthalpieaenderung zu bestimmen"
         },
         prompts: {
             calculate_enthalpy: "Berechnen Sie die Enthalpieänderung (ΔH) für diese Reaktion",

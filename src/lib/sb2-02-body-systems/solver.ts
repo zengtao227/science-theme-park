@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -9,23 +9,25 @@ export interface SB202BodySystemsSolverQuest extends Quest {
   organPath?: string[];
 }
 
-function buildRuleLatex(quest: SB202BodySystemsSolverQuest) {
-  if (quest.stage === "DIGESTIVE") return "\\text{Use digestive anatomy and process knowledge to justify the organ or function}";
-  if (quest.stage === "CIRCULATORY") return "\\text{Use blood-flow logic, vessel roles, and circulation facts}";
-  if (quest.stage === "RESPIRATORY") return "\\text{Use airway, lung, and gas-exchange physiology to justify the answer}";
+function buildRuleLatex(quest: SB202BodySystemsSolverQuest, t: Translator) {
+  if (quest.stage === "DIGESTIVE") return `\\text{${escapeLatexText(t("biology.sb2_02.solver.rule_digestive"))}}`;
+  if (quest.stage === "CIRCULATORY") return `\\text{${escapeLatexText(t("biology.sb2_02.solver.rule_circulatory"))}}`;
+  if (quest.stage === "RESPIRATORY") return `\\text{${escapeLatexText(t("biology.sb2_02.solver.rule_respiratory"))}}`;
   return null;
 }
 
-function buildSolveLatex(quest: SB202BodySystemsSolverQuest) {
+function buildSolveLatex(quest: SB202BodySystemsSolverQuest, t: Translator) {
   if (quest.organPath?.length) {
-    return `\\text{Trace the route } ${quest.organPath.map((part) => `\\text{${part}}`).join(" \\to ")} \\text{ and identify the missing system component}`;
+    return `\\text{${escapeLatexText(t("biology.sb2_02.solver.trace_route"))}}\\; ${quest.organPath.map((part) => `\\text{${escapeLatexText(part)}}`).join(" \\to ")}\\; \\text{${escapeLatexText(t("biology.sb2_02.solver.identify_missing_component"))}}`;
   }
-  return `\\text{Interpret the system-specific clue for } \\text{${quest.systemType || "the current body system"}}`;
+  return `\\text{${escapeLatexText(t("biology.sb2_02.solver.solve_system_clue", {
+    system: quest.systemType || t("biology.sb2_02.solver.default_system"),
+  }))}}`;
 }
 
 export function solveSB202BodySystems(quest: SB202BodySystemsSolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),

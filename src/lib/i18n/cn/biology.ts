@@ -761,6 +761,16 @@ export const cnBiology = {
             reactant: "反应物",
             target_osmolarity: "目标渗透压",
             current_error: "当前误差："
+        },
+        solver: {
+            rule_osmosis: "根据外界溶液环境判断细胞的净水分移动方向",
+            rule_respiration: "根据细胞呼吸总反应的反应物与产物关系作答",
+            rule_homeostasis: "将生理数值与正常设定点比较，再判断调节反应",
+            solve_osmosis_hypertonic: "高渗环境会使水分从细胞内流出",
+            solve_osmosis_hypotonic: "低渗环境会使水分流入细胞",
+            solve_osmosis_isotonic: "等渗环境下没有净水分移动",
+            solve_respiration: "根据呼吸作用线索识别所需反应物或产物",
+            solve_homeostasis: "根据给出的体内变量和正常范围判断纠正性反应"
         }
     },
     sb1_02: {
@@ -819,6 +829,16 @@ export const cnBiology = {
         feedback: {
             correct: "光合作用方程式平衡！",
             incorrect: "请复习光合作用反应。"
+        },
+        solver: {
+            rule_equation: "根据配平后的光合作用方程比较所需的化学计量系数",
+            rule_factors: "当限制因素减少时，光合作用速率会下降",
+            rule_chloroplast: "把叶绿体结构与其对应发生的过程配对",
+            solve_equation: "应用光合作用方程中的 6:1:6 化学计量关系",
+            solve_factor_effect: "判断题目给出的因素变化会如何影响光合作用速率",
+            solve_chloroplast_structure: "根据过程线索确定正确的叶绿体结构",
+            default_factor: "该限制因素",
+            default_structure: "该叶绿体结构"
         }
     },
     sb1_03: {
@@ -908,6 +928,15 @@ export const cnBiology = {
             structure_label: "结构：",
             water_transport_title: "水分运输机制",
             nutrient_transport_title: "营养物质运输"
+        },
+        solver: {
+            rule_plant_structure: "将植物器官或组织与其结构功能对应起来",
+            rule_water_transport: "利用木质部、蒸腾拉力和内聚张力判断运输机制",
+            rule_nutrient_transport: "利用韧皮部的源到库运输判断养分移动方式",
+            solve_plant_structure: "根据结构线索判断承担该功能的植物器官或组织",
+            solve_water_transport: "根据水分运输线索确定正确的运输过程",
+            solve_nutrient_transport: "根据养分运输线索判断糖分在植物体内的移动方式",
+            default_structure: "该植物结构"
         },
         formulas: {
             structure_label: "\\text{结构：}",
@@ -1211,17 +1240,21 @@ export const cnBiology = {
             mv_l_min: "每分通气量(L/min)",
             area_m2: "\\text{面积 (m}^{2}\\text{)}"
         },
-        solver: {
-            rule_digestive: "将消化系统器官与其在分解、分泌或吸收中的作用对应起来",
-            rule_circulatory: "将循环系统结构与泵送、运输或交换功能对应起来",
-            rule_respiratory: "将呼吸系统结构与通气或气体交换功能对应起来",
-            solve_with_organ: "将功能线索与当前人体系统中的结构 {organ} 对应起来",
-            solve_default: "利用题目中的解剖和功能线索识别正确结构"
-        },
         corrects: {
             carbon_dioxide: "\\text{二氧化碳（CO}_2\\text{）}",
             baroreceptors_raas_anp: "\\text{压力感受器、RAAS、ANP}",
             oxygen: "\\text{氧气（O}_2\\text{）}"
+        },
+        solver: {
+            rule_digestive: "将每个消化器官与其在分解、分泌或吸收中的作用对应起来",
+            rule_circulatory: "将每个循环系统结构与其泵送、运输或交换功能对应起来",
+            rule_respiratory: "将每个呼吸系统结构与其通气或气体交换功能对应起来",
+            solve_with_organ: "根据功能线索，在当前身体系统中定位到结构 {organ}",
+            solve_default: "使用题目中的解剖与功能线索来确定正确结构",
+            trace_route: "沿着列出的器官路径依次追踪",
+            identify_missing_component: "然后确定该路径中缺失的结构",
+            solve_system_clue: "利用 {system} 系统中的线索来识别正确结构",
+            default_system: "身体系统"
         },
         prompts: {
             // 消化系统 - 基础 (5题)
