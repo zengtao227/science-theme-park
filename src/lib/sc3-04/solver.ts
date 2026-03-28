@@ -19,7 +19,7 @@ function buildGivenLatex(quest: SC304Quest) {
     return `\\text{${escapeLatexText(quest.moleculeName)}}: ${quest.formula}`;
   }
   if (quest.propA && quest.propB) {
-    return `\\text{Compare } ${escapeLatexText(quest.propA)} \\text{ with } ${escapeLatexText(quest.propB)}`;
+    return `\\text{${escapeLatexText(quest.propA)}} \\text{ ? } \\text{${escapeLatexText(quest.propB)}}`;
   }
   return quest.expressionLatex || quest.promptLatex;
 }

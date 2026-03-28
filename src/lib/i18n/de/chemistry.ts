@@ -765,6 +765,14 @@ export const deChemistry = {
             molecular_oxygen: "Luftgütestation am Rhein: Kovalente Bindungen in Sauerstoff- und Stickstoffmolekülen werden untersucht, um Gasaustauschprozesse zu verstehen.",
             pharmaceutical_chains: "Molekulardesign bei Roche: Die Entwicklung neuer Medikamente in Basel umfasst das Engineering spezifischer kovalenter Bindungen.",
             electrostatic_attraction: "Physik der Universität Basel: Untersuchung der elektrostatischen Kräfte, die Ionenoxide auf atomarer Ebene zusammenhalten."
+        },
+        solver: {
+            ca_two_fluoride: "benötigt zwei",
+            h2_one_shared_pair: "hat ein gemeinsames Elektronenpaar",
+            o2_double_bond: "bildet eine Doppelbindung",
+            n2_triple_bond: "bildet eine Dreifachbindung",
+            na_one_valence: "liefert ein Valenzelektron",
+            mg_two_valence: "liefert zwei Valenzelektronen"
         }
     },
     sc2_01: {
@@ -1351,7 +1359,18 @@ export const deChemistry = {
         solver: {
             hydrocarbon_rule: "Nutze die Zuordnung von Name und Summenformel für {molecule}",
             functional_group_rule: "Ordne die Stoffklasse ihrer charakteristischen funktionellen Gruppe zu",
-            isomer_rule: "Zähle die gültigen Konstitutionsisomere von {formula}"
+            isomer_rule: "Zähle die gültigen Konstitutionsisomere von {formula}",
+            add_all_atoms: "Addieren Sie alle Atome in der Molekülformel",
+            assemble_complete_formula_for: "Setzen Sie die vollständige Molekülformel für {molecule} zusammen",
+            estimate_bonds: "Schätzen Sie die Bindungen aus dem verbundenen Molekülgerüst ab",
+            reduce_subscripts: "Kürzen Sie die Indizes auf das einfachste ganzzahlige Verhältnis",
+            functional_groups_label: "Funktionelle Gruppen",
+            ring_count_label: "Ringanzahl",
+            groups: {
+                aspirin: "Ester, Carboxyl",
+                caffeine: "Amid, Amin",
+                adrenaline: "Amin, Hydroxyl"
+            }
         },
         scenarios: {
             lonza_feedstock: "Lonza Basel liefert kritische chemische Rohstoffe und Zwischenprodukte, die weltweit für komplexe organische Synthesen benötigt werden.",
@@ -1400,6 +1419,12 @@ export const deChemistry = {
             hint_combustion: "Zähle die Kohlenstoffatome im Reaktanten",
             hint_substitution: "Ein H-Atom wird durch ein Halogenatom ersetzt",
             hint_addition: "Die Doppelbindung öffnet sich und addiert das Reagenz"
+        },
+        solver: {
+            combustion_forms: "Vollständige Verbrennung bildet",
+            and_water: "und",
+            substitution_replace: "Ersetzen Sie ein Wasserstoffatom durch das eintretende Halogen",
+            addition_add: "Addieren Sie das Reagenz über die Mehrfachbindung"
         },
         scenarios: {
             novartis_combustion: "Novartis Energie-Labor - Thermodynamische Optimierung: Sie sind Energieeffizienz-Analyst am Novartis-Hauptsitz in Basel und optimieren die Verbrennungsprozesse zur Wärmeerzeugung für die großtechnische pharmazeutische Synthese. Durch die Sicherstellung einer vollständigen Verbrennung von Methan und anderen Kohlenwasserstoff-Brennstoffen maximieren Sie die Energieausbeute und minimieren gleichzeitig die Bildung schädlicher Nebenprodukte wie Kohlenmonoxid. Im Rahmen der Basler Verpflichtung zu nachhaltigen Betrieben muss jedes Kilojoule Energie berücksichtigt werden. Die Berechnung der stöchiometrischen CO2-Menge ist der erste Schritt zur Überprüfung des CO2-Fußabdrucks der Anlage. Es ist wie das Feinabstimmen eines massiven Motors, bei dem der Brennstoff hochreiner Kohlenwasserstoff ist und das Ziel absolute Effizienz ist.",
@@ -1597,7 +1622,9 @@ export const deChemistry = {
         solver: {
             rule_plating: "Das zu beschichtende Objekt wird an die Kathode angeschlossen, wo durch Reduktion Metall abgeschieden wird",
             rule_corrosion: "Eine Opferanode muss unedler als Eisen sein, damit sie zuerst oxidiert wird",
-            apply_rule_to_outcome: "Wenden Sie die Elektrolyse- oder Korrosionsregel an, um das gefragte Ergebnis zu bestimmen"
+            apply_rule_to_outcome: "Wenden Sie die Elektrolyse- oder Korrosionsregel an, um das gefragte Ergebnis zu bestimmen",
+            metal_label: "Metall",
+            solution_label: "Lösung"
         },
         feedback: {
             correct: "Elektrolytischer Prozess verstanden!",
@@ -2253,6 +2280,13 @@ export const deChemistry = {
             sc1_07_q1: "Identifizieren Sie diesen recycelbaren Kunststoff (Abkürzung).",
             sc1_07_q2: "Berechnen Sie die ideale Atomökonomie (%).",
             sc1_07_q3: "Identifizieren Sie den Startpunkt des Produktlebenszyklus."
+        },
+        solver: {
+            recyclable_plastic: "Üblicher recycelbarer Flaschenkunststoff",
+            ideal_atom_economy: "Ideale Atomökonomie bedeutet, dass alle Atome im Produkt landen",
+            circular_starts_at_cradle: "Ein kreislauffähiges Produkt beginnt beim Cradle-Design",
+            stage_label: "Phase",
+            cradle_label: "Cradle"
         }
     }
 };

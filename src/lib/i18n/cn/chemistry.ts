@@ -773,6 +773,14 @@ export const cnChemistry = {
             molecular_oxygen: "莱茵河空气质量站：研究氧气和氮气分子中的共价键，以了解城市大气中的气体交换过程。",
             pharmaceutical_chains: "罗氏 (Roche) 分子设计：在巴塞尔开发新药涉及工程化特定的共价键，以创建精确的分子结构。",
             electrostatic_attraction: "巴塞尔大学物理系：利用先进显微镜研究在原子水平上将离子晶体结合在一起的静电引力。"
+        },
+        solver: {
+            ca_two_fluoride: "需要两个",
+            h2_one_shared_pair: "具有一对共用电子对",
+            o2_double_bond: "形成双键",
+            n2_triple_bond: "形成三键",
+            na_one_valence: "贡献一个价电子",
+            mg_two_valence: "贡献两个价电子"
         }
     },
     sc2_01: {
@@ -1359,7 +1367,18 @@ export const cnChemistry = {
         solver: {
             hydrocarbon_rule: "使用 {molecule} 的名称与分子式对应关系",
             functional_group_rule: "将化合物类别与其定义性官能团对应起来",
-            isomer_rule: "统计 {formula} 的有效构造异构体数量"
+            isomer_rule: "统计 {formula} 的有效构造异构体数量",
+            add_all_atoms: "把分子式中的所有原子数相加",
+            assemble_complete_formula_for: "为 {molecule} 组装完整分子式",
+            estimate_bonds: "根据连接的分子骨架估算键数",
+            reduce_subscripts: "将下标约化为最简整数比",
+            functional_groups_label: "官能团",
+            ring_count_label: "环数",
+            groups: {
+                aspirin: "酯基、羧基",
+                caffeine: "酰胺基、胺基",
+                adrenaline: "胺基、羟基"
+            }
         },
         scenarios: {
             lonza_feedstock: "龙沙巴塞尔 - 全球供应链：你是龙沙巴塞尔总部的一名物流协调员，负责管理高纯度化学原料的配送。这些中间体分子是数千种产品的基石，从农业化学品到先进电子设备。今天，你正在审查一批新的烃类分子的规格。在巴塞尔化学工业中，即使是对官能团或同分异构体的细微误解，也可能导致生产线上的“不匹配”，从而可能推迟全球药品的运输。通过掌握这些有机基础的命名和结构，你可以确保巴塞尔始终是全球化学合成的可靠支柱。这种协调就像管理一个高速铁路网，每一个开关和信号都必须精确计时，以防止碰撞。",
@@ -1407,6 +1426,12 @@ export const cnChemistry = {
             hint_combustion: "计算反应物中的碳原子数",
             hint_substitution: "一个 H 原子被卤素原子取代",
             hint_addition: "双键打开并加成试剂"
+        },
+        solver: {
+            combustion_forms: "完全燃烧生成",
+            and_water: "以及",
+            substitution_replace: "用进入反应的卤素取代一个氢原子",
+            addition_add: "让试剂跨越多重键发生加成"
         },
         scenarios: {
             novartis_combustion: "诺华能源实验室 - 热力学优化：你是巴塞尔诺华总部的一名能源效率分析师，负责优化用于大规模药物合成产热的燃烧工艺。通过确保甲烷和其他烃类燃料的完全燃烧，你可以最大化能量输出，同时尽量减少一氧化碳等有害副产物的形成。巴塞尔致力于可持续运营，每一千焦耳的能量都必须得到妥善利用。计算产生的 CO2 理论量是审核设施碳足迹的第一步。这就像是微调一台巨型发动机，燃料是高纯度烃类，目标是绝对效率。",
@@ -1608,7 +1633,9 @@ export const cnChemistry = {
         solver: {
             rule_plating: "待镀物体连接在阴极上，金属在阴极发生还原并沉积",
             rule_corrosion: "牺牲阳极必须比铁更活泼，才能优先被氧化",
-            apply_rule_to_outcome: "应用电解或防腐规则，判断题目要求的结果"
+            apply_rule_to_outcome: "应用电解或防腐规则，判断题目要求的结果",
+            metal_label: "金属",
+            solution_label: "溶液"
         }
     },
     sc2_05: {
@@ -2259,6 +2286,13 @@ export const cnChemistry = {
             sc1_07_q1: "识别此类可回收塑料（缩写）。",
             sc1_07_q2: "计算理想状态下的原子经济性 (%)。",
             sc1_07_q3: "识别产品生命周期的起始点名称。"
+        },
+        solver: {
+            recyclable_plastic: "常见可回收瓶装塑料",
+            ideal_atom_economy: "理想原子经济性表示所有原子都进入产物",
+            circular_starts_at_cradle: "循环型产品从摇篮设计开始",
+            stage_label: "阶段",
+            cradle_label: "摇篮"
         }
     }
 };

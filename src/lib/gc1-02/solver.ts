@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { GC102Quest } from "./quests";
 
 function getRuleLatex(quest: GC102Quest, t: Translator) {
@@ -21,8 +21,8 @@ export function solveGC102(quest: GC102Quest, t: Translator) {
 
   const givenLatex =
     quest.stage === "PRINCIPLES"
-      ? `I=${quest.current}\\text{ A},\\ t=${quest.time}\\text{ s},\\ \\text{metal}=${quest.metal}`
-      : `\\text{Metal}=${quest.metal},\\ \\text{solution}=${quest.solution}`;
+      ? `I=${quest.current}\\text{ A},\\ t=${quest.time}\\text{ s},\\ \\text{${escapeLatexText(t("chemistry.gc1_02.solver.metal_label"))}}=${escapeLatexText(quest.metal)}`
+      : `\\text{${escapeLatexText(t("chemistry.gc1_02.solver.metal_label"))}}=${escapeLatexText(quest.metal)},\\ \\text{${escapeLatexText(t("chemistry.gc1_02.solver.solution_label"))}}=${escapeLatexText(quest.solution)}`;
 
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), givenLatex),

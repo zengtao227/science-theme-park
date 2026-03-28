@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { BondQuest } from "./types";
 
 export function solveSC105(quest: BondQuest, t: Translator) {
@@ -19,19 +19,19 @@ export function solveSC105(quest: BondQuest, t: Translator) {
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "Q = 0"));
       break;
     case "I-E-1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\mathrm{Ca}^{2+} \\text{ needs two } \\mathrm{F}^{-}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\mathrm{Ca}^{2+} \\text{ ${escapeLatexText(t("chemistry.sc1_05.solver.ca_two_fluoride"))} } \\mathrm{F}^{-}`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "n = 2"));
       break;
     case "C-B-1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\mathrm{H}_2 \\text{ has one shared electron pair}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\mathrm{H}_2 \\text{ ${escapeLatexText(t("chemistry.sc1_05.solver.h2_one_shared_pair"))} }`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "n = 1"));
       break;
     case "C-C-1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\mathrm{O}_2 \\text{ forms a double bond}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\mathrm{O}_2 \\text{ ${escapeLatexText(t("chemistry.sc1_05.solver.o2_double_bond"))} }`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "n = 2"));
       break;
     case "C-A-1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\mathrm{N}_2 \\text{ forms a triple bond}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\mathrm{N}_2 \\text{ ${escapeLatexText(t("chemistry.sc1_05.solver.n2_triple_bond"))} }`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "n = 3"));
       break;
     case "C-E-1":
@@ -39,11 +39,11 @@ export function solveSC105(quest: BondQuest, t: Translator) {
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "b = 2"));
       break;
     case "M-B-1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\mathrm{Na} \\text{ contributes one valence electron}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\mathrm{Na} \\text{ ${escapeLatexText(t("chemistry.sc1_05.solver.na_one_valence"))} }`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "v = 1"));
       break;
     case "M-C-1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\mathrm{Mg} \\text{ contributes two valence electrons}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\mathrm{Mg} \\text{ ${escapeLatexText(t("chemistry.sc1_05.solver.mg_two_valence"))} }`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "v = 2"));
       break;
     case "M-A-1":

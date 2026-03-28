@@ -1,11 +1,11 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SC301Quest, Stage } from "./types";
 
-const STAGE_FORMULAS: Record<Stage, { formula: string; c: number; h: number; n: number; o: number; groups: string; rings: string; unsat: string }> = {
-  ASPIRIN: { formula: "C9H8O4", c: 9, h: 8, n: 0, o: 4, groups: "ester,carboxyl", rings: "1", unsat: "6" },
-  CAFFEINE: { formula: "C8H10N4O2", c: 8, h: 10, n: 4, o: 2, groups: "amide,amine", rings: "2", unsat: "6" },
-  ADRENALINE: { formula: "C9H13NO3", c: 9, h: 13, n: 1, o: 3, groups: "amine,hydroxyl", rings: "1", unsat: "4" },
+const STAGE_FORMULAS: Record<Stage, { formula: string; c: number; h: number; n: number; o: number; groupsKey: string; rings: string; unsat: string }> = {
+  ASPIRIN: { formula: "C9H8O4", c: 9, h: 8, n: 0, o: 4, groupsKey: "aspirin", rings: "1", unsat: "6" },
+  CAFFEINE: { formula: "C8H10N4O2", c: 8, h: 10, n: 4, o: 2, groupsKey: "caffeine", rings: "2", unsat: "6" },
+  ADRENALINE: { formula: "C9H13NO3", c: 9, h: 13, n: 1, o: 3, groupsKey: "adrenaline", rings: "1", unsat: "4" },
 };
 
 export function solveSC301(quest: SC301Quest, t: Translator) {
@@ -21,7 +21,7 @@ export function solveSC301(quest: SC301Quest, t: Translator) {
   } else if (quest.id.includes("-N")) {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `${meta.formula} \\Rightarrow N = ${meta.n}`));
   } else if (quest.id.includes("TOTAL")) {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Add all atoms in the molecular formula}"));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_01.solver.add_all_atoms"))}}`));
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${meta.c} + ${meta.h} + ${meta.n} + ${meta.o} = ${meta.c + meta.h + meta.n + meta.o}`));
   } else if (quest.id.includes("RATIO")) {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `C:O = ${meta.c}:${meta.o}`));
@@ -30,17 +30,17 @@ export function solveSC301(quest: SC301Quest, t: Translator) {
   } else if (quest.id.includes("MASS2")) {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "M = 12.01C + 1.008H + 14.01N + 16.00O"));
   } else if (quest.id.includes("FULL")) {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Assemble the complete molecular formula for } ${quest.moleculeName}`));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_01.solver.assemble_complete_formula_for", { molecule: quest.moleculeName }))}}`));
   } else if (quest.id.includes("PERCENT") || quest.id.includes("COMPOSITION")) {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\%C = \\frac{m_C}{M_{total}}\\times 100"));
   } else if (quest.id.includes("BONDS")) {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Estimate bonds from the connected molecular skeleton}"));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_01.solver.estimate_bonds"))}}`));
   } else if (quest.id.includes("EMPIRICAL")) {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Reduce subscripts to the simplest whole-number ratio}"));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_01.solver.reduce_subscripts"))}}`));
   } else if (quest.id.includes("FUNCTIONAL")) {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Functional groups} = \\text{${meta.groups}}`));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_01.solver.functional_groups_label"))}} = \\text{${escapeLatexText(t(`chemistry.sc3_01.solver.groups.${meta.groupsKey}`))}}`));
   } else if (quest.id.includes("STRUCTURE")) {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Ring count} = ${meta.rings}`));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_01.solver.ring_count_label"))}} = ${meta.rings}`));
   } else if (quest.id.includes("SATURATION")) {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{DU} = \\frac{2C + 2 + N - H}{2}"));
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\frac{2\\cdot${meta.c}+2+${meta.n}-${meta.h}}{2} = ${meta.unsat}`));

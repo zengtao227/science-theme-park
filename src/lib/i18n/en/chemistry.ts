@@ -773,6 +773,14 @@ export const enChemistry = {
             molecular_oxygen: "Rhine Air Quality Station: Covalent bonding in oxygen and nitrogen molecules is studied to understand gas exchange processes in the city's atmosphere.",
             pharmaceutical_chains: "Roche Molecular Design: Developing new drugs in Basel involves engineering specific covalent bonds to create precise molecular architectures.",
             electrostatic_attraction: "University of Basel Physics: Studying the electrostatic forces that hold ionic crystals together at the atomic level using advanced microscopy."
+        },
+        solver: {
+            ca_two_fluoride: "needs two",
+            h2_one_shared_pair: "has one shared electron pair",
+            o2_double_bond: "forms a double bond",
+            n2_triple_bond: "forms a triple bond",
+            na_one_valence: "contributes one valence electron",
+            mg_two_valence: "contributes two valence electrons"
         }
     },
     sc2_01: {
@@ -1359,7 +1367,18 @@ export const enChemistry = {
         solver: {
             hydrocarbon_rule: "Use the name-formula mapping for {molecule}",
             functional_group_rule: "Match the compound class with its defining group",
-            isomer_rule: "Count valid constitutional isomers for {formula}"
+            isomer_rule: "Count valid constitutional isomers for {formula}",
+            add_all_atoms: "Add all atoms in the molecular formula",
+            assemble_complete_formula_for: "Assemble the complete molecular formula for {molecule}",
+            estimate_bonds: "Estimate bonds from the connected molecular skeleton",
+            reduce_subscripts: "Reduce subscripts to the simplest whole-number ratio",
+            functional_groups_label: "Functional groups",
+            ring_count_label: "Ring count",
+            groups: {
+                aspirin: "ester, carboxyl",
+                caffeine: "amide, amine",
+                adrenaline: "amine, hydroxyl"
+            }
         },
         scenarios: {
             lonza_feedstock: "Lonza Basel - The Global Supply Chain: You are a logistics coordinator at Lonza’s headquarters in Basel, managing the distribution of high-purity chemical feedstocks. These intermediate molecules are the building blocks for thousands of products, from agricultural chemicals to advanced electronics. Today, you are reviewing the molecular specifications of a new batch of hydrocarbons. In the Basel chemical industry, even a minor misunderstanding of a functional group or an isomer can lead to a 'mismatch' in the production line, potentially delaying global pharmaceutical shipments. By mastering the naming and structure of these organic basics, you ensure that Basel remains the reliable backbone of global chemical synthesis. This coordination is like managing a high-speed train network where every switch and signal must be perfectly timed to prevent a collision.",
@@ -1407,6 +1426,12 @@ export const enChemistry = {
             hint_combustion: "Count carbon atoms in the reactant",
             hint_substitution: "One H atom is replaced by a halogen atom",
             hint_addition: "The double bond opens and adds the reagent"
+        },
+        solver: {
+            combustion_forms: "Complete combustion forms",
+            and_water: "and",
+            substitution_replace: "Replace one hydrogen atom with the incoming halogen",
+            addition_add: "Add the reagent across the multiple bond"
         },
         scenarios: {
             novartis_combustion: "Novartis Energy Lab - Thermodynamic Optimization: You are an energy efficiency analyst at the Novartis headquarters in Basel, optimizing the combustion processes used to generate heat for large-scale pharmaceutical synthesis. By ensuring complete combustion of methane and other hydrocarbon fuels, you maximize energy output while minimizing the formation of harmful by-products like carbon monoxide. In Basel’s commitment to sustainable operations, every kilojoule of energy must be accounted for. Calculating the stoichiometric amount of CO2 produced is the first step in auditing the facility's carbon footprint. It’s like fine-tuning a massive engine where the fuel is high-purity hydrocarbon and the goal is absolute efficiency.",
@@ -1608,7 +1633,9 @@ export const enChemistry = {
         solver: {
             rule_plating: "The object being plated is connected to the cathode, where reduction deposits metal",
             rule_corrosion: "A sacrificial anode must be more reactive than iron so it oxidizes first",
-            apply_rule_to_outcome: "Apply the electrolysis or corrosion rule to determine the requested outcome"
+            apply_rule_to_outcome: "Apply the electrolysis or corrosion rule to determine the requested outcome",
+            metal_label: "metal",
+            solution_label: "solution"
         }
     },
     sc2_05: {
@@ -2260,6 +2287,13 @@ export const enChemistry = {
             sc1_07_q1: "Identify this recyclable plastic (abbreviation).",
             sc1_07_q2: "Calculate the ideal atom economy (%).",
             sc1_07_q3: "Identify the starting point of the product life cycle."
+        },
+        solver: {
+            recyclable_plastic: "Common recyclable bottle plastic",
+            ideal_atom_economy: "Ideal atom economy means all atoms enter the product",
+            circular_starts_at_cradle: "A circular product starts at cradle design",
+            stage_label: "Stage",
+            cradle_label: "Cradle"
         }
     }
 };

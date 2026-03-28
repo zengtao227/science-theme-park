@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SC107Quest } from "./quests";
 
 export function solveSC107(quest: SC107Quest, t: Translator) {
@@ -7,15 +7,15 @@ export function solveSC107(quest: SC107Quest, t: Translator) {
 
   switch (quest.id) {
     case "sc1_07_q1":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Common recyclable bottle plastic} = \\mathrm{PET}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc1_07.solver.recyclable_plastic"))}} = \\mathrm{PET}`));
       break;
     case "sc1_07_q2":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Ideal atom economy means all atoms enter the product}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc1_07.solver.ideal_atom_economy"))}}`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "AE = 100\\%"));
       break;
     case "sc1_07_q3":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{A circular product starts at cradle design}"));
-      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Stage} = \\text{Cradle}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc1_07.solver.circular_starts_at_cradle"))}}`));
+      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc1_07.solver.stage_label"))}} = \\text{${escapeLatexText(t("chemistry.sc1_07.solver.cradle_label"))}}`));
       break;
     default:
       return { steps: [], fullSolutionLatex: null };
