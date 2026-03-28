@@ -79,7 +79,7 @@ export default function GM202AnalyticalGeometry() {
 
     setCheckStatus({
       ok: allCorrect,
-      correct: currentQuest.correctLatex
+      correct: allCorrect ? currentQuest.correctLatex : ""
     });
   };
 

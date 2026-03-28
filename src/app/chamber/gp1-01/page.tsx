@@ -450,11 +450,6 @@ export default function GP1_01_AtomicCore() {
                                 <div className={`font-bold text-sm ${quizResult ? "text-green-300" : "text-orange-300"}`}>
                                     {quizResult ? t("gp1_01.correct") : t("gp1_01.incorrect")}
                                 </div>
-                                {!quizResult && (
-                                    <div className="mt-1 text-white/80 text-sm">
-                                        <InlineMath math={currentQuest.correctLatex} />
-                                    </div>
-                                )}
                             </div>
                         )}
                     </div>

@@ -316,11 +316,6 @@ export default function GP1_02_RelativityLab() {
                         <div className={`font-black ${quizResult ? "text-green-300" : "text-orange-300"}`}>
                             {quizResult ? t("gp1_02.correct") : t("gp1_02.incorrect")}
                         </div>
-                        {!quizResult && (
-                            <div className="mt-2 text-white/80">
-                                <InlineMath math={currentQuest.correctLatex} />
-                            </div>
-                        )}
                     </div>
                 )}
             </div>
