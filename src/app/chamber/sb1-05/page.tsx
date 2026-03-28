@@ -8,7 +8,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB105FeedbackProvider } from "@/lib/sb1-05/provider";
 
 type Stage = "ANIMAL_CLASSIFICATION" | "ADAPTATIONS" | "BEHAVIOR_EVOLUTION";
 
@@ -21,7 +21,7 @@ interface SB105Quest extends Quest {
 
 export default function SB105AnimalClassification() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb1-05"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB105FeedbackProvider(t), [t]);
 
     const sb1_05_t = useMemo(() => ({
         title: t("sb1_05.title"),

@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB103FeedbackProvider } from "@/lib/sb1-03/provider";
 
 type Stage = "MITOSIS" | "MEIOSIS_I" | "MEIOSIS_II";
 
@@ -25,7 +25,7 @@ interface SB103Quest extends Quest {
 export default function SB103Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb1-03"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB103FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB103Quest[] => {
         const quests: SB103Quest[] = [];

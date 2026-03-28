@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB101FeedbackProvider } from "@/lib/sb1-01/provider";
 
 type Stage = "IDENTIFICATION" | "FUNCTION" | "ORGANELLES";
 
@@ -24,7 +24,7 @@ interface SB101Quest extends Quest {
 export default function SB101Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb1-01"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB101FeedbackProvider(t), [t]);
     const [selectedOrganelle, setSelectedOrganelle] = useState<string | null>(null);
     const [showCutaway, setShowCutaway] = useState(true);
 

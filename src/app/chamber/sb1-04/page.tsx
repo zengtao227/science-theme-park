@@ -8,7 +8,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB104FeedbackProvider } from "@/lib/sb1-04/provider";
 
 type Stage = "PLANT_STRUCTURE" | "WATER_TRANSPORT" | "NUTRIENT_TRANSPORT";
 
@@ -28,7 +28,7 @@ function pickAnswer(...values: Array<string | undefined>) {
 
 export default function SB104PlantStructure() {
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb1-04"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB104FeedbackProvider(t), [t]);
 
     const sb1_04_t = useMemo(() => ({
         title: t("sb1_04.title"),
