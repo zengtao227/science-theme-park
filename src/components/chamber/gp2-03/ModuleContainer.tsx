@@ -8,11 +8,13 @@ import { BASEL_SCENARIOS } from "@/lib/gp2-03-scenarios";
 import { QuestValidator } from "@/lib/gp2-03-quest-validator";
 import { QuestProgressTracker } from "@/lib/gp2-03-progress-tracker";
 import ChamberLayout from "@/components/layout/ChamberLayout";
+import type { FeedbackContent, FeedbackLevel, FeedbackPolicy } from "@/hooks/useQuestManager";
 import ScenarioCard from "./ScenarioCard";
 import GasLawSimulator from "./GasLawSimulator";
 import PVDiagram from "./PVDiagram";
 import PartialPressureCalculator from "./PartialPressureCalculator";
 import ContentRenderer from "./ContentRenderer";
+import { escapeLatexText } from "@/lib/feedback/solverSupport";
 
 interface ModuleContainerProps {
   moduleCode?: string;
@@ -36,6 +38,8 @@ export default function ModuleContainer({
   const [currentQuestIndex, setCurrentQuestIndex] = useState(0);
   const [studentAnswer, setStudentAnswer] = useState("");
   const [lastValidation, setLastValidation] = useState<any>(null);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedbackLevel, setFeedbackLevel] = useState<FeedbackLevel>("NONE");
 
   const ui = useMemo(() => ({
     title: {
@@ -160,17 +164,52 @@ export default function ModuleContainer({
   const validator = new QuestValidator(currentLanguage);
   const progressTracker = new QuestProgressTracker(ALL_QUESTS, questProgress);
   void progressTracker;
+  const feedbackPolicy: FeedbackPolicy = useMemo(() => ({
+    hintThreshold: 1,
+    stepsThreshold: 2,
+    fullThreshold: 3,
+    showAfterCorrect: true,
+    confirmFullSolution: true,
+  }), []);
+
+  const feedbackAvailability = useMemo(() => ({
+    canShowHint: wrongAttempts >= feedbackPolicy.hintThreshold,
+    canShowSteps: wrongAttempts >= feedbackPolicy.stepsThreshold,
+    canShowFull: wrongAttempts >= feedbackPolicy.fullThreshold,
+  }), [wrongAttempts, feedbackPolicy]);
+
+  const feedbackContent = useMemo<FeedbackContent>(() => {
+    const toText = (text: string) => `\\text{${escapeLatexText(text)}}`;
+    const localizedHints = currentQuest?.hints.map((hint) => hint[currentLanguage]) ?? [];
+    const explanation = currentQuest?.solution.explanation[currentLanguage] ?? "";
+
+    return {
+      hint: localizedHints[0] ? toText(localizedHints[0]) : "",
+      steps: localizedHints.map((hint, index) => ({
+        stepNumber: index + 1,
+        expressionLatex: toText(hint),
+        justification: currentQuest?.title[currentLanguage] ?? "Gas law guidance",
+        emphasis: index === localizedHints.length - 1 ? "key" : undefined,
+      })),
+      fullSolutionLatex: explanation ? toText(explanation) : null,
+      hasFullSolution: !!explanation,
+    };
+  }, [currentLanguage, currentQuest]);
 
   const handleStageChange = (newStage: string) => {
     setStage(newStage as StageId);
     setCurrentQuestIndex(0);
     setLastValidation(null);
+    setWrongAttempts(0);
+    setFeedbackLevel("NONE");
   };
 
   const handleDifficultyChange = (newDifficulty: string) => {
     setDifficulty(newDifficulty as Difficulty);
     setCurrentQuestIndex(0);
     setLastValidation(null);
+    setWrongAttempts(0);
+    setFeedbackLevel("NONE");
   };
 
   const handleVerify = () => {
@@ -181,6 +220,8 @@ export default function ModuleContainer({
 
     if (result.isCorrect) {
       completeQuest(currentQuest.id);
+    } else {
+      setWrongAttempts((value) => value + 1);
     }
   };
 
@@ -189,6 +230,8 @@ export default function ModuleContainer({
       setCurrentQuestIndex(currentQuestIndex + 1);
       setStudentAnswer("");
       setLastValidation(null);
+      setWrongAttempts(0);
+      setFeedbackLevel("NONE");
     }
   };
 
@@ -277,6 +320,14 @@ export default function ModuleContainer({
         },
       }}
       monitorContent={getVisualization()}
+      checkStatus={lastValidation ? { ok: lastValidation.isCorrect, correct: "" } : null}
+      feedbackContent={feedbackContent}
+      feedbackLevel={feedbackLevel}
+      feedbackAvailability={feedbackAvailability}
+      feedbackPolicy={feedbackPolicy}
+      onShowHint={() => setFeedbackLevel((level) => (level === "NONE" ? "HINT" : level))}
+      onShowSteps={() => setFeedbackLevel("STEPS")}
+      onShowFull={() => setFeedbackLevel("FULL")}
     >
       <div className="space-y-6">
         {/* Scenarios (show on first quest) */}
@@ -355,17 +406,6 @@ export default function ModuleContainer({
             )}
           </div>
 
-          {/* Hints */}
-          {currentQuest.hints.length > 0 && (
-            <div className="mt-4 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-              <p className="text-yellow-300 font-semibold mb-2">{ui.hints}</p>
-              {currentQuest.hints.map((hint, idx) => (
-                <p key={idx} className="text-yellow-200 text-sm">
-                  • <ContentRenderer content={hint} language={currentLanguage} />
-                </p>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </ChamberLayout>

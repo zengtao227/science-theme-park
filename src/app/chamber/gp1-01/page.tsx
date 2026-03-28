@@ -6,6 +6,9 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { InlineMath } from "react-katex";
+import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
+import type { FeedbackContent, FeedbackLevel, FeedbackPolicy } from "@/hooks/useQuestManager";
+import { escapeLatexText } from "@/lib/feedback/solverSupport";
 import { calculateBindingEnergy, calculateBEperNucleon, isStable, getDecayMode } from "@/components/chamber/gp1-01/NuclearSim";
 
 const NuclearSim = dynamic(() => import("@/components/chamber/gp1-01/NuclearSim"), {
@@ -21,6 +24,8 @@ export default function GP1_01_AtomicCore() {
     const [quizIndex, setQuizIndex] = useState(0);
     const [quizInput, setQuizInput] = useState("");
     const [quizResult, setQuizResult] = useState<null | boolean>(null);
+    const [quizAttempts, setQuizAttempts] = useState(0);
+    const [feedbackLevel, setFeedbackLevel] = useState<FeedbackLevel>("NONE");
     
     const A = protons + neutrons;
     const bindingEnergy = calculateBindingEnergy(A, protons);
@@ -180,20 +185,112 @@ export default function GP1_01_AtomicCore() {
     }), [gp1_01_prompts, t]);
 
     const currentQuest = quizBank[quizStage][quizIndex % quizBank[quizStage].length];
+    const common = t("common") as any;
+    const feedbackPolicy: FeedbackPolicy = useMemo(() => ({
+        hintThreshold: 1,
+        stepsThreshold: 2,
+        fullThreshold: 3,
+        showAfterCorrect: true,
+        confirmFullSolution: true,
+    }), []);
+
+    const feedbackTranslations = useMemo(() => ({
+        view_hint: common.chamber_layout?.feedback?.view_hint ?? "VIEW HINT",
+        view_steps: common.chamber_layout?.feedback?.view_steps ?? "VIEW STEPS",
+        view_full_solution: common.chamber_layout?.feedback?.view_full_solution ?? "FULL SOLUTION",
+        hint_title: common.chamber_layout?.feedback?.hint_title ?? "HINT",
+        steps_title: common.chamber_layout?.feedback?.steps_title ?? "SOLUTION STEPS",
+        full_solution_title: common.chamber_layout?.feedback?.full_solution_title ?? "COMPLETE SOLUTION",
+        correct_answer_title: common.chamber_layout?.feedback?.correct_answer_title ?? "CORRECT ANSWER",
+        step_label: common.chamber_layout?.feedback?.step_label ?? "Step",
+        confirm_full_solution: common.chamber_layout?.feedback?.confirm_full_solution ?? "Are you sure you want to see the full solution?",
+        confirm_yes: common.chamber_layout?.feedback?.confirm_yes ?? "YES, SHOW ME",
+        confirm_cancel: common.chamber_layout?.feedback?.confirm_cancel ?? "CANCEL",
+    }), [common]);
+
+    const feedbackAvailability = useMemo(() => ({
+        canShowHint: quizAttempts >= feedbackPolicy.hintThreshold,
+        canShowSteps: quizAttempts >= feedbackPolicy.stepsThreshold,
+        canShowFull: quizAttempts >= feedbackPolicy.fullThreshold,
+    }), [quizAttempts, feedbackPolicy]);
+
+    const feedbackContent = useMemo<FeedbackContent>(() => {
+        const textBlock = (text: string) => `\\text{${escapeLatexText(text)}}`;
+        const alphaRule = t("gp1_01.mission.alpha");
+        const betaRule = t("gp1_01.mission.beta");
+        const gammaRule = t("gp1_01.mission.gamma");
+
+        const hintText =
+            quizStage === "alpha"
+                ? alphaRule
+                : quizStage === "beta"
+                ? betaRule
+                : gammaRule;
+
+        let ruleLatex = "";
+        let applyLatex = currentQuest.correctLatex;
+        if (quizStage === "alpha") {
+            ruleLatex = "\\alpha\\text{ decay: }\\Delta A=-4,\\;\\Delta Z=-2";
+            applyLatex = currentQuest.labelLatex.includes("Z")
+                ? currentQuest.correctLatex
+                : currentQuest.labelLatex.includes("\\Delta A")
+                ? "\\Delta A=-4"
+                : currentQuest.correctLatex;
+        } else if (quizStage === "beta") {
+            ruleLatex = "\\beta^-\\text{ decay: }\\Delta A=0,\\;\\Delta Z=+1";
+            applyLatex = currentQuest.labelLatex.includes("A")
+                ? currentQuest.correctLatex
+                : currentQuest.correctLatex;
+        } else {
+            ruleLatex = "\\gamma\\text{ emission: }\\Delta A=0,\\;\\Delta Z=0";
+            applyLatex = currentQuest.correctLatex;
+        }
+
+        return {
+            hint: textBlock(hintText),
+            steps: [
+                {
+                    stepNumber: 1,
+                    expressionLatex: currentQuest.expressionLatex,
+                    justification: t("common.feedback_reasons.identify_given_values"),
+                },
+                {
+                    stepNumber: 2,
+                    expressionLatex: ruleLatex,
+                    justification: t("common.feedback_reasons.select_formula_or_rule"),
+                },
+                {
+                    stepNumber: 3,
+                    expressionLatex: applyLatex,
+                    justification: t("common.feedback_reasons.solve_step_by_step"),
+                    emphasis: "key",
+                },
+            ],
+            fullSolutionLatex: currentQuest.correctLatex,
+            hasFullSolution: false,
+        };
+    }, [currentQuest, quizStage, t]);
 
     const verifyQuiz = () => {
         const value = Number(quizInput.trim());
         if (!Number.isFinite(value)) {
             setQuizResult(false);
+            setQuizAttempts((v) => v + 1);
             return;
         }
-        setQuizResult(Math.abs(value - currentQuest.expected) <= 0.02);
+        const ok = Math.abs(value - currentQuest.expected) <= 0.02;
+        setQuizResult(ok);
+        if (!ok) {
+            setQuizAttempts((v) => v + 1);
+        }
     };
 
     const nextQuiz = () => {
         setQuizIndex((v) => v + 1);
         setQuizInput("");
         setQuizResult(null);
+        setQuizAttempts(0);
+        setFeedbackLevel("NONE");
     };
     
     return (
@@ -452,6 +549,17 @@ export default function GP1_01_AtomicCore() {
                                 </div>
                             </div>
                         )}
+                        <LayeredFeedbackPanel
+                            feedbackContent={feedbackContent}
+                            feedbackLevel={feedbackLevel}
+                            feedbackAvailability={feedbackAvailability}
+                            policy={feedbackPolicy}
+                            isCorrect={quizResult === true}
+                            onShowHint={() => setFeedbackLevel((level) => (level === "NONE" ? "HINT" : level))}
+                            onShowSteps={() => setFeedbackLevel("STEPS")}
+                            onShowFull={() => setFeedbackLevel("FULL")}
+                            translations={feedbackTranslations}
+                        />
                     </div>
 
                     {/* Mission Info */}

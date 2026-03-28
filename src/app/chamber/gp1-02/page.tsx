@@ -6,6 +6,9 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { InlineMath } from "react-katex";
+import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
+import type { FeedbackContent, FeedbackLevel, FeedbackPolicy } from "@/hooks/useQuestManager";
+import { escapeLatexText } from "@/lib/feedback/solverSupport";
 
 const RelativityCanvas = dynamic(() => import("@/components/chamber/gp1-02/RelativityCanvas"), {
     ssr: false,
@@ -33,6 +36,8 @@ export default function GP1_02_RelativityLab() {
     const [quizIndex, setQuizIndex] = useState(0);
     const [quizInput, setQuizInput] = useState("");
     const [quizResult, setQuizResult] = useState<null | boolean>(null);
+    const [quizAttempts, setQuizAttempts] = useState(0);
+    const [feedbackLevel, setFeedbackLevel] = useState<FeedbackLevel>("NONE");
 
     const gamma = 1 / Math.sqrt(1 - velocity * velocity);
     const timeDilation = gamma;
@@ -144,20 +149,95 @@ export default function GP1_02_RelativityLab() {
     }), [gp1_02_prompts, t]);
 
     const currentQuest = quizBank[quizStage][quizIndex % quizBank[quizStage].length];
+    const common = t("common") as any;
+    const feedbackPolicy: FeedbackPolicy = useMemo(() => ({
+        hintThreshold: 1,
+        stepsThreshold: 2,
+        fullThreshold: 3,
+        showAfterCorrect: true,
+        confirmFullSolution: true,
+    }), []);
+
+    const feedbackTranslations = useMemo(() => ({
+        view_hint: common.chamber_layout?.feedback?.view_hint ?? "VIEW HINT",
+        view_steps: common.chamber_layout?.feedback?.view_steps ?? "VIEW STEPS",
+        view_full_solution: common.chamber_layout?.feedback?.view_full_solution ?? "FULL SOLUTION",
+        hint_title: common.chamber_layout?.feedback?.hint_title ?? "HINT",
+        steps_title: common.chamber_layout?.feedback?.steps_title ?? "SOLUTION STEPS",
+        full_solution_title: common.chamber_layout?.feedback?.full_solution_title ?? "COMPLETE SOLUTION",
+        correct_answer_title: common.chamber_layout?.feedback?.correct_answer_title ?? "CORRECT ANSWER",
+        step_label: common.chamber_layout?.feedback?.step_label ?? "Step",
+        confirm_full_solution: common.chamber_layout?.feedback?.confirm_full_solution ?? "Are you sure you want to see the full solution?",
+        confirm_yes: common.chamber_layout?.feedback?.confirm_yes ?? "YES, SHOW ME",
+        confirm_cancel: common.chamber_layout?.feedback?.confirm_cancel ?? "CANCEL",
+    }), [common]);
+
+    const feedbackAvailability = useMemo(() => ({
+        canShowHint: quizAttempts >= feedbackPolicy.hintThreshold,
+        canShowSteps: quizAttempts >= feedbackPolicy.stepsThreshold,
+        canShowFull: quizAttempts >= feedbackPolicy.fullThreshold,
+    }), [quizAttempts, feedbackPolicy]);
+
+    const feedbackContent = useMemo<FeedbackContent>(() => {
+        const textBlock = (text: string) => `\\text{${escapeLatexText(text)}}`;
+        const ruleLatex =
+            quizStage === "lorentz"
+                ? "\\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}"
+                : quizStage === "contraction"
+                ? "L = \\frac{L_0}{\\gamma}"
+                : "\\Delta t = \\gamma \\Delta t_0";
+        const hintText =
+            quizStage === "lorentz"
+                ? t("gp1_02.formulas.gamma")
+                : quizStage === "contraction"
+                ? t("gp1_02.formulas.length")
+                : t("gp1_02.formulas.time");
+
+        return {
+            hint: textBlock(hintText),
+            steps: [
+                {
+                    stepNumber: 1,
+                    expressionLatex: currentQuest.expressionLatex,
+                    justification: t("common.feedback_reasons.identify_given_values"),
+                },
+                {
+                    stepNumber: 2,
+                    expressionLatex: ruleLatex,
+                    justification: t("common.feedback_reasons.select_formula_or_rule"),
+                },
+                {
+                    stepNumber: 3,
+                    expressionLatex: currentQuest.correctLatex,
+                    justification: t("common.feedback_reasons.solve_step_by_step"),
+                    emphasis: "key",
+                },
+            ],
+            fullSolutionLatex: currentQuest.correctLatex,
+            hasFullSolution: false,
+        };
+    }, [currentQuest, quizStage, t]);
 
     const verify = () => {
         const value = Number(quizInput.trim());
         if (!Number.isFinite(value)) {
             setQuizResult(false);
+            setQuizAttempts((v) => v + 1);
             return;
         }
-        setQuizResult(Math.abs(value - currentQuest.expected) <= 0.03);
+        const ok = Math.abs(value - currentQuest.expected) <= 0.03;
+        setQuizResult(ok);
+        if (!ok) {
+            setQuizAttempts((v) => v + 1);
+        }
     };
 
     const next = () => {
         setQuizIndex((v) => v + 1);
         setQuizInput("");
         setQuizResult(null);
+        setQuizAttempts(0);
+        setFeedbackLevel("NONE");
     };
 
     return (
@@ -318,6 +398,17 @@ export default function GP1_02_RelativityLab() {
                         </div>
                     </div>
                 )}
+                <LayeredFeedbackPanel
+                    feedbackContent={feedbackContent}
+                    feedbackLevel={feedbackLevel}
+                    feedbackAvailability={feedbackAvailability}
+                    policy={feedbackPolicy}
+                    isCorrect={quizResult === true}
+                    onShowHint={() => setFeedbackLevel((level) => (level === "NONE" ? "HINT" : level))}
+                    onShowSteps={() => setFeedbackLevel("STEPS")}
+                    onShowFull={() => setFeedbackLevel("FULL")}
+                    translations={feedbackTranslations}
+                />
             </div>
         </div>
     );
