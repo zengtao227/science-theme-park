@@ -76,9 +76,12 @@ function solveIdealGas(quest: GP201Quest, t: Translator) {
 
   if (quest.id === "IG-C5" || quest.id === "IG-A1") {
     const relation = quest.id === "IG-C5" ? "P\\propto T\\;(V,n\\text{ konstant})" : "V\\propto n\\;(P,T\\text{ konstant})";
+    const substitution = quest.id === "IG-C5"
+      ? "\\frac{P_2}{P_1}=\\frac{T_2}{T_1}"
+      : "\\frac{V_2}{V_1}=\\frac{n_2}{n_1}";
     steps.push(
       makeStep(1, t("gp2_01.reasons.identify_constant_condition"), relation),
-      makeStep(2, t("gp2_01.reasons.apply_direct_law"), quest.correctLatex),
+      makeStep(2, t("gp2_01.reasons.apply_direct_law"), substitution),
       finalStep(3, t, quest)
     );
     return steps;
@@ -105,7 +108,7 @@ function solveBoyle(quest: GP201Quest, t: Translator) {
   if (quest.id === "B-B5") {
     steps.push(
       makeStep(1, t("gp2_01.reasons.identify_constant_condition"), "P_1V_1=P_2V_2"),
-      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), quest.correctLatex),
+      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), "T=\\text{konstant}"),
       finalStep(3, t, quest)
     );
     return steps;
@@ -170,7 +173,7 @@ function solveCharles(quest: GP201Quest, t: Translator) {
   if (quest.id === "C-B5") {
     steps.push(
       makeStep(1, t("gp2_01.reasons.identify_constant_condition"), "\\frac{V}{T}=k"),
-      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), quest.correctLatex),
+      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), "P=\\text{konstant}"),
       finalStep(3, t, quest)
     );
     return steps;

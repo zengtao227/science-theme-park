@@ -20,23 +20,23 @@ function buildSubstitutionLatex(quest: SP304Quest) {
   }
   if (quest.stage === "BUOYANCY" && quest.volume != null) {
     if (quest.targetLatex.includes("F_b")) {
-      return `${quest.expressionLatex} = ${quest.correctLatex.replace(/^F_b = /, "")}`;
+      return quest.expressionLatex;
     }
     if (quest.targetLatex.includes("W_{app}")) {
-      return `${quest.expressionLatex} = ${quest.correctLatex.replace(/^W_{app} = /, "")}`;
+      return quest.expressionLatex;
     }
     if (quest.targetLatex.includes("m")) {
-      return `${quest.expressionLatex} = ${quest.correctLatex.replace(/^m(?:_[^=]+)? = /, "")}`;
+      return quest.expressionLatex;
     }
     if (quest.targetLatex.includes("\\rho")) {
-      return `${quest.expressionLatex} = ${quest.correctLatex.replace(/^\\rho = /, "")}`;
+      return quest.expressionLatex;
     }
   }
   if (quest.stage === "HYDRAULICS") {
-    return `${quest.expressionLatex} = ${quest.correctLatex.replace(/^[A-Z0-9_{]+ = /, "")}`;
+    return quest.expressionLatex;
   }
   if (quest.stage === "PRESSURE") {
-    return `${quest.expressionLatex} = ${quest.correctLatex.replace(/^P(?:_[^=]+)? = /, "")}`;
+    return quest.expressionLatex;
   }
   return quest.expressionLatex;
 }

@@ -8,7 +8,7 @@ export function solveSC206(quest: SC206Quest, t: Translator) {
   switch (quest.stage) {
     case "OXIDATION_STATE":
       steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use oxidation-number rules and total charge neutrality}"));
-      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Target oxidation state} = ${quest.correctLatex}`));
+      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Set the sum of oxidation numbers equal to the species charge and solve for the target element}"));
       break;
     case "ELECTRON_TRANSFER":
       steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Track oxidation-state change to count electrons}"));
@@ -29,7 +29,7 @@ export function solveSC206(quest: SC206Quest, t: Translator) {
         }
       } else {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "m = \\frac{I t M}{nF}"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.correctLatex));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `m = \\frac{I t M}{${quest.electronsTransferred}F}`));
       }
       break;
     default:

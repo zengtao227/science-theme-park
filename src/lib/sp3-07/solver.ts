@@ -40,18 +40,18 @@ function navigationWork(quest: SP307Quest) {
   const horizontalSpeed = quest.vFerry * cos + quest.vRiver;
 
   if (quest.targetLatex.includes("d_{drift}")) {
-    return `${quest.expressionLatex} = ${quest.correctLatex}`;
+    return quest.expressionLatex;
   }
   if (quest.targetLatex.includes("\\theta")) {
-    return `${quest.expressionLatex} = ${quest.correctLatex}`;
+    return quest.expressionLatex;
   }
   if (quest.targetLatex.includes("E")) {
-    return `${quest.expressionLatex} = ${quest.correctLatex}`;
+    return quest.expressionLatex;
   }
   if (quest.targetLatex.includes("v_{net}")) {
-    return `v_{net} = \\sqrt{(${formatNumber(verticalSpeed)})^2 + (${formatNumber(horizontalSpeed)})^2} = ${quest.correctLatex}`;
+    return `v_{net} = \\sqrt{(${formatNumber(verticalSpeed)})^2 + (${formatNumber(horizontalSpeed)})^2}`;
   }
-  return `${quest.expressionLatex} = ${quest.correctLatex}`;
+  return quest.expressionLatex;
 }
 
 export function solveSP307(quest: SP307Quest, t: Translator) {

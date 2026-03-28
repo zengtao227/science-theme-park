@@ -13,13 +13,13 @@ export function solveSC205(quest: AcidBaseQuest, t: Translator) {
     case "PH_BASICS":
       if (quest.reactionType === "buffer") {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "pH = pK_a + \\log\\frac{[A^-]}{[HA]}"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.pH != null ? `pH = ${quest.pH}` : quest.correctLatex));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex));
       } else if (quest.reactionType === "dissociation") {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), isBase(quest) ? "pOH = -\\log[OH^-],\\; pH = 14 - pOH" : "pH = -\\log[H^+]"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.pH != null ? `pH = ${quest.pH}` : quest.correctLatex));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex));
       } else {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use the characteristic relation for polyprotic or amphoteric systems}"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.correctLatex));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Set up the equilibrium expression and solve for the requested pH quantity}"));
       }
       break;
     case "NEUTRALIZATION":

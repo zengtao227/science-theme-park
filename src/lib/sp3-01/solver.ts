@@ -47,6 +47,37 @@ function evaluateExpression(expr: string) {
   return Function(`"use strict"; return (${normalized});`)() as number;
 }
 
+function convertValue(value: number, fromUnit: string, toUnit: string) {
+  const unitFactor: Record<string, number> = {
+    m: 1,
+    km: 1000,
+    cm: 0.01,
+    mm: 0.001,
+    kg: 1,
+    g: 0.001,
+    mg: 0.000001,
+    s: 1,
+    h: 3600,
+    L: 0.001,
+    mL: 0.000001,
+    "m^{2}": 1,
+    "cm^{2}": 0.0001,
+    "km^{2}": 1000000,
+    "m^{3}": 1,
+    "cm^{3}": 0.000001,
+    Pa: 1,
+    kPa: 1000,
+    "m/s": 1,
+    "km/h": 1000 / 3600,
+    "kg/m^{3}": 1,
+    "g/cm^{3}": 1000,
+  };
+  const from = unitFactor[fromUnit];
+  const to = unitFactor[toUnit];
+  if (from == null || to == null) return null;
+  return value * from / to;
+}
+
 function parseMeasurement(value?: string) {
   if (!value) return null;
   const match = value.match(/^\s*([0-9.]+)\s*±\s*([0-9.]+)\s*$/);
@@ -61,25 +92,35 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
     case "si_base_unit":
       steps.push(
         makeStep(1, t("sp3_01.reasons.identify_measurement_category"), `\\text{${quest.measurement ?? ""}}`),
-        makeStep(2, t("sp3_01.reasons.state_unit_equivalence"), quest.correctLatex, "key")
+        makeStep(2, t("sp3_01.reasons.state_unit_equivalence"), `\\text{Base SI unit} = ${quest.targetLatex}`)
       );
       break;
     case "si_derived_unit":
     case "equivalent_unit":
       steps.push(
         makeStep(1, t("sp3_01.reasons.state_unit_equivalence"), quest.expressionLatex),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("sp3_01.reasons.state_unit_equivalence"), `${quest.expressionLatex} \\iff ${quest.targetLatex}`)
       );
       break;
     case "single_conversion":
     case "multi_step_conversion":
-    case "compound_conversion":
+    case "compound_conversion": {
+      const converted = typeof quest.value === "number" && quest.fromUnit && quest.toUnit
+        ? convertValue(quest.value, quest.fromUnit, quest.toUnit)
+        : null;
       steps.push(
         makeStep(1, t("sp3_01.reasons.identify_conversion_factor"), `${quest.value ?? ""}\\,\\text{${quest.fromUnit ?? ""}}`),
-        makeStep(2, t("common.feedback_reasons.substitute_known_values"), quest.correctLatex),
+        makeStep(
+          2,
+          t("common.feedback_reasons.substitute_known_values"),
+          converted == null
+            ? quest.expressionLatex
+            : `${quest.value}\\,\\text{${quest.fromUnit}} = ${converted}\\,\\text{${quest.toUnit}}`
+        ),
         makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
       break;
+    }
     case "area_volume_conversion":
       steps.push(
         makeStep(1, t("sp3_01.reasons.identify_conversion_factor"), `${quest.value ?? ""}\\,\\text{${quest.fromUnit ?? ""}}`),
