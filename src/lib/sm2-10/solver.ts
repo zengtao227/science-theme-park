@@ -47,6 +47,7 @@ function pushStep(rawSteps: RawStep[], justification: string, expressionLatex: s
 }
 
 export function solveSM210(
+    stage: string | undefined,
     dataType: string | undefined,
     parameters: SM210Parameters | undefined,
     t: Translator,
@@ -103,6 +104,15 @@ export function solveSM210(
             break;
 
         case "range":
+            if (stage === "CORRELATION") {
+                pushStep(
+                    rawSteps,
+                    t("sm2_10.reasons.recall_correlation_range"),
+                    `-1 \\leq r \\leq 1`
+                );
+                finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
+                break;
+            }
             if (p.rangeMin === undefined || p.rangeMax === undefined) {
                 return { steps: [], fullSolutionLatex: null };
             }
