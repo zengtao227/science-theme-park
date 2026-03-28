@@ -32,7 +32,7 @@ describe("useQuestManager", () => {
 
     it("should initialize with CORE difficulty and the given initial stage", () => {
         const { result } = renderHook(() =>
-            useQuestManager({ buildPool: mockBuildPool, initialStage: "STAGE1" })
+            useQuestManager({ moduleCode: "test", buildPool: mockBuildPool, initialStage: "STAGE1" })
         );
 
         expect(result.current.difficulty).toBe("CORE");
@@ -42,7 +42,7 @@ describe("useQuestManager", () => {
 
     it("should handle input changes", () => {
         const { result } = renderHook(() =>
-            useQuestManager({ buildPool: mockBuildPool, initialStage: "STAGE1" })
+            useQuestManager({ moduleCode: "test", buildPool: mockBuildPool, initialStage: "STAGE1" })
         );
 
         act(() => {
@@ -54,7 +54,7 @@ describe("useQuestManager", () => {
 
     it("should verify correct answers", () => {
         const { result } = renderHook(() =>
-            useQuestManager({ buildPool: mockBuildPool, initialStage: "STAGE1" })
+            useQuestManager({ moduleCode: "test", buildPool: mockBuildPool, initialStage: "STAGE1" })
         );
 
         act(() => {
@@ -70,7 +70,7 @@ describe("useQuestManager", () => {
 
     it("should verify incorrect answers", () => {
         const { result } = renderHook(() =>
-            useQuestManager({ buildPool: mockBuildPool, initialStage: "STAGE1" })
+            useQuestManager({ moduleCode: "test", buildPool: mockBuildPool, initialStage: "STAGE1" })
         );
 
         act(() => {
@@ -86,7 +86,7 @@ describe("useQuestManager", () => {
 
     it("should move to next quest and clear inputs", () => {
         const { result } = renderHook(() =>
-            useQuestManager({ buildPool: mockBuildPool, initialStage: "STAGE1" })
+            useQuestManager({ moduleCode: "test", buildPool: mockBuildPool, initialStage: "STAGE1" })
         );
 
         act(() => {

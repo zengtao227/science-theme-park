@@ -90,6 +90,10 @@ const createSynthesisQuest = (): SC106Quest => {
     reactionType: 'synthesis',
     promptLatex: 'Classify this reaction',
     equationLatex: '2\\\\text{H}_2 + \\\\text{O}_2 \\\\rightarrow 2\\\\text{H}_2\\\\text{O}',
+    expressionLatex: '2H2+O2 -> 2H2O',
+    targetLatex: 'synthesis',
+    correctLatex: 'synthesis',
+    slots: [],
     baselContext: 'Test context'
   };
 };
@@ -115,6 +119,10 @@ const createDecompositionQuest = (): SC106Quest => {
     reactionType: 'decomposition',
     promptLatex: 'Classify this reaction',
     equationLatex: '2\\\\text{H}_2\\\\text{O} \\\\rightarrow 2\\\\text{H}_2 + \\\\text{O}_2',
+    expressionLatex: '2H2O -> 2H2+O2',
+    targetLatex: 'decomposition',
+    correctLatex: 'decomposition',
+    slots: [],
     baselContext: 'Test context'
   };
 };

@@ -43,7 +43,7 @@ describe('Biology Translation Completeness', () => {
   describe('Property 1: Translation key symmetry', () => {
     biologyModules.forEach(module => {
       test(`${module} should have symmetric keys across all languages`, () => {
-        const enModule = translations.EN[module];
+        const enModule = (translations.EN as any)[module];
         
         if (!enModule) {
           console.warn(`Module ${module} not found in EN translations`);
@@ -53,7 +53,7 @@ describe('Biology Translation Completeness', () => {
         languages.forEach(lang => {
           if (lang === 'EN') return;
           
-          const targetModule = translations[lang]?.[module];
+          const targetModule = (translations[lang] as any)?.[module];
           
           if (!targetModule) {
             fail(`Module ${module} not found in ${lang} translations`);
@@ -84,8 +84,8 @@ describe('Biology Translation Completeness', () => {
           languages.forEach(lang2 => {
             if (lang1 === lang2) return;
             
-            const module1 = translations[lang1]?.[module];
-            const module2 = translations[lang2]?.[module];
+            const module1 = (translations[lang1] as any)?.[module];
+            const module2 = (translations[lang2] as any)?.[module];
             
             if (!module1 || !module2) return;
 
@@ -107,7 +107,7 @@ describe('Biology Translation Completeness', () => {
   describe('Property 14: Parameter consistency', () => {
     biologyModules.forEach(module => {
       test(`${module} should have consistent parameters across languages`, () => {
-        const enModule = translations.EN[module];
+        const enModule = (translations.EN as any)[module];
         if (!enModule) return;
 
         const enLeaves = getLeafValues(enModule);
@@ -119,7 +119,7 @@ describe('Biology Translation Completeness', () => {
           languages.forEach(lang => {
             if (lang === 'EN') return;
             
-            const targetModule = translations[lang]?.[module];
+            const targetModule = (translations[lang] as any)?.[module];
             if (!targetModule) return;
 
             const targetLeaves = getLeafValues(targetModule);
@@ -152,7 +152,7 @@ describe('Biology Translation Completeness', () => {
     biologyModules.forEach(module => {
       languages.forEach(lang => {
         test(`${lang}.${module} should not have empty string values`, () => {
-          const targetModule = translations[lang]?.[module];
+          const targetModule = (translations[lang] as any)?.[module];
           if (!targetModule) return;
 
           const leaves = getLeafValues(targetModule);
@@ -211,7 +211,7 @@ describe('Property 2: Language switching', () => {
     const languages = ['EN', 'CN', 'DE'] as const;
     
     languages.forEach(lang => {
-      const moduleData = translations[lang][testModule];
+      const moduleData = (translations[lang] as any)[testModule];
       expect(moduleData).toBeDefined();
       expect(moduleData.title).toBeDefined();
       expect(moduleData.difficulty).toBeDefined();
@@ -268,10 +268,10 @@ describe('Property 6: Multi-stage learning', () => {
     
     languages.forEach(lang => {
       modulesWithStages.forEach(moduleKey => {
-        const moduleData = translations[lang][moduleKey];
+        const moduleData = (translations[lang] as any)[moduleKey];
         if (moduleData?.stages) {
           const stages = Object.values(moduleData.stages);
-          stages.forEach(stage => {
+          (stages as any[]).forEach(stage => {
             expect(typeof stage).toBe('string');
             expect(stage.trim()).not.toBe('');
           });
@@ -285,14 +285,14 @@ describe('Property 6: Multi-stage learning', () => {
     const modulesWithStages = ['sb1_03', 'sb2_01', 'sb2_02', 'sb2_03', 'gb2_01'];
     
     modulesWithStages.forEach(moduleKey => {
-      const enStages = translations.EN[moduleKey]?.stages;
+      const enStages = (translations.EN as any)[moduleKey]?.stages;
       if (!enStages) return;
       
       const enKeys = Object.keys(enStages).sort();
       
       languages.forEach(lang => {
         if (lang === 'EN') return;
-        const targetStages = translations[lang][moduleKey]?.stages;
+        const targetStages = (translations[lang] as any)[moduleKey]?.stages;
         if (targetStages) {
           const targetKeys = Object.keys(targetStages).sort();
           expect(targetKeys).toEqual(enKeys);
@@ -314,7 +314,7 @@ describe('Property 7: Interaction feedback', () => {
     
     languages.forEach(lang => {
       Object.keys(translations[lang]).forEach(moduleKey => {
-        const moduleData = translations[lang][moduleKey];
+        const moduleData = (translations[lang] as any)[moduleKey];
         requiredFeedbackKeys.forEach(key => {
           expect(moduleData[key]).toBeDefined();
           expect(typeof moduleData[key]).toBe('string');

@@ -22,50 +22,50 @@ export interface GB302SolverQuest extends Quest {
   data?: GB302Data;
 }
 
-function buildIdentifyLatex(quest: GB302SolverQuest) {
+function buildIdentifyLatex(quest: GB302SolverQuest, t: Translator) {
   if (quest.stage === "INNATE" && quest.data) {
-    return `\\text{Pathogen: } ${escapeLatexText(quest.data.pathogen)}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.pathogen_label"))}} ${escapeLatexText(quest.data.pathogen)}`;
   }
   if (quest.stage === "ADAPTIVE" && quest.data) {
-    return `\\text{Cell: } ${escapeLatexText(quest.data.cell)}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.cell_label"))}} ${escapeLatexText(quest.data.cell)}`;
   }
   if (quest.stage === "VACCINES" && quest.data) {
-    return `\\text{Primary lag } = ${quest.data.prim}\\text{ days},\\ \\text{secondary lag } = ${quest.data.lag}\\text{ days}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.primary_lag_label"))}} = ${quest.data.prim}\\text{ ${escapeLatexText(t("biology.gb3_02.solver.days_label"))}},\\ \\text{${escapeLatexText(t("biology.gb3_02.solver.secondary_lag_label"))}} = ${quest.data.lag}\\text{ ${escapeLatexText(t("biology.gb3_02.solver.days_label"))}}`;
   }
   return quest.expressionLatex || quest.promptLatex;
 }
 
-function buildRuleLatex(quest: GB302SolverQuest) {
+function buildRuleLatex(quest: GB302SolverQuest, t: Translator) {
   if (quest.stage === "INNATE") {
-    return "\\text{Choose the innate immune cell whose frontline role best matches the pathogen challenge}";
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.rule_innate"))}}`;
   }
   if (quest.stage === "ADAPTIVE") {
-    return "\\text{Match each adaptive immune cell to its characteristic effector function}";
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.rule_adaptive"))}}`;
   }
   if (quest.stage === "VACCINES") {
-    return "\\text{Memory factor} = \\frac{\\text{primary lag}}{\\text{secondary lag}}";
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.memory_factor_label"))}} = \\frac{\\text{${escapeLatexText(t("biology.gb3_02.solver.primary_lag_label"))}}}{\\text{${escapeLatexText(t("biology.gb3_02.solver.secondary_lag_label"))}}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: GB302SolverQuest) {
+function buildSolveLatex(quest: GB302SolverQuest, t: Translator) {
   if (quest.stage === "INNATE" && quest.data) {
-    return `\\text{A response involving } ${escapeLatexText(quest.data.role)} \\text{ is carried out by } ${escapeLatexText(quest.data.cell)}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.solve_innate_prefix"))}} ${escapeLatexText(quest.data.role)} \\text{${escapeLatexText(t("biology.gb3_02.solver.solve_innate_suffix"))}} ${escapeLatexText(quest.data.cell)}`;
   }
   if (quest.stage === "ADAPTIVE" && quest.data) {
-    return `\\text{The function } ${escapeLatexText(quest.data.role)} \\text{ is the hallmark of } ${escapeLatexText(quest.data.cell)}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.solve_adaptive_prefix"))}} ${escapeLatexText(quest.data.role)} \\text{${escapeLatexText(t("biology.gb3_02.solver.solve_adaptive_suffix"))}} ${escapeLatexText(quest.data.cell)}`;
   }
   if (quest.stage === "VACCINES" && quest.data) {
     const factor = (quest.data.prim ?? 0) / (quest.data.lag ?? 1);
-    return `\\text{Memory factor} = \\frac{${quest.data.prim}}{${quest.data.lag}} = ${formatNumber(factor)}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.memory_factor_label"))}} = \\frac{${quest.data.prim}}{${quest.data.lag}} = ${formatNumber(factor)}`;
   }
   return null;
 }
 
 export function solveGB302(quest: GB302SolverQuest, t: Translator) {
-  const identifyLatex = buildIdentifyLatex(quest);
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const identifyLatex = buildIdentifyLatex(quest, t);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
     return { steps: [], fullSolutionLatex: null };
   }

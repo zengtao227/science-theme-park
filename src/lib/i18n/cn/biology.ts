@@ -118,6 +118,15 @@ export const cnBiology = {
             genetic_drift: "巴塞尔大学生物中心 - 种群动态：作为巴塞尔大学生物中心 (Biozentrum) 的一名研究员，你正在调查附近汝拉山脉隔离种群的遗传组成。遗传漂变——等位基因频率的随机变化——可能在多个世代中导致小群体发生显著分化。通过模拟这些过程，你可以帮助预测瑞士边境地区的濒危物种如何应对栖息地破碎化。巴塞尔在遗传学研究方面的悠久历史，可以追溯到 19 世纪核酸的发现，为你的研究提供了世界级的一流环境。这就像观察一种语言在偏远山谷中的演变；随着时间的推移，基因组的“口音”发生了改变，直到出现了一种新的物种“方言”。",
             fossil_record: "上莱茵河谷 - 亚热带的过去：你是一名在巴塞尔附近莱茵河畔进行挖掘的古生物学家，你发现了犀牛和其他已不再栖息在欧洲的动物遗骸。这些化石是数百万年前巴塞尔存在截然不同气候的证据。通过使用同位素技术来确定这些标本的年代，你帮助自然历史博物馆向公众展示，巴塞尔当前的生物多样性只是漫长而不断变化的进化时间轴上的一个瞬间。这就像发现了一张你城市的古老照片，并意识到现在的温带河流山谷曾经是一片茂盛的亚热带稀树草原。",
             molecular_clock: "弗雷德里希·米舍尔研究所 (FMI) - 生命的时间轴：在巴塞尔的 FMI，你使用分子钟技术来估计不同物种何时拥有共同祖先。通过分析 DNA 序列中的突变率，你可以追溯巴塞尔当地动物群数百万年的进化历史。这项工作致敬了在巴塞尔发现 DNA 的弗雷德里希·米舍尔的遗产，并使这座城市始终处于进化基因组学的最前沿。这就像使用一个慢动作时钟，每一次“滴答”都是一次突变，每一个“小时”都是一百万年的自然历史。"
+        },
+        solver: {
+            evaluate_expression_isolate: "计算种群遗传学表达式并解出",
+            apply_population_relation: "应用与等位基因频率对应的种群遗传学关系式",
+            use_speciation_relation: "使用与该情境对应的突变、漂变或共祖关系式",
+            rule_positive_selection: "正选择会留下高频衍生变异过多的特征",
+            use_evidence_reasoning: "用半衰期或分子钟推理把证据与年龄或速率联系起来",
+            substitute_values_solve: "把已知数值代入",
+            and_solve_for: "并求出"
         }
     },
     gb2_01: {
@@ -307,6 +316,20 @@ export const cnBiology = {
         feedback: {
             correct: "免疫防御成功！记忆细胞已存档。",
             incorrect: "免疫反应不足。病原体正在扩散。"
+        },
+        solver: {
+            pathogen_label: "病原体：",
+            cell_label: "细胞：",
+            primary_lag_label: "初次延迟期",
+            secondary_lag_label: "二次延迟期",
+            days_label: "天",
+            rule_innate: "选择最符合该病原体前线防御任务的先天免疫细胞",
+            rule_adaptive: "将每一种特异性免疫细胞与其典型效应功能对应起来",
+            memory_factor_label: "记忆因子",
+            solve_innate_prefix: "涉及",
+            solve_innate_suffix: "这种反应由下列细胞完成：",
+            solve_adaptive_prefix: "功能",
+            solve_adaptive_suffix: "最典型地对应于"
         }
     },
     gb2_02: {

@@ -118,6 +118,15 @@ export const deBiology = {
             genetic_drift: "Biozentrum Basel - Populationsdynamik: Als Forscher am Biozentrum der Universität Basel untersuchen Sie die genetische Ausstattung isolierter Populationen im nahe gelegenen Jura. Genetische Drift – die zufällige Änderung der Allelfrequenzen – kann über viele Generationen hinweg zu einer signifikanten Divergenz in kleinen Gruppen führen. Durch die Modellierung dieser Prozesse helfen Sie vorherzusagen, wie sich gefährdete Arten im Schweizer Grenzgebiet an die Habitatfragmentierung anpassen könnten. Die lange Geschichte Basels in der Genetikforschung, die bis zur Entdeckung der Nukleinsäuren im 19. Jahrhundert zurückreicht, bietet ein erstklassiges Umfeld für Ihre Studie. Es ist, als würde man die Entwicklung einer Sprache in einem abgelegenen Tal beobachten; mit der Zeit ändert sich der 'Akzent' des Genoms, bis ein neuer Spezies-'Dialekt' entsteht.",
             fossil_record: "Oberrheintal - Subtropische Vergangenheit: Sie sind Paläontologe und graben am Rheinufer bei Basel, wo Sie die Überreste von Nashörnern und anderen Tieren entdeckt haben, die Europa nicht mehr bewohnen. Diese Fossilien sind Beweise für ein ganz anderes Klima, das vor Millionen von Jahren in Basel herrschte. Durch den Einsatz isotopischer Techniken zur Bestimmung der Ära dieser Proben helfen Sie dem Naturhistorischen Museum zu zeigen, dass Basels aktuelle Biodiversität nur eine Momentaufnahme in einer riesigen, sich bewegenden Zeitlinie der Evolution ist. Es ist, als würde man ein altes Foto seiner Stadt finden und erkennen, dass das, was heute ein gemäßigtes Flusstal ist, einst eine üppige, subtropische Savanne war.",
             molecular_clock: "Friedrich Miescher Institut (FMI) - Das Timing des Lebens: Am FMI in Basel nutzen Sie Techniken der molekularen Uhr, um zu schätzen, wann verschiedene Arten einen gemeinsamen Vorfahren hatten. Durch die Analyse der Mutationsraten in DNA-Sequenzen können Sie die Evolutionsgeschichte der lokalen Fauna Basels über Millionen von Jahren zurückverfolgen. Diese Arbeit ehrt das Erbe von Friedrich Miescher, der die DNA in Basel entdeckte, und hält die Stadt an der Spitze der evolutionären Genomik. Es ist wie die Verwendung einer Zeitlupen-Uhr, bei der jeder 'Tick' eine Mutation und jede 'Stunde' eine Million Jahre Naturgeschichte ist."
+        },
+        solver: {
+            evaluate_expression_isolate: "Werten Sie den populationsgenetischen Ausdruck aus und isolieren Sie",
+            apply_population_relation: "Wenden Sie die passende populationsgenetische Beziehung auf die Allelfrequenzen an",
+            use_speciation_relation: "Verwenden Sie die zur Situation passende Mutations-, Drift- oder Koaleszenzbeziehung",
+            rule_positive_selection: "Positive Selektion hinterlässt einen Überschuss an häufigen abgeleiteten Varianten",
+            use_evidence_reasoning: "Verbinden Sie den Befund mithilfe von Halbwertszeit oder molekularer Uhr mit Alter oder Rate",
+            substitute_values_solve: "Setzen Sie die gegebenen Werte aus",
+            and_solve_for: "ein und lösen Sie nach"
         }
     },
     gb2_01: {
@@ -307,6 +316,20 @@ export const deBiology = {
         feedback: {
             correct: "Immunabwehr erfolgreich! Gedächtniszellen archiviert.",
             incorrect: "Immunantwort unzureichend. Erreger verbreitet sich."
+        },
+        solver: {
+            pathogen_label: "Erreger:",
+            cell_label: "Zelle:",
+            primary_lag_label: "Primäre Verzögerung",
+            secondary_lag_label: "Sekundäre Verzögerung",
+            days_label: "Tage",
+            rule_innate: "Wählen Sie die angeborene Immunzelle, deren Frontlinienfunktion am besten zur Erregerbelastung passt",
+            rule_adaptive: "Ordnen Sie jede adaptive Immunzelle ihrer charakteristischen Effektor-Funktion zu",
+            memory_factor_label: "Gedächtnisfaktor",
+            solve_innate_prefix: "Eine Reaktion mit",
+            solve_innate_suffix: "wird ausgeführt von",
+            solve_adaptive_prefix: "Die Funktion",
+            solve_adaptive_suffix: "ist das Kennzeichen von"
         }
     },
     gb2_02: {

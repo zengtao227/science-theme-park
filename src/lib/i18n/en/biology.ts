@@ -118,6 +118,15 @@ export const enBiology = {
             genetic_drift: "Biozentrum Basel - Population Dynamics: As a researcher at the University of Basel's Biozentrum, you are investigating the genetic makeup of isolated populations in the nearby Jura mountains. Genetic drift—the random change in allele frequencies—can lead to significant divergence in small groups over many generations. By modeling these processes, you help predict how endangered species in the Swiss borderlands might adapt to habitat fragmentation. Basel’s long history in genetic research, dating back to the 19th-century discovery of nucleic acids, provides a world-class environment for your study. It’s like watching a language evolve in a remote valley; over time, the 'accent' of the genome changes until a new species 'dialect' emerges.",
             fossil_record: "Upper Rhine Valley - Subtropical Past: You are a paleontologist excavating the banks of the Rhine near Basel, where you’ve discovered the remains of rhinoceroses and other animals that no longer inhabit Europe. These fossils are evidence of a very different climate that existed in Basel millions of years ago. By using isotopic techniques to establish the era of these specimens, you help the Museum of Natural History show that Basel’s current biodiversity is just a single snapshot in a vast, moving timeline. It’s like finding an ancient photograph of your city and realizing that what is now a temperate river valley was once a lush, subtropical savanna.",
             molecular_clock: "Friedrich Miescher Institute (FMI) - The Timing of Life: At the FMI in Basel, you use molecular clock techniques to estimate when different species shared a common ancestor. By analyzing the mutation rates in DNA sequences, you can trace the evolutionary history of Basel's local fauna across millions of years. This work honors the legacy of Friedrich Miescher, who discovered DNA in Basel, and keeps the city at the forefront of evolutionary genomics. It’s like using a slow-motion clock where every 'tick' is a mutation and every 'hour' is a million years of natural history."
+        },
+        solver: {
+            evaluate_expression_isolate: "Evaluate the population-genetics expression and isolate",
+            apply_population_relation: "Apply the matching population-genetics relation to the allele frequencies",
+            use_speciation_relation: "Use the mutation, drift, or coalescence relation that matches the scenario",
+            rule_positive_selection: "Positive selection leaves an excess of high-frequency derived variants",
+            use_evidence_reasoning: "Use half-life or molecular-clock reasoning to connect the evidence to the age or rate",
+            substitute_values_solve: "Substitute the given values from",
+            and_solve_for: "and solve for"
         }
     },
     gb2_01: {
@@ -307,6 +316,20 @@ export const enBiology = {
         feedback: {
             correct: "Immune defense successful! Memory cells archived.",
             incorrect: "Immune response insufficient. Pathogen spreading."
+        },
+        solver: {
+            pathogen_label: "Pathogen:",
+            cell_label: "Cell:",
+            primary_lag_label: "Primary lag",
+            secondary_lag_label: "Secondary lag",
+            days_label: "days",
+            rule_innate: "Choose the innate immune cell whose frontline role best matches the pathogen challenge",
+            rule_adaptive: "Match each adaptive immune cell to its characteristic effector function",
+            memory_factor_label: "Memory factor",
+            solve_innate_prefix: "A response involving",
+            solve_innate_suffix: "is carried out by",
+            solve_adaptive_prefix: "The function",
+            solve_adaptive_suffix: "is the hallmark of"
         }
     },
     gb2_02: {

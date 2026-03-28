@@ -1,6 +1,7 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
 import {
   buildFullSolution,
+  escapeLatexText,
   makeStep,
   type Translator,
 } from "@/lib/feedback/solverSupport";
@@ -11,7 +12,7 @@ export interface GB101SolverQuest extends Quest {
   stage: Stage;
 }
 
-function solveSelectionLatex(quest: GB101SolverQuest) {
+function solveSelectionLatex(quest: GB101SolverQuest, t: Translator) {
   const slot = quest.slots[0];
   const expected = slot?.expected;
   if (!slot || expected === undefined) return null;
@@ -27,7 +28,7 @@ function solveSelectionLatex(quest: GB101SolverQuest) {
     return `${quest.expressionLatex} = ${expected}`;
   }
 
-  return `\\text{Evaluate the population-genetics expression and isolate } ${slot.labelLatex}`;
+  return `\\text{${escapeLatexText(t("biology.gb1_01.solver.evaluate_expression_isolate"))}} ${slot.labelLatex}`;
 }
 
 function solveDirectExpressionLatex(quest: GB101SolverQuest) {
@@ -37,7 +38,7 @@ function solveDirectExpressionLatex(quest: GB101SolverQuest) {
   return `${quest.expressionLatex} = ${expected}`;
 }
 
-function buildRuleLatex(quest: GB101SolverQuest) {
+function buildRuleLatex(quest: GB101SolverQuest, t: Translator) {
   const target = quest.targetLatex;
   const expression = quest.expressionLatex;
 
@@ -48,7 +49,7 @@ function buildRuleLatex(quest: GB101SolverQuest) {
     if (target === "q" && expression.includes("\\sqrt")) return "q = \\sqrt{q^2}";
     if (target === "\\Delta p") return "\\Delta p \\approx spq^2";
     if (target === "W") return "\\bar W = 1 - sq^2";
-    return "\\text{Apply the matching population-genetics relation to the allele frequencies}";
+    return `\\text{${escapeLatexText(t("biology.gb1_01.solver.apply_population_relation"))}}`;
   }
 
   if (quest.stage === "SPECIATION") {
@@ -58,7 +59,7 @@ function buildRuleLatex(quest: GB101SolverQuest) {
     if (target === "P") return "P = \\frac{1}{2N}";
     if (target === "F") return "F = 1 - \\frac{1}{2N}";
     if (target === "Ne") return "N_e = \\frac{4N_fN_m}{N_f + N_m}";
-    return "\\text{Use the mutation, drift, or coalescence relation that matches the scenario}";
+    return `\\text{${escapeLatexText(t("biology.gb1_01.solver.use_speciation_relation"))}}`;
   }
 
   if (quest.stage === "EVIDENCE") {
@@ -69,25 +70,25 @@ function buildRuleLatex(quest: GB101SolverQuest) {
     if (target === "Lt") return "\\lambda t_{1/2} = \\ln 2";
     if (target === "K") return "K = \\frac{D}{2t}";
     if (target === "R") return "R = \\frac{\\text{older rate}}{\\text{newer rate}}";
-    if (target === "Type") return "\\text{Positive selection leaves an excess of high-frequency derived variants}";
+    if (target === "Type") return `\\text{${escapeLatexText(t("biology.gb1_01.solver.rule_positive_selection"))}}`;
     if (target === "C") return "C = \\frac{\\text{accepted cases}}{\\text{total cases}} \\times 100\\%";
-    return "\\text{Use half-life or molecular-clock reasoning to connect the evidence to the age or rate}";
+    return `\\text{${escapeLatexText(t("biology.gb1_01.solver.use_evidence_reasoning"))}}`;
   }
 
   return null;
 }
 
-function buildSolveLatex(quest: GB101SolverQuest) {
-  if (quest.stage === "NATURAL_SELECTION") return solveSelectionLatex(quest);
+function buildSolveLatex(quest: GB101SolverQuest, t: Translator) {
+  if (quest.stage === "NATURAL_SELECTION") return solveSelectionLatex(quest, t);
   if (quest.stage === "SPECIATION" || quest.stage === "EVIDENCE") return solveDirectExpressionLatex(quest);
   const slot = quest.slots[0];
   if (!slot) return null;
-  return `\\text{Substitute the given values from } ${quest.expressionLatex} \\text{ and solve for } ${slot.labelLatex}`;
+  return `\\text{${escapeLatexText(t("biology.gb1_01.solver.substitute_values_solve"))}} ${quest.expressionLatex} \\text{ ${escapeLatexText(t("biology.gb1_01.solver.and_solve_for"))} } ${slot.labelLatex}`;
 }
 
 export function solveGB101(quest: GB101SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) {
     return { steps: [], fullSolutionLatex: null };
   }
