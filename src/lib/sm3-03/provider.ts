@@ -1,15 +1,18 @@
-import type { Quest } from "@/hooks/useQuestManager";
-import { createGenericModuleFeedbackProvider } from "@/lib/feedback/genericModuleProvider";
+import type { FeedbackContent, Quest } from "@/hooks/useQuestManager";
+import { solveSM303 } from "./solver";
 
 type Translator = (key: string, params?: Record<string, string | number>) => string;
-type SM303FeedbackQuest = Quest & { stage: "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS" };
 
-const STAGE_RULES = {
-  EXPONENTIAL: "N(t)=N_0\\cdot 2^{t/d}",
-  LOGARITHM: "\\log_b(x)=y \\iff b^y=x",
-  APPLICATIONS: "\\text{Model the real-world growth or decay situation}",
+export type SM303FeedbackQuest = Quest & {
+  stage: "EXPONENTIAL" | "LOGARITHM" | "APPLICATIONS";
+  initialCount?: number;
+  doublingTime?: number;
+  time?: number;
+  finalCount?: number;
+  chartMode?: "exponential" | "logarithm" | "halflife" | "compound";
+  scenarioKey?: string;
 };
 
 export function createSM303FeedbackProvider(t: Translator) {
-  return createGenericModuleFeedbackProvider<SM303FeedbackQuest>(t, STAGE_RULES);
+  return (quest: SM303FeedbackQuest): Omit<FeedbackContent, "hint"> => solveSM303(quest, t);
 }
