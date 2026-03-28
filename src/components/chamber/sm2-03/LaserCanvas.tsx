@@ -237,7 +237,7 @@ export default function LaserCanvas({
     };
     raf = requestAnimationFrame(render);
     return () => cancelAnimationFrame(raf);
-  }, [level, mode, m1, c1, m2, c2, onHit, targetX, targetY]);
+  }, [level, mode, m1, c1, m2, c2, onHit, targetX, targetY, t]);
 
   return (
     <div className={`relative w-full min-h-[720px] bg-[#020208] rounded-xl border border-white/10 overflow-hidden shadow-2xl ${className ?? ""}`}>

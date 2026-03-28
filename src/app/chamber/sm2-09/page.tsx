@@ -186,7 +186,7 @@ export default function SM209Page() {
   const [selectedChoice, setSelectedChoice] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const sm2_09_t = {
+  const sm2_09_t = useMemo(() => ({
     back: t("sm2_09.back"),
     title: t("sm2_09.title"),
     difficulty: {
@@ -237,7 +237,7 @@ export default function SM209Page() {
       incorrect: t("sm2_09.feedback.incorrect"),
       empty_choice: t("sm2_09.feedback.empty_choice"),
     }
-  };
+  }), [t]);
 
   const buildStagePool = useCallback(
     (tObj: typeof sm2_09_t, difficulty: Difficulty, stage: Stage): SM209Quest[] => {

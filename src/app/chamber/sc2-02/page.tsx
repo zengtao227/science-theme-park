@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
+import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import { motion, AnimatePresence } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
@@ -199,7 +199,7 @@ export default function SC202Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC202FeedbackProvider(t), [t]);
-    const sc2_02_t = {
+    const sc2_02_t = useMemo(() => ({
         translate: t,
         title: t("sc2_02.title"),
         monitor_title: t("sc2_02.monitor_title"),
@@ -310,7 +310,7 @@ export default function SC202Page() {
             advanced: "ADVANCED",
             elite: "ELITE",
         },
-    };
+    }), [t]);
 
     const {
         difficulty,

@@ -109,7 +109,7 @@ export default function SM213Page() {
     const { t } = useLanguage();
     const feedbackContentProvider = React.useMemo(() => createSM213FeedbackProvider(t), [t]);
 
-    const sm2_13_t = {
+    const sm2_13_t = React.useMemo(() => ({
         title: t("sm2_13.title"),
         moduleCode: t("sm2_13.module_code"),
         stages: {
@@ -151,7 +151,7 @@ export default function SM213Page() {
                 monitor_verify_to_reveal: t("sm2_13.labels.monitor_verify_to_reveal"),
                 monitor_no_point_data: t("sm2_13.labels.monitor_no_point_data"),
             }
-        };
+        }), [t]);
 
     const {
         difficulty,
