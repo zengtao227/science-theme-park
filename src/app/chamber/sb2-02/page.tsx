@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB202FeedbackProvider } from "@/lib/sb2-02/provider";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -24,7 +24,7 @@ interface SB202Quest extends Quest {
 export default function SB202Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb2-02"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB202FeedbackProvider(t), [t]);
     const [selectedSystem, setSelectedSystem] = useState<string>("digestive");
     const [highlightedOrgan, setHighlightedOrgan] = useState<string | null>(null);
 

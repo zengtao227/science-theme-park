@@ -13,12 +13,12 @@ import { Stage, SB204Quest } from "@/lib/sb2-04-types";
 import { buildStagePool } from "@/lib/sb2-04-quest-builder";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB204FeedbackProvider } from "@/lib/sb2-04/provider";
 
 export default function SB204Page() {
   const { completeStage } = useAppStore();
   const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb2-04"), [t]);
+  const feedbackContentProvider = useMemo(() => createSB204FeedbackProvider(t), [t]);
 
   const buildPool = useCallback(
     (d: Difficulty, s: Stage) => buildStagePool(t, d, s),

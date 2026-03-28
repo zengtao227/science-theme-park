@@ -10,7 +10,7 @@ import BodySystemVisualization from "@/components/chamber/sb2-02-body-systems/Bo
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB202BodySystemsFeedbackProvider } from "@/lib/sb2-02-body-systems/provider";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -23,7 +23,7 @@ interface SB202BodySystemsQuest extends Quest {
 export default function SB202BodySystemsPage() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb2-02-body-systems"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB202BodySystemsFeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB202BodySystemsQuest[] => {
         const quests: SB202BodySystemsQuest[] = [];

@@ -13,7 +13,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createSB301FeedbackProvider } from "@/lib/sb3-01/provider";
 
 type Stage = "FOOD_CHAINS" | "ENERGY_FLOW" | "CYCLES" | "ELITE";
 
@@ -25,7 +25,7 @@ interface SB301Quest extends Quest {
 export default function SB301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "sb3-01"), [t]);
+    const feedbackContentProvider = useMemo(() => createSB301FeedbackProvider(t), [t]);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): SB301Quest[] => {
         const quests: SB301Quest[] = [];
