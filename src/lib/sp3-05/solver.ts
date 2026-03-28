@@ -56,7 +56,7 @@ function buildSubstitutionLatex(quest: SP305Quest) {
     }
   }
 
-  return quest.hintLatex?.[0] ?? "";
+  return quest.expressionLatex;
 }
 
 export function solveSP305(quest: SP305Quest, t: Translator) {

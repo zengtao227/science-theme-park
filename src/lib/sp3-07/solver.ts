@@ -33,6 +33,27 @@ function driftWork(quest: SP307Quest) {
   return `\\theta = \\arccos\\left(-\\frac{v_r}{v_f}\\right) = \\arccos\\left(-\\frac{${formatNumber(quest.vRiver)}}{${formatNumber(quest.vFerry)}}\\right) = ${formatNumber(angle)}^\\circ`;
 }
 
+function navigationWork(quest: SP307Quest) {
+  const sin = Math.sin(rad(quest.theta));
+  const cos = Math.cos(rad(quest.theta));
+  const verticalSpeed = quest.vFerry * sin;
+  const horizontalSpeed = quest.vFerry * cos + quest.vRiver;
+
+  if (quest.targetLatex.includes("d_{drift}")) {
+    return `${quest.expressionLatex} = ${quest.correctLatex}`;
+  }
+  if (quest.targetLatex.includes("\\theta")) {
+    return `${quest.expressionLatex} = ${quest.correctLatex}`;
+  }
+  if (quest.targetLatex.includes("E")) {
+    return `${quest.expressionLatex} = ${quest.correctLatex}`;
+  }
+  if (quest.targetLatex.includes("v_{net}")) {
+    return `v_{net} = \\sqrt{(${formatNumber(verticalSpeed)})^2 + (${formatNumber(horizontalSpeed)})^2} = ${quest.correctLatex}`;
+  }
+  return `${quest.expressionLatex} = ${quest.correctLatex}`;
+}
+
 export function solveSP307(quest: SP307Quest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), `v_r=${formatNumber(quest.vRiver)},\\; v_f=${formatNumber(quest.vFerry)},\\; \\theta=${formatNumber(quest.theta)}^\\circ`),
@@ -46,7 +67,7 @@ export function solveSP307(quest: SP307Quest, t: Translator) {
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), driftWork(quest)));
   } else {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), quest.expressionLatex));
-    steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.hintLatex?.[0] ?? quest.expressionLatex));
+    steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), navigationWork(quest)));
   }
 
   steps.push(makeStep(steps.length + 1, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"));
