@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGB101FeedbackProvider } from "@/lib/gb1-01/provider";
 
 type Stage = "NATURAL_SELECTION" | "SPECIATION" | "EVIDENCE";
 type GB101ScenarioKey = keyof TranslationKeys["gb1_01"]["scenarios"];
@@ -160,7 +160,7 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
 export default function GB101Page() {
     const { completeStage } = useAppStore();
     const { t: getT } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(getT, "gb1-01"), [getT]);
+    const feedbackContentProvider = useMemo(() => createGB101FeedbackProvider(getT), [getT]);
     const t = getT("gb1_01");
 
     const [generation, setGeneration] = useState(0);

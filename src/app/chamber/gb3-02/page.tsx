@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGB302FeedbackProvider } from "@/lib/gb3-02/provider";
 
 type Stage = "INNATE" | "ADAPTIVE" | "VACCINES";
 
@@ -24,7 +24,7 @@ interface GB302Quest extends Quest {
 export default function GB302Immunology() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gb3-02"), [t]);
+    const feedbackContentProvider = useMemo(() => createGB302FeedbackProvider(t), [t]);
     const [antigenLoad] = useState(100);
 
     const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): GB302Quest[] => {
@@ -140,6 +140,7 @@ export default function GB302Immunology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
+                    data,
                     promptLatex: t("gb3_02.prompts.memory_response").replace('{lag}', data.lag!.toString()).replace('{primary_lag}', data.prim!.toString()),
                     expressionLatex: "\\text{Factor} = \\frac{\\text{Primary Lag}}{\\text{Secondary Lag}}",
                     targetLatex: data.expected,
@@ -153,6 +154,7 @@ export default function GB302Immunology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
+                    data,
                     promptLatex: t("gb3_02.prompts.innate_defense").replace("{pathogen}", data.pathogen),
                     expressionLatex: "",
                     targetLatex: data.cell,
@@ -166,6 +168,7 @@ export default function GB302Immunology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
+                    data,
                     promptLatex: t("gb3_02.prompts.adaptive_function").replace("{cell}", data.cell),
                     expressionLatex: "",
                     targetLatex: data.role,

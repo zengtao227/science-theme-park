@@ -1,0 +1,75 @@
+import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
+import {
+  buildFullSolution,
+  makeStep,
+  type Translator,
+} from "@/lib/feedback/solverSupport";
+
+type Stage = "NATURAL_SELECTION" | "SPECIATION" | "EVIDENCE";
+
+export interface GB101SolverQuest extends Quest {
+  stage: Stage;
+}
+
+function buildRuleLatex(quest: GB101SolverQuest) {
+  const target = quest.targetLatex;
+  const expression = quest.expressionLatex;
+
+  if (quest.stage === "NATURAL_SELECTION") {
+    if (target === "w") return "w = \\frac{\\text{survivors}}{\\text{initial population}}";
+    if (target === "s") return "s = 1 - w";
+    if (target === "2pq") return "q = 1 - p, \\quad 2pq = 2p(1-p)";
+    if (target === "q" && expression.includes("\\sqrt")) return "q = \\sqrt{q^2}";
+    if (target === "\\Delta p") return "\\Delta p \\approx spq^2";
+    if (target === "W") return "\\bar W = 1 - sq^2";
+    return "\\text{Apply the matching population-genetics relation to the allele frequencies}";
+  }
+
+  if (quest.stage === "SPECIATION") {
+    if (target === "D") return "D = ut \\text{ or } D = 2uT \\text{ depending on the divergence model}";
+    if (target === "t" && expression.includes("4")) return "t \\approx 4N_e";
+    if (target === "T") return "D = 2uT \\Rightarrow T = \\frac{D}{2u}";
+    if (target === "P") return "P = \\frac{1}{2N}";
+    if (target === "F") return "F = 1 - \\frac{1}{2N}";
+    if (target === "Ne") return "N_e = \\frac{4N_fN_m}{N_f + N_m}";
+    return "\\text{Use the mutation, drift, or coalescence relation that matches the scenario}";
+  }
+
+  if (quest.stage === "EVIDENCE") {
+    if (target === "A") return "A = n \\cdot t_{1/2}";
+    if (target === "N") return "N = \\log_2\\!\\left(\\frac{1}{f}\\right)";
+    if (target === "L") return "\\lambda = \\frac{k}{N}";
+    if (target === "F") return "F = e^{-\\lambda t}";
+    if (target === "Lt") return "\\lambda t_{1/2} = \\ln 2";
+    if (target === "K") return "K = \\frac{D}{2t}";
+    if (target === "R") return "R = \\frac{\\text{older rate}}{\\text{newer rate}}";
+    if (target === "Type") return "\\text{Positive selection leaves an excess of high-frequency derived variants}";
+    if (target === "C") return "C = \\frac{\\text{accepted cases}}{\\text{total cases}} \\times 100\\%";
+    return "\\text{Use half-life or molecular-clock reasoning to connect the evidence to the age or rate}";
+  }
+
+  return null;
+}
+
+function buildSolveLatex(quest: GB101SolverQuest) {
+  const slot = quest.slots[0];
+  if (!slot) return null;
+  return `\\text{Substitute the given values from } ${quest.expressionLatex} \\text{ and solve for } ${slot.labelLatex}`;
+}
+
+export function solveGB101(quest: GB101SolverQuest, t: Translator) {
+  const ruleLatex = buildRuleLatex(quest);
+  const solveLatex = buildSolveLatex(quest);
+  if (!ruleLatex || !solveLatex) {
+    return { steps: [], fullSolutionLatex: null };
+  }
+
+  const steps: PlatformSolutionStep[] = [
+    makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
+    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
+    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+  ];
+
+  return { steps, fullSolutionLatex: buildFullSolution(steps) };
+}

@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGB201FeedbackProvider } from "@/lib/gb2-01/provider";
 
 type Stage = "ANATOMY" | "POTENTIAL" | "SYNAPSE";
 
@@ -24,7 +24,7 @@ interface GB201Quest extends Quest {
 export default function GB201Neurobiology() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gb2-01"), [t]);
+    const feedbackContentProvider = useMemo(() => createGB201FeedbackProvider(t), [t]);
     const gb2_01 = t('gb2_01');
     const [voltage] = useState(-70);
 
@@ -145,6 +145,7 @@ export default function GB201Neurobiology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
+                    data,
                     promptLatex: t('gb2_01.prompts.identify_part').replace("{function}", data.func!),
                     expressionLatex: "",
                     targetLatex: data.expected,
@@ -158,6 +159,7 @@ export default function GB201Neurobiology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
+                    data,
                     promptLatex: t('gb2_01.prompts.calc_potential').replace('{ion}', data.ion!).replace('{cout}', data.cout!.toString()).replace('{cin}', data.cin!.toString()),
                     expressionLatex: `E = 61 \\log_{10}\\left(\\frac{[C]_{out}}{[C]_{in}}\\right)`,
                     targetLatex: data.expected,
@@ -172,6 +174,7 @@ export default function GB201Neurobiology() {
                     difficulty,
                     stage,
                     scenario: data.scenario,
+                    data,
                     promptLatex: promptText,
                     expressionLatex: "",
                     targetLatex: data.expected,

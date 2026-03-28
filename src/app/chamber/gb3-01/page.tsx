@@ -11,7 +11,7 @@ import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
-import { createModuleFeedbackProvider } from "@/lib/feedback/moduleFeedbackProvider";
+import { createGB301FeedbackProvider } from "@/lib/gb3-01/provider";
 
 type Stage = "PAIRING" | "BONDS" | "SEQUENCE";
 
@@ -27,7 +27,7 @@ interface GB301Quest extends Quest {
 export default function GB301Page() {
     const { completeStage } = useAppStore();
     const { t } = useLanguage();
-  const feedbackContentProvider = useMemo(() => createModuleFeedbackProvider(t, "gb3-01"), [t]);
+    const feedbackContentProvider = useMemo(() => createGB301FeedbackProvider(t), [t]);
 
     const [rotation] = useState(0);
     const [showBonds, setShowBonds] = useState(true);
