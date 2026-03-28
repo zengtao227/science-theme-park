@@ -109,6 +109,13 @@ export const enChemistry = {
             haber_process: "Industrial Nitrogen Hub - Basel: You are a senior research scientist at the University of Basel’s Institute for Inorganic Chemistry. You are working on optimizing the Haber-Bosch process, which synthesizes ammonia from nitrogen and hydrogen—a process essential for producing fertilizers and medications worldwide. In your lab, you manage a reactor operating at 200 atmospheres of pressure. Since the forward reaction producing ammonia results in a decrease in the number of gas molecules (4 molecules of reactant become 2 molecules of product), increasing the pressure shifts the equilibrium toward the ammonia side. However, if the pressure drops below 150 atmospheres, the yield plummets, making the process economically unviable. You must precisely monitor the pressure gauges to ensure maximum efficiency. This concept is similar to a crowded tram in Basel during Carnival season: as more people (pressure) are forced into the tram, they must squeeze together (shift to fewer molecules) to find a stable state.",
             buffer_systems: "Biozentrum Basel: You are a graduate student at the Biozentrum of the University of Basel, working in a world-class laboratory focused on cell biology. You are cultivating sensitive human liver cells in a bioreactor for drug toxicity testing. These cells can only survive in a narrow pH range around 7.4. To maintain this, you use a biological buffer system involving carbon dioxide and bicarbonate ions in a dynamic equilibrium. If the cells' metabolism produces an excess of acidic waste (protons), the equilibrium must shift immediately to neutralize them. You are tasked with adjusting the CO2 partial pressure in the incubator to counteract an unexpected rise in acidity recorded by the sensors. Precise equilibrium control here is literally a matter of life and death for your cell culture. It’s exactly like your body’s own blood-buffering system that keeps you stable even after a long run along the Rhine.",
             catalysis_innovation: "University of Basel Catalysis Group: You are an innovation manager at a Basel-based chemical startup 'RhineCatalyst.' Your team has developed a revolutionary heterogeneous catalyst designed for the sustainable production of fine chemicals. While a catalyst does not change the final equilibrium position K, it dramatically increases the rate at which equilibrium is reached. In your current project, reaching equilibrium in 1 hour at 50°C instead of 10 hours at 90°C saves the company over 100,000 Swiss Francs per year in energy costs. You must analyze the reaction kinetics to ensure the system stabilizes before the cooling water system hits its limit. This industrial efficiency is what keeps Basel at the forefront of global chemistry. Think of it like a shortcut on your map through the Basel old town—you still end up at the same fountain, but you get there much faster and with less effort."
+        },
+        solver: {
+            rule_concentration: "By Le Chatelier's principle, the equilibrium shifts to oppose a concentration change",
+            rule_temperature: "Heating favors the endothermic direction; cooling favors the exothermic direction",
+            rule_pressure: "Increasing pressure favors the side with fewer gas particles",
+            reaction_label: "Reaction:",
+            determine_shift_or_effect: "Determine the direction of shift or the equilibrium effect requested by the prompt"
         }
     },
     gc3_02: {
@@ -172,6 +179,13 @@ export const enChemistry = {
             solid_state_research: "Institute of Physics - Basel: Researchers explore the properties of body-centered and face-centered cubic metals for use in next-generation aerospace components.",
             drug_polymorphism: "Novartis Quality Control: Different crystal packing (polymorphism) can drastically change how a drug dissolves in the body, making lattice analysis a vital step.",
             nano_materials: "Swiss Nanoscience Institute (SNI): At the SNI in Basel, scientists engineer crystal structures at the atomic level to create smart materials for electronics."
+        },
+        solver: {
+            rule_sc: "Simple cubic has 1 atom per cell, coordination number 6, and packing efficiency about 52%",
+            rule_bcc: "Body-centered cubic has 2 atoms per cell, coordination number 8, and packing efficiency about 68%",
+            rule_fcc: "Face-centered cubic has 4 atoms per cell, coordination number 12, and packing efficiency about 74%",
+            lattice_type_label: "Lattice type:",
+            read_lattice_property: "Read the requested lattice property from the structure type"
         }
     },
     gc1_01: {
@@ -321,6 +335,13 @@ export const enChemistry = {
             lonza_methane_cracking: "Lonza Basel - Feedstock Optimization: You are a chemical engineer at Lonza's global headquarters in Basel. We are optimizing our methane cracking reactors to produce high-purity hydrogen for green energy initiatives. Your task is to visualize the bond structure of our methane feedstock. In the high-pressure environment of our Basel facility, understanding the C-H bond length and tetrahedral geometry is critical to prevent sub-optimal yields. Accurate modeling today ensures that Lonza remains a leader in sustainable chemical production right here in the Rhine valley. It's like checking the individual links in a massive chain to ensure the whole system can handle the tension of industrial-scale synthesis.",
             roche_aromatic_pipeline: "Roche Basel - Ring System Synthesis: You are a senior chemist at the Roche Tower in Basel, the highest building in Switzerland and a hub for drug discovery. Your team is developing a new class of antibiotics based on substituted aromatic rings. The resonance stability of the benzene core is the foundation of your drug's efficacy. Using our 3D visualization tools, you must verify the bond delocalization in your current lead compound. In Basel's competitive pharma landscape, an error in predicting ring strain could set back a billion-dollar clinical trial by years. Your work here bridges the gap between theoretical organic chemistry and life-saving medicine. Think of it as ensuring the structural integrity of a complex skyscraper - if the foundation isn't perfectly stable, the whole building is at risk.",
             biozentrum_protein_research: "Biozentrum Basel - Molecular Foundations: You are a researcher at the University of Basel's Biozentrum, part of a world-class team investigating the molecular basis of neurodegenerative diseases. You are analyzing the building blocks of life: amino acids and sugars. Understanding the exact 3D orientation of the amino group and carboxyl group in alanine is essential for modeling how proteins fold in the human brain. Here in Basel, where biology and chemistry meet at the highest level, your spatial analysis helps decode the 'language of life' at the atomic scale. Every bond angle you verify contributes to our understanding of diseases like Alzheimer's. This is like assembling a complex 3D puzzle where every piece's shape determines how the entire image eventually comes together."
+        },
+        solver: {
+            rule_alkanes: "Use the displayed structure to count atoms, bonds, or identify the molecular formula",
+            rule_aromatics: "Aromatic systems are identified by delocalized pi electrons and resonance stability",
+            rule_biomolecules: "Identify the functional group or biomolecule class from the molecular structure",
+            molecule_shown_label: "Molecule shown:",
+            match_feature_to_concept: "Match the observed structural feature to the requested organic chemistry concept"
         }
     },
     sc1_01: {
@@ -1138,6 +1159,10 @@ export const enChemistry = {
             rhine_pollution_monitoring: "Basel Lab for Environmental Analysis: Monitoring the solubility of trace environmental contaminants in the Rhine water under varying seasonal temperatures.",
             crystallization_purification: "Roche Chemical Production: Large-scale crystallization is a primary method for purifying complex active pharmaceutical ingredients (APIs).",
             elite_analysis: "Rhine Water Quality Expert Analysis"
+        },
+        solver: {
+            read_curve_rule: "Read the solubility curve at the given temperature to determine S",
+            use_relation_to_determine: "Use the relation above to determine"
         }
     },
     sc3_01: {
@@ -1444,6 +1469,15 @@ export const enChemistry = {
         feedback: {
             correct: "Functional group mastery achieved!",
             incorrect: "Examine the molecular structure carefully."
+        },
+        solver: {
+            rule_hydroxyl: "Alcohols are identified by the hydroxyl group -OH",
+            rule_carboxyl: "Carboxylic acids contain the carboxyl group -COOH",
+            rule_aldehyde: "Aldehydes contain a terminal -CHO group",
+            rule_ketone: "Ketones contain a carbonyl group within the carbon chain",
+            rule_solubility: "Greater water solubility usually comes from stronger polarity and hydrogen bonding with water",
+            rule_intermolecular_forces: "Compare intermolecular forces to determine which molecule has the stronger attraction between particles",
+            choose_stronger_interactions: "Choose the molecule whose functional group allows stronger intermolecular forces under the stated comparison"
         }
     },
     gc1_02: {
@@ -1498,6 +1532,11 @@ export const enChemistry = {
         feedback: {
             correct: "Electrolytic process understood!",
             incorrect: "Review Faraday's laws and electrode potentials."
+        },
+        solver: {
+            rule_plating: "The object being plated is connected to the cathode, where reduction deposits metal",
+            rule_corrosion: "A sacrificial anode must be more reactive than iron so it oxidizes first",
+            apply_rule_to_outcome: "Apply the electrolysis or corrosion rule to determine the requested outcome"
         }
     },
     sc2_05: {

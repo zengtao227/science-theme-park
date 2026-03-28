@@ -7,11 +7,11 @@ import {
 } from "@/lib/feedback/solverSupport";
 import type { SC304Quest } from "./types";
 
-const GROUP_RULES: Record<string, string> = {
-  hydroxyl: "\\text{Alcohols are identified by the hydroxyl group } -OH",
-  carboxyl: "\\text{Carboxylic acids contain the carboxyl group } -COOH",
-  aldehyde: "\\text{Aldehydes contain a terminal } -CHO \\text{ group}",
-  ketone: "\\text{Ketones contain a carbonyl group within the carbon chain}",
+const GROUP_RULE_KEYS: Record<string, string> = {
+  hydroxyl: "chemistry.sc3_04.solver.rule_hydroxyl",
+  carboxyl: "chemistry.sc3_04.solver.rule_carboxyl",
+  aldehyde: "chemistry.sc3_04.solver.rule_aldehyde",
+  ketone: "chemistry.sc3_04.solver.rule_ketone",
 };
 
 function buildGivenLatex(quest: SC304Quest) {
@@ -24,11 +24,11 @@ function buildGivenLatex(quest: SC304Quest) {
   return quest.expressionLatex || quest.promptLatex;
 }
 
-function buildPropertyRule(quest: SC304Quest) {
+function buildPropertyRule(quest: SC304Quest, t: Translator) {
   if (quest.comparisonType === "sol") {
-    return "\\text{Greater water solubility usually comes from stronger polarity and hydrogen bonding with water}";
+    return `\\text{${t("chemistry.sc3_04.solver.rule_solubility")}}`;
   }
-  return "\\text{Compare intermolecular forces to determine which molecule has the stronger attraction between particles}";
+  return `\\text{${t("chemistry.sc3_04.solver.rule_intermolecular_forces")}}`;
 }
 
 export function solveSC304(quest: SC304Quest, t: Translator) {
@@ -41,7 +41,8 @@ export function solveSC304(quest: SC304Quest, t: Translator) {
       if (!groupKey) {
         return { steps: [], fullSolutionLatex: null };
       }
-      const ruleLatex = GROUP_RULES[groupKey];
+      const ruleKey = GROUP_RULE_KEYS[groupKey];
+      const ruleLatex = ruleKey ? `\\text{${t(ruleKey)}}` : null;
       if (!ruleLatex) {
         return { steps: [], fullSolutionLatex: null };
       }
@@ -49,12 +50,12 @@ export function solveSC304(quest: SC304Quest, t: Translator) {
       break;
     }
     case "ESTERS":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), buildPropertyRule(quest)));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), buildPropertyRule(quest, t)));
       steps.push(
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          "\\text{Choose the molecule whose functional group allows stronger intermolecular forces under the stated comparison}"
+          `\\text{${t("chemistry.sc3_04.solver.choose_stronger_interactions")}}`
         )
       );
       break;

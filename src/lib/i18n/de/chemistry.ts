@@ -109,6 +109,13 @@ export const deChemistry = {
             haber_process: "Industrieller Stickstoff-Hub - Basel: Sie sind leitender Forschungswissenschaftler am Institut für Anorganische Chemie der Universität Basel. Sie arbeiten an der Optimierung des Haber-Bosch-Verfahrens, das Ammoniak aus Stickstoff und Wasserstoff synthetisiert – ein Prozess, der für die weltweite Herstellung von Düngemitteln und Medikamenten unerlässlich ist. In Ihrem Labor leiten Sie einen Reaktor, der bei einem Druck von 200 Atmosphären arbeitet. Da die Hinreaktion zur Ammoniakbildung zu einer Abnahme der Anzahl der Gasmoleküle führt (4 Moleküle Reaktant werden zu 2 Molekülen Produkt), verschlechtert eine Druckerhöhung das Gleichgewicht in Richtung Ammoniak. Wenn der Druck jedoch unter 150 Atmosphären fällt, sinkt die Ausbeute drastisch, was den Prozess wirtschaftlich unrentabel macht. Sie müssen die Manometer genau überwachen, um maximale Effizienz zu gewährleisten. Dieses Konzept ähnelt einem überfüllten Tram in Basel während der Fasnacht: Wenn mehr Menschen (Druck) in das Tram gezwungen werden, müssen sie zusammenrücken (Verschiebung zu weniger Molekülen), um einen stabilen Zustand zu finden.",
             buffer_systems: "Biozentrum Basel: Sie sind Doktorand am Biozentrum der Universität Basel und arbeiten in einem erstklassigen Labor für Zellbiologie. Sie kultivieren empfindliche menschliche Leberzellen in einem Bioreaktor für Toxizitätstests von Medikamenten. Diese Zellen können nur in einem engen pH-Bereich um 7,4 überleben. Um dies aufrechtzuerhalten, verwenden Sie ein biologisches Puffersystem, das Kohlendioxid und Bicarbonat-Ionen in einem dynamischen Gleichgewicht umfasst. Wenn der Stoffwechsel der Zellen einen Überschuss an sauren Abfällen (Protonen) produziert, muss sich das Gleichgewicht sofort verschieben, um diese zu neutralisieren. Sie haben die Aufgabe, den CO2-Partialdruck im Inkubator anzupassen, um einem unerwarteten Anstieg der Säure entgegenzuwirken, der von den Sensoren aufgezeichnet wurde. Eine präzise Gleichgewichtskontrolle ist hier buchstäblich eine Frage von Leben und Tod für Ihre Zellkultur. Es ist genau wie das körpereigene Blutpuffersystem, das Sie auch nach einem langen Lauf am Rhein stabil hält.",
             catalysis_innovation: "Katalyse-Gruppe der Universität Basel: Sie sind Innovationsmanager beim Basler Chemie-Startup 'RhineCatalyst'. Ihr Team hat einen revolutionären heterogenen Katalysator für die nachhaltige Produktion von Feinchemikalien entwickelt. Ein Katalysator ändert zwar nicht die endgültige Gleichgewichtslage K, erhöht aber drastisch die Geschwindigkeit, mit der das Gleichgewicht erreicht wird. In Ihrem aktuellen Projekt spart das Erreichen des Gleichgewichts in 1 Stunde bei 50 °C statt in 10 Stunden bei 90 °C dem Unternehmen jährlich über 100.000 Schweizer Franken an Energiekosten. Sie müssen die Reaktionskinetik analysieren, um sicherzustellen, dass sich das System stabilisiert, bevor das Kühlwassersystem an seine Grenzen stößt. Diese industrielle Effizienz hält Basel an der Spitze der globalen Chemie. Denken Sie an eine Abkürzung auf Ihrem Weg durch die Basler Altstadt – Sie landen immer noch am selben Brunnen, aber Sie kommen viel schneller und mit weniger Anstrengung dorthin."
+        },
+        solver: {
+            rule_concentration: "Nach dem Prinzip von Le Chatelier verschiebt sich das Gleichgewicht so, dass eine Konzentrationsänderung abgeschwächt wird",
+            rule_temperature: "Erwärmen begünstigt die endotherme Richtung, Abkühlen die exotherme Richtung",
+            rule_pressure: "Ein höherer Druck begünstigt die Seite mit weniger Gasteilchen",
+            reaction_label: "Reaktion:",
+            determine_shift_or_effect: "Bestimmen Sie die geforderte Gleichgewichtsverschiebung oder den Gleichgewichtseffekt"
         }
     },
     gc3_02: {
@@ -170,6 +177,13 @@ export const deChemistry = {
             solid_state_research: "Physikalisches Institut - Basel: Forscher untersuchen die Eigenschaften von raumzentrierten und flächenzentrierten kubischen Metallen für die Luft- und Raumfahrt.",
             drug_polymorphism: "Qualitätskontrolle bei Novartis: Unterschiedliche Kristallpackungen (Polymorphie) können drastisch verändern, wie sich ein Medikament im Körper löst.",
             nano_materials: "Swiss Nanoscience Institute (SNI): Am SNI in Basel konstruieren Wissenschaftler Kristallstrukturen auf atomarer Ebene für neue elektronische Bauteile."
+        },
+        solver: {
+            rule_sc: "Ein einfach kubisches Gitter hat 1 Atom pro Zelle, die Koordinationszahl 6 und eine Packungseffizienz von etwa 52%",
+            rule_bcc: "Ein raumzentriertes Gitter hat 2 Atome pro Zelle, die Koordinationszahl 8 und eine Packungseffizienz von etwa 68%",
+            rule_fcc: "Ein flächenzentriertes Gitter hat 4 Atome pro Zelle, die Koordinationszahl 12 und eine Packungseffizienz von etwa 74%",
+            lattice_type_label: "Gittertyp:",
+            read_lattice_property: "Lesen Sie die gefragte Gittereigenschaft aus dem Strukturtyp ab"
         }
     },
     gc1_01: {
@@ -313,6 +327,13 @@ export const deChemistry = {
             lonza_methane_cracking: "Lonza Basel - Rohstoffoptimierung: Sie sind Chemieingenieur am globalen Hauptsitz von Lonza in Basel. Wir optimieren unsere Methan-Cracking-Reaktoren, um hochreinen Wasserstoff für grüne Energieinitiativen zu produzieren. Ihre Aufgabe ist es, die Bindungsstruktur unseres Methan-Rohstoffs zu visualisieren. In der Hochdruckumgebung unserer Basler Anlage ist das Verständnis der C-H-Bindungslänge und der Tetraedergeometrie entscheidend, um suboptimale Erträge zu verhindern. Eine genaue Modellierung stellt sicher, dass Lonza ein weltweit führendes Unternehmen in der nachhaltigen chemischen Produktion hier im Rheintal bleibt. Es ist wie das Überprüfen der einzelnen Glieder in einer massiven Kette, um sicherzustellen, dass das gesamte System der Spannung einer industriellen Synthese standhalten kann.",
             roche_aromatic_pipeline: "Roche Basel - Ringsystem-Synthese: Sie sind leitender Chemiker im Roche-Turm in Basel, dem höchsten Gebäude der Schweiz und einem Zentrum der Arzneimittelforschung. Ihr Team entwickelt eine neue Klasse von Antibiotika auf der Basis substituierter aromatischer Ringe. Die Resonanzstabilität des Benzolkerns ist das Fundament für die Wirksamkeit Ihres Medikaments. Mit unseren 3D-Visualisierungstools müssen Sie die Bindungsdelokalisierung in Ihrem aktuellen Leitwirkstoff verifizieren. In der wettbewerbsintensiven Basler Pharma-Landschaft könnte ein Fehler bei der Vorhersage der Ringspannung eine klinische Studie in Milliardenhöhe um Jahre zurückwerfen. Ihre Arbeit schlägt die Brücke zwischen theoretischer organischer Chemie und lebensrettender Medizin. Denken Sie daran wie an die Sicherstellung der strukturellen Integrität eines komplexen Wolkenkratzers - wenn das Fundament nicht perfekt stabil ist, ist das gesamte Gebäude in Gefahr.",
             biozentrum_protein_research: "Biozentrum Basel - Molekulare Grundlagen: Sie sind Forscher am Biozentrum der Universität Basel und Teil eines Weltklasse-Teams, das die molekularen Grundlagen neurodegenerativer Erkrankungen untersucht. Sie analysieren die Bausteine des Lebens: Aminosäuren und Zucker. Das Verständnis der exakten 3D-Orientierung der Amino- und Carboxylgruppe in Alanin ist unerlässlich, um zu modellieren, wie sich Proteine im menschlichen Gehirn falten. Hier in Basel, wo sich Biologie und Chemie auf höchstem Niveau treffen, hilft Ihre Raumanalyse dabei, die 'Sprache des Lebens' auf atomarer Ebene zu entschlüsseln. Jeder Bindungswinkel, den Sie verifizieren, trägt zu unserem Verständnis von Volkskrankheiten wie Alzheimer bei. Dies ist wie das Zusammensetzen eines komplexen 3D-Puzzles, bei dem die Form jedes Teils bestimmt, wie sich das Gesamtbild schließlich zusammenfügt."
+        },
+        solver: {
+            rule_alkanes: "Nutzen Sie die gezeigte Struktur, um Atome und Bindungen zu zählen oder die Summenformel zu bestimmen",
+            rule_aromatics: "Aromatische Systeme erkennt man an delokalisierten pi-Elektronen und Resonanzstabilität",
+            rule_biomolecules: "Bestimmen Sie anhand der Molekülstruktur die funktionelle Gruppe oder die Biomolekülklasse",
+            molecule_shown_label: "Gezeigtes Molekül:",
+            match_feature_to_concept: "Ordnen Sie das beobachtete Strukturmerkmal dem gefragten Konzept der organischen Chemie zu"
         }
     },
     sc1_01: {
@@ -1130,6 +1151,10 @@ export const deChemistry = {
             rhine_pollution_monitoring: "Basler Labor für Umweltanalyse: Überwachung der Löslichkeit von Umweltkontaminanten im Rheinwasser bei saisonalen Temperaturschwankungen.",
             crystallization_purification: "Roche Chemische Produktion: Großtechnische Kristallisation ist die primäre Methode zur Reinigung komplexer pharmazeutischer Wirkstoffe (APIs).",
             elite_analysis: "Expertenanalyse zur Rhein-Wasserqualität"
+        },
+        solver: {
+            read_curve_rule: "Lesen Sie die Löslichkeitskurve bei der gegebenen Temperatur ab, um S zu bestimmen",
+            use_relation_to_determine: "Verwenden Sie die obige Beziehung, um"
         }
     },
     sc3_01: {
@@ -1437,6 +1462,15 @@ export const deChemistry = {
         feedback: {
             correct: "Meisterschaft der funktionellen Gruppen erreicht!",
             incorrect: "Untersuchen Sie die Molekülstruktur sorgfältig."
+        },
+        solver: {
+            rule_hydroxyl: "Alkohole erkennt man an der Hydroxylgruppe -OH",
+            rule_carboxyl: "Carbonsäuren enthalten die Carboxylgruppe -COOH",
+            rule_aldehyde: "Aldehyde besitzen eine endständige -CHO-Gruppe",
+            rule_ketone: "Ketone enthalten eine Carbonylgruppe innerhalb der Kohlenstoffkette",
+            rule_solubility: "Eine höhere Wasserlöslichkeit entsteht meist durch stärkere Polarität und Wasserstoffbrücken mit Wasser",
+            rule_intermolecular_forces: "Vergleichen Sie die zwischenmolekularen Kräfte, um das Molekül mit der stärkeren Teilchenanziehung zu bestimmen",
+            choose_stronger_interactions: "Wählen Sie das Molekül, dessen funktionelle Gruppe unter dem Vergleich stärkere zwischenmolekulare Kräfte ermöglicht"
         }
     },
     gc1_02: {
@@ -1487,6 +1521,11 @@ export const deChemistry = {
             rhine_infrastructure: "Rhein-Infrastruktur: Der Schutz der Basler Rheinbrücken vor Korrosion erfordert kathodischen Schutz. Opferanoden aus Magnesium werden an den Stahlpfeilern angebracht, um Rost durch bevorzugte Oxidation zu verhindern.",
             faraday_law: "Faradays Erbe: Michael Faradays Gesetze quantifizieren die Beziehung zwischen Elektrizität und Masse bei der Elektrolyse. Ein Faraday entspricht der Ladung eines Mols Elektronen, etwa 96.485 Coulomb.",
             industrial_plating: "Industrielle Galvanik: Großflächige Galvanisierung in Basler Industriegebieten bietet Korrosionsbeständigkeit für Automobil- und Luftfahrtkomponenten. Cyanidfreie Bäder sind heute Standard für die Umweltsicherheit."
+        },
+        solver: {
+            rule_plating: "Das zu beschichtende Objekt wird an die Kathode angeschlossen, wo durch Reduktion Metall abgeschieden wird",
+            rule_corrosion: "Eine Opferanode muss unedler als Eisen sein, damit sie zuerst oxidiert wird",
+            apply_rule_to_outcome: "Wenden Sie die Elektrolyse- oder Korrosionsregel an, um das gefragte Ergebnis zu bestimmen"
         },
         feedback: {
             correct: "Elektrolytischer Prozess verstanden!",

@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type OrganicQuest = {
   stage: "ALKANES" | "AROMATICS" | "BIOMOLECULES";
@@ -8,28 +8,28 @@ type OrganicQuest = {
   simConfig: { molecule: string };
 };
 
-function getRuleLatex(stage: OrganicQuest["stage"]) {
+function getRuleLatex(stage: OrganicQuest["stage"], t: Translator) {
   switch (stage) {
     case "ALKANES":
-      return "\\text{Use the displayed structure to count atoms, bonds, or identify the molecular formula}";
+      return `\\text{${t("chemistry.gc2_01.solver.rule_alkanes")}}`;
     case "AROMATICS":
-      return "\\text{Aromatic systems are identified by delocalized } \\pi \\text{ electrons and resonance stability}";
+      return `\\text{${t("chemistry.gc2_01.solver.rule_aromatics")}}`;
     case "BIOMOLECULES":
-      return "\\text{Identify the functional group or biomolecule class from the molecular structure}";
+      return `\\text{${t("chemistry.gc2_01.solver.rule_biomolecules")}}`;
     default:
       return null;
   }
 }
 
 export function solveGC201(quest: OrganicQuest, t: Translator) {
-  const ruleLatex = getRuleLatex(quest.stage);
+  const ruleLatex = getRuleLatex(quest.stage, t);
   if (!ruleLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [
-    makeStep(1, t("common.feedback_reasons.identify_given_values"), `\\text{Molecule shown: } \\text{${quest.simConfig.molecule}}`),
+    makeStep(1, t("common.feedback_reasons.identify_given_values"), `\\text{${t("chemistry.gc2_01.solver.molecule_shown_label")}} \\text{${escapeLatexText(quest.simConfig.molecule)}}`),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Match the observed structural feature to the requested organic chemistry concept}"),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), `\\text{${quest.correctLatex}}`, "key"),
+    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("chemistry.gc2_01.solver.match_feature_to_concept")}}`),
+    makeStep(4, t("common.feedback_reasons.state_final_result"), `\\text{${escapeLatexText(quest.correctLatex)}}`, "key"),
   ];
 
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
