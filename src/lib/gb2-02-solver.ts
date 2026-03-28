@@ -14,19 +14,23 @@ function buildFeedbackChainLatex(quest: GB202Quest) {
     .join(" \\to ");
 }
 
-function buildAbnormalLabsLatex(quest: GB202Quest) {
+function buildAbnormalLabsLatex(quest: GB202Quest, t: Translator) {
   if (!quest.clinicalCase?.labResults?.length) return null;
   const abnormal = quest.clinicalCase.labResults.filter((lab) => lab.status !== "normal");
   if (!abnormal.length) return null;
   return abnormal
     .map(
       (lab) =>
-        `\\text{${escapeLatexText(lab.hormone)}}=${lab.value}\\,${escapeLatexText(lab.unit)}\\;(${escapeLatexText(lab.status)})`
+        `\\text{${escapeLatexText(lab.hormone)}}=${lab.value}\\,${escapeLatexText(lab.unit)}\\;(${escapeLatexText(labStatusLabel(t, lab.status))})`
     )
     .join(",\\; ");
 }
 
-function buildIdentifyLatex(quest: GB202Quest) {
+function labStatusLabel(t: Translator, status: "normal" | "high" | "low") {
+  return t(`biology.gb2_02.solver.lab_status_${status}`);
+}
+
+function buildIdentifyLatex(quest: GB202Quest, t: Translator) {
   if (quest.hormone) {
     return quest.hormone.nameLatex || `\\text{${escapeLatexText(quest.hormone.name)}}`;
   }
@@ -35,58 +39,64 @@ function buildIdentifyLatex(quest: GB202Quest) {
   }
   if (quest.clinicalCase) {
     const chiefComplaint = escapeLatexText(quest.clinicalCase.chiefComplaint);
-    return `\\text{Chief complaint: } ${chiefComplaint}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_02.solver.chief_complaint_label"))}}: ${chiefComplaint}`;
   }
   return quest.expressionLatex || quest.promptLatex;
 }
 
-function buildRuleLatex(quest: GB202Quest) {
+function buildRuleLatex(quest: GB202Quest, t: Translator) {
   if (quest.stage === "HORMONE_IDENTIFICATION") {
-    if (quest.id.includes("BASIC")) return "\\text{Match the hormone to its chemical class or producing gland}";
-    if (quest.id.includes("CORE")) return "\\text{Use the known target organs and primary function of the hormone}";
-    if (quest.id.includes("ADVANCED")) return "\\text{Follow the hypothalamic-pituitary axis to identify the releasing hormone}";
-    return "\\text{Match the endocrine disorder to the appropriate hormone therapy}";
+    if (quest.id.includes("BASIC")) return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_hormone_basic"))}}`;
+    if (quest.id.includes("CORE")) return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_hormone_core"))}}`;
+    if (quest.id.includes("ADVANCED")) return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_hormone_advanced"))}}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_hormone_therapy"))}}`;
   }
   if (quest.stage === "FEEDBACK_MECHANISMS") {
-    if (quest.feedbackLoop) return "\\text{Negative feedback counteracts the initial change and returns the system toward its set point}";
-    return "\\text{Trace the endocrine loop from stimulus to response and identify the stabilizing signal}";
+    if (quest.feedbackLoop) return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_feedback"))}}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_feedback_generic"))}}`;
   }
   if (quest.stage === "CLINICAL_APPLICATIONS") {
-    if (quest.clinicalCase) return "\\text{Combine symptoms and abnormal lab findings to select the most likely endocrine diagnosis}";
-    return "\\text{Interpret the clinical prompt and connect it to the matching endocrine disorder}";
+    if (quest.clinicalCase) return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_clinical"))}}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_02.solver.rule_clinical_generic"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: GB202Quest) {
+function buildSolveLatex(quest: GB202Quest, t: Translator) {
   if (quest.stage === "HORMONE_IDENTIFICATION" && quest.hormone) {
     if (quest.id.includes("CORE")) {
-      return `\\text{${escapeLatexText(quest.hormone.name)} acts on } ${quest.hormone.targetOrgans.map((organ) => `\\text{${escapeLatexText(organ)}}`).join(", ")} \\text{ to regulate } \\text{${escapeLatexText(quest.hormone.primaryFunction)}}`;
+      return `\\text{${escapeLatexText(t("biology.gb2_02.solver.solve_hormone_core_prefix", {
+        hormone: quest.hormone.name,
+      }))}} ${quest.hormone.targetOrgans.map((organ) => `\\text{${escapeLatexText(organ)}}`).join(", ")} \\text{${escapeLatexText(t("biology.gb2_02.solver.solve_hormone_core_suffix", {
+        func: quest.hormone.primaryFunction,
+      }))}}`;
     }
     if (quest.id.includes("ADVANCED")) {
-      return `\\text{Identify the hypothalamic signal that controls } \\text{${escapeLatexText(quest.hormone.name || quest.expressionLatex)}}`;
+      return `\\text{${escapeLatexText(t("biology.gb2_02.solver.solve_hormone_advanced", {
+        hormone: quest.hormone.name || quest.expressionLatex,
+      }))}}`;
     }
-    return `\\text{Use the known endocrine classification or gland assignment for } ${quest.hormone.nameLatex}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_02.solver.solve_hormone_basic"))}} ${quest.hormone.nameLatex}`;
   }
   if (quest.stage === "FEEDBACK_MECHANISMS" && quest.feedbackLoop) {
     const chain = buildFeedbackChainLatex(quest);
     return chain
-      ? `${chain} \\Rightarrow \\text{response: } ${escapeLatexText(quest.feedbackLoop.response)}`
-      : `\\text{Stimulus: } ${escapeLatexText(quest.feedbackLoop.stimulus)} \\to \\text{ response: } ${escapeLatexText(quest.feedbackLoop.response)}`;
+      ? `${chain} \\Rightarrow \\text{${escapeLatexText(t("biology.gb2_02.solver.response_label"))}}: ${escapeLatexText(quest.feedbackLoop.response)}`
+      : `\\text{${escapeLatexText(t("biology.gb2_02.solver.stimulus_label"))}}: ${escapeLatexText(quest.feedbackLoop.stimulus)} \\to \\text{${escapeLatexText(t("biology.gb2_02.solver.response_label"))}}: ${escapeLatexText(quest.feedbackLoop.response)}`;
   }
   if (quest.stage === "CLINICAL_APPLICATIONS" && quest.clinicalCase) {
-    const abnormalLabs = buildAbnormalLabsLatex(quest);
+    const abnormalLabs = buildAbnormalLabsLatex(quest, t);
     return abnormalLabs
-      ? `\\text{Focus on the abnormal labs } ${abnormalLabs}`
-      : "\\text{Use the symptom pattern and case context to determine the diagnosis}";
+      ? `\\text{${escapeLatexText(t("biology.gb2_02.solver.focus_abnormal_labs"))}} ${abnormalLabs}`
+      : `\\text{${escapeLatexText(t("biology.gb2_02.solver.use_symptom_pattern"))}}`;
   }
-  return "\\text{Use the endocrine context given in the prompt to justify the matching endocrine classification or diagnosis}";
+  return `\\text{${escapeLatexText(t("biology.gb2_02.solver.default_solve"))}}`;
 }
 
 export function solveGB202(quest: GB202Quest, t: Translator) {
-  const identifyLatex = buildIdentifyLatex(quest);
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const identifyLatex = buildIdentifyLatex(quest, t);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
     return { steps: [], fullSolutionLatex: null };
   }

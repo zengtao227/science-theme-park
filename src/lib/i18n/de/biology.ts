@@ -168,6 +168,15 @@ export const deBiology = {
             drug_block: "Medikament blockiert {c}. Effekt auf AP?",
             nt_role_type: "Rolle: {effect}. Typ von {name}?"
         },
+        solver: {
+            function_label: "Funktion",
+            neurotransmitter_label: "Neurotransmitter",
+            effect_label: "Wirkung",
+            rule_anatomy: "Ordnen Sie die beschriebene neuronale Funktion der richtigen Struktur zu.",
+            rule_synapse: "Bestimmen Sie die Art der Neurotransmitterantwort aus der Wirkung auf die postsynaptische Zelle.",
+            solve_anatomy: "{func} gehört zur Struktur {name}.",
+            solve_synapse: "Eine Wirkung wie {effect} weist auf eine {type}-Antwort hin."
+        },
         scenarios: {
             basel_biomedicine: "Universität Basel - Biozentrum Abteilung für Neurobiologie: Am Biozentrum, einem der führenden europäischen Zentren für Molekular- und Zellbiologie, arbeiten Sie in der Forschungsgruppe von Professorin Silvia Arber an der neuronalen Schaltkreis-Assemblierung. Das Labor konzentriert sich darauf zu verstehen, wie Motoneuronen im Rückenmark durch präzise axonale Wegfindung mit spezifischen Muskelgruppen verbunden werden. Mit fortschrittlichen Bildgebungsverfahren und Elektrophysiologie kartieren Sie die dendritischen Verzweigungen von Pyramidenneuronen und verfolgen, wie Aktionspotentiale mit Geschwindigkeiten bis zu 120 m/s durch myelinisierte Axone propagieren. Diese Forschung trägt direkt zur Entwicklung von Therapien für ALS (Amyotrophe Lateralsklerose) und Rückenmarksverletzungen bei. Die kollaborative Umgebung des Biozentrums, wo Friedrich Miescher 1869 erstmals Nuclein (DNA) isolierte, setzt Basels 150-jährige Tradition in den molekularen Lebenswissenschaften fort. Das Verständnis der Neuronenanatomie – von der Proteinsynthese-Maschinerie des Somas bis zu den synaptischen Vesikeln des Axonterminals – ist essentiell für Basels Pharmaindustrie und die neurologische Abteilung des Universitätsspitals.",
             roche_neuroscience: "Roche Pharma Research - Abteilung für Neurodegeneration & Seltene Krankheiten: Sie sind leitender Neurowissenschaftler am Basler Hauptsitz von Roche und arbeiten an Behandlungen der nächsten Generation für Alzheimer und Parkinson. Ihr Team verwendet Patch-Clamp-Elektrophysiologie, um zu messen, wie experimentelle Verbindungen spannungsgesteuerte Natrium- und Kaliumkanäle in kultivierten Hippocampus-Neuronen beeinflussen. Durch Analyse der Kinetik der Aktionspotential-Generierung – Depolarisation (Na^+-Einstrom), Repolarisation (K^+-Ausstrom) und Hyperpolarisation – identifizieren Sie Medikamente, die normale neuronale Feuermuster in erkrankten Gehirnen wiederherstellen können. Basels Pharma-Cluster, einschließlich Roche und Novartis, investiert jährlich über CHF 10 Milliarden in F&E, wobei Neurowissenschaften eine strategische Priorität darstellen. Ihre Arbeit baut auf Jahrzehnten Basler Forschung auf, von der Entdeckung der Benzodiazepine bis zu modernen Biologika, die Amyloid-Beta-Plaques angreifen. Diese Präzisions-Neuropharmakologie könnte den 50 Millionen Menschen weltweit mit Demenz helfen.",
@@ -241,6 +250,15 @@ export const deBiology = {
             seq_target: "Komplementär-Stream",
             hint_at: "A paart mit T über 2 Brücken.",
             hint_gc: "G paart mit C über 3 Brücken."
+        },
+        solver: {
+            base_label: "Base",
+            pair_label: "Paar",
+            sequence_label: "Sequenz",
+            rule_bonds: "A-T-Paare bilden 2 Wasserstoffbrücken, G-C-Paare 3 Wasserstoffbrücken.",
+            solve_pairing_intro: "Mit den Regeln A↔T und G↔C gilt:",
+            solve_bonds: "Das Paar {pair} ist ein {pairType}-Paar und bildet daher {bonds} Wasserstoffbrücken.",
+            solve_sequence_intro: "Wandeln Sie jede Base nacheinander um:"
         }
     },
     gb3_02: {
@@ -426,6 +444,29 @@ export const deBiology = {
                 oxytocin_positive_feedback_childbirth: "Oxytocin-Positive-Rückkopplung während der Geburt",
                 lh_surge_positive_feedback_ovulation: "Positive Rückkopplung des LH-Anstiegs während des Eisprungs"
             }
+        },
+        solver: {
+            chief_complaint_label: "Hauptbeschwerde",
+            rule_hormone_basic: "Ordnen Sie das Hormon seiner chemischen Klasse oder produzierenden Drüse zu.",
+            rule_hormone_core: "Nutzen Sie bekannte Zielorgane und die Hauptfunktion des Hormons.",
+            rule_hormone_advanced: "Folgen Sie der Hypothalamus-Hypophysen-Achse, um das Releasing-Hormon zu bestimmen.",
+            rule_hormone_therapy: "Ordnen Sie die endokrine Störung der passenden Hormontherapie zu.",
+            rule_feedback: "Negative Rückkopplung wirkt der anfänglichen Änderung entgegen und führt das System zum Sollwert zurück.",
+            rule_feedback_generic: "Verfolgen Sie den endokrinen Regelkreis vom Stimulus bis zur Reaktion und bestimmen Sie das stabilisierende Signal.",
+            rule_clinical: "Kombinieren Sie Symptome und auffällige Laborwerte, um die wahrscheinlichste endokrine Diagnose zu bestimmen.",
+            rule_clinical_generic: "Deuten Sie den klinischen Hinweis und verbinden Sie ihn mit der passenden endokrinen Störung.",
+            solve_hormone_core_prefix: "{hormone} wirkt auf",
+            solve_hormone_core_suffix: "um {func} zu regulieren.",
+            solve_hormone_advanced: "Bestimmen Sie das hypothalamische Signal, das {hormone} steuert.",
+            solve_hormone_basic: "Nutzen Sie die bekannte endokrine Klassifikation oder Drüsenzuordnung für",
+            stimulus_label: "Stimulus",
+            response_label: "Reaktion",
+            focus_abnormal_labs: "Konzentrieren Sie sich auf die auffälligen Laborwerte",
+            use_symptom_pattern: "Nutzen Sie das Symptommuster und den Fallkontext, um die Diagnose zu bestimmen.",
+            default_solve: "Verwenden Sie den endokrinen Kontext der Aufgabe, um die passende Klassifikation oder Diagnose zu begründen.",
+            lab_status_normal: "normal",
+            lab_status_high: "erhöht",
+            lab_status_low: "erniedrigt"
         }
     },
     sb1_01: {

@@ -28,33 +28,36 @@ export interface GB201SolverQuest extends Quest {
 
 function buildIdentifyLatex(quest: GB201SolverQuest) {
   if (quest.stage === "ANATOMY" && quest.data) {
-    return `\\text{Function: } ${escapeLatexText(quest.data.func || "")}`;
+    return null;
   }
   if (quest.stage === "POTENTIAL" && quest.data) {
     return `E = 61\\log_{10}\\!\\left(\\frac{${quest.data.cout}}{${quest.data.cin}}\\right)`;
   }
   if (quest.stage === "SYNAPSE" && quest.data) {
-    return `\\text{Neurotransmitter: } ${escapeLatexText(quest.data.nt_name || "")},\\ \\text{effect: } ${escapeLatexText(quest.data.nt_effect || "")}`;
+    return null;
   }
   return quest.expressionLatex || quest.promptLatex;
 }
 
-function buildRuleLatex(quest: GB201SolverQuest) {
+function buildRuleLatex(quest: GB201SolverQuest, t: Translator) {
   if (quest.stage === "ANATOMY") {
-    return "\\text{Match the described neuronal function to the correct structure}";
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.rule_anatomy"))}}`;
   }
   if (quest.stage === "POTENTIAL") {
     return "E = 61\\log_{10}\\!\\left(\\frac{[\\text{ion}]_{out}}{[\\text{ion}]_{in}}\\right)";
   }
   if (quest.stage === "SYNAPSE") {
-    return "\\text{Classify the neurotransmitter response from its effect on the postsynaptic cell}";
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.rule_synapse"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: GB201SolverQuest) {
+function buildSolveLatex(quest: GB201SolverQuest, t: Translator) {
   if (quest.stage === "ANATOMY" && quest.data) {
-    return `\\text{The function } ${escapeLatexText(quest.data.func || "")} \\text{ corresponds to } ${escapeLatexText(quest.data.name || "")}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.solve_anatomy", {
+      func: quest.data.func || "",
+      name: quest.data.name || "",
+    }))}}`;
   }
   if (quest.stage === "POTENTIAL" && quest.data) {
     const ratio = (quest.data.cout ?? 0) / (quest.data.cin ?? 1);
@@ -62,15 +65,23 @@ function buildSolveLatex(quest: GB201SolverQuest) {
     return `E = 61\\log_{10}\\!\\left(\\frac{${quest.data.cout}}{${quest.data.cin}}\\right) = 61\\log_{10}\\!(${formatNumber(ratio)}) \\approx ${formatNumber(potential)}`;
   }
   if (quest.stage === "SYNAPSE" && quest.data) {
-    return `\\text{An effect such as } ${escapeLatexText(quest.data.nt_effect || "")} \\text{ indicates a } ${escapeLatexText(quest.data.nt_type || "")} \\text{ response}`;
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.solve_synapse", {
+      effect: quest.data.nt_effect || "",
+      type: quest.data.nt_type || "",
+    }))}}`;
   }
   return null;
 }
 
 export function solveGB201(quest: GB201SolverQuest, t: Translator) {
-  const identifyLatex = buildIdentifyLatex(quest);
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const identifyLatex =
+    quest.stage === "ANATOMY" && quest.data
+      ? `\\text{${escapeLatexText(t("biology.gb2_01.solver.function_label"))}}: ${escapeLatexText(quest.data.func || "")}`
+      : quest.stage === "SYNAPSE" && quest.data
+        ? `\\text{${escapeLatexText(t("biology.gb2_01.solver.neurotransmitter_label"))}}: ${escapeLatexText(quest.data.nt_name || "")},\\ \\text{${escapeLatexText(t("biology.gb2_01.solver.effect_label"))}}: ${escapeLatexText(quest.data.nt_effect || "")}`
+        : buildIdentifyLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
     return { steps: [], fullSolutionLatex: null };
   }

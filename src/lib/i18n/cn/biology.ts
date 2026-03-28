@@ -168,6 +168,15 @@ export const cnBiology = {
             drug_block: "药物阻断 {c}. 对动作电位影响?",
             nt_role_type: "作用: {effect}. {name}的类型?"
         },
+        solver: {
+            function_label: "功能",
+            neurotransmitter_label: "神经递质",
+            effect_label: "效应",
+            rule_anatomy: "将题目描述的神经功能与正确结构对应起来。",
+            rule_synapse: "根据它对突触后细胞的作用判断神经递质反应类型。",
+            solve_anatomy: "{func} 对应的结构是 {name}。",
+            solve_synapse: "像 {effect} 这样的效应说明这是 {type} 反应。"
+        },
         scenarios: {
             basel_biomedicine: "巴塞尔大学 - 生物中心神经生物学系：在生物中心（Biozentrum）——欧洲领先的分子与细胞生物学中心之一，你正在与Silvia Arber教授的研究小组合作研究神经回路组装。该实验室专注于理解脊髓中的运动神经元如何通过精确的轴突导向连接到特定的肌肉群。使用先进的成像技术和电生理学方法，你绘制锥体神经元的树突分支，并追踪动作电位如何以高达120米/秒的速度通过有髓轴突传播。这项研究直接有助于开发治疗肌萎缩侧索硬化症（ALS）和脊髓损伤的疗法。生物中心的协作环境延续了巴塞尔150年的分子生命科学传统——弗雷德里希·米舍尔于1869年在此首次分离出核素（DNA）。理解神经元解剖结构——从胞体的蛋白质合成机制到轴突末梢的突触囊泡——对巴塞尔的制药工业和大学医院神经科至关重要。",
             roche_neuroscience: "罗氏制药研究 - 神经退行性疾病与罕见病部门：你是罗氏巴塞尔总部的高级神经科学家，致力于开发阿尔茨海默病和帕金森病的下一代治疗方法。你的团队使用膜片钳电生理学技术测量实验化合物如何影响培养的海马神经元中的电压门控钠通道和钾通道。通过分析动作电位产生的动力学——去极化（Na^+内流）、复极化（K^+外流）和超极化——你识别出能够在患病大脑中恢复正常神经元放电模式的药物。巴塞尔的制药集群，包括罗氏和诺华，每年在研发上投资超过100亿瑞士法郎，神经科学是战略重点。你的工作建立在巴塞尔数十年研究的基础上，从苯二氮卓类药物的发现到针对淀粉样β斑块的现代生物制剂。这种精准神经药理学可以帮助全球5000万痴呆症患者。",
@@ -241,6 +250,15 @@ export const cnBiology = {
             seq_target: "互补序列流",
             hint_at: "A 与 T 配对，产生 2 个氢键。",
             hint_gc: "G 与 C 配对，产生 3 个氢键。"
+        },
+        solver: {
+            base_label: "碱基",
+            pair_label: "碱基对",
+            sequence_label: "序列",
+            rule_bonds: "A-T 配对形成 2 个氢键，G-C 配对形成 3 个氢键。",
+            solve_pairing_intro: "根据 A↔T 与 G↔C 的规则，",
+            solve_bonds: "{pair} 属于 {pairType} 配对，因此形成 {bonds} 个氢键。",
+            solve_sequence_intro: "逐个碱基转换："
         }
     },
     gb3_02: {
@@ -426,6 +444,29 @@ export const cnBiology = {
                 oxytocin_positive_feedback_childbirth: "分娩过程中催产素的正反馈调节",
                 lh_surge_positive_feedback_ovulation: "排卵过程中黄体生成素激增的正反馈调节"
             }
+        },
+        solver: {
+            chief_complaint_label: "主诉",
+            rule_hormone_basic: "将激素与其化学类别或分泌腺体对应起来。",
+            rule_hormone_core: "利用激素已知的靶器官和主要功能来判断。",
+            rule_hormone_advanced: "沿着下丘脑-垂体轴追踪，确定释放激素。",
+            rule_hormone_therapy: "将内分泌疾病与合适的激素治疗对应起来。",
+            rule_feedback: "负反馈会抵消初始变化，使系统回到设定点附近。",
+            rule_feedback_generic: "沿着内分泌调控回路，从刺激追踪到反应，找出稳定系统的信号。",
+            rule_clinical: "结合症状与异常化验结果，判断最可能的内分泌诊断。",
+            rule_clinical_generic: "解读临床提示，并将其与对应的内分泌疾病联系起来。",
+            solve_hormone_core_prefix: "{hormone} 作用于",
+            solve_hormone_core_suffix: "以调节 {func}。",
+            solve_hormone_advanced: "找出控制 {hormone} 分泌的下丘脑信号。",
+            solve_hormone_basic: "利用已知的内分泌分类或腺体归属来判断",
+            stimulus_label: "刺激",
+            response_label: "反应",
+            focus_abnormal_labs: "重点关注异常化验结果",
+            use_symptom_pattern: "根据症状模式和病例背景来确定诊断。",
+            default_solve: "利用题目中的内分泌背景来论证对应的分类或诊断。",
+            lab_status_normal: "正常",
+            lab_status_high: "偏高",
+            lab_status_low: "偏低"
         }
     },
     sb1_01: {

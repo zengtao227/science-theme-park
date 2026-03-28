@@ -168,6 +168,15 @@ export const enBiology = {
             drug_block: "Drug blocks {c}. Effect on AP?",
             nt_role_type: "Role: {effect}. Type of {name}?"
         },
+        solver: {
+            function_label: "Function",
+            neurotransmitter_label: "Neurotransmitter",
+            effect_label: "Effect",
+            rule_anatomy: "Match the described neuronal function to the correct structure.",
+            rule_synapse: "Classify the neurotransmitter response from its effect on the postsynaptic cell.",
+            solve_anatomy: "{func} corresponds to {name}.",
+            solve_synapse: "An effect such as {effect} indicates a {type} response."
+        },
         scenarios: {
             basel_biomedicine: "University of Basel - Biozentrum Neurobiology Department: At the Biozentrum, one of Europe's leading centers for molecular and cell biology, you work in Professor Silvia Arber's research group studying neural circuit assembly. The lab focuses on understanding how motor neurons in the spinal cord connect to specific muscle groups through precise axonal pathfinding. Using advanced imaging techniques and electrophysiology, you map the dendritic branching of pyramidal neurons and trace how action potentials propagate through myelinated axons at speeds up to 120 m/s. This research directly contributes to developing therapies for ALS (Amyotrophic Lateral Sclerosis) and spinal cord injuries. The Biozentrum's collaborative environment continues Basel's 150-year tradition in molecular life sciences—Friedrich Miescher first isolated nuclein (DNA) here in 1869. Understanding neuronal anatomy—from the protein synthesis machinery of the soma to the synaptic vesicles of the axon terminal—is essential for Basel's pharmaceutical industry and the University Hospital's neurology department.",
             roche_neuroscience: "Roche Pharma Research - Neurodegeneration & Rare Diseases Division: You are a senior neuroscientist at Roche's Basel headquarters, working on next-generation treatments for Alzheimer's and Parkinson's disease. Your team uses patch-clamp electrophysiology to measure how experimental compounds affect voltage-gated sodium and potassium channels in cultured hippocampal neurons. By analyzing the kinetics of action potential generation—depolarization (Na^+ influx), repolarization (K^+ efflux), and hyperpolarization—you identify drugs that can restore normal neuronal firing patterns in diseased brains. Basel's pharma cluster, including Roche and Novartis, invests over CHF 10 billion annually in R&D, with neuroscience as a strategic priority. Your work builds on decades of Basel research, from the discovery of benzodiazepines to modern biologics targeting amyloid-beta plaques. This precision neuropharmacology could help the 50 million people worldwide living with dementia.",
@@ -241,6 +250,15 @@ export const enBiology = {
             seq_target: "Complementary Stream",
             hint_at: "A pairs with T via 2 bonds.",
             hint_gc: "G pairs with C via 3 bonds."
+        },
+        solver: {
+            base_label: "Base",
+            pair_label: "Pair",
+            sequence_label: "Sequence",
+            rule_bonds: "A-T pairs form 2 hydrogen bonds, while G-C pairs form 3 hydrogen bonds.",
+            solve_pairing_intro: "Using A↔T and G↔C,",
+            solve_bonds: "The pair {pair} is {pairType}, so it forms {bonds} hydrogen bonds.",
+            solve_sequence_intro: "Convert each base one by one:"
         }
     },
     gb3_02: {
@@ -426,6 +444,29 @@ export const enBiology = {
                 oxytocin_positive_feedback_childbirth: "Oxytocin positive feedback during childbirth",
                 lh_surge_positive_feedback_ovulation: "LH surge positive feedback during ovulation"
             }
+        },
+        solver: {
+            chief_complaint_label: "Chief complaint",
+            rule_hormone_basic: "Match the hormone to its chemical class or producing gland.",
+            rule_hormone_core: "Use the known target organs and primary function of the hormone.",
+            rule_hormone_advanced: "Follow the hypothalamic-pituitary axis to identify the releasing hormone.",
+            rule_hormone_therapy: "Match the endocrine disorder to the appropriate hormone therapy.",
+            rule_feedback: "Negative feedback counteracts the initial change and returns the system toward its set point.",
+            rule_feedback_generic: "Trace the endocrine loop from stimulus to response and identify the stabilizing signal.",
+            rule_clinical: "Combine symptoms and abnormal lab findings to select the most likely endocrine diagnosis.",
+            rule_clinical_generic: "Interpret the clinical prompt and connect it to the matching endocrine disorder.",
+            solve_hormone_core_prefix: "{hormone} acts on",
+            solve_hormone_core_suffix: "to regulate {func}.",
+            solve_hormone_advanced: "Identify the hypothalamic signal that controls {hormone}.",
+            solve_hormone_basic: "Use the known endocrine classification or gland assignment for",
+            stimulus_label: "Stimulus",
+            response_label: "Response",
+            focus_abnormal_labs: "Focus on the abnormal labs",
+            use_symptom_pattern: "Use the symptom pattern and case context to determine the diagnosis.",
+            default_solve: "Use the endocrine context in the prompt to justify the matching classification or diagnosis.",
+            lab_status_normal: "normal",
+            lab_status_high: "high",
+            lab_status_low: "low"
         }
     },
     sb1_01: {

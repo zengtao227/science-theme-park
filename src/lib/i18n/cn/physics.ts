@@ -2286,9 +2286,46 @@ export const cnPhysics = {
             minus_3: "-3",
             v_110: "110",
             v_56: "56",
-            v_100: "100"
-}
-    },
+                    v_100: "100"
+},
+                solver: {
+                        medium_reason: "声音在水中传播更快，因为粒子更紧密，振动传递更有效。",
+                        vacuum_reason: "真空中没有粒子，所以声音没有传播介质。",
+                        doppler_reason: "当声源靠近时，波前被压缩，观测到的频率会升高。",
+                        interference_reason: "如果两列同相波在某点相互抵消，该点表现为相消干涉。",
+                        refraction_reason: "介质改变会改变声速并使波发生偏折，这就是折射。",
+                        diffraction_reason: "波绕过边缘或开口发生弯折，这就是衍射。",
+                        resonance_freq_reason: "当驱动频率与固有频率相同就会发生共振，因此",
+                        hearing_range_reason: "人类听觉范围大约在 20 Hz 到 20000 Hz 之间。",
+                        pitch_reason: "频率增大时，音调会升高。",
+                        ultrasound_reason: "超声波高于 20 kHz，因此超出了人类听觉范围。",
+                        infrasound_reason: "次声波低于 20 Hz，因此低于人类听觉范围。",
+                        bat_echolocation_reason: "50000 Hz 远高于人类听觉范围。",
+                        timbre_reason: "如果两种乐器基频相同但听起来不同，差异的性质就是音色。",
+                        earthquake_reason: "5 Hz 低于 20 Hz，因此人类听不到。",
+                        critical_bands_reason: "这两个音在频率上相差足够大，因此耳朵可以分辨它们。",
+                        just_intonation_reason: "纯律中的纯五度略大一些。",
+                        formants_reason: "决定元音音质的共振频带称为共振峰。",
+                        missing_fundamental_reason: "谐波间隔是 200 Hz，因此大脑感知到的缺失基频也是 200 Hz。",
+                        masking_reason: "一个强音让附近频率更难听到，这种现象叫掩蔽效应。",
+                        pain_threshold_reason: "接近 140 dB 的声级对听觉并不安全。",
+                        distance_effect_reason: "距离加倍会使强度变为四分之一，因此声级大约下降 6 dB。",
+                        safe_level_reason: "长期暴露在 85 dB 以上可能造成听力损伤。",
+                        distance_double_reason: "距离加倍会让声强级下降 6 dB，因此 80 dB 会变为 74 dB。",
+                        inverse_square_reason: "从 10 m 增加到 100 m 会使强度降低 100 倍，因此声级下降 20 dB 到 40 dB。",
+                        combining_sources_reason: "两个相同声源叠加大约增加 3 dB，因此 60 dB 会变为 63 dB。",
+                        absorption_reason: "强度减半会使声级变化约为 -3 dB。",
+                        jet_engine_reason: "距离增加 10 倍会使声级降低 20 dB，因此 130 dB 会变为 110 dB。",
+                        four_sources_reason: "四个相同声源叠加大约增加 6 dB，因此 50 dB 会变为 56 dB。",
+                        phon_reason: "感知响度级的单位是方（phon）。",
+                        sone_reason: "松（sone）加倍表示感知响度加倍。",
+                        a_weighting_reason: "A 计权声级记作 dB(A)。",
+                        noise_dose_reason: "声级每增加 3 dB，安全暴露时间减半，因此 88 dB 持续 4 小时仍然是 100% 剂量。",
+                        itu_weighting_reason: "ITU-R 468 计权用于感知噪声测量，尤其是在音频系统中。",
+                        sonic_boom_reason: "突破音障会产生冲击波，人们听到的就是音爆。",
+                        acoustic_impedance_reason: "较大的声阻抗失配会让大部分声能在边界处被反射。"
+                }
+        },
 
     // SP3.08: 几何光学 (映射自原 sp1_08)
     sp3_08: {

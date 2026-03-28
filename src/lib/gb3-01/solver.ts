@@ -17,46 +17,57 @@ export interface GB301SolverQuest extends Quest {
 }
 
 function buildIdentifyLatex(quest: GB301SolverQuest) {
-  if (quest.stage === "PAIRING" && quest.base) return `\\text{Base: } ${quest.base}`;
-  if (quest.stage === "BONDS" && quest.b1 && quest.b2) return `\\text{Pair: } ${quest.b1}-${quest.b2}`;
-  if (quest.stage === "SEQUENCE" && quest.seq) return `\\text{Sequence: } ${escapeLatexText(quest.seq)}`;
+  if (quest.stage === "PAIRING" && quest.base) return null;
+  if (quest.stage === "BONDS" && quest.b1 && quest.b2) return null;
+  if (quest.stage === "SEQUENCE" && quest.seq) return null;
   return quest.expressionLatex || quest.promptLatex;
 }
 
-function buildRuleLatex(quest: GB301SolverQuest) {
+function buildRuleLatex(quest: GB301SolverQuest, t: Translator) {
   if (quest.stage === "PAIRING" || quest.stage === "SEQUENCE") {
     return "A \\leftrightarrow T, \\quad G \\leftrightarrow C";
   }
   if (quest.stage === "BONDS") {
-    return "\\text{A-T pairs form 2 hydrogen bonds, while G-C pairs form 3 hydrogen bonds}";
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.rule_bonds"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: GB301SolverQuest) {
+function buildSolveLatex(quest: GB301SolverQuest, t: Translator) {
   if (quest.stage === "PAIRING" && quest.base) {
     const partner = quest.base === "A" ? "T" : quest.base === "T" ? "A" : quest.base === "G" ? "C" : "G";
-    return `\\text{Using } A\\leftrightarrow T \\text{ and } G\\leftrightarrow C,\\ ${quest.base} \\mapsto ${partner}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.solve_pairing_intro"))}}\\ ${quest.base} \\mapsto ${partner}`;
   }
   if (quest.stage === "BONDS" && quest.b1 && quest.b2) {
     const bonds = quest.b1 === "A" || quest.b1 === "T" ? 2 : 3;
     const pairType = quest.b1 === "A" || quest.b1 === "T" ? "A-T" : "G-C";
-    return `\\text{The pair } ${quest.b1}-${quest.b2} \\text{ is } ${pairType}\\text{, so it forms } ${bonds} \\text{ hydrogen bonds}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.solve_bonds", {
+      pair: `${quest.b1}-${quest.b2}`,
+      pairType,
+      bonds,
+    }))}}`;
   }
   if (quest.stage === "SEQUENCE" && quest.seq) {
     const mapped = quest.seq
       .split("")
       .map((base) => `${base}\\to${base === "A" ? "T" : base === "T" ? "A" : base === "G" ? "C" : "G"}`)
       .join(",\\ ");
-    return `\\text{Convert each base one by one: } ${mapped}`;
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.solve_sequence_intro"))}} ${mapped}`;
   }
   return null;
 }
 
 export function solveGB301(quest: GB301SolverQuest, t: Translator) {
-  const identifyLatex = buildIdentifyLatex(quest);
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const identifyLatex =
+    quest.stage === "PAIRING" && quest.base
+      ? `\\text{${escapeLatexText(t("biology.gb3_01.solver.base_label"))}}: ${quest.base}`
+      : quest.stage === "BONDS" && quest.b1 && quest.b2
+        ? `\\text{${escapeLatexText(t("biology.gb3_01.solver.pair_label"))}}: ${quest.b1}-${quest.b2}`
+        : quest.stage === "SEQUENCE" && quest.seq
+          ? `\\text{${escapeLatexText(t("biology.gb3_01.solver.sequence_label"))}}: ${escapeLatexText(quest.seq)}`
+          : buildIdentifyLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
     return { steps: [], fullSolutionLatex: null };
   }
