@@ -180,6 +180,10 @@ export default function GP1_02_RelativityLab() {
 
     const feedbackContent = useMemo<FeedbackContent>(() => {
         const textBlock = (text: string) => `\\text{${escapeLatexText(text)}}`;
+        const buildFullSolution = (steps: FeedbackContent["steps"]) =>
+            steps
+                .map((step) => `\\text{${escapeLatexText(step.justification)}}\\;${step.expressionLatex}`)
+                .join(" \\\\ ");
         const ruleLatex =
             quizStage === "lorentz"
                 ? "\\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}"
@@ -192,28 +196,48 @@ export default function GP1_02_RelativityLab() {
                 : quizStage === "contraction"
                 ? t("gp1_02.formulas.length")
                 : t("gp1_02.formulas.time");
+        const substitutionLatex =
+            quizStage === "lorentz"
+                ? currentQuest.id === "L-1"
+                    ? "\\gamma = \\frac{1}{\\sqrt{1-0.80^2}} \\approx 1.67"
+                    : currentQuest.id === "L-2"
+                    ? "\\gamma = \\frac{1}{\\sqrt{1-0.60^2}} = 1.25"
+                    : "\\gamma = \\frac{1}{\\sqrt{1-0.95^2}} \\approx 3.20"
+                : quizStage === "contraction"
+                ? currentQuest.id === "C-1"
+                    ? "L = \\frac{12}{2} = 6\\,m"
+                    : currentQuest.id === "C-2"
+                    ? "L = \\frac{9}{3} = 3\\,m"
+                    : "L = \\frac{10}{1.25} = 8\\,m"
+                : currentQuest.id === "D-1"
+                ? "\\Delta t = 3 \\times 2\\,\\mu s = 6\\,\\mu s"
+                : currentQuest.id === "D-2"
+                ? "\\Delta t = 1.67 \\times 5\\,ms \\approx 8.35\\,ms"
+                : "\\Delta t = 2.5 \\times 1\\,s = 2.5\\,s";
+
+        const steps: FeedbackContent["steps"] = [
+            {
+                stepNumber: 1,
+                expressionLatex: currentQuest.expressionLatex,
+                justification: t("common.feedback_reasons.identify_given_values"),
+            },
+            {
+                stepNumber: 2,
+                expressionLatex: ruleLatex,
+                justification: t("common.feedback_reasons.select_formula_or_rule"),
+            },
+            {
+                stepNumber: 3,
+                expressionLatex: substitutionLatex,
+                justification: t("common.feedback_reasons.solve_step_by_step"),
+                emphasis: "key",
+            },
+        ];
 
         return {
             hint: textBlock(hintText),
-            steps: [
-                {
-                    stepNumber: 1,
-                    expressionLatex: currentQuest.expressionLatex,
-                    justification: t("common.feedback_reasons.identify_given_values"),
-                },
-                {
-                    stepNumber: 2,
-                    expressionLatex: ruleLatex,
-                    justification: t("common.feedback_reasons.select_formula_or_rule"),
-                },
-                {
-                    stepNumber: 3,
-                    expressionLatex: currentQuest.correctLatex,
-                    justification: t("common.feedback_reasons.solve_step_by_step"),
-                    emphasis: "key",
-                },
-            ],
-            fullSolutionLatex: currentQuest.correctLatex,
+            steps,
+            fullSolutionLatex: buildFullSolution(steps),
             hasFullSolution: false,
         };
     }, [currentQuest, quizStage, t]);

@@ -216,6 +216,10 @@ export default function GP1_01_AtomicCore() {
 
     const feedbackContent = useMemo<FeedbackContent>(() => {
         const textBlock = (text: string) => `\\text{${escapeLatexText(text)}}`;
+        const buildFullSolution = (steps: FeedbackContent["steps"]) =>
+            steps
+                .map((step) => `\\text{${escapeLatexText(step.justification)}}\\;${step.expressionLatex}`)
+                .join(" \\\\ ");
         const alphaRule = t("gp1_01.mission.alpha");
         const betaRule = t("gp1_01.mission.beta");
         const gammaRule = t("gp1_01.mission.gamma");
@@ -226,47 +230,54 @@ export default function GP1_01_AtomicCore() {
                 : quizStage === "beta"
                 ? betaRule
                 : gammaRule;
-
         let ruleLatex = "";
         let applyLatex = currentQuest.correctLatex;
         if (quizStage === "alpha") {
             ruleLatex = "\\alpha\\text{ decay: }\\Delta A=-4,\\;\\Delta Z=-2";
             applyLatex = currentQuest.labelLatex.includes("Z")
-                ? currentQuest.correctLatex
+                ? "Z_{daughter}=88-2=86"
                 : currentQuest.labelLatex.includes("\\Delta A")
                 ? "\\Delta A=-4"
-                : currentQuest.correctLatex;
+                : "A_{daughter}=238-4=234";
         } else if (quizStage === "beta") {
             ruleLatex = "\\beta^-\\text{ decay: }\\Delta A=0,\\;\\Delta Z=+1";
             applyLatex = currentQuest.labelLatex.includes("A")
-                ? currentQuest.correctLatex
-                : currentQuest.correctLatex;
+                ? "A_{daughter}=60+0=60"
+                : currentQuest.labelLatex.includes("\\Delta Z")
+                ? "\\Delta Z=+1"
+                : "Z_{daughter}=6+1=7";
         } else {
             ruleLatex = "\\gamma\\text{ emission: }\\Delta A=0,\\;\\Delta Z=0";
-            applyLatex = currentQuest.correctLatex;
+            applyLatex = currentQuest.labelLatex.includes("A")
+                ? "A_{daughter}=60+0=60"
+                : currentQuest.labelLatex.includes("Z")
+                ? "Z_{daughter}=27+0=27"
+                : "\\Delta A + \\Delta Z = 0 + 0 = 0";
         }
+
+        const steps: FeedbackContent["steps"] = [
+            {
+                stepNumber: 1,
+                expressionLatex: currentQuest.expressionLatex,
+                justification: t("common.feedback_reasons.identify_given_values"),
+            },
+            {
+                stepNumber: 2,
+                expressionLatex: ruleLatex,
+                justification: t("common.feedback_reasons.select_formula_or_rule"),
+            },
+            {
+                stepNumber: 3,
+                expressionLatex: applyLatex,
+                justification: t("common.feedback_reasons.solve_step_by_step"),
+                emphasis: "key",
+            },
+        ];
 
         return {
             hint: textBlock(hintText),
-            steps: [
-                {
-                    stepNumber: 1,
-                    expressionLatex: currentQuest.expressionLatex,
-                    justification: t("common.feedback_reasons.identify_given_values"),
-                },
-                {
-                    stepNumber: 2,
-                    expressionLatex: ruleLatex,
-                    justification: t("common.feedback_reasons.select_formula_or_rule"),
-                },
-                {
-                    stepNumber: 3,
-                    expressionLatex: applyLatex,
-                    justification: t("common.feedback_reasons.solve_step_by_step"),
-                    emphasis: "key",
-                },
-            ],
-            fullSolutionLatex: currentQuest.correctLatex,
+            steps,
+            fullSolutionLatex: buildFullSolution(steps),
             hasFullSolution: false,
         };
     }, [currentQuest, quizStage, t]);

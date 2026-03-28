@@ -118,7 +118,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.compute_range"),
-                expressionLatex: `\\text{Range} = ${p.rangeMax} - ${p.rangeMin} = ${correctLatex}`
+                expressionLatex: `\\text{Range} = ${p.rangeMax} - ${p.rangeMin} = ${p.rangeMax - p.rangeMin}`
             });
             break;
 
@@ -145,7 +145,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.calc_upper_bound"),
-                expressionLatex: `Q_3 + 1.5 \\times \\text{IQR} = ${p.q3 ?? "?"} + 1.5 \\times ${p.iqr ?? "?"} = ${p.upperBound ?? correctLatex}`
+                expressionLatex: `Q_3 + 1.5 \\times \\text{IQR} = ${p.q3} + 1.5 \\times ${p.iqr} = ${p.upperBound}`
             });
             break;
 
@@ -155,7 +155,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.calc_lower_bound"),
-                expressionLatex: `Q_1 - 1.5 \\times \\text{IQR} = ${p.q1 ?? "?"} - 1.5 \\times ${p.iqr ?? "?"} = ${p.lowerBound ?? correctLatex}`
+                expressionLatex: `Q_1 - 1.5 \\times \\text{IQR} = ${p.q1} - 1.5 \\times ${p.iqr} = ${p.lowerBound}`
             });
             break;
 
