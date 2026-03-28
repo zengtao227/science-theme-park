@@ -177,7 +177,7 @@ export default function GP1_01_AtomicCore() {
                 correctLatex: "\\Delta A=0,\\;\\Delta Z=0",
             },
         ],
-    }), [gp1_01_prompts]);
+    }), [gp1_01_prompts, t]);
 
     const currentQuest = quizBank[quizStage][quizIndex % quizBank[quizStage].length];
 

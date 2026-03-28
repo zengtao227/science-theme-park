@@ -43,11 +43,11 @@ function buildStagePool(gm1_01_t: any, difficulty: Difficulty, stage: Stage): G1
 }
 
 export default function G101Page() {
-  const { completeStage, currentLanguage } = useAppStore();
+  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM101FeedbackProvider(t), [t]);
   
-  const gm1_01_t = {
+  const gm1_01_t = useMemo(() => ({
     title: t("gm1_01.title"),
     description: t("gm1_01.description"),
     back: t("gm1_01.back"),
@@ -130,7 +130,7 @@ export default function G101Page() {
       status_sim: t("gm1_01.canvas.status_sim"),
       status_mode: t("gm1_01.canvas.status_mode"),
     },
-  };
+  }), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm1_01_t, d, s), [gm1_01_t]);
 

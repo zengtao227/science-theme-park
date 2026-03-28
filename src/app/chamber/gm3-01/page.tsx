@@ -36,7 +36,7 @@ export default function G301Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM301FeedbackProvider(t), [t]);
 
-  const gm3_01_t = {
+  const gm3_01_t = useMemo(() => ({
     title: t("gm3_01.title"),
     back: t("gm3_01.back"),
     check: t("gm3_01.check"),
@@ -82,7 +82,7 @@ export default function G301Page() {
     },
     problems: t("gm3_01.problems"),
     input_tip_4dp: t("gm3_01.input_tip_4dp"),
-  };
+  }), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm3_01_t, d, s), [gm3_01_t]);
 

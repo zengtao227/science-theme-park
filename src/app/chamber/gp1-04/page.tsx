@@ -232,7 +232,7 @@ export default function P104Page() {
     };
 
     return bank[stage][difficulty] ?? [];
-  }, [gp1_04_prompts]);
+  }, [gp1_04_prompts, t]);
 
   const buildPool = useCallback((difficulty: Difficulty, stage: Stage) => {
     return buildStagePool(difficulty, stage);

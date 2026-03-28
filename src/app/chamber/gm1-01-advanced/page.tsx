@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
-import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createGM101AdvancedFeedbackProvider } from "@/lib/gm1-01-advanced/provider";
 import type { Challenge, G101AdvQuest } from "@/lib/gm1-01-advanced/types";
@@ -1124,7 +1124,7 @@ export default function G101AdvancedPage() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM101AdvancedFeedbackProvider(t), [t]);
   
-  const gm1_01_advanced_t = {
+  const gm1_01_advanced_t = useMemo(() => ({
     title: t("gm1_01_advanced.title"),
     back: t("gm1_01_advanced.back"),
     check: t("gm1_01_advanced.check"),
@@ -1223,7 +1223,7 @@ export default function G101AdvancedPage() {
     placeholders: {
       v_0_dot_00: t("gm1_01_advanced.placeholders.v_0_dot_00"),
     },
-  };
+  }), [t]);
 
   const buildPool = useCallback((d: Difficulty, s: Challenge) => buildChallengePool(gm1_01_advanced_t, d, s), [gm1_01_advanced_t]);
 

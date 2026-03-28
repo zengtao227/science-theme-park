@@ -141,7 +141,7 @@ export default function GP1_02_RelativityLab() {
                 correctLatex: "\\Delta t=2.5\\,s",
             },
         ],
-    }), [gp1_02_prompts]);
+    }), [gp1_02_prompts, t]);
 
     const currentQuest = quizBank[quizStage][quizIndex % quizBank[quizStage].length];
 
