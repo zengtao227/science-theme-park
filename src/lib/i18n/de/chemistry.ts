@@ -1025,6 +1025,21 @@ export const deChemistry = {
             indicators_elite_5: "Wähle den optimalen Indikator für schwache Säure-Titration.",
             indicator_with_range: "{prompt} (pH {pHRange})"
         },
+        solver: {
+            acid_type_label: "Säuretyp",
+            acid_type_strong: "stark",
+            acid_type_weak: "schwach",
+            curve_family_label: "Kurvenfamilie",
+            curve_family_strong_strong: "stark-stark",
+            curve_family_weak_strong: "schwach-stark",
+            half_equivalence_rule: "Am Halbäquivalenzpunkt gilt: pH = pK_a",
+            strong_equivalence_rule: "Starke Säure + starke Base am Äquivalenzpunkt",
+            weak_equivalence_rule: "Die Titration einer schwachen Säure hat einen Äquivalenzpunkt über 7",
+            indicator_basic_range: "Endpunkt im basischen Bereich",
+            indicator_acidic_range: "Endpunkt im sauren Bereich",
+            indicator_broad_range: "Indikator mit breitem Bereich",
+            best_indicator_label: "Bester Indikator"
+        },
         scenarios: {
             water_quality: "IWB Basler Wasserfiltration: Sie sind Techniker für Wasserqualität im Filtrationswerk der Industriellen Werke Basel (IWB) am Rhein. Ihre Aufgabe ist es, sicherzustellen, dass der pH-Wert des aufbereiteten Trinkwassers innerhalb eines strengen Bereichs (normalerweise 7,2 bis 8,5) bleibt, um Korrosion im städtischen Rohrnetz zu verhindern. Heute führen Sie eine Präzisionstitration an einer Probe aus der Grundwasseranreicherung Langen Erlen durch. Die Probe zeigt aufgrund starker Regenfälle, die das Mineralgleichgewicht des Flusses beeinflusst haben, einen leichten Anstieg des Säuregehalts. Mit einer Standard-NaOH-Lösung müssen Sie den Gesamtsäuregehalt (Alkalität) bestimmen, um das Kalkdosierungssystem zu kalibrieren. Eine genaue pH-Kontrolle ist lebenswichtig, da zu saures Wasser Schwermetalle aus alten Leitungen in die Häuser der Basler Bürger lösen kann. Es ist genau wie wenn Sie einen Teststreifen verwenden, um den pH-Wert Ihres Pools zu prüfen, damit das Wasser sicher und klar bleibt.",
             biotech_titration: "CSL Behring Basel - Proteinstabilität: Sie sind Laborspezialist in der hochmodernen Anlage von CSL Behring in Basel und arbeiten an der Reinigung von aus Plasma gewonnenen Proteinen zur Behandlung seltener Krankheiten. Diese Proteine reagieren extrem empfindlich auf ihre Umgebung; schon eine geringe Abweichung vom optimalen pH-Wert kann dazu führen, dass sie denaturieren oder ihre therapeutische Wirkung verlieren. Während des abschließenden Pufferaustauschprozesses müssen Sie eine Titration durchführen, um die Pufferkapazität der Lösung zu überprüfen. Sie testen, ob das aktuelle System aus schwacher Säure und konjugierter Base pH-Änderungen widerstehen kann, wenn eine kleine Menge pharmazeutischer Inhaltsstoff hinzugefügt wird. Ihre Präzision stellt sicher, dass diese lebensrettenden Medikamente während des Transports und der Lagerung in der ganzen Schweiz stabil bleiben. Dieses Gleichgewicht ähnelt der richtigen Ölviskosität in einem Hochleistungsmotor, damit dieser ohne Überhitzung reibungslos läuft.",
@@ -1093,6 +1108,9 @@ export const deChemistry = {
             wickelfisch: "Rhein-Wickelfisch: Luft V={v1} L bei T1={t1} K (Sonne). Untergetaucht in T2={t2} K Wasser. Neues Volumen V2?",
             fire_dept: "Berufsfeuerwehr Basel: O2-Tank V={V} L, P={P} bar. Verbrauch {r} L/min (bei 1 bar). Dauer in Minuten?",
             geothermal: "Geopower Basel: Methanblase steigt aus Tiefe (P1={p1} bar, T1={t1} K) zur Oberfläche (P2=1 bar, T2={t2} K). Expansionsfaktor?"
+        },
+        solver: {
+            rearrange_isolate: "Stelle das Gasgesetz nach der Zielgröße um"
         }
     },
     sc2_04: {
@@ -1417,6 +1435,31 @@ export const deChemistry = {
         feedback: {
             correct: "Molekülgeometrie und Bindung verifiziert!",
             incorrect: "Geometrie instabil. Berechnen Sie die Orbitalwechselwirkungen neu."
+        },
+        solver: {
+            vsepr_identify: "{molecule}: {bondedAtoms} bindende Atome und {lonePairs} freie Elektronenpaare",
+            vsepr_rule: "VSEPR verwendet die Gesamtzahl der Elektronendomänen am Zentralatom: {bondedAtoms} + {lonePairs} = {totalDomains}",
+            vsepr_solve_prefix: "Die AXE-Analyse ergibt",
+            vsepr_solve_suffix: "das entspricht der Geometrie {geometry}",
+            hybridization_identify: "{molecule} hat {electronDomains} Elektronendomänen am Zentralatom",
+            hybridization_rule: "Die Hybridisierung folgt der Domänenzahl: 2 zu sp, 3 zu sp^2, 4 zu sp^3, 5 zu sp^3d, 6 zu sp^3d^2",
+            hybridization_solve: "Bei {electronDomains} Domänen ist das Zentralatom {hybridization}-hybridisiert",
+            mo_identify: "{species}: bindende Elektronen = {bondingElectrons}, antibindende Elektronen = {antibondingElectrons}",
+            mo_rule: "Bindungsordnung = 1/2 × (bindende Elektronen - antibindende Elektronen)",
+            mo_solve_suffix: "als Bindungsordnung",
+            geometry: {
+                linear: "linear",
+                trigonal_planar: "trigonal-planar",
+                bent: "gewinkelt",
+                tetrahedral: "tetraedrisch",
+                trigonal_pyramidal: "trigonal-pyramidal",
+                trigonal_bipyramidal: "trigonal-bipyramidal",
+                seesaw: "Wippe",
+                t_shaped: "T-förmig",
+                octahedral: "oktaedrisch",
+                square_pyramidal: "quadratisch-pyramidal",
+                square_planar: "quadratisch-planar"
+            }
         }
     },
     sc3_04: {

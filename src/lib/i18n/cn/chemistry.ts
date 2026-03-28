@@ -1033,6 +1033,21 @@ export const cnChemistry = {
             indicators_elite_5: "为弱酸滴定选择最优指示剂。",
             indicator_with_range: "{prompt}（pH {pHRange}）"
         },
+        solver: {
+            acid_type_label: "酸类型",
+            acid_type_strong: "强酸",
+            acid_type_weak: "弱酸",
+            curve_family_label: "曲线类型",
+            curve_family_strong_strong: "强酸-强碱",
+            curve_family_weak_strong: "弱酸-强碱",
+            half_equivalence_rule: "半当量点时：pH = pK_a",
+            strong_equivalence_rule: "强酸与强碱在等当点相遇",
+            weak_equivalence_rule: "弱酸滴定的等当点 pH 高于 7",
+            indicator_basic_range: "终点位于碱性范围",
+            indicator_acidic_range: "终点位于酸性范围",
+            indicator_broad_range: "宽范围指示剂",
+            best_indicator_label: "最佳指示剂"
+        },
         scenarios: {
             water_quality: "巴塞尔 IWB 水过滤厂：你是位于莱茵河畔的巴塞尔市政公用事业公司 (IWB) 水过滤厂的一名水质技术员。你的职责是确保处理后的饮用水 pH 值保持在严格的范围内（通常为 7.2 到 8.5），以防止城市管网发生腐蚀。今天，你正在对来自“Langen Erlen”地下水富集区的样本进行精确滴定。由于近期强降雨影响了河流的矿物质平衡，样本显示酸度略有增加。通过使用标准 NaOH 溶液，你必须确定总酸度（碱度）以校准石灰投加系统。精确的 pH 控制至关重要，因为过酸的水可能会从旧管道中将重金属淋滤到巴塞尔市民的家中。这就像你使用试纸检查游泳池的 pH 值，以保持水质安全清澈一样。",
             biotech_titration: "巴塞尔 CSL Behring - 蛋白质稳定性：你是巴塞尔 CSL Behring 先进设施的一名实验室科学家，致力于纯化用于治疗罕见疾病的血浆衍生蛋白质。这些蛋白质对环境高度敏感；即使是与最佳 pH 值的细微偏差也会导致它们变性或失去治疗效果。在最后的缓冲液交换过程中，你必须进行滴定以验证溶液的缓冲能力。你正在测试当前的弱酸/共轭碱系统是否能在添加少量药物成分时抵抗 pH 值的变化。你的精确性确保了这些救命药物在整个瑞士的运输和储存过程中保持稳定。这种平衡类似于高性能汽车发动机需要合适的机油粘度才能顺畅运行而不会过热。",
@@ -1101,6 +1116,9 @@ export const cnChemistry = {
             wickelfisch: "莱茵河游泳袋 (Wickelfisch)：空气 V={v1} L 在 T1={t1} K (阳光下)。浸入 T2={t2} K 水中。新体积 V2？",
             fire_dept: "巴塞尔消防队：氧气罐 V={V} L, P={P} bar。消耗率 {r} L/min (1 bar 下)。持续时间 (分钟)？",
             geothermal: "巴塞尔地热：甲烷气泡从深处 (P1={p1} bar, T1={t1} K) 升至表面 (P2=1 bar, T2={t2} K)。膨胀倍数？"
+        },
+        solver: {
+            rearrange_isolate: "重排气体定律方程并把目标量单独列出"
         }
     },
     sc2_04: {
@@ -1424,6 +1442,31 @@ export const cnChemistry = {
         feedback: {
             correct: "分子几何构型与成键验证通过！",
             incorrect: "结构不稳定。请重新计算轨道相互作用。"
+        },
+        solver: {
+            vsepr_identify: "{molecule}：{bondedAtoms} 个成键原子，{lonePairs} 对孤电子对",
+            vsepr_rule: "VSEPR 通过中心原子周围的总电子畴数判断构型：{bondedAtoms} + {lonePairs} = {totalDomains}",
+            vsepr_solve_prefix: "AXE 分析得到",
+            vsepr_solve_suffix: "对应的分子几何为 {geometry}",
+            hybridization_identify: "{molecule} 的中心原子周围共有 {electronDomains} 个电子畴",
+            hybridization_rule: "杂化与电子畴数对应：2 对应 sp，3 对应 sp^2，4 对应 sp^3，5 对应 sp^3d，6 对应 sp^3d^2",
+            hybridization_solve: "当电子畴数为 {electronDomains} 时，中心原子杂化为 {hybridization}",
+            mo_identify: "{species}：成键电子 = {bondingElectrons}，反键电子 = {antibondingElectrons}",
+            mo_rule: "键级 = 1/2 × (成键电子数 - 反键电子数)",
+            mo_solve_suffix: "即为键级",
+            geometry: {
+                linear: "直线形",
+                trigonal_planar: "平面三角形",
+                bent: "折线形",
+                tetrahedral: "四面体",
+                trigonal_pyramidal: "三角锥形",
+                trigonal_bipyramidal: "三角双锥形",
+                seesaw: "跷跷板形",
+                t_shaped: "T 形",
+                octahedral: "八面体",
+                square_pyramidal: "四方锥形",
+                square_planar: "平面四边形"
+            }
         }
     },
     sc3_04: {

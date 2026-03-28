@@ -24,34 +24,34 @@ function hybridizationRule(electronDomains: number) {
   }
 }
 
-function vseprGeometry(bondedAtoms: number, lonePairs: number) {
+function vseprGeometryKey(bondedAtoms: number, lonePairs: number) {
   switch (`${bondedAtoms}:${lonePairs}`) {
     case "2:0":
       return "linear";
     case "3:0":
-      return "trigonal planar";
+      return "trigonal_planar";
     case "2:1":
       return "bent";
     case "4:0":
       return "tetrahedral";
     case "3:1":
-      return "trigonal pyramidal";
+      return "trigonal_pyramidal";
     case "2:2":
       return "bent";
     case "5:0":
-      return "trigonal bipyramidal";
+      return "trigonal_bipyramidal";
     case "4:1":
       return "seesaw";
     case "3:2":
-      return "T-shaped";
+      return "t_shaped";
     case "2:3":
       return "linear";
     case "6:0":
       return "octahedral";
     case "5:1":
-      return "square pyramidal";
+      return "square_pyramidal";
     case "4:2":
-      return "square planar";
+      return "square_planar";
     default:
       return null;
   }
@@ -66,29 +66,46 @@ export function solveSC305(quest: SC305Quest, t: Translator) {
         return { steps: [], fullSolutionLatex: null };
       }
       const totalDomains = quest.data.lonePairs + quest.data.bondedAtoms;
-      const geometry = vseprGeometry(quest.data.bondedAtoms, quest.data.lonePairs);
-      if (!geometry) {
+      const geometryKey = vseprGeometryKey(quest.data.bondedAtoms, quest.data.lonePairs);
+      if (!geometryKey) {
         return { steps: [], fullSolutionLatex: null };
       }
+      const geometry = t(`chemistry.sc3_05.solver.geometry.${geometryKey}`);
       steps.push(
         makeStep(
           1,
           t("common.feedback_reasons.identify_given_values"),
-          `\\text{${escapeLatexText(quest.data.molecule)}}: ${quest.data.bondedAtoms} \\text{ bonded atoms and } ${quest.data.lonePairs} \\text{ lone pairs}`
+          `\\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.vsepr_identify", {
+              molecule: quest.data.molecule,
+              bondedAtoms: String(quest.data.bondedAtoms),
+              lonePairs: String(quest.data.lonePairs),
+            })
+          )}}`
         )
       );
       steps.push(
         makeStep(
           2,
           t("common.feedback_reasons.select_formula_or_rule"),
-          `\\text{VSEPR uses the total electron domains around the central atom: } ${quest.data.bondedAtoms} + ${quest.data.lonePairs} = ${totalDomains}`
+          `\\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.vsepr_rule", {
+              bondedAtoms: String(quest.data.bondedAtoms),
+              lonePairs: String(quest.data.lonePairs),
+              totalDomains: String(totalDomains),
+            })
+          )}}`
         )
       );
       steps.push(
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          `\\text{AXE analysis gives } AX_${quest.data.bondedAtoms}E_${quest.data.lonePairs},\\text{ which corresponds to } \\text{${escapeLatexText(geometry)}}`
+          `\\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.vsepr_solve_prefix")
+          )}}\\; AX_${quest.data.bondedAtoms}E_${quest.data.lonePairs}\\; \\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.vsepr_solve_suffix", { geometry })
+          )}}`
         )
       );
       break;
@@ -105,21 +122,31 @@ export function solveSC305(quest: SC305Quest, t: Translator) {
         makeStep(
           1,
           t("common.feedback_reasons.identify_given_values"),
-          `\\text{${escapeLatexText(quest.data.molecule)}} \\text{ has } ${quest.data.electronDomains} \\text{ electron domains around the central atom}`
+          `\\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.hybridization_identify", {
+              molecule: quest.data.molecule,
+              electronDomains: String(quest.data.electronDomains),
+            })
+          )}}`
         )
       );
       steps.push(
         makeStep(
           2,
           t("common.feedback_reasons.select_formula_or_rule"),
-          "\\text{Hybridization follows the domain count: } 2\\to sp,\\ 3\\to sp^2,\\ 4\\to sp^3,\\ 5\\to sp^3d,\\ 6\\to sp^3d^2"
+          `\\text{${escapeLatexText(t("chemistry.sc3_05.solver.hybridization_rule"))}}`
         )
       );
       steps.push(
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          `\\text{For } ${quest.data.electronDomains} \\text{ domains, the central atom is } ${hybridization}`
+          `\\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.hybridization_solve", {
+              electronDomains: String(quest.data.electronDomains),
+              hybridization,
+            })
+          )}}`
         )
       );
       break;
@@ -133,21 +160,29 @@ export function solveSC305(quest: SC305Quest, t: Translator) {
         makeStep(
           1,
           t("common.feedback_reasons.identify_given_values"),
-          `\\text{${escapeLatexText(quest.data.species)}}: n_b = ${quest.data.bondingElectrons},\\ n_a = ${quest.data.antibondingElectrons}`
+          `\\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.mo_identify", {
+              species: quest.data.species,
+              bondingElectrons: String(quest.data.bondingElectrons),
+              antibondingElectrons: String(quest.data.antibondingElectrons),
+            })
+          )}}`
         )
       );
       steps.push(
         makeStep(
           2,
           t("common.feedback_reasons.select_formula_or_rule"),
-          "\\text{Bond order} = \\frac{1}{2}(n_b - n_a)"
+          `\\text{${escapeLatexText(t("chemistry.sc3_05.solver.mo_rule"))}}`
         )
       );
       steps.push(
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          `\\frac{1}{2}(${quest.data.bondingElectrons} - ${quest.data.antibondingElectrons}) = ${bondOrder}`
+          `\\frac{1}{2}(${quest.data.bondingElectrons} - ${quest.data.antibondingElectrons}) = ${bondOrder}\\; \\text{${escapeLatexText(
+            t("chemistry.sc3_05.solver.mo_solve_suffix")
+          )}}`
         )
       );
       break;

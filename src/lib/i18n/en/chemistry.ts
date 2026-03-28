@@ -1033,6 +1033,21 @@ export const enChemistry = {
             indicators_elite_5: "Choose the optimal indicator for weak-acid titration.",
             indicator_with_range: "{prompt} (pH {pHRange})"
         },
+        solver: {
+            acid_type_label: "Acid type",
+            acid_type_strong: "strong",
+            acid_type_weak: "weak",
+            curve_family_label: "Curve family",
+            curve_family_strong_strong: "strong-strong",
+            curve_family_weak_strong: "weak-strong",
+            half_equivalence_rule: "At half-equivalence: pH = pK_a",
+            strong_equivalence_rule: "Strong acid + strong base at equivalence",
+            weak_equivalence_rule: "Weak-acid titration has an equivalence point above 7",
+            indicator_basic_range: "endpoint in basic range",
+            indicator_acidic_range: "endpoint in acidic range",
+            indicator_broad_range: "broad-range indicator",
+            best_indicator_label: "Best indicator"
+        },
         scenarios: {
             water_quality: "IWB Basel Water Filtration: You are a water quality technician at the Industrielle Werke Basel (IWB) filtration plant located along the Rhine. Your responsibility is to ensure the pH of the processed drinking water remains within a strict range (usually 7.2 to 8.5) to prevent corrosion in the city's pipe network. Today, you are performing a precision titration on a sample from the Langen Erlen groundwater enrichment site. The sample shows a slight increase in acidity due to recent heavy rainfall affecting the river's mineral balance. By using a standard solution of NaOH, you must determine the total acidity (alkalinity) to calibrate the lime-dosing system. Accurate pH control is vital because water that is too acidic can leach heavy metals from older plumbing into the homes of Basel's citizens. It's just like when you use a strip to check the pH of your swimming pool to keep the water safe and clear.",
             biotech_titration: "CSL Behring Basel - Protein Stability: You are a laboratory scientist at CSL Behring’s state-of-the-art facility in Basel, working on the purification of plasma-derived proteins used to treat rare diseases. These proteins are highly sensitive to their environment; even a minor deviation from the optimal pH can cause them to denature or lose their therapeutic effectiveness. During the final buffer exchange process, you must perform a titration to verify the buffering capacity of the solution. You are testing if the current weak acid/conjugate base system can resist pH changes when a small amount of pharmaceutical ingredient is added. Your precision ensures that these life-saving medicines remain stable during transport and storage across Switzerland. This balance is similar to how a high-performance car engine needs the right oil viscosity to run smoothly without overheating.",
@@ -1101,6 +1116,9 @@ export const enChemistry = {
             wickelfisch: "Rhine Wickelfisch: Air V={v1} L at T1={t1} K (Sun). Submerged in water at T2={t2} K. New Volume V2?",
             fire_dept: "Basel Fire Dept: O2 Tank V={V} L, P={P} bar. Usage rate {r} L/min (at 1 bar). Duration in minutes?",
             geothermal: "Geopower Basel: Methane bubble rises from depth (P1={p1} bar, T1={t1} K) to surface (P2=1 bar, T2={t2} K). Expansion Factor?"
+        },
+        solver: {
+            rearrange_isolate: "Rearrange the gas-law equation to isolate"
         }
     },
     sc2_04: {
@@ -1424,6 +1442,31 @@ export const enChemistry = {
         feedback: {
             correct: "Molecular geometry and bonding verified!",
             incorrect: "Geometry unstable. Recalculate orbital interactions."
+        },
+        solver: {
+            vsepr_identify: "{molecule}: {bondedAtoms} bonded atoms and {lonePairs} lone pairs",
+            vsepr_rule: "VSEPR uses the total electron domains around the central atom: {bondedAtoms} + {lonePairs} = {totalDomains}",
+            vsepr_solve_prefix: "AXE analysis gives",
+            vsepr_solve_suffix: "which corresponds to {geometry}",
+            hybridization_identify: "{molecule} has {electronDomains} electron domains around the central atom",
+            hybridization_rule: "Hybridization follows the domain count: 2 to sp, 3 to sp^2, 4 to sp^3, 5 to sp^3d, 6 to sp^3d^2",
+            hybridization_solve: "For {electronDomains} domains, the central atom is {hybridization}",
+            mo_identify: "{species}: bonding electrons = {bondingElectrons}, antibonding electrons = {antibondingElectrons}",
+            mo_rule: "Bond order = 1/2 (bonding electrons - antibonding electrons)",
+            mo_solve_suffix: "bond order",
+            geometry: {
+                linear: "linear",
+                trigonal_planar: "trigonal planar",
+                bent: "bent",
+                tetrahedral: "tetrahedral",
+                trigonal_pyramidal: "trigonal pyramidal",
+                trigonal_bipyramidal: "trigonal bipyramidal",
+                seesaw: "seesaw",
+                t_shaped: "T-shaped",
+                octahedral: "octahedral",
+                square_pyramidal: "square pyramidal",
+                square_planar: "square planar"
+            }
         }
     },
     sc3_04: {

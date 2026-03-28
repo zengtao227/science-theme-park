@@ -27,7 +27,7 @@ export function solveSC203(quest: SC203Quest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Rearrange the gas-law equation to isolate } ${targetLatex}`),
+    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("chemistry.sc2_03.solver.rearrange_isolate")}} ${targetLatex}`),
     makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
 

@@ -72,7 +72,7 @@ function buildReasoningLatex(quest: SP306Quest, t: Translator) {
     case "equal_temperament":
       return "r = 2^{1/12} \\approx 1.059";
     case "just_intonation":
-      return `\\frac{3}{2}=1.5\\text{ and }2^{7/12}\\approx 1.498\\text{, so }\\text{${t("physics.sp3_06.solver.just_intonation_reason")}}`;
+      return `\\frac{3}{2}=1.5,\\; 2^{7/12}\\approx 1.498\\; \\Rightarrow \\; \\text{${t("physics.sp3_06.solver.just_intonation_reason")}}`;
     case "formants":
       return `\\text{${t("physics.sp3_06.solver.formants_reason")}}`;
     case "missing_fundamental":
