@@ -20,7 +20,12 @@ function buildSolveLatex(quest: SB301SolverQuest) {
   if (quest.stage === "FOOD_CHAINS") return "\\text{Identify the next trophic level from the chain given in the prompt}";
   if (quest.stage === "ENERGY_FLOW") return "\\text{Apply the 10\\% transfer rule to the energy value provided}";
   if (quest.stage === "CYCLES") return "\\text{Use the named cycle and process to infer the correct product}";
-  if (quest.hintLatex && quest.hintLatex.length > 0) return quest.hintLatex[0];
+  if (quest.id.startsWith("ELITE-B1")) return `${quest.expressionLatex} = ${quest.correctLatex}`;
+  if (quest.id.startsWith("ELITE-B2")) return "\\text{Compute each } p_i\\ln(p_i) \\text{ term, sum them, and change the sign to get the Shannon index.}";
+  if (quest.id.startsWith("ELITE-C1")) return "\\text{Divide both sides by the initial population, take the natural logarithm, then isolate } r.";
+  if (quest.id.startsWith("ELITE-C2")) return `${quest.expressionLatex} = ${quest.correctLatex}`;
+  if (quest.id.startsWith("ELITE-A1")) return "\\text{Evaluate the logistic growth factor } \\left(1-\\frac{N}{K}\\right) \\text{ and multiply by } rN.";
+  if (quest.id.startsWith("ELITE-A2")) return `${quest.expressionLatex} = ${quest.correctLatex}`;
   return "\\text{Apply the ecological relation shown to compute the target quantity}";
 }
 
