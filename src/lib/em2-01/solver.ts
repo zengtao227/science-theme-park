@@ -22,8 +22,12 @@ function formatMatrixAnswer(correctLatex: string) {
 }
 
 function finalStep(stepNumber: number, t: Translator, quest: MatrixQuest) {
-  const finalExpression = quest.type === "calculate_matrix" ? formatMatrixAnswer(quest.correctLatex) : quest.correctLatex;
-  return makeStep(stepNumber, t("common.feedback_reasons.state_final_result"), finalExpression, "key");
+  return makeStep(
+    stepNumber,
+    t("common.feedback_reasons.state_final_result"),
+    quest.type === "calculate_matrix" ? formatMatrixAnswer(quest.correctLatex) : quest.correctLatex,
+    "key"
+  );
 }
 
 function firstReason(quest: MatrixQuest, t: Translator) {

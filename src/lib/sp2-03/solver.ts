@@ -61,7 +61,7 @@ function solveEnergyConsumption(quest: SP203Quest, t: Translator) {
     steps.push(
       makeStep(2, t("sp2_03.reasons.compute_running_cost"), `\\text{Cost} = ${energyKWh}\\,\\text{kWh} \\times ${quest.cost} = ${cost}`),
     );
-  } else if (quest.correctLatex.includes("kWh")) {
+  } else if (Number(quest.answer) === energyKWh) {
     steps.push(
       makeStep(2, t("sp2_03.reasons.convert_wh_to_kwh"), `${energyWh}\\,\\text{Wh} = ${energyKWh}\\,\\text{kWh}`),
     );

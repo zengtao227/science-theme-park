@@ -53,7 +53,7 @@ function workingExpression(quest: SP101AdaptedQuest) {
 
 function reasoningStep(quest: SP101AdaptedQuest, t: Translator) {
   if (quest.stage === "FORCE_CONCEPTS") {
-    return makeStep(2, t("sp1_01.reasons.match_force_definition_or_unit"), quest.targetLatex || quest.correctLatex);
+    return makeStep(2, t("sp1_01.reasons.match_force_definition_or_unit"), quest.targetLatex || quest.expressionLatex);
   }
   if (quest.stage === "FORCE_COMPOSITION") {
     return makeStep(2, t("sp1_01.reasons.compute_resultant_from_components"), workingExpression(quest));

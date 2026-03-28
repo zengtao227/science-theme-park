@@ -24,6 +24,39 @@ function hybridizationRule(electronDomains: number) {
   }
 }
 
+function vseprGeometry(bondedAtoms: number, lonePairs: number) {
+  switch (`${bondedAtoms}:${lonePairs}`) {
+    case "2:0":
+      return "linear";
+    case "3:0":
+      return "trigonal planar";
+    case "2:1":
+      return "bent";
+    case "4:0":
+      return "tetrahedral";
+    case "3:1":
+      return "trigonal pyramidal";
+    case "2:2":
+      return "bent";
+    case "5:0":
+      return "trigonal bipyramidal";
+    case "4:1":
+      return "seesaw";
+    case "3:2":
+      return "T-shaped";
+    case "2:3":
+      return "linear";
+    case "6:0":
+      return "octahedral";
+    case "5:1":
+      return "square pyramidal";
+    case "4:2":
+      return "square planar";
+    default:
+      return null;
+  }
+}
+
 export function solveSC305(quest: SC305Quest, t: Translator) {
   const steps: PlatformSolutionStep[] = [];
 
@@ -33,6 +66,10 @@ export function solveSC305(quest: SC305Quest, t: Translator) {
         return { steps: [], fullSolutionLatex: null };
       }
       const totalDomains = quest.data.lonePairs + quest.data.bondedAtoms;
+      const geometry = vseprGeometry(quest.data.bondedAtoms, quest.data.lonePairs);
+      if (!geometry) {
+        return { steps: [], fullSolutionLatex: null };
+      }
       steps.push(
         makeStep(
           1,
@@ -51,7 +88,7 @@ export function solveSC305(quest: SC305Quest, t: Translator) {
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          `\\text{With ${totalDomains} electron domains and ${quest.data.lonePairs} lone pairs, the molecular geometry is } \\text{${escapeLatexText(quest.correctLatex)}}`
+          `\\text{AXE analysis gives } AX_${quest.data.bondedAtoms}E_${quest.data.lonePairs},\\text{ which corresponds to } \\text{${escapeLatexText(geometry)}}`
         )
       );
       break;

@@ -28,12 +28,6 @@ function buildPropertyRule(quest: SC304Quest) {
   if (quest.comparisonType === "sol") {
     return "\\text{Greater water solubility usually comes from stronger polarity and hydrogen bonding with water}";
   }
-  if (quest.correctLatex.toLowerCase().includes("acid")) {
-    return "\\text{Carboxylic acids form especially strong intermolecular hydrogen bonding, raising the boiling point}";
-  }
-  if (quest.correctLatex.toLowerCase().includes("ol") || quest.correctLatex.toLowerCase().includes("ethanol")) {
-    return "\\text{Alcohols can donate and accept hydrogen bonds, so they boil higher than aldehydes or ketones of similar size}";
-  }
   return "\\text{Compare intermolecular forces to determine which molecule has the stronger attraction between particles}";
 }
 
@@ -43,7 +37,10 @@ export function solveSC304(quest: SC304Quest, t: Translator) {
   switch (quest.stage) {
     case "ALCOHOLS":
     case "ACIDS": {
-      const groupKey = quest.characteristicGroup ?? quest.correctLatex.toLowerCase();
+      const groupKey = quest.characteristicGroup;
+      if (!groupKey) {
+        return { steps: [], fullSolutionLatex: null };
+      }
       const ruleLatex = GROUP_RULES[groupKey];
       if (!ruleLatex) {
         return { steps: [], fullSolutionLatex: null };
@@ -57,7 +54,7 @@ export function solveSC304(quest: SC304Quest, t: Translator) {
         makeStep(
           3,
           t("common.feedback_reasons.solve_step_by_step"),
-          `\\text{The molecule with the stronger intermolecular forces is } \\text{${escapeLatexText(quest.correctLatex)}}`
+          "\\text{Choose the molecule whose functional group allows stronger intermolecular forces under the stated comparison}"
         )
       );
       break;
