@@ -58,21 +58,17 @@ export function generateBasicProbQuests(gm3_01_t: any, difficulty: Difficulty): 
     for (let i = 0; i < 60; i++) {
         const id = `BP-${difficulty.charAt(0)}-${i + 1}`;
         let favorable = 1, total = 6;
-        let problemText = "";
 
         if (difficulty === "BASIC") {
             const type = pick(["die", "coin", "spin"]);
             if (type === "die") {
                 favorable = randomInt(1, 3);
                 total = 6;
-                problemText = `You roll a standard six-sided die once. What is the probability of rolling one of the first ${favorable} numbers?`;
             } else if (type === "coin") {
                 favorable = 1; total = 2;
-                problemText = "You flip a fair coin once. What is the probability of getting heads?";
             } else {
                 total = pick([8, 10, 12]);
                 favorable = randomInt(1, 4);
-                problemText = `You spin a wheel divided into ${total} equal sections. What is the probability of landing on one of the ${favorable} marked sections?`;
             }
         } else if (difficulty === "CORE") {
             const type = pick(["sum", "cards"]);
@@ -86,29 +82,19 @@ export function generateBasicProbQuests(gm3_01_t: any, difficulty: Difficulty): 
                 }
                 favorable = combos.length;
                 total = 36;
-                problemText = `You roll two standard dice. What is the probability that their sum equals ${targetSum}?`;
             } else {
                 const cardType = pick(["suit", "honors", "red"]);
                 total = 52;
-                if (cardType === "suit") { favorable = 13; problemText = "What is the probability of drawing a heart?"; }
-                else if (cardType === "honors") { favorable = 16; problemText = "What is the probability of drawing an honor card (A, K, Q, J)?"; }
-                else { favorable = 26; problemText = "What is the probability of drawing a red card (Heart or Diamond)?"; }
+                if (cardType === "suit") { favorable = 13; }
+                else if (cardType === "honors") { favorable = 16; }
+                else { favorable = 26; }
             }
         } else if (difficulty === "ADVANCED") {
-            // Implicit conditional or set logic
-            const target = randomInt(3, 5);
-            favorable = 6 - target; // even numbers > target? maybe too complex to textify simply
-            // Let's use simpler text
-            total = 6;
-            favorable = 2;
-            problemText = `You roll a die and it's known to be greater than 3. What is the probability it is a multiple of 3? (Condition: results are {4,5,6})`;
-            // Resetting total for text consistency
             total = 3;
-            favorable = 1; // Only '6' is a multiple of 3 in {4,5,6}
+            favorable = 1;
         } else { // ELITE
             total = 36;
             favorable = 11;
-            problemText = "You roll two dice. What is the probability that AT LEAST one shows a 6?";
         }
 
         const prob = round4(favorable / total);

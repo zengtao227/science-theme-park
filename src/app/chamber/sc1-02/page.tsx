@@ -17,7 +17,7 @@ import {
   generateStoichiometryQuests,
   generateYieldQuests,
 } from "@/lib/sc1-02/quests";
-import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { renderMixedText } from "@/lib/latex-utils";
 
 export default function C102Page() {
   const { completeStage } = useAppStore();

@@ -9,7 +9,7 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import NeuralCanvas from "@/components/chamber/gb2-01/NeuralCanvas";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createGB201FeedbackProvider } from "@/lib/gb2-01/provider";
 

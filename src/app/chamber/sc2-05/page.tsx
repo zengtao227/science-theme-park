@@ -7,7 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcidBaseVisualization from "@/components/chamber/sc2-05/AcidBaseVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createSC205FeedbackProvider } from "@/lib/sc2-05/provider";

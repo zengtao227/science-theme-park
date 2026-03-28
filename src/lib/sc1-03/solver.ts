@@ -2,13 +2,6 @@ import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
 import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { AtomQuest } from "./types";
 
-const ELEMENTS: Record<string, { z: number; symbol: string; period: number }> = {
-  C: { z: 6, symbol: "C", period: 2 },
-  Mg: { z: 12, symbol: "Mg", period: 3 },
-  Ar: { z: 18, symbol: "Ar", period: 3 },
-  K: { z: 19, symbol: "K", period: 4 },
-};
-
 export function solveSC103(quest: AtomQuest, t: Translator) {
   const steps: PlatformSolutionStep[] = [makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex)];
 

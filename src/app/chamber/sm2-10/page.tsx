@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useMemo } from "react";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
@@ -21,7 +21,6 @@ interface SM210Quest extends Quest {
     parameters?: SM210Parameters;
 }
 
-const PRINT_STAGE_ORDER: Stage[] = ["BOX_PLOTS", "SCATTER_PLOTS", "CORRELATION", "ELITE"];
 const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
 
 export default function SM210Page() {

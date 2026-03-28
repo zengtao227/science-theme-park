@@ -6,7 +6,6 @@ import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectromagnetismVisualization from "@/components/chamber/gp3-02/ElectromagnetismVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
-import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";

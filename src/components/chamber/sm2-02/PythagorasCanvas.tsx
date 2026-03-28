@@ -94,7 +94,6 @@ function VoxelGrid({
 
 // 3D Pythagorean Theorem with Animated Voxel Grids
 function Triangle3D({ a, b, c, highlightRightAngle }: TriangleCanvasProps) {
-  const { t } = useLanguage();
   // 移除自动旋转动画
 
   // Calculate positions for the right triangle

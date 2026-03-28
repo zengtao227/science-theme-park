@@ -248,7 +248,6 @@ function solveModeling(
   const firstDerivative = derivative(poly);
   const secondDerivative = derivative(firstDerivative);
   const targetIsSecond = quest.targetLatex.includes("''") || quest.hint.includes("f''");
-  const relevantDerivative = targetIsSecond ? secondDerivative : firstDerivative;
   const derivativeName = targetIsSecond ? "a" : "v";
 
   const steps = [

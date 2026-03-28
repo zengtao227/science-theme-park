@@ -1,7 +1,6 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
 import {
   buildFullSolution,
-  escapeLatexText,
   makeStep,
   type Translator,
 } from "@/lib/feedback/solverSupport";

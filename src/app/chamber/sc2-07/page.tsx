@@ -23,7 +23,7 @@ import 'katex/dist/katex.min.css';
 import { EnergyDiagram } from '@/components/sc2-07/EnergyDiagram';
 import { HessCycleView } from '@/components/sc2-07/HessCycleView';
 import { CalorimeterView } from '@/components/sc2-07/CalorimeterView';
-import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createSC207FeedbackProvider } from "@/lib/sc2-07-provider";
 

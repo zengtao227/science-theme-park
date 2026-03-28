@@ -11,8 +11,8 @@ import "katex/dist/katex.min.css";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import clsx from "clsx";
-import { HelpCircle, BrainCircuit } from "lucide-react";
-import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
+import { HelpCircle } from "lucide-react";
+import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 
 type MonitorPoint = { x: number; y: number };

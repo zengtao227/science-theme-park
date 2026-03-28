@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Grid, Line, Text } from "@react-three/drei";
 import { GeometryData } from "@/lib/gm2-02-types";
@@ -8,16 +7,6 @@ import * as THREE from "three";
 
 interface DistanceCalculatorProps {
   data: GeometryData;
-}
-
-interface SceneBounds {
-  center: [number, number, number];
-  extent: number;
-  cameraOffset: [number, number, number];
-  gridSize: number;
-  lineExtent: number;
-  planeSize: number;
-  pointRadius: number;
 }
 
 // Axes component

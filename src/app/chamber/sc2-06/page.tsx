@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useCallback, useMemo } from "react";
-import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
-import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
+import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createSC206FeedbackProvider } from "@/lib/sc2-06/provider";
 import type { SC206Quest, Stage } from "@/lib/sc2-06/types";

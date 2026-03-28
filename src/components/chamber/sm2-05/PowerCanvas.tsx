@@ -369,7 +369,6 @@ function ScientificScene({ m, n }: { m: number, n: number }) {
 }
 
 export default function S205_PowerCanvas({ visual }: { visual?: PowerVisual }) {
-  const { t } = useLanguage();
   if (!visual) return null;
 
   const { mode, base, m, n } = visual;

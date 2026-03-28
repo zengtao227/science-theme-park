@@ -28,7 +28,6 @@ import {
 } from "@/lib/sm2-09-quests";
 import { solveLinearInequality, solveAbsoluteValueInequality } from "@/lib/sm2-09-solvers";
 
-const PRINT_STAGE_ORDER: Stage[] = ["INEQUALITY_BASICS", "SYSTEMS", "ABSOLUTE_VALUE"];
 const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
 const CHOICE_LABELS = ["A", "B", "C", "D"] as const;
 const REGION_CHOICES = [

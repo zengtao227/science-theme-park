@@ -15,7 +15,6 @@ import {
   calculateLinePlaneIntersection,
   crossProduct,
   dotProduct,
-  vectorMagnitude,
 } from "./gm2-02-geometry";
 
 type Translator = (key: string, params?: Record<string, string | number>) => string;

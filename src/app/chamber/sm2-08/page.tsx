@@ -17,7 +17,7 @@ type ProbQuest = Quest & { stage: Stage; context?: string; scenario?: string };
 
 export default function SM208Page() {
   const { completeStage } = useAppStore();
-  const { t, currentLanguage } = useLanguage();
+  const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM208FeedbackProvider(t), [t]);
 
   const sm2_08_t = useMemo(() => ({

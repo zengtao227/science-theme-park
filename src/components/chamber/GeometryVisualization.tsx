@@ -3,7 +3,6 @@
 import { GM202Quest, Stage, GeometryData } from "@/lib/gm2-02-types";
 import CoordinatePlotter2D from "./CoordinatePlotter2D";
 import SpaceVisualizer3D from "./SpaceVisualizer3D";
-import DistanceCalculator from "./DistanceCalculator";
 
 interface GeometryVisualizationProps {
   quest: GM202Quest;

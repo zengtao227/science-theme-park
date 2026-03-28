@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, formatNumber, makeStep, round2, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, formatNumber, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SP307Quest } from "./types";
 
 function rad(deg: number) {
