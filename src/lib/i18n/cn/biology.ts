@@ -542,6 +542,14 @@ export const cnBiology = {
             next: "下一标本",
             analysis: "显微分析"
         },
+        solver: {
+            rule_identification: "根据大小或可见特征匹配正确的细胞器",
+            rule_function: "将每个细胞器与其核心细胞功能对应起来",
+            rule_organelles: "根据题目要求调用标准参考值或细胞器事实",
+            solve_identification: "将题目线索与结构 {organelle} 进行比较",
+            solve_function: "题目中的功能线索对应细胞器 {organelle}",
+            solve_organelles: "回忆题目询问的定量或结构性细胞生物学事实"
+        },
         prompts: {
             id_prompt: "识别细胞器: {organelle}",
             id_target: "高亮部分: ?",
@@ -939,7 +947,13 @@ export const cnBiology = {
         correct: "分类验证成功",
         incorrect: "检查答案",
         loading: "加载中...",
-        monitor_title: "SB1.05_动物监视器"
+        monitor_title: "SB1.05_动物监视器",
+        solver: {
+            rule_animal_classification: "用该动物类群的典型解剖特征来完成分类",
+            rule_adaptations: "把生物与帮助其生存的环境或适应特征对应起来",
+            rule_behavior_evolution: "从生存、繁殖、迁徙或保护压力角度解释该行为",
+            solve_use_clues: "利用 {animalName}（{scientificName}）的线索来论证答案"
+        }
     },
 
     sb2_01_tissues: {
@@ -1042,6 +1056,17 @@ export const cnBiology = {
         feedback: {
             correct: "组织识别已验证！继续下一标本。",
             incorrect: "组织识别错误。请复习组织学特征。"
+        },
+        solver: {
+            rule_tissues: "将组织线索与组织类型或其核心功能对应起来",
+            rule_organs: "根据给定器官识别被考查的组织、结构或生理事实",
+            rule_systems: "根据生物层级或器官系统的定义性作用进行判断",
+            solve_tissues: "利用关于 {name} 的线索确定答案",
+            solve_organs: "解读与 {name} 相关的器官线索",
+            solve_systems: "解读与 {name} 相关的系统线索",
+            default_tissue: "该组织",
+            default_organ: "该器官",
+            default_system: "该生物层级"
         }
     },
     sb2_01: {
@@ -1185,6 +1210,13 @@ export const cnBiology = {
             response: "反应",
             mv_l_min: "每分通气量(L/min)",
             area_m2: "\\text{面积 (m}^{2}\\text{)}"
+        },
+        solver: {
+            rule_digestive: "将消化系统器官与其在分解、分泌或吸收中的作用对应起来",
+            rule_circulatory: "将循环系统结构与泵送、运输或交换功能对应起来",
+            rule_respiratory: "将呼吸系统结构与通气或气体交换功能对应起来",
+            solve_with_organ: "将功能线索与当前人体系统中的结构 {organ} 对应起来",
+            solve_default: "利用题目中的解剖和功能线索识别正确结构"
         },
         corrects: {
             carbon_dioxide: "\\text{二氧化碳（CO}_2\\text{）}",
@@ -1693,6 +1725,21 @@ export const cnBiology = {
             valid_desc: "能量流和营养循环处于最佳状态。",
             invalid_desc: "计算错误。生态系统失去稳定性。",
             next: "监控下一区域"
+        },
+        solver: {
+            rule_food_chains: "沿着生产者到消费者再到高阶消费者的链条判断",
+            rule_cycles: "将生物地球化学过程与其产物或下一储库对应起来",
+            rule_elite: "使用表达式中给出的生态公式或生物多样性模型",
+            solve_food_chains: "根据题目给出的食物链识别下一个营养级",
+            solve_energy_flow: "对给出的能量值应用 10% 传递规则",
+            solve_cycles: "利用所给循环与过程推断正确产物",
+            solve_elite_b1: "用消费者能量除以可利用生产者能量来计算效率：",
+            solve_elite_b2: "计算每一个 p_i ln(p_i) 项，求和后再变号得到 Shannon 指数。",
+            solve_elite_c1: "两边同除初始种群后取自然对数，再把 r 单独列出。",
+            solve_elite_c2: "计算生物量比，并将其解释为跨两个营养级的能量衰减：",
+            solve_elite_a1: "先求逻辑斯蒂增长因子，再乘以 rN：",
+            solve_elite_a2: "用初始种群、增长率和经过时间应用指数增长：",
+            solve_default: "应用题中给出的生态关系求出目标量"
         },
         scenarios: {
             rhine_river: "巴塞尔境内的莱茵河是一条充满生命力的复杂水生生态系统，完美展示了食物链的微妙平衡。该系统的基础是浮游植物和藻类等初级生产者，它们捕获太阳能进行光合作用。这些生产者随后被浮游动物和小型水生无脊椎动物等初级消费者摄食。随着营养级的上升，我们可以看到银鲃和欧洲鳗鱼等各种鱼类。巴塞尔的‘鲑鱼回归’计划突显了保护这些生物链路的重要性，因为大西洋鲑是生态系统健康的关键指标。在食物网的最顶端，普通鸬鹚和苍鹭等捕食者调节着下方种群的数量。理解这些错综复杂的关系对于巴塞尔大学和当地环境部门的保护工作至关重要，它确保了即使某个环节（如底栖无脊椎动物）受到环境污染或夸加贻贝等入侵物种的干扰，整个食物网仍能凭借生物多样性保持韧性。",

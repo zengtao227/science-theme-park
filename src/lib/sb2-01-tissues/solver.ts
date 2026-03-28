@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "TISSUES" | "ORGANS" | "SYSTEMS";
 
@@ -10,22 +10,22 @@ export interface SB201TissuesSolverQuest extends Quest {
   systemName?: string;
 }
 
-function buildRuleLatex(quest: SB201TissuesSolverQuest) {
-  if (quest.stage === "TISSUES") return "\\text{Match the tissue clue to the tissue type or its defining function}";
-  if (quest.stage === "ORGANS") return "\\text{Use the named organ to identify the tissue, structure, or physiological fact being tested}";
-  if (quest.stage === "SYSTEMS") return "\\text{Use the biological hierarchy or the defining role of the organ system}";
+function buildRuleLatex(quest: SB201TissuesSolverQuest, t: Translator) {
+  if (quest.stage === "TISSUES") return `\\text{${escapeLatexText(t("biology.sb2_01_tissues.solver.rule_tissues"))}}`;
+  if (quest.stage === "ORGANS") return `\\text{${escapeLatexText(t("biology.sb2_01_tissues.solver.rule_organs"))}}`;
+  if (quest.stage === "SYSTEMS") return `\\text{${escapeLatexText(t("biology.sb2_01_tissues.solver.rule_systems"))}}`;
   return null;
 }
 
-function buildSolveLatex(quest: SB201TissuesSolverQuest) {
-  if (quest.stage === "TISSUES") return `\\text{Use the clue for } \\text{${quest.tissueType || "the tissue"}} \\text{ to determine the answer}`;
-  if (quest.stage === "ORGANS") return `\\text{Interpret the organ-specific clue for } \\text{${quest.organName || "the organ"}}`;
-  return `\\text{Interpret the system clue for } \\text{${quest.systemName || "the biological hierarchy"}}`;
+function buildSolveLatex(quest: SB201TissuesSolverQuest, t: Translator) {
+  if (quest.stage === "TISSUES") return `\\text{${escapeLatexText(t("biology.sb2_01_tissues.solver.solve_tissues", { name: quest.tissueType || t("biology.sb2_01_tissues.solver.default_tissue") }))}}`;
+  if (quest.stage === "ORGANS") return `\\text{${escapeLatexText(t("biology.sb2_01_tissues.solver.solve_organs", { name: quest.organName || t("biology.sb2_01_tissues.solver.default_organ") }))}}`;
+  return `\\text{${escapeLatexText(t("biology.sb2_01_tissues.solver.solve_systems", { name: quest.systemName || t("biology.sb2_01_tissues.solver.default_system") }))}}`;
 }
 
 export function solveSB201Tissues(quest: SB201TissuesSolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

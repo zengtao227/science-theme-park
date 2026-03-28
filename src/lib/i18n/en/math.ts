@@ -1193,6 +1193,8 @@ export const enMath = {
             compare_positions_on_line: "Compare the numbers by their positions on the number line.",
             convert_or_compare_rational_form: "Convert the rational form or compare the rational numbers before selecting the answer.",
             select_requested_value: "State the requested value in the form asked by the task.",
+            read_requested_value_for: "Read the requested value for {target}",
+            locate_requested_position_for: "Locate the requested position for {target}",
             read_point_coordinates: "Read the coordinates of the point from the coordinate plane.",
             determine_quadrant: "Use the signs of x and y to determine the quadrant.",
             apply_coordinate_transformation: "Apply the indicated coordinate transformation to the point.",

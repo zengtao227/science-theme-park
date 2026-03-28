@@ -1178,6 +1178,8 @@ export const cnMath = {
             compare_positions_on_line: "根据数在数轴上的位置进行比较。",
             convert_or_compare_rational_form: "先转换有理数形式，或比较有理数大小，再确定答案。",
             select_requested_value: "按题目要求写出最终结果。",
+            read_requested_value_for: "读出 {target} 对应的目标值",
+            locate_requested_position_for: "在数轴上定位 {target} 对应的位置",
             read_point_coordinates: "先从坐标平面读出点的坐标。",
             determine_quadrant: "根据 x 与 y 的正负判断所在象限。",
             apply_coordinate_transformation: "对该点应用题目给出的坐标变换。",

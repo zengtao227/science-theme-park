@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SC302Quest } from "./types";
 
 export function solveSC302(quest: SC302Quest, t: Translator) {
@@ -7,13 +7,13 @@ export function solveSC302(quest: SC302Quest, t: Translator) {
 
   switch (quest.stage) {
     case "HYDROCARBONS":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Name-formula mapping for } \\text{${quest.molecule ?? ""}}`));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_02.solver.hydrocarbon_rule", { molecule: quest.molecule ?? "" }))}}`));
       break;
     case "FUNCTIONAL_GROUPS":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Match the compound class with its defining group}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_02.solver.functional_group_rule"))}}`));
       break;
     case "ISOMERS":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Count valid constitutional isomers for } ${quest.formula ?? ""}`));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("chemistry.sc3_02.solver.isomer_rule", { formula: quest.formula ?? "" }))}}`));
       break;
     default:
       return { steps: [], fullSolutionLatex: null };

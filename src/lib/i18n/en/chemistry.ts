@@ -1332,6 +1332,11 @@ export const enChemistry = {
             correct: "Organic structure understood!",
             incorrect: "Review the molecular structure."
         },
+        solver: {
+            hydrocarbon_rule: "Use the name-formula mapping for {molecule}",
+            functional_group_rule: "Match the compound class with its defining group",
+            isomer_rule: "Count valid constitutional isomers for {formula}"
+        },
         scenarios: {
             lonza_feedstock: "Lonza Basel - The Global Supply Chain: You are a logistics coordinator at Lonza’s headquarters in Basel, managing the distribution of high-purity chemical feedstocks. These intermediate molecules are the building blocks for thousands of products, from agricultural chemicals to advanced electronics. Today, you are reviewing the molecular specifications of a new batch of hydrocarbons. In the Basel chemical industry, even a minor misunderstanding of a functional group or an isomer can lead to a 'mismatch' in the production line, potentially delaying global pharmaceutical shipments. By mastering the naming and structure of these organic basics, you ensure that Basel remains the reliable backbone of global chemical synthesis. This coordination is like managing a high-speed train network where every switch and signal must be perfectly timed to prevent a collision.",
             basel_polymer_research: "University of Basel - Advanced Materials: You are a materials scientist at the University of Basel, specializing in the development of biocompatible polymers for medical implants. These organic materials are used by local clinics to create custom stents and joint replacements. The properties of these polymers—their strength, flexibility, and degradation rate—are determined entirely by the arrangement of their molecular chains. Today, you are analyzing a series of structural isomers to find the configuration that best mimics human bone tissue. Basel’s rich history in polymer science, dating back to the early dye industry, provides the foundation for this cutting-edge research. It’s like designing a new type of fabric where the way the threads are woven determines whether it's as tough as Kevlar or as soft as silk.",

@@ -29,10 +29,10 @@ export function solveSM103(quest: IntegerQuest, t: Translator): { steps: Platfor
       steps.push(makeStep(2, t("sm1_03.reasons.evaluate_numeric_expression"), expression));
     } else if (expression.includes(",")) {
       steps.push(makeStep(1, t("sm1_03.reasons.compare_positions_on_line"), expression));
-      steps.push(makeStep(2, t("sm1_03.reasons.select_requested_value"), `\\text{Read the requested value for } ${target || "x"}`));
+      steps.push(makeStep(2, t("sm1_03.reasons.select_requested_value"), `\\text{${t("sm1_03.reasons.read_requested_value_for", { target: target || "x" })}}`));
     } else {
       steps.push(makeStep(1, t("sm1_03.reasons.read_number_line_expression"), expression));
-      steps.push(makeStep(2, t("sm1_03.reasons.select_requested_value"), `\\text{Locate the requested position for } ${target || "x"}`));
+      steps.push(makeStep(2, t("sm1_03.reasons.select_requested_value"), `\\text{${t("sm1_03.reasons.locate_requested_position_for", { target: target || "x" })}}`));
     }
     steps.push(makeStep(steps.length + 1, t("common.feedback_reasons.state_final_result"), quest.correctLatex ?? "", "key"));
   } else if (quest.stage === "RATIONALS") {

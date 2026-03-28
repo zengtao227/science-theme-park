@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "DIGESTIVE" | "CIRCULATORY" | "RESPIRATORY";
 
@@ -9,23 +9,23 @@ export interface SB202SolverQuest extends Quest {
   system?: string;
 }
 
-function buildRuleLatex(quest: SB202SolverQuest) {
-  if (quest.stage === "DIGESTIVE") return "\\text{Match each digestive organ to its role in breakdown, secretion, or absorption}";
-  if (quest.stage === "CIRCULATORY") return "\\text{Match each circulatory structure to pumping, transport, or exchange}";
-  if (quest.stage === "RESPIRATORY") return "\\text{Match each respiratory structure to ventilation or gas exchange}";
+function buildRuleLatex(quest: SB202SolverQuest, t: Translator) {
+  if (quest.stage === "DIGESTIVE") return `\\text{${escapeLatexText(t("biology.sb2_02.solver.rule_digestive"))}}`;
+  if (quest.stage === "CIRCULATORY") return `\\text{${escapeLatexText(t("biology.sb2_02.solver.rule_circulatory"))}}`;
+  if (quest.stage === "RESPIRATORY") return `\\text{${escapeLatexText(t("biology.sb2_02.solver.rule_respiratory"))}}`;
   return null;
 }
 
-function buildSolveLatex(quest: SB202SolverQuest) {
+function buildSolveLatex(quest: SB202SolverQuest, t: Translator) {
   if (quest.organ) {
-    return `\\text{Match the function clue to the structure } \\text{${quest.organ}} \\text{ within the current body system}`;
+    return `\\text{${escapeLatexText(t("biology.sb2_02.solver.solve_with_organ", { organ: quest.organ }))}}`;
   }
-  return "\\text{Use the anatomy and function clue in the prompt to identify the correct structure}";
+  return `\\text{${escapeLatexText(t("biology.sb2_02.solver.solve_default"))}}`;
 }
 
 export function solveSB202(quest: SB202SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),

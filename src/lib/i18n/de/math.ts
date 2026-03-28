@@ -1204,6 +1204,8 @@ export const deMath = {
             compare_positions_on_line: "Vergleiche die Zahlen anhand ihrer Positionen auf der Zahlengeraden.",
             convert_or_compare_rational_form: "Wandle die rationale Form um oder vergleiche die rationalen Zahlen, bevor du die Antwort auswählst.",
             select_requested_value: "Gib den geforderten Wert in der verlangten Form an.",
+            read_requested_value_for: "Lies den gefragten Wert für {target} ab",
+            locate_requested_position_for: "Bestimme die gesuchte Position für {target}",
             read_point_coordinates: "Lies zuerst die Koordinaten des Punktes aus dem Koordinatensystem ab.",
             determine_quadrant: "Bestimme mit den Vorzeichen von x und y den Quadranten.",
             apply_coordinate_transformation: "Wende die angegebene Koordinatentransformation auf den Punkt an.",

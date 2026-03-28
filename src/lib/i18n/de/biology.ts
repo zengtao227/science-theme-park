@@ -542,6 +542,14 @@ export const deBiology = {
             next: "Nächstes Präparat",
             analysis: "Mikroskopische Analyse"
         },
+        solver: {
+            rule_identification: "Ordne Größe oder sichtbares Merkmal dem richtigen Organell zu",
+            rule_function: "Verknüpfe jedes Organell mit seiner typischen Zellfunktion",
+            rule_organelles: "Nutze den abgefragten Referenzwert oder die Organellen-Tatsache aus der Aufgabe",
+            solve_identification: "Vergleiche den Hinweis mit der Struktur {organelle}",
+            solve_function: "Der Funktionshinweis in der Aufgabe weist auf das Organell {organelle}",
+            solve_organelles: "Erinnere dich an die abgefragte quantitative oder strukturelle Zellbiologie-Tatsache"
+        },
         prompts: {
             id_prompt: "Identifizieren Sie das Organell: {organelle}",
             id_target: "Markiert: ?",
@@ -939,7 +947,13 @@ export const deBiology = {
         correct: "Klassifikation verifiziert",
         incorrect: "Antwort prüfen",
         loading: "Lädt...",
-        monitor_title: "SB1.05_TIER_MONITOR"
+        monitor_title: "SB1.05_TIER_MONITOR",
+        solver: {
+            rule_animal_classification: "Nutze die typischen anatomischen Merkmale der Tiergruppe zur Einordnung",
+            rule_adaptations: "Ordne den Organismus der Umgebung oder Anpassung zu, die sein Überleben verbessert",
+            rule_behavior_evolution: "Deute das Verhalten im Hinblick auf Überleben, Fortpflanzung, Migration oder Schutzdruck",
+            solve_use_clues: "Nutze die Hinweise zu {animalName} ({scientificName}), um die Antwort zu begründen"
+        }
     },
 
     sb2_01_tissues: {
@@ -1042,6 +1056,17 @@ export const deBiology = {
         feedback: {
             correct: "Gewebeidentifikation verifiziert! Fahren Sie mit dem nächsten Präparat fort.",
             incorrect: "Gewebefehlidentifikation. Überprüfen Sie histologische Merkmale."
+        },
+        solver: {
+            rule_tissues: "Ordne den Gewebehinweis dem Gewebetyp oder seiner Hauptfunktion zu",
+            rule_organs: "Nutze das genannte Organ, um Gewebe, Struktur oder physiologische Tatsache zu bestimmen",
+            rule_systems: "Nutze die biologische Hierarchie oder die definierende Rolle des Organsystems",
+            solve_tissues: "Nutze den Hinweis zu {name}, um die Antwort zu bestimmen",
+            solve_organs: "Deute den organspezifischen Hinweis für {name}",
+            solve_systems: "Deute den Systemhinweis für {name}",
+            default_tissue: "das Gewebe",
+            default_organ: "das Organ",
+            default_system: "die biologische Hierarchie"
         }
     },
     sb2_01: {
@@ -1185,6 +1210,13 @@ export const deBiology = {
             response: "Reaktion",
             mv_l_min: "MV (L/min)",
             area_m2: "\\text{Fläche (m}^{2}\\text{)}"
+        },
+        solver: {
+            rule_digestive: "Ordne jedes Verdauungsorgan seiner Rolle bei Aufspaltung, Sekretion oder Resorption zu",
+            rule_circulatory: "Ordne jede Kreislaufstruktur Pumpen, Transport oder Austausch zu",
+            rule_respiratory: "Ordne jede Atemstruktur der Ventilation oder dem Gasaustausch zu",
+            solve_with_organ: "Ordne den Funktionshinweis der Struktur {organ} im aktuellen Körpersystem zu",
+            solve_default: "Nutze den Anatomie- und Funktionshinweis in der Aufgabe, um die richtige Struktur zu bestimmen"
         },
         corrects: {
             carbon_dioxide: "\\text{Kohlendioxid (CO}_2\\text{)}",
@@ -1693,6 +1725,21 @@ export const deBiology = {
             valid_desc: "Energiefluss und Nährstoffkreisläufe sind optimal.",
             invalid_desc: "Falsche Berechnung. Das Ökosystem ist destabilisiert.",
             next: "Nächsten Sektor überwachen"
+        },
+        solver: {
+            rule_food_chains: "Folge der Kette von Produzent zu Konsument zu höherem Konsumenten",
+            rule_cycles: "Ordne den biogeochemischen Prozess seinem Produkt oder nächsten Speicher zu",
+            rule_elite: "Nutze die ökologische Formel oder das Biodiversitätsmodell aus dem Ausdruck",
+            solve_food_chains: "Bestimme aus der gegebenen Nahrungskette die nächste trophische Ebene",
+            solve_energy_flow: "Wende die 10-%-Transferregel auf den angegebenen Energiewert an",
+            solve_cycles: "Nutze Kreislauf und Prozessname, um das richtige Produkt zu erschließen",
+            solve_elite_b1: "Berechne den Wirkungsgrad, indem du die Konsumentenenergie durch die verfügbare Produzentenenergie teilst:",
+            solve_elite_b2: "Berechne jeden Term p_i ln(p_i), summiere sie und wechsle dann das Vorzeichen, um den Shannon-Index zu erhalten.",
+            solve_elite_c1: "Teile beide Seiten durch die Anfangspopulation, bilde den natürlichen Logarithmus und isoliere dann r.",
+            solve_elite_c2: "Berechne das Biomasseverhältnis und deute es als Energieverlust über zwei trophische Ebenen:",
+            solve_elite_a1: "Berechne zuerst den logistischen Wachstumsfaktor und multipliziere dann mit rN:",
+            solve_elite_a2: "Wende exponentielles Wachstum mit Anfangspopulation, Wachstumsrate und verstrichener Zeit an:",
+            solve_default: "Wende die gezeigte ökologische Beziehung an, um die Zielgröße zu berechnen"
         },
         scenarios: {
             rhine_river: "Der Rhein in Basel ist ein komplexes aquatisches Ökosystem, das das empfindliche Gleichgewicht von Nahrungsketten verdeutlicht. An der Basis dieses Systems stehen Primärproduzenten wie Phytoplankton und Algen, die Sonnenenergie nutzen. Diese werden von Primärkonsumenten wie Zooplankton und kleinen wirbellosen Wassertieren verzehrt. In höheren trophischen Ebenen finden wir verschiedene Fischarten wie den Silberkarpfen und den Europäischen Aal. Das Projekt 'Lachs Comeback' in Basel unterstreicht die Bedeutung der Erhaltung dieser Verbindungen, da Lachse als wichtige Indikatoren für die Gesundheit des Ökosystems fungieren. An der Spitze der Nahrungskette regulieren Prädatoren wie der Kormoran und der Graureiher die darunter liegenden Populationen. Das Verständnis dieser Beziehungen ist entscheidend für die Naturschutzbemühungen der Universität Basel und lokaler Umweltbehörden, um sicherzustellen, dass das gesamte Nahrungsnetz stabil bleibt, selbst wenn einzelne Glieder – wie benthische Invertebraten – durch Umweltbelastungen oder invasive Arten wie die Quagga-Muschel gestört werden.",

@@ -9,26 +9,29 @@ export interface SB105SolverQuest extends Quest {
   scientificName: string;
 }
 
-function buildRuleLatex(quest: SB105SolverQuest) {
+function buildRuleLatex(quest: SB105SolverQuest, t: Translator) {
   if (quest.stage === "ANIMAL_CLASSIFICATION") {
-    return "\\text{Use the defining anatomical traits of the animal group to classify the organism}";
+    return `\\text{${escapeLatexText(t("biology.sb1_05.solver.rule_animal_classification"))}}`;
   }
   if (quest.stage === "ADAPTATIONS") {
-    return "\\text{Match the organism to the environment or adaptation that improves survival there}";
+    return `\\text{${escapeLatexText(t("biology.sb1_05.solver.rule_adaptations"))}}`;
   }
   if (quest.stage === "BEHAVIOR_EVOLUTION") {
-    return "\\text{Interpret the behavior in terms of survival, reproduction, migration, or conservation pressure}";
+    return `\\text{${escapeLatexText(t("biology.sb1_05.solver.rule_behavior_evolution"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: SB105SolverQuest) {
-  return `\\text{Use the clues for } ${escapeLatexText(quest.animalName)} \\text{ (} ${quest.scientificName} \\text{) to justify the answer}`;
+function buildSolveLatex(quest: SB105SolverQuest, t: Translator) {
+  return `\\text{${escapeLatexText(t("biology.sb1_05.solver.solve_use_clues", {
+    animalName: quest.animalName,
+    scientificName: quest.scientificName,
+  }))}}`;
 }
 
 export function solveSB105(quest: SB105SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

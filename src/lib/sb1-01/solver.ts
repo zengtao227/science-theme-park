@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "IDENTIFICATION" | "FUNCTION" | "ORGANELLES";
 
@@ -9,32 +9,32 @@ export interface SB101SolverQuest extends Quest {
   organelleName: string;
 }
 
-function buildRuleLatex(quest: SB101SolverQuest) {
+function buildRuleLatex(quest: SB101SolverQuest, t: Translator) {
   if (quest.stage === "IDENTIFICATION") {
-    return "\\text{Match the size or visible feature to the correct organelle}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01.solver.rule_identification"))}}`;
   }
   if (quest.stage === "FUNCTION") {
-    return "\\text{Link each organelle to its defining cellular function}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01.solver.rule_function"))}}`;
   }
   if (quest.stage === "ORGANELLES") {
-    return "\\text{Use the standard reference value or organelle fact requested in the prompt}";
+    return `\\text{${escapeLatexText(t("biology.sb1_01.solver.rule_organelles"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: SB101SolverQuest) {
+function buildSolveLatex(quest: SB101SolverQuest, t: Translator) {
   if (quest.stage === "IDENTIFICATION") {
-    return `\\text{Compare the clue to the structure } \\text{${quest.organelleName}}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_01.solver.solve_identification", { organelle: quest.organelleName }))}}`;
   }
   if (quest.stage === "FUNCTION") {
-    return `\\text{The organelle } \\text{${quest.organelleName}} \\text{ is identified by the function in the prompt}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_01.solver.solve_function", { organelle: quest.organelleName }))}}`;
   }
-  return `\\text{Recall the quantitative or structural cell-biology fact asked by the quest}`;
+  return `\\text{${escapeLatexText(t("biology.sb1_01.solver.solve_organelles"))}}`;
 }
 
 export function solveSB101(quest: SB101SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

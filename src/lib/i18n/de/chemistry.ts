@@ -1324,6 +1324,11 @@ export const deChemistry = {
             correct: "Organische Struktur verstanden!",
             incorrect: "Überprüfe die Molekülstruktur."
         },
+        solver: {
+            hydrocarbon_rule: "Nutze die Zuordnung von Name und Summenformel für {molecule}",
+            functional_group_rule: "Ordne die Stoffklasse ihrer charakteristischen funktionellen Gruppe zu",
+            isomer_rule: "Zähle die gültigen Konstitutionsisomere von {formula}"
+        },
         scenarios: {
             lonza_feedstock: "Lonza Basel liefert kritische chemische Rohstoffe und Zwischenprodukte, die weltweit für komplexe organische Synthesen benötigt werden.",
             basel_polymer_research: "Polymerwissenschaftler in Basel entwickeln neue organische Materialien mit einzigartigen Eigenschaften für medizinische Implantate und Elektronik.",

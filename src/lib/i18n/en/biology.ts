@@ -542,6 +542,14 @@ export const enBiology = {
             next: "Next Specimen",
             analysis: "Microscopic Analysis"
         },
+        solver: {
+            rule_identification: "Match the size or visible feature to the correct organelle",
+            rule_function: "Link each organelle to its defining cellular function",
+            rule_organelles: "Use the standard reference value or organelle fact requested in the prompt",
+            solve_identification: "Compare the clue to the structure {organelle}",
+            solve_function: "The organelle {organelle} is identified by the function in the prompt",
+            solve_organelles: "Recall the quantitative or structural cell-biology fact asked by the quest"
+        },
         prompts: {
             id_prompt: "Identify the organelle: {organelle}",
             id_target: "Highlighted: ?",
@@ -999,7 +1007,13 @@ export const enBiology = {
         correct: "Classification Verified",
         incorrect: "Check answer",
         loading: "Loading...",
-        monitor_title: "SB1.05_ANIMAL_MONITOR"
+        monitor_title: "SB1.05_ANIMAL_MONITOR",
+        solver: {
+            rule_animal_classification: "Use the defining anatomical traits of the animal group to classify the organism",
+            rule_adaptations: "Match the organism to the environment or adaptation that improves survival there",
+            rule_behavior_evolution: "Interpret the behavior in terms of survival, reproduction, migration, or conservation pressure",
+            solve_use_clues: "Use the clues for {animalName} ({scientificName}) to justify the answer"
+        }
     },
 
     sb2_01_tissues: {
@@ -1102,6 +1116,17 @@ export const enBiology = {
         feedback: {
             correct: "Tissue identification verified! Proceeding to next specimen.",
             incorrect: "Tissue misidentification. Review histological features."
+        },
+        solver: {
+            rule_tissues: "Match the tissue clue to the tissue type or its defining function",
+            rule_organs: "Use the named organ to identify the tissue, structure, or physiological fact being tested",
+            rule_systems: "Use the biological hierarchy or the defining role of the organ system",
+            solve_tissues: "Use the clue for {name} to determine the answer",
+            solve_organs: "Interpret the organ-specific clue for {name}",
+            solve_systems: "Interpret the system clue for {name}",
+            default_tissue: "the tissue",
+            default_organ: "the organ",
+            default_system: "the biological hierarchy"
         }
     },
     sb2_01: {
@@ -1245,6 +1270,13 @@ export const enBiology = {
             response: "Response",
             mv_l_min: "MV (L/min)",
             area_m2: "\\text{Area (m}^{2}\\text{)}"
+        },
+        solver: {
+            rule_digestive: "Match each digestive organ to its role in breakdown, secretion, or absorption",
+            rule_circulatory: "Match each circulatory structure to pumping, transport, or exchange",
+            rule_respiratory: "Match each respiratory structure to ventilation or gas exchange",
+            solve_with_organ: "Match the function clue to the structure {organ} within the current body system",
+            solve_default: "Use the anatomy and function clue in the prompt to identify the correct structure"
         },
         corrects: {
             carbon_dioxide: "\\text{Carbon dioxide (CO}_2\\text{)}",
@@ -1731,6 +1763,21 @@ export const enBiology = {
         monitor: {
             tracker_title: "RHINE SALMON TRACKER",
             active: "ACTIVE"
+        },
+        solver: {
+            rule_food_chains: "Follow producer to consumer to higher consumer",
+            rule_cycles: "Match the biogeochemical process to its product or next reservoir",
+            rule_elite: "Use the ecological formula or biodiversity model shown in the expression",
+            solve_food_chains: "Identify the next trophic level from the chain given in the prompt",
+            solve_energy_flow: "Apply the 10% transfer rule to the energy value provided",
+            solve_cycles: "Use the named cycle and process to infer the correct product",
+            solve_elite_b1: "Compute the efficiency by dividing consumer energy by available producer energy:",
+            solve_elite_b2: "Compute each p_i ln(p_i) term, sum them, and change the sign to get the Shannon index.",
+            solve_elite_c1: "Divide both sides by the initial population, take the natural logarithm, then isolate r.",
+            solve_elite_c2: "Compute the biomass ratio and interpret it as trophic energy reduction across two levels:",
+            solve_elite_a1: "Evaluate the logistic growth factor and multiply by rN:",
+            solve_elite_a2: "Apply exponential growth using the initial population, growth rate, and elapsed years:",
+            solve_default: "Apply the ecological relation shown to compute the target quantity"
         },
         prompts: {
             food_chain: "In the Rhine ecosystem, {producer} is eaten by {consumer}. What comes next?",
