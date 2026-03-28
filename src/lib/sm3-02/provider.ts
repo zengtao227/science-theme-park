@@ -1,14 +1,9 @@
+import type { FeedbackContent } from "@/hooks/useQuestManager";
 import type { S302Quest } from "@/lib/sm3-02/quests";
-import { createGenericModuleFeedbackProvider } from "@/lib/feedback/genericModuleProvider";
+import { solveSM302 } from "./solver";
 
 type Translator = (key: string, params?: Record<string, string | number>) => string;
 
-const STAGE_RULES = {
-  UNIT_CIRCLE: "\\sin(\\theta),\\;\\cos(\\theta),\\;\\tan(\\theta)",
-  PROJECTIONS: "x=r\\cos(\\theta),\\;y=r\\sin(\\theta)",
-  WAVES: "y=a\\sin(bx+c)+d",
-};
-
 export function createSM302FeedbackProvider(t: Translator) {
-  return createGenericModuleFeedbackProvider<S302Quest>(t, STAGE_RULES);
+  return (quest: S302Quest): Omit<FeedbackContent, "hint"> => solveSM302(quest, t);
 }
