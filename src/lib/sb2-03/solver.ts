@@ -10,6 +10,30 @@ export interface SB203SolverQuest extends Quest {
   p2: Genotype;
 }
 
+function gametes(genotype: Genotype) {
+  if (genotype.length !== 2) return [genotype];
+  return genotype[0] === genotype[1] ? [genotype[0]] : [genotype[0], genotype[1]];
+}
+
+function combineGametes(a: string, b: string) {
+  return [a, b].sort((x, y) => {
+    const xl = x.toLowerCase();
+    const yl = y.toLowerCase();
+    if (xl === yl) return x === xl ? 1 : -1;
+    return xl.localeCompare(yl);
+  }).join("");
+}
+
+function punnettOutcomes(quest: SB203SolverQuest) {
+  const left = gametes(quest.p1);
+  const right = gametes(quest.p2);
+  const outcomes: string[] = [];
+  for (const a of left) {
+    for (const b of right) outcomes.push(combineGametes(a, b));
+  }
+  return outcomes;
+}
+
 function buildRuleLatex(quest: SB203SolverQuest) {
   if (quest.stage === "MONOHYBRID") return "\\text{Build a 2\\times 2 Punnett square and compare dominant and recessive outcomes}";
   if (quest.stage === "PROBABILITY") return "\\text{Use Punnett-square outcomes as probabilities for the requested genotype or phenotype}";
@@ -18,7 +42,14 @@ function buildRuleLatex(quest: SB203SolverQuest) {
 }
 
 function buildSolveLatex(quest: SB203SolverQuest) {
-  return `\\text{Cross } ${quest.p1} \\times ${quest.p2} \\text{ and count the matching offspring outcomes}`;
+  const outcomes = punnettOutcomes(quest).join(",\\ ");
+  if (quest.stage === "PROBABILITY") {
+    return `\\text{Gametes from } ${quest.p1}: ${gametes(quest.p1).join(", ")};\\ \\text{from } ${quest.p2}: ${gametes(quest.p2).join(", ")}.\\ \\text{Punnett outcomes: } ${outcomes}`;
+  }
+  if (quest.stage === "DIHYBRID") {
+    return `\\text{Treat the cross } ${quest.p1} \\times ${quest.p2} \\text{ as independent allele combinations and count the matching phenotype/genotype class}`;
+  }
+  return `\\text{Cross } ${quest.p1} \\times ${quest.p2} \\text{. Punnett outcomes: } ${outcomes}`;
 }
 
 export function solveSB203(quest: SB203SolverQuest, t: Translator) {

@@ -17,7 +17,10 @@ function buildRuleLatex(quest: SB202SolverQuest) {
 }
 
 function buildSolveLatex(quest: SB202SolverQuest) {
-  return `\\text{Use the clue to identify the body-system structure } \\text{${quest.organ || "described in the prompt"}}`;
+  if (quest.organ) {
+    return `\\text{Match the function clue to the structure } \\text{${quest.organ}} \\text{ within the current body system}`;
+  }
+  return "\\text{Use the anatomy and function clue in the prompt to identify the correct structure}";
 }
 
 export function solveSB202(quest: SB202SolverQuest, t: Translator) {

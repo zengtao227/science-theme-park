@@ -23,7 +23,14 @@ function buildRuleLatex(quest: SB103SolverQuest) {
 }
 
 function buildSolveLatex(quest: SB103SolverQuest) {
-  return `\\text{Use the phase } ${escapeLatexText(quest.phase.replace(/_/g, " "))} \\text{ to determine the chromosome state or cell count}`;
+  const phase = escapeLatexText(quest.phase.replace(/_/g, " "));
+  if (quest.stage === "MITOSIS") {
+    return `\\text{In } ${phase}\\text{, track whether sister chromatids are still paired or already separated; the prompt is testing the value } ${quest.chromosomeCount}`;
+  }
+  if (quest.stage === "MEIOSIS_I") {
+    return `\\text{In } ${phase}\\text{, homologous chromosomes pair and then separate, so the chromosome count is interpreted before chromatids split; the relevant count is } ${quest.chromosomeCount}`;
+  }
+  return `\\text{In } ${phase}\\text{, meiosis II separates sister chromatids in a mitosis-like step; use that to justify the count } ${quest.chromosomeCount}`;
 }
 
 export function solveSB103(quest: SB103SolverQuest, t: Translator) {

@@ -14,7 +14,7 @@ function buildSolveLatex(quest: SB204Quest) {
   if (quest.explanation) {
     return `\\text{Reasoning: } ${escapeLatexText(quest.explanation)}`;
   }
-  return `\\text{Use the } ${escapeLatexText(quest.questionType)} \\text{ clue to justify } ${quest.correctLatex}`;
+  return `\\text{Use the } ${escapeLatexText(quest.questionType)} \\text{ clue to identify the matching physiological structure or outcome}`;
 }
 
 export function solveSB204(quest: SB204Quest, t: Translator) {

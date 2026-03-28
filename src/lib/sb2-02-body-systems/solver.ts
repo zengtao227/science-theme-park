@@ -17,6 +17,9 @@ function buildRuleLatex(quest: SB202BodySystemsSolverQuest) {
 }
 
 function buildSolveLatex(quest: SB202BodySystemsSolverQuest) {
+  if (quest.organPath?.length) {
+    return `\\text{Trace the route } ${quest.organPath.map((part) => `\\text{${part}}`).join(" \\to ")} \\text{ and identify the missing system component}`;
+  }
   return `\\text{Interpret the system-specific clue for } \\text{${quest.systemType || "the current body system"}}`;
 }
 
