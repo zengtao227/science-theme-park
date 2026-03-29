@@ -62,10 +62,10 @@ export function generatePlatingQuests(t: any, difficulty: Difficulty): GC102Ques
             metal: "Cu", current: 1.5, time: 500,
             solution: "CuSO4",
             promptLatex: t("gc1_02.prompts.plating_setup"),
-            expressionLatex: "Cathode or Anode?",
-            targetLatex: "1:Anode, 2:Cathode",
-            slots: [{ id: "ans", labelLatex: "Pos", placeholder: t("gc1_02.placeholders.one_or_two"), expected: 2 }],
-            correctLatex: "Cathode",
+            expressionLatex: t("gc1_02.labels.plating_choice"),
+            targetLatex: t("gc1_02.labels.plating_target"),
+            slots: [{ id: "ans", labelLatex: t("gc1_02.labels.position"), placeholder: t("gc1_02.placeholders.one_or_two"), expected: 2 }],
+            correctLatex: t("gc1_02.answers.cathode"),
         });
     }
     return quests;
@@ -80,10 +80,10 @@ export function generateCorrosionQuests(t: any, difficulty: Difficulty): GC102Qu
             metal: "Iron", current: 0, time: 0,
             solution: "Seawater",
             promptLatex: t("gc1_02.prompts.corrosion_protection", { metal: "Iron" }),
-            expressionLatex: "Select: 1:Mg, 2:Au",
-            targetLatex: "Ans",
-            slots: [{ id: "ans", labelLatex: "Choice", placeholder: t("gc1_02.placeholders.one_or_two"), expected: 1 }],
-            correctLatex: "Magnesium",
+            expressionLatex: t("gc1_02.labels.corrosion_choice"),
+            targetLatex: t("gc1_02.labels.answer_short"),
+            slots: [{ id: "ans", labelLatex: t("gc1_02.labels.choice"), placeholder: t("gc1_02.placeholders.one_or_two"), expected: 1 }],
+            correctLatex: t("gc1_02.answers.magnesium"),
         });
     }
     return quests;

@@ -39,7 +39,9 @@ export const deChemistry = {
             system_temperature: "SYSTEMTEMPERATUR",
             system_pressure: "SYSTEMDRUCK",
             input_answer: "Antwort eingeben",
-            placeholder: "Tippen Sie 1 oder 2"
+            placeholder: "Tippen Sie 1 oder 2",
+            effect: "Effekt",
+            result: "Ergebnis"
         },
         mission: {
             title: "MISSION: CHEMISCHES GLEICHGEWICHT",
@@ -116,6 +118,10 @@ export const deChemistry = {
             rule_pressure: "Ein höherer Druck begünstigt die Seite mit weniger Gasteilchen",
             reaction_label: "Reaktion:",
             determine_shift_or_effect: "Bestimmen Sie die geforderte Gleichgewichtsverschiebung oder den Gleichgewichtseffekt"
+        },
+        answers: {
+            right: "nach rechts",
+            increase: "nimmt zu"
         }
     },
     gc3_02: {
@@ -139,6 +145,8 @@ export const deChemistry = {
         monitor_title: "GC3.02_KRISTALL_MONITOR",
         labels: {
             lattice_type: "GITTERTYP",
+            answer: "Antwort",
+            result: "Ergebnis",
             coordination: "KOORDINATIONSZAHL",
             packing: "PACKUNGSEFFIZIENZ",
             unit_cell: "EINHEITSZELLE",
@@ -216,7 +224,8 @@ export const deChemistry = {
             half_reactions: "HALBREAKTIONEN",
             anode: "ANODE",
             cathode: "KATHODE",
-            nernst_equation: "NERNST-GLEICHUNG"
+            nernst_equation: "NERNST-GLEICHUNG",
+            answer_short: "Antw."
         },
         mission: {
             title: "MISSION: ELEKTROCHEMIE",
@@ -253,6 +262,10 @@ export const deChemistry = {
             rule_build: "Nutzen Sie die Regeln der galvanischen Zelle, um Anode, Kathode und die Richtung des Elektronenflusses zu bestimmen",
             zn_cu_cell_at_temp: "Wenden Sie fuer die Zn/Cu-Zelle bei der angegebenen Temperatur den Standardaufbau und bei gegebenen Konzentrationen die Nernst-Beziehung an",
             solve_use_cell_rule: "Nutzen Sie die Zellregel aus dem Prompt, um die gesuchte Groesse zu bestimmen"
+        },
+        answers: {
+            right: "nach rechts",
+            increase: "nimmt zu"
         }
     },
     gc2_01: {
@@ -1602,6 +1615,12 @@ export const deChemistry = {
             mass_deposited: "Abschiedene Masse",
             time: "Dauer (s)",
             power_status: "Stromversorgungsstatus",
+            position: "Pos.",
+            choice: "Auswahl",
+            answer_short: "Antw.",
+            plating_choice: "Kathode oder Anode?",
+            plating_target: "1:Anode, 2:Kathode",
+            corrosion_choice: "Wählen: 1:Mg, 2:Au",
             canvas: {
                 anode: "ANODE (+)",
                 cathode: "KATHODE (-)",
@@ -1627,6 +1646,10 @@ export const deChemistry = {
             apply_rule_to_outcome: "Wenden Sie die Elektrolyse- oder Korrosionsregel an, um das gefragte Ergebnis zu bestimmen",
             metal_label: "Metall",
             solution_label: "Lösung"
+        },
+        answers: {
+            cathode: "Kathode",
+            magnesium: "Magnesium"
         },
         feedback: {
             correct: "Elektrolytischer Prozess verstanden!",

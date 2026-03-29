@@ -39,7 +39,9 @@ export const enChemistry = {
             system_temperature: "SYSTEM TEMPERATURE",
             system_pressure: "SYSTEM PRESSURE",
             input_answer: "Input Answer",
-            placeholder: "Type 1 or 2"
+            placeholder: "Type 1 or 2",
+            effect: "Effect",
+            result: "Result"
         },
         mission: {
             title: "MISSION: CHEMICAL EQUILIBRIUM",
@@ -116,6 +118,10 @@ export const enChemistry = {
             rule_pressure: "Increasing pressure favors the side with fewer gas particles",
             reaction_label: "Reaction:",
             determine_shift_or_effect: "Determine the direction of shift or the equilibrium effect requested by the prompt"
+        },
+        answers: {
+            right: "right",
+            increase: "increase"
         }
     },
     gc3_02: {
@@ -142,6 +148,8 @@ export const enChemistry = {
             properties: "PROPERTIES",
             unit_cell: "UNIT CELL",
             atoms_per_cell: "Atoms/Cell",
+            answer: "Answer",
+            result: "Result",
             coordination: "Coordination",
             packing: "Packing",
             tet_voids: "Tet. Voids",
@@ -218,7 +226,8 @@ export const enChemistry = {
             half_reactions: "HALF-REACTIONS",
             anode: "ANODE",
             cathode: "CATHODE",
-            nernst_equation: "NERNST EQUATION"
+            nernst_equation: "NERNST EQUATION",
+            answer_short: "Ans"
         },
         mission: {
             title: "MISSION: ELECTROCHEMISTRY",
@@ -255,6 +264,10 @@ export const enChemistry = {
             rule_build: "Use the galvanic-cell setup rules to identify anode, cathode, and overall electron flow",
             zn_cu_cell_at_temp: "For the Zn/Cu cell at the stated temperature, apply the standard setup and the Nernst relation if concentrations are given",
             solve_use_cell_rule: "Use the galvanic-cell rule from the prompt to determine the requested quantity"
+        },
+        answers: {
+            right: "right",
+            increase: "increase"
         }
     },
     gc2_01: {
@@ -1609,6 +1622,12 @@ export const enChemistry = {
             mass_deposited: "Mass Deposited",
             time: "Duration (s)",
             power_status: "Power Supply Status",
+            position: "Pos",
+            choice: "Choice",
+            answer_short: "Ans",
+            plating_choice: "Cathode or Anode?",
+            plating_target: "1:Anode, 2:Cathode",
+            corrosion_choice: "Select: 1:Mg, 2:Au",
             canvas: {
                 anode: "ANODE (+)",
                 cathode: "CATHODE (-)",
@@ -1638,6 +1657,10 @@ export const enChemistry = {
             apply_rule_to_outcome: "Apply the electrolysis or corrosion rule to determine the requested outcome",
             metal_label: "metal",
             solution_label: "solution"
+        },
+        answers: {
+            cathode: "Cathode",
+            magnesium: "Magnesium"
         }
     },
     sc2_05: {

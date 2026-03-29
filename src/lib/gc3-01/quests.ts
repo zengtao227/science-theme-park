@@ -32,15 +32,16 @@ export function generateEquilibriumQuests(t: any, difficulty: Difficulty, stage:
         let expected: string | number = "right";
         if (key === "temp_effect") expected = "increase";
         if (key === "kc_value") expected = "2.5";
+        const localizedExpected = typeof expected === "string" ? t(`gc3_01.answers.${expected}`) : expected;
 
         quests.push({
             id: `${stage.charAt(0)}-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage,
             promptLatex: t(`gc3_01.prompts.${key}`),
             expressionLatex: "",
-            targetLatex: "\\text{Effect}",
-            slots: [{ id: "ans", labelLatex: "Result", placeholder: t("gc3_01.placeholders.ellipsis"), expected }],
-            correctLatex: `${expected}`,
+            targetLatex: `\\text{${t("gc3_01.labels.effect")}}`,
+            slots: [{ id: "ans", labelLatex: t("gc3_01.labels.result"), placeholder: t("gc3_01.placeholders.ellipsis"), expected: localizedExpected }],
+            correctLatex: `${localizedExpected}`,
             simConfig: { temp: 50, pressure: 50, concA: 50 }
         });
     }

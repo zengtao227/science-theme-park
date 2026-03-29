@@ -39,7 +39,9 @@ export const cnChemistry = {
             system_temperature: "系统温度",
             system_pressure: "系统压强",
             input_answer: "输入答案",
-            placeholder: "输入 1 或 2"
+            placeholder: "输入 1 或 2",
+            effect: "影响",
+            result: "结果"
         },
         mission: {
             title: "任务: 化学平衡",
@@ -116,6 +118,10 @@ export const cnChemistry = {
             rule_pressure: "增大压强有利于气体分子数更少的一侧",
             reaction_label: "反应：",
             determine_shift_or_effect: "判断题目要求的平衡移动方向或平衡影响"
+        },
+        answers: {
+            right: "右移",
+            increase: "增加"
         }
     },
     gc3_02: {
@@ -142,6 +148,8 @@ export const cnChemistry = {
             properties: "性质",
             unit_cell: "晶胞",
             atoms_per_cell: "原子/晶胞",
+            answer: "答案",
+            result: "结果",
             coordination: "配位数",
             packing: "堆积率",
             tet_voids: "四面体空隙",
@@ -218,7 +226,8 @@ export const cnChemistry = {
             half_reactions: "半反应",
             anode: "阳极",
             cathode: "阴极",
-            nernst_equation: "能斯特方程"
+            nernst_equation: "能斯特方程",
+            answer_short: "答"
         },
         mission: {
             title: "任务：电化学",
@@ -255,6 +264,10 @@ export const cnChemistry = {
             rule_build: "利用原电池构建规则判断阳极、阴极以及电子流方向",
             zn_cu_cell_at_temp: "对于题目给定温度下的 Zn/Cu 原电池，若给出浓度则使用标准构型和能斯特关系",
             solve_use_cell_rule: "根据题目中的原电池规则求出所需量"
+        },
+        answers: {
+            right: "右移",
+            increase: "增加"
         }
     },
     gc2_01: {
@@ -1609,6 +1622,12 @@ export const cnChemistry = {
             mass_deposited: "析出质量",
             time: "持续时间 (s)",
             power_status: "电源状态",
+            position: "位置",
+            choice: "选择",
+            answer_short: "答案",
+            plating_choice: "阴极还是阳极？",
+            plating_target: "1:阳极，2:阴极",
+            corrosion_choice: "选择：1:Mg，2:Au",
             canvas: {
                 anode: "阳极 (+)",
                 cathode: "阴极 (-)",
@@ -1638,6 +1657,10 @@ export const cnChemistry = {
             apply_rule_to_outcome: "应用电解或防腐规则，判断题目要求的结果",
             metal_label: "金属",
             solution_label: "溶液"
+        },
+        answers: {
+            cathode: "阴极",
+            magnesium: "镁"
         }
     },
     sc2_05: {
