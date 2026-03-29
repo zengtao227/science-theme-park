@@ -7,6 +7,17 @@ export interface SC107Quest extends Quest {
     stage: Stage;
 }
 
+function escapeLatexText(text: string) {
+    return text
+        .replace(/\\/g, "\\textbackslash{}")
+        .replace(/([{}%$&#_^])/g, "\\$1")
+        .replace(/~/g, "\\textasciitilde{}");
+}
+
+function buildLabeledExpression(label: string) {
+    return `\\\\text{${escapeLatexText(label)}} = \\\\square`;
+}
+
 export const QUEST_DATA: SC107Quest[] = [
     {
         id: "sc1_07_q1",
@@ -51,6 +62,7 @@ export const generateRecyclingQuests = (t: Translator | undefined, difficulty: D
         .map(q => ({
             ...q,
             promptLatex: translateText(t, `sc1_07.prompts.${q.id}`, q.promptLatex),
+            expressionLatex: buildLabeledExpression(translateText(t, "sc1_07.labels.material", "Material")),
             targetLatex: translateText(t, "sc1_07.solver.recyclable_plastic_label", q.targetLatex),
             correctLatex: translateText(t, "sc1_07.solver.recyclable_plastic_label", q.correctLatex),
             slots: q.slots.map((slot) => ({
@@ -80,6 +92,7 @@ export const generateCircularEconomyQuests = (t: Translator | undefined, difficu
         .map(q => ({
             ...q,
             promptLatex: translateText(t, `sc1_07.prompts.${q.id}`, q.promptLatex),
+            expressionLatex: buildLabeledExpression(translateText(t, "sc1_07.labels.lifecycle_stage", "Stage")),
             targetLatex: translateText(t, "sc1_07.solver.cradle_label", q.targetLatex),
             correctLatex: translateText(t, "sc1_07.solver.cradle_label", q.correctLatex),
             slots: q.slots.map((slot) => ({

@@ -7,6 +7,17 @@ export interface SP104Quest extends Quest {
     stage: Stage;
 }
 
+function escapeLatexText(text: string) {
+    return text
+        .replace(/\\/g, "\\textbackslash{}")
+        .replace(/([{}%$&#_^])/g, "\\$1")
+        .replace(/~/g, "\\textasciitilde{}");
+}
+
+function buildLabeledExpression(label: string) {
+    return `\\\\text{${escapeLatexText(label)}} = \\\\square`;
+}
+
 export const QUEST_DATA: SP104Quest[] = [
     {
         id: "sp1_04_q1",
@@ -51,6 +62,7 @@ export const generateSolarSystemQuests = (t: Translator | undefined, difficulty:
         .map(q => ({
             ...q,
             promptLatex: translateText(t, `sp1_04.prompts.${q.id}`, q.promptLatex),
+            expressionLatex: buildLabeledExpression(translateText(t, "sp1_04.labels.planet", "Planet")),
             targetLatex: translateText(t, "sp1_04.answers.jupiter", q.targetLatex),
             correctLatex: translateText(t, "sp1_04.answers.jupiter", q.correctLatex),
             slots: q.slots.map((slot) => ({
@@ -67,6 +79,7 @@ export const generateMoonPhasesQuests = (t: Translator | undefined, difficulty: 
         .map(q => ({
             ...q,
             promptLatex: translateText(t, `sp1_04.prompts.${q.id}`, q.promptLatex),
+            expressionLatex: buildLabeledExpression(translateText(t, "sp1_04.labels.phase", "Phase")),
             targetLatex: translateText(t, "sp1_04.answers.full", q.targetLatex),
             correctLatex: translateText(t, "sp1_04.answers.full_moon", q.correctLatex),
             slots: q.slots.map((slot) => ({

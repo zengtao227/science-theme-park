@@ -6,6 +6,17 @@ export interface SP103Quest extends Quest {
     stage: Stage;
 }
 
+function escapeLatexText(text: string) {
+    return text
+        .replace(/\\/g, "\\textbackslash{}")
+        .replace(/([{}%$&#_^])/g, "\\$1")
+        .replace(/~/g, "\\textasciitilde{}");
+}
+
+function buildLabeledExpression(label: string) {
+    return `\\\\text{${escapeLatexText(label)}} = \\\\square`;
+}
+
 export const QUEST_DATA: SP103Quest[] = [
     {
         id: "sp1_03_q1",
@@ -44,6 +55,7 @@ export const generateAtmosphereQuests = (t: any, difficulty: Difficulty): SP103Q
         .map(q => ({
             ...q,
             promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex,
+            expressionLatex: buildLabeledExpression(t("sp1_03.labels.layer") || "Layer"),
             targetLatex: t("sp1_03.answers.troposphere") || q.targetLatex,
             slots: q.slots.map((slot) => ({
                 ...slot,
@@ -69,6 +81,7 @@ export const generateClimateQuests = (t: any, difficulty: Difficulty): SP103Ques
         .map(q => ({
             ...q,
             promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex,
+            expressionLatex: buildLabeledExpression(t("sp1_03.labels.gas") || "Gas"),
             slots: q.slots.map((slot) => ({
                 ...slot,
                 labelLatex: t("sp1_03.labels.gas") || slot.labelLatex,
