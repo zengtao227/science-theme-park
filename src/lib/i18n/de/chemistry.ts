@@ -1660,6 +1660,13 @@ export const deChemistry = {
             cathode: "Kathode",
             magnesium: "Magnesium"
         },
+        metals: {
+            copper: "Kupfer",
+            silver: "Silber",
+            zinc: "Zink",
+            iron: "Eisen",
+            seawater: "Meerwasser"
+        },
         feedback: {
             correct: "Elektrolytischer Prozess verstanden!",
             incorrect: "Überprüfen Sie die Faradayschen Gesetze und Elektrodenpotentiale."

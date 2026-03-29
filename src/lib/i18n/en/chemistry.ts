@@ -1670,6 +1670,13 @@ export const enChemistry = {
         answers: {
             cathode: "Cathode",
             magnesium: "Magnesium"
+        },
+        metals: {
+            copper: "Copper",
+            silver: "Silver",
+            zinc: "Zinc",
+            iron: "Iron",
+            seawater: "Seawater"
         }
     },
     sc2_05: {

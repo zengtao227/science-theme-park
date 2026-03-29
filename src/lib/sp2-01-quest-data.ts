@@ -152,7 +152,7 @@ export function buildStagePool(
         baselContext: localizedText(baselScenarios.home_safety, locale),
         hints: [
           t(`sp2_01.hints.component_usage_${componentType.toLowerCase()}`),
-          `Look at the symbol: ${info.symbol}`,
+          t("sp2_01.hints.look_at_symbol", { symbol: info.symbol }),
           t("sp2_01.hints.reveal_answer", { answer: localizedName })
         ]
       });

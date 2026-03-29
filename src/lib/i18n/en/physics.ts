@@ -1298,6 +1298,7 @@ export const enPhysics = {
                         component_usage_switch: "This component is used in controlling circuits.",
                         component_usage_wire: "This component is used in connecting circuits.",
                         component_usage_resistor: "This component is used in limiting current in circuits.",
+                        look_at_symbol: "Look at the symbol: {symbol}",
                         reveal_answer: "The answer is: {answer}",
                         check_connections: "Check if all components are connected properly.",
                         test_components: "Test each component individually.",

@@ -25,10 +25,15 @@ export interface GC102Quest {
 export function generatePrinciplesQuests(t: any, difficulty: Difficulty): GC102Quest[] {
     const quests: GC102Quest[] = [];
     const F = 96485;
-    const metals = [{ name: "Copper", z: 2, M: 63.5 }, { name: "Silver", z: 1, M: 107.9 }, { name: "Zinc", z: 2, M: 65.4 }];
+    const metals = [
+        { nameKey: "gc1_02.metals.copper", z: 2, M: 63.5 },
+        { nameKey: "gc1_02.metals.silver", z: 1, M: 107.9 },
+        { nameKey: "gc1_02.metals.zinc", z: 2, M: 65.4 },
+    ];
 
     for (let i = 0; i < 60; i++) {
         const metal = metals[i % metals.length];
+        const metalName = t(metal.nameKey);
         const I = 1 + Math.random() * 2;
         const time = 600 + Math.floor(Math.random() * 3000);
         const m = (I * time * metal.M) / (metal.z * F);
@@ -37,10 +42,10 @@ export function generatePrinciplesQuests(t: any, difficulty: Difficulty): GC102Q
         quests.push({
             id: `P-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage: "PRINCIPLES",
-            metal: metal.name, current: parseFloat(I.toFixed(2)), time,
-            solution: `${metal.name}SO4`,
+            metal: metalName, current: parseFloat(I.toFixed(2)), time,
+            solution: `${metalName}SO4`,
             promptLatex: t("gc1_02.prompts.calc_mass", {
-                metal: metal.name,
+                metal: metalName,
                 current: I.toFixed(2),
                 time
             }),
@@ -77,9 +82,9 @@ export function generateCorrosionQuests(t: any, difficulty: Difficulty): GC102Qu
         quests.push({
             id: `C-${difficulty.charAt(0)}-${i + 1}`,
             difficulty, stage: "CORROSION",
-            metal: "Iron", current: 0, time: 0,
-            solution: "Seawater",
-            promptLatex: t("gc1_02.prompts.corrosion_protection", { metal: "Iron" }),
+            metal: t("gc1_02.metals.iron"), current: 0, time: 0,
+            solution: t("gc1_02.metals.seawater"),
+            promptLatex: t("gc1_02.prompts.corrosion_protection", { metal: t("gc1_02.metals.iron") }),
             expressionLatex: t("gc1_02.labels.corrosion_choice"),
             targetLatex: t("gc1_02.labels.answer_short"),
             slots: [{ id: "ans", labelLatex: t("gc1_02.labels.choice"), placeholder: t("gc1_02.placeholders.one_or_two"), expected: 1 }],

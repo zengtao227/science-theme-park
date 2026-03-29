@@ -1233,6 +1233,7 @@ export const cnPhysics = {
             component_usage_switch: "这个元件用于控制电路通断。",
             component_usage_wire: "这个元件用于连接电路各部分。",
             component_usage_resistor: "这个元件用于限制电路中的电流。",
+            look_at_symbol: "看这个符号：{symbol}",
             reveal_answer: "答案是：{answer}",
             check_connections: "先检查所有元件是否连接正确。",
             test_components: "把各个元件分别单独测试。",

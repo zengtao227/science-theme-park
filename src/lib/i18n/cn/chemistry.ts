@@ -1670,6 +1670,13 @@ export const cnChemistry = {
         answers: {
             cathode: "阴极",
             magnesium: "镁"
+        },
+        metals: {
+            copper: "铜",
+            silver: "银",
+            zinc: "锌",
+            iron: "铁",
+            seawater: "海水"
         }
     },
     sc2_05: {

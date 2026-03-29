@@ -1297,6 +1297,7 @@ export const dePhysics = {
                         component_usage_switch: "Dieses Bauteil wird zum Steuern von Stromkreisen verwendet.",
                         component_usage_wire: "Dieses Bauteil wird zum Verbinden von Stromkreisen verwendet.",
                         component_usage_resistor: "Dieses Bauteil wird zum Begrenzen des Stroms im Stromkreis verwendet.",
+                        look_at_symbol: "Achten Sie auf das Symbol: {symbol}",
                         reveal_answer: "Die Antwort ist: {answer}",
                         check_connections: "Prüfen Sie zuerst, ob alle Komponenten korrekt verbunden sind.",
                         test_components: "Testen Sie jede Komponente einzeln.",
