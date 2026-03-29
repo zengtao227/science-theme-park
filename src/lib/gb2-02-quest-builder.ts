@@ -26,12 +26,16 @@ function createSlot(
     id,
     labelLatex,
     placeholder: type === "select"
-      ? (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select..."
-      : (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
+      ? placeholderText(t, "select")
+      : placeholderText(t, "answer"),
     type,
     expected,
     options
   };
+}
+
+function placeholderText(t: any, key: "select" | "answer"): string {
+  return textValue(t, `gb2_02.placeholders.${key}`);
 }
 
 function textValue(
@@ -163,7 +167,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "type",
           labelLatex: builderText(t, "labels.slot_hormone_type"),
-          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+          placeholder: placeholderText(t, "select"),
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "steroid"
@@ -187,7 +191,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "type",
           labelLatex: builderText(t, "labels.slot_hormone_type"),
-          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+          placeholder: placeholderText(t, "select"),
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "amino_acid_derived"
@@ -211,7 +215,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "gland",
           labelLatex: builderText(t, "labels.slot_producing_gland"),
-          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+          placeholder: placeholderText(t, "select"),
           type: "select",
           options: ["pancreas", "pituitary", "thyroid", "adrenal_cortex"],
           expected: "pancreas"
@@ -235,7 +239,7 @@ function buildHormoneIdentificationQuests(
         slots: [{
           id: "type",
           labelLatex: builderText(t, "labels.slot_hormone_type"),
-          placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+          placeholder: placeholderText(t, "select"),
           type: "select",
           options: ["peptide", "steroid", "amino_acid_derived"],
           expected: "amino_acid_derived"
@@ -270,7 +274,7 @@ function buildHormoneIdentificationQuests(
           slots: [{
             id: "function",
             labelLatex: builderText(t, "labels.slot_primary_function"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
+            placeholder: placeholderText(t, "answer"),
             type: "input",
             expected: hormones[i]!.primaryFunction
           }],
@@ -304,7 +308,7 @@ function buildHormoneIdentificationQuests(
           slots: [{
             id: "hypothalamic",
             labelLatex: builderText(t, "labels.slot_hypothalamic_hormone"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+            placeholder: placeholderText(t, "select"),
             type: "select",
             options: ["TRH", "CRH", "GHRH", "GnRH", "dopamine"],
             expected: pituitaryHormones[i].hypothalamic
@@ -339,7 +343,7 @@ function buildHormoneIdentificationQuests(
           slots: [{
             id: "therapy",
             labelLatex: builderText(t, "labels.slot_hormone_therapy"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
+            placeholder: placeholderText(t, "answer"),
             type: "input",
             expected: pharmaceuticalHormones[i].name
           }],
@@ -387,7 +391,7 @@ function buildFeedbackMechanismsQuests(
           slots: [{
             id: "feedback_type",
             labelLatex: builderText(t, "labels.slot_feedback_type"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+            placeholder: placeholderText(t, "select"),
             type: "select",
             options: ["negative", "positive"],
             expected: "negative"
@@ -416,7 +420,7 @@ function buildFeedbackMechanismsQuests(
           slots: [{
             id: "analysis",
             labelLatex: builderText(t, "labels.slot_mechanism"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
+            placeholder: placeholderText(t, "answer"),
             type: "input",
             expected: builderText(t, "answers.feedback_analysis")
           }],
@@ -458,7 +462,7 @@ function buildClinicalApplicationsQuests(
           slots: [{
             id: "diagnosis",
             labelLatex: builderText(t, "labels.slot_diagnosis"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.select") : t?.placeholders?.select) || "Select...",
+            placeholder: placeholderText(t, "select"),
             type: "select",
             options: ["diabetes_mellitus", "hypothyroidism", "hyperthyroidism", "addisons_disease"],
             expected: diagnosisOptionId(basicCases[i].expectedDiagnosis)
@@ -482,7 +486,7 @@ function buildClinicalApplicationsQuests(
           slots: [{
             id: "diagnosis",
             labelLatex: builderText(t, "labels.slot_diagnosis"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
+            placeholder: placeholderText(t, "answer"),
             type: "input",
             expected: builderText(t, "answers.disorder_name")
           }],
@@ -510,7 +514,7 @@ function buildClinicalApplicationsQuests(
           slots: [{
             id: "diagnosis",
             labelLatex: builderText(t, "labels.slot_diagnosis"),
-            placeholder: (typeof t === "function" ? t("gb2_02.placeholders.answer") : t?.placeholders?.answer) || "Enter answer...",
+            placeholder: placeholderText(t, "answer"),
             type: "input",
             expected: builderText(t, "answers.diagnosis")
           }],

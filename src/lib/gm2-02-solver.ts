@@ -50,6 +50,21 @@ function makeStep(
   return { stepNumber, justification, expressionLatex, emphasis };
 }
 
+function relationshipText(t: Translator, relationship: string) {
+  switch (relationship) {
+    case "parallel":
+      return t("gm2_02.answers.parallel");
+    case "perpendicular":
+      return t("gm2_02.answers.perpendicular");
+    case "intersecting":
+      return t("gm2_02.answers.intersecting");
+    case "skew":
+      return t("gm2_02.answers.skew");
+    default:
+      return relationship;
+  }
+}
+
 function formatPoint2D(point: [number, number]) {
   return `(${formatNumber(point[0])}, ${formatNumber(point[1])})`;
 }
@@ -287,7 +302,7 @@ export function solveGM202(
       steps.push(
         makeStep(1, t("gm2_02.reasons.identify_geometric_objects"), `\\vec d_1=${formatVector3D(lines[0].direction)},\\;\\vec d_2=${formatVector3D(lines[1].direction)}`),
         makeStep(2, t("gm2_02.reasons.compare_direction_vectors"), `\\vec d_1 \\times \\vec d_2 = ${formatVector3D(cross)},\\; \\vec d_1 \\cdot \\vec d_2 = ${formatNumber(dot)}`),
-        makeStep(3, t("gm2_02.reasons.classify_relationship"), `\\text{${relationship}}`),
+        makeStep(3, t("gm2_02.reasons.classify_relationship"), `\\text{${relationshipText(t, relationship)}}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else if (quest.id.includes("ELITE_4") || quest.id.includes("ELITE_5") || quest.id.includes("ELITE_6")) {
@@ -301,7 +316,7 @@ export function solveGM202(
       steps.push(
         makeStep(1, t("gm2_02.reasons.identify_geometric_objects"), `\\vec d=${formatVector3D(line.direction)},\\;\\vec n=${formatVector3D(normal)}`),
         makeStep(2, t("gm2_02.reasons.compare_direction_vectors"), `\\vec d \\cdot \\vec n = ${formatNumber(dot)}`),
-        makeStep(3, t("gm2_02.reasons.classify_relationship"), `\\text{${relationship}}`),
+        makeStep(3, t("gm2_02.reasons.classify_relationship"), `\\text{${relationshipText(t, relationship)}}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else if (quest.id.includes("ELITE_7") || quest.id.includes("ELITE_8")) {
@@ -331,7 +346,7 @@ export function solveGM202(
       steps.push(
         makeStep(1, t("gm2_02.reasons.identify_geometric_objects"), `\\vec n_1=${formatVector3D(n1)},\\;\\vec n_2=${formatVector3D(n2)}`),
         makeStep(2, t("gm2_02.reasons.compare_direction_vectors"), `\\vec n_1 \\times \\vec n_2 = ${formatVector3D(crossProduct(n1, n2))},\\; \\vec n_1 \\cdot \\vec n_2 = ${formatNumber(dotProduct(n1, n2))}`),
-        makeStep(3, t("gm2_02.reasons.classify_relationship"), `\\text{${relationship}}`),
+        makeStep(3, t("gm2_02.reasons.classify_relationship"), `\\text{${relationshipText(t, relationship)}}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else {

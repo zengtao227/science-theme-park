@@ -4339,6 +4339,13 @@ export const deMath = {
             intersection_point: "Schnittpunkt:",
             point_3d_placeholder: "(x, y, z)"
         },
+        answers: {
+            parallel: "parallel",
+            perpendicular: "senkrecht",
+            intersecting: "schneidend",
+            skew: "windschief",
+            no_intersection: "kein Schnittpunkt"
+        },
         prompts: {
             line_through_points: "BVB-Routenprüfung: Zwei Haltestellen liegen bei ({x1}, {y1}) und ({x2}, {y2}) (1 Einheit = 100 m). Bestimmen Sie die Geradengleichung, damit Zwischenhalte geplant werden können.",
             line_slope: "Für das Basler Routenmodell {equation} berechnen Sie die Steigung, damit Planer die Richtungsänderung pro Karteneinheit bewerten können.",

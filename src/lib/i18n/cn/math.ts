@@ -4357,6 +4357,13 @@ export const cnMath = {
             intersection_point: "交点：",
             point_3d_placeholder: "(x, y, z)"
         },
+        answers: {
+            parallel: "平行",
+            perpendicular: "垂直",
+            intersecting: "相交",
+            skew: "异面",
+            no_intersection: "无交点"
+        },
         prompts: {
             line_through_points: "BVB 线路复核：两站点坐标为 ({x1}, {y1}) 与 ({x2}, {y2})（1 单位 = 100 米）。求直线方程，用于布设中间站点。",
             line_slope: "针对巴塞尔路线模型 {equation}，计算斜率，用于评估每个坐标单位的方向变化。",

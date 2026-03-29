@@ -46,16 +46,53 @@ function promptText(
 
 function labelText(
   t: Translator | Record<string, any> | undefined,
-  key: string,
-  fallback: string
+  key: string
 ): string {
   const path = `gm2_02.labels.${key}`;
   if (typeof t === "function") {
     const translated = t(path);
-    return (typeof translated === "string" && translated !== path) ? translated : fallback;
+    return (typeof translated === "string" && translated !== path) ? translated : key;
   }
   const value = t?.labels?.[key];
-  return typeof value === "string" ? value : fallback;
+  return typeof value === "string" ? value : key;
+}
+
+function latexLabelText(
+  t: Translator | Record<string, any> | undefined,
+  key: string
+): string {
+  return `\\text{${labelText(t, key)}}`;
+}
+
+function answerText(
+  t: Translator | Record<string, any> | undefined,
+  key: string
+): string {
+  const path = `gm2_02.answers.${key}`;
+  if (typeof t === "function") {
+    const translated = t(path);
+    return (typeof translated === "string" && translated !== path) ? translated : key;
+  }
+  const value = t?.answers?.[key];
+  return typeof value === "string" ? value : key;
+}
+
+function relationshipText(
+  t: Translator | Record<string, any> | undefined,
+  relationship: string
+): string {
+  switch (relationship) {
+    case "parallel":
+      return answerText(t, "parallel");
+    case "perpendicular":
+      return answerText(t, "perpendicular");
+    case "intersecting":
+      return answerText(t, "intersecting");
+    case "skew":
+      return answerText(t, "skew");
+    default:
+      return relationship;
+  }
 }
 
 // ============================================================================
@@ -92,8 +129,8 @@ export function generateLineEquationsBasicQuests(t?: Translator | Record<string,
       slots: [
         {
           id: "equation",
-          labelLatex: labelText(t, "line_equation", "Line equation:"),
-          placeholder: labelText(t, "line_equation_placeholder", "y = mx + b"),
+          labelLatex: labelText(t, "line_equation"),
+          placeholder: labelText(t, "line_equation_placeholder"),
           expected: line.equation,
           type: "expression"
         }
@@ -133,8 +170,8 @@ export function generateLineEquationsBasicQuests(t?: Translator | Record<string,
       slots: [
         {
           id: "slope",
-          labelLatex: labelText(t, "slope_m", "Slope m:"),
-          placeholder: labelText(t, "enter_slope", "Enter slope"),
+          labelLatex: labelText(t, "slope_m"),
+          placeholder: labelText(t, "enter_slope"),
           expected: slope,
           type: "number"
         }
@@ -170,8 +207,8 @@ export function generateLineEquationsBasicQuests(t?: Translator | Record<string,
       slots: [
         {
           id: "intercept",
-          labelLatex: labelText(t, "y_intercept_b", "Y-intercept b:"),
-          placeholder: labelText(t, "enter_y_intercept", "Enter y-intercept"),
+          labelLatex: labelText(t, "y_intercept_b"),
+          placeholder: labelText(t, "enter_y_intercept"),
           expected: intercept,
           type: "number"
         }
@@ -211,8 +248,8 @@ export function generateLineEquationsBasicQuests(t?: Translator | Record<string,
       slots: [
         {
           id: "equation",
-          labelLatex: labelText(t, "slope_intercept_form", "Slope-intercept form:"),
-          placeholder: labelText(t, "line_equation_placeholder", "y = mx + b"),
+          labelLatex: labelText(t, "slope_intercept_form"),
+          placeholder: labelText(t, "line_equation_placeholder"),
           expected: answer,
           type: "expression"
         }
@@ -257,8 +294,8 @@ export function generateLineEquationsBasicQuests(t?: Translator | Record<string,
       slots: [
         {
           id: "parametric",
-          labelLatex: labelText(t, "parametric_form", "Parametric form:"),
-          placeholder: labelText(t, "parametric_placeholder", "(x, y, z) = (x0, y0, z0) + t(a, b, c)"),
+          labelLatex: labelText(t, "parametric_form"),
+          placeholder: labelText(t, "parametric_placeholder"),
           expected: answer,
           type: "expression"
         }
@@ -315,8 +352,8 @@ export function generatePlaneGeometryCoreQuests(t?: Translator | Record<string, 
       slots: [
         {
           id: "equation",
-          labelLatex: labelText(t, "plane_equation", "Plane equation:"),
-          placeholder: labelText(t, "plane_equation_placeholder", "Ax + By + Cz + D = 0"),
+          labelLatex: labelText(t, "plane_equation"),
+          placeholder: labelText(t, "plane_equation_placeholder"),
           expected: plane.equation,
           type: "expression"
         }
@@ -361,8 +398,8 @@ export function generatePlaneGeometryCoreQuests(t?: Translator | Record<string, 
       slots: [
         {
           id: "normal",
-          labelLatex: labelText(t, "normal_vector", "Normal vector:"),
-          placeholder: labelText(t, "normal_vector_placeholder", "(A, B, C)"),
+          labelLatex: labelText(t, "normal_vector"),
+          placeholder: labelText(t, "normal_vector_placeholder"),
           expected: answer,
           type: "expression"
         }
@@ -405,8 +442,8 @@ export function generatePlaneGeometryCoreQuests(t?: Translator | Record<string, 
       slots: [
         {
           id: "equation",
-          labelLatex: labelText(t, "plane_equation", "Plane equation:"),
-          placeholder: labelText(t, "plane_equation_placeholder", "Ax + By + Cz + D = 0"),
+          labelLatex: labelText(t, "plane_equation"),
+          placeholder: labelText(t, "plane_equation_placeholder"),
           expected: plane.equation,
           type: "expression"
         }
@@ -452,8 +489,8 @@ export function generatePlaneGeometryCoreQuests(t?: Translator | Record<string, 
       slots: [
         {
           id: "intercepts",
-          labelLatex: labelText(t, "intercepts", "Intercepts:"),
-          placeholder: labelText(t, "intercepts_placeholder", "(x, y, z)"),
+          labelLatex: labelText(t, "intercepts"),
+          placeholder: labelText(t, "intercepts_placeholder"),
           expected: answer,
           type: "expression"
         }
@@ -514,8 +551,8 @@ export function generateSpatialRelationshipsAdvancedQuests(t?: Translator | Reco
       slots: [
         {
           id: "distance",
-          labelLatex: labelText(t, "distance", "Distance:"),
-          placeholder: labelText(t, "enter_distance", "Enter distance"),
+          labelLatex: labelText(t, "distance"),
+          placeholder: labelText(t, "enter_distance"),
           expected: distance.toFixed(2),
           type: "number"
         }
@@ -572,8 +609,8 @@ export function generateSpatialRelationshipsAdvancedQuests(t?: Translator | Reco
       slots: [
         {
           id: "distance",
-          labelLatex: labelText(t, "distance", "Distance:"),
-          placeholder: labelText(t, "enter_distance", "Enter distance"),
+          labelLatex: labelText(t, "distance"),
+          placeholder: labelText(t, "enter_distance"),
           expected: distance.toFixed(2),
           type: "number"
         }
@@ -625,8 +662,8 @@ export function generateSpatialRelationshipsAdvancedQuests(t?: Translator | Reco
       slots: [
         {
           id: "distance",
-          labelLatex: labelText(t, "distance", "Distance:"),
-          placeholder: labelText(t, "enter_distance", "Enter distance"),
+          labelLatex: labelText(t, "distance"),
+          placeholder: labelText(t, "enter_distance"),
           expected: distance.toFixed(2),
           type: "number"
         }
@@ -668,8 +705,8 @@ export function generateSpatialRelationshipsAdvancedQuests(t?: Translator | Reco
       slots: [
         {
           id: "distance",
-          labelLatex: labelText(t, "distance", "Distance:"),
-          placeholder: labelText(t, "enter_distance", "Enter distance"),
+          labelLatex: labelText(t, "distance"),
+          placeholder: labelText(t, "enter_distance"),
           expected: distance.toFixed(2),
           type: "number"
         }
@@ -716,8 +753,8 @@ export function generateSpatialRelationshipsAdvancedQuests(t?: Translator | Reco
       slots: [
         {
           id: "distance",
-          labelLatex: labelText(t, "distance", "Distance:"),
-          placeholder: labelText(t, "enter_distance", "Enter distance"),
+          labelLatex: labelText(t, "distance"),
+          placeholder: labelText(t, "enter_distance"),
           expected: distance.toFixed(2),
           type: "number"
         }
@@ -780,19 +817,19 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
       promptLatex: promptText(t, "relation_line_line", { line1: param1, line2: param2 }),
-      expressionLatex: `\\text{parallel, perpendicular, intersecting, or skew}`,
-      targetLatex: `\\text{relationship}`,
+      expressionLatex: latexLabelText(t, "relationship_with_skew"),
+      targetLatex: latexLabelText(t, "relationship"),
       slots: [
         {
           id: "relationship",
-          labelLatex: labelText(t, "relationship", "Relationship:"),
-          placeholder: labelText(t, "relationship_with_skew", "parallel, perpendicular, intersecting, or skew"),
-          expected: relationship,
+          labelLatex: labelText(t, "relationship"),
+          placeholder: labelText(t, "relationship_with_skew"),
+          expected: relationshipText(t, relationship),
           type: "expression"
         }
       ],
-      correctLatex: relationship,
-      answer: relationship,
+      correctLatex: relationshipText(t, relationship),
+      answer: relationshipText(t, relationship),
       visualizationData: {
         lines: [
           {
@@ -841,19 +878,19 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
       promptLatex: promptText(t, "relation_line_plane", { line: parametric, plane: planeEq }),
-      expressionLatex: `\\text{parallel, perpendicular, or intersecting}`,
-      targetLatex: `\\text{relationship}`,
+      expressionLatex: latexLabelText(t, "relationship_basic"),
+      targetLatex: latexLabelText(t, "relationship"),
       slots: [
         {
           id: "relationship",
-          labelLatex: labelText(t, "relationship", "Relationship:"),
-          placeholder: labelText(t, "relationship_basic", "parallel, perpendicular, or intersecting"),
-          expected: relationship,
+          labelLatex: labelText(t, "relationship"),
+          placeholder: labelText(t, "relationship_basic"),
+          expected: relationshipText(t, relationship),
           type: "expression"
         }
       ],
-      correctLatex: relationship,
-      answer: relationship,
+      correctLatex: relationshipText(t, relationship),
+      answer: relationshipText(t, relationship),
       visualizationData: {
         lines: [{
           type: "3D",
@@ -888,7 +925,7 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
     const planeObj = { ...plane, equation: `${plane.A}x + ${plane.B}y + ${plane.C}z + ${plane.D} = 0` };
     const intersection = calculateLinePlaneIntersection(line, planeObj);
     const parametric = calculate3DLineParametric(line.point, line.direction);
-    const answer = intersection ? `(${intersection.x.toFixed(1)}, ${intersection.y.toFixed(1)}, ${intersection.z.toFixed(1)})` : "no intersection";
+    const answer = intersection ? `(${intersection.x.toFixed(1)}, ${intersection.y.toFixed(1)}, ${intersection.z.toFixed(1)})` : answerText(t, "no_intersection");
     
     quests.push({
       id: `SPATIAL_RELATIONSHIPS_ELITE_${id}`,
@@ -900,8 +937,8 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
       slots: [
         {
           id: "intersection",
-          labelLatex: labelText(t, "intersection_point", "Intersection point:"),
-          placeholder: labelText(t, "point_3d_placeholder", "(x, y, z)"),
+          labelLatex: labelText(t, "intersection_point"),
+          placeholder: labelText(t, "point_3d_placeholder"),
           expected: answer,
           type: "expression"
         }
@@ -921,7 +958,7 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
           opacity: 0.3
         }],
         points: intersection ? [
-          { coordinates: [intersection.x, intersection.y, intersection.z], label: labelText(t, "intersection", "Intersection"), color: "red" }
+          { coordinates: [intersection.x, intersection.y, intersection.z], label: labelText(t, "intersection"), color: "red" }
         ] : []
       }
     });
@@ -951,19 +988,19 @@ export function generateSpatialRelationshipsEliteQuests(t?: Translator | Record<
       difficulty: "ELITE",
       stage: "SPATIAL_RELATIONSHIPS",
       promptLatex: promptText(t, "relation_plane_plane", { plane1: p1.equation, plane2: p2.equation }),
-      expressionLatex: `\\text{parallel, perpendicular, or intersecting}`,
-      targetLatex: `\\text{relationship}`,
+      expressionLatex: latexLabelText(t, "relationship_basic"),
+      targetLatex: latexLabelText(t, "relationship"),
       slots: [
         {
           id: "relationship",
-          labelLatex: labelText(t, "relationship", "Relationship:"),
-          placeholder: labelText(t, "relationship_basic", "parallel, perpendicular, or intersecting"),
-          expected: relationship,
+          labelLatex: labelText(t, "relationship"),
+          placeholder: labelText(t, "relationship_basic"),
+          expected: relationshipText(t, relationship),
           type: "expression"
         }
       ],
-      correctLatex: relationship,
-      answer: relationship,
+      correctLatex: relationshipText(t, relationship),
+      answer: relationshipText(t, relationship),
       visualizationData: {
         planes: [
           {

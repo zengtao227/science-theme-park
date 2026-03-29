@@ -4362,6 +4362,13 @@ export const enMath = {
             intersection_point: "Intersection point:",
             point_3d_placeholder: "(x, y, z)"
         },
+        answers: {
+            parallel: "parallel",
+            perpendicular: "perpendicular",
+            intersecting: "intersecting",
+            skew: "skew",
+            no_intersection: "no intersection"
+        },
         prompts: {
             line_through_points: "BVB route audit: two stops are at ({x1}, {y1}) and ({x2}, {y2}) (1 unit = 100 m). Find the line equation so dispatch can place intermediate stops.",
             line_slope: "For the Basel route model {equation}, compute the slope so planners can evaluate direction change per map unit.",
