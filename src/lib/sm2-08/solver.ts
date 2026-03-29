@@ -1,5 +1,5 @@
 import type { FeedbackContent, Quest, Slot } from "@/hooks/useQuestManager";
-import { buildFullSolution, formatNumber, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, formatNumber, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "BASIC_PROB" | "LOTTERY" | "COMBINED" | "DATA_STATS";
 
@@ -78,11 +78,15 @@ function buildProbabilitySteps(quest: SM208FeedbackQuest, t: Translator) {
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `P = ${expr}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `P = ${finalValue}`, "key")
     );
-    return steps;
+      return steps;
   }
 
   steps.push(
-    makeStep(2, t("math.sm2_10.reasons.apply_probability_ratio"), "P(E)=\\frac{\\text{favorable outcomes}}{\\text{total outcomes}}"),
+    makeStep(
+      2,
+      t("math.sm2_10.reasons.apply_probability_ratio"),
+      `P(E)=\\frac{\\text{${escapeLatexText(t("math.sm2_08.solver.favorable_outcomes_label"))}}}{\\text{${escapeLatexText(t("math.sm2_08.solver.total_outcomes_label"))}}}`
+    ),
     makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `P = ${expr}`),
     makeStep(4, t("common.feedback_reasons.state_final_result"), `P = ${finalValue}`, "key")
   );
@@ -116,7 +120,7 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
 
     case "T":
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "T = \\text{sum of all listed values}"),
+        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `T = \\text{${escapeLatexText(t("math.sm2_08.solver.sum_all_values_label"))}}`),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `T = ${expr}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `T = ${finalValue}`, "key")
       );
@@ -127,7 +131,7 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
         makeStep(
           2,
           t("common.feedback_reasons.select_formula_or_rule"),
-          expr.includes("\\frac{") ? "M = \\frac{x_{mid1}+x_{mid2}}{2}" : "M = \\text{middle value of the ordered data}"
+          expr.includes("\\frac{") ? "M = \\frac{x_{mid1}+x_{mid2}}{2}" : `M = \\text{${escapeLatexText(t("math.sm2_08.solver.middle_ordered_value_label"))}}`
         ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${slot.labelLatex} = ${expr}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${finalValue}`, "key")
@@ -136,7 +140,7 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
 
     case "Mo":
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "Mo = \\text{most frequent value}"),
+        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `Mo = \\text{${escapeLatexText(t("math.sm2_08.solver.most_frequent_value_label"))}}`),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), expr),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `Mo = ${finalValue}`, "key")
       );
@@ -144,7 +148,11 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
 
     case "R":
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "R = \\text{max} - \\text{min}"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `R = \\text{${escapeLatexText(t("math.sm2_08.solver.max_label"))}} - \\text{${escapeLatexText(t("math.sm2_08.solver.min_label"))}}`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${slot.labelLatex} = ${expr}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${finalValue}`, "key")
       );
@@ -152,7 +160,7 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
 
     case "Q1":
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "Q_1 = \\text{lower quartile of the ordered data}"),
+        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `Q_1 = \\text{${escapeLatexText(t("math.sm2_08.solver.lower_quartile_label"))}}`),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), expr),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `Q_1 = ${finalValue}`, "key")
       );
@@ -176,7 +184,11 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
 
     case "pct":
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\Delta\\% = \\frac{\\text{new} - \\text{old}}{\\text{old}}\\times 100"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `\\Delta\\% = \\frac{\\text{${escapeLatexText(t("math.sm2_08.solver.new_label"))}} - \\text{${escapeLatexText(t("math.sm2_08.solver.old_label"))}}}{\\text{${escapeLatexText(t("math.sm2_08.solver.old_label"))}}}\\times 100`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${slot.labelLatex} = ${expr}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${finalValue}`, "key")
       );
@@ -184,19 +196,33 @@ function buildStatsSteps(quest: SM208FeedbackQuest, t: Translator) {
 
     case "P":
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\% = \\frac{\\text{part}}{\\text{whole}}\\times 100"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `\\% = \\frac{\\text{${escapeLatexText(t("math.sm2_08.solver.part_label"))}}}{\\text{${escapeLatexText(t("math.sm2_08.solver.whole_label"))}}}\\times 100`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${slot.labelLatex} = ${expr}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${finalValue}`, "key")
       );
       return steps;
 
     case "r":
+      {
+      const expected = getExpectedNumber(slot);
+      const trendLabel = expected !== null && expected < 0
+        ? t("math.sm2_08.solver.negative_correlation_label")
+        : t("math.sm2_08.solver.positive_correlation_label");
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "r > 0\\Rightarrow \\text{positive correlation},\\quad r < 0\\Rightarrow \\text{negative correlation}"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `r > 0\\Rightarrow \\text{${escapeLatexText(t("math.sm2_08.solver.positive_correlation_label"))}},\\quad r < 0\\Rightarrow \\text{${escapeLatexText(t("math.sm2_08.solver.negative_correlation_label"))}}`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), expr),
-        makeStep(4, t("common.feedback_reasons.state_final_result"), "r > 0\\text{ (positive)}", "key")
+        makeStep(4, t("common.feedback_reasons.state_final_result"), `r\\text{ (${escapeLatexText(trendLabel)})}`, "key")
       );
       return steps;
+      }
 
     default:
       return null;

@@ -2535,6 +2535,22 @@ export const deMath = {
             most_frequent: "Am häufigsten",
             p25: "25. Perzentil"
         },
+        solver: {
+            favorable_outcomes_label: "günstige Ergebnisse",
+            total_outcomes_label: "alle Ergebnisse",
+            sum_all_values_label: "Summe aller aufgeführten Werte",
+            middle_ordered_value_label: "mittlerer Wert der geordneten Daten",
+            most_frequent_value_label: "am häufigsten auftretender Wert",
+            max_label: "Maximum",
+            min_label: "Minimum",
+            lower_quartile_label: "unteres Quartil der geordneten Daten",
+            new_label: "neu",
+            old_label: "alt",
+            part_label: "Teil",
+            whole_label: "Ganzes",
+            positive_correlation_label: "positive Korrelation",
+            negative_correlation_label: "negative Korrelation"
+        },
         problems: {
             bus_ontime_16_20: "In den letzten 20 Tagen kam der Bus 16 Mal pünktlich. Wahrscheinlichkeit für morgen?",
             bus_ontime_18_20: "In den letzten 20 Tagen kam der Bus 18 Mal pünktlich. Wahrscheinlichkeit für morgen?",

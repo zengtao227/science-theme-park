@@ -2522,6 +2522,22 @@ export const enMath = {
             most_frequent: "most frequent",
             p25: "25th percentile"
         },
+        solver: {
+            favorable_outcomes_label: "favorable outcomes",
+            total_outcomes_label: "total outcomes",
+            sum_all_values_label: "sum of all listed values",
+            middle_ordered_value_label: "middle value of the ordered data",
+            most_frequent_value_label: "most frequent value",
+            max_label: "max",
+            min_label: "min",
+            lower_quartile_label: "lower quartile of the ordered data",
+            new_label: "new",
+            old_label: "old",
+            part_label: "part",
+            whole_label: "whole",
+            positive_correlation_label: "positive correlation",
+            negative_correlation_label: "negative correlation"
+        },
         problems: {
             bus_ontime_16_20: "In the past 20 days, the bus arrived on time 16 times. What is the probability it arrives on time tomorrow?",
             bus_ontime_18_20: "In the past 20 days, the bus arrived on time 18 times. What is the probability it arrives on time tomorrow?",

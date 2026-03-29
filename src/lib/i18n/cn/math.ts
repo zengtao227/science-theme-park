@@ -2503,6 +2503,22 @@ export const cnMath = {
             most_frequent: "最频繁",
             p25: "第25百分位"
         },
+        solver: {
+            favorable_outcomes_label: "有利结果数",
+            total_outcomes_label: "总结果数",
+            sum_all_values_label: "所有列出数值的总和",
+            middle_ordered_value_label: "按顺序排列后的中间值",
+            most_frequent_value_label: "出现次数最多的数值",
+            max_label: "最大值",
+            min_label: "最小值",
+            lower_quartile_label: "按顺序排列数据的下四分位数",
+            new_label: "新值",
+            old_label: "旧值",
+            part_label: "部分",
+            whole_label: "整体",
+            positive_correlation_label: "正相关",
+            negative_correlation_label: "负相关"
+        },
         problems: {
             bus_ontime_16_20: "过去20天中，公交车准时到达16次。明天准时到达的概率是多少？",
             bus_ontime_18_20: "过去20天中，公交车准时到达18次。明天准时到达的概率是多少？",
