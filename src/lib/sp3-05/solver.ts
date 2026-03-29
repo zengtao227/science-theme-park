@@ -59,10 +59,27 @@ function buildSubstitutionLatex(quest: SP305Quest) {
   return quest.expressionLatex;
 }
 
+function buildRuleLatex(quest: SP305Quest) {
+  if (quest.machineType === "lever") return "F_e d_e = F_l d_l";
+  if (quest.machineType === "pulley") return "MA = n,\\quad F_e = \\frac{F_l}{n}";
+  if (quest.machineType === "inclined_plane") {
+    if (quest.pitch != null && quest.radius != null) return "F_e = \\frac{F_l \\cdot p}{2\\pi r}";
+    if (quest.friction != null && quest.height != null && quest.length != null) return "F_e = F_l\\left(\\frac{h}{l}+\\mu\\right)";
+    if (quest.angle != null) return "F_e = F_l\\sin\\theta";
+    if (quest.height != null && quest.length != null) return "F_e = F_l\\frac{h}{l}";
+  }
+  return quest.expressionLatex;
+}
+
+function finalExpression(quest: SP305Quest) {
+  const slot = quest.slots[0];
+  return slot ? `${slot.labelLatex} = ${quest.correctLatex}` : quest.correctLatex;
+}
+
 export function solveSP305(quest: SP305Quest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), buildGivenLatex(quest) || String(quest.machineType ?? quest.stage)),
-    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), quest.expressionLatex),
+    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), buildRuleLatex(quest)),
   ];
 
   const substitutionLatex = buildSubstitutionLatex(quest);
@@ -70,6 +87,6 @@ export function solveSP305(quest: SP305Quest, t: Translator) {
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), substitutionLatex));
   }
 
-  steps.push(makeStep(steps.length + 1, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"));
+  steps.push(makeStep(steps.length + 1, t("common.feedback_reasons.state_final_result"), finalExpression(quest), "key"));
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }
