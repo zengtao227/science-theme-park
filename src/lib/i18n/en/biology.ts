@@ -166,7 +166,9 @@ export const enBiology = {
             older_rate_label: "older rate",
             newer_rate_label: "newer rate",
             accepted_cases_label: "accepted cases",
-            total_cases_label: "total cases"
+            total_cases_label: "total cases",
+            rule_effective_population: "(unequal sex ratio)",
+            rule_decay_constant: "(half-life relation)"
         }
     },
     gb2_01: {

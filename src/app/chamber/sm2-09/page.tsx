@@ -306,7 +306,7 @@ export default function SM209Page() {
         return quest;
       });
     },
-    [sm2_09_t.solution_label, sm2_09_t.and_connector, t]
+    [sm2_09_t, t]
   );
 
   // Generate solution steps for a quest (used by feedbackContentProvider)

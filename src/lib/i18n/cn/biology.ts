@@ -166,7 +166,9 @@ export const cnBiology = {
             older_rate_label: "较旧速率",
             newer_rate_label: "较新速率",
             accepted_cases_label: "被接受的案例数",
-            total_cases_label: "总案例数"
+            total_cases_label: "总案例数",
+            rule_effective_population: "(性别比例不均等)",
+            rule_decay_constant: "(半衰期关系)"
         }
     },
     gb2_01: {

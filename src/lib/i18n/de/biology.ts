@@ -166,7 +166,9 @@ export const deBiology = {
             older_rate_label: "ältere Rate",
             newer_rate_label: "neuere Rate",
             accepted_cases_label: "akzeptierte Fälle",
-            total_cases_label: "Gesamtzahl der Fälle"
+            total_cases_label: "Gesamtzahl der Fälle",
+            rule_effective_population: "(ungleiches Geschlechterverhältnis)",
+            rule_decay_constant: "(Halbwertszeit-Beziehung)"
         }
     },
     gb2_01: {

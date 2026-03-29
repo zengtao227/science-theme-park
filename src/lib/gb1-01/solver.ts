@@ -62,7 +62,7 @@ function buildRuleLatex(quest: GB101SolverQuest, t: Translator) {
     if (target === "T") return "D = 2uT \\Rightarrow T = \\frac{D}{2u}";
     if (target === "P") return "P = \\frac{1}{2N}";
     if (target === "F") return "F = 1 - \\frac{1}{2N}";
-    if (target === "Ne") return "N_e = \\frac{4N_fN_m}{N_f + N_m}";
+    if (target === "Ne") return `N_e = \\frac{4N_fN_m}{N_f + N_m} \\text{ ${escapeLatexText(t("biology.gb1_01.solver.rule_effective_population"))} }`;
     return `\\text{${escapeLatexText(t("biology.gb1_01.solver.use_speciation_relation"))}}`;
   }
 
@@ -71,7 +71,7 @@ function buildRuleLatex(quest: GB101SolverQuest, t: Translator) {
     if (target === "N") return "N = \\log_2\\!\\left(\\frac{1}{f}\\right)";
     if (target === "L") return "\\lambda = \\frac{k}{N}";
     if (target === "F") return "F = e^{-\\lambda t}";
-    if (target === "Lt") return "\\lambda t_{1/2} = \\ln 2";
+    if (target === "Lt") return `\\lambda t_{1/2} = \\ln 2 \\text{ ${escapeLatexText(t("biology.gb1_01.solver.rule_decay_constant"))} }`;
     if (target === "K") return "K = \\frac{D}{2t}";
     if (target === "R") {
       return `R = \\frac{\\text{${escapeLatexText(t("biology.gb1_01.solver.older_rate_label"))}}}{\\text{${escapeLatexText(t("biology.gb1_01.solver.newer_rate_label"))}}}`;
