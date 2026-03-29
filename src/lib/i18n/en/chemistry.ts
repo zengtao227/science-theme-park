@@ -835,6 +835,8 @@ export const enChemistry = {
         },
         solver: {
             arrhenius_trend: "Higher temperature or lower activation energy increases the rate constant",
+            arrhenius_plot_slope: "slope of Arrhenius plot",
+            rate_label: "rate",
             rate_law_first_order: "First-order relationship",
             rate_law_second_order: "Second-order relationship",
             rate_law_zero_order: "Zero-order relationship",
@@ -2194,6 +2196,8 @@ export const enChemistry = {
             calorimetry: "CALORIMETRY"
         },
         solver: {
+            exothermic_label: "exothermic",
+            endothermic_label: "endothermic",
             solve_energy_changes: "Determine whether the process releases or absorbs energy and use the stated enthalpy relation",
             rule_hess_law: "Reverse, scale, and add reactions so the intermediates cancel and the target reaction remains",
             solve_calorimetry_enthalpy: "Use q = mc\\Delta T and the sign convention to determine the enthalpy change",

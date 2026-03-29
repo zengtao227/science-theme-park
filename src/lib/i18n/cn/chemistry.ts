@@ -811,6 +811,8 @@ export const cnChemistry = {
         },
         solver: {
             arrhenius_trend: "温度升高或活化能降低都会使速率常数增大",
+            arrhenius_plot_slope: "阿伦尼乌斯图像的斜率",
+            rate_label: "速率",
             rate_law_first_order: "一级反应关系",
             rate_law_second_order: "二级反应关系",
             rate_law_zero_order: "零级反应关系",
@@ -2193,6 +2195,8 @@ export const cnChemistry = {
             calorimetry: "量热法"
         },
         solver: {
+            exothermic_label: "放热",
+            endothermic_label: "吸热",
             solve_energy_changes: "先判断过程是放热还是吸热，再使用相应的焓变关系",
             rule_hess_law: "翻转、倍乘并相加反应方程，使中间物质抵消并留下目标反应",
             solve_calorimetry_enthalpy: "利用 q = mc\\Delta T 和符号约定求出焓变",

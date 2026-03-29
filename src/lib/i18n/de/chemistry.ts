@@ -803,6 +803,8 @@ export const deChemistry = {
         },
         solver: {
             arrhenius_trend: "Eine hoehere Temperatur oder kleinere Aktivierungsenergie vergroessert die Geschwindigkeitskonstante",
+            arrhenius_plot_slope: "Steigung des Arrhenius-Diagramms",
+            rate_label: "Reaktionsgeschwindigkeit",
             rate_law_first_order: "Reaktion erster Ordnung",
             rate_law_second_order: "Reaktion zweiter Ordnung",
             rate_law_zero_order: "Reaktion nullter Ordnung",
@@ -2186,6 +2188,8 @@ export const deChemistry = {
             calorimetry: "KALORIMETRIE"
         },
         solver: {
+            exothermic_label: "exotherm",
+            endothermic_label: "endotherm",
             solve_energy_changes: "Bestimmen Sie, ob der Prozess Energie freisetzt oder aufnimmt, und nutzen Sie die passende Enthalpiebeziehung",
             rule_hess_law: "Drehen, skalieren und addieren Sie Reaktionen so, dass Zwischenstoffe wegfallen und die Zielreaktion bleibt",
             solve_calorimetry_enthalpy: "Verwenden Sie q = mc\\Delta T und die Vorzeichenkonvention, um die Enthalpieaenderung zu bestimmen",

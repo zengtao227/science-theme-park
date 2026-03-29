@@ -2484,6 +2484,13 @@ export const cnPhysics = {
             symbol: "符号",
             constant: "常量"
         },
+        solver: {
+            temperature_constant: "恒定",
+            pressure_constant: "恒定",
+            real_gases_deviate: "真实气体在高压和低温下会偏离理想模型",
+            celsius_unit: "C",
+            use_kelvin_only: "只使用开尔文绝对温度"
+        },
         placeholders: {
             temperature: "温度",
             pressure: "压强",

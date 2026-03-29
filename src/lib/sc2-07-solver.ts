@@ -12,7 +12,7 @@ export function solveSC207(quest: SC207Quest, t: Translator) {
         makeStep(
           2,
           t("common.feedback_reasons.select_formula_or_rule"),
-          `\\Delta H < 0 \\Rightarrow \\text{exothermic},\\quad \\Delta H > 0 \\Rightarrow \\text{endothermic}`
+          `\\Delta H < 0 \\Rightarrow \\text{${escapeLatexText(t("chemistry.sc2_07.solver.exothermic_label"))}},\\quad \\Delta H > 0 \\Rightarrow \\text{${escapeLatexText(t("chemistry.sc2_07.solver.endothermic_label"))}}`
         )
       );
       steps.push(

@@ -2534,6 +2534,13 @@ export const dePhysics = {
                         symbol: "Symbol",
                         constant: "Konstante"
                 },
+                solver: {
+                        temperature_constant: "konstant",
+                        pressure_constant: "konstant",
+                        real_gases_deviate: "Reale Gase weichen bei hohem Druck und tiefer Temperatur ab",
+                        celsius_unit: "C",
+                        use_kelvin_only: "Verwende nur absolute Temperaturen in Kelvin"
+                },
                 placeholders: {
                         temperature: "Temperatur",
                         pressure: "Druck",

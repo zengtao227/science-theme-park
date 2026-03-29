@@ -2562,6 +2562,13 @@ export const enPhysics = {
                         symbol: "Symbol",
                         constant: "Constant"
                 },
+                solver: {
+                        temperature_constant: "constant",
+                        pressure_constant: "constant",
+                        real_gases_deviate: "Real gases deviate at high pressure and low temperature",
+                        celsius_unit: "C",
+                        use_kelvin_only: "Use only absolute temperatures in Kelvin"
+                },
                 placeholders: {
                         temperature: "temperature",
                         pressure: "pressure",

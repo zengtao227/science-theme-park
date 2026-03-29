@@ -15,7 +15,7 @@ function buildStageRule(quest: SC201Quest, t: Translator) {
       return "\\ln\\!\\left(\\frac{k_2}{k_1}\\right)=\\frac{E_a}{R}\\left(\\frac{1}{T_1}-\\frac{1}{T_2}\\right)";
     }
     if (id.includes("A2")) {
-      return "\\text{slope of Arrhenius plot} = -\\frac{E_a}{R}";
+      return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.arrhenius_plot_slope"))}} = -\\frac{E_a}{R}`;
     }
     if (id.includes("A3") || id.includes("A5") || id.includes("E1") || id.includes("E3") || id.includes("E4")) {
       return "k = A e^{-E_a/(RT)}";
@@ -24,13 +24,13 @@ function buildStageRule(quest: SC201Quest, t: Translator) {
   }
 
   if (quest.stage === "RATE_LAW") {
-    if (id.includes("B1") || id.includes("B5")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_first_order"))}}\\; \\text{rate} = k[A]`;
-    if (id.includes("B2") || id.includes("C2")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_second_order"))}}\\; \\text{rate} = k[A]^2`;
-    if (id.includes("B3")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_zero_order"))}}\\; \\text{rate} = k`;
+    if (id.includes("B1") || id.includes("B5")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_first_order"))}}\\; \\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_label"))}} = k[A]`;
+    if (id.includes("B2") || id.includes("C2")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_second_order"))}}\\; \\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_label"))}} = k[A]^2`;
+    if (id.includes("B3")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_zero_order"))}}\\; \\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_label"))}} = k`;
     if (id.includes("C1") || id.includes("A1")) return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_mixed"))}}`;
     if (id.includes("C3")) return "\\ln[A] = \\ln[A]_0 - kt";
     if (id.includes("C4")) return "t = \\frac{\\ln 2}{k}";
-    if (id.includes("C5")) return "k = \\frac{\\text{rate}}{[A]^n}";
+    if (id.includes("C5")) return `k = \\frac{\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_label"))}}}{[A]^n}`;
     return `\\text{${escapeLatexText(t("chemistry.sc2_01.solver.rate_law_generic"))}}`;
   }
 

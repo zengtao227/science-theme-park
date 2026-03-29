@@ -108,7 +108,7 @@ function solveBoyle(quest: GP201Quest, t: Translator) {
   if (quest.id === "B-B5") {
     steps.push(
       makeStep(1, t("gp2_01.reasons.identify_constant_condition"), "P_1V_1=P_2V_2"),
-      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), "T=\\text{konstant}"),
+      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), `T=\\text{${escapeLatexText(t("gp2_01.solver.temperature_constant"))}}`),
       finalStep(3, t, quest)
     );
     return steps;
@@ -134,7 +134,7 @@ function solveBoyle(quest: GP201Quest, t: Translator) {
 
   if (quest.id === "B-E3") {
     steps.push(
-      makeStep(1, t("gp2_01.reasons.state_model_limit"), "\\text{Reale Gase weichen bei hohem Druck und tiefer Temperatur ab}"),
+      makeStep(1, t("gp2_01.reasons.state_model_limit"), `\\text{${escapeLatexText(t("gp2_01.solver.real_gases_deviate"))}}`),
       finalStep(2, t, quest)
     );
     return steps;
@@ -173,7 +173,7 @@ function solveCharles(quest: GP201Quest, t: Translator) {
   if (quest.id === "C-B5") {
     steps.push(
       makeStep(1, t("gp2_01.reasons.identify_constant_condition"), "\\frac{V}{T}=k"),
-      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), "P=\\text{konstant}"),
+      makeStep(2, t("gp2_01.reasons.interpret_physical_condition"), `P=\\text{${escapeLatexText(t("gp2_01.solver.pressure_constant"))}}`),
       finalStep(3, t, quest)
     );
     return steps;
@@ -181,7 +181,7 @@ function solveCharles(quest: GP201Quest, t: Translator) {
 
   if (quest.id === "C-C5") {
     steps.push(
-      makeStep(1, t("gp2_01.reasons.convert_temperatures_to_kelvin"), "0\\text{ K}=-273.15^{\\circ}\\text{C}"),
+      makeStep(1, t("gp2_01.reasons.convert_temperatures_to_kelvin"), `0\\text{ K}=-273.15^{\\circ}\\text{${escapeLatexText(t("gp2_01.solver.celsius_unit"))}}`),
       finalStep(2, t, quest)
     );
     return steps;
@@ -206,7 +206,7 @@ function solveCharles(quest: GP201Quest, t: Translator) {
 
   if (quest.id === "C-C1" || quest.id === "C-A1") {
     steps.push(
-      makeStep(1, t("gp2_01.reasons.convert_temperatures_to_kelvin"), "\\text{Verwende nur absolute Temperaturen in Kelvin}"),
+      makeStep(1, t("gp2_01.reasons.convert_temperatures_to_kelvin"), `\\text{${escapeLatexText(t("gp2_01.solver.use_kelvin_only"))}}`),
       makeStep(2, t("gp2_01.reasons.select_charles_law"), "\\frac{V_1}{T_1}=\\frac{V_2}{T_2}"),
       makeStep(3, t("gp2_01.reasons.substitute_known_values"), quest.expressionLatex),
       finalStep(4, t, quest)
