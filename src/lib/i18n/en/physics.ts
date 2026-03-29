@@ -1188,7 +1188,12 @@ export const enPhysics = {
                 incorrect: "Circuit Error",
                 monitor_title: "SP2.01_CIRCUIT_LAB",
                 labels: {
-                        quest: "Quest"
+                        quest: "Quest",
+                        component_name: "Component Name",
+                        function: "Function",
+                        symbol: "Symbol",
+                        answer: "Answer",
+                        fault_type: "Fault Type"
                 },
                 objective_title: "Circuit Objective",
                 difficulty: { basic: "BASIC", core: "CORE", advanced: "ADVANCED", elite: "ELITE" },
@@ -1260,6 +1265,43 @@ export const enPhysics = {
                         design_efficient_four_bulbs: "Municipal energy retrofit: design a circuit that keeps 4 bulbs at full brightness with the fewest components to reduce cost and maintenance.",
                         design_emergency_backup: "Hospital emergency-lighting task: design backup power so if one battery fails, at least one bulb remains on for evacuation guidance.",
                         design_mixed_series_parallel: "Integration exercise: design a mixed circuit where Switch 1 controls 2 bulbs in series and Switch 2 controls 2 bulbs in parallel, and both groups run independently."
+                },
+                faults: {
+                        broken_wire: "Broken wire",
+                        dead_battery: "Dead battery",
+                        burned_bulb: "Burned bulb",
+                        open_switch: "Open switch"
+                },
+                answers: {
+                        battery_terminals: "2 (positive and negative)",
+                        bulb_polarity: "No, it works in either direction",
+                        switch_states: "Open and Closed",
+                        wire_property: "Low resistance",
+                        resistor_bands: "Resistance value",
+                        simple_circuit_complete: "Circuit complete! The bulb should light up.",
+                        series_brightness: "Series circuit complete! All {count} bulbs should glow dimmer than a single bulb.",
+                        parallel_brightness: "Parallel circuit complete! All {count} bulbs should glow at full brightness.",
+                        switch_circuit_complete: "Circuit complete! Toggle the switch to turn the bulb on and off.",
+                        diagram_correct: "Diagram correct! Battery symbol with + and - terminals, bulb symbol as circle with X.",
+                        two_way_complete: "Two-way switch circuit complete! Test both switches.",
+                        independent_control_complete: "Independent control circuit complete! Test each switch separately.",
+                        efficient_parallel_complete: "Efficient parallel circuit! All bulbs at full brightness with minimal components.",
+                        redundant_complete: "Redundant circuit complete! Test by removing one battery.",
+                        mixed_circuit_complete: "Complex mixed circuit complete! Test both switches and observe bulb brightness."
+                },
+                hints: {
+                        component_usage_battery: "This component is used in powering circuits.",
+                        component_usage_bulb: "This component is used in lighting circuits.",
+                        component_usage_switch: "This component is used in controlling circuits.",
+                        component_usage_wire: "This component is used in connecting circuits.",
+                        component_usage_resistor: "This component is used in limiting current in circuits.",
+                        reveal_answer: "The answer is: {answer}",
+                        check_connections: "Check if all components are connected properly.",
+                        test_components: "Test each component individually.",
+                        problem_is: "The problem is: {fault}",
+                        staircase_lights: "Think about how staircase lights work - you can turn them on/off from either floor.",
+                        special_switch_configuration: "You need to wire the switches in a special configuration.",
+                        spdt_circuit: "This is called a SPDT (Single Pole Double Throw) switch circuit."
                 },
                 reasons: {
                         identify_component_feature: "Identify the key component feature shown in the prompt before naming it.",
@@ -3168,7 +3210,12 @@ export const enPhysics = {
         incorrect: "Check orbital data",
         monitor_title: "ASTRONOMY_V1",
         loading: "Loading...",
-        labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
+        labels: { mission_objective: "ORBITAL ANALYSIS", terminal_input: "TELEMETRY INPUT", hint: "HINT", sensor_feed: "SENSOR FEED", planet: "Planet", phase: "Phase" },
+        answers: {
+                jupiter: "Jupiter",
+                full: "Full",
+                full_moon: "Full Moon"
+        },
         prompts: {},
         reasons: {
                 solar_system_focus: "Identify the solar-system fact or object requested by the prompt.",

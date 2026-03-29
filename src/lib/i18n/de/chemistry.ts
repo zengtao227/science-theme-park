@@ -2312,7 +2312,8 @@ export const deChemistry = {
             ideal_atom_economy: "Ideale Atomökonomie bedeutet, dass alle Atome im Produkt landen",
             circular_starts_at_cradle: "Ein kreislauffähiges Produkt beginnt beim Cradle-Design",
             stage_label: "Phase",
-            cradle_label: "Cradle"
+            cradle_label: "Cradle",
+            recyclable_plastic_label: "PET"
         }
     }
 };

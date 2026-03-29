@@ -3,6 +3,9 @@
 import { Difficulty } from "@/hooks/useQuestManager";
 import { SP201Quest, Stage, ComponentType, FaultType } from "@/types/sp2-01-types";
 
+type Translator = (path: string, params?: Record<string, string | number>) => string;
+type Locale = "en" | "cn" | "de";
+
 // Component information database
 const componentInfo = {
   BATTERY: {
@@ -77,7 +80,7 @@ const baselScenarios = {
 };
 
 function promptText(
-  t: ((path: string, params?: Record<string, string | number>) => string) | undefined,
+  t: Translator | undefined,
   key: string,
   params?: Record<string, string | number>
 ): string {
@@ -89,11 +92,33 @@ function promptText(
   return path;
 }
 
+function detectLocale(t: Translator | undefined): Locale {
+  if (!t) return "en";
+  const back = t("sp2_01.back");
+  if (back === "返回枢纽") return "cn";
+  if (back === "Zurück zum Nexus") return "de";
+  return "en";
+}
+
+function localizedText(
+  localized: { en: string; cn: string; de: string },
+  locale: Locale
+): string {
+  return localized[locale];
+}
+
+function translateText(t: Translator | undefined, path: string, fallback: string): string {
+  if (!t) return fallback;
+  const translated = t(path);
+  return translated !== path ? translated : fallback;
+}
+
 export function buildStagePool(
-  t: ((path: string, params?: Record<string, string | number>) => string),
+  t: Translator,
   difficulty: Difficulty,
   stage: Stage
 ): SP201Quest[] {
+  const locale = detectLocale(t);
   // BASIC Difficulty - COMPONENTS Stage (20 quests)
   if (difficulty === "BASIC" && stage === "COMPONENTS") {
     const components: ComponentType[] = ["BATTERY", "BULB", "SWITCH", "WIRE", "RESISTOR"];
@@ -102,6 +127,8 @@ export function buildStagePool(
     // 4 quests per component type (5 components × 4 = 20 quests)
     components.forEach((componentType, compIdx) => {
       const info = componentInfo[componentType];
+      const localizedName = localizedText(info.name, locale);
+      const localizedFunction = localizedText(info.function, locale);
       
       // Quest 1: Identify component name
       quests.push({
@@ -116,17 +143,17 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: "Component Name",
+          labelLatex: translateText(t, "sp2_01.labels.component_name", "Component Name"),
           placeholder: t("sp2_01.placeholders.type_name"),
-          expected: info.name.en
+          expected: localizedName
         }],
-        correctLatex: `\\\\text{${info.name.en}}`,
-        answer: info.name.en,
-        baselContext: baselScenarios.home_safety.en,
+        correctLatex: `\\\\text{${localizedName}}`,
+        answer: localizedName,
+        baselContext: localizedText(baselScenarios.home_safety, locale),
         hints: [
-          `This component is used in ${componentType === "BATTERY" ? "powering" : componentType === "BULB" ? "lighting" : componentType === "SWITCH" ? "controlling" : componentType === "WIRE" ? "connecting" : "limiting current in"} circuits.`,
+          t(`sp2_01.hints.component_usage_${componentType.toLowerCase()}`),
           `Look at the symbol: ${info.symbol}`,
-          `The answer is: ${info.name.en}`
+          t("sp2_01.hints.reveal_answer", { answer: localizedName })
         ]
       });
       
@@ -145,13 +172,13 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: "Function",
+          labelLatex: translateText(t, "sp2_01.labels.function", "Function"),
           placeholder: t("sp2_01.placeholders.describe_function"),
-          expected: info.function.en
+          expected: localizedFunction
         }],
-        correctLatex: `\\\\text{${info.function.en}}`,
-        answer: info.function.en,
-        baselContext: baselScenarios.home_safety.en
+        correctLatex: `\\\\text{${localizedFunction}}`,
+        answer: localizedFunction,
+        baselContext: localizedText(baselScenarios.home_safety, locale)
       });
       
       // Quest 3: Identify symbol
@@ -169,13 +196,13 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: "Symbol",
+          labelLatex: translateText(t, "sp2_01.labels.symbol", "Symbol"),
           placeholder: t("sp2_01.placeholders.select_symbol"),
           expected: info.symbol
         }],
         correctLatex: `\\\\text{${info.symbol}}`,
         answer: info.symbol,
-        baselContext: baselScenarios.home_safety.en
+        baselContext: localizedText(baselScenarios.home_safety, locale)
       });
       
       // Quest 4: Identify terminals/properties
@@ -188,11 +215,11 @@ export function buildStagePool(
       };
       
       const terminalAnswers = {
-        BATTERY: "2 (positive and negative)",
-        BULB: "No, it works in either direction",
-        SWITCH: "Open and Closed",
-        WIRE: "Low resistance",
-        RESISTOR: "Resistance value"
+        BATTERY: t("sp2_01.answers.battery_terminals"),
+        BULB: t("sp2_01.answers.bulb_polarity"),
+        SWITCH: t("sp2_01.answers.switch_states"),
+        WIRE: t("sp2_01.answers.wire_property"),
+        RESISTOR: t("sp2_01.answers.resistor_bands")
       };
       
       quests.push({
@@ -207,13 +234,13 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: "Answer",
+          labelLatex: translateText(t, "sp2_01.labels.answer", "Answer"),
           placeholder: t("sp2_01.placeholders.type_answer"),
           expected: terminalAnswers[componentType]
         }],
         correctLatex: `\\\\text{${terminalAnswers[componentType]}}`,
         answer: terminalAnswers[componentType],
-        baselContext: baselScenarios.home_safety.en
+        baselContext: localizedText(baselScenarios.home_safety, locale)
       });
     });
     
@@ -247,9 +274,9 @@ export function buildStagePool(
         expressionLatex: "",
         targetLatex: "circuit",
         slots: [],
-        correctLatex: "\\\\text{Circuit complete! The bulb should light up.}",
+        correctLatex: `\\\\text{${t("sp2_01.answers.simple_circuit_complete")}}`,
         answer: "circuit_built",
-        baselContext: baselScenarios.home_safety.en
+        baselContext: localizedText(baselScenarios.home_safety, locale)
       });
     }
     
@@ -267,9 +294,9 @@ export function buildStagePool(
         expressionLatex: "I_{total} = I_1 = I_2 = I_3",
         targetLatex: "circuit",
         slots: [],
-        correctLatex: `\\\\text{Series circuit complete! All ${numBulbs} bulbs should glow dimmer than a single bulb.}`,
+        correctLatex: `\\\\text{${t("sp2_01.answers.series_brightness", { count: numBulbs })}}`,
         answer: "circuit_built",
-        baselContext: baselScenarios.christmas_lights.en
+        baselContext: localizedText(baselScenarios.christmas_lights, locale)
       });
     }
     
@@ -287,9 +314,9 @@ export function buildStagePool(
         expressionLatex: "I_{total} = I_1 + I_2 + I_3",
         targetLatex: "circuit",
         slots: [],
-        correctLatex: `\\\\text{Parallel circuit complete! All ${numBulbs} bulbs should glow at full brightness.}`,
+        correctLatex: `\\\\text{${t("sp2_01.answers.parallel_brightness", { count: numBulbs })}}`,
         answer: "circuit_built",
-        baselContext: baselScenarios.christmas_lights.en
+        baselContext: localizedText(baselScenarios.christmas_lights, locale)
       });
     }
     
@@ -306,9 +333,9 @@ export function buildStagePool(
         expressionLatex: "",
         targetLatex: "circuit",
         slots: [],
-        correctLatex: "\\\\text{Circuit complete! Toggle the switch to turn the bulb on and off.}",
+        correctLatex: `\\\\text{${t("sp2_01.answers.switch_circuit_complete")}}`,
         answer: "circuit_built",
-        baselContext: baselScenarios.home_safety.en
+        baselContext: localizedText(baselScenarios.home_safety, locale)
       });
     }
     
@@ -339,9 +366,9 @@ export function buildStagePool(
         expressionLatex: "",
         targetLatex: "diagram",
         slots: [],
-        correctLatex: "\\\\text{Diagram correct! Battery symbol with + and - terminals, bulb symbol as circle with X.}",
+        correctLatex: `\\\\text{${t("sp2_01.answers.diagram_correct")}}`,
         answer: "diagram_drawn",
-        baselContext: baselScenarios.school_lab.en
+        baselContext: localizedText(baselScenarios.school_lab, locale)
       });
     }
     
@@ -363,10 +390,10 @@ export function buildStagePool(
         targetLatex: "circuit",
         slots: [],
         correctLatex: i % 2 === 0
-          ? "\\\\text{Series: All bulbs dim because current is limited by total resistance.}"
-          : "\\\\text{Parallel: All bulbs bright because each has full voltage.}",
+          ? `\\\\text{${t("sp2_01.answers.series_brightness", { count: 3 })}}`
+          : `\\\\text{${t("sp2_01.answers.parallel_brightness", { count: 3 })}}`,
         answer: "circuit_built",
-        baselContext: baselScenarios.christmas_lights.en
+        baselContext: localizedText(baselScenarios.christmas_lights, locale)
       });
     }
     
@@ -374,6 +401,7 @@ export function buildStagePool(
     const faults: FaultType[] = ["BROKEN_WIRE", "DEAD_BATTERY", "BURNED_BULB", "OPEN_SWITCH", "BROKEN_WIRE"];
     for (let i = 11; i <= 15; i++) {
       const fault = faults[i - 11];
+      const localizedFault = t(`sp2_01.faults.${fault.toLowerCase()}`);
       quests.push({
         id: `TROUBLESHOOT_ADVANCED_${i}`,
         difficulty: "ADVANCED",
@@ -397,17 +425,17 @@ export function buildStagePool(
         targetLatex: "fault",
         slots: [{
           id: "fault",
-          labelLatex: "Fault Type",
+          labelLatex: translateText(t, "sp2_01.labels.fault_type", "Fault Type"),
           placeholder: t("sp2_01.placeholders.identify_fault"),
-          expected: fault
+          expected: localizedFault
         }],
-        correctLatex: `\\\\text{Fault: ${fault.replace(/_/g, " ")}}`,
-        answer: fault,
-        baselContext: baselScenarios.school_lab.en,
+        correctLatex: `\\\\text{${localizedFault}}`,
+        answer: localizedFault,
+        baselContext: localizedText(baselScenarios.school_lab, locale),
         hints: [
-          "Check if all components are connected properly.",
-          "Test each component individually.",
-          `The problem is: ${fault.replace(/_/g, " ").toLowerCase()}`
+          t("sp2_01.hints.check_connections"),
+          t("sp2_01.hints.test_components"),
+          t("sp2_01.hints.problem_is", { fault: localizedFault })
         ]
       });
     }
@@ -434,13 +462,13 @@ export function buildStagePool(
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
-      correctLatex: "\\\\text{Two-way switch circuit complete! Test both switches.}",
+      correctLatex: `\\\\text{${t("sp2_01.answers.two_way_complete")}}`,
       answer: "circuit_designed",
-      baselContext: baselScenarios.sbb_station.en,
+      baselContext: localizedText(baselScenarios.sbb_station, locale),
       hints: [
-        "Think about how staircase lights work - you can turn them on/off from either floor.",
-        "You need to wire the switches in a special configuration.",
-        "This is called a SPDT (Single Pole Double Throw) switch circuit."
+        t("sp2_01.hints.staircase_lights"),
+        t("sp2_01.hints.special_switch_configuration"),
+        t("sp2_01.hints.spdt_circuit")
       ]
     });
     
@@ -459,9 +487,9 @@ export function buildStagePool(
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
-      correctLatex: "\\\\text{Independent control circuit complete! Test each switch separately.}",
+      correctLatex: `\\\\text{${t("sp2_01.answers.independent_control_complete")}}`,
       answer: "circuit_designed",
-      baselContext: baselScenarios.sbb_station.en
+      baselContext: localizedText(baselScenarios.sbb_station, locale)
     });
     
     // Quest 3: Optimize component count
@@ -479,9 +507,9 @@ export function buildStagePool(
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
-      correctLatex: "\\\\text{Efficient parallel circuit! All bulbs at full brightness with minimal components.}",
+      correctLatex: `\\\\text{${t("sp2_01.answers.efficient_parallel_complete")}}`,
       answer: "circuit_designed",
-      baselContext: baselScenarios.sbb_station.en
+      baselContext: localizedText(baselScenarios.sbb_station, locale)
     });
     
     // Quest 4: Emergency backup lighting
@@ -499,9 +527,9 @@ export function buildStagePool(
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
-      correctLatex: "\\\\text{Redundant circuit complete! Test by removing one battery.}",
+      correctLatex: `\\\\text{${t("sp2_01.answers.redundant_complete")}}`,
       answer: "circuit_designed",
-      baselContext: baselScenarios.sbb_station.en
+      baselContext: localizedText(baselScenarios.sbb_station, locale)
     });
     
     // Quest 5: Complex mixed circuit
@@ -520,9 +548,9 @@ export function buildStagePool(
       expressionLatex: "",
       targetLatex: "circuit",
       slots: [],
-      correctLatex: "\\\\text{Complex mixed circuit complete! Test both switches and observe bulb brightness.}",
+      correctLatex: `\\\\text{${t("sp2_01.answers.mixed_circuit_complete")}}`,
       answer: "circuit_designed",
-      baselContext: baselScenarios.sbb_station.en
+      baselContext: localizedText(baselScenarios.sbb_station, locale)
     });
     
     return quests;

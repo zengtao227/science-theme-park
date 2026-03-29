@@ -2318,7 +2318,8 @@ export const cnChemistry = {
             ideal_atom_economy: "理想原子经济性表示所有原子都进入产物",
             circular_starts_at_cradle: "循环型产品从摇篮设计开始",
             stage_label: "阶段",
-            cradle_label: "摇篮"
+            cradle_label: "摇篮",
+            recyclable_plastic_label: "PET"
         }
     }
 };

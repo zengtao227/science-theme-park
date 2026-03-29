@@ -1123,7 +1123,12 @@ export const cnPhysics = {
         incorrect: "电路错误",
         monitor_title: "SP2.01_电路实验室",
         labels: {
-            quest: "任务"
+            quest: "任务",
+            component_name: "元件名称",
+            function: "功能",
+            symbol: "符号",
+            answer: "答案",
+            fault_type: "故障类型"
         },
         objective_title: "电路目标",
         difficulty: { basic: "基础", core: "核心", advanced: "进阶", elite: "精英" },
@@ -1195,6 +1200,43 @@ export const cnPhysics = {
             design_efficient_four_bulbs: "市政节能改造：设计让 4 个灯泡满亮且元件最少的电路，用于降低材料和维护成本。",
             design_emergency_backup: "医院应急照明：设计带备用电源的电路，已知一节电池可能失效，要求至少一盏灯持续工作。",
             design_mixed_series_parallel: "综合训练：设计混合电路（开关1控制2灯串联，开关2控制2灯并联），用于演示两种拓扑独立运行。"
+        },
+        faults: {
+            broken_wire: "导线断开",
+            dead_battery: "电池没电",
+            burned_bulb: "灯泡烧坏",
+            open_switch: "开关断开"
+        },
+        answers: {
+            battery_terminals: "2 个（正极和负极）",
+            bulb_polarity: "没有，任意方向都能工作",
+            switch_states: "断开和闭合",
+            wire_property: "低电阻",
+            resistor_bands: "电阻值",
+            simple_circuit_complete: "电路已闭合，灯泡应当点亮。",
+            series_brightness: "串联电路完成。{count} 个灯泡都会比单个灯泡更暗。",
+            parallel_brightness: "并联电路完成。{count} 个灯泡都会以完整亮度发光。",
+            switch_circuit_complete: "电路已完成，切换开关即可控制灯泡开关。",
+            diagram_correct: "图示正确：电池符号带正负极，灯泡符号为带叉圆圈。",
+            two_way_complete: "双控开关电路完成，请测试两个开关。",
+            independent_control_complete: "独立控制电路完成，请分别测试每个开关。",
+            efficient_parallel_complete: "高效并联电路完成，所有灯泡以最少元件保持全亮。",
+            redundant_complete: "冗余电路完成，请移除一块电池后继续测试。",
+            mixed_circuit_complete: "复杂混合电路完成，请测试两个开关并观察亮度变化。"
+        },
+        hints: {
+            component_usage_battery: "这个元件用于给电路供电。",
+            component_usage_bulb: "这个元件用于照明电路。",
+            component_usage_switch: "这个元件用于控制电路通断。",
+            component_usage_wire: "这个元件用于连接电路各部分。",
+            component_usage_resistor: "这个元件用于限制电路中的电流。",
+            reveal_answer: "答案是：{answer}",
+            check_connections: "先检查所有元件是否连接正确。",
+            test_components: "把各个元件分别单独测试。",
+            problem_is: "问题是：{fault}",
+            staircase_lights: "想想楼梯灯是怎么工作的：你可以从两端任意一侧开关灯。",
+            special_switch_configuration: "你需要用一种特殊的开关接线方式。",
+            spdt_circuit: "这叫作单刀双掷（SPDT）开关电路。"
         },
         reasons: {
             identify_component_feature: "先识别题目中给出的关键元件特征，再判断元件名称。",
@@ -3081,7 +3123,12 @@ export const cnPhysics = {
         incorrect: "轨道数据异常",
         monitor_title: "天文监测 V1",
         loading: "加载中...",
-        labels: { mission_objective: "轨道遥测分析", terminal_input: "遥测输入", hint: "提示", sensor_feed: "传感器数据流" },
+        labels: { mission_objective: "轨道遥测分析", terminal_input: "遥测输入", hint: "提示", sensor_feed: "传感器数据流", planet: "行星", phase: "月相" },
+        answers: {
+            jupiter: "木星",
+            full: "满月",
+            full_moon: "满月"
+        },
         prompts: {
             sp1_04_q1: "识别太阳系中体积最大的行星。",
             sp1_04_q2: "识别月球完全被照亮时的相位名称。",

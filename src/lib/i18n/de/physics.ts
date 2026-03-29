@@ -1187,7 +1187,12 @@ export const dePhysics = {
                 incorrect: "Stromkreis Fehler",
                 monitor_title: "SP2.01_STROMKREIS_LABOR",
                 labels: {
-                        quest: "Aufgabe"
+                        quest: "Aufgabe",
+                        component_name: "Bauteilname",
+                        function: "Funktion",
+                        symbol: "Symbol",
+                        answer: "Antwort",
+                        fault_type: "Fehlerart"
                 },
                 objective_title: "Stromkreis Ziel",
                 difficulty: { basic: "BASIS", core: "KERN", advanced: "ERWEITERT", elite: "ELITE" },
@@ -1259,6 +1264,43 @@ export const dePhysics = {
                         design_efficient_four_bulbs: "Kommunales Energiesparprojekt: Entwerfen Sie eine Schaltung für 4 Lampen mit voller Helligkeit und minimalen Komponenten, um Kosten und Wartung zu senken.",
                         design_emergency_backup: "Krankenhaus-Notbeleuchtung: Entwerfen Sie eine Backup-Versorgung, sodass bei Ausfall einer Batterie mindestens eine Lampe für die Evakuierung aktiv bleibt.",
                         design_mixed_series_parallel: "Integrationsaufgabe: Entwerfen Sie eine Mischschaltung, bei der Schalter 1 zwei Lampen in Reihe und Schalter 2 zwei Lampen parallel steuert; beide Gruppen sollen unabhängig laufen."
+                },
+                faults: {
+                        broken_wire: "Drahtbruch",
+                        dead_battery: "Leere Batterie",
+                        burned_bulb: "Durchgebrannte Lampe",
+                        open_switch: "Offener Schalter"
+                },
+                answers: {
+                        battery_terminals: "2 (Plus und Minus)",
+                        bulb_polarity: "Nein, sie funktioniert in beide Richtungen",
+                        switch_states: "Offen und geschlossen",
+                        wire_property: "Geringer Widerstand",
+                        resistor_bands: "Widerstandswert",
+                        simple_circuit_complete: "Schaltung vollständig. Die Lampe sollte leuchten.",
+                        series_brightness: "Reihenschaltung fertig. Alle {count} Lampen leuchten schwächer als eine einzelne Lampe.",
+                        parallel_brightness: "Parallelschaltung fertig. Alle {count} Lampen leuchten mit voller Helligkeit.",
+                        switch_circuit_complete: "Schaltung vollständig. Betätigen Sie den Schalter, um die Lampe ein- und auszuschalten.",
+                        diagram_correct: "Diagramm korrekt: Batteriesymbol mit Plus- und Minuspol, Lampensymbol als Kreis mit X.",
+                        two_way_complete: "Wechselschaltung fertig. Testen Sie beide Schalter.",
+                        independent_control_complete: "Schaltung mit unabhängiger Steuerung fertig. Testen Sie jeden Schalter einzeln.",
+                        efficient_parallel_complete: "Effiziente Parallelschaltung fertig. Alle Lampen leuchten mit minimalem Bauteileinsatz hell.",
+                        redundant_complete: "Redundante Schaltung fertig. Testen Sie sie, indem Sie eine Batterie entfernen.",
+                        mixed_circuit_complete: "Komplexe Mischschaltung fertig. Testen Sie beide Schalter und beobachten Sie die Helligkeit."
+                },
+                hints: {
+                        component_usage_battery: "Dieses Bauteil wird in versorgenden Stromkreisen verwendet.",
+                        component_usage_bulb: "Dieses Bauteil wird in Beleuchtungsstromkreisen verwendet.",
+                        component_usage_switch: "Dieses Bauteil wird zum Steuern von Stromkreisen verwendet.",
+                        component_usage_wire: "Dieses Bauteil wird zum Verbinden von Stromkreisen verwendet.",
+                        component_usage_resistor: "Dieses Bauteil wird zum Begrenzen des Stroms im Stromkreis verwendet.",
+                        reveal_answer: "Die Antwort ist: {answer}",
+                        check_connections: "Prüfen Sie zuerst, ob alle Komponenten korrekt verbunden sind.",
+                        test_components: "Testen Sie jede Komponente einzeln.",
+                        problem_is: "Das Problem ist: {fault}",
+                        staircase_lights: "Denken Sie daran, wie Treppenhauslicht funktioniert: Man kann es von beiden Enden schalten.",
+                        special_switch_configuration: "Sie müssen die Schalter in einer besonderen Konfiguration verdrahten.",
+                        spdt_circuit: "Dies ist eine SPDT-Schaltung (Single Pole Double Throw)."
                 },
                 reasons: {
                         identify_component_feature: "Bestimmen Sie zuerst das entscheidende Merkmal des Bauteils, bevor Sie es benennen.",
@@ -3126,7 +3168,12 @@ export const dePhysics = {
                 incorrect: "Orbit-Anomalie",
                 monitor_title: "ASTRONOMIE_V1",
                 loading: "Lädt...",
-                labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM" },
+                labels: { mission_objective: "ORBITAL-ANALYSE", terminal_input: "TELEMETRIE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM", planet: "Planet", phase: "Phase" },
+                answers: {
+                        jupiter: "Jupiter",
+                        full: "Vollmond",
+                        full_moon: "Vollmond"
+                },
                 prompts: {
                         sp1_04_q1: "Identifizieren Sie den größten Planeten im Sonnensystem.",
                         sp1_04_q2: "Identifizieren Sie die Phase, wenn der Mond voll beleuchtet ist.",

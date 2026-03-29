@@ -2319,7 +2319,8 @@ export const enChemistry = {
             ideal_atom_economy: "Ideal atom economy means all atoms enter the product",
             circular_starts_at_cradle: "A circular product starts at cradle design",
             stage_label: "Stage",
-            cradle_label: "Cradle"
+            cradle_label: "Cradle",
+            recyclable_plastic_label: "PET"
         }
     }
 };

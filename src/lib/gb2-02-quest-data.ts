@@ -12,6 +12,65 @@ import { GB202Quest, Stage } from './gb2-02-types';
 import { Difficulty } from '@/hooks/useQuestManager';
 import { HORMONES } from './gb2-02-hormone-data';
 
+type Translator = (path: string, params?: Record<string, string | number>) => string;
+
+function translateText(t: Translator | undefined, path: string, fallback: string): string {
+  if (!t) return fallback;
+  const translated = t(path);
+  return translated !== path ? translated : fallback;
+}
+
+function translateOption(t: Translator | undefined, key: string): string {
+  return translateText(t, `gb2_02.options.${key}`, key);
+}
+
+function contextPathForQuest(id?: string): string | undefined {
+  switch (id) {
+    case "HORMONE_ID_BASIC_1":
+      return "gb2_02.builder.contexts.roche_diagnostics_basel";
+    case "HORMONE_ID_BASIC_2":
+      return "gb2_02.builder.contexts.novartis_endocrinology_lab_basel";
+    case "HORMONE_ID_BASIC_3":
+      return "gb2_02.builder.contexts.basel_thyroid_clinic";
+    case "HORMONE_ID_BASIC_4":
+      return "gb2_02.builder.contexts.basel_diabetes_center";
+    case "HORMONE_ID_BASIC_5":
+      return "gb2_02.builder.contexts.basel_emergency_medicine_research";
+    default:
+      return undefined;
+  }
+}
+
+function localizeQuest(t: Translator | undefined, quest: Partial<GB202Quest>): Partial<GB202Quest> {
+  const contextPath = contextPathForQuest(quest.id);
+  return {
+    ...quest,
+    promptLatex: quest.promptLatex
+      ? translateText(t, quest.promptLatex, quest.promptLatex)
+      : quest.promptLatex,
+    baselContext: contextPath && quest.baselContext
+      ? translateText(t, contextPath, quest.baselContext)
+      : quest.baselContext,
+    slots: quest.slots?.map((slot) => ({
+      ...slot,
+      labelLatex:
+        slot.id === "type"
+          ? translateText(t, "gb2_02.labels.slot_hormone_type", slot.labelLatex)
+          : slot.id === "gland"
+            ? translateText(t, "gb2_02.labels.slot_producing_gland", slot.labelLatex)
+            : slot.labelLatex,
+      placeholder:
+        slot.id === "type"
+          ? translateText(t, "gb2_02.placeholders.hormone_type", slot.placeholder)
+          : slot.id === "gland"
+            ? translateText(t, "gb2_02.placeholders.gland", slot.placeholder)
+            : slot.placeholder,
+      options: slot.options?.map((option) => translateOption(t, option)),
+      expected: typeof slot.expected === "string" ? translateOption(t, slot.expected) : slot.expected,
+    })),
+  };
+}
+
 /**
  * Hormone Identification Stage - BASIC Difficulty (5 quests)
  */
@@ -116,12 +175,13 @@ const HORMONE_ID_BASIC: Partial<GB202Quest>[] = [
  */
 export function getQuestsByStageAndDifficulty(
   stage: Stage,
-  difficulty: Difficulty
+  difficulty: Difficulty,
+  t?: Translator
 ): Partial<GB202Quest>[] {
   // For now, return BASIC hormone identification quests
   // This will be expanded with all 60 quests
   if (stage === "HORMONE_IDENTIFICATION" && difficulty === "BASIC") {
-    return HORMONE_ID_BASIC;
+    return HORMONE_ID_BASIC.map((quest) => localizeQuest(t, quest));
   }
   
   // Return empty array for other combinations (to be implemented)

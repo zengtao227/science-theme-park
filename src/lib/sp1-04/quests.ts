@@ -1,6 +1,7 @@
 import { Difficulty, Quest } from "@/hooks/useQuestManager";
 
 export type Stage = "SOLAR_SYSTEM" | "MOON_PHASES" | "SEASONS";
+type Translator = (path: string, params?: Record<string, string | number>) => string;
 
 export interface SP104Quest extends Quest {
     stage: Stage;
@@ -39,29 +40,52 @@ export const QUEST_DATA: SP104Quest[] = [
     }
 ];
 
-export const generateSolarSystemQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
+function translateText(t: Translator | undefined, path: string, fallback: string): string {
+    if (!t) return fallback;
+    const translated = t(path);
+    return translated !== path ? translated : fallback;
+}
+
+export const generateSolarSystemQuests = (t: Translator | undefined, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "SOLAR_SYSTEM" && q.difficulty === difficulty)
         .map(q => ({
             ...q,
-            promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex,
-            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_04.placeholders.name") || slot.placeholder })),
+            promptLatex: translateText(t, `sp1_04.prompts.${q.id}`, q.promptLatex),
+            targetLatex: translateText(t, "sp1_04.answers.jupiter", q.targetLatex),
+            correctLatex: translateText(t, "sp1_04.answers.jupiter", q.correctLatex),
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: translateText(t, "sp1_04.labels.planet", slot.labelLatex),
+                placeholder: translateText(t, "sp1_04.placeholders.name", slot.placeholder),
+                expected: translateText(t, "sp1_04.answers.jupiter", String(slot.expected)),
+            })),
         }));
 };
 
-export const generateMoonPhasesQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
+export const generateMoonPhasesQuests = (t: Translator | undefined, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "MOON_PHASES" && q.difficulty === difficulty)
         .map(q => ({
             ...q,
-            promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex,
-            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_04.placeholders.name") || slot.placeholder })),
+            promptLatex: translateText(t, `sp1_04.prompts.${q.id}`, q.promptLatex),
+            targetLatex: translateText(t, "sp1_04.answers.full", q.targetLatex),
+            correctLatex: translateText(t, "sp1_04.answers.full_moon", q.correctLatex),
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: translateText(t, "sp1_04.labels.phase", slot.labelLatex),
+                placeholder: translateText(t, "sp1_04.placeholders.name", slot.placeholder),
+                expected: translateText(t, "sp1_04.answers.full", String(slot.expected)),
+            })),
         }));
 };
 
-export const generateSeasonsQuests = (t: any, difficulty: Difficulty): SP104Quest[] => {
+export const generateSeasonsQuests = (t: Translator | undefined, difficulty: Difficulty): SP104Quest[] => {
     return QUEST_DATA.filter(q => q.stage === "SEASONS" && q.difficulty === difficulty)
         .map(q => ({
             ...q,
-            promptLatex: t(`sp1_04.prompts.${q.id}`) || q.promptLatex,
-            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_04.placeholders.degrees") || slot.placeholder })),
+            promptLatex: translateText(t, `sp1_04.prompts.${q.id}`, q.promptLatex),
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                placeholder: translateText(t, "sp1_04.placeholders.degrees", slot.placeholder),
+            })),
         }));
 };
