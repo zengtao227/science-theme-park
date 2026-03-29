@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
-import { buildFullSolution, formatNumber, makeStep, round2, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, formatNumber, makeStep, round2, type Translator } from "@/lib/feedback/solverSupport";
 import type { SC102Quest } from "./quests";
 
 const ATOMIC_MASSES: Record<string, number> = {
@@ -39,7 +39,7 @@ export function solveSC102(quest: SC102Quest, t: Translator) {
       .join(" + ");
     const molarMass = computeMolarMass(formula);
     steps.push(
-      makeStep(1, t("common.feedback_reasons.identify_given_values"), `\\text{Formula} = ${quest.reactionLatex}`),
+      makeStep(1, t("common.feedback_reasons.identify_given_values"), `\\text{${escapeLatexText(t("chemistry.sc1_02.labels.formula"))}} = ${quest.reactionLatex}`),
       makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "M = \\sum n_i M_i"),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `M = ${massLatex} = ${formatNumber(molarMass)}`),
     );

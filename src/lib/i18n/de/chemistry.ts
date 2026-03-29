@@ -522,7 +522,7 @@ export const deChemistry = {
         },
 
         labels: {
-            scale: "天平读数",
+            scale: "Waagenanzeige",
             formula: "Formel",
             atoms: "Atomgewichte",
             reaction: "Reaktion",

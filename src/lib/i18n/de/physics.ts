@@ -1340,7 +1340,7 @@ export const dePhysics = {
                         efficiency: "WIRKUNGSGRAD"
                 },
             placeholders: {
-                type_value: "type value"
+                type_value: "Wert eingeben"
             },
                 scenarios: {
                         power_basics: "Basler Haushalts-Elektrizität: Sie helfen einem Basler Energieberatungsunternehmen, den Stromverbrauch für Privatkunden zu berechnen. Die elektrische Leistung (P = U × I) bestimmt, wie viel Energie Geräte pro Sekunde verbrauchen, gemessen in Watt. Ihre Aufgabe ist es, die Leistung verschiedener Haushaltsgeräte zu berechnen. Dies hilft Familien, Stromrechnungen und CO_2-Fußabdruck zu reduzieren. Ein typischer Basler Haushalt verbraucht etwa 4.500 kWh pro Jahr, was bei 0,25 CHF/kWh etwa 1.125 CHF kostet. Genaue Leistungsberechnungen helfen, energieverschwendende Geräte zu identifizieren.",
