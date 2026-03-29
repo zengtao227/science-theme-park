@@ -33,6 +33,13 @@ function driftWork(quest: SP307Quest) {
   return `\\theta = \\arccos\\left(-\\frac{v_r}{v_f}\\right) = \\arccos\\left(-\\frac{${formatNumber(quest.vRiver)}}{${formatNumber(quest.vFerry)}}\\right) = ${formatNumber(angle)}^\\circ`;
 }
 
+function compositionRule(quest: SP307Quest) {
+  if (quest.targetLatex.includes("x")) return "v_{net,x} = v_f\\cos\\theta";
+  if (quest.targetLatex.includes("y")) return "v_{net,y} = v_f\\sin\\theta + v_r";
+  if (quest.targetLatex.includes("\\theta")) return "\\theta_{net} = \\arctan\\left(\\frac{v_f\\sin\\theta + v_r}{v_f\\cos\\theta}\\right)";
+  return "v_{net} = \\sqrt{(v_f\\cos\\theta)^2 + (v_f\\sin\\theta + v_r)^2}";
+}
+
 function navigationWork(quest: SP307Quest) {
   const sin = Math.sin(rad(quest.theta));
   const cos = Math.cos(rad(quest.theta));
@@ -54,19 +61,27 @@ function navigationWork(quest: SP307Quest) {
   return quest.expressionLatex;
 }
 
+function navigationRule(quest: SP307Quest) {
+  if (quest.targetLatex.includes("d_{drift}")) return "d_{drift} = v_r t";
+  if (quest.targetLatex.includes("\\theta")) return "\\theta_{path} = \\arctan\\left(\\frac{d_{drift}}{d}\\right)";
+  if (quest.targetLatex.includes("E")) return "E = \\frac{1}{2}mv_{net}^{2}";
+  if (quest.targetLatex.includes("v_{net}")) return "v_{net} = \\sqrt{(v_f\\sin\\theta)^2 + (v_f\\cos\\theta + v_r)^2}";
+  return quest.expressionLatex;
+}
+
 export function solveSP307(quest: SP307Quest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), `v_r=${formatNumber(quest.vRiver)},\\; v_f=${formatNumber(quest.vFerry)},\\; \\theta=${formatNumber(quest.theta)}^\\circ`),
   ];
 
   if (quest.stage === "COMPOSITION") {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), quest.expressionLatex));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), compositionRule(quest)));
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), compositionWork(quest)));
   } else if (quest.stage === "DRIFT") {
     steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "v_f\\cos\\theta + v_r = 0"));
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), driftWork(quest)));
   } else {
-    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), quest.expressionLatex));
+    steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), navigationRule(quest)));
     steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), navigationWork(quest)));
   }
 

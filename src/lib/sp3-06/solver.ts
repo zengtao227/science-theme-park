@@ -128,10 +128,51 @@ function buildReasoningLatex(quest: SP306Quest, t: Translator) {
   }
 }
 
+function buildRuleLatex(quest: SP306Quest) {
+  switch (quest.soundType) {
+    case "speed":
+    case "wavelength_calc":
+      return "\\lambda = \\frac{v}{f}";
+    case "frequency":
+    case "steel":
+      return "f = \\frac{v}{\\lambda}";
+    case "distance":
+      return "d = vt";
+    case "echo":
+      return "v = \\frac{2d}{t}";
+    case "reflection":
+      return "t = \\frac{2d}{v}";
+    case "beat_frequency":
+      return "f_{beat} = |f_1 - f_2|";
+    case "standing_wave":
+      return "f = \\frac{v}{4L}";
+    case "resonance":
+      return "f = \\frac{v}{2L}";
+    case "concert_pitch":
+    case "octave":
+    case "harmonics":
+    case "third_harmonic":
+      return "f_n = n f_1";
+    case "semitone":
+    case "equal_temperament":
+      return "r = 2^{1/12}";
+    case "decibel_calc":
+    case "intensity_to_db":
+      return "L = 10\\log_{10}\\left(\\frac{I}{I_0}\\right)";
+    case "db_to_intensity":
+      return "I = I_0\\cdot 10^{L/10}";
+    case "whisper":
+    case "rock_concert":
+      return "\\frac{I_2}{I_1} = 10^{\\Delta L / 10}";
+    default:
+      return quest.expressionLatex;
+  }
+}
+
 export function solveSP306(quest: SP306Quest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
-    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), quest.expressionLatex),
+    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), buildRuleLatex(quest)),
   ];
 
   steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), buildReasoningLatex(quest, t)));
