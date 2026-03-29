@@ -1757,12 +1757,12 @@ export const enPhysics = {
                         energy_audit_heatpump: "Energy Audit - Heat Pump",
                         energy_audit_solar: "Energy Audit - Solar Panel",
                         iwb_grid_load: "Grid Load",
-                        sp1_03_q1: "Question 1",
-                        sp1_03_q2: "Question 2",
-                        sp1_03_q3: "Question 3",
-                        sp1_04_q1: "Question 1",
-                        sp1_04_q2: "Question 2",
-                        sp1_04_q3: "Question 3"
+                        sp1_03_q1: "Identify this atmospheric layer.",
+                        sp1_03_q2: "What is the standard sea-level pressure (hPa)?",
+                        sp1_03_q3: "Identify the primary greenhouse gas (formula).",
+                        sp1_04_q1: "Identify the largest planet in the solar system.",
+                        sp1_04_q2: "Identify the phase when the Moon is fully illuminated.",
+                        sp1_04_q3: "What is Earth's axial tilt in degrees?"
                 },
                 scenarios: {
                         rhine_swimming: "Rhine River Swimming: Divers explore the Rhine bed near Mittlere Brücke. Water pressure increases with depth.",
