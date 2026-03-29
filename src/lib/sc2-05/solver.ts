@@ -6,6 +6,12 @@ function isBase(quest: AcidBaseQuest) {
   return /OH|NH_3/.test(quest.substance ?? "") || (quest.pH ?? 7) > 7;
 }
 
+function concentrationText(quest: AcidBaseQuest) {
+  if (typeof quest.concentration === "number") return String(quest.concentration);
+  const match = quest.expressionLatex.match(/(?:=|approx)\s*([0-9.]+(?:\\times 10\^{[-\d]+})?)/);
+  return match?.[1] ?? quest.expressionLatex;
+}
+
 export function solveSC205(quest: AcidBaseQuest, t: Translator) {
   const steps: PlatformSolutionStep[] = [makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex)];
 
@@ -13,10 +19,19 @@ export function solveSC205(quest: AcidBaseQuest, t: Translator) {
     case "PH_BASICS":
       if (quest.reactionType === "buffer") {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "pH = pK_a + \\log\\frac{[A^-]}{[HA]}"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex));
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.ph_special_case"))}}`));
       } else if (quest.reactionType === "dissociation") {
+        const concentration = concentrationText(quest);
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), isBase(quest) ? "pOH = -\\log[OH^-],\\; pH = 14 - pOH" : "pH = -\\log[H^+]"));
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex));
+        steps.push(
+          makeStep(
+            3,
+            t("common.feedback_reasons.solve_step_by_step"),
+            isBase(quest)
+              ? `pOH = -\\log(${concentration}),\\; pH = 14 - pOH`
+              : `pH = -\\log(${concentration})`
+          )
+        );
       } else {
         steps.push(
           makeStep(
@@ -42,7 +57,15 @@ export function solveSC205(quest: AcidBaseQuest, t: Translator) {
       break;
     case "TITRATION":
       steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "C_a V_a = C_b V_b"));
-      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.targetLatex.includes("pH") ? `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.titration_ph"))}}` : `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.titration_generic"))}}`));
+      steps.push(
+        makeStep(
+          3,
+          t("common.feedback_reasons.solve_step_by_step"),
+          quest.targetLatex.includes("pH")
+            ? `C_a V_a = C_b V_b,\\; \\text{${escapeLatexText(t("chemistry.sc2_05.solver.titration_ph"))}}`
+            : `C_a V_a = C_b V_b,\\; \\text{${escapeLatexText(t("chemistry.sc2_05.solver.titration_generic"))}}`
+        )
+      );
       break;
     default:
       return { steps: [], fullSolutionLatex: null };

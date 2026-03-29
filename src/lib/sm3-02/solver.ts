@@ -54,6 +54,14 @@ function parseWaveFrequency(expr: string) {
   return 1;
 }
 
+function derivativeExpression(expr: string) {
+  if (expr.includes("y=\\sin(x)")) return "y' = \\cos(x)";
+  if (expr.includes("y=\\cos(x)")) return "y' = -\\sin(x)";
+  if (expr.includes("y=2\\sin(x)")) return "y' = 2\\cos(x)";
+  if (expr.includes("y=3\\cos(x)")) return "y' = -3\\sin(x)";
+  return expr;
+}
+
 function solveUnitCircle(quest: S302Quest, t: Translator) {
   const slot = getSlot(quest);
   if (!slot || quest.angle == null) return null;
@@ -95,7 +103,7 @@ function solveUnitCircle(quest: S302Quest, t: Translator) {
   if (slot.id === "d") {
     steps.push(
       makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${escapeLatexText(t("math.sm3_02.solver.radians_to_degrees_rule"))}}\\; = \\text{${escapeLatexText(t("math.sm3_02.solver.radians_label"))}}\\cdot \\frac{180}{\\pi}`),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${quest.expressionLatex} \\cdot \\frac{180}{\\pi}`),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\left(${quest.expressionLatex}\\right) \\cdot \\frac{180}{\\pi}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
     );
     return steps;
@@ -176,7 +184,7 @@ function solveWaves(quest: S302Quest, t: Translator) {
   if (slot.id === "d") {
     steps.push(
       makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `(\\sin x)' = \\cos x,\\quad (\\cos x)' = -\\sin x\\; \\text{${escapeLatexText(t("math.sm3_02.solver.derivative_rule"))}}`),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), derivativeExpression(quest.expressionLatex)),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `y' = ${quest.correctLatex}`, "key")
     );
     return steps;

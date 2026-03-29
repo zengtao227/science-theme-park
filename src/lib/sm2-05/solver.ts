@@ -29,6 +29,10 @@ function getBaseLabel(base: string | number) {
   return typeof base === "number" ? String(base) : base;
 }
 
+function powerExpression(base: string, exponent: string | number) {
+  return `${base}^{${toLatexValue(exponent)}}`;
+}
+
 export function solveSM205(quest: SM205FeedbackQuest, t: Translator): Omit<FeedbackContent, "hint"> {
   const steps = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
@@ -55,10 +59,11 @@ export function solveSM205(quest: SM205FeedbackQuest, t: Translator): Omit<Feedb
       );
     } else if (quest.visual.mode === "POWER") {
       if (quest.expressionLatex.includes("\\cdot") || quest.expressionLatex.includes("\\div")) {
+        const combinedExponent = quest.visual.m * quest.visual.n;
         steps.push(
           makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "(a^m)^n = a^{mn}"),
-          makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.correctLatex || quest.targetLatex),
-          makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex || `${base}^{${toLatexValue(targetExponent ?? quest.visual.m * quest.visual.n)}}`, "key")
+          makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `(${powerExpression(base, quest.visual.m)})^{${quest.visual.n}} = ${powerExpression(base, combinedExponent)}`),
+          makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex || `${base}^{${toLatexValue(targetExponent ?? combinedExponent)}}`, "key")
         );
       } else {
         const exponent = targetExponent ?? quest.visual.m * quest.visual.n;
@@ -75,7 +80,7 @@ export function solveSM205(quest: SM205FeedbackQuest, t: Translator): Omit<Feedb
     if (quest.expressionLatex.includes("\\frac{1}{") && targetExponent !== null) {
       steps.push(
         makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "a^{-n} = \\frac{1}{a^n}"),
-        makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${quest.expressionLatex} = ${base}^{${targetExponent}}`),
+        makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\frac{1}{${base}^{${quest.visual.n}}} = ${base}^{${targetExponent}}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex || `${base}^{${targetExponent}}`, "key")
       );
     } else if (targetValue != null) {
@@ -88,7 +93,7 @@ export function solveSM205(quest: SM205FeedbackQuest, t: Translator): Omit<Feedb
     } else if (targetExponent !== null) {
       steps.push(
         makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "a^{-n} = \\frac{1}{a^n}"),
-        makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.correctLatex || quest.targetLatex),
+        makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${base}^{-${quest.visual.n}} = \\frac{1}{${base}^{${quest.visual.n}}}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex || `${base}^{${targetExponent}}`, "key")
       );
     } else {
@@ -105,7 +110,7 @@ export function solveSM205(quest: SM205FeedbackQuest, t: Translator): Omit<Feedb
       if (quest.expressionLatex.includes("\\cdot 10^") && (quest.expressionLatex.includes("\\div") || quest.expressionLatex.includes(") \\cdot (") || quest.expressionLatex.includes(")^"))) {
         steps.push(
           makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "a \\cdot 10^m \\times b \\cdot 10^n = (ab) \\cdot 10^{m+n}"),
-          makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.correctLatex || quest.targetLatex),
+          makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${quest.expressionLatex} = ${formatNumber(quest.visual.m)} \\cdot 10^{${targetExponent}}`),
           makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex || `${formatNumber(quest.visual.m)} \\cdot 10^{${targetExponent}}`, "key")
         );
       } else {
