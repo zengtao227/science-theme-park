@@ -77,7 +77,11 @@ function curvedSolidRule(quest: SM305FeedbackQuest) {
 function intermediateExpression(quest: SM305FeedbackQuest) {
   const slot = getSlot(quest);
   if (typeof slot?.expected === "string") return quest.correctLatex;
-  return buildFinalExpression(quest);
+  const rule =
+    quest.stage === "BASEL_ARCH" ? architectureRule(quest) :
+    quest.stage === "CURVED_SOLIDS" ? curvedSolidRule(quest) :
+    `\\text{cross section}`;
+  return `${rule},\\; ${quest.expressionLatex} \\Rightarrow ${buildFinalExpression(quest)}`;
 }
 
 function solveArchitecture(quest: SM305FeedbackQuest, t: Translator) {

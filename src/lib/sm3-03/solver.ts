@@ -109,9 +109,19 @@ function solveLogarithm(quest: SM303FeedbackQuest, t: Translator) {
   }
 
   if (slot.id === "x") {
+    const transformedEquation =
+      quest.expressionLatex === "\\log_2(x) + \\log_2(4) = 5" ? "\\log_2(4x)=5 \\Rightarrow 4x=2^5" :
+      quest.expressionLatex === "\\log_2(x) = 3" ? "x = 2^3" :
+      quest.expressionLatex === "\\log_x(16)=2" ? "x^2 = 16" :
+      quest.expressionLatex === "\\ln(x)=0" ? "x = e^0" :
+      quest.expressionLatex === "2\\log_2(x)=6" ? "\\log_2(x)=3 \\Rightarrow x=2^3" :
+      quest.expressionLatex === "\\log_2(x+2)=3" ? "x+2 = 2^3" :
+      quest.expressionLatex === "e^{2x}=1" ? "2x = \\ln(1)" :
+      quest.expressionLatex === "\\log_{10}(x)=-1" ? "x = 10^{-1}" :
+      "\\log_b(x)=y \\iff x=b^y";
     steps.push(
       makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\log_b(x)=y \\iff x=b^y"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), transformedEquation),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `x = ${expectedValue(slot)}`, "key")
     );
     return steps;
