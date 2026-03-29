@@ -402,10 +402,13 @@ export const cnChemistry = {
             input: "输入",
             hints: "提示",
             substance: "物质",
+            substance_short: "物质",
             tool: "测试工具",
             observation: "观察结果",
             method: "方法",
-            hint: "提示"
+            hint: "提示",
+            reaction_sequence: "反应过程",
+            product_short: "产物"
         },
         hints: {
             soda: "小苏打：与醋反应产生气泡 (CO_2)",

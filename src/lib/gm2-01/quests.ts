@@ -73,7 +73,7 @@ export function generateNavigationQuests(gm2_01_t: any, difficulty: Difficulty):
             pointA: A,
             pointB: B,
             promptLatex: gm2_01_t.stages.navigation_prompt_latex,
-            expressionLatex: `A(${A.join(',')})\\;\\text{to}\\;B(${B.join(',')})`,
+            expressionLatex: `A(${A.join(',')})\\;\\rightarrow\\;B(${B.join(',')})`,
             targetLatex: "\\vec v,\\;|\\vec v|",
             slots: [
                 { id: "vx", labelLatex: "v_x", placeholder: gm2_01_t.placeholders.x, expected: round2(v[0]) },
@@ -177,7 +177,7 @@ export function generateMissionQuests(gm2_01_t: any, difficulty: Difficulty): G2
             vectorW: s,
             showDotProduct: true,
             promptLatex: gm2_01_t.stages.mission_prompt_latex,
-            expressionLatex: `A(${A.join(',')})\\;\\text{to}\\;B(${B.join(',')}),\\;\\vec s=(${s.join(',')})`,
+            expressionLatex: `A(${A.join(',')})\\;\\rightarrow\\;B(${B.join(',')}),\\;\\vec s=(${s.join(',')})`,
             targetLatex: "\\vec v,\\;\\vec v\\cdot\\vec s,\\;|\\vec v|",
             slots: [
                 { id: "vx", labelLatex: "v_x", placeholder: gm2_01_t.placeholders.x, expected: round2(v[0]) },

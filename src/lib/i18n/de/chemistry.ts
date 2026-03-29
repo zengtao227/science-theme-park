@@ -394,10 +394,13 @@ export const deChemistry = {
             input: "EINGABE",
             hints: "HINWEISE",
             substance: "Substanz",
+            substance_short: "Substanz",
             tool: "Testwerkzeug",
             observation: "Beobachtung",
             method: "Methode",
-            hint: "Hinweis"
+            hint: "Hinweis",
+            reaction_sequence: "Reaktionsfolge",
+            product_short: "Produkt"
         },
         hints: {
             soda: "Natron: Sprudelt mit Essig (CO_2)",

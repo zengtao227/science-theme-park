@@ -402,10 +402,13 @@ export const enChemistry = {
             input: "INPUT",
             hints: "HINTS",
             substance: "Substance",
+            substance_short: "Subst.",
             tool: "Test Tool",
             observation: "Observation",
             method: "Method",
-            hint: "Hint"
+            hint: "Hint",
+            reaction_sequence: "Reaction Sequence",
+            product_short: "Prod."
         },
         hints: {
             soda: "Baking Soda: Fizzes with vinegar (CO_2)",

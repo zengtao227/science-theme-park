@@ -632,23 +632,23 @@ export const hessLawElite: RawHessLawData[] = [
   },
   {
     id: "HL_ELITE_2",
-    targetReaction: "Multi-step ibuprofen synthesis: C10H14O → C13H18O2",
-    targetReactionLatex: "\\text{Multi-step ibuprofen synthesis: } \\text{C}_{10}\\text{H}_{14}\\text{O} \\rightarrow \\text{C}_{13}\\text{H}_{18}\\text{O}_2",
+    targetReaction: "C10H14O -> C13H18O2",
+    targetReactionLatex: "\\text{C}_{10}\\text{H}_{14}\\text{O} \\rightarrow \\text{C}_{13}\\text{H}_{18}\\text{O}_2",
     targetDeltaH: -145,
     availableEquations: [
       {
-        equation: "Step 1: Friedel-Crafts acylation",
-        equationLatex: "\\text{Step 1: Friedel-Crafts acylation}",
+        equation: "S1",
+        equationLatex: "S_{1}",
         deltaH: -65
       },
       {
-        equation: "Step 2: Carbonylation",
-        equationLatex: "\\text{Step 2: Carbonylation}",
+        equation: "S2",
+        equationLatex: "S_{2}",
         deltaH: -55
       },
       {
-        equation: "Step 3: Hydrolysis",
-        equationLatex: "\\text{Step 3: Hydrolysis}",
+        equation: "S3",
+        equationLatex: "S_{3}",
         deltaH: -25
       }
     ],
@@ -656,33 +656,33 @@ export const hessLawElite: RawHessLawData[] = [
   },
   {
     id: "HL_ELITE_3",
-    targetReaction: "Multi-step penicillin synthesis: 5 steps",
-    targetReactionLatex: "\\text{Multi-step penicillin synthesis: 5 steps}",
+    targetReaction: "P5",
+    targetReactionLatex: "P_{5}",
     targetDeltaH: -235,
     availableEquations: [
       {
-        equation: "Step 1: β-lactam ring formation",
-        equationLatex: "\\text{Step 1: } \\beta\\text{-lactam ring formation}",
+        equation: "S1",
+        equationLatex: "S_{1}",
         deltaH: -85
       },
       {
-        equation: "Step 2: Side chain attachment",
-        equationLatex: "\\text{Step 2: Side chain attachment}",
+        equation: "S2",
+        equationLatex: "S_{2}",
         deltaH: -45
       },
       {
-        equation: "Step 3: Thiazolidine ring closure",
-        equationLatex: "\\text{Step 3: Thiazolidine ring closure}",
+        equation: "S3",
+        equationLatex: "S_{3}",
         deltaH: -60
       },
       {
-        equation: "Step 4: Oxidation",
-        equationLatex: "\\text{Step 4: Oxidation}",
+        equation: "S4",
+        equationLatex: "S_{4}",
         deltaH: -30
       },
       {
-        equation: "Step 5: Final purification",
-        equationLatex: "\\text{Step 5: Final purification}",
+        equation: "S5",
+        equationLatex: "S_{5}",
         deltaH: -15
       }
     ],
@@ -690,43 +690,43 @@ export const hessLawElite: RawHessLawData[] = [
   },
   {
     id: "HL_ELITE_4",
-    targetReaction: "Multi-step anticancer drug synthesis: 7 steps",
-    targetReactionLatex: "\\text{Multi-step anticancer drug synthesis: 7 steps}",
+    targetReaction: "P7",
+    targetReactionLatex: "P_{7}",
     targetDeltaH: -320,
     availableEquations: [
       {
-        equation: "Step 1: Aromatic substitution",
-        equationLatex: "\\text{Step 1: Aromatic substitution}",
+        equation: "S1",
+        equationLatex: "S_{1}",
         deltaH: -75
       },
       {
-        equation: "Step 2: Heterocycle formation",
-        equationLatex: "\\text{Step 2: Heterocycle formation}",
+        equation: "S2",
+        equationLatex: "S_{2}",
         deltaH: -50
       },
       {
-        equation: "Step 3: Functional group protection",
-        equationLatex: "\\text{Step 3: Functional group protection}",
+        equation: "S3",
+        equationLatex: "S_{3}",
         deltaH: -35
       },
       {
-        equation: "Step 4: Coupling reaction",
-        equationLatex: "\\text{Step 4: Coupling reaction}",
+        equation: "S4",
+        equationLatex: "S_{4}",
         deltaH: -60
       },
       {
-        equation: "Step 5: Deprotection",
-        equationLatex: "\\text{Step 5: Deprotection}",
+        equation: "S5",
+        equationLatex: "S_{5}",
         deltaH: -40
       },
       {
-        equation: "Step 6: Oxidation",
-        equationLatex: "\\text{Step 6: Oxidation}",
+        equation: "S6",
+        equationLatex: "S_{6}",
         deltaH: -35
       },
       {
-        equation: "Step 7: Salt formation",
-        equationLatex: "\\text{Step 7: Salt formation}",
+        equation: "S7",
+        equationLatex: "S_{7}",
         deltaH: -25
       }
     ],
@@ -734,28 +734,28 @@ export const hessLawElite: RawHessLawData[] = [
   },
   {
     id: "HL_ELITE_5",
-    targetReaction: "Multi-step insulin analog synthesis: 4 steps",
-    targetReactionLatex: "\\text{Multi-step insulin analog synthesis: 4 steps}",
+    targetReaction: "P4",
+    targetReactionLatex: "P_{4}",
     targetDeltaH: -185,
     availableEquations: [
       {
-        equation: "Step 1: Peptide chain assembly",
-        equationLatex: "\\text{Step 1: Peptide chain assembly}",
+        equation: "S1",
+        equationLatex: "S_{1}",
         deltaH: -95
       },
       {
-        equation: "Step 2: Disulfide bond formation",
-        equationLatex: "\\text{Step 2: Disulfide bond formation}",
+        equation: "S2",
+        equationLatex: "S_{2}",
         deltaH: -45
       },
       {
-        equation: "Step 3: Folding and purification",
-        equationLatex: "\\text{Step 3: Folding and purification}",
+        equation: "S3",
+        equationLatex: "S_{3}",
         deltaH: -30
       },
       {
-        equation: "Step 4: Formulation",
-        equationLatex: "\\text{Step 4: Formulation}",
+        equation: "S4",
+        equationLatex: "S_{4}",
         deltaH: -15
       }
     ],

@@ -96,8 +96,8 @@ export function generatePropertiesQuests(t: any, difficulty: Difficulty): SC101Q
             correctIdentifications: {},
             promptLatex: t(`sc1_01.properties_q.${p.key}`),
             expressionLatex: `\\text{${t("sc1_01.prompts.test_observe")}}`,
-            targetLatex: "\\text{Substance}",
-            slots: [{ id: "answer", labelLatex: "\\text{Subst}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: p.answer }],
+            targetLatex: `\\text{${t("sc1_01.labels.substance")}}`,
+            slots: [{ id: "answer", labelLatex: `\\text{${t("sc1_01.labels.substance_short")}}`, placeholder: t("sc1_01.placeholders.ellipsis"), expected: p.answer }],
             correctLatex: `\\text{${p.answer}}`,
         });
     }
@@ -125,9 +125,9 @@ export function generateReactionsQuests(t: any, difficulty: Difficulty): SC101Qu
             substances: ["soda", "salt", "starch"],
             correctIdentifications: {},
             promptLatex: t(`sc1_01.reactions_q.${r.key}`),
-            expressionLatex: `\\text{Reaction Sequence}`,
-            targetLatex: "\\text{Product}",
-            slots: [{ id: "product", labelLatex: "\\text{Prod}", placeholder: t("sc1_01.placeholders.ellipsis"), expected: r.product.toLowerCase() }],
+            expressionLatex: `\\text{${t("sc1_01.labels.reaction_sequence")}}`,
+            targetLatex: `\\text{${t("sc1_01.prompts.product")}}`,
+            slots: [{ id: "product", labelLatex: `\\text{${t("sc1_01.labels.product_short")}}`, placeholder: t("sc1_01.placeholders.ellipsis"), expected: r.product.toLowerCase() }],
             correctLatex: `\\text{${r.product}}`,
         });
     }
