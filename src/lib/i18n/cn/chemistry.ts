@@ -1140,6 +1140,7 @@ export const cnChemistry = {
             simulation_control: "模拟控制",
             regional_case_study: "区域案例研究 // 巴塞尔节点",
             elite_integration: "巴塞尔精英物理/化学整合",
+            ideal_gas_application: "\\text{理想气体定律应用}",
             result: "结果",
             value_short: "值"
         },

@@ -71,7 +71,7 @@ export function generateBasicsQuests(t: any, difficulty: Difficulty): G401Quest[
             stage,
             z1: { re, im },
             operation: "polar",
-            promptLatex: t?.stages?.basics_prompt || "Calculate magnitude",
+            promptLatex: t?.stages?.basics_prompt ?? "",
             expressionLatex: `z = ${formatComplexLatex(re, im)}`,
             targetLatex: "\\left|z\\right|",
             slots: [{ id: "magnitude", labelLatex: "|z|", placeholder: t?.placeholders?.value ?? "", expected: round2(r) }],
@@ -178,7 +178,7 @@ export function generatePolarQuests(t: any, difficulty: Difficulty): G401Quest[]
             z1: { re, im },
             power: n,
             operation: "power",
-            promptLatex: t?.stages?.polar_prompt || "Calculate power",
+            promptLatex: t?.stages?.polar_prompt ?? "",
             expressionLatex: `z = ${formatComplexLatex(re, im)},\\; z^{${n}}`,
             targetLatex: `z^{${n}}`,
             slots: [

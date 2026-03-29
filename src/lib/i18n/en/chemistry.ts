@@ -1140,6 +1140,7 @@ export const enChemistry = {
             simulation_control: "Simulation Control",
             regional_case_study: "Regional Case Study // Basel Node",
             elite_integration: "Basel Elite Physics/Chemistry Integration",
+            ideal_gas_application: "\\text{Ideal Gas Law Application}",
             result: "Result",
             value_short: "Val"
         },

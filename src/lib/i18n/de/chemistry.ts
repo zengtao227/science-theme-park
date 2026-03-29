@@ -1132,6 +1132,7 @@ export const deChemistry = {
             simulation_control: "SIMULATIONSSTEUERUNG",
             regional_case_study: "Regionale Fallstudie // Knoten Basel",
             elite_integration: "Basler Elite Physik/Chemie Integration",
+            ideal_gas_application: "\\text{Anwendung des idealen Gasgesetzes}",
             result: "Ergebnis",
             value_short: "Wert"
         },
