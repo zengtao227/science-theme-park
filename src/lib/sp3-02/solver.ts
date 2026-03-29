@@ -41,15 +41,18 @@ export function solveSP302(quest: SP302Quest, t: Translator) {
 
   if (quest.stage === "NEWTON_1") {
     if (quest.scenarioKey === "vector_add") {
+      const resultant = round(Math.sqrt(f * f + f * f));
       steps.push(
         makeStep(1, t("sp3_02.reasons.resolve_perpendicular_forces"), `|\\vec{F}_{net}| = \\sqrt{${f}^{2} + ${f}^{2}}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `|\\vec{F}_{net}| = ${resultant}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else if (quest.scenarioKey === "slope") {
       const normal = round(m * g * Math.cos(thetaRad));
       steps.push(
         makeStep(1, t("sp3_02.reasons.compute_normal_force"), `N = mg\\cos\\theta = ${m}\\times ${g}\\times \\cos(${theta}^{\\circ}) = ${normal}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `N = ${normal}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else if (quest.scenarioKey === "complex") {
       const friction = round(m * g * mu);
@@ -63,20 +66,23 @@ export function solveSP302(quest: SP302Quest, t: Translator) {
     } else {
       steps.push(
         makeStep(1, t("sp3_02.reasons.apply_equilibrium_condition"), "\\sum F = 0"),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), quest.expressionLatex),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     }
   } else if (quest.stage === "NEWTON_2") {
     if (quest.scenarioKey === "find_f") {
       steps.push(
         makeStep(1, t("sp3_02.reasons.apply_newtons_second_law"), `F = ma = ${m}\\times ${a} = ${round(m * a)}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `F = ${round(m * a)}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else if (quest.scenarioKey === "net_force" || quest.scenarioKey === "coupled") {
       const accel = round(f / m);
       steps.push(
         makeStep(1, t("sp3_02.reasons.apply_newtons_second_law"), `a = \\frac{F}{m} = \\frac{${f}}{${m}} = ${accel}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `a = ${accel}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else {
       const friction = round(m * g * mu);
@@ -96,7 +102,8 @@ export function solveSP302(quest: SP302Quest, t: Translator) {
       steps.push(
         makeStep(1, t("sp3_02.reasons.compute_normal_force"), `N = mg\\cos\\theta = ${m}\\times ${g}\\times \\cos(${theta}^{\\circ}) = ${normal}`),
         makeStep(2, t("sp3_02.reasons.apply_friction_law"), `f = \\mu N = ${mu}\\times ${normal} = ${friction}`),
-        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(3, t("common.feedback_reasons.compute_result"), `f = ${friction}`),
+        makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else {
       const normal = round(m * g);
@@ -104,7 +111,8 @@ export function solveSP302(quest: SP302Quest, t: Translator) {
       steps.push(
         makeStep(1, t("sp3_02.reasons.compute_normal_force"), `N = mg = ${m}\\times ${g} = ${normal}`),
         makeStep(2, t("sp3_02.reasons.apply_friction_law"), `f = \\mu N = ${mu}\\times ${normal} = ${friction}`),
-        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(3, t("common.feedback_reasons.compute_result"), `f = ${friction}`),
+        makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     }
   }

@@ -125,7 +125,8 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
       steps.push(
         makeStep(1, t("sp3_01.reasons.identify_conversion_factor"), `${quest.value ?? ""}\\,\\text{${quest.fromUnit ?? ""}}`),
         makeStep(2, t("sp3_01.reasons.apply_squared_or_cubed_factor"), quest.expressionLatex),
-        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(3, t("common.feedback_reasons.compute_result"), quest.correctLatex),
+        makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
       break;
     case "count_sig_figs": {
@@ -133,7 +134,8 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
       const count = countSigFigs(value);
       steps.push(
         makeStep(1, t("sp3_01.reasons.count_significant_figures"), value),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), `${count}`, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `\\text{sig figs} = ${count}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), `${count}`, "key")
       );
       break;
     }
@@ -143,7 +145,8 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
       const rounded = roundToSigFigs(raw, sig);
       steps.push(
         makeStep(1, t("sp3_01.reasons.round_to_requested_sig_figs"), `${quest.value} \\to ${sig}\\text{ sf}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), rounded, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `${quest.value} \\approx ${rounded}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), rounded, "key")
       );
       break;
     }
@@ -151,7 +154,8 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
       const raw = evaluateExpression(quest.expressionLatex);
       steps.push(
         makeStep(1, t("sp3_01.reasons.evaluate_expression_with_rounding_rule"), `${quest.expressionLatex} = ${raw}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `${raw} \\to ${quest.correctLatex}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
       break;
     }
@@ -161,13 +165,17 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
         const percent = ((parsed.uncertainty / parsed.measured) * 100).toFixed(1).replace(/\.0$/, "");
         steps.push(
           makeStep(1, t("sp3_01.reasons.apply_uncertainty_ratio"), `\\frac{${parsed.uncertainty}}{${parsed.measured}} \\times 100\\%`),
-          makeStep(2, t("common.feedback_reasons.state_final_result"), `${percent}\\%`, "key")
+          makeStep(2, t("common.feedback_reasons.compute_result"), `\\frac{${parsed.uncertainty}}{${parsed.measured}} \\times 100\\% = ${percent}\\%`),
+          makeStep(3, t("common.feedback_reasons.state_final_result"), `${percent}\\%`, "key")
         );
       }
       break;
     }
     default:
-      steps.push(makeStep(1, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"));
+      steps.push(
+        makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
+        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+      );
       break;
   }
 

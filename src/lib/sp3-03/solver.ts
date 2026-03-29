@@ -46,7 +46,10 @@ export function solveSP303(quest: SP303Quest, t: Translator) {
       const ek = round(0.5 * m * 100);
       steps.push(makeStep(2, t("sp3_03.reasons.add_mechanical_energy_terms"), `E = E_p + E_k = ${ep} + ${ek} = ${round(ep + ek)}`));
     }
-    steps.push(makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"));
+    steps.push(
+      makeStep(3, t("common.feedback_reasons.compute_result"), quest.scenarioKey === "total_energy" ? `E = ${round(ep + round(0.5 * m * 100))}` : `E_p = ${ep}`),
+      makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+    );
   } else if (quest.stage === "KINETIC") {
     if (quest.scenarioKey === "velocity_at_bottom") {
       const finalV = round(Math.sqrt(2 * g * h + v * v));
@@ -69,7 +72,8 @@ export function solveSP303(quest: SP303Quest, t: Translator) {
       const ek = round(0.5 * m * v * v);
       steps.push(
         makeStep(1, t("sp3_03.reasons.apply_kinetic_energy_formula"), `E_k = \\frac{1}{2}mv^2 = \\frac{1}{2}\\times ${m}\\times ${v}^2 = ${ek}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `E_k = ${ek}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     }
   } else {
@@ -77,7 +81,8 @@ export function solveSP303(quest: SP303Quest, t: Translator) {
       const work = round(f * d);
       steps.push(
         makeStep(1, t("sp3_03.reasons.apply_work_formula"), `W = Fd = ${f}\\times ${d} = ${work}`),
-        makeStep(2, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
+        makeStep(2, t("common.feedback_reasons.compute_result"), `W = ${work}`),
+        makeStep(3, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key")
       );
     } else {
       const work = quest.scenarioKey === "basic_power" ? round(f * d) : round(m * g * h);
