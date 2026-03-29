@@ -2297,7 +2297,17 @@ export const enMath = {
             var2: "var2",
             coeff1: "coeff1",
             coeff2: "coeff2"
-}
+        },
+        solver: {
+            substitution_rule: "Substitute the isolated equation into the other equation.",
+            solve_for_label: "Solve for {variable}:",
+            back_substitute_label: "Back-substitute to get {variable} =",
+            elimination_rule: "Scale and combine the equations to eliminate one variable.",
+            eliminate_and_solve_label: "Eliminate {eliminate} and solve for {solve} =",
+            choose_substitution: "Choose substitution because one variable is easy to isolate.",
+            choose_elimination: "Choose elimination because the coefficients combine cleanly.",
+            solve_system_label: "Solve the system to get"
+        }
     },
     sm2_07: {
         back: "Back to Nexus",
@@ -2352,7 +2362,10 @@ export const enMath = {
                     question: "?",
             x: "x",
             y: "y"
-}
+        },
+        solver: {
+            collinear_same_slope: "Collinear points have the same slope."
+        }
     },
     sm2_08: {
         placeholders: {

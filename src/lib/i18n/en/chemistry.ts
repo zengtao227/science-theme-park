@@ -1881,6 +1881,15 @@ export const enChemistry = {
         mission: {
             title: "REDOX MISSION"
         },
+        solver: {
+            rule_oxidation_state: "Use oxidation-number rules and total charge neutrality.",
+            solve_oxidation_state: "Set the sum of oxidation numbers equal to the species charge and solve for the target element.",
+            rule_electron_transfer: "Track the oxidation-state change to count electrons.",
+            rule_galvanic_roles: "Recall galvanic-cell roles: oxidation occurs at the anode and reduction at the cathode.",
+            standard_cell_potential_label: "Standard cell potential",
+            nernst_label: "Nernst equation",
+            faraday_label: "Faraday law"
+        },
         check: "Verify",
         next: "Next Challenge",
         correct: "Redox Verified",
@@ -2186,7 +2195,19 @@ export const enChemistry = {
         solver: {
             solve_energy_changes: "Determine whether the process releases or absorbs energy and use the stated enthalpy relation",
             rule_hess_law: "Reverse, scale, and add reactions so the intermediates cancel and the target reaction remains",
-            solve_calorimetry_enthalpy: "Use q = mc\\Delta T and the sign convention to determine the enthalpy change"
+            solve_calorimetry_enthalpy: "Use q = mc\\Delta T and the sign convention to determine the enthalpy change",
+            type_label: "Type",
+            coefficients_label: "Coefficients",
+            pattern_label: "Pattern",
+            energy_label: "Energy",
+            observed_type_label: "Observed type",
+            energy_change_exothermic: "exothermic",
+            energy_change_endothermic: "endothermic",
+            reaction_type_synthesis: "synthesis",
+            reaction_type_decomposition: "decomposition",
+            reaction_type_single_replacement: "single replacement",
+            reaction_type_double_replacement: "double replacement",
+            reaction_type_combustion: "combustion"
         },
         prompts: {
             calculate_enthalpy: "Calculate the enthalpy change (ΔH) for this reaction",
@@ -2250,7 +2271,7 @@ export const enChemistry = {
                 exothermic_explanation: "The positive temperature change indicates an exothermic reaction. Heat is released into the solution, raising its temperature.",
                 endothermic_explanation: "The negative temperature change indicates an endothermic reaction. Heat is absorbed from the solution, lowering its temperature."
             }
-        }
+        },
     },
 
     // SC1.07: Sustainability & Recycling (Requested per Basel Curriculum)

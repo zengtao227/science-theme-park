@@ -118,7 +118,7 @@ export function solveSM207(quest: SM207FeedbackQuest, t: Translator): Omit<Feedb
       const solvedValue = x !== null ? x : y;
       if (solvedValue === null) return emptyResult();
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Collinear points have the same slope.}"),
+        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("math.sm2_07.solver.collinear_same_slope")}}`),
         makeStep(3, t("common.feedback_reasons.compute_result"), `m_{AB} = \\frac{${parsed.by}-${parsed.ay}}{${parsed.bx}-${parsed.ax}} = ${formatNumber(slopeAB)}`),
         makeStep(
           4,

@@ -58,9 +58,9 @@ export function solveSM206(quest: SM206FeedbackQuest, t: Translator): Omit<Feedb
     const backValue = isolatedVar === "x" ? x : y;
 
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Substitute the isolated equation into the other equation.}"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Solve for } ${solvedVar}:\\; ${solvedVar} = ${formatNumber(solvedValue)}`),
-      makeStep(4, t("common.feedback_reasons.substitute_values"), `\\text{Back-substitute to get } ${isolatedVar} = ${formatNumber(backValue)}`),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("math.sm2_06.solver.substitution_rule")}}`),
+      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("math.sm2_06.solver.solve_for_label", { variable: solvedVar })}}\\; ${solvedVar} = ${formatNumber(solvedValue)}`),
+      makeStep(4, t("common.feedback_reasons.substitute_values"), `\\text{${t("math.sm2_06.solver.back_substitute_label", { variable: isolatedVar })}}\\; ${isolatedVar} = ${formatNumber(backValue)}`),
       makeStep(5, t("common.feedback_reasons.state_final_result"), `x = ${formatNumber(x)},\\; y = ${formatNumber(y)}`, "key")
     );
   } else if (quest.stage === "ELIMINATION") {
@@ -71,10 +71,10 @@ export function solveSM206(quest: SM206FeedbackQuest, t: Translator): Omit<Feedb
     const backValue = backVar === "x" ? x : y;
 
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Scale and combine the equations to eliminate one variable.}"),
+      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("math.sm2_06.solver.elimination_rule")}}`),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${plan.factor1}\\left(${formatEquation(quest.visual.eq1)}\\right),\\; ${plan.factor2}\\left(${formatEquation(quest.visual.eq2)}\\right)`),
-      makeStep(4, t("common.feedback_reasons.compute_result"), `\\text{Eliminate } ${plan.variable} \\text{ and solve } ${solvedVar} = ${formatNumber(solvedValue)}`),
-      makeStep(5, t("common.feedback_reasons.substitute_values"), `\\text{Back-substitute to get } ${backVar} = ${formatNumber(backValue)}`),
+      makeStep(4, t("common.feedback_reasons.compute_result"), `\\text{${t("math.sm2_06.solver.eliminate_and_solve_label", { eliminate: plan.variable, solve: solvedVar })}}\\; ${solvedVar} = ${formatNumber(solvedValue)}`),
+      makeStep(5, t("common.feedback_reasons.substitute_values"), `\\text{${t("math.sm2_06.solver.back_substitute_label", { variable: backVar })}}\\; ${backVar} = ${formatNumber(backValue)}`),
       makeStep(6, t("common.feedback_reasons.state_final_result"), `x = ${formatNumber(x)},\\; y = ${formatNumber(y)}`, "key")
     );
   } else if (quest.stage === "MISSION") {
@@ -89,11 +89,11 @@ export function solveSM206(quest: SM206FeedbackQuest, t: Translator): Omit<Feedb
         2,
         t("common.feedback_reasons.select_formula_or_rule"),
         preferSubstitution
-          ? "\\text{Choose substitution because one variable is easy to isolate.}"
-          : "\\text{Choose elimination because the coefficients combine cleanly.}"
+          ? `\\text{${t("math.sm2_06.solver.choose_substitution")}}`
+          : `\\text{${t("math.sm2_06.solver.choose_elimination")}}`
       ),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${formatEquation(quest.visual.eq1)},\\; ${formatEquation(quest.visual.eq2)}`),
-      makeStep(4, t("common.feedback_reasons.compute_result"), `\\text{Solve the system to get } x = ${formatNumber(x)},\\; y = ${formatNumber(y)}`),
+      makeStep(4, t("common.feedback_reasons.compute_result"), `\\text{${t("math.sm2_06.solver.solve_system_label")}}\\; x = ${formatNumber(x)},\\; y = ${formatNumber(y)}`),
       makeStep(5, t("common.feedback_reasons.state_final_result"), quest.correctLatex || `x = ${formatNumber(x)},\\; y = ${formatNumber(y)}`, "key")
     );
   } else {

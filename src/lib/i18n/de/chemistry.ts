@@ -1874,6 +1874,15 @@ export const deChemistry = {
         mission: {
             title: "REDOX-MISSION"
         },
+        solver: {
+            rule_oxidation_state: "Nutze Regeln für Oxidationszahlen und die Gesamtladungsbilanz.",
+            solve_oxidation_state: "Setze die Summe der Oxidationszahlen gleich der Gesamtladung der Spezies und löse nach dem Zielelement auf.",
+            rule_electron_transfer: "Verfolge die Änderung der Oxidationszahl, um die Zahl der übertragenen Elektronen zu bestimmen.",
+            rule_galvanic_roles: "Erinnere dich an die Rollen in der galvanischen Zelle: Oxidation an der Anode, Reduktion an der Kathode.",
+            standard_cell_potential_label: "Standardzellpotential",
+            nernst_label: "Nernst-Gleichung",
+            faraday_label: "Faradaysches Gesetz"
+        },
         check: "Überprüfen",
         next: "Nächste Herausforderung",
         correct: "Redox verifiziert",
@@ -2178,7 +2187,19 @@ export const deChemistry = {
         solver: {
             solve_energy_changes: "Bestimmen Sie, ob der Prozess Energie freisetzt oder aufnimmt, und nutzen Sie die passende Enthalpiebeziehung",
             rule_hess_law: "Drehen, skalieren und addieren Sie Reaktionen so, dass Zwischenstoffe wegfallen und die Zielreaktion bleibt",
-            solve_calorimetry_enthalpy: "Verwenden Sie q = mc\\Delta T und die Vorzeichenkonvention, um die Enthalpieaenderung zu bestimmen"
+            solve_calorimetry_enthalpy: "Verwenden Sie q = mc\\Delta T und die Vorzeichenkonvention, um die Enthalpieaenderung zu bestimmen",
+            type_label: "Reaktionstyp",
+            coefficients_label: "Koeffizienten",
+            pattern_label: "Muster",
+            energy_label: "Energie",
+            observed_type_label: "Beobachteter Typ",
+            energy_change_exothermic: "exotherm",
+            energy_change_endothermic: "endotherm",
+            reaction_type_synthesis: "Synthese",
+            reaction_type_decomposition: "Zersetzung",
+            reaction_type_single_replacement: "Einfacher Austausch",
+            reaction_type_double_replacement: "Doppelter Austausch",
+            reaction_type_combustion: "Verbrennung"
         },
         prompts: {
             calculate_enthalpy: "Berechnen Sie die Enthalpieänderung (ΔH) für diese Reaktion",

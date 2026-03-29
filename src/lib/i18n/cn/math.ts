@@ -2278,7 +2278,17 @@ export const cnMath = {
             var2: "变量2",
             coeff1: "系数1",
             coeff2: "系数2"
-}
+        },
+        solver: {
+            substitution_rule: "把已整理出的方程代入另一个方程。",
+            solve_for_label: "解出 {variable}：",
+            back_substitute_label: "回代求得 {variable} =",
+            elimination_rule: "先配系数，再联立消去一个未知数。",
+            eliminate_and_solve_label: "消去 {eliminate} 并解出 {solve} =",
+            choose_substitution: "选择代入法，因为其中一个未知数容易先整理出来。",
+            choose_elimination: "选择消元法，因为系数组合后更容易消去。",
+            solve_system_label: "解该方程组得到"
+        }
     },
     sm2_07: {
         back: "返回枢纽",
@@ -2333,7 +2343,10 @@ export const cnMath = {
                     question: "?",
             x: "x",
             y: "y"
-}
+        },
+        solver: {
+            collinear_same_slope: "共线点具有相同的斜率。"
+        }
     },
     sm2_08: {
         placeholders: {

@@ -7,28 +7,28 @@ export function solveSC206(quest: SC206Quest, t: Translator) {
 
   switch (quest.stage) {
     case "OXIDATION_STATE":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use oxidation-number rules and total charge neutrality}"));
-      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "\\text{Set the sum of oxidation numbers equal to the species charge and solve for the target element}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc2_06.solver.rule_oxidation_state")}}`));
+      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("chemistry.sc2_06.solver.solve_oxidation_state")}}`));
       break;
     case "ELECTRON_TRANSFER":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Track oxidation-state change to count electrons}"));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc2_06.solver.rule_electron_transfer")}}`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `n(e^-) = ${quest.electronsTransferred}`));
       break;
     case "ELECTROCHEMISTRY":
       if (quest.id.startsWith("EC-B")) {
-        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Recall galvanic-cell roles: anode oxidation, cathode reduction}"));
+        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc2_06.solver.rule_galvanic_roles")}}`));
       } else if (quest.id.startsWith("EC-C")) {
-        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "E^\\circ_{cell} = E^\\circ_{cathode} - E^\\circ_{anode}"));
+        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc2_06.solver.standard_cell_potential_label")}}\\; E^\\circ_{cell} = E^\\circ_{cathode} - E^\\circ_{anode}`));
         if (quest.cellPotential != null) {
           steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `E^\\circ_{cell} = ${formatNumber(quest.cellPotential)}\\,\\text{V}`));
         }
       } else if (quest.id.startsWith("EC-A")) {
-        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "E = E^\\circ - \\frac{0.0592}{n}\\log Q"));
+        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc2_06.solver.nernst_label")}}\\; E = E^\\circ - \\frac{0.0592}{n}\\log Q`));
         if (quest.cellPotential != null) {
           steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `E = ${formatNumber(quest.cellPotential)}\\,\\text{V}`));
         }
       } else {
-        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "m = \\frac{I t M}{nF}"));
+        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc2_06.solver.faraday_label")}}\\; m = \\frac{I t M}{nF}`));
         steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `m = \\frac{I t M}{${quest.electronsTransferred}F}`));
       }
       break;

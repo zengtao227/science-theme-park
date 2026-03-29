@@ -1881,6 +1881,15 @@ export const cnChemistry = {
         mission: {
             title: "氧化还原任务"
         },
+        solver: {
+            rule_oxidation_state: "使用氧化数规则和总电荷守恒。",
+            solve_oxidation_state: "令各元素氧化数之和等于该粒子的总电荷，并解出目标元素。",
+            rule_electron_transfer: "跟踪氧化数变化来统计电子转移数。",
+            rule_galvanic_roles: "回忆原电池中的角色：阳极发生氧化，阴极发生还原。",
+            standard_cell_potential_label: "标准电池电位",
+            nernst_label: "能斯特方程",
+            faraday_label: "法拉第定律"
+        },
         check: "验证",
         next: "下一题",
         correct: "氧化还原已验证",
@@ -2185,7 +2194,19 @@ export const cnChemistry = {
         solver: {
             solve_energy_changes: "先判断过程是放热还是吸热，再使用相应的焓变关系",
             rule_hess_law: "翻转、倍乘并相加反应方程，使中间物质抵消并留下目标反应",
-            solve_calorimetry_enthalpy: "利用 q = mc\\Delta T 和符号约定求出焓变"
+            solve_calorimetry_enthalpy: "利用 q = mc\\Delta T 和符号约定求出焓变",
+            type_label: "反应类型",
+            coefficients_label: "化学计量系数",
+            pattern_label: "反应模式",
+            energy_label: "能量变化",
+            observed_type_label: "观察到的反应类型",
+            energy_change_exothermic: "放热",
+            energy_change_endothermic: "吸热",
+            reaction_type_synthesis: "化合反应",
+            reaction_type_decomposition: "分解反应",
+            reaction_type_single_replacement: "置换反应",
+            reaction_type_double_replacement: "复分解反应",
+            reaction_type_combustion: "燃烧反应"
         },
         prompts: {
             calculate_enthalpy: "计算此反应的焓变 (ΔH)",
@@ -2249,7 +2270,7 @@ export const cnChemistry = {
                 exothermic_explanation: "温度上升说明这是放热反应。热量释放到溶液中，使溶液温度升高。",
                 endothermic_explanation: "温度下降说明这是吸热反应。热量从溶液中被吸收，使溶液温度降低。"
             }
-        }
+        },
     },
 
     // SC1.07: Sustainability & Recycling (Requested per Basel Curriculum)

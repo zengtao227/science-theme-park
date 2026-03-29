@@ -2310,7 +2310,17 @@ export const deMath = {
             var2: "Var2",
             coeff1: "Koeff1",
             coeff2: "Koeff2"
-}
+        },
+        solver: {
+            substitution_rule: "Setze die bereits isolierte Gleichung in die andere Gleichung ein.",
+            solve_for_label: "Löse nach {variable} auf:",
+            back_substitute_label: "Setze zurück ein und erhalte {variable} =",
+            elimination_rule: "Skaliere die Gleichungen und kombiniere sie, um eine Variable zu eliminieren.",
+            eliminate_and_solve_label: "Eliminiere {eliminate} und löse nach {solve} auf =",
+            choose_substitution: "Wähle das Einsetzungsverfahren, weil sich eine Variable leicht isolieren lässt.",
+            choose_elimination: "Wähle das Additionsverfahren, weil sich die Koeffizienten sauber kombinieren lassen.",
+            solve_system_label: "Löse das Gleichungssystem und erhalte"
+        }
     },
     sm2_07: {
         back: "Zurück zum Nexus",
@@ -2365,7 +2375,10 @@ export const deMath = {
                     question: "?",
             x: "x",
             y: "y"
-}
+        },
+        solver: {
+            collinear_same_slope: "Kollineare Punkte haben dieselbe Steigung."
+        }
     },
     sm2_08: {
         placeholders: {

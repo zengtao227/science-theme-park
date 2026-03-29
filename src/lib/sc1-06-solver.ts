@@ -2,8 +2,13 @@ import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
 import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { Compound, ReactionType, SC106Quest } from "./sc1-06-types";
 
-function formatReactionType(type: ReactionType) {
-  return `\\text{${type.replace(/_/g, " ")}}`;
+function formatReactionType(type: ReactionType, t: Translator) {
+  return `\\text{${t(`chemistry.sc1_06.solver.reaction_type_${type}`)}}`;
+}
+
+function formatEnergyChange(energyChange: SC106Quest["energyChange"], t: Translator) {
+  if (!energyChange) return null;
+  return `\\text{${t(`chemistry.sc1_06.solver.energy_change_${energyChange}`)}}`;
 }
 
 function reactionPattern(type: ReactionType) {
@@ -42,19 +47,20 @@ export function solveSC106(quest: SC106Quest, t: Translator) {
   switch (quest.stage) {
     case "REACTION_TYPES":
       steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), reactionPattern(quest.reactionType ?? quest.equation.type)));
-      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Type} = ${formatReactionType(quest.reactionType ?? quest.equation.type)}`));
+      steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("chemistry.sc1_06.solver.type_label")}} = ${formatReactionType(quest.reactionType ?? quest.equation.type, t)}`));
       break;
     case "EQUATION_BALANCING":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Coefficients} = (${(quest.coefficients ?? []).join(", ")})`));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc1_06.solver.coefficients_label")}} = (${(quest.coefficients ?? []).join(", ")})`));
       steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), buildBalanceSummary(quest)));
       steps.push(makeStep(4, t("common.feedback_reasons.solve_step_by_step"), quest.equationLatex));
       break;
     case "REACTION_SIMULATION":
-      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{Pattern} = ${reactionPattern(quest.reactionType ?? quest.equation.type)}`));
-      if (quest.energyChange) {
-        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{Energy} = \\text{${quest.energyChange}}`));
+      steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("chemistry.sc1_06.solver.pattern_label")}} = ${reactionPattern(quest.reactionType ?? quest.equation.type)}`));
+      const energyChange = formatEnergyChange(quest.energyChange, t);
+      if (energyChange) {
+        steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("chemistry.sc1_06.solver.energy_label")}} = ${energyChange}`));
       }
-      steps.push(makeStep(steps.length + 1, t("common.feedback_reasons.solve_step_by_step"), `\\text{Observed type} = ${formatReactionType(quest.reactionType ?? quest.equation.type)}`));
+      steps.push(makeStep(steps.length + 1, t("common.feedback_reasons.solve_step_by_step"), `\\text{${t("chemistry.sc1_06.solver.observed_type_label")}} = ${formatReactionType(quest.reactionType ?? quest.equation.type, t)}`));
       break;
     default:
       return { steps: [], fullSolutionLatex: null };
