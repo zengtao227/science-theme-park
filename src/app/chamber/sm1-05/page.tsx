@@ -133,16 +133,49 @@ export default function SM105Page() {
             recipe_triple: t("sm1_05.hints.recipe_triple"),
             recipe_halve: t("sm1_05.hints.recipe_halve"),
             recipe_scale_factor: t("sm1_05.hints.recipe_scale_factor"),
+            recipe_match_both_ratios: t("sm1_05.hints.recipe_match_both_ratios"),
+            recipe_output_slower: t("sm1_05.hints.recipe_output_slower"),
+            recipe_double_ab_to_match_b: t("sm1_05.hints.recipe_double_ab_to_match_b"),
+            map_hundred_thousand_cm_km: t("sm1_05.hints.map_hundred_thousand_cm_km"),
             recipe_50g_person: t("sm1_05.hints.recipe_50g_person"),
             recipe_simplify: t("sm1_05.hints.recipe_simplify"),
             recipe_7_parts: t("sm1_05.hints.recipe_7_parts"),
             recipe_300g_person: t("sm1_05.hints.recipe_300g_person"),
+            recipe_constant_product: t("sm1_05.hints.recipe_constant_product"),
+            recipe_subtract_rates: t("sm1_05.hints.recipe_subtract_rates"),
             percent_half: t("sm1_05.hints.percent_half"),
             percent_quarter: t("sm1_05.hints.percent_quarter"),
             percent_decimal: t("sm1_05.hints.percent_decimal"),
+            percent_multiply_by_100: t("sm1_05.hints.percent_multiply_by_100"),
+            percent_ten_is_20_five_is_10: t("sm1_05.hints.percent_ten_is_20_five_is_10"),
+            percent_multiply_to_100: t("sm1_05.hints.percent_multiply_to_100"),
+            percent_subtract_80_12: t("sm1_05.hints.percent_subtract_80_12"),
+            percent_discount_24: t("sm1_05.hints.percent_discount_24"),
+            percent_one_eighth_of_value: t("sm1_05.hints.percent_one_eighth_of_value"),
+            percent_divide_part_by_percent: t("sm1_05.hints.percent_divide_part_by_percent"),
+            percent_one_is_2: t("sm1_05.hints.percent_one_is_2"),
+            percent_divide_by_1_2: t("sm1_05.hints.percent_divide_by_1_2"),
+            percent_break_even: t("sm1_05.hints.percent_break_even"),
+            percent_diff_over_original: t("sm1_05.hints.percent_diff_over_original"),
             percent_comp_1year: t("sm1_05.hints.percent_comp_1year"),
             percent_sec: t("sm1_05.hints.percent_sec"),
             mix_total_100: t("sm1_05.hints.mix_total_100"),
+            mix_total_mass_100g: t("sm1_05.hints.mix_total_mass_100g"),
+            mix_30_out_of_100: t("sm1_05.hints.mix_30_out_of_100"),
+            mix_pure_solvent: t("sm1_05.hints.mix_pure_solvent"),
+            mix_total_100g: t("sm1_05.hints.mix_total_100g"),
+            mix_total_200ml: t("sm1_05.hints.mix_total_200ml"),
+            mix_double_percent_calculation: t("sm1_05.hints.mix_double_percent_calculation"),
+            mix_500_times_0_1: t("sm1_05.hints.mix_500_times_0_1"),
+            mix_200_times_0_05: t("sm1_05.hints.mix_200_times_0_05"),
+            mix_total_50g: t("sm1_05.hints.mix_total_50g"),
+            mix_total_200: t("sm1_05.hints.mix_total_200"),
+            mix_total_200_minus_20: t("sm1_05.hints.mix_total_200_minus_20"),
+            mix_total_solute_80_total_500: t("sm1_05.hints.mix_total_solute_80_total_500"),
+            mix_solute_stays_20_total_100: t("sm1_05.hints.mix_solute_stays_20_total_100"),
+            mix_need_total_200: t("sm1_05.hints.mix_need_total_200"),
+            mix_dilute_by_half: t("sm1_05.hints.mix_dilute_by_half"),
+            mix_original_solute_40_total_250: t("sm1_05.hints.mix_original_solute_40_total_250"),
             mix_dilute: t("sm1_05.hints.mix_dilute"),
             mix_avg: t("sm1_05.hints.mix_avg")
         }
@@ -267,7 +300,7 @@ export default function SM105Page() {
                         expressionLatex: "4 \\times 2.5", targetLatex: "10",
                         visualData: { ingredient: "sugar", baseAmount: 4, targetAmount: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: t("sm1_05.placeholders.question"), expected: 10 }],
-                        correctLatex: "10", hintLatex: ["4 \\times 2 + 4 \\times 0.5"]
+                        correctLatex: "10", hintLatex: [sm1_05_t.hints.recipe_scale_factor]
                     },
                     {
                         id: "R-A4", difficulty, stage, visualMode: "RECIPES",
@@ -275,7 +308,7 @@ export default function SM105Page() {
                         expressionLatex: "3:5", targetLatex: "3:5",
                         visualData: { ingredient: "eggs", baseAmount: 3, targetAmount: 5 },
                         slots: [{ id: "a", labelLatex: "A", placeholder: t("sm1_05.placeholders.hash"), expected: 3 }, { id: "c", labelLatex: "C", placeholder: t("sm1_05.placeholders.hash"), expected: 5 }],
-                        correctLatex: "3:5", hintLatex: ["B matches in both ratios."]
+                        correctLatex: "3:5", hintLatex: [sm1_05_t.hints.recipe_match_both_ratios]
                     },
                     {
                         id: "R-A5", difficulty, stage, visualMode: "RECIPES",
@@ -283,7 +316,7 @@ export default function SM105Page() {
                         expressionLatex: "9 \\div 3", targetLatex: "3",
                         visualData: { ingredient: "cocoa", baseAmount: 9, targetAmount: 3 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.spins, placeholder: t("sm1_05.placeholders.question"), expected: 3 }],
-                        correctLatex: "3", hintLatex: ["Output is slower."]
+                        correctLatex: "3", hintLatex: [sm1_05_t.hints.recipe_output_slower]
                     }
                 );
             } else {
@@ -295,7 +328,7 @@ export default function SM105Page() {
                         expressionLatex: "4:6:5", targetLatex: "4:6:5",
                         visualData: { ingredient: "milk", baseAmount: 4, targetAmount: 5 },
                         slots: [{ id: "a", labelLatex: "A", placeholder: t("sm1_05.placeholders.hash"), expected: 4 }, { id: "b", labelLatex: "B", placeholder: t("sm1_05.placeholders.hash"), expected: 6 }, { id: "c", labelLatex: "C", placeholder: t("sm1_05.placeholders.hash"), expected: 5 }],
-                        correctLatex: "4:6:5", hintLatex: ["Multiply A:B by 2 to match B."]
+                        correctLatex: "4:6:5", hintLatex: [sm1_05_t.hints.recipe_double_ab_to_match_b]
                     },
                     {
                         id: "R-E2", difficulty, stage, visualMode: "RECIPES",
@@ -303,7 +336,7 @@ export default function SM105Page() {
                         expressionLatex: "4 \\times 25000", targetLatex: "1",
                         visualData: { ingredient: "flour", baseAmount: 1, targetAmount: 1 },
                         slots: [{ id: "ans", labelLatex: "km", placeholder: t("sm1_05.placeholders.question"), expected: 1 }],
-                        correctLatex: "1", hintLatex: ["100,000cm = 1km."]
+                        correctLatex: "1", hintLatex: [sm1_05_t.hints.map_hundred_thousand_cm_km]
                     },
                     {
                         id: "R-E3", difficulty, stage, visualMode: "RECIPES",
@@ -319,7 +352,7 @@ export default function SM105Page() {
                         expressionLatex: "4 \\times 6 = 24h \\text{ total}", targetLatex: "8",
                         visualData: { ingredient: "eggs", baseAmount: 4, targetAmount: 6 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.hours, placeholder: t("sm1_05.placeholders.question"), expected: 8 }],
-                        correctLatex: "8", hintLatex: ["Constant product."]
+                        correctLatex: "8", hintLatex: [sm1_05_t.hints.recipe_constant_product]
                     },
                     {
                         id: "R-E5", difficulty, stage, visualMode: "RECIPES",
@@ -327,7 +360,7 @@ export default function SM105Page() {
                         expressionLatex: "\\frac{1}{6} - \\frac{1}{10}", targetLatex: "15",
                         visualData: { ingredient: "cocoa", baseAmount: 6, targetAmount: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.hours, placeholder: t("sm1_05.placeholders.question"), expected: 15 }],
-                        correctLatex: "15", hintLatex: ["Subtract rates."]
+                        correctLatex: "15", hintLatex: [sm1_05_t.hints.recipe_subtract_rates]
                     }
                 );
             }
@@ -375,7 +408,7 @@ export default function SM105Page() {
                         expressionLatex: "0.75 \\times 100", targetLatex: "75",
                         visualData: { percentage: 75, totalValue: 100 },
                         slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 75 }],
-                        correctLatex: "75", hintLatex: ["Multiply by 100."]
+                        correctLatex: "75", hintLatex: [sm1_05_t.hints.percent_multiply_by_100]
                     }
                 );
             } else if (isCore) {
@@ -402,7 +435,7 @@ export default function SM105Page() {
                         expressionLatex: "30", targetLatex: "30",
                         visualData: { percentage: 15, totalValue: 200, partValue: 30 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: t("sm1_05.placeholders.question"), expected: 30 }],
-                        correctLatex: "30", hintLatex: ["10\\% is 20, 5\\% is 10."]
+                        correctLatex: "30", hintLatex: [sm1_05_t.hints.percent_ten_is_20_five_is_10]
                     },
                     {
                         id: "P-C4", difficulty, stage, visualMode: "PERCENT",
@@ -410,7 +443,7 @@ export default function SM105Page() {
                         expressionLatex: "40", targetLatex: "40",
                         visualData: { percentage: 40, totalValue: 50, partValue: 20 },
                         slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 40 }],
-                        correctLatex: "40", hintLatex: ["Multiply to 100."]
+                        correctLatex: "40", hintLatex: [sm1_05_t.hints.percent_multiply_to_100]
                     },
                     {
                         id: "P-C5", difficulty, stage, visualMode: "PERCENT",
@@ -429,7 +462,7 @@ export default function SM105Page() {
                         expressionLatex: "15\\% = 12", targetLatex: "68",
                         visualData: { percentage: 15, totalValue: 80, partValue: 12 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: t("sm1_05.placeholders.question"), expected: 68 }],
-                        correctLatex: "68", hintLatex: ["80 - 12"]
+                        correctLatex: "68", hintLatex: [sm1_05_t.hints.percent_subtract_80_12]
                     },
                     {
                         id: "P-A2", difficulty, stage, visualMode: "PERCENT",
@@ -437,7 +470,7 @@ export default function SM105Page() {
                         expressionLatex: "120 \\times 0.8", targetLatex: "96",
                         visualData: { percentage: 80, totalValue: 120, partValue: 96 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.cost, placeholder: t("sm1_05.placeholders.question"), expected: 96 }],
-                        correctLatex: "96", hintLatex: ["Discount is 24."]
+                        correctLatex: "96", hintLatex: [sm1_05_t.hints.percent_discount_24]
                     },
                     {
                         id: "P-A3", difficulty, stage, visualMode: "PERCENT",
@@ -445,7 +478,7 @@ export default function SM105Page() {
                         expressionLatex: "1/8 \\times 80", targetLatex: "10",
                         visualData: { percentage: 12.5, totalValue: 80, partValue: 10 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: t("sm1_05.placeholders.question"), expected: 10 }],
-                        correctLatex: "10", hintLatex: ["1/8th of the value."]
+                        correctLatex: "10", hintLatex: [sm1_05_t.hints.percent_one_eighth_of_value]
                     },
                     {
                         id: "P-A4", difficulty, stage, visualMode: "PERCENT",
@@ -453,7 +486,7 @@ export default function SM105Page() {
                         expressionLatex: "35 / 0.7", targetLatex: "50",
                         visualData: { percentage: 70, totalValue: 50, partValue: 35 },
                         slots: [{ id: "ans", labelLatex: "Total", placeholder: t("sm1_05.placeholders.question"), expected: 50 }],
-                        correctLatex: "50", hintLatex: ["Divide part by percent."]
+                        correctLatex: "50", hintLatex: [sm1_05_t.hints.percent_divide_part_by_percent]
                     },
                     {
                         id: "P-A5", difficulty, stage, visualMode: "PERCENT",
@@ -461,7 +494,7 @@ export default function SM105Page() {
                         expressionLatex: "200 + 5", targetLatex: "205",
                         visualData: { percentage: 2.5, totalValue: 200, partValue: 5 },
                         slots: [{ id: "ans", labelLatex: sm1_05_t.labels.result, placeholder: t("sm1_05.placeholders.question"), expected: 205 }],
-                        correctLatex: "205", hintLatex: ["1\\% is 2."]
+                        correctLatex: "205", hintLatex: [sm1_05_t.hints.percent_one_is_2]
                     }
                 );
             } else {
@@ -473,7 +506,7 @@ export default function SM105Page() {
                         expressionLatex: "120 \\times 1.2 = 144", targetLatex: "120",
                         visualData: { percentage: 120, totalValue: 120, partValue: 144 },
                         slots: [{ id: "ans", labelLatex: "Orig", placeholder: t("sm1_05.placeholders.question"), expected: 120 }],
-                        correctLatex: "120", hintLatex: ["Divide by 1.2."]
+                        correctLatex: "120", hintLatex: [sm1_05_t.hints.percent_divide_by_1_2]
                     },
                     {
                         id: "P-E2", difficulty, stage, visualMode: "PERCENT",
@@ -489,7 +522,7 @@ export default function SM105Page() {
                         expressionLatex: "100 \\times 0.8 \\times 1.25 = 100", targetLatex: "0",
                         visualData: { percentage: 0, totalValue: 100, partValue: 100 },
                         slots: [{ id: "ans", labelLatex: "\\% Change", placeholder: t("sm1_05.placeholders.question"), expected: 0 }],
-                        correctLatex: "0", hintLatex: ["It breaks even."]
+                        correctLatex: "0", hintLatex: [sm1_05_t.hints.percent_break_even]
                     },
                     {
                         id: "P-E4", difficulty, stage, visualMode: "PERCENT",
@@ -505,7 +538,7 @@ export default function SM105Page() {
                         expressionLatex: "1000/5000", targetLatex: "20",
                         visualData: { percentage: 20, totalValue: 5000, partValue: 6000 },
                         slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }],
-                        correctLatex: "20", hintLatex: ["Diff / Orig"]
+                        correctLatex: "20", hintLatex: [sm1_05_t.hints.percent_diff_over_original]
                     }
                 );
             }
@@ -516,35 +549,35 @@ export default function SM105Page() {
             if (isBasic) {
                 quests.push(
                     { id: "M-B1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_syrup, expressionLatex: "\\frac{20}{100}", targetLatex: "20", visualData: { solute: 20, solvent: 80, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: [sm1_05_t.hints.mix_total_100] },
-                    { id: "M-B2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_salt, expressionLatex: "\\frac{10}{100}", targetLatex: "10", visualData: { solute: 10, solvent: 90, hideResult: true, soluteColor: "#f4f4f5", solventColor: "#3b82f6" }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 10 }], correctLatex: "10", hintLatex: ["Total mass 100g."] },
+                    { id: "M-B2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_salt, expressionLatex: "\\frac{10}{100}", targetLatex: "10", visualData: { solute: 10, solvent: 90, hideResult: true, soluteColor: "#f4f4f5", solventColor: "#3b82f6" }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 10 }], correctLatex: "10", hintLatex: [sm1_05_t.hints.mix_total_mass_100g] },
                     { id: "M-B3", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_juice, expressionLatex: "\\frac{50}{100}", targetLatex: "50", visualData: { solute: 50, solvent: 50, hideResult: true, soluteColor: "#eab308" }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 50 }], correctLatex: "50", hintLatex: [sm1_05_t.hints.percent_half] },
-                    { id: "M-B4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_colors, expressionLatex: "\\frac{30}{100}", targetLatex: "30", visualData: { solute: 30, solvent: 70, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 30 }], correctLatex: "30", hintLatex: ["30 out of 100."] },
-                    { id: "M-B5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_zero, expressionLatex: "0", targetLatex: "0", visualData: { solute: 0, solvent: 100, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 0 }], correctLatex: "0", hintLatex: ["Pure solvent."] }
+                    { id: "M-B4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_colors, expressionLatex: "\\frac{30}{100}", targetLatex: "30", visualData: { solute: 30, solvent: 70, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 30 }], correctLatex: "30", hintLatex: [sm1_05_t.hints.mix_30_out_of_100] },
+                    { id: "M-B5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_zero, expressionLatex: "0", targetLatex: "0", visualData: { solute: 0, solvent: 100, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 0 }], correctLatex: "0", hintLatex: [sm1_05_t.hints.mix_pure_solvent] }
                 );
             } else if (isCore) {
                 quests.push(
-                    { id: "M-C1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_25g, expressionLatex: "\\frac{25}{100}", targetLatex: "25", visualData: { solute: 25, solvent: 75, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 25 }], correctLatex: "25", hintLatex: ["Total 100g."] },
-                    { id: "M-C2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_20ml, expressionLatex: "\\frac{20}{200}", targetLatex: "10", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 10 }], correctLatex: "10", hintLatex: ["Total 200ml."] },
-                    { id: "M-C3", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_40ml, expressionLatex: "\\frac{40}{200}", targetLatex: "20", visualData: { solute: 40, solvent: 160, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: ["Double the percent calculation."] },
-                    { id: "M-C4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_find_solute, expressionLatex: "50", targetLatex: "50", visualData: { solute: 50, solvent: 450, hideResult: false }, slots: [{ id: "ans", labelLatex: "ml", placeholder: t("sm1_05.placeholders.question"), expected: 50 }], correctLatex: "50", hintLatex: ["500 \\times 0.1"] },
-                    { id: "M-C5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_find_mass, expressionLatex: "10", targetLatex: "10", visualData: { solute: 10, solvent: 190, hideResult: false }, slots: [{ id: "ans", labelLatex: "g", placeholder: t("sm1_05.placeholders.question"), expected: 10 }], correctLatex: "10", hintLatex: ["200 \\times 0.05"] }
+                    { id: "M-C1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_25g, expressionLatex: "\\frac{25}{100}", targetLatex: "25", visualData: { solute: 25, solvent: 75, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 25 }], correctLatex: "25", hintLatex: [sm1_05_t.hints.mix_total_100g] },
+                    { id: "M-C2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_20ml, expressionLatex: "\\frac{20}{200}", targetLatex: "10", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 10 }], correctLatex: "10", hintLatex: [sm1_05_t.hints.mix_total_200ml] },
+                    { id: "M-C3", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_40ml, expressionLatex: "\\frac{40}{200}", targetLatex: "20", visualData: { solute: 40, solvent: 160, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: [sm1_05_t.hints.mix_double_percent_calculation] },
+                    { id: "M-C4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_find_solute, expressionLatex: "50", targetLatex: "50", visualData: { solute: 50, solvent: 450, hideResult: false }, slots: [{ id: "ans", labelLatex: "ml", placeholder: t("sm1_05.placeholders.question"), expected: 50 }], correctLatex: "50", hintLatex: [sm1_05_t.hints.mix_500_times_0_1] },
+                    { id: "M-C5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_find_mass, expressionLatex: "10", targetLatex: "10", visualData: { solute: 10, solvent: 190, hideResult: false }, slots: [{ id: "ans", labelLatex: "g", placeholder: t("sm1_05.placeholders.question"), expected: 10 }], correctLatex: "10", hintLatex: [sm1_05_t.hints.mix_200_times_0_05] }
                 );
             } else if (isAdv) {
                 quests.push(
-                    { id: "M-A1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_add_10g, expressionLatex: "10/50", targetLatex: "20", visualData: { solute: 10, solvent: 40, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: ["Total 50g."] },
+                    { id: "M-A1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_add_10g, expressionLatex: "10/50", targetLatex: "20", visualData: { solute: 10, solvent: 40, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: [sm1_05_t.hints.mix_total_50g] },
                     { id: "M-A2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_add_50ml, expressionLatex: "50/200", targetLatex: "25", visualData: { solute: 50, solvent: 150, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 25 }], correctLatex: "25", hintLatex: [sm1_05_t.hints.percent_quarter] },
                     { id: "M-A3", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_dilute, expressionLatex: "50g / 200ml", targetLatex: "25", visualData: { solute: 50, solvent: 150, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 25 }], correctLatex: "25", hintLatex: [sm1_05_t.hints.mix_dilute] },
-                    { id: "M-A4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_find_water, expressionLatex: "20/Total=0.1", targetLatex: "180", visualData: { solute: 20, solvent: 180, hideResult: false }, slots: [{ id: "ans", labelLatex: sm1_05_t.labels.water, placeholder: t("sm1_05.placeholders.question"), expected: 180 }], correctLatex: "180", hintLatex: ["Total must be 200. 200-20=180."] },
+                    { id: "M-A4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_find_water, expressionLatex: "20/Total=0.1", targetLatex: "180", visualData: { solute: 20, solvent: 180, hideResult: false }, slots: [{ id: "ans", labelLatex: sm1_05_t.labels.water, placeholder: t("sm1_05.placeholders.question"), expected: 180 }], correctLatex: "180", hintLatex: [sm1_05_t.hints.mix_total_200_minus_20] },
                     { id: "M-A5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_avg, expressionLatex: "15", targetLatex: "15", visualData: { solute: 30, solvent: 170, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 15 }], correctLatex: "15", hintLatex: [sm1_05_t.hints.mix_avg] }
                 );
             } else {
                 // Elite
                 quests.push(
-                    { id: "M-E1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_weighted, expressionLatex: "(20+60)/500", targetLatex: "16", visualData: { solute: 80, solvent: 420, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 16 }], correctLatex: "16", hintLatex: ["Total solute 80g. Total mass 500g."] },
-                    { id: "M-E2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_evaporate, expressionLatex: "20/100", targetLatex: "20", visualData: { solute: 20, solvent: 80, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: ["Solute stays 20g. Total becomes 100g."] },
-                    { id: "M-E3", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_how_much_add, expressionLatex: "20/X = 0.1", targetLatex: "150", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: sm1_05_t.labels.share, placeholder: t("sm1_05.placeholders.question"), expected: 150 }], correctLatex: "150", hintLatex: ["Solute 20g. Need total 200g."] },
-                    { id: "M-E4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_inverse, expressionLatex: "20/(100+X)=0.1", targetLatex: "100", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: sm1_05_t.labels.share, placeholder: t("sm1_05.placeholders.question"), expected: 100 }], correctLatex: "100", hintLatex: ["Dilute by half."] },
-                    { id: "M-E5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_final_challenge, expressionLatex: "(40+50)/250", targetLatex: "36", visualData: { solute: 90, solvent: 160, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 36 }], correctLatex: "36", hintLatex: ["Orig solute 40g. Total 250g."] }
+                    { id: "M-E1", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_weighted, expressionLatex: "(20+60)/500", targetLatex: "16", visualData: { solute: 80, solvent: 420, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 16 }], correctLatex: "16", hintLatex: [sm1_05_t.hints.mix_total_solute_80_total_500] },
+                    { id: "M-E2", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_evaporate, expressionLatex: "20/100", targetLatex: "20", visualData: { solute: 20, solvent: 80, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 20 }], correctLatex: "20", hintLatex: [sm1_05_t.hints.mix_solute_stays_20_total_100] },
+                    { id: "M-E3", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_how_much_add, expressionLatex: "20/X = 0.1", targetLatex: "150", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: sm1_05_t.labels.share, placeholder: t("sm1_05.placeholders.question"), expected: 150 }], correctLatex: "150", hintLatex: [sm1_05_t.hints.mix_need_total_200] },
+                    { id: "M-E4", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_inverse, expressionLatex: "20/(100+X)=0.1", targetLatex: "100", visualData: { solute: 20, solvent: 180, hideResult: true }, slots: [{ id: "ans", labelLatex: sm1_05_t.labels.share, placeholder: t("sm1_05.placeholders.question"), expected: 100 }], correctLatex: "100", hintLatex: [sm1_05_t.hints.mix_dilute_by_half] },
+                    { id: "M-E5", difficulty, stage, visualMode: "MIXTURES", promptLatex: sm1_05_t.prompts.mix_final_challenge, expressionLatex: "(40+50)/250", targetLatex: "36", visualData: { solute: 90, solvent: 160, hideResult: true }, slots: [{ id: "ans", labelLatex: "%", placeholder: t("sm1_05.placeholders.question"), expected: 36 }], correctLatex: "36", hintLatex: [sm1_05_t.hints.mix_original_solute_40_total_250] }
                 );
             }
         }

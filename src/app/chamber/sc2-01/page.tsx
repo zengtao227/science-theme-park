@@ -32,7 +32,7 @@ export default function SC201Page() {
             targetLatex: "k_{\\text{rel}}",
             slots: [{ id: "k", labelLatex: "k", placeholder: t("sc2_01.placeholders.question"), expected: 1.5 }],
             correctLatex: "1.5",
-            hintLatex: ["Use R = 8.314 J/(mol·K)", "Convert Ea to J"],
+            hintLatex: [t("sc2_01.hints.arrhenius_gas_constant"), t("sc2_01.hints.convert_ea_to_joules")],
             temperature: 300, activationEnergy: 50
           },
           {

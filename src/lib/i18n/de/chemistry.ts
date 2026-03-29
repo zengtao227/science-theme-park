@@ -841,6 +841,10 @@ export const deChemistry = {
             temperature: "Temperatur",
             activation_energy: "Aktivierungsenergie"
         },
+        hints: {
+            arrhenius_gas_constant: "Verwenden Sie R = 8.314 J/(mol·K)",
+            convert_ea_to_joules: "Wandeln Sie Ea in J um"
+        },
         mission: {
             title: "MISSION: CHEMISCHES KINETIK-LABOR",
             description: "Untersuchen Sie Reaktionsgeschwindigkeiten im Basler Labor. Meistern Sie die Arrhenius-Gleichung und die Kollisionstheorie."

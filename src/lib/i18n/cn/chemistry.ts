@@ -849,6 +849,10 @@ export const cnChemistry = {
             temperature: "温度",
             activation_energy: "活化能"
         },
+        hints: {
+            arrhenius_gas_constant: "使用 R = 8.314 J/(mol·K)",
+            convert_ea_to_joules: "先把 Ea 转成 J"
+        },
         mission: {
             title: "任务：化学动力学实验室",
             description: "在巴塞尔实验室研究反应速率。掌握阿伦尼乌斯方程和碰撞理论。"

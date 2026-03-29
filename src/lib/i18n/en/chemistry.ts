@@ -835,6 +835,10 @@ export const enChemistry = {
             temperature: "Temperature",
             activation_energy: "Activation Energy"
         },
+        hints: {
+            arrhenius_gas_constant: "Use R = 8.314 J/(mol·K)",
+            convert_ea_to_joules: "Convert Ea to J"
+        },
         mission: {
             title: "MISSION: CHEMICAL KINETICS LAB",
             description: "Study reaction rates in the Basel lab. Master the Arrhenius equation and collision theory."

@@ -24,6 +24,8 @@ interface GB101Quest extends Quest {
 
 function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: Difficulty, stage: Stage): GB101Quest[] {
     const t = getT;
+    const hints = tObj.hints;
+    const placeholders = tObj.placeholders;
     const quests: GB101Quest[] = [];
     let idCounter = 0;
 
@@ -72,11 +74,11 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
         } else { // ELITE
             // Delta p = spq / (1-sq^2) approx spq
             quests.push(
-                { id: `NS-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e1"), expressionLatex: "0.1(0.5)(0.25)", targetLatex: "\\Delta p", slots: [{ id: "d", labelLatex: "dp", placeholder: t("gb1_01.placeholders.v_0_dot_0125"), expected: 0.0125 }], correctLatex: "0.0125", hintLatex: ["s p q^{2}"] },
-                create("hardy_p", { p: 0.99 }, "2(0.99)(0.01)", "2pq", "0.0198", ["Rare alleles"]),
-                { id: `NS-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e3"), expressionLatex: "1 - 0.5(0.01)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: t("gb1_01.placeholders.v_0_dot_995"), expected: 0.995 }], correctLatex: "0.995", hintLatex: ["Mean fitness"] },
-                { id: `NS-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e4"), expressionLatex: "q = s1/(s1+s2) = 0.2/(0.2+0.5)", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: t("gb1_01.placeholders.v_0_dot_286"), expected: 0.286 }], correctLatex: "0.286", hintLatex: ["Balanced poly"] },
-                { id: `NS-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e5"), expressionLatex: "\\sqrt{10^{-4}}", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: t("gb1_01.placeholders.v_0_dot_01"), expected: 0.01 }], correctLatex: "0.01", hintLatex: ["Equilibrium"] }
+                { id: `NS-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e1"), expressionLatex: "0.1(0.5)(0.25)", targetLatex: "\\Delta p", slots: [{ id: "d", labelLatex: "dp", placeholder: t("gb1_01.placeholders.v_0_dot_0125"), expected: 0.0125 }], correctLatex: "0.0125", hintLatex: [hints.delta_p_spq_squared] },
+                create("hardy_p", { p: 0.99 }, "2(0.99)(0.01)", "2pq", "0.0198", [hints.rare_alleles]),
+                { id: `NS-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e3"), expressionLatex: "1 - 0.5(0.01)", targetLatex: "W", slots: [{ id: "w", labelLatex: "W", placeholder: t("gb1_01.placeholders.v_0_dot_995"), expected: 0.995 }], correctLatex: "0.995", hintLatex: [hints.mean_fitness] },
+                { id: `NS-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e4"), expressionLatex: "q = s1/(s1+s2) = 0.2/(0.2+0.5)", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: t("gb1_01.placeholders.v_0_dot_286"), expected: 0.286 }], correctLatex: "0.286", hintLatex: [hints.balanced_polymorphism] },
+                { id: `NS-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ns_e5"), expressionLatex: "\\sqrt{10^{-4}}", targetLatex: "q", slots: [{ id: "q", labelLatex: "q", placeholder: t("gb1_01.placeholders.v_0_dot_01"), expected: 0.01 }], correctLatex: "0.01", hintLatex: [hints.equilibrium] }
             );
         }
     }
@@ -85,35 +87,35 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
         if (difficulty === "BASIC") {
             quests.push(
                 create("mutation_div", { D: 0, u: 1e-3 }, "t \\times 10^{-3}", "D", "0.1", ["Assume 100 gen"], "genetic_drift"), // Placeholder fix logic below
-                { id: `SP-B1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b1"), expressionLatex: "100 \\times 0.001", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: t("gb1_01.placeholders.v_0_dot_1"), expected: 0.1 }], correctLatex: "0.1", hintLatex: ["Mult"] },
-                { id: `SP-B2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b2"), expressionLatex: "500 \\times 0.002", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: t("gb1_01.placeholders.v_1"), expected: 1 }], correctLatex: "1", hintLatex: ["Mult"] },
-                { id: `SP-B3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b3"), expressionLatex: "0.1", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: t("gb1_01.placeholders.v_0_dot_1"), expected: 0.1 }], correctLatex: "0.1", hintLatex: ["Mult"] },
-                { id: `SP-B4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b4"), expressionLatex: "0.2/100", targetLatex: "u", slots: [{ id: "u", labelLatex: "u", placeholder: t("gb1_01.placeholders.v_0_dot_002"), expected: 0.002 }], correctLatex: "0.002", hintLatex: ["Div speed"] },
-                { id: `SP-B5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b5"), expressionLatex: "1/0.01", targetLatex: "t", slots: [{ id: "t", labelLatex: "t", placeholder: t("gb1_01.placeholders.v_100"), expected: 100 }], correctLatex: "100", hintLatex: ["Inverse"] }
+                { id: `SP-B1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b1"), expressionLatex: "100 \\times 0.001", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: t("gb1_01.placeholders.v_0_dot_1"), expected: 0.1 }], correctLatex: "0.1", hintLatex: [hints.multiply_short] },
+                { id: `SP-B2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b2"), expressionLatex: "500 \\times 0.002", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: t("gb1_01.placeholders.v_1"), expected: 1 }], correctLatex: "1", hintLatex: [hints.multiply_short] },
+                { id: `SP-B3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b3"), expressionLatex: "0.1", targetLatex: "D", slots: [{ id: "d", labelLatex: "D", placeholder: t("gb1_01.placeholders.v_0_dot_1"), expected: 0.1 }], correctLatex: "0.1", hintLatex: [hints.multiply_short] },
+                { id: `SP-B4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b4"), expressionLatex: "0.2/100", targetLatex: "u", slots: [{ id: "u", labelLatex: "u", placeholder: t("gb1_01.placeholders.v_0_dot_002"), expected: 0.002 }], correctLatex: "0.002", hintLatex: [hints.divide_speed] },
+                { id: `SP-B5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_b5"), expressionLatex: "1/0.01", targetLatex: "t", slots: [{ id: "t", labelLatex: "t", placeholder: t("gb1_01.placeholders.v_100"), expected: 100 }], correctLatex: "100", hintLatex: [hints.inverse] }
             );
         } else if (difficulty === "CORE") {
             quests.push(
                 create("drift_time", { N: 100 }, "4 \\times 100", "t", "400", ["4N"]),
                 create("drift_time", { N: 50 }, "4 \\times 50", "t", "200", ["4N"]),
                 create("drift_time", { N: 1000 }, "4000", "t", "4000", ["4N"]),
-                { id: `SP-C4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_c4"), expressionLatex: "1/200", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: t("gb1_01.placeholders.v_0_dot_005"), expected: 0.005 }], correctLatex: "0.005", hintLatex: ["1/2N"] },
-                { id: `SP-C5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_c5"), expressionLatex: "1/1000", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: t("gb1_01.placeholders.v_0_dot_001"), expected: 0.001 }], correctLatex: "0.001", hintLatex: ["1/2N"] }
+                { id: `SP-C4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_c4"), expressionLatex: "1/200", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: t("gb1_01.placeholders.v_0_dot_005"), expected: 0.005 }], correctLatex: "0.005", hintLatex: [hints.one_over_2n] },
+                { id: `SP-C5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_c5"), expressionLatex: "1/1000", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: t("gb1_01.placeholders.v_0_dot_001"), expected: 0.001 }], correctLatex: "0.001", hintLatex: [hints.one_over_2n] }
             );
         } else if (difficulty === "ADVANCED") {
             quests.push(
                 create("common_ancestor", { n: 10, r: 1 }, "10/2", "T", "5", ["2 branches"]),
                 create("common_ancestor", { n: 20, r: 0.5 }, "20/(2 \\times 0.5)", "T", "20", ["2uT=D"]),
                 create("common_ancestor", { n: 5, r: 0.1 }, "5/0.2", "T", "25", ["2uT"]),
-                { id: `SP-A4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_a4"), expressionLatex: "1 - 1/20", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: t("gb1_01.placeholders.v_0_dot_95"), expected: 0.95 }], correctLatex: "0.95", hintLatex: ["1 - 1/2N"] },
-                { id: `SP-A5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_a5"), expressionLatex: "40000/200", targetLatex: "Ne", slots: [{ id: "n", labelLatex: "Ne", placeholder: t("gb1_01.placeholders.v_200"), expected: 200 }], correctLatex: "200", hintLatex: ["Equal sex"] }
+                { id: `SP-A4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_a4"), expressionLatex: "1 - 1/20", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: t("gb1_01.placeholders.v_0_dot_95"), expected: 0.95 }], correctLatex: "0.95", hintLatex: [hints.one_minus_one_over_2n] },
+                { id: `SP-A5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_a5"), expressionLatex: "40000/200", targetLatex: "Ne", slots: [{ id: "n", labelLatex: "Ne", placeholder: t("gb1_01.placeholders.v_200"), expected: 200 }], correctLatex: "200", hintLatex: [hints.equal_sex] }
             );
         } else { // ELITE
             quests.push(
-                { id: `SP-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e1"), expressionLatex: "\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: t("gb1_01.placeholders.yes"), expected: "yes" }], correctLatex: "Yes", hintLatex: ["Ns<1"] },
-                { id: `SP-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e2"), expressionLatex: "0.5^{2}", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: t("gb1_01.placeholders.v_0_dot_25"), expected: 0.25 }], correctLatex: "0.25", hintLatex: ["Sample"] },
-                { id: `SP-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e3"), expressionLatex: "0.1/0.5", targetLatex: "Fst", slots: [{ id: "f", labelLatex: "F", placeholder: t("gb1_01.placeholders.v_0_dot_2"), expected: 0.2 }], correctLatex: "0.2", hintLatex: ["Structure"] },
-                { id: `SP-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e4"), expressionLatex: "4N/2 = 2N", targetLatex: "\\text{Coef}", slots: [{ id: "c", labelLatex: "C", placeholder: t("gb1_01.placeholders.v_2"), expected: 2 }], correctLatex: "2N", hintLatex: ["Pairwise"] },
-                { id: `SP-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e5"), expressionLatex: "\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: t("gb1_01.placeholders.yes"), expected: "yes" }], correctLatex: "Yes", hintLatex: ["k = u"] }
+                { id: `SP-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e1"), expressionLatex: "\\text{Yes}", targetLatex: "Y/N", slots: [{ id: "a", labelLatex: "Y/N", placeholder: placeholders.yes, expected: "yes" }], correctLatex: placeholders.yes, hintLatex: [hints.ns_less_than_one] },
+                { id: `SP-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e2"), expressionLatex: "0.5^{2}", targetLatex: "P", slots: [{ id: "p", labelLatex: "P", placeholder: t("gb1_01.placeholders.v_0_dot_25"), expected: 0.25 }], correctLatex: "0.25", hintLatex: [hints.sample] },
+                { id: `SP-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e3"), expressionLatex: "0.1/0.5", targetLatex: "Fst", slots: [{ id: "f", labelLatex: "F", placeholder: t("gb1_01.placeholders.v_0_dot_2"), expected: 0.2 }], correctLatex: "0.2", hintLatex: [hints.structure] },
+                { id: `SP-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e4"), expressionLatex: "4N/2 = 2N", targetLatex: "\\text{Coef}", slots: [{ id: "c", labelLatex: "C", placeholder: t("gb1_01.placeholders.v_2"), expected: 2 }], correctLatex: "2N", hintLatex: [hints.pairwise] },
+                { id: `SP-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.sp_e5"), expressionLatex: "\\text{Equal}", targetLatex: "Eq", slots: [{ id: "e", labelLatex: "Eq", placeholder: placeholders.yes, expected: "yes" }], correctLatex: placeholders.yes, hintLatex: [hints.k_equals_u] }
             );
         }
     }
@@ -121,35 +123,35 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
     if (stage === "EVIDENCE") {
         if (difficulty === "BASIC") {
             quests.push(
-                create("decay_age", { f: 0.5, h: 5730 }, "1 \\times 5730", "A", "5730", ["1 Half life"]),
-                create("decay_age", { f: 0.25, h: 5730 }, "2 \\times 5730", "A", "11460", ["2 Half lives"]),
+                create("decay_age", { f: 0.5, h: 5730 }, "1 \\times 5730", "A", "5730", [hints.one_half_life]),
+                create("decay_age", { f: 0.25, h: 5730 }, "2 \\times 5730", "A", "11460", [hints.two_half_lives]),
                 create("decay_age", { f: 0.125, h: 5730 }, "3 \\times 5730", "A", "17190", ["3 Half lives"]),
-                create("decay_age", { f: 0.5, h: 100 }, "100", "A", "100", ["1 Half life"]),
-                create("decay_age", { f: 0.25, h: 1000 }, "2000", "A", "2000", ["2 Half lives"])
+                create("decay_age", { f: 0.5, h: 100 }, "100", "A", "100", [hints.one_half_life]),
+                create("decay_age", { f: 0.25, h: 1000 }, "2000", "A", "2000", [hints.two_half_lives])
             );
         } else if (difficulty === "CORE") {
             quests.push(
-                { id: `EV-C1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c1"), expressionLatex: "4.5", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_4_dot_5"), expected: 4.5 }], correctLatex: "4.5 B", hintLatex: ["1 HL"] },
-                { id: `EV-C2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c2"), expressionLatex: "2", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: t("gb1_01.placeholders.v_2"), expected: 2 }], correctLatex: "2", hintLatex: ["1->1/2->1/4"] },
-                { id: `EV-C3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c3"), expressionLatex: "3 \\times 1.25", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_3_dot_75"), expected: 3.75 }], correctLatex: "3.75 B", hintLatex: ["3 HL"] },
-                { id: `EV-C4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c4"), expressionLatex: "5730", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_5730"), expected: 5730 }], correctLatex: "5730", hintLatex: ["Def"] },
-                { id: `EV-C5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c5"), expressionLatex: "4", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: t("gb1_01.placeholders.v_4"), expected: 4 }], correctLatex: "4", hintLatex: ["1/16"] }
+                { id: `EV-C1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c1"), expressionLatex: "4.5", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_4_dot_5"), expected: 4.5 }], correctLatex: "4.5 B", hintLatex: [hints.one_half_life] },
+                { id: `EV-C2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c2"), expressionLatex: "2", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: t("gb1_01.placeholders.v_2"), expected: 2 }], correctLatex: "2", hintLatex: [hints.quarter_remaining_path] },
+                { id: `EV-C3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c3"), expressionLatex: "3 \\times 1.25", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_3_dot_75"), expected: 3.75 }], correctLatex: "3.75 B", hintLatex: [hints.three_half_lives] },
+                { id: `EV-C4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c4"), expressionLatex: "5730", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_5730"), expected: 5730 }], correctLatex: "5730", hintLatex: [hints.definition_short] },
+                { id: `EV-C5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_c5"), expressionLatex: "4", targetLatex: "N", slots: [{ id: "n", labelLatex: "N", placeholder: t("gb1_01.placeholders.v_4"), expected: 4 }], correctLatex: "4", hintLatex: [hints.one_sixteenth_remaining] }
             );
         } else if (difficulty === "ADVANCED") {
             quests.push(
-                { id: `EV-A1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a1"), expressionLatex: "10^{-4}", targetLatex: "L", slots: [{ id: "l", labelLatex: "L", placeholder: t("gb1_01.placeholders.v_0_dot_0001"), expected: 0.0001 }], correctLatex: "0.0001", hintLatex: ["Div"] },
-                { id: `EV-A2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a2"), expressionLatex: "e^{-1}", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: t("gb1_01.placeholders.v_0_dot_368"), expected: 0.368 }], correctLatex: "0.368", hintLatex: ["1/e"] },
-                { id: `EV-A3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a3"), expressionLatex: "173", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_173"), expected: 173 }], correctLatex: "173", hintLatex: ["Calc"] },
-                { id: `EV-A4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a4"), expressionLatex: "\\ln 2", targetLatex: "Lt", slots: [{ id: "l", labelLatex: "X", placeholder: t("gb1_01.placeholders.v_0_dot_693"), expected: 0.693 }], correctLatex: "0.693", hintLatex: ["Ln 2"] },
-                { id: `EV-A5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a5"), expressionLatex: "1100", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_1100"), expected: 1100 }], correctLatex: "~1100", hintLatex: ["Corrected"] }
+                { id: `EV-A1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a1"), expressionLatex: "10^{-4}", targetLatex: "L", slots: [{ id: "l", labelLatex: "L", placeholder: t("gb1_01.placeholders.v_0_dot_0001"), expected: 0.0001 }], correctLatex: "0.0001", hintLatex: [hints.divide_short] },
+                { id: `EV-A2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a2"), expressionLatex: "e^{-1}", targetLatex: "F", slots: [{ id: "f", labelLatex: "F", placeholder: t("gb1_01.placeholders.v_0_dot_368"), expected: 0.368 }], correctLatex: "0.368", hintLatex: [hints.inverse] },
+                { id: `EV-A3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a3"), expressionLatex: "173", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_173"), expected: 173 }], correctLatex: "173", hintLatex: [hints.calculate_short] },
+                { id: `EV-A4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a4"), expressionLatex: "\\ln 2", targetLatex: "Lt", slots: [{ id: "l", labelLatex: "X", placeholder: t("gb1_01.placeholders.v_0_dot_693"), expected: 0.693 }], correctLatex: "0.693", hintLatex: [hints.ln_2] },
+                { id: `EV-A5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_a5"), expressionLatex: "1100", targetLatex: "A", slots: [{ id: "a", labelLatex: "A", placeholder: t("gb1_01.placeholders.v_1100"), expected: 1100 }], correctLatex: "~1100", hintLatex: [hints.corrected] }
             );
         } else { // ELITE
             quests.push(
-                { id: `EV-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e1"), expressionLatex: "0.3", targetLatex: "K", slots: [{ id: "k", labelLatex: "K", placeholder: t("gb1_01.placeholders.v_0_dot_3"), expected: 0.3 }], correctLatex: "~0.3", hintLatex: ["Formula"] },
-                { id: `EV-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e2"), expressionLatex: "2", targetLatex: "R", slots: [{ id: "r", labelLatex: "R", placeholder: t("gb1_01.placeholders.v_2"), expected: 2 }], correctLatex: "2", hintLatex: ["Def"] },
-                { id: `EV-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e3"), expressionLatex: "\\text{Positive}", targetLatex: "Type", slots: [{ id: "t", labelLatex: "Pos/Neg", placeholder: t("gb1_01.placeholders.positive"), expected: "positive" }], correctLatex: "Positive", hintLatex: ["Adaptive"] },
-                { id: `EV-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e4"), expressionLatex: "Yes", targetLatex: "Y/N", slots: [{ id: "y", labelLatex: "Y/N", placeholder: t("gb1_01.placeholders.yes"), expected: "yes" }], correctLatex: "Yes", hintLatex: ["Occam"] },
-                { id: `EV-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e5"), expressionLatex: "95\\%", targetLatex: "C", slots: [{ id: "c", labelLatex: "C", placeholder: t("gb1_01.placeholders.v_95"), expected: 95 }], correctLatex: "95%", hintLatex: ["Percentage"] }
+                { id: `EV-E1`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e1"), expressionLatex: "0.3", targetLatex: "K", slots: [{ id: "k", labelLatex: "K", placeholder: t("gb1_01.placeholders.v_0_dot_3"), expected: 0.3 }], correctLatex: "~0.3", hintLatex: [hints.formula] },
+                { id: `EV-E2`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e2"), expressionLatex: "2", targetLatex: "R", slots: [{ id: "r", labelLatex: "R", placeholder: t("gb1_01.placeholders.v_2"), expected: 2 }], correctLatex: "2", hintLatex: [hints.definition_short] },
+                { id: `EV-E3`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e3"), expressionLatex: "\\text{Positive}", targetLatex: "Type", slots: [{ id: "t", labelLatex: "Pos/Neg", placeholder: placeholders.positive, expected: "positive" }], correctLatex: placeholders.positive, hintLatex: [hints.adaptive] },
+                { id: `EV-E4`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e4"), expressionLatex: "Yes", targetLatex: "Y/N", slots: [{ id: "y", labelLatex: "Y/N", placeholder: placeholders.yes, expected: "yes" }], correctLatex: placeholders.yes, hintLatex: [hints.occam] },
+                { id: `EV-E5`, difficulty, stage, promptLatex: t("gb1_01.prompts.ev_e5"), expressionLatex: "95\\%", targetLatex: "C", slots: [{ id: "c", labelLatex: "C", placeholder: t("gb1_01.placeholders.v_95"), expected: 95 }], correctLatex: "95%", hintLatex: [hints.percentage] }
             );
         }
     }
