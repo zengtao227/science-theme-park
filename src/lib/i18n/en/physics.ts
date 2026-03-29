@@ -3377,7 +3377,11 @@ export const enPhysics = {
                 full: "Full",
                 full_moon: "Full Moon"
         },
-        prompts: {},
+        prompts: {
+                sp1_04_q1: "Identify the largest planet in the solar system.",
+                sp1_04_q2: "Identify the phase when the Moon is fully illuminated.",
+                sp1_04_q3: "What is Earth's axial tilt in degrees?"
+        },
         reasons: {
                 solar_system_focus: "Identify the solar-system fact or object requested by the prompt.",
                 moon_phases_focus: "Identify the lunar phase that matches the described illumination pattern.",
