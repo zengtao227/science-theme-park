@@ -53,7 +53,7 @@ export function solveSM301(
 
     rawSteps.push({
       justification: t("sm3_01.reasons.group_like_terms"),
-      expressionLatex: `\\text{Collect terms with the same variable and degree together}`,
+      expressionLatex: `\\text{${t("sm3_01.solver.group_terms_instruction")}}`,
     });
     rawSteps.push({
       justification: t("sm3_01.reasons.read_combined_coefficients"),
@@ -112,7 +112,7 @@ export function solveSM301(
     });
     rawSteps.push({
       justification: t("sm3_01.reasons.cancel_common_factor"),
-      expressionLatex: `\\text{Cancel every factor that appears in both numerator and denominator}`,
+      expressionLatex: `\\text{${t("sm3_01.solver.cancel_shared_factors_instruction")}}`,
     });
     rawSteps.push({
       justification: t("sm3_01.reasons.final_simplified_form"),
@@ -138,7 +138,7 @@ export function solveSM301(
       const k = getExpectedNumber(quest, "k");
       rawSteps.push({
         justification: t("sm3_01.reasons.substitute_known_root"),
-        expressionLatex: `\\text{Insert the given root into the quadratic equation}`,
+        expressionLatex: `\\text{${t("sm3_01.solver.insert_known_root_instruction")}}`,
       });
       rawSteps.push({
         justification: t("sm3_01.reasons.solve_required_values"),

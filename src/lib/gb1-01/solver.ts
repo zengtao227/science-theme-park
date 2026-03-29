@@ -43,7 +43,9 @@ function buildRuleLatex(quest: GB101SolverQuest, t: Translator) {
   const expression = quest.expressionLatex;
 
   if (quest.stage === "NATURAL_SELECTION") {
-    if (target === "w") return "w = \\frac{\\text{survivors}}{\\text{initial population}}";
+    if (target === "w") {
+      return `w = \\frac{\\text{${escapeLatexText(t("biology.gb1_01.solver.survivors_label"))}}}{\\text{${escapeLatexText(t("biology.gb1_01.solver.initial_population_label"))}}}`;
+    }
     if (target === "s") return "s = 1 - w";
     if (target === "2pq") return "q = 1 - p, \\quad 2pq = 2p(1-p)";
     if (target === "q" && expression.includes("\\sqrt")) return "q = \\sqrt{q^2}";
@@ -53,7 +55,9 @@ function buildRuleLatex(quest: GB101SolverQuest, t: Translator) {
   }
 
   if (quest.stage === "SPECIATION") {
-    if (target === "D") return "D = ut \\text{ or } D = 2uT \\text{ depending on the divergence model}";
+    if (target === "D") {
+      return `D = ut \\text{ ${escapeLatexText(t("biology.gb1_01.solver.or_word"))} } D = 2uT \\text{ ${escapeLatexText(t("biology.gb1_01.solver.depending_on_divergence_model"))} }`;
+    }
     if (target === "t" && expression.includes("4")) return "t \\approx 4N_e";
     if (target === "T") return "D = 2uT \\Rightarrow T = \\frac{D}{2u}";
     if (target === "P") return "P = \\frac{1}{2N}";
@@ -69,9 +73,13 @@ function buildRuleLatex(quest: GB101SolverQuest, t: Translator) {
     if (target === "F") return "F = e^{-\\lambda t}";
     if (target === "Lt") return "\\lambda t_{1/2} = \\ln 2";
     if (target === "K") return "K = \\frac{D}{2t}";
-    if (target === "R") return "R = \\frac{\\text{older rate}}{\\text{newer rate}}";
+    if (target === "R") {
+      return `R = \\frac{\\text{${escapeLatexText(t("biology.gb1_01.solver.older_rate_label"))}}}{\\text{${escapeLatexText(t("biology.gb1_01.solver.newer_rate_label"))}}}`;
+    }
     if (target === "Type") return `\\text{${escapeLatexText(t("biology.gb1_01.solver.rule_positive_selection"))}}`;
-    if (target === "C") return "C = \\frac{\\text{accepted cases}}{\\text{total cases}} \\times 100\\%";
+    if (target === "C") {
+      return `C = \\frac{\\text{${escapeLatexText(t("biology.gb1_01.solver.accepted_cases_label"))}}}{\\text{${escapeLatexText(t("biology.gb1_01.solver.total_cases_label"))}}} \\times 100\\%`;
+    }
     return `\\text{${escapeLatexText(t("biology.gb1_01.solver.use_evidence_reasoning"))}}`;
   }
 

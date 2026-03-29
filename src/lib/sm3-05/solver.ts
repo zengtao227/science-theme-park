@@ -25,7 +25,7 @@ function solveCrossSections(quest: SM305FeedbackQuest, t: Translator) {
   const intermediate = quest.hintLatex?.[0] ?? quest.expressionLatex;
   return [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex),
-    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Identify how the cutting plane meets the solid}"),
+    makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), `\\text{${t("sm3_05.solver.cross_section_rule")}}`),
     makeStep(3, t("common.feedback_reasons.solve_step_by_step"), intermediate),
     makeStep(4, t("common.feedback_reasons.state_final_result"), `${slot.labelLatex} = ${quest.correctLatex}`, "key"),
   ];

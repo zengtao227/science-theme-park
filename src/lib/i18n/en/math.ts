@@ -2742,6 +2742,11 @@ export const enMath = {
             substitute_known_root: "Substitute the given root into the equation to determine the unknown parameter.",
             recognize_double_root: "A repeated factor indicates a double root."
         },
+        solver: {
+            group_terms_instruction: "Collect terms with the same variable and degree together",
+            cancel_shared_factors_instruction: "Cancel every factor that appears in both numerator and denominator",
+            insert_known_root_instruction: "Insert the given root into the quadratic equation"
+        },
         ui: {
             loading: "Loading..."
         },
@@ -3545,6 +3550,9 @@ export const enMath = {
             basel_arch: "Basel Architecture - Geometric Icons: You are an apprentice architect in Basel, analyzing the city's modern skyline. The Roche Tower (Building 1 and 2) can be modeled as a series of stacked trapezoidal prisms and cylinders. The Messeturm Basel is another landmark with its distinct rectangular and cylindrical sections. Your task is to calculate the volumes and surface areas of these iconic structures by abstracting them into basic geometric solids. For example, Stage 1 focuses on calculating the total volume of the Roche Tower complex by breaking it down into its constituent prisms. Understanding these relationships is vital for material planning (concrete, glass) and structural integrity.",
             cross_sections: "Basel Medical Imaging - Diagnostic Geometry: At the Basel University Hospital (USB), radiologists use MRI and CT scans to generate 2D cross-sections of the human body. This mathematical abstraction allows doctors to see inside organs without surgery. In this stage, you'll analyze how different planes cutting through solids (like a cylinder representing a blood vessel or a sphere representing a cell) create specific 2D shapes. A diagonal cut through the Roche Tower's model might yield a complex polygon. Mastering cross-sections is essential for both medicine and architectural floor planning.",
             curved_solids: "Basel Bio-Tech Research - Micro-Geometry: In the pharmaceutical labs of Novartis, scientists work with spherical liposomes and cylindrical delivery systems for new medicines. Calculating the surface area of a sphere is crucial for determining drug release rates, while the volume of a conical reservoir affects dosage precision. This stage takes you into the world of non-polyhedral geometry—spheres, cones, and cylinders. You'll apply formulas for the volume (V = 4/3πr^{3}) and surface area (A = 4πr^{2}) of a sphere, and similar advanced formulas for cones and cylinders, ensuring Basel's medicines are delivered with mathematical certainty."
+        },
+        solver: {
+            cross_section_rule: "Identify how the cutting plane meets the solid"
         },
         prompts: {
             roche1_volume: "Basel architecture task: Roche Tower 1 is 178m tall. If modeled as a rectangular prism with base 60m x 40m, what is the volume?",

@@ -2713,6 +2713,11 @@ export const deMath = {
             substitute_known_root: "Setze die gegebene Nullstelle in die Gleichung ein, um den unbekannten Parameter zu bestimmen.",
             recognize_double_root: "Ein doppelter Faktor zeigt eine doppelte Nullstelle an."
         },
+        solver: {
+            group_terms_instruction: "Fasse die Terme mit gleicher Variablen und gleichem Grad zusammen",
+            cancel_shared_factors_instruction: "Kürze jeden Faktor, der sowohl im Zähler als auch im Nenner vorkommt",
+            insert_known_root_instruction: "Setze die gegebene Nullstelle in die quadratische Gleichung ein"
+        },
         ui: {
             loading: "Wird geladen..."
         },
@@ -3521,6 +3526,9 @@ export const deMath = {
             basel_arch: "Basler Architektur - Geometrische Ikonen: Sie sind ein Lehrling im Architekturbüro und analysieren die moderne Skyline von Basel. Der Roche-Turm (Bau 1 und 2) kann als eine Serie von gestapelten trapezförmigen Prismen und Zylindern modelliert werden. Der Messeturm Basel ist ein weiteres Wahrzeichen mit seinen markanten rechteckigen und zylindrischen Abschnitten. Ihre Aufgabe ist es, die Volumina und Oberflächen dieser ikonischen Strukturen zu berechnen, indem Sie sie in geometrische Grundkörper abstrahieren. Stufe 1 konzentriert sich auf die Berechnung des Gesamtvolumens des Roche-Turm-Komplexes. Das Verständnis dieser Beziehungen ist lebenswichtig für die Materialplanung (Beton, Glas) und die strukturelle Integrität.",
             cross_sections: "Basler Medizinische Bildgebung - Diagnostische Geometrie: Im Universitätsspital Basel (USB) verwenden Radiologen MRT- und CT-Scans, um 2D-Querschnitte des menschlichen Körpers zu erstellen. Diese mathematische Abstraktion ermöglicht es Ärzten, Organe ohne Operation zu sehen. In dieser Stufe analysieren Sie, wie verschiedene Ebenen, die durch Festkörper (wie ein Zylinder für ein Blutgefäß oder eine Kugel für eine Zelle) schneiden, spezifische 2D-Formen erzeugen. Ein diagonaler Schnitt durch das Modell des Roche-Turms könnte ein komplexes Polygon ergeben. Das Beherrschen von Querschnitten ist sowohl für die Medizin als auch für die architektonische Grundrissplanung unerlässlich.",
             curved_solids: "Basler Bio-Tech-Forschung - Mikrogeometrie: In den Pharma-Labors von Novartis arbeiten Wissenschaftler mit sphärischen Liposomen und zylindrischen Abgabesystemen für neue Medikamente. Die Berechnung der Oberfläche einer Kugel ist entscheidend für die Bestimmung der Wirkstofffreisetzungsraten, während das Volumen eines konischen Reservoirs die Dosierungspräzision beeinflusst. Diese Stufe führt Sie in die Welt der nicht-polyedrischen Geometrie ein – Kugeln, Kegel und Zylinder. Sie wenden Formeln für das Volumen (V = 4/3πr^{3}) und die Oberfläche (A = 4πr^{2}) einer Kugel an, um sicherzustellen, dass Basels Medikamente mit mathematischer Gewissheit geliefert werden."
+        },
+        solver: {
+            cross_section_rule: "Bestimmen Sie zuerst, wie die Schnittebene den Körper trifft"
         },
         prompts: {
             roche1_volume: "Basler Architekturaufgabe: Roche Tower 1 ist 178m hoch. Als Quader mit Grundflaeche 60m x 40m modelliert: Wie gross ist das Volumen?",

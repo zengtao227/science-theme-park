@@ -1650,6 +1650,7 @@ export const deChemistry = {
         },
         solver: {
             ph_special_case: "Verwenden Sie die pH- oder pOH-Beziehung, die zum gegebenen starken oder schwachen Saeure- bzw. Basenfall passt",
+            polyprotic_or_amphoteric_rule: "Verwenden Sie die charakteristische Beziehung fuer mehrprotonige oder amphotere Systeme",
             neutralization_rule_full: "Bei der Neutralisation zaehlt zuerst die Saeure-Base-Stoechiometrie; ein verbleibender Ueberschuss bestimmt den End-pH",
             neutralization_ph: "Bestimmen Sie nach dem Ueberschuss von Saeure oder Base die Konzentration und daraus den End-pH",
             neutralization_volume: "Addieren Sie die Volumina, um vor der Konzentrationsberechnung das Gesamtvolumen zu erhalten",

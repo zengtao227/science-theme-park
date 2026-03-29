@@ -126,7 +126,15 @@ export const enBiology = {
             rule_positive_selection: "Positive selection leaves an excess of high-frequency derived variants",
             use_evidence_reasoning: "Use half-life or molecular-clock reasoning to connect the evidence to the age or rate",
             substitute_values_solve: "Substitute the given values from",
-            and_solve_for: "and solve for"
+            and_solve_for: "and solve for",
+            survivors_label: "survivors",
+            initial_population_label: "initial population",
+            or_word: "or",
+            depending_on_divergence_model: "depending on the divergence model",
+            older_rate_label: "older rate",
+            newer_rate_label: "newer rate",
+            accepted_cases_label: "accepted cases",
+            total_cases_label: "total cases"
         }
     },
     gb2_01: {

@@ -126,7 +126,15 @@ export const deBiology = {
             rule_positive_selection: "Positive Selektion hinterlässt einen Überschuss an häufigen abgeleiteten Varianten",
             use_evidence_reasoning: "Verbinden Sie den Befund mithilfe von Halbwertszeit oder molekularer Uhr mit Alter oder Rate",
             substitute_values_solve: "Setzen Sie die gegebenen Werte aus",
-            and_solve_for: "ein und lösen Sie nach"
+            and_solve_for: "ein und lösen Sie nach",
+            survivors_label: "Überlebende",
+            initial_population_label: "Ausgangspopulation",
+            or_word: "oder",
+            depending_on_divergence_model: "je nach Divergenzmodell",
+            older_rate_label: "ältere Rate",
+            newer_rate_label: "neuere Rate",
+            accepted_cases_label: "akzeptierte Fälle",
+            total_cases_label: "Gesamtzahl der Fälle"
         }
     },
     gb2_01: {

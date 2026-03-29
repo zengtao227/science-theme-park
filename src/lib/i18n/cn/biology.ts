@@ -126,7 +126,15 @@ export const cnBiology = {
             rule_positive_selection: "正选择会留下高频衍生变异过多的特征",
             use_evidence_reasoning: "用半衰期或分子钟推理把证据与年龄或速率联系起来",
             substitute_values_solve: "把已知数值代入",
-            and_solve_for: "并求出"
+            and_solve_for: "并求出",
+            survivors_label: "存活个体数",
+            initial_population_label: "初始种群数",
+            or_word: "或",
+            depending_on_divergence_model: "取决于分化模型",
+            older_rate_label: "较旧速率",
+            newer_rate_label: "较新速率",
+            accepted_cases_label: "被接受的案例数",
+            total_cases_label: "总案例数"
         }
     },
     gb2_01: {

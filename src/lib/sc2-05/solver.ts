@@ -18,7 +18,13 @@ export function solveSC205(quest: AcidBaseQuest, t: Translator) {
         steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), isBase(quest) ? "pOH = -\\log[OH^-],\\; pH = 14 - pOH" : "pH = -\\log[H^+]"));
         steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.expressionLatex));
       } else {
-        steps.push(makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{Use the characteristic relation for polyprotic or amphoteric systems}"));
+        steps.push(
+          makeStep(
+            2,
+            t("common.feedback_reasons.select_formula_or_rule"),
+            `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.polyprotic_or_amphoteric_rule"))}}`
+          )
+        );
         steps.push(makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{${escapeLatexText(t("chemistry.sc2_05.solver.ph_special_case"))}}`));
       }
       break;

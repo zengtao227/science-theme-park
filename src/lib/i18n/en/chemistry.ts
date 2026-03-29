@@ -1657,6 +1657,7 @@ export const enChemistry = {
         },
         solver: {
             ph_special_case: "Use the pH or pOH relation that matches the given strong or weak acid/base case",
+            polyprotic_or_amphoteric_rule: "Use the characteristic relation for polyprotic or amphoteric systems",
             neutralization_rule_full: "Neutralization uses acid-base stoichiometry and any remaining excess species determines the final pH",
             neutralization_ph: "After finding the excess acid or base, convert concentration to the final pH",
             neutralization_volume: "Add the volumes to obtain the total solution volume before finding concentration",

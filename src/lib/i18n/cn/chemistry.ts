@@ -1657,6 +1657,7 @@ export const cnChemistry = {
         },
         solver: {
             ph_special_case: "根据题目给出的强酸、强碱、弱酸或弱碱情形选择对应的 pH 或 pOH 关系",
+            polyprotic_or_amphoteric_rule: "对多元酸或两性体系使用对应的特征关系式",
             neutralization_rule_full: "中和计算要先做酸碱化学计量，再由剩余过量物种决定最终 pH",
             neutralization_ph: "先求过量酸或碱的浓度，再换算最终 pH",
             neutralization_volume: "先把各溶液体积相加得到总体积，再求浓度",
