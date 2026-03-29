@@ -3,10 +3,50 @@
  * Total: 75 quests (20 BASIC, 25 CORE, 20 ADVANCED, 10 ELITE)
  */
 
+import { getTranslations } from "@/lib/i18n";
 import { SP102Quest, Difficulty, Stage } from "./sp1-02-types";
 
+type Translator = (path: string, params?: Record<string, string | number>) => string;
+
+const enTranslations = getTranslations("EN");
+
+function resolvePath(path: string): string {
+  const segments = path.split(".");
+  let node: any = enTranslations;
+  for (const segment of segments) {
+    node = node?.[segment];
+    if (node === undefined) return path;
+  }
+  return typeof node === "string" ? node : path;
+}
+
+function getText(t: Translator | undefined, path: string, params?: Record<string, string | number>) {
+  const translated = t ? t(path, params) : path;
+  if (translated && translated !== path) return translated;
+  let fallback = resolvePath(path);
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      fallback = fallback.replace(new RegExp(`\\{${key}\\}`, "g"), String(value));
+    });
+  }
+  return fallback;
+}
+
+function localizeAnswer(t: Translator | undefined, answer: string) {
+  const answerKeyMap: Record<string, string> = {
+    no: "sp1_02.answers.no",
+    yes: "sp1_02.answers.yes",
+    "constant velocity": "sp1_02.answers.constant_velocity",
+    "net external force": "sp1_02.answers.net_external_force",
+    different: "sp1_02.answers.different_objects",
+    west: "sp1_02.answers.west",
+  };
+  const key = answerKeyMap[answer];
+  return key ? getText(t, key) : answer;
+}
+
 // Note: Added t parameter to support internationalization without removing data
-export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): SP102Quest[] {
+export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: Translator): SP102Quest[] {
   // STAGE 1: FIRST_LAW (Inertia) - ~25 quests
   if (stage === "FIRST_LAW") {
     const firstLawData = {
@@ -45,25 +85,25 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): S
     };
 
     return firstLawData[difficulty].map((item, idx) => {
-      const promptText = t ? t(`sp1_02.prompts.FIRST_LAW.${difficulty}.${item.key}`) : item.prompt;
-      const finalPrompt = promptText && promptText.includes('sp1_02') ? item.prompt : promptText;
+      const finalPrompt = getText(t, `sp1_02.prompts.FIRST_LAW.${difficulty}.${item.key}`);
+      const finalAnswer = localizeAnswer(t, item.answer);
       return {
         id: `FIRST_LAW_${difficulty}_${idx + 1}`,
         difficulty,
         stage,
         promptLatex: finalPrompt,
         expressionLatex: "\\text{Newton's First Law: } \\vec{F}_{net} = 0 \\Rightarrow \\vec{v} = \\text{constant}",
-        targetLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
+        targetLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
         slots: [
           {
             id: "answer",
-            labelLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
-            placeholder: t ? t("sp1_02.labels.placeholder") : "type answer",
-            expected: item.answer,
+            labelLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
+            placeholder: getText(t, "sp1_02.labels.placeholder"),
+            expected: finalAnswer,
           },
         ],
-        correctLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}: ${item.answer}}`,
-        answer: item.answer,
+        correctLatex: `\\text{${getText(t, "sp1_02.labels.ans")}: ${finalAnswer}}`,
+        answer: finalAnswer,
         relatedLaw: "FIRST",
       };
     });
@@ -109,24 +149,23 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): S
     };
 
     return secondLawData[difficulty].map((item, idx) => {
-      const promptText = t ? t(`sp1_02.prompts.SECOND_LAW.${difficulty}.${item.key}`) : item.prompt;
-      const finalPrompt = promptText && promptText.includes('sp1_02') ? item.prompt : promptText;
+      const finalPrompt = getText(t, `sp1_02.prompts.SECOND_LAW.${difficulty}.${item.key}`);
       return {
         id: `SECOND_LAW_${difficulty}_${idx + 1}`,
         difficulty,
         stage,
         promptLatex: finalPrompt,
         expressionLatex: "F = ma",
-        targetLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
+        targetLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
         slots: [
           {
             id: "answer",
-            labelLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
-            placeholder: t ? t("sp1_02.labels.placeholder") : "type value",
+            labelLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
+            placeholder: getText(t, "sp1_02.labels.placeholder"),
             expected: item.answer,
           },
         ],
-        correctLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}: ${item.answer}}`,
+        correctLatex: `\\text{${getText(t, "sp1_02.labels.ans")}: ${item.answer}}`,
         answer: item.answer,
         relatedLaw: "SECOND",
       };
@@ -172,25 +211,25 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: any): S
     };
 
     return thirdLawData[difficulty].map((item, idx) => {
-      const promptText = t ? t(`sp1_02.prompts.THIRD_LAW.${difficulty}.${item.key}`) : item.prompt;
-      const finalPrompt = promptText && promptText.includes('sp1_02') ? item.prompt : promptText;
+      const finalPrompt = getText(t, `sp1_02.prompts.THIRD_LAW.${difficulty}.${item.key}`);
+      const finalAnswer = localizeAnswer(t, item.answer);
       return {
         id: `THIRD_LAW_${difficulty}_${idx + 1}`,
         difficulty,
         stage,
         promptLatex: finalPrompt,
         expressionLatex: "\\vec{F}_{AB} = -\\vec{F}_{BA}",
-        targetLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
+        targetLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
         slots: [
           {
             id: "answer",
-            labelLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}}`,
-            placeholder: t ? t("sp1_02.labels.placeholder") : "type answer",
-            expected: item.answer,
+            labelLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
+            placeholder: getText(t, "sp1_02.labels.placeholder"),
+            expected: finalAnswer,
           },
         ],
-        correctLatex: `\\text{${t ? t("sp1_02.labels.ans") : "Answer"}: ${item.answer}}`,
-        answer: item.answer,
+        correctLatex: `\\text{${getText(t, "sp1_02.labels.ans")}: ${finalAnswer}}`,
+        answer: finalAnswer,
         relatedLaw: "THIRD",
       };
     });

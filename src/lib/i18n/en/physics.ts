@@ -1142,6 +1142,14 @@ export const enPhysics = {
                         "ans": "Answer",
                         "placeholder": "type here"
                 },
+                answers: {
+                        no: "no",
+                        yes: "yes",
+                        constant_velocity: "constant velocity",
+                        net_external_force: "net external force",
+                        different_objects: "different",
+                        west: "west"
+                },
                 scenarios: {
                         first_law: "Basel Fasnacht Parade Float Motion: During Basel's famous Fasnacht carnival at Marktplatz, elaborately decorated parade floats demonstrate Newton's First Law of inertia. A massive float with 3,000 kg mass sits at rest before the parade begins. Despite its colorful appearance, it stubbornly resists motion—it will remain at rest unless acted upon by an external force. When parade participants push with 2,000 N while friction opposes with 500 N, the net 1,500 N force overcomes inertia and accelerates the float at 0.5 m/s^{2}. Once moving at constant velocity through the parade route, if pushers maintain force equal to friction, the float continues at steady speed—demonstrating that objects in motion stay in motion with constant velocity when net force is zero.",
                         second_law: "Basel Tram Acceleration and Braking: Basel's iconic green trams navigate the city's streets, demonstrating Newton's Second Law in action. At Barfüsserplatz, a tram with mass 10,000 kg accelerates from rest to reach cruising speed. The electric motors apply a forward force of 15,000 N while friction and air resistance provide 3,000 N of opposing force. Using F=ma, we calculate the net force (12,000 N) produces an acceleration of 1.2 m/s^{2}. When approaching the next stop, the driver applies brakes generating -10,000 N, combined with -3,000 N friction, creating -13,000 N net force and -1.3 m/s^{2} deceleration. This daily dance of forces and motion keeps Basel's public transport running smoothly.",
