@@ -46,7 +46,7 @@ function solveGenerators(quest: GP303Quest, t: Translator) {
     expr.includes("NAB\\omega") ? "\\varepsilon=NAB\\omega" :
     expr.includes("P = VI") ? "P=VI" :
     expr.includes("\\eta =") ? "\\eta=\\frac{P_{out}}{P_{in}}" :
-    "\\text{Generatorprinzipien}";
+    `\\text{${escapeLatexText(t("gp3_03.expressions.generator_principles_label"))}}`;
   steps.push(
     makeStep(1, t("gp3_03.reasons.select_generator_formula"), rule),
     makeStep(2, t("gp3_03.reasons.substitute_induction_values"), expr),

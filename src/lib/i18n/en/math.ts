@@ -2529,6 +2529,11 @@ export const enMath = {
         solver: {
             favorable_outcomes_label: "favorable outcomes",
             total_outcomes_label: "total outcomes",
+            exactly_one_pair_label: "exactly one pair",
+            at_least_one_success_label: "at least one success",
+            no_success_label: "no success",
+            independent_events_label: "independent events",
+            without_replacement_label: "without replacement",
             sum_all_values_label: "sum of all listed values",
             middle_ordered_value_label: "middle value of the ordered data",
             most_frequent_value_label: "most frequent value",

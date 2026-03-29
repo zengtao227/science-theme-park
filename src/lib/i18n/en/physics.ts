@@ -3058,7 +3058,8 @@ export const enPhysics = {
                 },
                 expressions: {
                         lenz_law: "\\text{Lenz's Law: induced effects oppose the change}",
-                        generator_principles: "\\text{Generator principles}"
+                        generator_principles: "\\text{Generator principles}",
+                        generator_principles_label: "Generator principles"
                 },
                 prompts: {
                         faraday_basic: "Rhine generator check: magnetic flux changes by {flux} Wb in {time} s. Task: compute induced EMF ε with Faraday's law. Use: estimate output response.",

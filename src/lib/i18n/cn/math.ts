@@ -2510,6 +2510,11 @@ export const cnMath = {
         solver: {
             favorable_outcomes_label: "有利结果数",
             total_outcomes_label: "总结果数",
+            exactly_one_pair_label: "恰好一对",
+            at_least_one_success_label: "至少一次成功",
+            no_success_label: "没有成功",
+            independent_events_label: "独立事件",
+            without_replacement_label: "不放回",
             sum_all_values_label: "所有列出数值的总和",
             middle_ordered_value_label: "按顺序排列后的中间值",
             most_frequent_value_label: "出现次数最多的数值",

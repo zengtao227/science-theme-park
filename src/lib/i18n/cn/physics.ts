@@ -2966,7 +2966,8 @@ export const cnPhysics = {
         },
         expressions: {
             lenz_law: "\\text{楞次定律：感应效应总是阻碍磁通变化}",
-            generator_principles: "\\text{发电机原理}"
+            generator_principles: "\\text{发电机原理}",
+            generator_principles_label: "发电机原理"
         },
         prompts: {
             faraday_basic: "莱茵河发电机巡检：磁通变化量为 {flux} Wb，历时 {time} s。任务：用法拉第定律计算感应电动势 ε。用途：估算机组输出响应。",

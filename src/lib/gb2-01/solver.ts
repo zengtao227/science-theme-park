@@ -44,7 +44,7 @@ function buildRuleLatex(quest: GB201SolverQuest, t: Translator) {
     return `\\text{${escapeLatexText(t("biology.gb2_01.solver.rule_anatomy"))}}`;
   }
   if (quest.stage === "POTENTIAL") {
-    return "E = 61\\log_{10}\\!\\left(\\frac{[\\text{ion}]_{out}}{[\\text{ion}]_{in}}\\right)";
+    return `E = 61\\log_{10}\\!\\left(\\frac{[\\text{${escapeLatexText(t("biology.gb2_01.solver.ion_outside_label"))}}]_{out}}{[\\text{${escapeLatexText(t("biology.gb2_01.solver.ion_inside_label"))}}]_{in}}\\right)`;
   }
   if (quest.stage === "SYNAPSE") {
     return `\\text{${escapeLatexText(t("biology.gb2_01.solver.rule_synapse"))}}`;

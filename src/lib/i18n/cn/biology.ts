@@ -189,6 +189,8 @@ export const cnBiology = {
             function_label: "功能",
             neurotransmitter_label: "神经递质",
             effect_label: "效应",
+            ion_outside_label: "离子",
+            ion_inside_label: "离子",
             rule_anatomy: "将题目描述的神经功能与正确结构对应起来。",
             rule_synapse: "根据它对突触后细胞的作用判断神经递质反应类型。",
             solve_anatomy: "{func} 对应的结构是 {name}。",

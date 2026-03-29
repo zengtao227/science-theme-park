@@ -189,6 +189,8 @@ export const deBiology = {
             function_label: "Funktion",
             neurotransmitter_label: "Neurotransmitter",
             effect_label: "Wirkung",
+            ion_outside_label: "Ion",
+            ion_inside_label: "Ion",
             rule_anatomy: "Ordnen Sie die beschriebene neuronale Funktion der richtigen Struktur zu.",
             rule_synapse: "Bestimmen Sie die Art der Neurotransmitterantwort aus der Wirkung auf die postsynaptische Zelle.",
             solve_anatomy: "{func} gehört zur Struktur {name}.",

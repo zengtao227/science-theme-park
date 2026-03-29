@@ -2538,6 +2538,11 @@ export const deMath = {
         solver: {
             favorable_outcomes_label: "günstige Ergebnisse",
             total_outcomes_label: "alle Ergebnisse",
+            exactly_one_pair_label: "genau ein Paar",
+            at_least_one_success_label: "mindestens ein Erfolg",
+            no_success_label: "kein Erfolg",
+            independent_events_label: "unabhängige Ereignisse",
+            without_replacement_label: "ohne Zurücklegen",
             sum_all_values_label: "Summe aller aufgeführten Werte",
             middle_ordered_value_label: "mittlerer Wert der geordneten Daten",
             most_frequent_value_label: "am häufigsten auftretender Wert",

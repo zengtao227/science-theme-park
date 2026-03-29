@@ -41,18 +41,26 @@ function buildProbabilitySteps(quest: SM208FeedbackQuest, t: Translator) {
   ];
 
   if (quest.id === "L20") {
-    steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "P(\\text{exactly one pair}) = \\frac{13\\binom{4}{2}\\binom{12}{3}4^3}{\\binom{52}{5}}"),
-      makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "P \\approx 0.423"),
-      makeStep(4, t("common.feedback_reasons.state_final_result"), `P \\approx ${finalValue}`, "key")
-    );
+      steps.push(
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `P(\\text{${escapeLatexText(t("math.sm2_08.solver.exactly_one_pair_label"))}}) = \\frac{13\\binom{4}{2}\\binom{12}{3}4^3}{\\binom{52}{5}}`
+        ),
+        makeStep(3, t("common.feedback_reasons.solve_step_by_step"), "P \\approx 0.423"),
+        makeStep(4, t("common.feedback_reasons.state_final_result"), `P \\approx ${finalValue}`, "key")
+      );
     return steps;
   }
 
   if (quest.stage === "COMBINED") {
     if (expr.includes("1 -")) {
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "P(\\text{at least one success}) = 1 - P(\\text{no success})"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `P(\\text{${escapeLatexText(t("math.sm2_08.solver.at_least_one_success_label"))}}) = 1 - P(\\text{${escapeLatexText(t("math.sm2_08.solver.no_success_label"))}})`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `P = ${expr}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `P = ${finalValue}`, "key")
       );
@@ -62,7 +70,7 @@ function buildProbabilitySteps(quest: SM208FeedbackQuest, t: Translator) {
     if (expr.includes("^") || expr.includes("\\times")) {
       const rule = quest.id === "CA2" || quest.id === "CE3"
         ? "P(X=k) = \\binom{n}{k}p^k(1-p)^{n-k}"
-        : "P(\\text{independent events}) = P(A)\\cdot P(B)\\cdots";
+        : `P(\\text{${escapeLatexText(t("math.sm2_08.solver.independent_events_label"))}}) = P(A)\\cdot P(B)\\cdots`;
       steps.push(
         makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), rule),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `P = ${expr}`),
@@ -74,7 +82,11 @@ function buildProbabilitySteps(quest: SM208FeedbackQuest, t: Translator) {
 
   if (quest.stage === "LOTTERY" && expr.includes("\\times")) {
     steps.push(
-      makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "P(\\text{without replacement}) = P(A_1)\\cdot P(A_2)\\cdots"),
+      makeStep(
+        2,
+        t("common.feedback_reasons.select_formula_or_rule"),
+        `P(\\text{${escapeLatexText(t("math.sm2_08.solver.without_replacement_label"))}}) = P(A_1)\\cdot P(A_2)\\cdots`
+      ),
       makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `P = ${expr}`),
       makeStep(4, t("common.feedback_reasons.state_final_result"), `P = ${finalValue}`, "key")
     );

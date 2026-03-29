@@ -3011,7 +3011,8 @@ export const dePhysics = {
                 },
                 expressions: {
                         lenz_law: "\\text{Lenz'sches Gesetz: induzierte Effekte wirken der Änderung entgegen}",
-                        generator_principles: "\\text{Generatorprinzipien}"
+                        generator_principles: "\\text{Generatorprinzipien}",
+                        generator_principles_label: "Generatorprinzipien"
                 },
                 prompts: {
                         faraday_basic: "Rhein-Generatorcheck: Der magnetische Fluss ändert sich um {flux} Wb in {time} s. Aufgabe: Berechnen Sie die induzierte EMK ε mit dem Faraday-Gesetz. Nutzen: Reaktionsverhalten der Anlage abschätzen.",

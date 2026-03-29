@@ -189,6 +189,8 @@ export const enBiology = {
             function_label: "Function",
             neurotransmitter_label: "Neurotransmitter",
             effect_label: "Effect",
+            ion_outside_label: "ion",
+            ion_inside_label: "ion",
             rule_anatomy: "Match the described neuronal function to the correct structure.",
             rule_synapse: "Classify the neurotransmitter response from its effect on the postsynaptic cell.",
             solve_anatomy: "{func} corresponds to {name}.",
