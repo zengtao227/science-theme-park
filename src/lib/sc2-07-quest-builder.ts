@@ -162,7 +162,7 @@ function buildQuestFromData(
       deltaH: data.deltaH || data.targetDeltaH || 0,
       stateSymbols: []
     },
-    promptLatex: t(`sc2_07.prompts.${stage.toLowerCase()}`) || getPromptForStage(stage),
+    promptLatex: getPromptForStage(t, stage),
     equationLatex,
     expressionLatex,
     targetLatex,
@@ -178,7 +178,7 @@ function buildQuestFromData(
     quest.slots = [{
       id: 'deltaH',
       labelLatex: '\\Delta H',
-      placeholder: 'Enter value',
+      placeholder: translateOrFallback(t, "sc2_07.prompts.enter_value_placeholder", "Enter value"),
       expected: data.deltaH,
       unit: 'kJ'
     }];
@@ -214,7 +214,7 @@ function buildQuestFromData(
     quest.slots = [{
       id: 'deltaH',
       labelLatex: '\\Delta H',
-      placeholder: 'Enter value',
+      placeholder: translateOrFallback(t, "sc2_07.prompts.enter_value_placeholder", "Enter value"),
       expected: data.targetDeltaH,
       unit: 'kJ'
     }];
@@ -223,7 +223,7 @@ function buildQuestFromData(
     quest.slots = [{
       id: (difficulty === 'CORE' || difficulty === 'ELITE') ? 'deltaH' : 'heat',
       labelLatex: (difficulty === 'CORE' || difficulty === 'ELITE') ? '\\Delta H' : 'q',
-      placeholder: 'Enter value',
+      placeholder: translateOrFallback(t, "sc2_07.prompts.enter_value_placeholder", "Enter value"),
       expected: calorimetryExpected,
       unit: (difficulty === 'CORE' || difficulty === 'ELITE') ? 'kJ/mol' : 'J'
     }];
@@ -238,15 +238,15 @@ function buildQuestFromData(
 /**
  * Get prompt text for each stage
  */
-function getPromptForStage(stage: Stage): string {
+function getPromptForStage(t: any, stage: Stage): string {
   switch (stage) {
     case 'ENERGY_CHANGES':
-      return 'Calculate the enthalpy change (\\Delta H) for this reaction:';
+      return translateOrFallback(t, "sc2_07.prompts.calculate_enthalpy", "Calculate the enthalpy change (\\Delta H) for this reaction");
     case 'HESS_LAW':
-      return 'Use Hess\'s Law to calculate \\Delta H for the target reaction:';
+      return translateOrFallback(t, "sc2_07.prompts.apply_hess_law", "Use Hess's Law to calculate \\Delta H for the target reaction");
     case 'CALORIMETRY':
-      return 'Calculate the heat change using q = mc\\Delta T:';
+      return translateOrFallback(t, "sc2_07.prompts.calculate_heat", "Calculate the heat change using q = mc\\Delta T");
     default:
-      return 'Solve the problem:';
+      return translateOrFallback(t, "sc2_07.prompts.solve_problem", "Solve the problem");
   }
 }
