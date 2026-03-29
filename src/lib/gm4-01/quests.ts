@@ -124,7 +124,7 @@ export function generateOperationsQuests(t: any, difficulty: Difficulty): G401Qu
             stage,
             z1, z2,
             operation: op,
-            promptLatex: op === "add" ? (t?.stages?.operations_add || "Add") : (t?.stages?.operations_multiply || "Multiply"),
+            promptLatex: op === "add" ? (t?.stages?.operations_add ?? "") : (t?.stages?.operations_multiply ?? ""),
             expressionLatex: `z_1 = ${formatComplexLatex(z1.re, z1.im)},\\; z_2 = ${formatComplexLatex(z2.re, z2.im)}`,
             targetLatex: `z_1 ${opSymbol} z_2`,
             slots: [

@@ -3282,11 +3282,14 @@ export const dePhysics = {
                 incorrect: "Parameter prüfen",
                 monitor_title: "METEOROLOGIE_V1",
                 loading: "Lädt...",
-                labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM" },
+                labels: { mission_objective: "METEOROLOGISCHE ANALYSE", terminal_input: "DATENEINGABE", hint: "HINWEIS", sensor_feed: "SENSOR-DATENSTROM", layer: "Schicht", gas: "Gas" },
                 prompts: {
                         sp1_03_q1: "Identifizieren Sie die Schicht der Atmosphäre.",
                         sp1_03_q2: "Was ist der Standard-Luftdruck auf Meereshöhe (hPa)?",
                         sp1_03_q3: "Identifizieren Sie das wichtigste Treibhausgas (Formel)."
+                },
+                answers: {
+                        troposphere: "Troposphäre"
                 },
                 reasons: {
                         atmosphere_focus: "Bestimmen Sie zuerst, auf welche Atmosphärenschicht oder Region sich die Aufgabe bezieht.",

@@ -44,7 +44,14 @@ export const generateAtmosphereQuests = (t: any, difficulty: Difficulty): SP103Q
         .map(q => ({
             ...q,
             promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex,
-            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_03.placeholders.name") || slot.placeholder })),
+            targetLatex: t("sp1_03.answers.troposphere") || q.targetLatex,
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: t("sp1_03.labels.layer") || slot.labelLatex,
+                placeholder: t("sp1_03.placeholders.name") || slot.placeholder,
+                expected: t("sp1_03.answers.troposphere") || slot.expected,
+            })),
+            correctLatex: t("sp1_03.answers.troposphere") || q.correctLatex,
         }));
 };
 
@@ -62,6 +69,10 @@ export const generateClimateQuests = (t: any, difficulty: Difficulty): SP103Ques
         .map(q => ({
             ...q,
             promptLatex: t(`sp1_03.prompts.${q.id}`) || q.promptLatex,
-            slots: q.slots.map((slot) => ({ ...slot, placeholder: t("sp1_03.placeholders.formula") || slot.placeholder })),
+            slots: q.slots.map((slot) => ({
+                ...slot,
+                labelLatex: t("sp1_03.labels.gas") || slot.labelLatex,
+                placeholder: t("sp1_03.placeholders.formula") || slot.placeholder,
+            })),
         }));
 };

@@ -178,7 +178,7 @@ function buildQuestFromData(
     quest.slots = [{
       id: 'deltaH',
       labelLatex: '\\Delta H',
-      placeholder: translateOrFallback(t, "sc2_07.prompts.enter_value_placeholder", "Enter value"),
+      placeholder: t?.("sc2_07.prompts.enter_value_placeholder") || "",
       expected: data.deltaH,
       unit: 'kJ'
     }];
@@ -214,7 +214,7 @@ function buildQuestFromData(
     quest.slots = [{
       id: 'deltaH',
       labelLatex: '\\Delta H',
-      placeholder: translateOrFallback(t, "sc2_07.prompts.enter_value_placeholder", "Enter value"),
+      placeholder: t?.("sc2_07.prompts.enter_value_placeholder") || "",
       expected: data.targetDeltaH,
       unit: 'kJ'
     }];
@@ -223,7 +223,7 @@ function buildQuestFromData(
     quest.slots = [{
       id: (difficulty === 'CORE' || difficulty === 'ELITE') ? 'deltaH' : 'heat',
       labelLatex: (difficulty === 'CORE' || difficulty === 'ELITE') ? '\\Delta H' : 'q',
-      placeholder: translateOrFallback(t, "sc2_07.prompts.enter_value_placeholder", "Enter value"),
+      placeholder: t?.("sc2_07.prompts.enter_value_placeholder") || "",
       expected: calorimetryExpected,
       unit: (difficulty === 'CORE' || difficulty === 'ELITE') ? 'kJ/mol' : 'J'
     }];
@@ -241,12 +241,12 @@ function buildQuestFromData(
 function getPromptForStage(t: any, stage: Stage): string {
   switch (stage) {
     case 'ENERGY_CHANGES':
-      return translateOrFallback(t, "sc2_07.prompts.calculate_enthalpy", "Calculate the enthalpy change (\\Delta H) for this reaction");
+      return t?.("sc2_07.prompts.calculate_enthalpy") || "";
     case 'HESS_LAW':
-      return translateOrFallback(t, "sc2_07.prompts.apply_hess_law", "Use Hess's Law to calculate \\Delta H for the target reaction");
+      return t?.("sc2_07.prompts.apply_hess_law") || "";
     case 'CALORIMETRY':
-      return translateOrFallback(t, "sc2_07.prompts.calculate_heat", "Calculate the heat change using q = mc\\Delta T");
+      return t?.("sc2_07.prompts.calculate_heat") || "";
     default:
-      return translateOrFallback(t, "sc2_07.prompts.solve_problem", "Solve the problem");
+      return t?.("sc2_07.prompts.solve_problem") || "";
   }
 }

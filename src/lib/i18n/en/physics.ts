@@ -3327,8 +3327,22 @@ export const enPhysics = {
         incorrect: "Check parameters",
         monitor_title: "METEOROLOGY_V1",
         loading: "Loading...",
-        labels: { mission_objective: "METEOROLOGICAL ANALYSIS", terminal_input: "DATA INPUT", hint: "HINT", sensor_feed: "SENSOR FEED" },
-        prompts: {},
+        labels: {
+                mission_objective: "METEOROLOGICAL ANALYSIS",
+                terminal_input: "DATA INPUT",
+                hint: "HINT",
+                sensor_feed: "SENSOR FEED",
+                layer: "Layer",
+                gas: "Gas"
+        },
+        prompts: {
+                sp1_03_q1: "Identify this atmospheric layer.",
+                sp1_03_q2: "What is the standard sea-level pressure (hPa)?",
+                sp1_03_q3: "Identify the primary greenhouse gas (formula)."
+        },
+        answers: {
+                troposphere: "Troposphere"
+        },
         reasons: {
                 atmosphere_focus: "Identify which atmospheric layer or region the prompt refers to.",
                 weather_focus: "Identify the weather quantity or standard value described in the prompt.",

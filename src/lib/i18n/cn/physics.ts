@@ -3237,11 +3237,14 @@ export const cnPhysics = {
         incorrect: "检查参数",
         monitor_title: "气象监测 V1",
         loading: "加载中...",
-        labels: { mission_objective: "气象数据分析", terminal_input: "数据输入", hint: "提示", sensor_feed: "传感器数据流" },
+        labels: { mission_objective: "气象数据分析", terminal_input: "数据输入", hint: "提示", sensor_feed: "传感器数据流", layer: "层", gas: "气体" },
         prompts: {
             sp1_03_q1: "识别此大气层分层。",
             sp1_03_q2: "标准海平面气压是多少 (hPa)？",
             sp1_03_q3: "识别主要的温室气体（化学式）。"
+        },
+        answers: {
+            troposphere: "对流层"
         },
         reasons: {
             atmosphere_focus: "先识别题目指向的是哪一层大气或哪个区域。",
