@@ -2,24 +2,24 @@ import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
 import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 import type { SB204Quest } from "@/lib/sb2-04-types";
 
-function buildRuleLatex(quest: SB204Quest) {
-  if (quest.stage === "DIGESTIVE_SYSTEM") return "\\text{Use digestive anatomy and process logic to identify the correct structure or outcome}";
-  if (quest.stage === "RESPIRATORY_SYSTEM") return "\\text{Use airway and gas-exchange physiology to select the correct answer}";
-  if (quest.stage === "CIRCULATORY_SYSTEM") return "\\text{Use circulation roles, vessel properties, and heart function to decide the answer}";
-  if (quest.stage === "EXCRETORY_SYSTEM") return "\\text{Use kidney, filtration, and excretion physiology to identify the correct response}";
+function buildRuleLatex(quest: SB204Quest, t: Translator) {
+  if (quest.stage === "DIGESTIVE_SYSTEM") return `\\text{${escapeLatexText(t("biology.sb2_04.solver.rule_digestive"))}}`;
+  if (quest.stage === "RESPIRATORY_SYSTEM") return `\\text{${escapeLatexText(t("biology.sb2_04.solver.rule_respiratory"))}}`;
+  if (quest.stage === "CIRCULATORY_SYSTEM") return `\\text{${escapeLatexText(t("biology.sb2_04.solver.rule_circulatory"))}}`;
+  if (quest.stage === "EXCRETORY_SYSTEM") return `\\text{${escapeLatexText(t("biology.sb2_04.solver.rule_excretory"))}}`;
   return null;
 }
 
-function buildSolveLatex(quest: SB204Quest) {
+function buildSolveLatex(quest: SB204Quest, t: Translator) {
   if (quest.explanation) {
-    return `\\text{Reasoning: } ${escapeLatexText(quest.explanation)}`;
+    return `\\text{${escapeLatexText(t("biology.sb2_04.solver.reasoning_label"))}} ${escapeLatexText(quest.explanation)}`;
   }
-  return `\\text{Use the } ${escapeLatexText(quest.questionType)} \\text{ clue to identify the matching physiological structure or outcome}`;
+  return `\\text{${escapeLatexText(t("biology.sb2_04.solver.use_question_type_clue", { type: quest.questionType }))}}`;
 }
 
 export function solveSB204(quest: SB204Quest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),

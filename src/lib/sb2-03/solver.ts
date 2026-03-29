@@ -1,5 +1,5 @@
 import type { PlatformSolutionStep, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "MONOHYBRID" | "PROBABILITY" | "DIHYBRID";
 type Genotype = "RR" | "Rr" | "rr" | "AA" | "Aa" | "aa" | "BB" | "Bb" | "bb";
@@ -34,27 +34,27 @@ function punnettOutcomes(quest: SB203SolverQuest) {
   return outcomes;
 }
 
-function buildRuleLatex(quest: SB203SolverQuest) {
-  if (quest.stage === "MONOHYBRID") return "\\text{Build a 2\\times 2 Punnett square and compare dominant and recessive outcomes}";
-  if (quest.stage === "PROBABILITY") return "\\text{Use Punnett-square outcomes as probabilities for the requested genotype or phenotype}";
-  if (quest.stage === "DIHYBRID") return "\\text{Combine independent trait outcomes or use the classic 9:3:3:1 dihybrid model}";
+function buildRuleLatex(quest: SB203SolverQuest, t: Translator) {
+  if (quest.stage === "MONOHYBRID") return `\\text{${escapeLatexText(t("biology.sb2_03.solver.rule_monohybrid"))}}`;
+  if (quest.stage === "PROBABILITY") return `\\text{${escapeLatexText(t("biology.sb2_03.solver.rule_probability"))}}`;
+  if (quest.stage === "DIHYBRID") return `\\text{${escapeLatexText(t("biology.sb2_03.solver.rule_dihybrid"))}}`;
   return null;
 }
 
-function buildSolveLatex(quest: SB203SolverQuest) {
+function buildSolveLatex(quest: SB203SolverQuest, t: Translator) {
   const outcomes = punnettOutcomes(quest).join(",\\ ");
   if (quest.stage === "PROBABILITY") {
-    return `\\text{Gametes from } ${quest.p1}: ${gametes(quest.p1).join(", ")};\\ \\text{from } ${quest.p2}: ${gametes(quest.p2).join(", ")}.\\ \\text{Punnett outcomes: } ${outcomes}`;
+    return `\\text{${escapeLatexText(t("biology.sb2_03.solver.gametes_from"))}} ${quest.p1}: ${gametes(quest.p1).join(", ")};\\ \\text{${escapeLatexText(t("biology.sb2_03.solver.gametes_from"))}} ${quest.p2}: ${gametes(quest.p2).join(", ")}.\\ \\text{${escapeLatexText(t("biology.sb2_03.solver.outcomes_label"))}} ${outcomes}`;
   }
   if (quest.stage === "DIHYBRID") {
-    return `\\text{Treat the cross } ${quest.p1} \\times ${quest.p2} \\text{ as independent allele combinations and count the matching phenotype/genotype class}`;
+    return `\\text{${escapeLatexText(t("biology.sb2_03.solver.treat_cross_as_independent"))}} ${quest.p1} \\times ${quest.p2}`;
   }
-  return `\\text{Cross } ${quest.p1} \\times ${quest.p2} \\text{. Punnett outcomes: } ${outcomes}`;
+  return `\\text{${escapeLatexText(t("biology.sb2_03.solver.cross_label"))}} ${quest.p1} \\times ${quest.p2}.\\ \\text{${escapeLatexText(t("biology.sb2_03.solver.outcomes_label"))}} ${outcomes}`;
 }
 
 export function solveSB203(quest: SB203SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),

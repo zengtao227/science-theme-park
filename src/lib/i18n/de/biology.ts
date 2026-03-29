@@ -891,6 +891,14 @@ export const deBiology = {
             valid_desc: "Zellteilungsphase korrekt analysiert.",
             invalid_desc: "Zählen Sie die Chromosomen in dieser Phase erneut.",
             next: "Nächste Phase"
+        },
+        solver: {
+            rule_mitosis: "Verfolge das Verhalten von Chromosomen und Chromatiden während der Mitose.",
+            rule_meiosis_i: "In der Meiose I paaren sich homologe Chromosomen und trennen sich anschließend, wodurch die Ploidie reduziert wird.",
+            rule_meiosis_ii: "In der Meiose II trennen sich Schwesterchromatiden in einer mitoseähnlichen Teilung.",
+            solve_mitosis: "Prüfe in {phase}, ob Schwesterchromatiden noch zusammenliegen oder bereits getrennt sind; die relevante Anzahl ist {count}.",
+            solve_meiosis_i: "Verfolge in {phase} die Paarung und Trennung homologer Chromosomen, bevor sich Chromatiden aufspalten; die relevante Anzahl ist {count}.",
+            solve_meiosis_ii: "In {phase} trennt die Meiose II Schwesterchromatiden in einem mitoseähnlichen Schritt, daher ist die Anzahl {count}."
         }
     },
 
@@ -1847,6 +1855,15 @@ export const deBiology = {
         expressions: {
             ratio_label: "Verhältnis",
             percentage_label: "Prozentsatz"
+        },
+        solver: {
+            rule_monohybrid: "Erstelle ein 2×2-Punnett-Quadrat und vergleiche dominante mit rezessiven Ergebnissen.",
+            rule_probability: "Nutze die Ergebnisse des Punnett-Quadrats als Wahrscheinlichkeiten für den gesuchten Genotyp oder Phänotyp.",
+            rule_dihybrid: "Kombiniere unabhängige Merkmalsausgänge oder nutze das klassische dihybride 9:3:3:1-Modell.",
+            gametes_from: "Gameten von",
+            outcomes_label: "Punnett-Ergebnisse:",
+            treat_cross_as_independent: "Behandle die Kreuzung als unabhängige Allelkombinationen und zähle die passende Phänotyp- oder Genotypklasse für",
+            cross_label: "Kreuzung"
         }
     },
     sb2_04: {
@@ -1895,6 +1912,14 @@ export const deBiology = {
             valid_desc: "Physiologische Funktion bestätigt.",
             invalid_desc: "Systemantwort neu berechnen.",
             next: "Nächste Aufgabe"
+        },
+        solver: {
+            rule_digestive: "Nutze Anatomie und Prozesslogik des Verdauungssystems, um die richtige Struktur oder das richtige Ergebnis zu bestimmen.",
+            rule_respiratory: "Nutze Physiologie von Atemwegen und Gasaustausch, um die richtige Antwort auszuwählen.",
+            rule_circulatory: "Nutze Kreislauffunktionen, Gefäßeigenschaften und Herzfunktion, um die richtige Antwort zu bestimmen.",
+            rule_excretory: "Nutze die Physiologie von Niere, Filtration und Ausscheidung, um die richtige Reaktion zu identifizieren.",
+            reasoning_label: "Begründung:",
+            use_question_type_clue: "Nutze den Hinweis {type}, um die passende physiologische Struktur oder das passende Ergebnis zu identifizieren."
         },
         quests: {
             digestive: {

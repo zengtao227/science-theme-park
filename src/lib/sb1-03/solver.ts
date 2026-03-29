@@ -9,33 +9,33 @@ export interface SB103SolverQuest extends Quest {
   chromosomeCount: number;
 }
 
-function buildRuleLatex(quest: SB103SolverQuest) {
+function buildRuleLatex(quest: SB103SolverQuest, t: Translator) {
   if (quest.stage === "MITOSIS") {
-    return "\\text{Track chromosome and chromatid behavior through mitosis}";
+    return `\\text{${escapeLatexText(t("biology.sb1_03.solver.rule_mitosis"))}}`;
   }
   if (quest.stage === "MEIOSIS_I") {
-    return "\\text{In meiosis I, homologous chromosomes pair and then separate, reducing ploidy}";
+    return `\\text{${escapeLatexText(t("biology.sb1_03.solver.rule_meiosis_i"))}}`;
   }
   if (quest.stage === "MEIOSIS_II") {
-    return "\\text{In meiosis II, sister chromatids separate in a mitosis-like division}";
+    return `\\text{${escapeLatexText(t("biology.sb1_03.solver.rule_meiosis_ii"))}}`;
   }
   return null;
 }
 
-function buildSolveLatex(quest: SB103SolverQuest) {
+function buildSolveLatex(quest: SB103SolverQuest, t: Translator) {
   const phase = escapeLatexText(quest.phase.replace(/_/g, " "));
   if (quest.stage === "MITOSIS") {
-    return `\\text{In } ${phase}\\text{, track whether sister chromatids are still paired or already separated; the prompt is testing the value } ${quest.chromosomeCount}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_03.solver.solve_mitosis", { phase, count: quest.chromosomeCount }))}}`;
   }
   if (quest.stage === "MEIOSIS_I") {
-    return `\\text{In } ${phase}\\text{, homologous chromosomes pair and then separate, so the chromosome count is interpreted before chromatids split; the relevant count is } ${quest.chromosomeCount}`;
+    return `\\text{${escapeLatexText(t("biology.sb1_03.solver.solve_meiosis_i", { phase, count: quest.chromosomeCount }))}}`;
   }
-  return `\\text{In } ${phase}\\text{, meiosis II separates sister chromatids in a mitosis-like step; use that to justify the count } ${quest.chromosomeCount}`;
+  return `\\text{${escapeLatexText(t("biology.sb1_03.solver.solve_meiosis_ii", { phase, count: quest.chromosomeCount }))}}`;
 }
 
 export function solveSB103(quest: SB103SolverQuest, t: Translator) {
-  const ruleLatex = buildRuleLatex(quest);
-  const solveLatex = buildSolveLatex(quest);
+  const ruleLatex = buildRuleLatex(quest, t);
+  const solveLatex = buildSolveLatex(quest, t);
   if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [

@@ -951,6 +951,14 @@ export const enBiology = {
             valid_desc: "Cell division phase correctly analyzed.",
             invalid_desc: "Recount the chromosomes at this phase.",
             next: "Next Phase"
+        },
+        solver: {
+            rule_mitosis: "Track chromosome and chromatid behavior through mitosis.",
+            rule_meiosis_i: "In meiosis I, homologous chromosomes pair and separate, reducing ploidy.",
+            rule_meiosis_ii: "In meiosis II, sister chromatids separate in a mitosis-like division.",
+            solve_mitosis: "In {phase}, check whether sister chromatids are still paired or already separated; the relevant count is {count}.",
+            solve_meiosis_i: "In {phase}, follow homologous chromosome pairing and separation before chromatids split; the relevant count is {count}.",
+            solve_meiosis_ii: "In {phase}, meiosis II separates sister chromatids in a mitosis-like step, so the count is {count}."
         }
     },
 
@@ -1907,6 +1915,15 @@ export const enBiology = {
         expressions: {
             ratio_label: "Ratio",
             percentage_label: "Percentage"
+        },
+        solver: {
+            rule_monohybrid: "Build a 2×2 Punnett square and compare dominant and recessive outcomes.",
+            rule_probability: "Use Punnett-square outcomes as probabilities for the requested genotype or phenotype.",
+            rule_dihybrid: "Combine independent trait outcomes or use the classic 9:3:3:1 dihybrid model.",
+            gametes_from: "Gametes from",
+            outcomes_label: "Punnett outcomes:",
+            treat_cross_as_independent: "Treat the cross as independent allele combinations and count the matching phenotype/genotype class for",
+            cross_label: "Cross"
         }
     },
     sb2_04: {
@@ -1948,6 +1965,14 @@ export const enBiology = {
             ureters: "URETERS",
             bladder: "BLADDER",
             urethra: "URETHRA"
+        },
+        solver: {
+            rule_digestive: "Use digestive anatomy and process logic to identify the correct structure or outcome.",
+            rule_respiratory: "Use airway and gas-exchange physiology to select the correct answer.",
+            rule_circulatory: "Use circulation roles, vessel properties, and heart function to decide the answer.",
+            rule_excretory: "Use kidney, filtration, and excretion physiology to identify the correct response.",
+            reasoning_label: "Reasoning:",
+            use_question_type_clue: "Use the {type} clue to identify the matching physiological structure or outcome."
         },
         results: {
             valid: "System Validated",

@@ -891,6 +891,14 @@ export const cnBiology = {
             valid_desc: "细胞分裂阶段分析正确。",
             invalid_desc: "重新计算此阶段的染色体数量。",
             next: "下一阶段"
+        },
+        solver: {
+            rule_mitosis: "追踪有丝分裂过程中染色体与染色单体的变化。",
+            rule_meiosis_i: "在减数分裂 I 中，同源染色体先配对再分离，倍性因此降低。",
+            rule_meiosis_ii: "在减数分裂 II 中，姐妹染色单体会像有丝分裂那样分离。",
+            solve_mitosis: "在 {phase} 期，判断姐妹染色单体是否仍成对或已经分离；对应数量为 {count}。",
+            solve_meiosis_i: "在 {phase} 期，先跟踪同源染色体的配对与分离，再判断染色单体尚未分开；对应数量为 {count}。",
+            solve_meiosis_ii: "在 {phase} 期，减数分裂 II 会像有丝分裂一样分离姐妹染色单体，因此数量为 {count}。"
         }
     },
 
@@ -1847,6 +1855,15 @@ export const cnBiology = {
         expressions: {
             ratio_label: "比值",
             percentage_label: "百分比"
+        },
+        solver: {
+            rule_monohybrid: "先建立 2×2 普内特方格，再比较显性与隐性结果。",
+            rule_probability: "把普内特方格中的结果视为所求基因型或表现型的概率。",
+            rule_dihybrid: "把两个独立性状的结果组合起来，或使用经典的 9:3:3:1 双性状杂交模型。",
+            gametes_from: "来自以下亲本的配子",
+            outcomes_label: "普内特方格结果：",
+            treat_cross_as_independent: "把该杂交视为独立等位基因组合，并统计符合目标表现型或基因型的结果数量：",
+            cross_label: "杂交"
         }
     },
     sb2_04: {
@@ -1888,6 +1905,14 @@ export const cnBiology = {
             ureters: "输尿管",
             bladder: "膀胱",
             urethra: "尿道"
+        },
+        solver: {
+            rule_digestive: "根据消化系统的解剖结构和处理流程判断正确的器官或结果。",
+            rule_respiratory: "根据气道与气体交换生理过程选出正确答案。",
+            rule_circulatory: "根据循环功能、血管特性和心脏作用判断答案。",
+            rule_excretory: "根据肾脏、滤过和排泄生理过程确定正确结果。",
+            reasoning_label: "推理：",
+            use_question_type_clue: "利用 {type} 这一题型线索，定位对应的生理结构或结果。"
         },
         results: {
             valid: "系统已验证",
