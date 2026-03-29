@@ -1,5 +1,5 @@
 import type { FeedbackContent, Quest } from "@/hooks/useQuestManager";
-import { buildFullSolution, formatNumber, makeStep, type Translator } from "@/lib/feedback/solverSupport";
+import { buildFullSolution, escapeLatexText, formatNumber, makeStep, type Translator } from "@/lib/feedback/solverSupport";
 
 type Stage = "SCALE_FACTOR" | "SIMILAR_TRIANGLES" | "MISSION";
 
@@ -41,14 +41,26 @@ export function solveSM204(quest: SM204FeedbackQuest, t: Translator): Omit<Feedb
 
     if (newValue !== null) {
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\text{new value} = k \\cdot \\text{old value}"),
-        makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `\\text{new value} = ${formatNumber(scaleFactor)} \\cdot ${formatNumber(oldValue)} = ${formatNumber(newValue)}`),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `\\text{${escapeLatexText(t("math.sm2_04.labels.new_value"))}} = k \\cdot \\text{${escapeLatexText(t("math.sm2_04.labels.old_value"))}}`
+        ),
+        makeStep(
+          3,
+          t("common.feedback_reasons.solve_step_by_step"),
+          `\\text{${escapeLatexText(t("math.sm2_04.labels.new_value"))}} = ${formatNumber(scaleFactor)} \\cdot ${formatNumber(oldValue)} = ${formatNumber(newValue)}`
+        ),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `${quest.targetLatex} = ${formatNumber(newValue)}`, "key")
       );
     } else if (askedK !== null) {
       const computedNew = oldValue * scaleFactor;
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "k = \\frac{\\text{new value}}{\\text{old value}}"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `k = \\frac{\\text{${escapeLatexText(t("math.sm2_04.labels.new_value"))}}}{\\text{${escapeLatexText(t("math.sm2_04.labels.old_value"))}}}`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `k = \\frac{${formatNumber(computedNew)}}{${formatNumber(oldValue)}} = ${formatNumber(askedK)}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `k = ${formatNumber(askedK)}`, "key")
       );
@@ -75,7 +87,11 @@ export function solveSM204(quest: SM204FeedbackQuest, t: Translator): Omit<Feedb
 
     if (quest.visual?.kind === "shadow" && height !== null && quest.visual.b !== undefined && quest.visual.k !== undefined) {
       steps.push(
-        makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "\\frac{H}{\\text{tower shadow}} = \\frac{\\text{stick height}}{\\text{stick shadow}}"),
+        makeStep(
+          2,
+          t("common.feedback_reasons.select_formula_or_rule"),
+          `\\frac{H}{\\text{${escapeLatexText(t("math.sm2_04.mission.labels.tower_shadow"))}}} = \\frac{\\text{${escapeLatexText(t("math.sm2_04.mission.labels.tower_height"))}}}{\\text{${escapeLatexText(t("math.sm2_04.mission.labels.stick_shadow"))}}}`
+        ),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `H = ${formatNumber(quest.visual.b)} \\cdot ${formatNumber(quest.visual.k)} = ${formatNumber(height)}`),
         makeStep(4, t("common.feedback_reasons.state_final_result"), `H = ${formatNumber(height)}`, "key")
       );

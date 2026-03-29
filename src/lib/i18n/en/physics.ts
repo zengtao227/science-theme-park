@@ -48,6 +48,10 @@ export const enPhysics = {
                         "compute_resultant_from_components": "Compute the resultant from the horizontal and vertical force components.",
                         "balance_resultant_with_equilibrant": "Balance the known resultant with an equal and opposite equilibrant."
                 },
+                "solver": {
+                        "known_force_label": "known",
+                        "resultant_label": "resultant"
+                },
                 "SP1.01.001": {
                         "prompt": "What is a force?",
                         "feedback": {
@@ -1014,6 +1018,11 @@ export const enPhysics = {
                         value: "value",
                         acceleration_ms2: "m/s^2",
                         force_n: "N"
+                },
+                solver: {
+                        constant_label: "constant",
+                        needed_force_label: "needed",
+                        reaction_force_label: "reaction"
                 },
 
                 prompts: {
@@ -2456,6 +2465,11 @@ export const enPhysics = {
                         apply_efficiency_ratio: "Use the ratio of useful output power to input power.",
                         solve_for_missing_efficiency_quantity: "Rearrange the efficiency equation for the requested quantity.",
                         compute_power_loss: "Compute the power loss as input power minus useful output."
+                },
+                solver: {
+                        cost_label: "Cost",
+                        energy_remains_label: "Energy remains",
+                        required_quantity_label: "Required quantity"
                 }
         },
 

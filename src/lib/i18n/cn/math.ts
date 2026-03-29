@@ -4212,6 +4212,15 @@ export const cnMath = {
             compare_limit_and_value: "比较极限值与函数值",
             classify_discontinuity: "判定间断类型"
         },
+        solver: {
+            dne_label: "不存在",
+            undefined_label: "未定义",
+            yes_label: "是",
+            no_label: "否",
+            leading_terms_label: "最高次项",
+            and_label: "和",
+            direct_substitution_zero_zero: "直接代入得到"
+        },
         input_tip_2dp: "提示：输入结果保留2位小数。不存在时使用'DNE'。",
         visualization: {
             title: "极限可视化器",

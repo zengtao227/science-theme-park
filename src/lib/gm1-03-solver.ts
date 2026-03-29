@@ -7,13 +7,13 @@ function round2(value: number) {
   return Math.round(value * 100) / 100;
 }
 
-function formatValue(value: number | string | undefined) {
+function formatValue(value: number | string | undefined, t?: Translator) {
   if (value === undefined) return "?";
   if (typeof value === "string") {
-    if (value === "DNE") return "\\text{DNE}";
-    if (value === "undefined") return "\\text{undefined}";
-    if (value === "yes") return "\\text{yes}";
-    if (value === "no") return "\\text{no}";
+    if (value === "DNE") return t ? `\\text{${escapeLatexText(t("math.gm1_03.solver.dne_label"))}}` : "\\text{DNE}";
+    if (value === "undefined") return t ? `\\text{${escapeLatexText(t("math.gm1_03.solver.undefined_label"))}}` : "\\text{undefined}";
+    if (value === "yes") return t ? `\\text{${escapeLatexText(t("math.gm1_03.solver.yes_label"))}}` : "\\text{yes}";
+    if (value === "no") return t ? `\\text{${escapeLatexText(t("math.gm1_03.solver.no_label"))}}` : "\\text{no}";
     return value;
   }
   if (value === Infinity) return "\\infty";
@@ -119,8 +119,8 @@ export function solveGM103(
 
       const finalExpression =
         quest.leftLimit === quest.rightLimit && quest.rightLimit !== undefined
-          ? `\\lim_{x \\to ${formatValue(quest.limitPoint)}} f(x) = ${formatValue(quest.rightLimit)}`
-          : `\\lim_{x \\to ${formatValue(quest.limitPoint)}} f(x) = \\text{DNE}`;
+          ? `\\lim_{x \\to ${formatValue(quest.limitPoint, t)}} f(x) = ${formatValue(quest.rightLimit, t)}`
+          : `\\lim_{x \\to ${formatValue(quest.limitPoint, t)}} f(x) = ${formatValue("DNE", t)}`;
 
       steps.push(
         makeStep(3, t("common.feedback_reasons.state_final_result"), finalExpression, "key")
@@ -133,7 +133,7 @@ export function solveGM103(
         makeStep(
           2,
           t("gm1_03.reasons.compare_leading_terms"),
-          `\\text{Leading terms: } ${formatValue(ratio.numeratorCoeff)}x^{${ratio.numeratorDegree}} \\text{ and } ${formatValue(ratio.denominatorCoeff)}x^{${ratio.denominatorDegree}}`
+          `\\text{${escapeLatexText(t("math.gm1_03.solver.leading_terms_label"))}: } ${formatValue(ratio.numeratorCoeff, t)}x^{${ratio.numeratorDegree}} \\text{ ${escapeLatexText(t("math.gm1_03.solver.and_label"))} } ${formatValue(ratio.denominatorCoeff, t)}x^{${ratio.denominatorDegree}}`
         )
       );
       steps.push(
@@ -199,7 +199,7 @@ export function solveGM103(
         makeStep(
           2,
           t("gm1_03.reasons.recognize_indeterminate_form"),
-          `\\text{Direct substitution gives } \\frac{0}{0}`
+          `\\text{${escapeLatexText(t("math.gm1_03.solver.direct_substitution_zero_zero"))}} \\frac{0}{0}`
         )
       );
       steps.push(

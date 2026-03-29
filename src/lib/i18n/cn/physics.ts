@@ -43,6 +43,10 @@ export const cnPhysics = {
             "compute_resultant_from_components": "根据水平和竖直分量计算合力。",
             "balance_resultant_with_equilibrant": "用大小相等、方向相反的平衡力抵消已知合力。"
         },
+        "solver": {
+            "known_force_label": "已知力",
+            "resultant_label": "合力"
+        },
         "check": "验证检测",
         "next": "下一个任务",
         "correct": "验证通过 - 系统稳定",
@@ -950,6 +954,11 @@ export const cnPhysics = {
             acceleration_ms2: "m/s²",
             force_n: "N"
         },
+        solver: {
+            constant_label: "恒定",
+            needed_force_label: "所需",
+            reaction_force_label: "反作用力"
+        },
 
         prompts: {
             first_law_basic: "巴塞尔惯性检查：物体速度为 {v} m/s，合力为 0。任务：写出 F_net。",
@@ -1304,6 +1313,11 @@ export const cnPhysics = {
             apply_efficiency_ratio: "使用有效输出功率与输入功率的比值关系。",
             solve_for_missing_efficiency_quantity: "整理效率公式，解出题目要求的量。",
             compute_power_loss: "用输入功率减去有效输出功率，求出损耗功率。"
+        },
+        solver: {
+            cost_label: "费用",
+            energy_remains_label: "能量保持为",
+            required_quantity_label: "所求量"
         }
     },
 

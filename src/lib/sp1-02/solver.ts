@@ -32,8 +32,8 @@ function finalStep(stepNumber: number, t: Translator, quest: SP102Quest) {
 function solveFirstLaw(quest: SP102Quest, t: Translator) {
   const expected = quest.slots[0]?.expected;
   const steps: PlatformSolutionStep[] = [
-    makeStep(1, t("sp1_02.reasons.state_equilibrium_principle"), "F_{net}=0 \\Rightarrow v=\\text{const}"),
-    makeStep(2, t("sp1_02.reasons.match_balancing_force"), `F_{\\text{needed}}=${expected}`),
+    makeStep(1, t("sp1_02.reasons.state_equilibrium_principle"), `F_{net}=0 \\Rightarrow v=\\text{${escapeLatexText(t("physics.sp1_02.solver.constant_label"))}}`),
+    makeStep(2, t("sp1_02.reasons.match_balancing_force"), `F_{\\text{${escapeLatexText(t("physics.sp1_02.solver.needed_force_label"))}}}=${expected}`),
     finalStep(3, t, quest),
   ];
   return steps;
@@ -57,7 +57,7 @@ function solveThirdLaw(quest: SP102Quest, t: Translator) {
   const reaction = quest.slots[0]?.expected;
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("sp1_02.reasons.state_action_reaction_pair"), "\\vec{F}_{AB}=-\\vec{F}_{BA}"),
-    makeStep(2, t("sp1_02.reasons.match_equal_magnitude"), `|F_{\\text{reaction}}|=${reaction}`),
+    makeStep(2, t("sp1_02.reasons.match_equal_magnitude"), `|F_{\\text{${escapeLatexText(t("physics.sp1_02.solver.reaction_force_label"))}}}|=${reaction}`),
     finalStep(3, t, quest),
   ];
   return steps;

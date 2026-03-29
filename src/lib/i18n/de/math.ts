@@ -4194,6 +4194,15 @@ export const deMath = {
             compare_limit_and_value: "Vergleiche Grenzwert und Funktionswert",
             classify_discontinuity: "Bestimme die Art der Unstetigkeit"
         },
+        solver: {
+            dne_label: "n.e.",
+            undefined_label: "undefiniert",
+            yes_label: "ja",
+            no_label: "nein",
+            leading_terms_label: "Leitterme",
+            and_label: "und",
+            direct_substitution_zero_zero: "Direktes Einsetzen ergibt"
+        },
         input_tip_2dp: "Tipp: Ergebnis auf 2 Dezimalstellen gerundet eingeben. Verwende 'DNE' für nicht existent.",
         visualization: {
             title: "GRENZWERT-VISUALISIERER",

@@ -4217,6 +4217,15 @@ export const enMath = {
             compare_limit_and_value: "Compare the limit with the function value",
             classify_discontinuity: "Classify the type of discontinuity"
         },
+        solver: {
+            dne_label: "DNE",
+            undefined_label: "undefined",
+            yes_label: "yes",
+            no_label: "no",
+            leading_terms_label: "Leading terms",
+            and_label: "and",
+            direct_substitution_zero_zero: "Direct substitution gives"
+        },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places. Use 'DNE' for does not exist.",
         visualization: {
             title: "LIMIT VISUALIZER",

@@ -47,6 +47,10 @@ export const dePhysics = {
                         "compute_resultant_from_components": "Berechne die Resultierende aus den horizontalen und vertikalen Komponenten.",
                         "balance_resultant_with_equilibrant": "Gleiche die bekannte Resultierende mit einer gleich großen, entgegengesetzten Gleichgewichtskraft aus."
                 },
+                "solver": {
+                        "known_force_label": "bekannt",
+                        "resultant_label": "Resultierende"
+                },
                 "SP1.01.001": {
                         "prompt": "Was ist eine Kraft?",
                         "feedback": {
@@ -1014,6 +1018,11 @@ export const dePhysics = {
                         acceleration_ms2: "m/s²",
                         force_n: "N"
                 },
+                solver: {
+                        constant_label: "konstant",
+                        needed_force_label: "benötigt",
+                        reaction_force_label: "Reaktionskraft"
+                },
 
                 prompts: {
                         first_law_basic: "Trägheitscheck in Basel: Objektgeschwindigkeit {v} m/s bei Nettokraft 0. Aufgabe: F_net angeben.",
@@ -1368,6 +1377,11 @@ export const dePhysics = {
                         apply_efficiency_ratio: "Verwenden Sie das Verhältnis von Nutzleistung zu Eingangsleistung.",
                         solve_for_missing_efficiency_quantity: "Stellen Sie die Wirkungsgradgleichung nach der gesuchten Größe um.",
                         compute_power_loss: "Bestimmen Sie die Verlustleistung als Differenz zwischen Eingangs- und Nutzleistung."
+                },
+                solver: {
+                        cost_label: "Kosten",
+                        energy_remains_label: "Die Energie bleibt bei",
+                        required_quantity_label: "Gesuchte Größe"
                 }
         },
 

@@ -41,14 +41,14 @@ function identifyReason(quest: SP101AdaptedQuest, t: Translator) {
   return t("sp1_01.reasons.apply_equilibrium_condition");
 }
 
-function workingExpression(quest: SP101AdaptedQuest) {
+function workingExpression(quest: SP101AdaptedQuest, t: Translator) {
   if (quest.stage === "FORCE_CONCEPTS") {
     return quest.expressionLatex;
   }
   if (quest.stage === "FORCE_COMPOSITION") {
     return "\\sum F_x,\\; \\sum F_y \\Rightarrow F_R=\\sqrt{(\\sum F_x)^2+(\\sum F_y)^2}";
   }
-  return "\\sum \\vec{F}=0 \\Rightarrow \\vec{F}_{\\text{unknown}}=-\\vec{F}_{\\text{resultant}}";
+  return `\\sum \\vec{F}=0 \\Rightarrow \\vec{F}_{\\text{${escapeLatexText(t("physics.sp1_01.solver.known_force_label"))}}}=-\\vec{F}_{\\text{${escapeLatexText(t("physics.sp1_01.solver.resultant_label"))}}}`;
 }
 
 function reasoningStep(quest: SP101AdaptedQuest, t: Translator) {
@@ -56,9 +56,9 @@ function reasoningStep(quest: SP101AdaptedQuest, t: Translator) {
     return makeStep(2, t("sp1_01.reasons.match_force_definition_or_unit"), quest.targetLatex || quest.expressionLatex);
   }
   if (quest.stage === "FORCE_COMPOSITION") {
-    return makeStep(2, t("sp1_01.reasons.compute_resultant_from_components"), workingExpression(quest));
+    return makeStep(2, t("sp1_01.reasons.compute_resultant_from_components"), workingExpression(quest, t));
   }
-  return makeStep(2, t("sp1_01.reasons.balance_resultant_with_equilibrant"), workingExpression(quest));
+  return makeStep(2, t("sp1_01.reasons.balance_resultant_with_equilibrant"), workingExpression(quest, t));
 }
 
 export function solveSP101(

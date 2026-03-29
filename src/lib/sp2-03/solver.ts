@@ -59,7 +59,7 @@ function solveEnergyConsumption(quest: SP203Quest, t: Translator) {
   if (quest.cost != null) {
     const cost = round(energyKWh * quest.cost);
     steps.push(
-      makeStep(2, t("sp2_03.reasons.compute_running_cost"), `\\text{Cost} = ${energyKWh}\\,\\text{kWh} \\times ${quest.cost} = ${cost}`),
+      makeStep(2, t("sp2_03.reasons.compute_running_cost"), `\\text{${escapeLatexText(t("physics.sp2_03.solver.cost_label"))}} = ${energyKWh}\\,\\text{kWh} \\times ${quest.cost} = ${cost}`),
     );
   } else if (Number(quest.answer) === energyKWh) {
     steps.push(
@@ -67,7 +67,7 @@ function solveEnergyConsumption(quest: SP203Quest, t: Translator) {
     );
   } else {
     steps.push(
-      makeStep(2, t("sp2_03.reasons.convert_power_time_to_energy"), `\\text{Energy remains } ${energyWh}\\,\\text{Wh}`),
+      makeStep(2, t("sp2_03.reasons.convert_power_time_to_energy"), `\\text{${escapeLatexText(t("physics.sp2_03.solver.energy_remains_label"))}} ${energyWh}\\,\\text{Wh}`),
     );
   }
 
@@ -93,7 +93,7 @@ function solveEfficiency(quest: SP203Quest, t: Translator) {
   } else {
     steps.push(
       makeStep(1, t("sp2_03.reasons.apply_efficiency_ratio"), "\\eta = \\frac{P_{out}}{P_{in}} \\times 100\\%"),
-      makeStep(2, t("sp2_03.reasons.solve_for_missing_efficiency_quantity"), `\\text{Required quantity} = ${answer}`),
+      makeStep(2, t("sp2_03.reasons.solve_for_missing_efficiency_quantity"), `\\text{${escapeLatexText(t("physics.sp2_03.solver.required_quantity_label"))}} = ${answer}`),
     );
   }
 
