@@ -2218,6 +2218,51 @@ export const enChemistry = {
         labels: {
             target: "Result"
         },
+        hess_law: {
+            hl_elite_2: {
+                target_text: "Multi-step ibuprofen synthesis: C10H14O → C13H18O2",
+                target_latex: "\\text{Multi-step ibuprofen synthesis: } \\text{C}_{10}\\text{H}_{14}\\text{O} \\rightarrow \\text{C}_{13}\\text{H}_{18}\\text{O}_2",
+                steps: {
+                    step_1: { text: "Step 1: Friedel-Crafts acylation", latex: "\\text{Step 1: Friedel-Crafts acylation}" },
+                    step_2: { text: "Step 2: Carbonylation", latex: "\\text{Step 2: Carbonylation}" },
+                    step_3: { text: "Step 3: Hydrolysis", latex: "\\text{Step 3: Hydrolysis}" }
+                }
+            },
+            hl_elite_3: {
+                target_text: "Multi-step penicillin synthesis: 5 steps",
+                target_latex: "\\text{Multi-step penicillin synthesis: 5 steps}",
+                steps: {
+                    step_1: { text: "Step 1: β-lactam ring formation", latex: "\\text{Step 1: } \\beta\\text{-lactam ring formation}" },
+                    step_2: { text: "Step 2: Side chain attachment", latex: "\\text{Step 2: Side chain attachment}" },
+                    step_3: { text: "Step 3: Thiazolidine ring closure", latex: "\\text{Step 3: Thiazolidine ring closure}" },
+                    step_4: { text: "Step 4: Oxidation", latex: "\\text{Step 4: Oxidation}" },
+                    step_5: { text: "Step 5: Final purification", latex: "\\text{Step 5: Final purification}" }
+                }
+            },
+            hl_elite_4: {
+                target_text: "Multi-step anticancer drug synthesis: 7 steps",
+                target_latex: "\\text{Multi-step anticancer drug synthesis: 7 steps}",
+                steps: {
+                    step_1: { text: "Step 1: Aromatic substitution", latex: "\\text{Step 1: Aromatic substitution}" },
+                    step_2: { text: "Step 2: Heterocycle formation", latex: "\\text{Step 2: Heterocycle formation}" },
+                    step_3: { text: "Step 3: Functional group protection", latex: "\\text{Step 3: Functional group protection}" },
+                    step_4: { text: "Step 4: Coupling reaction", latex: "\\text{Step 4: Coupling reaction}" },
+                    step_5: { text: "Step 5: Deprotection", latex: "\\text{Step 5: Deprotection}" },
+                    step_6: { text: "Step 6: Oxidation", latex: "\\text{Step 6: Oxidation}" },
+                    step_7: { text: "Step 7: Salt formation", latex: "\\text{Step 7: Salt formation}" }
+                }
+            },
+            hl_elite_5: {
+                target_text: "Multi-step insulin analog synthesis: 4 steps",
+                target_latex: "\\text{Multi-step insulin analog synthesis: 4 steps}",
+                steps: {
+                    step_1: { text: "Step 1: Peptide chain assembly", latex: "\\text{Step 1: Peptide chain assembly}" },
+                    step_2: { text: "Step 2: Disulfide bond formation", latex: "\\text{Step 2: Disulfide bond formation}" },
+                    step_3: { text: "Step 3: Folding and purification", latex: "\\text{Step 3: Folding and purification}" },
+                    step_4: { text: "Step 4: Formulation", latex: "\\text{Step 4: Formulation}" }
+                }
+            }
+        },
         stages: {
             energy_changes: "ENERGY CHANGES",
             hess_law: "HESS'S LAW",

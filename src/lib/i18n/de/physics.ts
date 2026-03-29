@@ -1139,7 +1139,9 @@ export const dePhysics = {
                 },
                 labels: {
                         "ans": "Antwort",
-                        "placeholder": "hier eingeben"
+                        "placeholder": "hier eingeben",
+                        first_law_statement: "Newtons erstes Gesetz:",
+                        constant_state: "konstant"
                 },
                 answers: {
                         no: "nein",
@@ -1269,7 +1271,8 @@ export const dePhysics = {
                         broken_wire: "Drahtbruch",
                         dead_battery: "Leere Batterie",
                         burned_bulb: "Durchgebrannte Lampe",
-                        open_switch: "Offener Schalter"
+                        open_switch: "Offener Schalter",
+                        unknown: "Unbekannter Fehler"
                 },
                 answers: {
                         battery_terminals: "2 (Plus und Minus)",
@@ -1310,7 +1313,15 @@ export const dePhysics = {
                         identify_fault_and_fix: "Bestimmen Sie die Störung, die den Stromkreis unterbricht, und nennen Sie die Reparatur.",
                         check_design_requirements: "Prüfen Sie jede Anforderung, bevor Sie die endgültige Schaltung bestätigen."
                 },
-                feedback: { correct: "Schaltungsanalyse bestätigt.", incorrect: "Schaltungskonfigurationsfehler erkannt." }
+                feedback: {
+                        parallel_reason: "Parallele Verdrahtung gibt jeder Lampe einen eigenen Zweig, sodass die übrigen weiterleuchten, wenn eine ausfällt.",
+                        series_reason: "Bei einer Reihenschaltung liegen alle Bauteile in einem gemeinsamen Kreis, daher fließt derselbe Strom durch alle Teile.",
+                        draw_reason: "Batterie, Lampe, Schalter und Widerstand brauchen die passenden IEC-Symbole und einen geschlossenen Leitungsweg.",
+                        troubleshoot_reason: "Beheben Sie {fault}, damit sich der Stromkreis wieder schließt.",
+                        design_reason: "Erfüllen Sie zuerst die genannten Anforderungen an Steuerung, Redundanz und Effizienz, bevor Sie den Aufbau bestätigen.",
+                        correct: "Schaltungsanalyse bestätigt.",
+                        incorrect: "Schaltungskonfigurationsfehler erkannt."
+                }
         },
 
         // SP2.02: Ohmsches Gesetz & Schaltungen

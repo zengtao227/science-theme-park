@@ -4210,6 +4210,7 @@ export const deMath = {
             find_limit: "\\text{Basler Analyseaufgabe: bestimme } \\lim_{x \\to {limitPoint}} {expr}",
             evaluate_limit: "\\text{Basler Analyseaufgabe: berechne den Zielgrenzwert.}",
             check_continuity: "\\text{Basler Analyseaufgabe: ist die Funktion bei } x={point} \\text{ stetig?}",
+            continuity_question: "\\text{Ist } f(x) = {expr} \\text{ bei } x = {point} \\text{ stetig?}",
             hint_direct: "\\text{Hinweis: Versuche direkte Substitution}",
             hint_factor: "\\text{Hinweis: Faktorisiere und vereinfache}",
             hint_infinity: "\\text{Hinweis: Teile durch höchste Potenz von } x",
@@ -4224,6 +4225,9 @@ export const deMath = {
             left_limit: "Linksseitiger Grenzwert",
             right_limit: "Rechtsseitiger Grenzwert",
             continuous: "Stetig?",
+            continuous_true: "Stetig",
+            discontinuous_with_type: "Unstetig ({type})",
+            unknown_discontinuity: "unbekannt",
             discontinuity_type: "Unstetigkeitstyp",
             function_value: "Funktionswert",
             hints: "HINWEISE"

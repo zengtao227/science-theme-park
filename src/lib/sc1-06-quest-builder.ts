@@ -82,7 +82,7 @@ export function buildStagePool(
           ? translateText(t, "sc1_06.prompts.balance_equation")
           : translateText(t, "sc1_06.prompts.observe_simulation")
       : "";
-    const promptLatex = generatePromptLatex(stage, equation, promptText);
+    const promptLatex = generatePromptLatex(stage, equation, promptText, t);
 
     // Generate slots based on stage
     const slots = generateSlots(stage, equation, data, t);
@@ -179,23 +179,23 @@ function generateEquationLatex(
  * @param equation - Chemical equation
  * @returns Prompt LaTeX string
  */
-function generatePromptLatex(stage: Stage, equation: ChemicalEquation, translatedText?: string): string {
+function generatePromptLatex(stage: Stage, equation: ChemicalEquation, translatedText?: string, t?: Translator): string {
   void equation;
   if (translatedText && !translatedText.includes("sc1_06")) {
     return `\\\\text{${translatedText}}`;
   }
   switch (stage) {
     case 'REACTION_TYPES':
-      return '\\\\text{Classify this chemical reaction:}';
+      return `\\\\text{${translateText(t, "sc1_06.prompts.classify_reaction")}}`;
 
     case 'EQUATION_BALANCING':
-      return '\\\\text{Balance this chemical equation by entering the correct coefficients:}';
+      return `\\\\text{${translateText(t, "sc1_06.prompts.balance_equation")}}`;
 
     case 'REACTION_SIMULATION':
-      return '\\\\text{Observe the molecular animation and identify the reaction:}';
+      return `\\\\text{${translateText(t, "sc1_06.prompts.observe_simulation")}}`;
 
     default:
-      return '\\\\text{Analyze this chemical reaction:}';
+      return `\\\\text{${translateText(t, "sc1_06.prompts.analyze_reaction")}}`;
   }
 }
 

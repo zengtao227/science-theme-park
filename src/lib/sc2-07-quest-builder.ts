@@ -43,6 +43,42 @@ function buildCalorimetryData(data: any) {
   };
 }
 
+function translateOrFallback(t: any, key: string, fallback: string, params?: Record<string, string | number>) {
+  if (!t) return fallback;
+  const translated = t(key, params);
+  return translated && translated !== key ? translated : fallback;
+}
+
+function localizeHessTarget(data: any, t: any) {
+  if (!data.id?.startsWith("HL_ELITE_")) {
+    return {
+      equation: data.targetReaction || "",
+      equationLatex: data.targetReactionLatex || "",
+    };
+  }
+
+  const keyBase = `sc2_07.hess_law.${data.id.toLowerCase()}`;
+  return {
+    equation: translateOrFallback(t, `${keyBase}.target_text`, data.targetReaction || ""),
+    equationLatex: translateOrFallback(t, `${keyBase}.target_latex`, data.targetReactionLatex || ""),
+  };
+}
+
+function localizeHessEquation(data: any, equation: any, index: number, t: any) {
+  if (!data.id?.startsWith("HL_ELITE_")) {
+    return {
+      equation: equation.equation || "",
+      equationLatex: equation.equationLatex || "",
+    };
+  }
+
+  const keyBase = `sc2_07.hess_law.${data.id.toLowerCase()}.steps.step_${index + 1}`;
+  return {
+    equation: translateOrFallback(t, `${keyBase}.text`, equation.equation || ""),
+    equationLatex: translateOrFallback(t, `${keyBase}.latex`, equation.equationLatex || ""),
+  };
+}
+
 /**
  * Build quest pool for a specific stage and difficulty
  * Returns 5 quests per stage/difficulty combination
@@ -98,7 +134,8 @@ function buildQuestFromData(
   stage: Stage
 ): SC207Quest {
   // Generate required Quest interface fields
-  const equationLatex = data.reactionLatex || data.targetReactionLatex || '';
+  const localizedTarget = stage === 'HESS_LAW' ? localizeHessTarget(data, t) : null;
+  const equationLatex = data.reactionLatex || localizedTarget?.equationLatex || data.targetReactionLatex || '';
   const expressionLatex = equationLatex; // Use equation as expression context
   const targetLabel = t ? t("sc2_07.labels.target") : "sc2_07.labels.target";
   const targetLatex = `\\\\text{${targetLabel}}`;
@@ -153,20 +190,23 @@ function buildQuestFromData(
     quest.hessData = {
       targetEquation: {
         id: 'target',
-        equation: data.targetReaction || '',
-        equationLatex: data.targetReactionLatex || '',
+        equation: localizedTarget?.equation || data.targetReaction || '',
+        equationLatex: localizedTarget?.equationLatex || data.targetReactionLatex || '',
         deltaH: data.targetDeltaH || 0,
         reversed: false,
         multiplier: 1
       },
-      availableEquations: (data.availableEquations || []).map((eq: any, index: number) => ({
-        id: `eq${index + 1}`,
-        equation: eq.equation || '',
-        equationLatex: eq.equationLatex || '',
-        deltaH: eq.deltaH || 0,
-        reversed: false,
-        multiplier: 1
-      })),
+      availableEquations: (data.availableEquations || []).map((eq: any, index: number) => {
+        const localizedEquation = localizeHessEquation(data, eq, index, t);
+        return {
+          id: `eq${index + 1}`,
+          equation: localizedEquation.equation,
+          equationLatex: localizedEquation.equationLatex,
+          deltaH: eq.deltaH || 0,
+          reversed: false,
+          multiplier: 1,
+        };
+      }),
       correctPathway: [],
       totalDeltaH: data.targetDeltaH || 0
     };

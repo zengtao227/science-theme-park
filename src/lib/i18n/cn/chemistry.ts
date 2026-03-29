@@ -2217,6 +2217,51 @@ export const cnChemistry = {
         labels: {
             target: "结果"
         },
+        hess_law: {
+            hl_elite_2: {
+                target_text: "多步布洛芬合成：C10H14O → C13H18O2",
+                target_latex: "\\text{多步布洛芬合成：} \\text{C}_{10}\\text{H}_{14}\\text{O} \\rightarrow \\text{C}_{13}\\text{H}_{18}\\text{O}_2",
+                steps: {
+                    step_1: { text: "步骤 1：傅-克酰基化", latex: "\\text{步骤 1：傅-克酰基化}" },
+                    step_2: { text: "步骤 2：羰基化", latex: "\\text{步骤 2：羰基化}" },
+                    step_3: { text: "步骤 3：水解", latex: "\\text{步骤 3：水解}" }
+                }
+            },
+            hl_elite_3: {
+                target_text: "多步青霉素合成：5 步",
+                target_latex: "\\text{多步青霉素合成：5 步}",
+                steps: {
+                    step_1: { text: "步骤 1：β-内酰胺环形成", latex: "\\text{步骤 1：} \\beta\\text{-内酰胺环形成}" },
+                    step_2: { text: "步骤 2：侧链连接", latex: "\\text{步骤 2：侧链连接}" },
+                    step_3: { text: "步骤 3：噻唑烷环闭合", latex: "\\text{步骤 3：噻唑烷环闭合}" },
+                    step_4: { text: "步骤 4：氧化", latex: "\\text{步骤 4：氧化}" },
+                    step_5: { text: "步骤 5：最终纯化", latex: "\\text{步骤 5：最终纯化}" }
+                }
+            },
+            hl_elite_4: {
+                target_text: "多步抗癌药物合成：7 步",
+                target_latex: "\\text{多步抗癌药物合成：7 步}",
+                steps: {
+                    step_1: { text: "步骤 1：芳香取代", latex: "\\text{步骤 1：芳香取代}" },
+                    step_2: { text: "步骤 2：杂环形成", latex: "\\text{步骤 2：杂环形成}" },
+                    step_3: { text: "步骤 3：官能团保护", latex: "\\text{步骤 3：官能团保护}" },
+                    step_4: { text: "步骤 4：偶联反应", latex: "\\text{步骤 4：偶联反应}" },
+                    step_5: { text: "步骤 5：脱保护", latex: "\\text{步骤 5：脱保护}" },
+                    step_6: { text: "步骤 6：氧化", latex: "\\text{步骤 6：氧化}" },
+                    step_7: { text: "步骤 7：成盐", latex: "\\text{步骤 7：成盐}" }
+                }
+            },
+            hl_elite_5: {
+                target_text: "多步胰岛素类似物合成：4 步",
+                target_latex: "\\text{多步胰岛素类似物合成：4 步}",
+                steps: {
+                    step_1: { text: "步骤 1：肽链组装", latex: "\\text{步骤 1：肽链组装}" },
+                    step_2: { text: "步骤 2：二硫键形成", latex: "\\text{步骤 2：二硫键形成}" },
+                    step_3: { text: "步骤 3：折叠与纯化", latex: "\\text{步骤 3：折叠与纯化}" },
+                    step_4: { text: "步骤 4：制剂配制", latex: "\\text{步骤 4：制剂配制}" }
+                }
+            }
+        },
         stages: {
             energy_changes: "能量变化",
             hess_law: "赫斯定律",

@@ -92,7 +92,7 @@ export function buildQuestPool(difficulty: Difficulty, stage: Stage, t?: Transla
         difficulty,
         stage,
         promptLatex: finalPrompt,
-        expressionLatex: "\\text{Newton's First Law: } \\vec{F}_{net} = 0 \\Rightarrow \\vec{v} = \\text{constant}",
+        expressionLatex: `\\text{${getText(t, "sp1_02.labels.first_law_statement")}} \\vec{F}_{net} = 0 \\Rightarrow \\vec{v} = \\text{${getText(t, "sp1_02.labels.constant_state")}}`,
         targetLatex: `\\text{${getText(t, "sp1_02.labels.ans")}}`,
         slots: [
           {

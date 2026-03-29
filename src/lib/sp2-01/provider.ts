@@ -25,6 +25,10 @@ function buildFullSolution(steps: PlatformSolutionStep[]) {
     .join(" \\\\ ");
 }
 
+function toLatexText(text: string) {
+  return `\\text{${escapeLatexText(text)}}`;
+}
+
 function getPrimaryReason(quest: SP201Quest, t: Translator) {
   switch (quest.type) {
     case "IDENTIFY":
@@ -43,52 +47,49 @@ function getPrimaryReason(quest: SP201Quest, t: Translator) {
 function getWorkingExpression(quest: SP201Quest) {
   if (quest.type === "IDENTIFY") {
     return quest.componentInfo?.symbol
-      ? `\\text{${escapeLatexText(quest.componentInfo.symbol)}}`
+      ? toLatexText(quest.componentInfo.symbol)
       : quest.targetLatex || quest.correctLatex;
   }
-
-  if (quest.type === "BUILD") {
-    return quest.circuitType === "PARALLEL"
-      ? "\\text{Independent branches keep the other bulbs active.}"
-      : "\\text{One closed path carries the same current through every component.}";
-  }
-
-  if (quest.type === "DRAW") {
-    return "\\text{IEC symbols encode each component and the wire connections.}";
-  }
-
-  if (quest.type === "TROUBLESHOOT") {
-    return `\\text{Fault: ${escapeLatexText(quest.fault ?? "unknown")}}`;
-  }
-
-  const requirementCount = quest.designRequirements?.length ?? 0;
-  return `\\text{Design must satisfy ${requirementCount} explicit requirement${requirementCount === 1 ? "" : "s"}.}`;
+  return quest.targetLatex || quest.correctLatex;
 }
 
 function getReasoningStep(quest: SP201Quest, t: Translator) {
   if (quest.type === "IDENTIFY") {
-    const expression = quest.componentInfo?.function?.en
-      ? `\\text{${escapeLatexText(quest.componentInfo.function.en)}}`
-      : quest.targetLatex || quest.correctLatex;
+    const expression = quest.targetLatex || quest.correctLatex;
     return makeStep(2, t("sp2_01.reasons.match_component_role"), expression);
   }
 
   if (quest.type === "BUILD") {
     const expression = quest.circuitType === "PARALLEL"
-      ? "\\text{Parallel wiring gives each lamp its own path and keeps the rest on if one fails.}"
-      : "\\text{Series wiring keeps every component on one loop, so the same current flows through all parts.}";
+      ? toLatexText(t("sp2_01.feedback.parallel_reason"))
+      : toLatexText(t("sp2_01.feedback.series_reason"));
     return makeStep(2, t("sp2_01.reasons.confirm_series_or_parallel"), expression);
   }
 
   if (quest.type === "DRAW") {
-    return makeStep(2, t("sp2_01.reasons.read_iec_diagram"), "\\text{Battery, bulb, switch, and resistor each need the matching IEC symbol and a closed wiring path.}");
+    return makeStep(
+      2,
+      t("sp2_01.reasons.read_iec_diagram"),
+      toLatexText(t("sp2_01.feedback.draw_reason"))
+    );
   }
 
   if (quest.type === "TROUBLESHOOT") {
-    return makeStep(2, t("sp2_01.reasons.identify_fault_and_fix"), `\\text{Repair the ${escapeLatexText((quest.fault ?? "fault").toLowerCase())} so the circuit closes again.}`);
+    const faultLabel = quest.fault
+      ? t(`sp2_01.faults.${quest.fault.toLowerCase()}`)
+      : t("sp2_01.faults.unknown");
+    return makeStep(
+      2,
+      t("sp2_01.reasons.identify_fault_and_fix"),
+      toLatexText(t("sp2_01.feedback.troubleshoot_reason", { fault: faultLabel }))
+    );
   }
 
-  return makeStep(2, t("sp2_01.reasons.check_design_requirements"), `\\text{Satisfy the stated control, redundancy, and efficiency requirements before checking the final layout.}`);
+  return makeStep(
+    2,
+    t("sp2_01.reasons.check_design_requirements"),
+    toLatexText(t("sp2_01.feedback.design_reason", { count: quest.designRequirements?.length ?? 0 }))
+  );
 }
 
 export function createSP201FeedbackProvider(t: Translator) {

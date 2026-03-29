@@ -4233,6 +4233,7 @@ export const enMath = {
             find_limit: "\\text{Basel analysis task: find } \\lim_{x \\to {limitPoint}} {expr}",
             evaluate_limit: "\\text{Basel analysis task: evaluate the target limit.}",
             check_continuity: "\\text{Basel analysis task: is the function continuous at } x={point}\\text{?}",
+            continuity_question: "\\text{Is } f(x) = {expr} \\text{ continuous at } x = {point}\\text{?}",
             hint_direct: "\\text{Hint: Try direct substitution}",
             hint_factor: "\\text{Hint: Factor and simplify}",
             hint_infinity: "\\text{Hint: Divide by highest power of } x",
@@ -4247,6 +4248,9 @@ export const enMath = {
             left_limit: "Left Limit",
             right_limit: "Right Limit",
             continuous: "Continuous?",
+            continuous_true: "Continuous",
+            discontinuous_with_type: "Discontinuous ({type})",
+            unknown_discontinuity: "unknown",
             discontinuity_type: "Discontinuity Type",
             function_value: "Function Value",
             hints: "HINTS"

@@ -2210,6 +2210,51 @@ export const deChemistry = {
         labels: {
             target: "Ergebnis"
         },
+        hess_law: {
+            hl_elite_2: {
+                target_text: "Mehrstufige Ibuprofen-Synthese: C10H14O → C13H18O2",
+                target_latex: "\\text{Mehrstufige Ibuprofen-Synthese: } \\text{C}_{10}\\text{H}_{14}\\text{O} \\rightarrow \\text{C}_{13}\\text{H}_{18}\\text{O}_2",
+                steps: {
+                    step_1: { text: "Schritt 1: Friedel-Crafts-Acylierung", latex: "\\text{Schritt 1: Friedel-Crafts-Acylierung}" },
+                    step_2: { text: "Schritt 2: Carbonylierung", latex: "\\text{Schritt 2: Carbonylierung}" },
+                    step_3: { text: "Schritt 3: Hydrolyse", latex: "\\text{Schritt 3: Hydrolyse}" }
+                }
+            },
+            hl_elite_3: {
+                target_text: "Mehrstufige Penicillin-Synthese: 5 Schritte",
+                target_latex: "\\text{Mehrstufige Penicillin-Synthese: 5 Schritte}",
+                steps: {
+                    step_1: { text: "Schritt 1: β-Lactam-Ringbildung", latex: "\\text{Schritt 1: } \\beta\\text{-Lactam-Ringbildung}" },
+                    step_2: { text: "Schritt 2: Seitenketten-Anknüpfung", latex: "\\text{Schritt 2: Seitenketten-Anknüpfung}" },
+                    step_3: { text: "Schritt 3: Thiazolidin-Ringschluss", latex: "\\text{Schritt 3: Thiazolidin-Ringschluss}" },
+                    step_4: { text: "Schritt 4: Oxidation", latex: "\\text{Schritt 4: Oxidation}" },
+                    step_5: { text: "Schritt 5: Endreinigung", latex: "\\text{Schritt 5: Endreinigung}" }
+                }
+            },
+            hl_elite_4: {
+                target_text: "Mehrstufige Synthese eines Krebsmedikaments: 7 Schritte",
+                target_latex: "\\text{Mehrstufige Synthese eines Krebsmedikaments: 7 Schritte}",
+                steps: {
+                    step_1: { text: "Schritt 1: Aromatische Substitution", latex: "\\text{Schritt 1: Aromatische Substitution}" },
+                    step_2: { text: "Schritt 2: Heterocyclus-Bildung", latex: "\\text{Schritt 2: Heterocyclus-Bildung}" },
+                    step_3: { text: "Schritt 3: Schutz der funktionellen Gruppen", latex: "\\text{Schritt 3: Schutz der funktionellen Gruppen}" },
+                    step_4: { text: "Schritt 4: Kupplungsreaktion", latex: "\\text{Schritt 4: Kupplungsreaktion}" },
+                    step_5: { text: "Schritt 5: Entschützung", latex: "\\text{Schritt 5: Entschützung}" },
+                    step_6: { text: "Schritt 6: Oxidation", latex: "\\text{Schritt 6: Oxidation}" },
+                    step_7: { text: "Schritt 7: Salzbildung", latex: "\\text{Schritt 7: Salzbildung}" }
+                }
+            },
+            hl_elite_5: {
+                target_text: "Mehrstufige Insulinanalog-Synthese: 4 Schritte",
+                target_latex: "\\text{Mehrstufige Insulinanalog-Synthese: 4 Schritte}",
+                steps: {
+                    step_1: { text: "Schritt 1: Aufbau der Peptidkette", latex: "\\text{Schritt 1: Aufbau der Peptidkette}" },
+                    step_2: { text: "Schritt 2: Disulfidbrücken-Bildung", latex: "\\text{Schritt 2: Disulfidbrücken-Bildung}" },
+                    step_3: { text: "Schritt 3: Faltung und Reinigung", latex: "\\text{Schritt 3: Faltung und Reinigung}" },
+                    step_4: { text: "Schritt 4: Formulierung", latex: "\\text{Schritt 4: Formulierung}" }
+                }
+            }
+        },
         stages: {
             energy_changes: "ENERGIEÄNDERUNGEN",
             hess_law: "HESS'SCHES GESETZ",

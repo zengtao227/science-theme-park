@@ -1140,7 +1140,9 @@ export const enPhysics = {
                 },
                 labels: {
                         "ans": "Answer",
-                        "placeholder": "type here"
+                        "placeholder": "type here",
+                        first_law_statement: "Newton's First Law:",
+                        constant_state: "constant"
                 },
                 answers: {
                         no: "no",
@@ -1270,7 +1272,8 @@ export const enPhysics = {
                         broken_wire: "Broken wire",
                         dead_battery: "Dead battery",
                         burned_bulb: "Burned bulb",
-                        open_switch: "Open switch"
+                        open_switch: "Open switch",
+                        unknown: "Unknown fault"
                 },
                 answers: {
                         battery_terminals: "2 (positive and negative)",
@@ -1311,7 +1314,15 @@ export const enPhysics = {
                         identify_fault_and_fix: "Identify the fault that breaks the current path and state the repair.",
                         check_design_requirements: "Check each design requirement before confirming the final circuit."
                 },
-                feedback: { correct: "Circuit analysis confirmed.", incorrect: "Circuit configuration error detected." }
+                feedback: {
+                        parallel_reason: "Parallel wiring gives each lamp its own path and keeps the rest on if one fails.",
+                        series_reason: "Series wiring keeps every component on one loop, so the same current flows through all parts.",
+                        draw_reason: "Battery, bulb, switch, and resistor each need the matching IEC symbol and a closed wiring path.",
+                        troubleshoot_reason: "Repair the {fault} so the circuit closes again.",
+                        design_reason: "Satisfy the stated control, redundancy, and efficiency requirements before checking the final layout.",
+                        correct: "Circuit analysis confirmed.",
+                        incorrect: "Circuit configuration error detected."
+                }
         },
 
         // --- Basel Sek 3 Series (Aligned SP3 Key Map) ---

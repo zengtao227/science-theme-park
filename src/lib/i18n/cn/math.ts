@@ -4228,6 +4228,7 @@ export const cnMath = {
             find_limit: "\\text{巴塞尔分析任务：求 } \\lim_{x \\to {limitPoint}} {expr}",
             evaluate_limit: "\\text{巴塞尔分析任务：计算目标极限。}",
             check_continuity: "\\text{巴塞尔分析任务：函数在 } x={point} \\text{ 处连续吗？}",
+            continuity_question: "\\text{函数 } f(x) = {expr} \\text{ 在 } x = {point} \\text{ 处连续吗？}",
             hint_direct: "\\text{提示：尝试直接代入}",
             hint_factor: "\\text{提示：因式分解并化简}",
             hint_infinity: "\\text{提示：除以 } x \\text{ 的最高次幂}",
@@ -4242,6 +4243,9 @@ export const cnMath = {
             left_limit: "左极限",
             right_limit: "右极限",
             continuous: "连续？",
+            continuous_true: "连续",
+            discontinuous_with_type: "不连续（{type}）",
+            unknown_discontinuity: "未知类型",
             discontinuity_type: "间断类型",
             function_value: "函数值",
             hints: "提示"

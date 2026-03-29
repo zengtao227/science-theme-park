@@ -104,7 +104,7 @@ export function buildStagePool(
         slots: [
           {
             id: "limit",
-            labelLatex: "\\text{Limit}",
+            labelLatex: `\\text{${t("gm1_03.labels.limit_value")}}`,
             placeholder: t("gm1_03.placeholders.value"),
             expected,
           },
@@ -235,7 +235,10 @@ export function buildStagePool(
     };
 
     const expressionLatex = formatExpr(item.functionExpr);
-    const promptLatex = `\\text{Is } f(x) = ${expressionLatex} \\text{ continuous at } x = ${item.point}?`;
+    const promptLatex = t("gm1_03.prompts.continuity_question", {
+      expr: expressionLatex,
+      point: item.point,
+    });
 
     // For continuity questions, ask for continuity status
     const expected = item.isContinuous ? "yes" : "no";
@@ -254,16 +257,18 @@ export function buildStagePool(
       functionValue: item.functionValue,
       promptLatex,
       expressionLatex: `f(x) = ${expressionLatex}`,
-      targetLatex: "\\text{Continuous?}",
+      targetLatex: `\\text{${t("gm1_03.labels.continuous")}}`,
       slots: [
         {
           id: "continuous",
-          labelLatex: "\\text{Continuous?}",
+          labelLatex: `\\text{${t("gm1_03.labels.continuous")}}`,
           placeholder: t("gm1_03.placeholders.yes_no"),
           expected,
         },
       ],
-      correctLatex: `\\text{${item.isContinuous ? "Continuous" : `Discontinuous (${item.discontinuityType})`}}`,
+      correctLatex: item.isContinuous
+        ? `\\text{${t("gm1_03.labels.continuous_true")}}`
+        : `\\text{${t("gm1_03.labels.discontinuous_with_type", { type: item.discontinuityType ?? t("gm1_03.labels.unknown_discontinuity") })}}`,
     };
   });
 }

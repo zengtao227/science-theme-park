@@ -1075,7 +1075,9 @@ export const cnPhysics = {
         },
         labels: {
             "ans": "答案",
-            "placeholder": "在此输入"
+            "placeholder": "在此输入",
+            first_law_statement: "牛顿第一定律：",
+            constant_state: "保持不变"
         },
         answers: {
             no: "否",
@@ -1205,7 +1207,8 @@ export const cnPhysics = {
             broken_wire: "导线断开",
             dead_battery: "电池没电",
             burned_bulb: "灯泡烧坏",
-            open_switch: "开关断开"
+            open_switch: "开关断开",
+            unknown: "未知故障"
         },
         answers: {
             battery_terminals: "2 个（正极和负极）",
@@ -1246,7 +1249,15 @@ export const cnPhysics = {
             identify_fault_and_fix: "找出阻断电流的故障元件，并给出修复方式。",
             check_design_requirements: "先逐条核对设计要求，再确认最终电路。"
         },
-        feedback: { correct: "电路分析确认。", incorrect: "检测到电路配置错误。" }
+        feedback: {
+            parallel_reason: "并联接线会给每个灯泡单独支路，所以一个失效时其余灯泡仍能保持工作。",
+            series_reason: "串联接线让所有元件位于同一回路中，因此同一电流会流过每个元件。",
+            draw_reason: "电池、灯泡、开关和电阻都要用正确的 IEC 符号表示，并通过闭合连线接成回路。",
+            troubleshoot_reason: "修复 {fault}，让电路重新闭合并恢复通电。",
+            design_reason: "在确认最终方案前，先逐条满足控制、冗余和效率方面的设计要求。",
+            correct: "电路分析确认。",
+            incorrect: "检测到电路配置错误。"
+        }
     },
 
     // SP2.02: 欧姆定律与电路
