@@ -11,6 +11,14 @@ import { SC106Quest, Stage, Difficulty, ChemicalEquation } from './sc1-06-types'
 import { getQuestData } from './sc1-06-quest-data';
 import { createCompound } from './sc1-06-utils';
 
+type Translator = (path: string, params?: Record<string, string | number>) => string;
+
+function translateText(t: Translator | undefined, path: string, fallback: string): string {
+  if (!t) return fallback;
+  const translated = t(path);
+  return translated !== path ? translated : fallback;
+}
+
 /**
  * Build a quest pool for a specific stage and difficulty
  * 
@@ -29,7 +37,7 @@ import { createCompound } from './sc1-06-utils';
  * @returns Array of SC106Quest objects
  */
 export function buildStagePool(
-  t: any,
+  t: Translator | undefined,
   difficulty: Difficulty,
   stage: Stage,
   count: number = 5
@@ -67,7 +75,13 @@ export function buildStagePool(
     );
 
     // Generate prompt based on stage
-    const promptText = t ? t(`sc1_06.prompts.${stage}`) : "";
+    const promptText = t
+      ? stage === "REACTION_TYPES"
+        ? translateText(t, "sc1_06.prompts.classify_reaction", "Examine the chemical equation and identify the type of reaction.")
+        : stage === "EQUATION_BALANCING"
+          ? translateText(t, "sc1_06.prompts.balance_equation", "Enter coefficients to balance the chemical equation.")
+          : translateText(t, "sc1_06.prompts.observe_simulation", "Observe the reaction and identify what is happening.")
+      : "";
     const promptLatex = generatePromptLatex(stage, equation, promptText);
 
     // Generate slots based on stage
@@ -75,11 +89,9 @@ export function buildStagePool(
 
     // Generate required Quest interface fields
     const expressionLatex = equationLatex; // Use equation as expression context
-    const initialTargetLatex = stage === 'REACTION_TYPES'
-      ? 'Reaction type: [type]'
-      : stage === 'EQUATION_BALANCING'
-        ? 'Balanced coefficients'
-        : 'Reaction identification';
+    const targetLabel = stage === "REACTION_TYPES" || stage === "REACTION_SIMULATION"
+      ? translateText(t, "sc1_06.labels.reaction_type", "Reaction Type")
+      : translateText(t, "sc1_06.labels.coefficients", "Coefficients");
     const correctLatex = stage === 'REACTION_TYPES'
       ? data.type
       : stage === 'EQUATION_BALANCING'
@@ -104,7 +116,7 @@ export function buildStagePool(
       promptLatex,
       equationLatex,
       expressionLatex,
-      targetLatex: `\\\\text{${t ? (t("sc1_06.labels.target") !== "sc1_06.labels.target" ? t("sc1_06.labels.target") : "Target") : initialTargetLatex}}`,
+      targetLatex: `\\\\text{${targetLabel}}`,
       correctLatex,
       energyChange: data.energyChange,
       baselContext: finalScenario,
@@ -168,6 +180,7 @@ function generateEquationLatex(
  * @returns Prompt LaTeX string
  */
 function generatePromptLatex(stage: Stage, equation: ChemicalEquation, translatedText?: string): string {
+  void equation;
   if (translatedText && !translatedText.includes("sc1_06")) {
     return `\\\\text{${translatedText}}`;
   }
@@ -198,11 +211,11 @@ function generateSlots(
   stage: Stage,
   equation: ChemicalEquation,
   data: any,
-  t?: any
+  t?: Translator
 ): Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> {
-  void t;
-
   const slots: Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> = [];
+  const reactionTypeLabel = translateText(t, "sc1_06.labels.reaction_type", "Reaction Type");
+  const selectReactionType = translateText(t, "sc1_06.ui.select_reaction_type", "Select Reaction Type");
 
   switch (stage) {
     case 'EQUATION_BALANCING':
@@ -231,8 +244,8 @@ function generateSlots(
       // Single slot for reaction type selection
       slots.push({
         id: 'reaction_type',
-        labelLatex: 'Reaction Type',
-        placeholder: 'Select type',
+        labelLatex: reactionTypeLabel,
+        placeholder: selectReactionType,
         expected: data.type
       });
       break;
@@ -241,8 +254,8 @@ function generateSlots(
       // Slots for identifying reactants and products
       slots.push({
         id: 'reaction_type',
-        labelLatex: 'Reaction Type',
-        placeholder: 'Select type',
+        labelLatex: reactionTypeLabel,
+        placeholder: selectReactionType,
         expected: data.type
       });
       break;
