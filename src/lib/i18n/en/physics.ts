@@ -1286,6 +1286,7 @@ export const enPhysics = {
                         precision: "Measurement Precision",
                         measurement_display: "Measurement Display",
                         input_terminal: "Terminal Input",
+                        base_si_unit: "Base SI unit",
                         unit: "\\text{Unit}",
                         sig_figs: "\\text{Sig Figs}",
                         percent: "\\text{Percent}"

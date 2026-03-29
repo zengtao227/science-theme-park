@@ -1407,6 +1407,7 @@ export const dePhysics = {
                         precision: "Messpräzision",
                         measurement_display: "Messanzeige",
                         input_terminal: "Terminal-Eingabe",
+                        base_si_unit: "SI-Basiseinheit",
                         unit: "\\text{Einheit}",
                         sig_figs: "\\text{Sig. Stellen}",
                         percent: "\\text{Prozent}"

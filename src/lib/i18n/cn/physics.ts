@@ -1343,6 +1343,7 @@ export const cnPhysics = {
             precision: "测量精度",
             measurement_display: "数据数值显示",
             input_terminal: "终端输入 [测量节点]",
+            base_si_unit: "SI 基本单位",
             unit: "\\text{单位}",
             sig_figs: "\\text{有效数字}",
             percent: "\\text{百分比}"

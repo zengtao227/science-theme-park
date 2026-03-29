@@ -101,10 +101,10 @@ export function solveSM202(quest: SM202FeedbackQuest, t: Translator): Omit<Feedb
       }
       const left = a * a + b * b;
       const right = c * c;
-      steps.push(
+        steps.push(
         makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "a^2 + b^2 = c^2"),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), `${a}^2 + ${b}^2 = ${left},\\; ${c}^2 = ${right}`),
-        makeStep(4, t("common.feedback_reasons.state_final_result"), left === right ? "\\text{yes}" : "\\text{no}", "key")
+        makeStep(4, t("common.feedback_reasons.state_final_result"), left === right ? `\\text{${t("sm2_02.yes")}}` : `\\text{${t("sm2_02.no")}}`, "key")
       );
       break;
     }
@@ -214,7 +214,7 @@ export function solveSM202(quest: SM202FeedbackQuest, t: Translator): Omit<Feedb
       steps.push(
         makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), "n^2 < a < (n+1)^2"),
         makeStep(3, t("common.feedback_reasons.solve_step_by_step"), quest.targetLatex),
-        makeStep(4, t("common.feedback_reasons.state_final_result"), judge ? "\\text{yes}" : "\\text{no}", "key")
+        makeStep(4, t("common.feedback_reasons.state_final_result"), judge ? `\\text{${t("sm2_02.yes")}}` : `\\text{${t("sm2_02.no")}}`, "key")
       );
       break;
     }

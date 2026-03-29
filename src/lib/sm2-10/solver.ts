@@ -1,4 +1,5 @@
 import { PlatformSolutionStep } from "@/hooks/useQuestManager";
+import { escapeLatexText } from "@/lib/feedback/solverSupport";
 
 export interface SM210Parameters {
     dataset?: number[];
@@ -27,6 +28,14 @@ interface RawStep {
 }
 
 type Translator = (path: string, params?: Record<string, string | number>) => any;
+
+function latexText(text: string) {
+    return `\\text{${escapeLatexText(text)}}`;
+}
+
+function latexLabel(t: Translator, key: string) {
+    return latexText(t(`sm2_10.labels.${key}`));
+}
 
 function formatNumberList(values: number[]): string {
     return values.join(", ");
@@ -74,7 +83,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.find_median"),
-                expressionLatex: `\\text{Median} = ${p.median !== undefined ? p.median : correctLatex}`
+                expressionLatex: `${latexLabel(t, "median")} = ${p.median !== undefined ? p.median : correctLatex}`
             });
             break;
 
@@ -118,7 +127,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.compute_range"),
-                expressionLatex: `\\text{Range} = ${p.rangeMax} - ${p.rangeMin} = ${p.rangeMax - p.rangeMin}`
+                expressionLatex: `${latexLabel(t, "range")} = ${p.rangeMax} - ${p.rangeMin} = ${p.rangeMax - p.rangeMin}`
             });
             break;
 
@@ -135,7 +144,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.calc_iqr"),
-                expressionLatex: `\\text{IQR} = Q_3 - Q_1 = ${p.q3 ?? "?"} - ${p.q1 ?? "?"} = ${p.iqr ?? "?"}`
+                expressionLatex: `${latexLabel(t, "iqr")} = Q_3 - Q_1 = ${p.q3 ?? "?"} - ${p.q1 ?? "?"} = ${p.iqr ?? "?"}`
             });
             break;
 
@@ -145,7 +154,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.calc_upper_bound"),
-                expressionLatex: `Q_3 + 1.5 \\times \\text{IQR} = ${p.q3} + 1.5 \\times ${p.iqr} = ${p.upperBound}`
+                expressionLatex: `Q_3 + 1.5 \\times ${latexLabel(t, "iqr")} = ${p.q3} + 1.5 \\times ${p.iqr} = ${p.upperBound}`
             });
             break;
 
@@ -155,7 +164,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.calc_lower_bound"),
-                expressionLatex: `Q_1 - 1.5 \\times \\text{IQR} = ${p.q1} - 1.5 \\times ${p.iqr} = ${p.lowerBound}`
+                expressionLatex: `Q_1 - 1.5 \\times ${latexLabel(t, "iqr")} = ${p.q1} - 1.5 \\times ${p.iqr} = ${p.lowerBound}`
             });
             break;
 
@@ -167,7 +176,7 @@ export function solveSM210(
             if (p.q1 !== undefined && p.q3 !== undefined && p.iqr !== undefined) {
                 rawSteps.push({
                     justification: t("sm2_10.reasons.calc_iqr"),
-                    expressionLatex: `\\text{IQR} = ${p.q3} - ${p.q1} = ${p.iqr}`
+                    expressionLatex: `${latexLabel(t, "iqr")} = ${p.q3} - ${p.q1} = ${p.iqr}`
                 });
             }
             rawSteps.push({
@@ -176,7 +185,7 @@ export function solveSM210(
             });
             rawSteps.push({
                 justification: t("sm2_10.reasons.compare_outlier"),
-                expressionLatex: `${p.targetValue ?? "?"} \\notin [${p.lowerBound ?? "?"}, ${p.upperBound ?? "?"}] \\implies \\text{Outlier}`
+                expressionLatex: `${p.targetValue ?? "?"} \\notin [${p.lowerBound ?? "?"}, ${p.upperBound ?? "?"}] \\implies ${latexLabel(t, "outlier")}`
             });
             break;
 
@@ -190,14 +199,14 @@ export function solveSM210(
             });
             rawSteps.push({
                 justification: t("sm2_10.reasons.compute_result"),
-                expressionLatex: `\\text{Mean} = ${p.mean}`
+                expressionLatex: `${latexLabel(t, "mean")} = ${p.mean}`
             });
             break;
 
         case "box_parts":
             rawSteps.push({
                 justification: t("sm2_10.reasons.interpret_box"),
-                expressionLatex: `\\text{Box} = [Q_1, Q_3]`
+                expressionLatex: `${latexLabel(t, "box")} = [Q_1, Q_3]`
             });
             rawSteps.push({
                 justification: t("sm2_10.reasons.compute_result"),
@@ -220,7 +229,7 @@ export function solveSM210(
             }
             rawSteps.push({
                 justification: t("sm2_10.reasons.compare_iqr"),
-                expressionLatex: `\\text{IQR}_A = ${p.iqrA},\\ \\text{IQR}_B = ${p.iqrB}`
+                expressionLatex: `${latexLabel(t, "iqr")}_A = ${p.iqrA},\\ ${latexLabel(t, "iqr")}_B = ${p.iqrB}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -239,7 +248,7 @@ export function solveSM210(
         case "modified_box":
             rawSteps.push({
                 justification: t("sm2_10.reasons.interpret_modified_box"),
-                expressionLatex: `\\text{Outliers} \\to \\text{separate points}`
+                expressionLatex: `${latexLabel(t, "outliers")} \\to ${latexLabel(t, "separate_points")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -247,7 +256,7 @@ export function solveSM210(
         case "compare_distributions":
             rawSteps.push({
                 justification: t("sm2_10.reasons.compare_distribution_measures"),
-                expressionLatex: `\\text{IQR} \\neq \\text{Range}`
+                expressionLatex: `${latexLabel(t, "iqr")} \\neq ${latexLabel(t, "range")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -255,7 +264,7 @@ export function solveSM210(
         case "resistant_measure":
             rawSteps.push({
                 justification: t("sm2_10.reasons.identify_resistant_measure"),
-                expressionLatex: `\\text{Median}`
+                expressionLatex: `${latexLabel(t, "median")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -263,7 +272,7 @@ export function solveSM210(
         case "five_number":
             rawSteps.push({
                 justification: t("sm2_10.reasons.recall_five_number_summary"),
-                expressionLatex: `\\min,\\ Q_1,\\ \\text{Median},\\ Q_3,\\ \\max`
+                expressionLatex: `${latexLabel(t, "minimum")},\\ Q_1,\\ ${latexLabel(t, "median")},\\ Q_3,\\ ${latexLabel(t, "maximum")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -299,7 +308,7 @@ export function solveSM210(
         case "none":
             rawSteps.push({
                 justification: t("sm2_10.reasons.read_scatter_pattern"),
-                expressionLatex: `\\text{No stable upward or downward trend}`
+                expressionLatex: `${latexLabel(t, "no_stable_trend")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.identify_no_relationship"), correctLatex);
             break;
@@ -307,7 +316,7 @@ export function solveSM210(
         case "axes":
             rawSteps.push({
                 justification: t("sm2_10.reasons.identify_axes_roles"),
-                expressionLatex: `x = \\text{independent},\\ y = \\text{dependent}`
+                expressionLatex: `x = ${latexLabel(t, "independent")},\\ y = ${latexLabel(t, "dependent")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -325,8 +334,8 @@ export function solveSM210(
             rawSteps.push({
                 justification: t("sm2_10.reasons.assess_point_clustering"),
                 expressionLatex: dataType === "strong"
-                    ? `\\text{Points lie close to a line}`
-                    : `\\text{Points are widely scattered}`
+                    ? `${latexLabel(t, "points_close_to_line")}`
+                    : `${latexLabel(t, "points_widely_scattered")}`
             });
             finalizeConceptSteps(
                 rawSteps,
@@ -350,8 +359,8 @@ export function solveSM210(
             rawSteps.push({
                 justification: t("sm2_10.reasons.compare_prediction_range"),
                 expressionLatex: dataType === "extrapolation"
-                    ? `\\text{Prediction outside the observed data range}`
-                    : `\\text{Prediction inside the observed data range}`
+                    ? `${latexLabel(t, "prediction_outside_range")}`
+                    : `${latexLabel(t, "prediction_inside_range")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -359,7 +368,7 @@ export function solveSM210(
         case "residual":
             rawSteps.push({
                 justification: t("sm2_10.reasons.define_residual"),
-                expressionLatex: `\\text{Residual} = y - \\hat{y}`
+                expressionLatex: `${latexLabel(t, "residual")} = y - \\hat{y}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -367,7 +376,7 @@ export function solveSM210(
         case "nonlinear":
             rawSteps.push({
                 justification: t("sm2_10.reasons.identify_nonlinear_pattern"),
-                expressionLatex: `\\text{The pattern follows a curve, not a line}`
+                expressionLatex: `${latexLabel(t, "pattern_follows_curve")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -375,7 +384,7 @@ export function solveSM210(
         case "influential":
             rawSteps.push({
                 justification: t("sm2_10.reasons.identify_influential_point"),
-                expressionLatex: `\\text{One point changes the fitted line noticeably}`
+                expressionLatex: `${latexLabel(t, "influential_point_effect")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -383,7 +392,7 @@ export function solveSM210(
         case "lurking":
             rawSteps.push({
                 justification: t("sm2_10.reasons.identify_lurking_variable"),
-                expressionLatex: `\\text{A third variable may affect both measured variables}`
+                expressionLatex: `${latexLabel(t, "third_variable_affects_both")}`
             });
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -409,7 +418,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.define_correlation"),
-                `\\text{Correlation describes the direction and strength of a relationship}`
+                `${latexLabel(t, "correlation_definition")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -470,25 +479,25 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.correlation_direction"),
-                p.rValue < 0 ? "\\text{Negative}" : "\\text{Positive}"
+                p.rValue < 0 ? `${latexLabel(t, "negative")}` : `${latexLabel(t, "positive")}`
             );
             if (dataType === "weak" || dataType === "zero_r") {
                 pushStep(
                     rawSteps,
                     t("sm2_10.reasons.interpret_r_size"),
-                    `|r| = ${Math.abs(p.rValue)} \\text{ is close to } 0`
+                    `|r| = ${Math.abs(p.rValue)} \\Rightarrow ${latexLabel(t, "r_close_to_zero")}`
                 );
             } else if (dataType === "moderate") {
                 pushStep(
                     rawSteps,
                     t("sm2_10.reasons.interpret_r_size"),
-                    `|r| = ${Math.abs(p.rValue)} \\text{ is in a middle range}`
+                    `|r| = ${Math.abs(p.rValue)} \\Rightarrow ${latexLabel(t, "r_middle_range")}`
                 );
             } else {
                 pushStep(
                     rawSteps,
                     t("sm2_10.reasons.interpret_r_size"),
-                    `|r| = ${Math.abs(p.rValue)} \\text{ is close to } 1`
+                    `|r| = ${Math.abs(p.rValue)} \\Rightarrow ${latexLabel(t, "r_close_to_one")}`
                 );
             }
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
@@ -498,12 +507,12 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.distinguish_correlation_causation"),
-                `\\text{Both variables may rise together because of the same outside factor}`
+                `${latexLabel(t, "both_rise_same_outside_factor")}`
             );
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.identify_third_variable"),
-                `\\text{Hot weather influences both ice cream sales and drowning risk}`
+                `${latexLabel(t, "hot_weather_example")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -512,7 +521,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.use_correlation_for_prediction"),
-                `\\text{A strong correlation can support predictions, but not exact certainty}`
+                `${latexLabel(t, "prediction_support")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -521,7 +530,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.identify_third_variable"),
-                `\\text{A confounding variable affects both measured variables}`
+                `${latexLabel(t, "confounding_affects_both")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -530,7 +539,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.identify_spurious_pattern"),
-                `\\text{The pattern is misleading and does not show a real causal link}`
+                `${latexLabel(t, "misleading_pattern")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -539,7 +548,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.recall_pearson_name"),
-                `r = \\text{Pearson correlation coefficient}`
+                `r = ${latexLabel(t, "pearson_coefficient")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -548,7 +557,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.recall_linear_assumption"),
-                `\\text{Pearson's } r \\text{ is designed for linear relationships}`
+                `${latexText(`${t("sm2_10.labels.pearsons_r")} r ${t("sm2_10.labels.is_designed_for_linear_relationships")}`)}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -557,7 +566,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.connect_r_squared_name"),
-                `r^2 = \\text{coefficient of determination}`
+                `r^2 = ${latexLabel(t, "coefficient_of_determination")}`
             );
             finalizeConceptSteps(rawSteps, t("sm2_10.reasons.compute_result"), correctLatex);
             break;
@@ -610,7 +619,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.compute_standard_error"),
-                `\\text{SE} = \\sqrt{\\frac{${p.sdA}^{2}}{${p.nA}} + \\frac{${p.sdB}^{2}}{${p.nB}}} = ${p.standardError}`
+                `${latexLabel(t, "se")} = \\sqrt{\\frac{${p.sdA}^{2}}{${p.nA}} + \\frac{${p.sdB}^{2}}{${p.nB}}} = ${p.standardError}`
             );
             pushStep(
                 rawSteps,
@@ -696,7 +705,7 @@ export function solveSM210(
             pushStep(
                 rawSteps,
                 t("sm2_10.reasons.compute_standard_error"),
-                `\\text{SE} = \\frac{${p.sampleStdDev}}{\\sqrt{${p.sampleSize}}} = ${p.standardError}`
+                `${latexLabel(t, "se")} = \\frac{${p.sampleStdDev}}{\\sqrt{${p.sampleSize}}} = ${p.standardError}`
             );
             pushStep(
                 rawSteps,
@@ -724,7 +733,7 @@ export function solveSM210(
 
     // Default full solution strategy: Join all steps if not predefined
     if (steps.length > 0) {
-        fullSolutionLatex = steps.map(s => `\\text{${s.justification}} \\implies ${s.expressionLatex}`).join(" \\\\ ");
+        fullSolutionLatex = steps.map(s => `\\text{${escapeLatexText(s.justification)}} \\implies ${s.expressionLatex}`).join(" \\\\ ");
     }
 
     return { steps, fullSolutionLatex };

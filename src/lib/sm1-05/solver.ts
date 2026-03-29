@@ -1,4 +1,5 @@
 import type { PlatformSolutionStep } from "@/hooks/useQuestManager";
+import { escapeLatexText } from "@/lib/feedback/solverSupport";
 import type { S105Quest } from "@/lib/sm1-05/types";
 
 type Translator = (key: string, params?: Record<string, string | number>) => string;
@@ -13,7 +14,7 @@ function makeStep(
 }
 
 function buildFullSolution(steps: PlatformSolutionStep[]) {
-  return steps.map((s) => `\\text{${s.justification}} \\implies ${s.expressionLatex}`).join(" \\\\ ");
+  return steps.map((s) => `\\text{${escapeLatexText(s.justification)}} \\implies ${s.expressionLatex}`).join(" \\\\ ");
 }
 
 function stringifyValue(value: string | number | boolean | undefined) {
@@ -29,12 +30,12 @@ function getExpectedLatex(quest: S105Quest) {
   return quest.slots.map((slot) => `${slot.labelLatex}=${slot.expected}`).join(",\\;");
 }
 
-function getRecipeGivenLatex(quest: S105Quest) {
+function getRecipeGivenLatex(quest: S105Quest, t: Translator) {
   const { ingredient, baseAmount, targetAmount } = quest.visualData;
   const parts = [
-    ingredient ? `\\text{item}=${ingredient}` : "",
-    typeof baseAmount === "number" ? `\\text{base}=${baseAmount}` : "",
-    typeof targetAmount === "number" ? `\\text{target}=${targetAmount}` : "",
+    ingredient ? `\\text{${escapeLatexText(t("sm1_05.labels.item"))}}=${escapeLatexText(ingredient)}` : "",
+    typeof baseAmount === "number" ? `\\text{${escapeLatexText(t("sm1_05.labels.base"))}}=${baseAmount}` : "",
+    typeof targetAmount === "number" ? `\\text{${escapeLatexText(t("sm1_05.labels.target"))}}=${targetAmount}` : "",
   ].filter(Boolean);
   return parts.join(",\\;") || (quest.expressionLatex ?? "");
 }
@@ -49,14 +50,14 @@ function getPercentGivenLatex(quest: S105Quest) {
   return parts.join(",\\;") || (quest.expressionLatex ?? "");
 }
 
-function getMixtureGivenLatex(quest: S105Quest) {
+function getMixtureGivenLatex(quest: S105Quest, t: Translator) {
   const { solute, solvent } = quest.visualData;
   const total =
     typeof solute === "number" && typeof solvent === "number" ? solute + solvent : undefined;
   const parts = [
-    typeof solute === "number" ? `\\text{solute}=${solute}` : "",
-    typeof solvent === "number" ? `\\text{solvent}=${solvent}` : "",
-    typeof total === "number" ? `\\text{total}=${total}` : "",
+    typeof solute === "number" ? `\\text{${escapeLatexText(t("sm1_05.labels.solute"))}}=${solute}` : "",
+    typeof solvent === "number" ? `\\text{${escapeLatexText(t("sm1_05.labels.solvent"))}}=${solvent}` : "",
+    typeof total === "number" ? `\\text{${escapeLatexText(t("sm1_05.labels.total"))}}=${total}` : "",
   ].filter(Boolean);
   return parts.join(",\\;") || (quest.expressionLatex ?? "");
 }
@@ -88,7 +89,7 @@ export function solveSM105(
   }
 
   if (quest.stage === "RECIPES") {
-    steps.push(makeStep(1, t("sm1_05.reasons.identify_recipe_quantities"), getRecipeGivenLatex(quest)));
+    steps.push(makeStep(1, t("sm1_05.reasons.identify_recipe_quantities"), getRecipeGivenLatex(quest, t)));
     steps.push(makeStep(2, t("sm1_05.reasons.setup_scaling_or_ratio"), expression));
     if (quest.slots.length > 1) {
       steps.push(makeStep(3, t("sm1_05.reasons.resolve_requested_quantities"), summarizeRequestedOutputs(quest), "key"));
@@ -100,7 +101,7 @@ export function solveSM105(
     steps.push(makeStep(2, t("sm1_05.reasons.convert_or_apply_percentage"), expression));
     steps.push(makeStep(3, t("sm1_05.reasons.compute_percent_result"), finalLatex, "key"));
   } else {
-    steps.push(makeStep(1, t("sm1_05.reasons.identify_solution_components"), getMixtureGivenLatex(quest)));
+    steps.push(makeStep(1, t("sm1_05.reasons.identify_solution_components"), getMixtureGivenLatex(quest, t)));
     steps.push(makeStep(2, t("sm1_05.reasons.apply_mixture_formula"), expression));
     steps.push(makeStep(3, t("sm1_05.reasons.compute_mixture_result"), finalLatex, "key"));
   }

@@ -92,7 +92,7 @@ export function solveSP301(quest: SP301Quest, t: Translator) {
     case "si_base_unit":
       steps.push(
         makeStep(1, t("sp3_01.reasons.identify_measurement_category"), `\\text{${quest.measurement ?? ""}}`),
-        makeStep(2, t("sp3_01.reasons.state_unit_equivalence"), `\\text{Base SI unit} = ${quest.targetLatex}`)
+        makeStep(2, t("sp3_01.reasons.state_unit_equivalence"), `\\text{${escapeLatexText(t("sp3_01.labels.base_si_unit"))}} = ${quest.targetLatex}`)
       );
       break;
     case "si_derived_unit":
