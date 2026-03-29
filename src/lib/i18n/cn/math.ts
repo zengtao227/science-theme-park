@@ -626,6 +626,10 @@ export const cnMath = {
         placeholders: {
             value: "数值"
         },
+        labels: {
+            result: "结果",
+            area: "面积"
+        },
         input_tip_2dp: "提示：保留 2 位小数。"
     },
     gm3_01: {

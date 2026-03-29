@@ -1124,7 +1124,9 @@ export const deChemistry = {
             formulas: "FORMELN",
             simulation_control: "SIMULATIONSSTEUERUNG",
             regional_case_study: "Regionale Fallstudie // Knoten Basel",
-            elite_integration: "Basler Elite Physik/Chemie Integration"
+            elite_integration: "Basler Elite Physik/Chemie Integration",
+            result: "Ergebnis",
+            value_short: "Wert"
         },
         mission: {
             title: "MISSION: IDEALE GASGESETZE",
@@ -2205,6 +2207,9 @@ export const deChemistry = {
         correct: "Verifiziert",
         incorrect: "Fehlanpassung",
         monitor_title: "SC2.07_ENTHALPIE_MONITOR",
+        labels: {
+            target: "Ergebnis"
+        },
         stages: {
             energy_changes: "ENERGIEÄNDERUNGEN",
             hess_law: "HESS'SCHES GESETZ",

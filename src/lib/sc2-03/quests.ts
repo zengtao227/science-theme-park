@@ -90,8 +90,8 @@ export function generateEliteQuests(t: any, difficulty: Difficulty): SC203Quest[
             difficulty, stage: "elite",
             promptLatex: t(`sc2_03.prompts.${key}`, { V: 100, P: 1, V2: 20, t1: 300, p1: 100, t2: 270, p2: 50, v1: 20, r: 50 }),
             expressionLatex: "Ideal Gas Law Application",
-            targetLatex: "Result",
-            slots: [{ id: "ans", labelLatex: "Val", placeholder: t("sc2_03.placeholders.value"), expected }],
+            targetLatex: `\\text{${t("sc2_03.labels.result")}}`,
+            slots: [{ id: "ans", labelLatex: `\\text{${t("sc2_03.labels.value_short")}}`, placeholder: t("sc2_03.placeholders.value"), expected }],
             correctLatex: `${expected}`,
         });
     }

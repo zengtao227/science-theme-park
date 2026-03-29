@@ -124,8 +124,8 @@ export function generateKineticQuests(t: any, difficulty: Difficulty): SP303Ques
             promptLatex: t(`sp3_03.prompts.${scen}`, { m, v, h, f, d }),
             expressionLatex: "E_k = \\frac{1}{2}mv^{2}",
             targetLatex: expected > 50 ? (scen === "velocity_at_bottom" ? "v" : "E_k") : "E_k",
-            slots: [{ id: "ans", labelLatex: "Result", placeholder: t("sp3_03.placeholders.value"), expected: expected.toString() }],
-            correctLatex: `Result = ${expected}`,
+            slots: [{ id: "ans", labelLatex: scen === "velocity_at_bottom" ? "v" : "E_k", placeholder: t("sp3_03.placeholders.value"), expected: expected.toString() }],
+            correctLatex: `${scen === "velocity_at_bottom" ? "v" : "E_k"} = ${expected}`,
             scenarioKey: scen,
         });
     }
@@ -172,8 +172,8 @@ export function generatePowerQuests(t: any, difficulty: Difficulty): SP303Quest[
             promptLatex: t(`sp3_03.prompts.${scen}`, { f, d, t: time, m, h }),
             expressionLatex: "W = Fd, P = W/t",
             targetLatex: scen === "basic_work" ? "W" : "P",
-            slots: [{ id: "ans", labelLatex: "Value", placeholder: t("sp3_03.placeholders.j_or_w"), expected: expected.toString() }],
-            correctLatex: `Result = ${expected}`,
+            slots: [{ id: "ans", labelLatex: scen === "basic_work" ? "W" : "P", placeholder: t("sp3_03.placeholders.j_or_w"), expected: expected.toString() }],
+            correctLatex: `${scen === "basic_work" ? "W" : "P"} = ${expected}`,
             scenarioKey: scen,
         });
     }

@@ -190,7 +190,7 @@ export function buildStagePool(
         slots: [
           {
             id: "answer",
-            labelLatex: "\\text{Result}",
+            labelLatex: `\\text{${t("gm1_03.labels.limit_value")}}`,
             placeholder: t("gm1_03.placeholders.value"),
             expected,
           },

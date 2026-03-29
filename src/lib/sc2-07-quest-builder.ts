@@ -100,7 +100,7 @@ function buildQuestFromData(
   // Generate required Quest interface fields
   const equationLatex = data.reactionLatex || data.targetReactionLatex || '';
   const expressionLatex = equationLatex; // Use equation as expression context
-  const targetLabel = t ? t("sc2_07.labels.target") : (stage === 'ENERGY_CHANGES' ? 'Value' : 'Result');
+  const targetLabel = t ? t("sc2_07.labels.target") : "sc2_07.labels.target";
   const targetLatex = `\\\\text{${targetLabel}}`;
   const calorimetryData = stage === 'CALORIMETRY' ? buildCalorimetryData(data) : undefined;
   const calorimetryExpected: number = stage === 'CALORIMETRY'

@@ -625,6 +625,10 @@ export const enMath = {
         placeholders: {
             value: "value"
         },
+        labels: {
+            result: "Result",
+            area: "Area"
+        },
         input_tip_2dp: "Tip: Enter result rounded to 2 decimal places."
     },
     gm3_01: {

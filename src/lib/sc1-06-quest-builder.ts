@@ -13,10 +13,10 @@ import { createCompound } from './sc1-06-utils';
 
 type Translator = (path: string, params?: Record<string, string | number>) => string;
 
-function translateText(t: Translator | undefined, path: string, fallback: string): string {
-  if (!t) return fallback;
+function translateText(t: Translator | undefined, path: string): string {
+  if (!t) return path;
   const translated = t(path);
-  return translated !== path ? translated : fallback;
+  return translated !== path ? translated : path;
 }
 
 /**
@@ -77,10 +77,10 @@ export function buildStagePool(
     // Generate prompt based on stage
     const promptText = t
       ? stage === "REACTION_TYPES"
-        ? translateText(t, "sc1_06.prompts.classify_reaction", "Examine the chemical equation and identify the type of reaction.")
+        ? translateText(t, "sc1_06.prompts.classify_reaction")
         : stage === "EQUATION_BALANCING"
-          ? translateText(t, "sc1_06.prompts.balance_equation", "Enter coefficients to balance the chemical equation.")
-          : translateText(t, "sc1_06.prompts.observe_simulation", "Observe the reaction and identify what is happening.")
+          ? translateText(t, "sc1_06.prompts.balance_equation")
+          : translateText(t, "sc1_06.prompts.observe_simulation")
       : "";
     const promptLatex = generatePromptLatex(stage, equation, promptText);
 
@@ -90,8 +90,8 @@ export function buildStagePool(
     // Generate required Quest interface fields
     const expressionLatex = equationLatex; // Use equation as expression context
     const targetLabel = stage === "REACTION_TYPES" || stage === "REACTION_SIMULATION"
-      ? translateText(t, "sc1_06.labels.reaction_type", "Reaction Type")
-      : translateText(t, "sc1_06.labels.coefficients", "Coefficients");
+      ? translateText(t, "sc1_06.labels.reaction_type")
+      : translateText(t, "sc1_06.labels.coefficients");
     const correctLatex = stage === 'REACTION_TYPES'
       ? data.type
       : stage === 'EQUATION_BALANCING'
@@ -214,8 +214,8 @@ function generateSlots(
   t?: Translator
 ): Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> {
   const slots: Array<{ id: string; labelLatex: string; placeholder: string; expected: string | number }> = [];
-  const reactionTypeLabel = translateText(t, "sc1_06.labels.reaction_type", "Reaction Type");
-  const selectReactionType = translateText(t, "sc1_06.ui.select_reaction_type", "Select Reaction Type");
+  const reactionTypeLabel = translateText(t, "sc1_06.labels.reaction_type");
+  const selectReactionType = translateText(t, "sc1_06.ui.select_reaction_type");
 
   switch (stage) {
     case 'EQUATION_BALANCING':

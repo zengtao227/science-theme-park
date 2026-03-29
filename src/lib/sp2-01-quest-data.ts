@@ -107,10 +107,10 @@ function localizedText(
   return localized[locale];
 }
 
-function translateText(t: Translator | undefined, path: string, fallback: string): string {
-  if (!t) return fallback;
+function translateText(t: Translator | undefined, path: string): string {
+  if (!t) return path;
   const translated = t(path);
-  return translated !== path ? translated : fallback;
+  return translated !== path ? translated : path;
 }
 
 export function buildStagePool(
@@ -143,7 +143,7 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: translateText(t, "sp2_01.labels.component_name", "Component Name"),
+          labelLatex: translateText(t, "sp2_01.labels.component_name"),
           placeholder: t("sp2_01.placeholders.type_name"),
           expected: localizedName
         }],
@@ -172,7 +172,7 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: translateText(t, "sp2_01.labels.function", "Function"),
+          labelLatex: translateText(t, "sp2_01.labels.function"),
           placeholder: t("sp2_01.placeholders.describe_function"),
           expected: localizedFunction
         }],
@@ -196,7 +196,7 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: translateText(t, "sp2_01.labels.symbol", "Symbol"),
+          labelLatex: translateText(t, "sp2_01.labels.symbol"),
           placeholder: t("sp2_01.placeholders.select_symbol"),
           expected: info.symbol
         }],
@@ -234,7 +234,7 @@ export function buildStagePool(
         targetLatex: "answer",
         slots: [{
           id: "answer",
-          labelLatex: translateText(t, "sp2_01.labels.answer", "Answer"),
+          labelLatex: translateText(t, "sp2_01.labels.answer"),
           placeholder: t("sp2_01.placeholders.type_answer"),
           expected: terminalAnswers[componentType]
         }],
@@ -425,7 +425,7 @@ export function buildStagePool(
         targetLatex: "fault",
         slots: [{
           id: "fault",
-          labelLatex: translateText(t, "sp2_01.labels.fault_type", "Fault Type"),
+          labelLatex: translateText(t, "sp2_01.labels.fault_type"),
           placeholder: t("sp2_01.placeholders.identify_fault"),
           expected: localizedFault
         }],

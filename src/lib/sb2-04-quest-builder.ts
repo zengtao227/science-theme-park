@@ -27,10 +27,10 @@ import {
 
 type Translator = (path: string, params?: Record<string, string | number>) => string;
 
-function translateText(t: Translator | undefined, path: string, fallback: string): string {
-  if (!t) return fallback;
+function translateText(t: Translator | undefined, path: string, fallback?: string): string {
+  if (!t) return fallback ?? path;
   const translated = t(path);
-  return translated !== path ? translated : fallback;
+  return translated !== path ? translated : (fallback ?? path);
 }
 
 function normalizeValueKey(value: string): string {
@@ -144,7 +144,7 @@ export function buildStagePool(
       break;
   }
 
-  const answerLabel = translateText(t, "sb2_04.labels.answer", "Answer");
+  const answerLabel = translateText(t, "sb2_04.labels.answer");
 
   return quests.map((quest) => {
     const localizedAnswer = translateQuestValue(t, quest.correctAnswer) ?? quest.correctAnswer;

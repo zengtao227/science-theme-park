@@ -37,7 +37,7 @@ function createQuest(
     targetLatex: "",
     slots: [{
       id: "answer",
-      labelLatex: "\\text{Answer}",
+      labelLatex: "\\text{}",
       placeholder: correctAnswer.toLowerCase(),
       expected: correctAnswer.toLowerCase()
     }],

@@ -625,6 +625,10 @@ export const deMath = {
         placeholders: {
             value: "Wert"
         },
+        labels: {
+            result: "Ergebnis",
+            area: "Fläche"
+        },
         input_tip_2dp: "Tipp: Gib das Resultat auf 2 Dezimalstellen gerundet an."
     },
     gm3_01: {

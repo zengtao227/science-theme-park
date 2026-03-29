@@ -40,6 +40,8 @@ export function pick<T>(arr: T[]): T {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+const labelText = (t: any, key: "result" | "area") => t(`gm1_02.labels.${key}`);
+
 const buildExpr = (coeffs: number[]) => {
     const terms: string[] = [];
     for (let i = coeffs.length - 1; i >= 0; i--) {
@@ -160,8 +162,8 @@ export function generateDefiniteIntegralQuests(t: any, difficulty: Difficulty): 
             upperBound: b,
             promptLatex: t("gm1_02.prompts.evaluate_integral", { expr, a, b }),
             expressionLatex: `\\int_{${a}}^{${b}} (${expr}) dx`,
-            targetLatex: "\\text{Result}",
-            slots: [{ id: "answer", labelLatex: "\\text{Result}", placeholder: t("gm1_02.placeholders.value"), expected: answer }],
+            targetLatex: `\\text{${labelText(t, "result")}}`,
+            slots: [{ id: "answer", labelLatex: `\\text{${labelText(t, "result")}}`, placeholder: t("gm1_02.placeholders.value"), expected: answer }],
             correctLatex: `\\int_{${a}}^{${b}} = ${answer}`,
         });
     }
@@ -242,14 +244,14 @@ export function generateApplicationQuests(t: any, difficulty: Difficulty): GM102
             upperBound: b,
             promptLatex: t("gm1_02.prompts.find_area", { expr, a, b }),
             expressionLatex: `f(x) = ${expr}`,
-            targetLatex: context === "volume" ? "V" : context === "work" ? "W" : "\\text{Area}",
+            targetLatex: context === "volume" ? "V" : context === "work" ? "W" : `\\text{${labelText(t, "area")}}`,
             slots: [{
                 id: "answer",
-                labelLatex: context === "volume" ? "V" : context === "work" ? "W" : "\\text{Area}",
+                labelLatex: context === "volume" ? "V" : context === "work" ? "W" : `\\text{${labelText(t, "area")}}`,
                 placeholder: t("gm1_02.placeholders.value"),
                 expected: answer
             }],
-            correctLatex: `${context === "volume" ? "V" : context === "work" ? "W" : "\\text{Area}"} = ${answer}`,
+            correctLatex: `${context === "volume" ? "V" : context === "work" ? "W" : `\\text{${labelText(t, "area")}}`} = ${answer}`,
         });
     }
     return quests;

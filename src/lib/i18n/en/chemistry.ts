@@ -1132,7 +1132,9 @@ export const enChemistry = {
             formulas: "FORMULAS",
             simulation_control: "Simulation Control",
             regional_case_study: "Regional Case Study // Basel Node",
-            elite_integration: "Basel Elite Physics/Chemistry Integration"
+            elite_integration: "Basel Elite Physics/Chemistry Integration",
+            result: "Result",
+            value_short: "Val"
         },
         mission: {
             title: "MISSION: IDEAL GAS LAWS",
@@ -2213,6 +2215,9 @@ export const enChemistry = {
         correct: "Verified",
         incorrect: "Mismatch",
         monitor_title: "SC2.07_ENTHALPY_MONITOR",
+        labels: {
+            target: "Result"
+        },
         stages: {
             energy_changes: "ENERGY CHANGES",
             hess_law: "HESS'S LAW",

@@ -1132,7 +1132,9 @@ export const cnChemistry = {
             formulas: "公式",
             simulation_control: "模拟控制",
             regional_case_study: "区域案例研究 // 巴塞尔节点",
-            elite_integration: "巴塞尔精英物理/化学整合"
+            elite_integration: "巴塞尔精英物理/化学整合",
+            result: "结果",
+            value_short: "值"
         },
         mission: {
             title: "任务：理想气体定律",
@@ -2212,6 +2214,9 @@ export const cnChemistry = {
         correct: "已验证",
         incorrect: "不匹配",
         monitor_title: "SC2.07_焓监视器",
+        labels: {
+            target: "结果"
+        },
         stages: {
             energy_changes: "能量变化",
             hess_law: "赫斯定律",
