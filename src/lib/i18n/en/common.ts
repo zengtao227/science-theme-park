@@ -521,7 +521,11 @@ export const enCommon = {
             identify_arithmetic_family: "Identify the number pattern or arithmetic relation in the task.",
             identify_combinatorics_family: "Recognize the counting or probability structure first.",
             extract_key_relation: "Use the core relation or hint to narrow the reasoning path.",
-            confirm_final_conclusion: "State the final conclusion clearly."
+            confirm_final_conclusion: "State the final conclusion clearly.",
+            relation_logic: "Test the conditions systematically until only one consistent conclusion remains.",
+            relation_geometry: "Use the geometric constraints or known angle and length relations to determine the target.",
+            relation_arithmetic: "Track the number pattern, modular behavior, or arithmetic identity that drives the result.",
+            relation_combinatorics: "Count valid arrangements or favorable cases systematically before deciding the result."
         },
         placeholders: {
             name: "Name",

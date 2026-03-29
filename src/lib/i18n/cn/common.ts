@@ -520,7 +520,11 @@ export const cnCommon = {
             identify_arithmetic_family: "先找出数值模式或算术关系。",
             identify_combinatorics_family: "先识别计数或概率结构。",
             extract_key_relation: "利用核心关系或提示缩小推理范围。",
-            confirm_final_conclusion: "清楚写出最终结论。"
+            confirm_final_conclusion: "清楚写出最终结论。",
+            relation_logic: "逐条检验条件，直到只剩下唯一自洽的结论。",
+            relation_geometry: "利用几何约束以及已知角边关系确定目标量。",
+            relation_arithmetic: "抓住数列规律、模运算或算术恒等式来推进结果。",
+            relation_combinatorics: "先系统统计有效排列或有利情况，再确定最终结果。"
         },
         placeholders: {
             name: "姓名",

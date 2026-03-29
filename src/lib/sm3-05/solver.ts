@@ -77,7 +77,7 @@ function curvedSolidRule(quest: SM305FeedbackQuest) {
 function intermediateExpression(quest: SM305FeedbackQuest) {
   const slot = getSlot(quest);
   if (typeof slot?.expected === "string") return quest.correctLatex;
-  return quest.hintLatex?.[0] ?? quest.expressionLatex;
+  return buildFinalExpression(quest);
 }
 
 function solveArchitecture(quest: SM305FeedbackQuest, t: Translator) {

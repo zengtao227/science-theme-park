@@ -39,11 +39,22 @@ function selectReason(quest: ThalesQuest, t: Translator) {
   return t("em1_01.reasons.select_survey_rule");
 }
 
+function appliedRelation(quest: ThalesQuest) {
+  if (quest.concept === "area") return "A' = k^{2}A";
+  if (quest.concept === "volume") return "V' = k^{3}V";
+  if (quest.concept === "fractal") return "D = \\frac{\\ln(N)}{\\ln(1/r)}";
+  if (quest.concept === "shadow") return "\\frac{h}{H} = \\frac{l}{L}";
+  if (quest.concept === "angle" || quest.concept === "tri") return "\\tan(\\theta) = \\frac{\\text{opposite}}{\\text{adjacent}}";
+  if (quest.concept === "pythag") return "c^{2} = a^{2} + b^{2}";
+  if (quest.stage === "SURVEY") return "d = \\frac{h}{\\tan(\\theta)}";
+  return "\\frac{a_1}{a_2} = \\frac{b_1}{b_2}";
+}
+
 export function solveEM101(quest: ThalesQuest, t: Translator): { steps: PlatformSolutionStep[]; fullSolutionLatex: string | null; hasFullSolution: boolean } {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex),
     makeStep(2, selectReason(quest, t), buildTargetExpression(quest)),
-    makeStep(3, t("em1_01.reasons.apply_proportional_or_trig_relation"), quest.hintLatex?.[0] ?? quest.expressionLatex),
+    makeStep(3, t("em1_01.reasons.apply_proportional_or_trig_relation"), appliedRelation(quest)),
     finalStep(4, t, quest),
   ];
   const fullSolutionLatex = buildFullSolution(steps);

@@ -523,7 +523,11 @@ export const deCommon = {
             identify_arithmetic_family: "Ermittle zuerst das Zahlenmuster oder die arithmetische Beziehung.",
             identify_combinatorics_family: "Bestimme zuerst die Zähl- oder Wahrscheinlichkeitsstruktur.",
             extract_key_relation: "Nutze die Kernbeziehung oder den Hinweis, um den Lösungsweg einzugrenzen.",
-            confirm_final_conclusion: "Formuliere das Endergebnis klar."
+            confirm_final_conclusion: "Formuliere das Endergebnis klar.",
+            relation_logic: "Prüfe die Bedingungen systematisch, bis nur noch eine widerspruchsfreie Schlussfolgerung übrig bleibt.",
+            relation_geometry: "Nutze die geometrischen Bedingungen sowie bekannte Winkel- und Längenbeziehungen, um die Zielgröße zu bestimmen.",
+            relation_arithmetic: "Verfolge das Zahlenmuster, Modulo-Verhalten oder die arithmetische Identität, die das Ergebnis steuert.",
+            relation_combinatorics: "Zähle gültige Anordnungen oder günstige Fälle systematisch, bevor du das Ergebnis festlegst."
         },
         placeholders: {
             name: "Name",
