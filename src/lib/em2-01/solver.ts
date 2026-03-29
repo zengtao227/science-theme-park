@@ -30,6 +30,12 @@ function finalStep(stepNumber: number, t: Translator, quest: MatrixQuest) {
   );
 }
 
+function buildTargetExpression(quest: MatrixQuest) {
+  const slot = quest.slots[0];
+  if (!slot) return quest.expressionLatex || quest.targetLatex;
+  return `${slot.labelLatex} = ${quest.targetLatex || quest.correctLatex}`;
+}
+
 function firstReason(quest: MatrixQuest, t: Translator) {
   if (quest.type === "calculate_det") return t("em2_01.reasons.select_determinant_rule");
   if (quest.type === "identify") return t("em2_01.reasons.inspect_matrix_structure");
@@ -48,9 +54,10 @@ function calculationExpression(quest: MatrixQuest) {
 
 export function solveEM201(quest: MatrixQuest, t: Translator): { steps: PlatformSolutionStep[]; fullSolutionLatex: string | null; hasFullSolution: boolean } {
   const steps: PlatformSolutionStep[] = [
-    makeStep(1, firstReason(quest, t), quest.expressionLatex || quest.targetLatex),
-    makeStep(2, t("em2_01.reasons.apply_matrix_calculation"), calculationExpression(quest)),
-    finalStep(3, t, quest),
+    makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.targetLatex),
+    makeStep(2, firstReason(quest, t), buildTargetExpression(quest)),
+    makeStep(3, t("em2_01.reasons.apply_matrix_calculation"), calculationExpression(quest)),
+    finalStep(4, t, quest),
   ];
   const fullSolutionLatex = buildFullSolution(steps);
   return { steps, fullSolutionLatex, hasFullSolution: !!fullSolutionLatex };

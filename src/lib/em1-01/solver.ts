@@ -19,6 +19,12 @@ function finalStep(stepNumber: number, t: Translator, quest: ThalesQuest) {
   return makeStep(stepNumber, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key");
 }
 
+function buildTargetExpression(quest: ThalesQuest) {
+  const slot = quest.slots[0];
+  if (!slot) return quest.targetLatex || quest.correctLatex;
+  return `${slot.labelLatex} = ${quest.targetLatex || quest.correctLatex}`;
+}
+
 function selectReason(quest: ThalesQuest, t: Translator) {
   if (quest.stage === "BASICS") {
     if (quest.concept === "area" || quest.concept === "volume" || quest.concept === "fractal") return t("em1_01.reasons.select_scale_rule");
@@ -35,9 +41,10 @@ function selectReason(quest: ThalesQuest, t: Translator) {
 
 export function solveEM101(quest: ThalesQuest, t: Translator): { steps: PlatformSolutionStep[]; fullSolutionLatex: string | null; hasFullSolution: boolean } {
   const steps: PlatformSolutionStep[] = [
-    makeStep(1, selectReason(quest, t), quest.targetLatex),
-    makeStep(2, t("em1_01.reasons.apply_proportional_or_trig_relation"), quest.expressionLatex),
-    finalStep(3, t, quest),
+    makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex),
+    makeStep(2, selectReason(quest, t), buildTargetExpression(quest)),
+    makeStep(3, t("em1_01.reasons.apply_proportional_or_trig_relation"), quest.hintLatex?.[0] ?? quest.expressionLatex),
+    finalStep(4, t, quest),
   ];
   const fullSolutionLatex = buildFullSolution(steps);
   return { steps, fullSolutionLatex, hasFullSolution: !!fullSolutionLatex };
