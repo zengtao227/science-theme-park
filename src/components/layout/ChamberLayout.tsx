@@ -292,14 +292,18 @@ export default function ChamberLayout({
                                     </div>
                                 )}
                                 {aiFeedback && (
-                                    <div className="w-full text-left bg-black/40 border border-neon-purple/30 rounded-lg p-4 mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)]">
-                                        <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] mb-2 flex items-center gap-2">
-                                            🪄 Nexus AI Assistant
+                                    <div className="w-full max-w-2xl text-left bg-black/40 border border-neon-purple/30 rounded-lg mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)] overflow-hidden">
+                                        <div className="px-4 pt-4 pb-2 border-b border-neon-purple/20">
+                                            <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
+                                                🪄 Nexus AI Assistant
+                                            </div>
                                         </div>
-                                        <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap">
-                                            {aiFeedback}
+                                        <div className="max-h-[38vh] md:max-h-[48vh] overflow-y-auto px-4 py-3">
+                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap">
+                                                {aiFeedback}
+                                            </div>
                                         </div>
-                                        <div className="mt-3">
+                                        <div className="px-4 py-3 border-t border-neon-purple/20 bg-black/20">
                                             <Link
                                                 href="/profile#ai-settings"
                                                 className="text-[10px] font-black tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors"
