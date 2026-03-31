@@ -17,6 +17,7 @@ import CoopPanel from "@/components/coop/CoopPanel";
 import HUDAlert from "@/components/shared/HUDAlert";
 import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
 import { getDefaultHistoryModuleId } from "@/lib/historyDisplay";
+import { renderMixedText } from "@/lib/latex-utils";
 
 interface ChamberLayoutProps {
     title: string;
@@ -316,8 +317,16 @@ export default function ChamberLayout({
                                             </div>
                                         </div>
                                         <div className="px-4 py-3">
-                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap overflow-x-auto">
-                                                {aiFeedback}
+                                            <div className="text-sm font-sans leading-relaxed text-white/90 break-words space-y-2">
+                                                {aiFeedback!.split("\n").map((line, i) =>
+                                                    line.trim() === "" ? (
+                                                        <div key={i} className="h-2" />
+                                                    ) : (
+                                                        <div key={i}>
+                                                            {renderMixedText(line, "font-sans tracking-normal whitespace-pre-wrap")}
+                                                        </div>
+                                                    )
+                                                )}
                                             </div>
                                         </div>
                                         <div className="px-4 py-3 border-t border-neon-purple/20 bg-black/20">

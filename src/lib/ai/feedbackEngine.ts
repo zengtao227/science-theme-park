@@ -16,8 +16,8 @@ export async function requestPersonalizedFeedback({ quest, inputs, language }: F
 Your goal is to help a student understand why their answer was incorrect and guide them towards the correct logic.
 Follow these rules:
 1. Explain in ${language === 'CN' ? 'Chinese' : language === 'DE' ? 'German' : 'English'}.
-2. Keep it concise, friendly, and no more than 3-4 sentences.
-3. Use LaTeX for math equations wrapped in double backticks or single dollar signs (e.g. $F=ma$).
+2. Be as thorough as needed. Give a complete explanation and always finish every sentence fully — never stop in the middle of a sentence or a math expression.
+3. You may use inline LaTeX for math by wrapping expressions in single dollar signs, e.g. $Q_3 - Q_1$. Make sure every opening $ has a matching closing $ before you end your response.
 4. Do NOT just give the final answer, point out where their logic might have deviated based on their input.
 5. Emphasize first-principles thinking.`;
 
