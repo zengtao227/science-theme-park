@@ -8,6 +8,10 @@ export interface SB301SolverQuest extends Quest {
   scenario: string;
 }
 
+function scenarioLatex(quest: SB301SolverQuest, t: Translator) {
+  return `\\text{${escapeLatexText(t("biology.sb3_01.solver.scenario_label"))}} ${escapeLatexText(quest.scenario.replace(/_/g, " "))}`;
+}
+
 function buildRuleLatex(quest: SB301SolverQuest, t: Translator) {
   if (quest.stage === "FOOD_CHAINS") return `\\text{${escapeLatexText(t("biology.sb3_01.solver.rule_food_chains"))}}`;
   if (quest.stage === "ENERGY_FLOW") return "E_{next} = 0.1 \\times E_{current}";
@@ -29,6 +33,13 @@ function buildSolveLatex(quest: SB301SolverQuest, t: Translator) {
   return `\\text{${escapeLatexText(t("biology.sb3_01.solver.solve_default"))}}`;
 }
 
+function patternLatex(quest: SB301SolverQuest, t: Translator) {
+  if (quest.stage === "FOOD_CHAINS") return `\\text{${escapeLatexText(t("biology.sb3_01.solver.stage_food_chain_step"))}}`;
+  if (quest.stage === "ENERGY_FLOW") return `\\text{${escapeLatexText(t("biology.sb3_01.solver.stage_energy_flow_step"))}}`;
+  if (quest.stage === "CYCLES") return `\\text{${escapeLatexText(t("biology.sb3_01.solver.stage_cycles_step"))}}`;
+  return `\\text{${escapeLatexText(t("biology.sb3_01.solver.stage_elite_step"))}}`;
+}
+
 export function solveSB301(quest: SB301SolverQuest, t: Translator) {
   const ruleLatex = buildRuleLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
@@ -36,8 +47,10 @@ export function solveSB301(quest: SB301SolverQuest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    makeStep(3, t("biology.sb3_01.solver.identify_ecological_clue"), scenarioLatex(quest, t)),
+    makeStep(4, t("biology.sb3_01.solver.apply_ecological_pattern"), patternLatex(quest, t)),
+    makeStep(5, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(6, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }
