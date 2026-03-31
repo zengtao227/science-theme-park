@@ -308,7 +308,7 @@ export default function ChamberLayout({
                                             </div>
                                         </div>
                                         <div className="px-4 py-3">
-                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap overflow-x-auto">
+                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap overflow-x-auto max-h-64 overflow-y-auto">
                                                 {aiFeedback}
                                             </div>
                                         </div>
