@@ -797,8 +797,16 @@ export default function ChamberLayout({
                                 </button>
                             </div>
                             <div className="flex-1 overflow-y-auto px-5 py-4">
-                                <div className="mx-auto w-full max-w-4xl text-sm font-sans leading-relaxed text-white/90 whitespace-pre-wrap break-words">
-                                    {aiFeedback}
+                                <div className="mx-auto w-full max-w-4xl text-sm font-sans leading-relaxed text-white/90 break-words space-y-4">
+                                    {aiFeedback!.split("\n").map((line, i) =>
+                                        line.trim() === "" ? (
+                                            <div key={i} className="h-2" />
+                                        ) : (
+                                            <div key={i}>
+                                                {renderMixedText(line, "font-sans tracking-normal whitespace-pre-wrap")}
+                                            </div>
+                                        )
+                                    )}
                                 </div>
                             </div>
                             <div className="border-t border-neon-purple/20 bg-black/40 px-5 py-4">
