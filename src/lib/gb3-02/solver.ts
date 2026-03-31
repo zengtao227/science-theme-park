@@ -22,6 +22,19 @@ export interface GB302SolverQuest extends Quest {
   data?: GB302Data;
 }
 
+function buildClueLatex(quest: GB302SolverQuest, t: Translator) {
+  if (quest.stage === "INNATE" && quest.data) {
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.innate_clue_label"))}} ${escapeLatexText(quest.data.role)}`;
+  }
+  if (quest.stage === "ADAPTIVE" && quest.data) {
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.adaptive_clue_label"))}} ${escapeLatexText(quest.data.role)}`;
+  }
+  if (quest.stage === "VACCINES" && quest.data) {
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.vaccine_clue_label"))}} ${quest.data.prim}\\to${quest.data.lag}\\text{ ${escapeLatexText(t("biology.gb3_02.solver.days_label"))}}`;
+  }
+  return null;
+}
+
 function buildIdentifyLatex(quest: GB302SolverQuest, t: Translator) {
   if (quest.stage === "INNATE" && quest.data) {
     return `\\text{${escapeLatexText(t("biology.gb3_02.solver.pathogen_label"))}} ${escapeLatexText(quest.data.pathogen)}`;
@@ -64,6 +77,7 @@ function buildSolveLatex(quest: GB302SolverQuest, t: Translator) {
 
 export function solveGB302(quest: GB302SolverQuest, t: Translator) {
   const identifyLatex = buildIdentifyLatex(quest, t);
+  const clueLatex = buildClueLatex(quest, t);
   const ruleLatex = buildRuleLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
@@ -73,8 +87,9 @@ export function solveGB302(quest: GB302SolverQuest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), identifyLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    ...(clueLatex ? [makeStep(3, t("biology.gb3_02.solver.extract_immune_clue"), clueLatex)] : []),
+    makeStep(clueLatex ? 4 : 3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(clueLatex ? 5 : 4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }

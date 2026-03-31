@@ -161,6 +161,8 @@ export const cnBiology = {
             and_solve_for: "并求出",
             survivors_label: "存活个体数",
             initial_population_label: "初始种群数",
+            target_label: "目标：",
+            identify_target_step: "识别进化目标",
             or_word: "或",
             depending_on_divergence_model: "取决于分化模型",
             older_rate_label: "较旧速率",
@@ -220,6 +222,10 @@ export const cnBiology = {
             nt_role_type: "作用: {effect}. {name}的类型?"
         },
         solver: {
+            extract_neural_clue: "提取神经线索",
+            anatomy_clue_label: "解剖线索：",
+            ion_label: "离子：",
+            synapse_clue_label: "突触线索：",
             function_label: "功能",
             neurotransmitter_label: "神经递质",
             effect_label: "效应",
@@ -305,6 +311,10 @@ export const cnBiology = {
             hint_gc: "G 与 C 配对，产生 3 个氢键。"
         },
         solver: {
+            extract_dna_clue: "提取 DNA 线索",
+            pairing_clue_label: "碱基线索：",
+            bond_clue_label: "配对线索：",
+            sequence_clue_label: "序列线索：",
             base_label: "碱基",
             pair_label: "碱基对",
             sequence_label: "序列",
@@ -362,6 +372,10 @@ export const cnBiology = {
             incorrect: "免疫反应不足。病原体正在扩散。"
         },
         solver: {
+            extract_immune_clue: "提取免疫线索",
+            innate_clue_label: "先天免疫线索：",
+            adaptive_clue_label: "适应性免疫线索：",
+            vaccine_clue_label: "延迟期对比：",
             pathogen_label: "病原体：",
             cell_label: "细胞：",
             primary_lag_label: "初次延迟期",

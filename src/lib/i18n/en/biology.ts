@@ -152,6 +152,8 @@ export const enBiology = {
             molecular_clock: "Friedrich Miescher Institute (FMI) - The Timing of Life: At the FMI in Basel, you use molecular clock techniques to estimate when different species shared a common ancestor. By analyzing the mutation rates in DNA sequences, you can trace the evolutionary history of Basel's local fauna across millions of years. This work honors the legacy of Friedrich Miescher, who discovered DNA in Basel, and keeps the city at the forefront of evolutionary genomics. It’s like using a slow-motion clock where every 'tick' is a mutation and every 'hour' is a million years of natural history."
         },
         solver: {
+            target_label: "Target:",
+            identify_target_step: "Identify Evolution Target",
             evaluate_expression_isolate: "Evaluate the population-genetics expression and isolate",
             apply_population_relation: "Apply the matching population-genetics relation to the allele frequencies",
             use_speciation_relation: "Use the mutation, drift, or coalescence relation that matches the scenario",
@@ -220,6 +222,10 @@ export const enBiology = {
             nt_role_type: "Role: {effect}. Type of {name}?"
         },
         solver: {
+            extract_neural_clue: "Extract Neural Clue",
+            anatomy_clue_label: "Anatomy clue:",
+            ion_label: "Ion:",
+            synapse_clue_label: "Synapse clue:",
             function_label: "Function",
             neurotransmitter_label: "Neurotransmitter",
             effect_label: "Effect",
@@ -305,6 +311,10 @@ export const enBiology = {
             hint_gc: "G pairs with C via 3 bonds."
         },
         solver: {
+            extract_dna_clue: "Extract DNA Clue",
+            pairing_clue_label: "Base clue:",
+            bond_clue_label: "Pair clue:",
+            sequence_clue_label: "Sequence clue:",
             base_label: "Base",
             pair_label: "Pair",
             sequence_label: "Sequence",
@@ -362,6 +372,10 @@ export const enBiology = {
             incorrect: "Immune response insufficient. Pathogen spreading."
         },
         solver: {
+            extract_immune_clue: "Extract Immune Clue",
+            innate_clue_label: "Innate clue:",
+            adaptive_clue_label: "Adaptive clue:",
+            vaccine_clue_label: "Lag comparison:",
             pathogen_label: "Pathogen:",
             cell_label: "Cell:",
             primary_lag_label: "Primary lag",

@@ -108,6 +108,7 @@ export default function ChamberLayout({
     const [historyOpen, setHistoryOpen] = useState(false);
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const [activePanel, setActivePanel] = useState<"controls" | "monitor" | "history">("controls");
+    const [aiFeedbackOpen, setAiFeedbackOpen] = useState(false);
     const prevOkRef = useRef(false);
     const stageStartRef = useRef(0);
     const hadFailureRef = useRef(false);
@@ -188,6 +189,12 @@ export default function ChamberLayout({
             hadFailureRef.current = true;
         }
     }, [checkStatus]);
+
+    useEffect(() => {
+        if (aiFeedback) {
+            setAiFeedbackOpen(true);
+        }
+    }, [aiFeedback]);
 
     useEffect(() => {
         const ok = !!checkStatus?.ok;
@@ -292,14 +299,22 @@ export default function ChamberLayout({
                                     </div>
                                 )}
                                 {aiFeedback && (
-                                    <div className="w-full max-w-2xl text-left bg-black/40 border border-neon-purple/30 rounded-lg mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)] overflow-hidden">
+                                    <div className="w-full max-w-3xl text-left bg-black/40 border border-neon-purple/30 rounded-lg mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)]">
                                         <div className="px-4 pt-4 pb-2 border-b border-neon-purple/20">
-                                            <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
-                                                🪄 Nexus AI Assistant
+                                            <div className="flex items-center justify-between gap-4">
+                                                <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
+                                                    🪄 Nexus AI Assistant
+                                                </div>
+                                                <button
+                                                    onClick={() => setAiFeedbackOpen(true)}
+                                                    className="px-2 py-1 border border-neon-purple/40 text-[9px] font-black tracking-[0.2em] uppercase text-neon-purple hover:bg-neon-purple/10 transition-colors"
+                                                >
+                                                    {common.expand_view ?? "EXPAND VIEW ⬡"}
+                                                </button>
                                             </div>
                                         </div>
-                                        <div className="max-h-[38vh] md:max-h-[48vh] overflow-y-auto px-4 py-3">
-                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap">
+                                        <div className="px-4 py-3">
+                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap overflow-x-auto">
                                                 {aiFeedback}
                                             </div>
                                         </div>
@@ -749,6 +764,43 @@ export default function ChamberLayout({
             </div>
 
             <AnimatePresence>
+                {aiFeedback && aiFeedbackOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-[75] bg-black/70 backdrop-blur-sm p-4 md:p-8"
+                    >
+                        <div className="mx-auto flex h-full w-full max-w-5xl flex-col rounded-2xl border border-neon-purple/30 bg-black shadow-[0_0_30px_rgba(var(--color-neon-purple),0.2)]">
+                            <div className="flex items-center justify-between gap-4 border-b border-neon-purple/20 px-5 py-4">
+                                <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
+                                    🪄 Nexus AI Assistant
+                                </div>
+                                <button
+                                    onClick={() => setAiFeedbackOpen(false)}
+                                    className="inline-flex min-h-[40px] min-w-[40px] items-center justify-center border border-white/20 text-white/70 hover:text-white hover:border-white/40 transition-colors"
+                                    aria-label="Close AI explanation"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+                            <div className="flex-1 overflow-y-auto px-5 py-4">
+                                <div className="mx-auto w-full max-w-4xl text-sm font-sans leading-relaxed text-white/90 whitespace-pre-wrap break-words">
+                                    {aiFeedback}
+                                </div>
+                            </div>
+                            <div className="border-t border-neon-purple/20 bg-black/40 px-5 py-4">
+                                <Link
+                                    href="/profile#ai-settings"
+                                    className="text-[10px] font-black tracking-[0.25em] uppercase text-white/50 hover:text-white transition-colors"
+                                >
+                                    {common.profile?.ai_provider?.open_settings ?? "OPEN SETTINGS & AI"}
+                                </Link>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
                 {historyOpen && (
                     <motion.aside
                         initial={{ x: 420, opacity: 0 }}

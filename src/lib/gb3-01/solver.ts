@@ -16,6 +16,19 @@ export interface GB301SolverQuest extends Quest {
   seq?: string;
 }
 
+function buildClueLatex(quest: GB301SolverQuest, t: Translator) {
+  if (quest.stage === "PAIRING" && quest.base) {
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.pairing_clue_label"))}} ${quest.base}`;
+  }
+  if (quest.stage === "BONDS" && quest.b1 && quest.b2) {
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.bond_clue_label"))}} ${quest.b1}-${quest.b2}`;
+  }
+  if (quest.stage === "SEQUENCE" && quest.seq) {
+    return `\\text{${escapeLatexText(t("biology.gb3_01.solver.sequence_clue_label"))}} ${escapeLatexText(quest.seq)}`;
+  }
+  return null;
+}
+
 function buildIdentifyLatex(quest: GB301SolverQuest) {
   if (quest.stage === "PAIRING" && quest.base) return null;
   if (quest.stage === "BONDS" && quest.b1 && quest.b2) return null;
@@ -66,6 +79,7 @@ export function solveGB301(quest: GB301SolverQuest, t: Translator) {
         : quest.stage === "SEQUENCE" && quest.seq
           ? `\\text{${escapeLatexText(t("biology.gb3_01.solver.sequence_label"))}}: ${escapeLatexText(quest.seq)}`
           : buildIdentifyLatex(quest);
+  const clueLatex = buildClueLatex(quest, t);
   const ruleLatex = buildRuleLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
@@ -75,8 +89,9 @@ export function solveGB301(quest: GB301SolverQuest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), identifyLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    ...(clueLatex ? [makeStep(3, t("biology.gb3_01.solver.extract_dna_clue"), clueLatex)] : []),
+    makeStep(clueLatex ? 4 : 3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(clueLatex ? 5 : 4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }

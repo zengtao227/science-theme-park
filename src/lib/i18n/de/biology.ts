@@ -161,6 +161,8 @@ export const deBiology = {
             and_solve_for: "ein und lösen Sie nach",
             survivors_label: "Überlebende",
             initial_population_label: "Ausgangspopulation",
+            target_label: "Ziel:",
+            identify_target_step: "Evolutionsziel bestimmen",
             or_word: "oder",
             depending_on_divergence_model: "je nach Divergenzmodell",
             older_rate_label: "ältere Rate",
@@ -220,6 +222,10 @@ export const deBiology = {
             nt_role_type: "Rolle: {effect}. Typ von {name}?"
         },
         solver: {
+            extract_neural_clue: "Neuralen Hinweis herausarbeiten",
+            anatomy_clue_label: "Anatomiehinweis:",
+            ion_label: "Ion:",
+            synapse_clue_label: "Synapsenhinweis:",
             function_label: "Funktion",
             neurotransmitter_label: "Neurotransmitter",
             effect_label: "Wirkung",
@@ -305,6 +311,10 @@ export const deBiology = {
             hint_gc: "G paart mit C über 3 Brücken."
         },
         solver: {
+            extract_dna_clue: "DNA-Hinweis herausarbeiten",
+            pairing_clue_label: "Basenhinweis:",
+            bond_clue_label: "Paarhinweis:",
+            sequence_clue_label: "Sequenzhinweis:",
             base_label: "Base",
             pair_label: "Paar",
             sequence_label: "Sequenz",
@@ -362,6 +372,10 @@ export const deBiology = {
             incorrect: "Immunantwort unzureichend. Erreger verbreitet sich."
         },
         solver: {
+            extract_immune_clue: "Immunhinweis herausarbeiten",
+            innate_clue_label: "Hinweis zur angeborenen Immunität:",
+            adaptive_clue_label: "Hinweis zur adaptiven Immunität:",
+            vaccine_clue_label: "Vergleich der Verzögerungszeit:",
             pathogen_label: "Erreger:",
             cell_label: "Zelle:",
             primary_lag_label: "Primäre Verzögerung",

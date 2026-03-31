@@ -19,11 +19,25 @@ interface GB201Data {
   nt_name?: string;
   nt_type?: string;
   nt_effect?: string;
+  role?: string;
 }
 
 export interface GB201SolverQuest extends Quest {
   stage: Stage;
   data?: GB201Data;
+}
+
+function buildClueLatex(quest: GB201SolverQuest, t: Translator) {
+  if (quest.stage === "ANATOMY" && quest.data) {
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.anatomy_clue_label"))}} ${escapeLatexText(quest.data.func || quest.data.part || "")}`;
+  }
+  if (quest.stage === "POTENTIAL" && quest.data) {
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.ion_label"))}} ${escapeLatexText(quest.data.ion || "")},\\ [out]=${quest.data.cout},\\ [in]=${quest.data.cin}`;
+  }
+  if (quest.stage === "SYNAPSE" && quest.data) {
+    return `\\text{${escapeLatexText(t("biology.gb2_01.solver.synapse_clue_label"))}} ${escapeLatexText(quest.data.nt_effect || quest.data.role || "")}`;
+  }
+  return null;
 }
 
 function buildIdentifyLatex(quest: GB201SolverQuest) {
@@ -80,6 +94,7 @@ export function solveGB201(quest: GB201SolverQuest, t: Translator) {
       : quest.stage === "SYNAPSE" && quest.data
         ? `\\text{${escapeLatexText(t("biology.gb2_01.solver.neurotransmitter_label"))}}: ${escapeLatexText(quest.data.nt_name || "")},\\ \\text{${escapeLatexText(t("biology.gb2_01.solver.effect_label"))}}: ${escapeLatexText(quest.data.nt_effect || "")}`
         : buildIdentifyLatex(quest);
+  const clueLatex = buildClueLatex(quest, t);
   const ruleLatex = buildRuleLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
   if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
@@ -89,8 +104,9 @@ export function solveGB201(quest: GB201SolverQuest, t: Translator) {
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), identifyLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    ...(clueLatex ? [makeStep(3, t("biology.gb2_01.solver.extract_neural_clue"), clueLatex)] : []),
+    makeStep(clueLatex ? 4 : 3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(clueLatex ? 5 : 4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }

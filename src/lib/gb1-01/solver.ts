@@ -12,6 +12,12 @@ export interface GB101SolverQuest extends Quest {
   stage: Stage;
 }
 
+function buildTargetLatex(quest: GB101SolverQuest, t: Translator) {
+  const slot = quest.slots[0];
+  if (!slot) return null;
+  return `\\text{${escapeLatexText(t("biology.gb1_01.solver.target_label"))}} ${slot.labelLatex}`;
+}
+
 function solveSelectionLatex(quest: GB101SolverQuest, t: Translator) {
   const slot = quest.slots[0];
   const expected = slot?.expected;
@@ -95,17 +101,19 @@ function buildSolveLatex(quest: GB101SolverQuest, t: Translator) {
 }
 
 export function solveGB101(quest: GB101SolverQuest, t: Translator) {
+  const targetLatex = buildTargetLatex(quest, t);
   const ruleLatex = buildRuleLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
-  if (!ruleLatex || !solveLatex) {
+  if (!targetLatex || !ruleLatex || !solveLatex) {
     return { steps: [], fullSolutionLatex: null };
   }
 
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    makeStep(3, t("biology.gb1_01.solver.identify_target_step"), targetLatex),
+    makeStep(4, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(5, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
 
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
