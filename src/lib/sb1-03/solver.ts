@@ -9,6 +9,21 @@ export interface SB103SolverQuest extends Quest {
   chromosomeCount: number;
 }
 
+function buildClueLatex(quest: SB103SolverQuest, t: Translator) {
+  return `\\text{${escapeLatexText(t("biology.sb1_03.solver.phase_label"))}} ${escapeLatexText(quest.phase.replace(/_/g, " "))}`;
+}
+
+function buildTraceLatex(quest: SB103SolverQuest, t: Translator) {
+  const countLatex = `\\text{${escapeLatexText(t("biology.sb1_03.solver.chromosome_count_label"))}} ${quest.chromosomeCount}`;
+  if (quest.stage === "MITOSIS") {
+    return `${countLatex},\\ \\text{${escapeLatexText(t("biology.sb1_03.solver.trace_mitosis_pattern"))}}`;
+  }
+  if (quest.stage === "MEIOSIS_I") {
+    return `${countLatex},\\ \\text{${escapeLatexText(t("biology.sb1_03.solver.trace_meiosis_i_pattern"))}}`;
+  }
+  return `${countLatex},\\ \\text{${escapeLatexText(t("biology.sb1_03.solver.trace_meiosis_ii_pattern"))}}`;
+}
+
 function buildRuleLatex(quest: SB103SolverQuest, t: Translator) {
   if (quest.stage === "MITOSIS") {
     return `\\text{${escapeLatexText(t("biology.sb1_03.solver.rule_mitosis"))}}`;
@@ -35,14 +50,18 @@ function buildSolveLatex(quest: SB103SolverQuest, t: Translator) {
 
 export function solveSB103(quest: SB103SolverQuest, t: Translator) {
   const ruleLatex = buildRuleLatex(quest, t);
+  const clueLatex = buildClueLatex(quest, t);
+  const traceLatex = buildTraceLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
-  if (!ruleLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
+  if (!ruleLatex || !clueLatex || !traceLatex || !solveLatex) return { steps: [], fullSolutionLatex: null };
 
   const steps: PlatformSolutionStep[] = [
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
-    makeStep(3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    makeStep(3, t("biology.sb1_03.solver.extract_phase_clue"), clueLatex),
+    makeStep(4, t("biology.sb1_03.solver.trace_chromosome_pattern"), traceLatex),
+    makeStep(5, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(6, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }
