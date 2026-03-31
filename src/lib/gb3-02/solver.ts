@@ -61,6 +61,19 @@ function buildRuleLatex(quest: GB302SolverQuest, t: Translator) {
   return null;
 }
 
+function buildTraceLatex(quest: GB302SolverQuest, t: Translator) {
+  if (quest.stage === "INNATE") {
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.trace_innate_pattern"))}}`;
+  }
+  if (quest.stage === "ADAPTIVE") {
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.trace_adaptive_pattern"))}}`;
+  }
+  if (quest.stage === "VACCINES") {
+    return `\\text{${escapeLatexText(t("biology.gb3_02.solver.trace_vaccine_pattern"))}}`;
+  }
+  return null;
+}
+
 function buildSolveLatex(quest: GB302SolverQuest, t: Translator) {
   if (quest.stage === "INNATE" && quest.data) {
     return `\\text{${escapeLatexText(t("biology.gb3_02.solver.solve_innate_prefix"))}} ${escapeLatexText(quest.data.role)} \\text{${escapeLatexText(t("biology.gb3_02.solver.solve_innate_suffix"))}} ${escapeLatexText(quest.data.cell)}`;
@@ -79,8 +92,9 @@ export function solveGB302(quest: GB302SolverQuest, t: Translator) {
   const identifyLatex = buildIdentifyLatex(quest, t);
   const clueLatex = buildClueLatex(quest, t);
   const ruleLatex = buildRuleLatex(quest, t);
+  const traceLatex = buildTraceLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
-  if (!identifyLatex || !ruleLatex || !solveLatex || !quest.correctLatex) {
+  if (!identifyLatex || !ruleLatex || !traceLatex || !solveLatex || !quest.correctLatex) {
     return { steps: [], fullSolutionLatex: null };
   }
 
@@ -88,8 +102,9 @@ export function solveGB302(quest: GB302SolverQuest, t: Translator) {
     makeStep(1, t("common.feedback_reasons.identify_given_values"), identifyLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
     ...(clueLatex ? [makeStep(3, t("biology.gb3_02.solver.extract_immune_clue"), clueLatex)] : []),
-    makeStep(clueLatex ? 4 : 3, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(clueLatex ? 5 : 4, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    makeStep(clueLatex ? 4 : 3, t("biology.gb3_02.solver.trace_immune_mechanism"), traceLatex),
+    makeStep(clueLatex ? 5 : 4, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(clueLatex ? 6 : 5, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
   return { steps, fullSolutionLatex: buildFullSolution(steps) };
 }

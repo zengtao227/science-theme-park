@@ -170,7 +170,11 @@ export const enBiology = {
             accepted_cases_label: "accepted cases",
             total_cases_label: "total cases",
             rule_effective_population: "(unequal sex ratio)",
-            rule_decay_constant: "(half-life relation)"
+            rule_decay_constant: "(half-life relation)",
+            trace_reasoning_pattern: "Trace Reasoning Pattern",
+            trace_selection_pattern: "Selection acts on phenotype differences that affect fitness; map the allele-frequency change to the correct Hardy-Weinberg or selection formula.",
+            trace_speciation_pattern: "Reproductive isolation accumulates via mutation, drift, or coalescence; identify which mechanism drives the divergence before substituting values.",
+            trace_evidence_pattern: "Molecular clocks and radiometric decay follow exponential kinetics; identify the rate constant and the elapsed time before evaluating the decay fraction or age."
         }
     },
     gb2_01: {
@@ -234,7 +238,11 @@ export const enBiology = {
             rule_anatomy: "Match the described neuronal function to the correct structure.",
             rule_synapse: "Classify the neurotransmitter response from its effect on the postsynaptic cell.",
             solve_anatomy: "{func} corresponds to {name}.",
-            solve_synapse: "An effect such as {effect} indicates a {type} response."
+            solve_synapse: "An effect such as {effect} indicates a {type} response.",
+            trace_neural_mechanism: "Trace Neural Mechanism",
+            trace_anatomy_pattern: "Follow the function description through the neuron compartment map: soma → axon → terminal; match to the structure whose job fits the clue.",
+            trace_potential_pattern: "Apply the Nernst equation direction: if the ion is more concentrated outside, the equilibrium potential is positive; if more concentrated inside, it is negative.",
+            trace_synapse_pattern: "Determine whether the neurotransmitter raises or lowers the postsynaptic membrane potential relative to threshold, then assign it to the excitatory or inhibitory class."
         },
         scenarios: {
             basel_biomedicine: "University of Basel - Biozentrum Neurobiology Department: At the Biozentrum, one of Europe's leading centers for molecular and cell biology, you work in Professor Silvia Arber's research group studying neural circuit assembly. The lab focuses on understanding how motor neurons in the spinal cord connect to specific muscle groups through precise axonal pathfinding. Using advanced imaging techniques and electrophysiology, you map the dendritic branching of pyramidal neurons and trace how action potentials propagate through myelinated axons at speeds up to 120 m/s. This research directly contributes to developing therapies for ALS (Amyotrophic Lateral Sclerosis) and spinal cord injuries. The Biozentrum's collaborative environment continues Basel's 150-year tradition in molecular life sciences—Friedrich Miescher first isolated nuclein (DNA) here in 1869. Understanding neuronal anatomy—from the protein synthesis machinery of the soma to the synaptic vesicles of the axon terminal—is essential for Basel's pharmaceutical industry and the University Hospital's neurology department.",
@@ -321,7 +329,11 @@ export const enBiology = {
             rule_bonds: "A-T pairs form 2 hydrogen bonds, while G-C pairs form 3 hydrogen bonds.",
             solve_pairing_intro: "Using A↔T and G↔C,",
             solve_bonds: "The pair {pair} is {pairType}, so it forms {bonds} hydrogen bonds.",
-            solve_sequence_intro: "Convert each base one by one:"
+            solve_sequence_intro: "Convert each base one by one:",
+            trace_dna_mechanism: "Trace DNA Mechanism",
+            trace_pairing_pattern: "Chargaff's rules are strict: A always pairs with T via 2 hydrogen bonds, and G always pairs with C via 3 hydrogen bonds — apply the rule to the given base.",
+            trace_bonds_pattern: "Count the hydrogen bonds by identifying the pair type: A-T pairs carry 2 bonds, G-C pairs carry 3 bonds — classify the given pair before counting.",
+            trace_sequence_pattern: "Read each base in order and apply the complementary rule (A↔T, G↔C) individually — then concatenate the results to form the complementary strand."
         }
     },
     gb3_02: {
@@ -387,7 +399,11 @@ export const enBiology = {
             solve_innate_prefix: "A response involving",
             solve_innate_suffix: "is carried out by",
             solve_adaptive_prefix: "The function",
-            solve_adaptive_suffix: "is the hallmark of"
+            solve_adaptive_suffix: "is the hallmark of",
+            trace_immune_mechanism: "Trace Immune Mechanism",
+            trace_innate_pattern: "Innate immunity is the first non-specific line of defence; match the effector cell type (macrophage, neutrophil, NK cell, complement) to the pathogen challenge described.",
+            trace_adaptive_pattern: "Adaptive immunity is antigen-specific and clonal; trace whether the challenge calls for antibody-mediated (B cell / plasma cell) or cell-mediated (cytotoxic T cell / helper T cell) effector function.",
+            trace_vaccine_pattern: "Memory cells produced in the primary response reduce both the lag period and the activation threshold for the secondary response — the acceleration factor equals the ratio of primary to secondary lag."
         }
     },
     gb2_02: {

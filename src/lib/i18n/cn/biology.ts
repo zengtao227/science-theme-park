@@ -170,7 +170,11 @@ export const cnBiology = {
             accepted_cases_label: "被接受的案例数",
             total_cases_label: "总案例数",
             rule_effective_population: "(性别比例不均等)",
-            rule_decay_constant: "(半衰期关系)"
+            rule_decay_constant: "(半衰期关系)",
+            trace_reasoning_pattern: "追踪推理模式",
+            trace_selection_pattern: "自然选择作用于影响适合度的表型差异；将等位基因频率变化映射到正确的哈代-温伯格或选择公式。",
+            trace_speciation_pattern: "生殖隔离通过突变、遗传漂变或溯祖过程积累；在代入数值之前，先确定驱动分化的机制。",
+            trace_evidence_pattern: "分子钟和放射性衰变遵循指数动力学；在计算衰变分数或年龄之前，先确定速率常数和经历的时间。"
         }
     },
     gb2_01: {
@@ -234,7 +238,11 @@ export const cnBiology = {
             rule_anatomy: "将题目描述的神经功能与正确结构对应起来。",
             rule_synapse: "根据它对突触后细胞的作用判断神经递质反应类型。",
             solve_anatomy: "{func} 对应的结构是 {name}。",
-            solve_synapse: "像 {effect} 这样的效应说明这是 {type} 反应。"
+            solve_synapse: "像 {effect} 这样的效应说明这是 {type} 反应。",
+            trace_neural_mechanism: "追踪神经机制",
+            trace_anatomy_pattern: "沿神经元分区图（胞体→轴突→末梢）追踪功能描述；匹配其职能符合线索的结构。",
+            trace_potential_pattern: "应用能斯特方程方向：若离子在胞外浓度较高，平衡电位为正；若在胞内浓度较高，平衡电位为负。",
+            trace_synapse_pattern: "判断神经递质相对于阈值升高还是降低突触后膜电位，然后将其归类为兴奋性或抑制性。"
         },
         scenarios: {
             basel_biomedicine: "巴塞尔大学 - 生物中心神经生物学系：在生物中心（Biozentrum）——欧洲领先的分子与细胞生物学中心之一，你正在与Silvia Arber教授的研究小组合作研究神经回路组装。该实验室专注于理解脊髓中的运动神经元如何通过精确的轴突导向连接到特定的肌肉群。使用先进的成像技术和电生理学方法，你绘制锥体神经元的树突分支，并追踪动作电位如何以高达120米/秒的速度通过有髓轴突传播。这项研究直接有助于开发治疗肌萎缩侧索硬化症（ALS）和脊髓损伤的疗法。生物中心的协作环境延续了巴塞尔150年的分子生命科学传统——弗雷德里希·米舍尔于1869年在此首次分离出核素（DNA）。理解神经元解剖结构——从胞体的蛋白质合成机制到轴突末梢的突触囊泡——对巴塞尔的制药工业和大学医院神经科至关重要。",
@@ -321,7 +329,11 @@ export const cnBiology = {
             rule_bonds: "A-T 配对形成 2 个氢键，G-C 配对形成 3 个氢键。",
             solve_pairing_intro: "根据 A↔T 与 G↔C 的规则，",
             solve_bonds: "{pair} 属于 {pairType} 配对，因此形成 {bonds} 个氢键。",
-            solve_sequence_intro: "逐个碱基转换："
+            solve_sequence_intro: "逐个碱基转换：",
+            trace_dna_mechanism: "追踪DNA机制",
+            trace_pairing_pattern: "查哥夫规则严格不变：A总与T配对（2个氢键），G总与C配对（3个氢键）——对给定碱基应用此规则。",
+            trace_bonds_pattern: "通过识别碱基对类型来计数氢键：A-T对2个键，G-C对3个键——先对给定碱基对分类，再计数。",
+            trace_sequence_pattern: "按顺序逐一读取碱基并分别应用互补规则（A↔T、G↔C）——然后将结果连接成互补链。"
         }
     },
     gb3_02: {
@@ -387,7 +399,11 @@ export const cnBiology = {
             solve_innate_prefix: "涉及",
             solve_innate_suffix: "这种反应由下列细胞完成：",
             solve_adaptive_prefix: "功能",
-            solve_adaptive_suffix: "最典型地对应于"
+            solve_adaptive_suffix: "最典型地对应于",
+            trace_immune_mechanism: "追踪免疫机制",
+            trace_innate_pattern: "先天免疫是第一道非特异性防线；将效应细胞类型（巨噬细胞、中性粒细胞、NK细胞、补体）与所描述的病原体挑战相匹配。",
+            trace_adaptive_pattern: "适应性免疫具有抗原特异性并依赖克隆扩增；追踪该挑战需要抗体介导（B细胞/浆细胞）还是细胞介导（细胞毒性T细胞/辅助性T细胞）的效应功能。",
+            trace_vaccine_pattern: "初次应答产生的记忆细胞同时缩短了继发应答的潜伏期和激活阈值——加速因子等于初次与继发潜伏期之比。"
         }
     },
     gb2_02: {

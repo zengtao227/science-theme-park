@@ -100,11 +100,25 @@ function buildSolveLatex(quest: GB101SolverQuest, t: Translator) {
   return `\\text{${escapeLatexText(t("biology.gb1_01.solver.substitute_values_solve"))}} ${quest.expressionLatex} \\text{ ${escapeLatexText(t("biology.gb1_01.solver.and_solve_for"))} } ${slot.labelLatex}`;
 }
 
+function buildTraceLatex(quest: GB101SolverQuest, t: Translator) {
+  if (quest.stage === "NATURAL_SELECTION") {
+    return `\\text{${escapeLatexText(t("biology.gb1_01.solver.trace_selection_pattern"))}}`;
+  }
+  if (quest.stage === "SPECIATION") {
+    return `\\text{${escapeLatexText(t("biology.gb1_01.solver.trace_speciation_pattern"))}}`;
+  }
+  if (quest.stage === "EVIDENCE") {
+    return `\\text{${escapeLatexText(t("biology.gb1_01.solver.trace_evidence_pattern"))}}`;
+  }
+  return null;
+}
+
 export function solveGB101(quest: GB101SolverQuest, t: Translator) {
   const targetLatex = buildTargetLatex(quest, t);
   const ruleLatex = buildRuleLatex(quest, t);
+  const traceLatex = buildTraceLatex(quest, t);
   const solveLatex = buildSolveLatex(quest, t);
-  if (!targetLatex || !ruleLatex || !solveLatex) {
+  if (!targetLatex || !ruleLatex || !traceLatex || !solveLatex) {
     return { steps: [], fullSolutionLatex: null };
   }
 
@@ -112,8 +126,9 @@ export function solveGB101(quest: GB101SolverQuest, t: Translator) {
     makeStep(1, t("common.feedback_reasons.identify_given_values"), quest.expressionLatex || quest.promptLatex),
     makeStep(2, t("common.feedback_reasons.select_formula_or_rule"), ruleLatex),
     makeStep(3, t("biology.gb1_01.solver.identify_target_step"), targetLatex),
-    makeStep(4, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
-    makeStep(5, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
+    makeStep(4, t("biology.gb1_01.solver.trace_reasoning_pattern"), traceLatex),
+    makeStep(5, t("common.feedback_reasons.solve_step_by_step"), solveLatex),
+    makeStep(6, t("common.feedback_reasons.state_final_result"), quest.correctLatex, "key"),
   ];
 
   return { steps, fullSolutionLatex: buildFullSolution(steps) };

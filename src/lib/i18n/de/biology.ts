@@ -170,7 +170,11 @@ export const deBiology = {
             accepted_cases_label: "akzeptierte Fälle",
             total_cases_label: "Gesamtzahl der Fälle",
             rule_effective_population: "(ungleiches Geschlechterverhältnis)",
-            rule_decay_constant: "(Halbwertszeit-Beziehung)"
+            rule_decay_constant: "(Halbwertszeit-Beziehung)",
+            trace_reasoning_pattern: "Schlussfolgerungsmuster verfolgen",
+            trace_selection_pattern: "Die natürliche Selektion wirkt auf Phänotypunterschiede, die die Fitness beeinflussen; ordnen Sie die Allelfrequenzänderung der richtigen Hardy-Weinberg- oder Selektionsformel zu.",
+            trace_speciation_pattern: "Reproduktive Isolation akkumuliert durch Mutation, Drift oder Koaleszenz; identifizieren Sie den treibenden Mechanismus der Divergenz, bevor Sie Werte einsetzen.",
+            trace_evidence_pattern: "Molekulare Uhren und radioaktiver Zerfall folgen exponentieller Kinetik; identifizieren Sie die Ratenkonstante und die verstrichene Zeit, bevor Sie den Zerfallsanteil oder das Alter berechnen."
         }
     },
     gb2_01: {
@@ -234,7 +238,11 @@ export const deBiology = {
             rule_anatomy: "Ordnen Sie die beschriebene neuronale Funktion der richtigen Struktur zu.",
             rule_synapse: "Bestimmen Sie die Art der Neurotransmitterantwort aus der Wirkung auf die postsynaptische Zelle.",
             solve_anatomy: "{func} gehört zur Struktur {name}.",
-            solve_synapse: "Eine Wirkung wie {effect} weist auf eine {type}-Antwort hin."
+            solve_synapse: "Eine Wirkung wie {effect} weist auf eine {type}-Antwort hin.",
+            trace_neural_mechanism: "Nervenmechanismus verfolgen",
+            trace_anatomy_pattern: "Verfolgen Sie die Funktionsbeschreibung durch die Neuronkompartimentkarte: Soma → Axon → Terminal; passen Sie die Struktur an, deren Aufgabe zum Hinweis passt.",
+            trace_potential_pattern: "Wenden Sie die Nernst-Gleichungsrichtung an: Wenn das Ion außen konzentrierter ist, ist das Gleichgewichtspotenzial positiv; wenn es innen konzentrierter ist, ist es negativ.",
+            trace_synapse_pattern: "Bestimmen Sie, ob der Neurotransmitter das postsynaptische Membranpotenzial relativ zur Schwelle anhebt oder senkt, und ordnen Sie ihn dann der exzitatorischen oder inhibitorischen Klasse zu."
         },
         scenarios: {
             basel_biomedicine: "Universität Basel - Biozentrum Abteilung für Neurobiologie: Am Biozentrum, einem der führenden europäischen Zentren für Molekular- und Zellbiologie, arbeiten Sie in der Forschungsgruppe von Professorin Silvia Arber an der neuronalen Schaltkreis-Assemblierung. Das Labor konzentriert sich darauf zu verstehen, wie Motoneuronen im Rückenmark durch präzise axonale Wegfindung mit spezifischen Muskelgruppen verbunden werden. Mit fortschrittlichen Bildgebungsverfahren und Elektrophysiologie kartieren Sie die dendritischen Verzweigungen von Pyramidenneuronen und verfolgen, wie Aktionspotentiale mit Geschwindigkeiten bis zu 120 m/s durch myelinisierte Axone propagieren. Diese Forschung trägt direkt zur Entwicklung von Therapien für ALS (Amyotrophe Lateralsklerose) und Rückenmarksverletzungen bei. Die kollaborative Umgebung des Biozentrums, wo Friedrich Miescher 1869 erstmals Nuclein (DNA) isolierte, setzt Basels 150-jährige Tradition in den molekularen Lebenswissenschaften fort. Das Verständnis der Neuronenanatomie – von der Proteinsynthese-Maschinerie des Somas bis zu den synaptischen Vesikeln des Axonterminals – ist essentiell für Basels Pharmaindustrie und die neurologische Abteilung des Universitätsspitals.",
@@ -321,7 +329,11 @@ export const deBiology = {
             rule_bonds: "A-T-Paare bilden 2 Wasserstoffbrücken, G-C-Paare 3 Wasserstoffbrücken.",
             solve_pairing_intro: "Mit den Regeln A↔T und G↔C gilt:",
             solve_bonds: "Das Paar {pair} ist ein {pairType}-Paar und bildet daher {bonds} Wasserstoffbrücken.",
-            solve_sequence_intro: "Wandeln Sie jede Base nacheinander um:"
+            solve_sequence_intro: "Wandeln Sie jede Base nacheinander um:",
+            trace_dna_mechanism: "DNA-Mechanismus verfolgen",
+            trace_pairing_pattern: "Chargaffs Regeln sind streng: A paart immer mit T über 2 Wasserstoffbrücken, G paart immer mit C über 3 Wasserstoffbrücken — wenden Sie die Regel auf die gegebene Base an.",
+            trace_bonds_pattern: "Zählen Sie die Wasserstoffbrücken durch Identifizierung des Paartyps: A-T-Paare haben 2 Bindungen, G-C-Paare haben 3 — klassifizieren Sie das gegebene Paar, bevor Sie zählen.",
+            trace_sequence_pattern: "Lesen Sie jede Base der Reihe nach und wenden Sie die Komplementärregel (A↔T, G↔C) einzeln an — verketten Sie dann die Ergebnisse zum komplementären Strang."
         }
     },
     gb3_02: {
@@ -387,7 +399,11 @@ export const deBiology = {
             solve_innate_prefix: "Eine Reaktion mit",
             solve_innate_suffix: "wird ausgeführt von",
             solve_adaptive_prefix: "Die Funktion",
-            solve_adaptive_suffix: "ist das Kennzeichen von"
+            solve_adaptive_suffix: "ist das Kennzeichen von",
+            trace_immune_mechanism: "Immunmechanismus verfolgen",
+            trace_innate_pattern: "Das angeborene Immunsystem ist die erste unspezifische Verteidigungslinie; ordnen Sie den Effektorzelltyp (Makrophage, Neutrophil, NK-Zelle, Komplement) der beschriebenen Pathogenherausforderung zu.",
+            trace_adaptive_pattern: "Das adaptive Immunsystem ist antigenspezifisch und klonal; verfolgen Sie, ob die Herausforderung antikörpervermittelte (B-Zelle/Plasmazelle) oder zellvermittelte (zytotoxische T-Zelle/Helfer-T-Zelle) Effektorfunktion erfordert.",
+            trace_vaccine_pattern: "Durch die Primärantwort erzeugte Gedächtniszellen reduzieren sowohl die Latenzzeit als auch die Aktivierungsschwelle für die Sekundärantwort — der Beschleunigungsfaktor entspricht dem Verhältnis von primärer zu sekundärer Latenzzeit."
         }
     },
     gb2_02: {
