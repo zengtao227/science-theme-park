@@ -191,12 +191,6 @@ export default function ChamberLayout({
     }, [checkStatus]);
 
     useEffect(() => {
-        if (aiFeedback) {
-            setAiFeedbackOpen(true);
-        }
-    }, [aiFeedback]);
-
-    useEffect(() => {
         const ok = !!checkStatus?.ok;
         if (ok && !prevOkRef.current) {
             const durationMs = Date.now() - stageStartRef.current;
