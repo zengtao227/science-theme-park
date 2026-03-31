@@ -109,6 +109,7 @@ export default function ChamberLayout({
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const [activePanel, setActivePanel] = useState<"controls" | "monitor" | "history">("controls");
     const [aiFeedbackOpen, setAiFeedbackOpen] = useState(false);
+    const aiFeedbackRef = useRef<HTMLDivElement>(null);
     const prevOkRef = useRef(false);
     const stageStartRef = useRef(0);
     const hadFailureRef = useRef(false);
@@ -210,6 +211,13 @@ export default function ChamberLayout({
         prevOkRef.current = ok;
     }, [addHistory, checkStatus, currentStage, difficulty, historyModuleId, moduleCode, successRate]);
 
+    // Scroll AI feedback into view when it first arrives
+    useEffect(() => {
+        if (aiFeedback && aiFeedbackRef.current) {
+            aiFeedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+    }, [aiFeedback]);
+
     const formatAccuracy = (value: number) => `${Math.round(value * 100)}%`;
     const formatTime = (value: number) => new Date(value).toLocaleString(locale, { hour12: false });
     const formatDuration = (value: number) => {
@@ -293,7 +301,7 @@ export default function ChamberLayout({
                                     </div>
                                 )}
                                 {aiFeedback && (
-                                    <div className="w-full max-w-3xl text-left bg-black/40 border border-neon-purple/30 rounded-lg mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)]">
+                                    <div ref={aiFeedbackRef} className="w-full max-w-3xl text-left bg-black/40 border border-neon-purple/30 rounded-lg mt-2 shadow-[0_0_15px_rgba(var(--color-neon-purple),0.15)]">
                                         <div className="px-4 pt-4 pb-2 border-b border-neon-purple/20">
                                             <div className="flex items-center justify-between gap-4">
                                                 <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
@@ -308,7 +316,7 @@ export default function ChamberLayout({
                                             </div>
                                         </div>
                                         <div className="px-4 py-3">
-                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap overflow-x-auto max-h-64 overflow-y-auto">
+                                            <div className="text-sm font-sans tracking-normal leading-relaxed text-white/90 break-words whitespace-pre-wrap overflow-x-auto">
                                                 {aiFeedback}
                                             </div>
                                         </div>
