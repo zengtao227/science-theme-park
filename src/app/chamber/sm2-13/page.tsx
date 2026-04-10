@@ -205,7 +205,7 @@ export default function SM213Page() {
         ADVANCED: sm2_13_t.translations.difficulty.advanced,
         ELITE: sm2_13_t.translations.difficulty.elite,
     }), [sm2_13_t]);
-    const printSections = React.useMemo(() => buildQuestPrintSections<SM213Quest, Stage>({
+    const printSectionsBuilder = React.useCallback(() => buildQuestPrintSections<SM213Quest, Stage>({
         moduleTitle: sm2_13_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -227,7 +227,7 @@ export default function SM213Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            printSections={printSections}
+            printSectionsBuilder={printSectionsBuilder}
             translations={sm2_13_t.translations}
             feedbackContent={feedbackContent}
             feedbackLevel={feedbackLevel}

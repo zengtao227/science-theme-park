@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import { ArrowLeft, Sigma, X, Printer } from "lucide-react";
 import { clsx } from "clsx";
@@ -32,6 +33,7 @@ interface ChamberLayoutProps {
     monitorContent?: React.ReactNode;
     printContent?: React.ReactNode;
     printSections?: { id: string; label: string; content: React.ReactNode }[];
+    printSectionsBuilder?: () => { id: string; label: string; content: React.ReactNode }[];
     defaultLeftWidth?: number;
     minLeftWidth?: number;
     maxLeftWidth?: number;
@@ -79,6 +81,7 @@ export default function ChamberLayout({
     monitorContent,
     printContent,
     printSections,
+    printSectionsBuilder,
     defaultLeftWidth,
     minLeftWidth,
     maxLeftWidth,
@@ -116,16 +119,31 @@ export default function ChamberLayout({
     const hadFailureRef = useRef(false);
     const [printSelectorOpen, setPrintSelectorOpen] = useState(false);
     const [selectedPrintSectionIds, setSelectedPrintSectionIds] = useState<string[]>([]);
-    const hasPrintSections = Array.isArray(printSections) && printSections.length > 0;
+    const [lazyPrintSections, setLazyPrintSections] = useState<{ id: string; label: string; content: React.ReactNode }[] | null>(null);
+    const resolvedPrintSections = printSections ?? lazyPrintSections ?? [];
+    const hasPrintSections = resolvedPrintSections.length > 0;
+    const hasPrintCapability = !!printContent || hasPrintSections || !!printSectionsBuilder;
     const hasPrintContent = !!printContent || hasPrintSections;
 
+    const ensurePrintSectionsLoaded = useCallback(() => {
+        if (printSections) return printSections;
+        if (lazyPrintSections) return lazyPrintSections;
+        if (!printSectionsBuilder) return [];
+        const builtSections = printSectionsBuilder();
+        setLazyPrintSections(builtSections);
+        return builtSections;
+    }, [lazyPrintSections, printSections, printSectionsBuilder]);
+
     useEffect(() => {
-        if (!hasPrintSections || !printSections) {
+        if (!hasPrintSections) {
             setSelectedPrintSectionIds([]);
             return;
         }
-        setSelectedPrintSectionIds(printSections.map((section) => section.id));
-    }, [hasPrintSections, printSections]);
+        setSelectedPrintSectionIds((prev) => {
+            if (prev.length > 0) return prev.filter((id) => resolvedPrintSections.some((section) => section.id === id));
+            return resolvedPrintSections.map((section) => section.id);
+        });
+    }, [hasPrintSections, resolvedPrintSections]);
 
     const moduleEntries = useMemo<HistoryEntry[]>(() => {
         return history.filter((entry) => entry.moduleCode === moduleCode);
@@ -141,9 +159,9 @@ export default function ChamberLayout({
     }, [stages]);
 
     const selectedPrintSections = useMemo(() => {
-        if (!hasPrintSections || !printSections) return [];
-        return printSections.filter((section) => selectedPrintSectionIds.includes(section.id));
-    }, [hasPrintSections, printSections, selectedPrintSectionIds]);
+        if (!hasPrintSections) return [];
+        return resolvedPrintSections.filter((section) => selectedPrintSectionIds.includes(section.id));
+    }, [hasPrintSections, resolvedPrintSections, selectedPrintSectionIds]);
 
     const canPrint = !hasPrintSections || selectedPrintSections.length > 0;
 
@@ -247,6 +265,32 @@ export default function ChamberLayout({
             prev.includes(sectionId) ? prev.filter((id) => id !== sectionId) : [...prev, sectionId]
         );
     }, []);
+
+    const handlePrintSelectorToggle = useCallback(() => {
+        if (!printSelectorOpen) {
+            const sections = ensurePrintSectionsLoaded();
+            if (!selectedPrintSectionIds.length && sections.length) {
+                setSelectedPrintSectionIds(sections.map((section) => section.id));
+            }
+        }
+        setPrintSelectorOpen((prev) => !prev);
+    }, [ensurePrintSectionsLoaded, printSelectorOpen, selectedPrintSectionIds.length]);
+
+    const handlePrint = useCallback(() => {
+        const sections = ensurePrintSectionsLoaded();
+        const nextSelectedIds = selectedPrintSectionIds.length
+            ? selectedPrintSectionIds.filter((id) => sections.some((section) => section.id === id))
+            : sections.map((section) => section.id);
+        if (!printContent && sections.length > 0 && nextSelectedIds.length === 0) {
+            return;
+        }
+        flushSync(() => {
+            if (sections.length > 0) {
+                setSelectedPrintSectionIds(nextSelectedIds);
+            }
+        });
+        window.print();
+    }, [ensurePrintSectionsLoaded, printContent, selectedPrintSectionIds]);
 
     const actionPanel = (onVerify || onNext) ? (
         <div className="p-6 bg-white/[0.02] border border-white/10 rounded-2xl max-w-3xl mx-auto w-full space-y-6">
@@ -448,10 +492,10 @@ export default function ChamberLayout({
                     >
                         {historyToggleLabel}
                     </button>
-                    {hasPrintSections && (
+                    {(hasPrintSections || printSectionsBuilder) && (
                         <div className="relative hidden md:block no-print">
                             <button
-                                onClick={() => setPrintSelectorOpen((prev) => !prev)}
+                                onClick={handlePrintSelectorToggle}
                                 className={clsx(
                                     "inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
                                     printSelectorOpen ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
@@ -466,7 +510,7 @@ export default function ChamberLayout({
                                         <span className="text-[9px] uppercase tracking-[0.2em] text-white/70 font-black">{printLabels.selected}: {selectedPrintSections.length}</span>
                                         <div className="flex items-center gap-2">
                                             <button
-                                                onClick={() => setSelectedPrintSectionIds(printSections?.map((section) => section.id) ?? [])}
+                                                onClick={() => setSelectedPrintSectionIds(resolvedPrintSections.map((section) => section.id))}
                                                 className="min-h-[32px] px-2 border border-white/50 text-[9px] font-black tracking-[0.2em] uppercase hover:border-white/80"
                                             >
                                                 {printLabels.all}
@@ -480,7 +524,7 @@ export default function ChamberLayout({
                                         </div>
                                     </div>
                                     <div className="max-h-56 overflow-y-auto space-y-2 pr-1">
-                                        {printSections?.map((section) => {
+                                        {resolvedPrintSections.map((section) => {
                                             const selected = selectedPrintSectionIds.includes(section.id);
                                             return (
                                                 <button
@@ -500,8 +544,8 @@ export default function ChamberLayout({
                             )}
                         </div>
                     )}
-                    <button
-                        onClick={() => canPrint && window.print()}
+                        <button
+                        onClick={() => canPrint && handlePrint()}
                         disabled={!canPrint}
                         className={clsx(
                             "inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 text-[9px] font-black tracking-[0.3em] uppercase transition-all border",
