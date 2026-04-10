@@ -199,7 +199,7 @@ export default function EM201Page() {
     { id: "COMPOSITION" as Stage, label: t.stages.composition },
   ], [t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<MatrixQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<MatrixQuest, Stage>({
     moduleTitle: t.title,
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -256,7 +256,7 @@ export default function EM201Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

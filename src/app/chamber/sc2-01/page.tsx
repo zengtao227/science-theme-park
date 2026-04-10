@@ -178,7 +178,7 @@ export default function SC201Page() {
     { id: "HALF_LIFE" as Stage, label: sc2_01_t.stages.collision },
   ], [sc2_01_t.stages.arrhenius, sc2_01_t.stages.collision, sc2_01_t.stages.concentration]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<KineticsQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<KineticsQuest, Stage>({
     moduleTitle: sc2_01_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -239,7 +239,7 @@ export default function SC201Page() {
       stages={stages}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

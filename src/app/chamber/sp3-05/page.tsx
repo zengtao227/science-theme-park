@@ -490,7 +490,7 @@ export default function SP305Page() {
         { id: "INCLINED_PLANES" as Stage, label: sp3_05_t.stages.inclined_planes },
     ], [sp3_05_t.stages.levers, sp3_05_t.stages.pulleys, sp3_05_t.stages.inclined_planes]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP305Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP305Quest, Stage>({
         moduleTitle: sp3_05_t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -525,7 +525,7 @@ export default function SP305Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

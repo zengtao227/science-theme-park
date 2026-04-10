@@ -271,7 +271,7 @@ export default function SP202OhmsLaw() {
         { id: "PARALLEL_CIRCUITS" as Stage, label: sp2_02_t.stages.parallel_circuits },
     ], [sp2_02_t.stages.ohms_law, sp2_02_t.stages.parallel_circuits, sp2_02_t.stages.series_circuits]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP202Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP202Quest, Stage>({
         moduleTitle: sp2_02_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -348,7 +348,7 @@ export default function SP202OhmsLaw() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

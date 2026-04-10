@@ -358,7 +358,7 @@ export default function S207Page() {
     ADVANCED: t("sm2_07.difficulty.advanced"),
     ELITE: t("sm2_07.difficulty.elite"),
   }), [t]);
-  const printSections = useMemo(() => buildQuestPrintSections<S207Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<S207Quest, Stage>({
     moduleTitle: t("sm2_07.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -392,7 +392,7 @@ export default function S207Page() {
       onNext={next}
       successRate={successRate}
       checkStatus={lastCheck}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       monitorContent={
         <div className="space-y-4">
           <CoordinateCanvas2D

@@ -230,7 +230,7 @@ export default function GB302Immunology() {
         { id: "VACCINES" as Stage, label: t("gb3_02.stages.vaccines") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GB302Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GB302Quest, Stage>({
         moduleTitle: t("gb3_02.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -263,7 +263,7 @@ export default function GB302Immunology() {
             stages={stagesProps}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             translations={{
                 back: t("gb3_02.back"),
                 check: t("gb3_02.check"),

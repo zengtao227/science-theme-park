@@ -634,7 +634,7 @@ export default function SM105Page() {
         ADVANCED: sm1_05_t.difficulty.advanced,
         ELITE: sm1_05_t.difficulty.elite,
     }), [sm1_05_t]);
-    const printSections = useMemo(() => buildQuestPrintSections<S105Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<S105Quest, Stage>({
         moduleTitle: sm1_05_t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -669,7 +669,7 @@ export default function SM105Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             translations={{
                 back: sm1_05_t.back,
                 check: sm1_05_t.check,

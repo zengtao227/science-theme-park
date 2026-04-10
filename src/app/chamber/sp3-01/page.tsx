@@ -518,7 +518,7 @@ export default function SP301Page() {
         { id: "PRECISION" as Stage, label: sp3_01_t.stages.precision },
     ], [sp3_01_t.stages.si_units, sp3_01_t.stages.conversion, sp3_01_t.stages.precision]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP301Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP301Quest, Stage>({
         moduleTitle: sp3_01_t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -553,7 +553,7 @@ export default function SP301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

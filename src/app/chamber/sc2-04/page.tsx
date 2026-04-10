@@ -96,7 +96,7 @@ export default function SC204Page() {
     { id: "elite" as Stage, label: t.difficulty.elite },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SC204QuestType, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SC204QuestType, Stage>({
     moduleTitle: t.title,
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -131,7 +131,7 @@ export default function SC204Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

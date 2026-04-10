@@ -61,7 +61,7 @@ export default function SC107Sustainability() {
         { id: "CIRCULAR_ECONOMY" as Stage, label: sc1_07_t.stages.circular_economy }
     ], [sc1_07_t.stages.circular_economy, sc1_07_t.stages.green_chemistry, sc1_07_t.stages.recycling]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SC107Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SC107Quest, Stage>({
         moduleTitle: sc1_07_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -116,7 +116,7 @@ export default function SC107Sustainability() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}

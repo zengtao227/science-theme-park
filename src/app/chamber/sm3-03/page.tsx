@@ -343,7 +343,7 @@ export default function S303Page() {
     ADVANCED: sm3_03_t.difficulty.advanced,
     ELITE: sm3_03_t.difficulty.elite,
   }), [sm3_03_t]);
-  const printSections = useMemo(() => buildQuestPrintSections<S303Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<S303Quest, Stage>({
     moduleTitle: sm3_03_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -385,7 +385,7 @@ export default function S303Page() {
       onNext={next}
       onVerify={verify}
       checkStatus={lastCheck}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       translations={sm3_03_t}
       monitorContent={
         <div className="space-y-6">

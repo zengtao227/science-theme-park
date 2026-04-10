@@ -71,7 +71,7 @@ export default function SB204Page() {
     [t]
   );
 
-  const printSections = useMemo(() => buildQuestPrintSections<SB204Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SB204Quest, Stage>({
     moduleTitle: t("sb2_04.title"),
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -106,7 +106,7 @@ export default function SB204Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

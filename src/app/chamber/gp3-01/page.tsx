@@ -721,7 +721,7 @@ export default function GP301Page() {
         { id: "OPTICS" as Stage, label: t("gp3_01.stages.optics") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GP301Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GP301Quest, Stage>({
         moduleTitle: t("gp3_01.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -755,7 +755,7 @@ export default function GP301Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                printSections={printSections}
+                printSectionsBuilder={printSections}
                 translations={{
                     back: t("gp3_01.back"),
                     check: t("gp3_01.check"),
@@ -796,7 +796,7 @@ export default function GP301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

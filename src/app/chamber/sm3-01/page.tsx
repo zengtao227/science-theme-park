@@ -286,7 +286,7 @@ export default function S301Page() {
     ADVANCED: t("sm3_01.difficulty.advanced"),
     ELITE: t("sm3_01.difficulty.elite"),
   }), [t]);
-  const printSections = useMemo(() => buildQuestPrintSections<S301Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<S301Quest, Stage>({
     moduleTitle: t("sm3_01.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -324,7 +324,7 @@ export default function S301Page() {
       onNext={next}
       successRate={successRate}
       checkStatus={lastCheck}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       translations={{
         back: t("sm3_01.back"),
         check: t("sm3_01.check"),

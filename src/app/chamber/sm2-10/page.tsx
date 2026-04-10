@@ -777,7 +777,7 @@ export default function SM210Page() {
         { id: "ELITE" as Stage, label: t("sm2_10.stages.elite") },
     ], [t]);
 
-    const printSections = useMemo(() => {
+    const printSections = useMemo(() => () => {
         const difficultyLabels: Record<Difficulty, string> = {
             BASIC: t("sm2_10.difficulty.basic"),
             CORE: t("sm2_10.difficulty.core"),
@@ -819,7 +819,7 @@ export default function SM210Page() {
                     incorrect: t("sm2_10.incorrect"),
                     difficulty: t("sm2_10.difficulty"),
                 }}
-                printSections={printSections}
+                printSectionsBuilder={printSections}
                 monitorContent={<DataVisualization quest={null} stage={stage} />}
             >
                 <div className="text-center text-purple-400 text-xl">Module Complete!</div>
@@ -861,7 +861,7 @@ export default function SM210Page() {
                 incorrect: t("sm2_10.incorrect"),
                 difficulty: t("sm2_10.difficulty"),
             }}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             monitorContent={<DataVisualization quest={currentQuest} stage={stage} />}
         >
             <div className="space-y-6">

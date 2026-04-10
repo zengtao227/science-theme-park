@@ -39,7 +39,7 @@ export default function SC101Page() {
     { id: "REACTIONS" as Stage, label: t("sc1_01.stages.reactions") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SC101QuestType, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SC101QuestType, Stage>({
     moduleTitle: t("sc1_01.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -115,7 +115,7 @@ export default function SC101Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

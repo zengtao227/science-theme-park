@@ -236,7 +236,7 @@ export default function SB101MetabolicPage() {
         { id: "HOMEOSTASIS" as Stage, label: t("sb1_01_metabolic.stages.homeostasis") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<MetabolicQuest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<MetabolicQuest, Stage>({
         moduleTitle: t("sb1_01_metabolic.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -272,7 +272,7 @@ export default function SB101MetabolicPage() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -217,7 +217,7 @@ export default function SC302Page() {
         { id: "ISOMERS" as Stage, label: t("sc3_02.stages.isomers") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SC302Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SC302Quest, Stage>({
         moduleTitle: t("sc3_02.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -264,7 +264,7 @@ export default function SC302Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

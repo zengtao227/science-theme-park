@@ -234,7 +234,7 @@ export default function SB103Page() {
         { id: "MEIOSIS_II" as Stage, label: t("sb1_03.stages.meiosis_ii") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB103Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB103Quest, Stage>({
         moduleTitle: t("sb1_03.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -269,7 +269,7 @@ export default function SB103Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

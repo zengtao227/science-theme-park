@@ -126,7 +126,7 @@ export default function SC105Page() {
         { id: "METALLIC" as Stage, label: sc1_05_t.stages.metallic },
     ], [sc1_05_t.stages.ionic, sc1_05_t.stages.covalent, sc1_05_t.stages.metallic]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<BondQuest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<BondQuest, Stage>({
         moduleTitle: sc1_05_t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -177,7 +177,7 @@ export default function SC105Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -72,7 +72,7 @@ export default function GC101Page() {
         { id: "ANALYZE" as Stage, label: t("gc1_01.stages.analyze") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GC101QuestType, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GC101QuestType, Stage>({
         moduleTitle: t("gc1_01.title"),
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -105,7 +105,7 @@ export default function GC101Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

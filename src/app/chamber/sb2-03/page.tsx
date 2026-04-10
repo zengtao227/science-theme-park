@@ -217,7 +217,7 @@ export default function SB203Page() {
         { id: "DIHYBRID" as Stage, label: t("sb2_03.stages.dihybrid") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB203Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB203Quest, Stage>({
         moduleTitle: t("sb2_03.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -259,7 +259,7 @@ export default function SB203Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

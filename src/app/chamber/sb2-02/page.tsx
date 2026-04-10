@@ -154,7 +154,7 @@ export default function SB202Page() {
         { id: "RESPIRATORY" as Stage, label: t("sb2_02.stages.respiratory") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB202Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB202Quest, Stage>({
         moduleTitle: t("sb2_02.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -189,7 +189,7 @@ export default function SB202Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -237,7 +237,7 @@ export default function GB201Neurobiology() {
         { id: "SYNAPSE" as Stage, label: gb2_01.stages.synapse },
     ], [gb2_01.stages.anatomy, gb2_01.stages.potential, gb2_01.stages.synapse]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GB201Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GB201Quest, Stage>({
         moduleTitle: gb2_01.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -270,7 +270,7 @@ export default function GB201Neurobiology() {
             stages={stagesProps}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={lastCheck?.ok ? next : undefined}
             checkStatus={lastCheck}

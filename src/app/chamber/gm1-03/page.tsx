@@ -158,7 +158,7 @@ export default function GM103Page() {
     { id: "CONTINUITY" as Stage, label: gm1_03_t.stages.continuity },
   ], [gm1_03_t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<GM103Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<GM103Quest, Stage>({
     moduleTitle: gm1_03_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -191,7 +191,7 @@ export default function GM103Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

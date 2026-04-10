@@ -61,7 +61,7 @@ export default function SP103WeatherClimate() {
         { id: "CLIMATE" as Stage, label: sp1_03_t.stages.climate }
     ], [sp1_03_t.stages.atmosphere, sp1_03_t.stages.climate, sp1_03_t.stages.weather]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP103Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP103Quest, Stage>({
         moduleTitle: sp1_03_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -116,7 +116,7 @@ export default function SP103WeatherClimate() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}

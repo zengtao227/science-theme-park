@@ -184,7 +184,7 @@ export default function GP202Page() {
         { id: "WORK_HEAT" as Stage, label: t.stages.work_heat },
     ], [t.stages]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GP202Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GP202Quest, Stage>({
         moduleTitle: t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -220,7 +220,7 @@ export default function GP202Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                printSections={printSections}
+                printSectionsBuilder={printSections}
                 translations={{
                     back: t.back,
                     check: t.check,
@@ -256,7 +256,7 @@ export default function GP202Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

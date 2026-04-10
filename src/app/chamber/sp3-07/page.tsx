@@ -563,7 +563,7 @@ export default function SP307Page() {
         { id: "NAVIGATION" as Stage, label: t("sp3_07.stages.navigation") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP307Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP307Quest, Stage>({
         moduleTitle: t("sp3_07.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -598,7 +598,7 @@ export default function SP307Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -90,7 +90,7 @@ export default function GM102Page() {
     { id: "APPLICATION" as Stage, label: t("gm1_02.stages.application") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<GM102Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<GM102Quest, Stage>({
     moduleTitle: t("gm1_02.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -123,7 +123,7 @@ export default function GM102Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

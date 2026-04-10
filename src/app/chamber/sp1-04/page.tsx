@@ -61,7 +61,7 @@ export default function SP104AstronomyBasics() {
         { id: "SEASONS" as Stage, label: sp1_04_t.stages.seasons }
     ], [sp1_04_t.stages.moon_phases, sp1_04_t.stages.seasons, sp1_04_t.stages.solar_system]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP104Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP104Quest, Stage>({
         moduleTitle: sp1_04_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -116,7 +116,7 @@ export default function SP104AstronomyBasics() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={handleVerify}
             onNext={next}
             checkStatus={lastCheck}

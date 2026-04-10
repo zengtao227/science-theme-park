@@ -42,7 +42,7 @@ export default function P301Page() {
     { id: "LENSES" as Stage, label: t("sp3_08.stages.lenses") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SP308Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SP308Quest, Stage>({
     moduleTitle: t("sp3_08.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -113,7 +113,7 @@ export default function P301Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       checkStatus={lastCheck}
       onVerify={verify}
       onNext={next}

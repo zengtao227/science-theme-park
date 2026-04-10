@@ -436,7 +436,7 @@ export default function SM209Page() {
     }
   }, [currentQuest, sm2_09_t.basel_scenarios]);
 
-  const printableSections = useMemo(() => {
+  const printableSections = useMemo(() => () => {
     const difficultyLabels: Record<Difficulty, string> = {
       BASIC: sm2_09_t.difficulty.basic,
       CORE: sm2_09_t.difficulty.core,
@@ -537,7 +537,7 @@ export default function SM209Page() {
       ]}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChangeLocal(s as Stage)}
-      printSections={printableSections}
+      printSectionsBuilder={printableSections}
       checkStatus={lastCheck}
       onVerify={handleVerify}
       onNext={handleNext}

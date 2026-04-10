@@ -790,7 +790,7 @@ export default function SC205Page() {
     { id: "TITRATION" as Stage, label: sc2_05_t.stages.titration },
   ], [sc2_05_t.stages.neutralization, sc2_05_t.stages.ph_basics, sc2_05_t.stages.titration]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<AcidBaseQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<AcidBaseQuest, Stage>({
     moduleTitle: sc2_05_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -862,7 +862,7 @@ export default function SC205Page() {
       stages={stages}
       currentStage={currentStage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

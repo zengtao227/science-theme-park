@@ -333,7 +333,7 @@ export default function SB301Page() {
         { id: "ELITE" as Stage, label: t("sb3_01.stages.elite") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB301Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB301Quest, Stage>({
         moduleTitle: t("sb3_01.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -368,7 +368,7 @@ export default function SB301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

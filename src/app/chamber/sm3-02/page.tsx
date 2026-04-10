@@ -283,7 +283,7 @@ export default function S302Page() {
         ADVANCED: t("sm3_02.difficulty.advanced"),
         ELITE: t("sm3_02.difficulty.elite"),
     }), [t]);
-    const printSections = useMemo(() => buildQuestPrintSections<S302Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<S302Quest, Stage>({
         moduleTitle: t("sm3_02.title"),
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -317,7 +317,7 @@ export default function S302Page() {
             onNext={next}
             onVerify={verify}
             checkStatus={lastCheck}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             translations={{
                 back: t("sm3_02.back"),
                 check: t("sm3_02.check"),

@@ -196,7 +196,7 @@ export default function EM101Page() {
     { id: "SURVEY" as Stage, label: t.stages.survey },
   ], [t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<ThalesQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<ThalesQuest, Stage>({
     moduleTitle: t.title,
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -233,7 +233,7 @@ export default function EM101Page() {
         stages={stagesProps}
         currentStage={stage}
         onStageChange={(s) => handleStageChange(s as Stage)}
-        printSections={printSections}
+        printSectionsBuilder={printSections}
         translations={{
           back: t.back,
           check: t.check,
@@ -269,7 +269,7 @@ export default function EM101Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={handleNext}
       checkStatus={lastCheck}

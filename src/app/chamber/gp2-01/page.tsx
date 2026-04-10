@@ -428,7 +428,7 @@ export default function GP201Page() {
         { id: "CHARLES_LAW" as Stage, label: t.stages.charles },
     ], [t.stages]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GP201Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GP201Quest, Stage>({
         moduleTitle: t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -465,7 +465,7 @@ export default function GP201Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                printSections={printSections}
+                printSectionsBuilder={printSections}
                 translations={{
                     back: t.back,
                     check: t.check,
@@ -501,7 +501,7 @@ export default function GP201Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -81,7 +81,7 @@ export default function GM401Page() {
     { id: "POLAR" as Stage, label: gm4_01_t.stages.polar },
   ], [gm4_01_t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<G401Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<G401Quest, Stage>({
     moduleTitle: gm4_01_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -114,7 +114,7 @@ export default function GM401Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

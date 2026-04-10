@@ -673,7 +673,7 @@ export default function SP304Page() {
         { id: "HYDRAULICS" as Stage, label: t("sp3_04.stages.hydraulics") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP304Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP304Quest, Stage>({
         moduleTitle: t("sp3_04.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -708,7 +708,7 @@ export default function SP304Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

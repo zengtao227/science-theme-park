@@ -222,7 +222,7 @@ export default function SC304Page() {
         { id: "ESTERS" as Stage, label: t("sc3_04.stages.esters") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SC304Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SC304Quest, Stage>({
         moduleTitle: t("sc3_04.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -265,7 +265,7 @@ export default function SC304Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

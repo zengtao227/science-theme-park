@@ -302,7 +302,7 @@ export default function P104Page() {
     { id: "resonance" as Stage, label: gp1_04_t.stages.resonance },
   ], [gp1_04_t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<TunnelQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<TunnelQuest, Stage>({
     moduleTitle: gp1_04_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -335,7 +335,7 @@ export default function P104Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

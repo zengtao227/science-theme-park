@@ -156,7 +156,7 @@ export default function SC305MolecularForge() {
         { id: "MO_THEORY" as Stage, label: sc3_05_t.stages.mo_theory },
     ], [sc3_05_t.stages.hybridization, sc3_05_t.stages.mo_theory, sc3_05_t.stages.vsepr]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SC305Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SC305Quest, Stage>({
         moduleTitle: sc3_05_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -189,7 +189,7 @@ export default function SC305MolecularForge() {
             stages={stages}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             translations={sc3_05_t}
             checkStatus={lastCheck}
             onVerify={verify}

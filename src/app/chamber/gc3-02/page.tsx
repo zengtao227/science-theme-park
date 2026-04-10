@@ -77,7 +77,7 @@ export default function GC302Page() {
     { id: "FCC" as Stage, label: t("gc3_02.stages.fcc") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<GC302QuestType, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<GC302QuestType, Stage>({
     moduleTitle: t("gc3_02.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -110,7 +110,7 @@ export default function GC302Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -101,7 +101,7 @@ export default function SC207Page() {
     { id: 'CALORIMETRY' as Stage, label: t('sc2_07.stages.calorimetry') },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SC207Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SC207Quest, Stage>({
     moduleTitle: t('sc2_07.title'),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -134,7 +134,7 @@ export default function SC207Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

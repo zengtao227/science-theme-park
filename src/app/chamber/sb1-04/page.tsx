@@ -253,7 +253,7 @@ export default function SB104PlantStructure() {
         { id: "NUTRIENT_TRANSPORT" as Stage, label: sb1_04_t.stages.nutrient_transport },
     ], [sb1_04_t.stages]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB104Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB104Quest, Stage>({
         moduleTitle: sb1_04_t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -323,7 +323,7 @@ export default function SB104PlantStructure() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

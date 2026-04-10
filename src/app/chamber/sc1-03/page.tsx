@@ -202,7 +202,7 @@ export default function SC1_03_AtomsForge() {
         { id: "isotopes" as Stage, label: t("sc1_03.stages.isotopes") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<AtomQuest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<AtomQuest, Stage>({
         moduleTitle: t("sc1_03.title"),
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -235,7 +235,7 @@ export default function SC1_03_AtomsForge() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

@@ -27,7 +27,7 @@ export default function SP101_ForcesBasics() {
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildSP101Pool(d as any, s, t), [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<any, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<any, Stage>({
     moduleTitle: t("sp1_01.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -108,7 +108,7 @@ export default function SP101_ForcesBasics() {
       stages={stages}
       currentStage={stage}
       onStageChange={handleStageChange as (s: string) => void}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={canNext ? next : undefined}
       checkStatus={lastCheck}

@@ -338,7 +338,7 @@ export default function GP302Electromagnetism() {
         { id: "PARTICLE_MOTION" as Stage, label: gp3_02_t.stages.particle_motion },
     ], [gp3_02_t.stages]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GP302Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GP302Quest, Stage>({
         moduleTitle: gp3_02_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -379,7 +379,7 @@ export default function GP302Electromagnetism() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

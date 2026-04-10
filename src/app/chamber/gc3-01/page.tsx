@@ -74,7 +74,7 @@ export default function GC301Page() {
     { id: "PRESSURE" as Stage, label: t("gc3_01.stages.pressure") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<GC301QuestType, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<GC301QuestType, Stage>({
     moduleTitle: t("gc3_01.title"),
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -107,7 +107,7 @@ export default function GC301Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

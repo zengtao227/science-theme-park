@@ -401,7 +401,7 @@ export default function SC206Page() {
     [t]
   );
 
-  const printSections = useMemo(() => buildQuestPrintSections<SC206Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SC206Quest, Stage>({
     moduleTitle: t("sc2_06.title"),
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -434,7 +434,7 @@ export default function SC206Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

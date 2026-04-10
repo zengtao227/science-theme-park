@@ -251,7 +251,7 @@ export default function SB201TissuesPage() {
         { id: "SYSTEMS" as Stage, label: t("sb2_01_tissues.stages.systems") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB201TissuesQuest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB201TissuesQuest, Stage>({
         moduleTitle: t("sb2_01_tissues.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -287,7 +287,7 @@ export default function SB201TissuesPage() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

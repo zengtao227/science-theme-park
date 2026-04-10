@@ -712,7 +712,7 @@ export default function S202Page() {
     { id: "SIMPLIFY", label: sm2_02_t.sqrt.simplify },
     { id: "ESTIMATE", label: sm2_02_t.sqrt.estimate },
   ], [sm2_02_t]);
-  const printSections = useMemo(() => buildQuestPrintSections<S202Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<S202Quest, Stage>({
     moduleTitle: sm2_02_t.title,
     stages: printStages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -791,7 +791,7 @@ export default function S202Page() {
       onVerify={verify}
       onNext={next}
       successRate={successRate}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       translations={{
         back: sm2_02_t.back,
         check: sm2_02_t.check,

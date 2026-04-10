@@ -216,7 +216,7 @@ export default function SC303Page() {
         { id: "ADDITION" as Stage, label: t("sc3_03.stages.addition") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SC303Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SC303Quest, Stage>({
         moduleTitle: t("sc3_03.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -257,7 +257,7 @@ export default function SC303Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

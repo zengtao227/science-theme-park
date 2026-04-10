@@ -664,7 +664,7 @@ export default function SP306Page() {
         { id: "LOUDNESS_INTENSITY" as Stage, label: t("sp3_06.stages.loudness_intensity") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP306Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP306Quest, Stage>({
         moduleTitle: t("sp3_06.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -698,7 +698,7 @@ export default function SP306Page() {
                 stages={stagesProps}
                 currentStage={stage}
                 onStageChange={(s) => handleStageChange(s as Stage)}
-                printSections={printSections}
+                printSectionsBuilder={printSections}
                 translations={{
                     back: t("sp3_06.back"),
                     check: t("sp3_06.check"),
@@ -734,7 +734,7 @@ export default function SP306Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

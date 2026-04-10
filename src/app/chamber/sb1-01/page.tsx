@@ -231,7 +231,7 @@ export default function SB101Page() {
         { id: "ORGANELLES" as Stage, label: t("sb1_01.stages.organelles") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB101Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB101Quest, Stage>({
         moduleTitle: t("sb1_01.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -266,7 +266,7 @@ export default function SB101Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

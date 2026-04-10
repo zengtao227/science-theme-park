@@ -362,7 +362,7 @@ export default function SC202Page() {
         { id: "INDICATORS" as Stage, label: sc2_02_t.stages.indicators },
     ], [sc2_02_t.stages.curves, sc2_02_t.stages.equivalence, sc2_02_t.stages.indicators]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<TitrationQuest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<TitrationQuest, Stage>({
         moduleTitle: sc2_02_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -403,7 +403,7 @@ export default function SC202Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

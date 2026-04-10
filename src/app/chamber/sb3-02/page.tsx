@@ -92,52 +92,56 @@ export default function BiodiversityModule() {
     ? Math.round((completedQuestIds.length / allQuests.length) * 100)
     : 0;
 
-  const printSections: PrintSection[] = stages.map((stage) => {
-    const groups = (['BASIC', 'CORE', 'ADVANCED', 'ELITE'] as Difficulty[])
-      .map((level) => ({
-        difficulty: level,
-        quests: allQuests.filter((quest) => quest.stageId === stage.id && quest.difficulty === level),
-      }))
-      .filter((group) => group.quests.length > 0);
+  const printSectionsBuilder = React.useCallback(
+    (): PrintSection[] =>
+      stages.map((stage) => {
+        const groups = (['BASIC', 'CORE', 'ADVANCED', 'ELITE'] as Difficulty[])
+          .map((level) => ({
+            difficulty: level,
+            quests: allQuests.filter((quest) => quest.stageId === stage.id && quest.difficulty === level),
+          }))
+          .filter((group) => group.quests.length > 0);
 
-    return {
-      id: stage.id,
-      label: stage.title[language],
-      content: (
-        <article className="text-black bg-white px-8 py-6 space-y-6">
-          <header className="border-b-2 border-black pb-3">
-            <h2 className="text-2xl font-black tracking-wide">{sb3Copy.title}</h2>
-            <p className="text-sm font-semibold mt-1">{stage.title[language]}</p>
-          </header>
+        return {
+          id: stage.id,
+          label: stage.title[language],
+          content: (
+            <article className="text-black bg-white px-8 py-6 space-y-6">
+              <header className="border-b-2 border-black pb-3">
+                <h2 className="text-2xl font-black tracking-wide">{sb3Copy.title}</h2>
+                <p className="text-sm font-semibold mt-1">{stage.title[language]}</p>
+              </header>
 
-          {groups.map((group) => (
-            <section key={group.difficulty} className="space-y-4">
-              <h3 className="text-lg font-black border-l-4 border-black pl-3">
-                {sb3Copy.difficulty[group.difficulty.toLowerCase() as 'basic' | 'core' | 'advanced' | 'elite']}
-              </h3>
-              <div className="space-y-5">
-                {group.quests.map((quest, index) => (
-                  <div key={quest.id} className="border border-black/30 p-4 space-y-3 break-inside-avoid">
-                    <div className="text-sm font-bold">
-                      {index + 1}. {quest.questions[0]?.prompt[language] ?? quest.title[language]}
-                    </div>
-                    <div className="text-sm opacity-80">
-                      {quest.description[language]}
-                    </div>
-                    <div className="space-y-2 pt-1">
-                      <div className="h-7 border-b border-black" />
-                      <div className="h-7 border-b border-black" />
-                    </div>
-                    <div className="text-xs opacity-60">Q{index + 1}.{quest.id}</div>
+              {groups.map((group) => (
+                <section key={group.difficulty} className="space-y-4">
+                  <h3 className="text-lg font-black border-l-4 border-black pl-3">
+                    {sb3Copy.difficulty[group.difficulty.toLowerCase() as 'basic' | 'core' | 'advanced' | 'elite']}
+                  </h3>
+                  <div className="space-y-5">
+                    {group.quests.map((quest, index) => (
+                      <div key={quest.id} className="border border-black/30 p-4 space-y-3 break-inside-avoid">
+                        <div className="text-sm font-bold">
+                          {index + 1}. {quest.questions[0]?.prompt[language] ?? quest.title[language]}
+                        </div>
+                        <div className="text-sm opacity-80">
+                          {quest.description[language]}
+                        </div>
+                        <div className="space-y-2 pt-1">
+                          <div className="h-7 border-b border-black" />
+                          <div className="h-7 border-b border-black" />
+                        </div>
+                        <div className="text-xs opacity-60">Q{index + 1}.{quest.id}</div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
-          ))}
-        </article>
-      ),
-    };
-  });
+                </section>
+              ))}
+            </article>
+          ),
+        };
+      }),
+    [language, sb3Copy]
+  );
 
   return (
     <ChamberLayout
@@ -148,7 +152,7 @@ export default function BiodiversityModule() {
       stages={stageLabels}
       currentStage={currentStageId}
       onStageChange={setCurrentStageId}
-      printSections={printSections}
+      printSectionsBuilder={printSectionsBuilder}
       translations={{
         back: sb3Copy.back,
         check: sb3Copy.check,

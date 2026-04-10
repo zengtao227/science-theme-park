@@ -64,7 +64,7 @@ export default function SP201CircuitBasics() {
     { id: "DIAGRAMS" as Stage, label: sp2_01_t.stages.circuit_diagrams },
   ], [sp2_01_t.stages.circuit_diagrams, sp2_01_t.stages.components, sp2_01_t.stages.simple_circuits]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SP201Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SP201Quest, Stage>({
     moduleTitle: sp2_01_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -163,7 +163,7 @@ export default function SP201CircuitBasics() {
         }
         handleStageChange(nextStage);
       }}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

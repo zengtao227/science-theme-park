@@ -1269,7 +1269,7 @@ export default function G101AdvancedPage() {
     { id: "ANALYSIS" as Challenge, label: gm1_01_advanced_t.challenges.analysis },
   ], [gm1_01_advanced_t.challenges]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<G101AdvQuest, Challenge>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<G101AdvQuest, Challenge>({
     moduleTitle: gm1_01_advanced_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -1303,7 +1303,7 @@ export default function G101AdvancedPage() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Challenge)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

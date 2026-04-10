@@ -232,7 +232,7 @@ export default function SB105AnimalClassification() {
         { id: "BEHAVIOR_EVOLUTION" as Stage, label: sb1_05_t.stages.behavior_evolution },
     ], [sb1_05_t.stages]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB105Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB105Quest, Stage>({
         moduleTitle: sb1_05_t.title,
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -313,7 +313,7 @@ export default function SB105AnimalClassification() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

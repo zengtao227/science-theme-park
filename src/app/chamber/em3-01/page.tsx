@@ -27,7 +27,7 @@ export default function OlympiadChallenge() {
         return buildOlympiadPool(t, difficulty, stage);
     }, [t]);
     const stages = useMemo(() => [{ id: "logic" as const, label: t("em3_01.stages.logic") }], [t]);
-    const printSections = useMemo(() => buildQuestPrintSections<OlympiadQuest, "logic">({
+    const printSections = useMemo(() => () => buildQuestPrintSections<OlympiadQuest, "logic">({
         moduleTitle: t("home.em3_01_title"),
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -96,7 +96,7 @@ export default function OlympiadChallenge() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as "logic")}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

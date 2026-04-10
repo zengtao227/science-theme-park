@@ -77,7 +77,7 @@ export default function SP303Page() {
     { id: "POWER" as Stage, label: t("sp3_03.stages.work") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SP303Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SP303Quest, Stage>({
     moduleTitle: t("sp3_03.title"),
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -112,7 +112,7 @@ export default function SP303Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

@@ -139,7 +139,7 @@ export default function G201Page() {
     { id: "MISSION" as Stage, label: gm2_01_t.stages.mission },
   ], [gm2_01_t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<G201Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<G201Quest, Stage>({
     moduleTitle: gm2_01_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -172,7 +172,7 @@ export default function G201Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

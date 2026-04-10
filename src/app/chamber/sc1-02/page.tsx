@@ -77,7 +77,7 @@ export default function C102Page() {
     { id: "YIELD" as Stage, label: sc1_02_t.stages.yield },
   ], [sc1_02_t.stages.molar_mass, sc1_02_t.stages.stoichiometry, sc1_02_t.stages.yield]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SC102QuestType, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SC102QuestType, Stage>({
     moduleTitle: sc1_02_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -159,7 +159,7 @@ export default function C102Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

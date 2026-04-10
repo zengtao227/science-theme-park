@@ -113,7 +113,7 @@ export default function GB202Page() {
     { id: "CLINICAL_APPLICATIONS" as Stage, label: gb2_02_t.clinical_applications },
   ], [gb2_02_t.clinical_applications, gb2_02_t.feedback_mechanisms, gb2_02_t.hormone_identification]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<GB202Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<GB202Quest, Stage>({
     moduleTitle: gb2_02_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -163,7 +163,7 @@ export default function GB202Page() {
       stages={stages}
       onDifficultyChange={handleDifficultyChange}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       translations={{
         back: gb2_02_t.back,
         check: gb2_02_t.check,

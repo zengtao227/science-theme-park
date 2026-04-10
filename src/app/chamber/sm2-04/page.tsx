@@ -750,7 +750,7 @@ export default function S204Page() {
         ELITE: t("sm2_04.difficulty.elite"),
     }), [t]);
     const difficultyLabel = difficultyLabelMap[difficulty] || difficulty;
-    const printSections = useMemo(() => buildQuestPrintSections<S204Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<S204Quest, Stage>({
         moduleTitle: t("sm2_04.title"),
         stages,
         difficultyOrder: PRINT_DIFFICULTY_ORDER,
@@ -784,7 +784,7 @@ export default function S204Page() {
             onNext={next}
             successRate={successRate}
             checkStatus={lastCheck}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             translations={{
                 back: t("sm2_04.back"),
                 check: t("sm2_04.check"),

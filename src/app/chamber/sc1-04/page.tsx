@@ -175,7 +175,7 @@ export default function SC104Page() {
     { id: "groups" as Stage, label: sc1_04_t.stages.groups },
   ], [sc1_04_t.stages.build, sc1_04_t.stages.groups, sc1_04_t.stages.periodic]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<PeriodicQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<PeriodicQuest, Stage>({
     moduleTitle: sc1_04_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -208,7 +208,7 @@ export default function SC104Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

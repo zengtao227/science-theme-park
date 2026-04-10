@@ -305,7 +305,7 @@ export default function P103Page() {
     { id: "detection" as Stage, label: gp1_03_t.stages.detection },
   ], [gp1_03_t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<ColliderQuest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<ColliderQuest, Stage>({
     moduleTitle: gp1_03_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -338,7 +338,7 @@ export default function P103Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

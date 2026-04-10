@@ -137,7 +137,7 @@ export default function GC201Page() {
         { id: "BIOMOLECULES" as Stage, label: t("gc2_01.stages.biomolecules") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<OrganicQuest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<OrganicQuest, Stage>({
         moduleTitle: t("gc2_01.title"),
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -176,7 +176,7 @@ export default function GC201Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

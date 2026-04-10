@@ -303,7 +303,7 @@ export default function GP303Induction() {
         { id: "GENERATORS" as Stage, label: gp3_03_t.stages.generators },
     ], [gp3_03_t.stages]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GP303Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GP303Quest, Stage>({
         moduleTitle: gp3_03_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -344,7 +344,7 @@ export default function GP303Induction() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

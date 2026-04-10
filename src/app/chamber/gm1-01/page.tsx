@@ -186,7 +186,7 @@ export default function G101Page() {
     { id: "CHAIN_RULE" as Stage, label: gm1_01_t.stages.chain_rule },
   ], [gm1_01_t.stages]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<G101Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<G101Quest, Stage>({
     moduleTitle: gm1_01_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -219,7 +219,7 @@ export default function G101Page() {
       stages={stages}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

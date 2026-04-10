@@ -67,7 +67,7 @@ export default function SP102NewtonsLaws() {
         { id: "THIRD_LAW" as Stage, label: sp1_02_t.stages.third_law },
     ], [sp1_02_t.stages.first_law, sp1_02_t.stages.second_law, sp1_02_t.stages.third_law]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP102Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP102Quest, Stage>({
         moduleTitle: sp1_02_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -156,7 +156,7 @@ export default function SP102NewtonsLaws() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

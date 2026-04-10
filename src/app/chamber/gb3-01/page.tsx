@@ -243,7 +243,7 @@ export default function GB301Page() {
         { id: "SEQUENCE" as Stage, label: t("gb3_01.stages.sequence") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GB301Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GB301Quest, Stage>({
         moduleTitle: t("gb3_01.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -278,7 +278,7 @@ export default function GB301Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

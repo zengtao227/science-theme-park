@@ -229,7 +229,7 @@ export default function SB102Page() {
         { id: "CHLOROPLAST" as Stage, label: t("sb1_02.stages.chloroplast") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SB102Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SB102Quest, Stage>({
         moduleTitle: t("sb1_02.title"),
         stages: stagesProps,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -264,7 +264,7 @@ export default function SB102Page() {
             stages={stagesProps}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

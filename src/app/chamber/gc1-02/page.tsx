@@ -70,7 +70,7 @@ export default function GC102Page() {
         { id: "CORROSION" as Stage, label: t("gc1_02.stages.corrosion") },
     ], [t]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<GC102QuestType, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<GC102QuestType, Stage>({
         moduleTitle: t("gc1_02.title"),
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -103,7 +103,7 @@ export default function GC102Page() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}

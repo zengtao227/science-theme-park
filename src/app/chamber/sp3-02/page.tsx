@@ -77,7 +77,7 @@ export default function SP302Page() {
     { id: "FRICTION" as Stage, label: t("sp3_02.stages.friction") },
   ], [t]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<SP302Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<SP302Quest, Stage>({
     moduleTitle: t("sp3_02.title"),
     stages: stagesProps,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -112,7 +112,7 @@ export default function SP302Page() {
       stages={stagesProps}
       currentStage={stage}
       onStageChange={(s) => handleStageChange(s as Stage)}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

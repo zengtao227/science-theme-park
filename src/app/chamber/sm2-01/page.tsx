@@ -452,7 +452,7 @@ export default function S201Page() {
     ADVANCED: sm2_01_t.difficulty?.advanced,
     ELITE: sm2_01_t.difficulty?.elite,
   }), [sm2_01_t]);
-  const printSections = useMemo(() => buildQuestPrintSections<S201Quest, QuestMode>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<S201Quest, QuestMode>({
     moduleTitle: sm2_01_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -545,7 +545,7 @@ export default function S201Page() {
       onVerify={verify}
       onNext={next}
       successRate={successRate}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       translations={{
         back: sm2_01_t.back,
         check: sm2_01_t.check,

@@ -154,7 +154,7 @@ export default function GM202Page() {
     { id: "SPATIAL_RELATIONSHIPS" as Stage, label: gm2_02_t.spatial_relationships },
   ], [gm2_02_t.line_equations, gm2_02_t.plane_geometry, gm2_02_t.spatial_relationships]);
 
-  const printSections = useMemo(() => buildQuestPrintSections<GM202Quest, Stage>({
+  const printSections = useMemo(() => () => buildQuestPrintSections<GM202Quest, Stage>({
     moduleTitle: gm2_02_t.title,
     stages,
     difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -197,7 +197,7 @@ export default function GM202Page() {
         }
         handleStageChange(nextStage);
       }}
-      printSections={printSections}
+      printSectionsBuilder={printSections}
       onVerify={verify}
       onNext={next}
       checkStatus={lastCheck}

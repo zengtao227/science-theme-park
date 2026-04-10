@@ -368,7 +368,7 @@ export default function SP203ElectricPower() {
         { id: "EFFICIENCY" as Stage, label: sp2_03_t.stages.efficiency },
     ], [sp2_03_t.stages.efficiency, sp2_03_t.stages.energy_consumption, sp2_03_t.stages.power_basics]);
 
-    const printSections = useMemo(() => buildQuestPrintSections<SP203Quest, Stage>({
+    const printSections = useMemo(() => () => buildQuestPrintSections<SP203Quest, Stage>({
         moduleTitle: sp2_03_t.title,
         stages,
         difficultyOrder: DEFAULT_PRINT_DIFFICULTIES,
@@ -443,7 +443,7 @@ export default function SP203ElectricPower() {
             stages={stages}
             currentStage={stage}
             onStageChange={(s) => handleStageChange(s as Stage)}
-            printSections={printSections}
+            printSectionsBuilder={printSections}
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
