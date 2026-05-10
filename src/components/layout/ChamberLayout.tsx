@@ -120,9 +120,11 @@ export default function ChamberLayout({
     const [printSelectorOpen, setPrintSelectorOpen] = useState(false);
     const [selectedPrintSectionIds, setSelectedPrintSectionIds] = useState<string[]>([]);
     const [lazyPrintSections, setLazyPrintSections] = useState<{ id: string; label: string; content: React.ReactNode }[] | null>(null);
-    const resolvedPrintSections = printSections ?? lazyPrintSections ?? [];
+    const resolvedPrintSections = useMemo(
+        () => printSections ?? lazyPrintSections ?? [],
+        [lazyPrintSections, printSections]
+    );
     const hasPrintSections = resolvedPrintSections.length > 0;
-    const hasPrintCapability = !!printContent || hasPrintSections || !!printSectionsBuilder;
     const hasPrintContent = !!printContent || hasPrintSections;
 
     const ensurePrintSectionsLoaded = useCallback(() => {
@@ -466,7 +468,7 @@ export default function ChamberLayout({
     return (
         <div className={clsx("chamber-root w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono", hasPrintContent && "has-print-content")}>
             <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
-                <Link href="/" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10 text-nowrap">
+                <Link href="/nexus" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10 text-nowrap">
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     <span className="text-xs font-black tracking-[0.2em] uppercase">{translations.back}</span>
                 </Link>

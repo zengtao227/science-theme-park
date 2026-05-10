@@ -277,7 +277,7 @@ export default function GP1_02_RelativityLab() {
             <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
                 <div className="flex justify-between items-center mb-2">
                     <h1 className="text-2xl font-bold text-cyan-400">{t("gp1_02.title")}</h1>
-                    <Link href="/" className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors">
+                    <Link href="/nexus" className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors">
                         {t("gp1_02.back")}
                     </Link>
                 </div>
