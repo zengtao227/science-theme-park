@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ArrowLeft, Home } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Error({
@@ -11,6 +12,17 @@ export default function Error({
   reset: () => void;
 }) {
   const { t } = useLanguage();
+  const moduleNavLabels: {
+    home: string;
+    homeAria: string;
+    nexus: string;
+    nexusAria: string;
+  } = {
+    home: t("common.module_nav.home"),
+    homeAria: t("common.module_nav.home_aria"),
+    nexus: t("common.module_nav.nexus"),
+    nexusAria: t("common.module_nav.nexus_aria"),
+  };
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-8">
@@ -28,12 +40,26 @@ export default function Error({
         >
           {t("common.try_again")}
         </button>
-        <Link
-          href="/"
-          className="block w-full mt-3 px-6 py-3 border border-white/60 text-center text-white/70 hover:bg-white/5 transition-all"
-        >
-          {t("sm2_01.back_short")}
-        </Link>
+        <div className="mt-3 grid grid-cols-2 gap-3">
+          <Link
+            href="/"
+            aria-label={moduleNavLabels.homeAria}
+            title={moduleNavLabels.homeAria}
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 bg-white px-4 py-3 text-center font-black text-black transition-all hover:bg-white/90"
+          >
+            <Home className="h-4 w-4" />
+            <span className="text-[10px] uppercase tracking-[0.2em]">{moduleNavLabels.home}</span>
+          </Link>
+          <Link
+            href="/nexus"
+            aria-label={moduleNavLabels.nexusAria}
+            title={moduleNavLabels.nexusAria}
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-white/60 px-4 py-3 text-center text-white/70 transition-all hover:bg-white/5"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="text-[10px] uppercase tracking-[0.2em]">{moduleNavLabels.nexus}</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

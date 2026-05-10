@@ -31,6 +31,13 @@ export const cnCommon = {
         incorrect: "不匹配",
         reference: "参考",
         none: "无",
+        module_nav: {
+            aria_label: "模块导航",
+            home: "主页",
+            home_aria: "返回主页",
+            nexus: "枢纽",
+            nexus_aria: "返回核心枢纽"
+        },
         achievements_title: "成就",
         achievement_unlocked: "成就解锁",
         notification: {

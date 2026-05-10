@@ -31,6 +31,13 @@ export const enCommon = {
         incorrect: "Mismatch",
         reference: "Reference",
         none: "None",
+        module_nav: {
+            aria_label: "Module navigation",
+            home: "Home",
+            home_aria: "Return to home page",
+            nexus: "Nexus",
+            nexus_aria: "Return to Nexus hub"
+        },
         achievements_title: "Achievements",
         achievement_unlocked: "Achievement Unlocked",
         notification: {

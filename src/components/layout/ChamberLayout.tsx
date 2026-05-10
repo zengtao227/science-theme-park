@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
-import { ArrowLeft, Sigma, X, Printer } from "lucide-react";
+import { ArrowLeft, Home, Sigma, X, Printer } from "lucide-react";
 import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import ConceptIcon from "@/components/ConceptIcon";
@@ -261,6 +261,19 @@ export default function ChamberLayout({
         clear: t("common.chamber_layout.print.clear"),
         selected: t("common.chamber_layout.print.selected"),
     };
+    const moduleNavLabels: {
+        ariaLabel: string;
+        home: string;
+        homeAria: string;
+        nexus: string;
+        nexusAria: string;
+    } = {
+        ariaLabel: t("common.module_nav.aria_label"),
+        home: t("common.module_nav.home"),
+        homeAria: t("common.module_nav.home_aria"),
+        nexus: t("common.module_nav.nexus"),
+        nexusAria: t("common.module_nav.nexus_aria"),
+    };
 
     const togglePrintSection = useCallback((sectionId: string) => {
         setSelectedPrintSectionIds((prev) =>
@@ -468,10 +481,26 @@ export default function ChamberLayout({
     return (
         <div className={clsx("chamber-root w-full h-screen bg-black text-white overflow-hidden flex flex-col font-mono", hasPrintContent && "has-print-content")}>
             <header className="relative p-4 border-b-2 border-white flex justify-between items-center bg-black z-30 shadow-2xl h-20">
-                <Link href="/nexus" className="flex items-center gap-2 px-3 py-1.5 hover:text-white text-white/70 transition-all group z-10 text-nowrap">
-                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    <span className="text-xs font-black tracking-[0.2em] uppercase">{translations.back}</span>
-                </Link>
+                <nav aria-label={moduleNavLabels.ariaLabel} className="flex flex-shrink-0 items-center gap-2 z-20">
+                    <Link
+                        href="/"
+                        aria-label={moduleNavLabels.homeAria}
+                        title={moduleNavLabels.homeAria}
+                        className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 border border-white bg-white px-3 py-1.5 text-black transition-all hover:bg-white/90 active:scale-95"
+                    >
+                        <Home className="h-4 w-4" />
+                        <span className="hidden text-xs font-black uppercase tracking-[0.2em] sm:inline">{moduleNavLabels.home}</span>
+                    </Link>
+                    <Link
+                        href="/nexus"
+                        aria-label={moduleNavLabels.nexusAria}
+                        title={moduleNavLabels.nexusAria}
+                        className="group inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 border border-white/70 px-3 py-1.5 text-white/70 transition-all hover:border-white hover:text-white active:scale-95"
+                    >
+                        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                        <span className="hidden text-xs font-black uppercase tracking-[0.2em] sm:inline">{moduleNavLabels.nexus}</span>
+                    </Link>
+                </nav>
 
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none flex flex-col items-center">
                     <ConceptIcon code={moduleCode} className="w-8 h-8 text-white mb-1" />

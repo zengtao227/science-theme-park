@@ -31,6 +31,13 @@ export const deCommon = {
         incorrect: "Abweichung",
         reference: "Referenz",
         none: "Keine",
+        module_nav: {
+            aria_label: "Modulnavigation",
+            home: "Start",
+            home_aria: "Zur Startseite zurückkehren",
+            nexus: "Nexus",
+            nexus_aria: "Zum Nexus-Hub zurückkehren"
+        },
         achievements_title: "Errungenschaften",
         achievement_unlocked: "Errungenschaft freigeschaltet",
         notification: {

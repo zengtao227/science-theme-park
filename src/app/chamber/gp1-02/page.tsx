@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { ArrowLeft, Home } from "lucide-react";
 import { InlineMath } from "react-katex";
 import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
 import type { FeedbackContent, FeedbackLevel, FeedbackPolicy } from "@/hooks/useQuestManager";
@@ -46,6 +47,19 @@ export default function GP1_02_RelativityLab() {
     const gammaValue = t("gp1_02.labels.gamma_value").replace("{value}", gamma.toFixed(3));
     const timeDilationValue = t("gp1_02.effects.time_dilation_value").replace("{value}", timeDilation.toFixed(3));
     const lengthContractionValue = t("gp1_02.effects.length_contraction_value").replace("{value}", lengthContraction.toFixed(3));
+    const moduleNavLabels: {
+        ariaLabel: string;
+        home: string;
+        homeAria: string;
+        nexus: string;
+        nexusAria: string;
+    } = {
+        ariaLabel: t("common.module_nav.aria_label"),
+        home: t("common.module_nav.home"),
+        homeAria: t("common.module_nav.home_aria"),
+        nexus: t("common.module_nav.nexus"),
+        nexusAria: t("common.module_nav.nexus_aria"),
+    };
     const gp1_02_prompts = useMemo(() => ({
         lorentz_l1: t("gp1_02.prompts.lorentz_l1"),
         lorentz_l2: t("gp1_02.prompts.lorentz_l2"),
@@ -275,11 +289,30 @@ export default function GP1_02_RelativityLab() {
             </div>
 
             <div className="relative z-10 mb-6 border-2 border-cyan-500 p-4 bg-black/80">
-                <div className="flex justify-between items-center mb-2">
+                <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <nav aria-label={moduleNavLabels.ariaLabel} className="flex items-center gap-2">
+                        <Link
+                            href="/"
+                            aria-label={moduleNavLabels.homeAria}
+                            title={moduleNavLabels.homeAria}
+                            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 border border-cyan-300 bg-cyan-300 px-4 py-2 text-black transition-colors hover:bg-cyan-200"
+                        >
+                            <Home className="h-4 w-4" />
+                            <span className="hidden text-[10px] font-black uppercase tracking-[0.2em] sm:inline">{moduleNavLabels.home}</span>
+                        </Link>
+                        <Link
+                            href="/nexus"
+                            aria-label={moduleNavLabels.nexusAria}
+                            title={moduleNavLabels.nexusAria}
+                            className="group inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 border border-cyan-500 px-4 py-2 text-cyan-300 transition-colors hover:bg-cyan-500/20"
+                        >
+                            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                            <span className="hidden text-[10px] font-black uppercase tracking-[0.2em] sm:inline">{moduleNavLabels.nexus}</span>
+                        </Link>
+                    </nav>
+                </div>
+                <div className="flex items-center justify-between gap-4">
                     <h1 className="text-2xl font-bold text-cyan-400">{t("gp1_02.title")}</h1>
-                    <Link href="/nexus" className="px-4 py-2 border border-cyan-500 hover:bg-cyan-500/20 transition-colors">
-                        {t("gp1_02.back")}
-                    </Link>
                 </div>
             </div>
 
