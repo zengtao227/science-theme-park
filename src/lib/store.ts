@@ -103,6 +103,14 @@ function normalizeHistoryEntries(entries: HistoryEntry[] | undefined): HistoryEn
   return entries.map(normalizeHistoryEntry);
 }
 
+function sanitizeAiProviderConfig(config: AiProviderConfig | undefined): AiProviderConfig {
+  if (!config) return { useDefault: true, provider: 'NVIDIA' };
+
+  const safeConfig = { ...config };
+  delete safeConfig.apiKey;
+  return safeConfig;
+}
+
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -325,13 +333,18 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'science-park-storage', // name of the item in the storage (must be unique)
-      version: 2,
+      version: 3,
+      partialize: (state) => ({
+        ...state,
+        aiProviderConfig: sanitizeAiProviderConfig(state.aiProviderConfig),
+      }),
       migrate: (persistedState) => {
         if (!persistedState || typeof persistedState !== 'object') return persistedState;
 
         const state = persistedState as Partial<AppState> & {
           history?: HistoryEntry[];
           userHistory?: Record<string, HistoryEntry[]>;
+          aiProviderConfig?: AiProviderConfig;
         };
 
         const normalizedUserHistory = Object.fromEntries(
@@ -345,6 +358,7 @@ export const useAppStore = create<AppState>()(
           ...state,
           history: normalizeHistoryEntries(state.history),
           userHistory: normalizedUserHistory,
+          aiProviderConfig: sanitizeAiProviderConfig(state.aiProviderConfig),
         };
       },
     }

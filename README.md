@@ -65,6 +65,26 @@
 - **NVIDIA GLM-4.7**：后端数学逻辑与 R3F 物理精算。
 - **NVIDIA MiniMax-2.1**：德意地文案与 UI 文本对齐。
 
+### AI Provider 安全白名单
+
+`/api/ai/feedback` 只允许访问 HTTPS 白名单中的 OpenAI-compatible base URL，以降低 SSRF 风险。默认允许：
+
+```text
+https://integrate.api.nvidia.com/v1
+https://api.openai.com/v1
+https://api.deepseek.com/v1
+https://api.minimaxi.com/v1
+https://generativelanguage.googleapis.com/v1beta/openai
+```
+
+如需允许额外自定义 provider，请在服务端环境变量中配置逗号分隔列表：
+
+```bash
+ALLOWED_AI_BASE_URLS=https://example-ai-provider.com/v1,https://another-provider.example/openai/v1
+```
+
+注意：用户自定义 API key 不会持久化到浏览器 localStorage。刷新页面后，自定义 provider 的 key 需要重新输入；长期方案应改为服务端 session 或加密 HttpOnly cookie。
+
 ---
 
 ## � 任务看板 & 未来规划 (Status & Roadmap)

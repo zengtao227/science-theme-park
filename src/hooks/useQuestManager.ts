@@ -295,7 +295,7 @@ export function useQuestManager<T extends Quest, S extends string>({
                 .replace(/\s/g, "")
                 .replace(/²/g, "^2")
                 .replace(/³/g, "^3")
-                .replace(/\^1(?![0-9])/, "")
+                .replace(/\^1(?![0-9])/g, "")
                 .replace(/^1([a-z^])/, "$1")
                 .replace(/([^0-9.])1([a-z^])/, "$1$2");
         };
