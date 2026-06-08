@@ -296,7 +296,8 @@ export function useQuestManager<T extends Quest, S extends string>({
                 .replace(/²/g, "^2")
                 .replace(/³/g, "^3")
                 .replace(/\^1(?![0-9])/g, "")
-                .replace(/(^|[^0-9.])1([a-z^])/g, "$1$2");
+                .replace(/^1([a-z^])/, "$1")
+                .replace(/([^0-9.])1([a-z^])/, "$1$2");
         };
 
         const anyEmpty = currentQuest.slots.some((slot) => !(inputs[slot.id] ?? "").trim());
