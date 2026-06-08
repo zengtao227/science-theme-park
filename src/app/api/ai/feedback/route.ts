@@ -4,7 +4,8 @@ const DEFAULT_ALLOWED_BASE_URLS = [
     'https://integrate.api.nvidia.com/v1',
     'https://api.openai.com/v1',
     'https://api.deepseek.com/v1',
-    'https://api.minimax.chat/v1',
+    'https://api.minimaxi.com/v1',
+    'https://generativelanguage.googleapis.com/v1beta/openai',
 ];
 
 const AI_PROVIDER_TIMEOUT_MS = 30_000;
@@ -22,21 +23,17 @@ function normalizeBaseUrl(rawUrl: string): string | null {
     }
 }
 
-function getAllowedBaseUrls(): Set<string> {
-    const envBaseUrls = (process.env.ALLOWED_AI_BASE_URLS || '')
+const ALLOWED_BASE_URLS = new Set([
+    ...DEFAULT_ALLOWED_BASE_URLS.map((url) => normalizeBaseUrl(url)).filter((url): url is string => Boolean(url)),
+    ...(process.env.ALLOWED_AI_BASE_URLS || '')
         .split(',')
         .map((url) => normalizeBaseUrl(url.trim()))
-        .filter((url): url is string => Boolean(url));
-
-    return new Set([
-        ...DEFAULT_ALLOWED_BASE_URLS.map((url) => normalizeBaseUrl(url)).filter((url): url is string => Boolean(url)),
-        ...envBaseUrls,
-    ]);
-}
+        .filter((url): url is string => Boolean(url)),
+]);
 
 function getValidatedBaseUrl(rawUrl: string): string {
     const normalized = normalizeBaseUrl(rawUrl);
-    if (!normalized || !getAllowedBaseUrls().has(normalized)) {
+    if (!normalized || !ALLOWED_BASE_URLS.has(normalized)) {
         throw new Error('Invalid AI provider base URL');
     }
     return normalized;
@@ -169,8 +166,10 @@ export async function POST(req: Request) {
                 const response = await callChatCompletions(attempt, systemPrompt, prompt);
                 if (!response.ok) {
                     const errorText = await response.text();
-                    lastStatus = response.status;
-                    lastError = `API Error (${attempt.label}): ${response.statusText}`;
+                    lastStatus = Math.max(400, response.status || 502);
+                    lastError = response.status >= 300 && response.status < 400
+                        ? `API Error (${attempt.label}): provider redirect blocked`
+                        : `API Error (${attempt.label}): ${response.statusText || 'Unknown provider error'}`;
                     console.error(`AI API Error [${attempt.label}]:`, errorText);
                     continue;
                 }
@@ -187,7 +186,7 @@ export async function POST(req: Request) {
             }
         }
 
-        return NextResponse.json({ error: lastError }, { status: lastStatus });
+        return NextResponse.json({ error: lastError }, { status: Math.max(400, lastStatus || 502) });
     } catch (error: any) {
         console.error("Feedback route error:", error);
         return NextResponse.json(
