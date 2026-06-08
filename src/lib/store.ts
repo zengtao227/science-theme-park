@@ -177,7 +177,13 @@ export const useAppStore = create<AppState>()(
 
           return {
             history,
+            userHistory: state.currentUser
+              ? { ...state.userHistory, [state.currentUser]: history }
+              : state.userHistory,
             achievements,
+            userAchievements: state.currentUser
+              ? { ...state.userAchievements, [state.currentUser]: achievements }
+              : state.userAchievements,
             lastAchievement: unlocked[0] ?? state.lastAchievement,
           };
         }),
@@ -283,7 +289,7 @@ export const useAppStore = create<AppState>()(
 
       getModuleProgress: (moduleId) => {
         const state = get();
-        const normalizedId = moduleId.toLowerCase().replace('.', '-');
+        const normalizedId = moduleId.toLowerCase().replace(/\./g, '-');
         const moduleData = state.progress[normalizedId];
         if (!moduleData) return 0;
         const stages = Object.values(moduleData.stages);

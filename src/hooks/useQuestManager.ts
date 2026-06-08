@@ -68,6 +68,7 @@ export interface UseQuestManagerOptions<T extends Quest, S extends string> {
     initialDifficulty?: Difficulty;
     tolerance?: number;
     feedbackContentProvider?: (quest: T) => Omit<FeedbackContent, 'hint'>;
+    /** Must be a stable reference (useMemo or module-level constant) — inline object literals cause infinite re-renders */
     feedbackPolicy?: Partial<FeedbackPolicy>;
 }
 
@@ -248,7 +249,9 @@ export function useQuestManager<T extends Quest, S extends string>({
 
         // Handle fractions (e.g., "4/3")
         if (normalized.includes("/")) {
-            const [numStr, denStr] = normalized.split("/");
+            const parts = normalized.split("/");
+            if (parts.length !== 2) return null;
+            const [numStr, denStr] = parts;
             const num = Number(numStr);
             const den = Number(denStr);
             if (Number.isFinite(num) && Number.isFinite(den) && den !== 0) {
@@ -264,18 +267,10 @@ export function useQuestManager<T extends Quest, S extends string>({
     const verify = useCallback(() => {
         if (!currentQuest) return;
 
-        // Enhanced validation: Check for empty inputs with detailed feedback
-        let anyEmpty = false;
-        for (const slot of currentQuest.slots) {
-            const raw = inputs[slot.id] ?? "";
-            if (!raw.trim()) {
-                anyEmpty = true;
-            }
-        }
+        const sKey = `${stage}`;
+        const questKey = `${stage}:${currentQuest.id}`;
 
-        if (anyEmpty) {
-            const sKey = `${stage}`;
-            const questKey = `${stage}:${currentQuest.id}`;
+        const recordIncorrect = () => {
             setStageStats((prev) => {
                 const existing = prev[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
                 return {
@@ -290,6 +285,24 @@ export function useQuestManager<T extends Quest, S extends string>({
             });
             setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
             setLastCheck({ ok: false, correct: "" });
+        };
+
+        // String comparison with mathematical normalization (e.g., 1x == x, ² == ^2)
+        const normalize = (s: string) => {
+            const canonical = canonicalizeFreeText(s, locale);
+            return canonical.trim()
+                .toLowerCase()
+                .replace(/\s/g, "")
+                .replace(/²/g, "^2")
+                .replace(/³/g, "^3")
+                .replace(/\^1(?![0-9])/, "")
+                .replace(/^1([a-z^])/, "$1")
+                .replace(/([^0-9.])1([a-z^])/, "$1$2");
+        };
+
+        const anyEmpty = currentQuest.slots.some((slot) => !(inputs[slot.id] ?? "").trim());
+        if (anyEmpty) {
+            recordIncorrect();
             return;
         }
 
@@ -299,61 +312,17 @@ export function useQuestManager<T extends Quest, S extends string>({
             if (typeof slot.expected === "number") {
                 const v = parseNumberLike(raw);
                 if (v === null || Math.abs(v - slot.expected) > tolerance) {
-                    const sKey = `${stage}`;
-                    const questKey = `${stage}:${currentQuest.id}`;
-                    setStageStats((prev) => {
-                        const existing = prev[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
-                        return {
-                            ...prev,
-                            [sKey]: {
-                                attempts: existing.attempts + 1,
-                                correct: existing.correct,
-                                incorrect: existing.incorrect + 1,
-                                lastUpdated: Date.now(),
-                            },
-                        };
-                    });
-                    setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-                    setLastCheck({ ok: false, correct: "" });
+                    recordIncorrect();
                     return;
                 }
             } else {
-                // Robust String comparison with mathematical normalization (e.g., 1x == x)
-                const normalize = (s: string) => {
-                    const canonical = canonicalizeFreeText(s, locale);
-                    return canonical.trim()
-                        .toLowerCase()
-                        .replace(/\s/g, "")
-                        .replace(/^2/g, "^2") // Normalize superscript
-                        .replace(/^3/g, "^3") // Normalize superscript
-                        .replace(/\^1(?![0-9])/, "") // Remove ^1
-                        .replace(/^1([a-z^])/, "$1") // "1x" -> "x" (at start)
-                        .replace(/([^0-9.])1([a-z^])/, "$1$2"); // "2+1x" -> "2+x"
-                };
-
                 if (normalize(raw) !== normalize(slot.expected.toString())) {
-                    const sKey = `${stage}`;
-                    const questKey = `${stage}:${currentQuest.id}`;
-                    setStageStats((prev) => {
-                        const existing = prev[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
-                        return {
-                            ...prev,
-                            [sKey]: {
-                                attempts: existing.attempts + 1,
-                                correct: existing.correct,
-                                incorrect: existing.incorrect + 1,
-                                lastUpdated: Date.now(),
-                            },
-                        };
-                    });
-                    setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-                    setLastCheck({ ok: false, correct: "" });
+                    recordIncorrect();
                     return;
                 }
             }
         }
-        const sKey = `${stage}`;
-        const questKey = `${stage}:${currentQuest.id}`;
+
         setStageStats((prev) => {
             const existing = prev[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
             return {
@@ -404,17 +373,11 @@ export function useQuestManager<T extends Quest, S extends string>({
             return currentQuest.hintLatex[idx];
         }
 
-        // Smart fallback hints based on error count
-        if (errors === 1) {
-            // First error: show target format
-            return currentQuest.targetLatex;
-        } else if (errors === 2) {
-            // Second error: show expression context
-            return currentQuest.expressionLatex;
-        } else {
-            // Later fallback hints stay contextual and never disclose the final answer.
-            return currentQuest.expressionLatex || currentQuest.targetLatex;
-        }
+        // Fallback: 2-level progression (no hintLatex available)
+        if (errors === 1) return currentQuest.targetLatex;
+        if (errors === 2) return currentQuest.expressionLatex;
+        // errors >= 3: re-display full prompt as final nudge
+        return currentQuest.promptLatex || currentQuest.expressionLatex;
     }, [currentQuest, errorCounts, stage]);
 
     const getCurrentErrorCount = useCallback(() => {

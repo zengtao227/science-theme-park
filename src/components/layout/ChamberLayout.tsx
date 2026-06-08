@@ -68,6 +68,65 @@ interface ChamberLayoutProps {
     onShowFull?: () => void;
 }
 
+function StageSelectorButtons({
+    stages,
+    currentStage,
+    onStageChange,
+}: {
+    stages: { id: string; label: string }[];
+    currentStage: string;
+    onStageChange: (s: string) => void;
+}) {
+    return (
+        <div className="flex flex-wrap gap-3 justify-center">
+            {stages.map((s) => (
+                <button
+                    key={s.id}
+                    onClick={() => onStageChange(s.id)}
+                    className={clsx(
+                        "min-h-[44px] px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
+                        currentStage === s.id ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
+                    )}
+                >
+                    {s.label}
+                </button>
+            ))}
+        </div>
+    );
+}
+
+function DifficultyButtons({
+    difficulty,
+    onDifficultyChange,
+    translations,
+    compact = false,
+}: {
+    difficulty: Difficulty;
+    onDifficultyChange: (d: Difficulty) => void;
+    translations: { difficulty: Record<string, string> };
+    compact?: boolean;
+}) {
+    return (
+        <>
+            {(["BASIC", "CORE", "ADVANCED", "ELITE"] as const).map((d) => (
+                <button
+                    key={d}
+                    onClick={() => onDifficultyChange(d)}
+                    className={clsx(
+                        "min-h-[44px] text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
+                        compact ? "px-2 py-1" : "px-3 py-2",
+                        difficulty === d
+                            ? "border-white bg-white text-black"
+                            : "border-white/70 text-white hover:border-white/50"
+                    )}
+                >
+                    {translations.difficulty[d.toLowerCase()]}
+                </button>
+            ))}
+        </>
+    );
+}
+
 export default function ChamberLayout({
     title,
     moduleCode,
@@ -590,20 +649,12 @@ export default function ChamberLayout({
                     </button>
 
                     <div className="hidden md:flex items-center gap-1 no-print">
-                        {(["BASIC", "CORE", "ADVANCED", "ELITE"] as const).map((d) => (
-                            <button
-                                key={d}
-                                onClick={() => onDifficultyChange(d)}
-                                className={clsx(
-                                    "min-h-[44px] px-2 py-1 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
-                                    difficulty === d
-                                        ? "border-white bg-white text-black"
-                                        : "border-white/70 text-white hover:border-white/50"
-                                )}
-                            >
-                                {translations.difficulty[d.toLowerCase()]}
-                            </button>
-                        ))}
+                        <DifficultyButtons
+                            difficulty={difficulty}
+                            onDifficultyChange={onDifficultyChange}
+                            translations={translations}
+                            compact
+                        />
                     </div>
 
                     <div className="w-px h-4 bg-white/60 hidden md:block" />
@@ -644,20 +695,11 @@ export default function ChamberLayout({
                         leftContent={
                             <main className="h-full p-6 flex flex-col gap-4 bg-black overflow-y-auto items-center">
                                 <div className="w-full max-w-5xl space-y-10">
-                                    <div className="flex flex-wrap gap-3 justify-center">
-                                        {stages.map((s) => (
-                                            <button
-                                                key={s.id}
-                                                onClick={() => onStageChange(s.id)}
-                                                className={clsx(
-                                                    "min-h-[44px] px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                                                    currentStage === s.id ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
-                                                )}
-                                            >
-                                                {s.label}
-                                            </button>
-                                        ))}
-                                    </div>
+                                    <StageSelectorButtons
+                                        stages={stages}
+                                        currentStage={currentStage}
+                                        onStageChange={onStageChange}
+                                    />
 
                                     {/* Pathway Connection Alert */}
                                     {prerequisites.length > 0 && (
@@ -754,20 +796,11 @@ export default function ChamberLayout({
                 {/* 移动端：原有布局 */}
                 <main className="chamber-mobile-main flex-1 md:hidden p-6 flex flex-col gap-4 bg-black z-10 overflow-y-auto items-center">
                     <div className="w-full max-w-5xl space-y-10">
-                        <div className="flex flex-wrap gap-3 justify-center">
-                            {stages.map((s) => (
-                                <button
-                                    key={s.id}
-                                    onClick={() => onStageChange(s.id)}
-                                    className={clsx(
-                                        "min-h-[44px] px-4 py-2 border text-[10px] font-black tracking-[0.25em] uppercase transition-all",
-                                        currentStage === s.id ? "border-white bg-white text-black" : "border-white/70 text-white hover:border-white/50"
-                                    )}
-                                >
-                                    {s.label}
-                                </button>
-                            ))}
-                        </div>
+                        <StageSelectorButtons
+                            stages={stages}
+                            currentStage={currentStage}
+                            onStageChange={onStageChange}
+                        />
 
                         {/* Pathway Connection Alert (Mobile) */}
                         {prerequisites.length > 0 && (
@@ -821,20 +854,11 @@ export default function ChamberLayout({
                         {activePanel === "controls" && (
                             <div className="space-y-4">
                                 <div className="flex flex-wrap gap-2 justify-center">
-                                    {(["BASIC", "CORE", "ADVANCED", "ELITE"] as const).map((d) => (
-                                        <button
-                                            key={d}
-                                            onClick={() => onDifficultyChange(d)}
-                                            className={clsx(
-                                                "min-h-[44px] px-3 py-2 text-[9px] font-black tracking-[0.2em] uppercase transition-all border",
-                                                difficulty === d
-                                                    ? "border-white bg-white text-black"
-                                                    : "border-white/70 text-white hover:border-white/50"
-                                            )}
-                                        >
-                                            {translations.difficulty[d.toLowerCase()]}
-                                        </button>
-                                    ))}
+                                    <DifficultyButtons
+                                        difficulty={difficulty}
+                                        onDifficultyChange={onDifficultyChange}
+                                        translations={translations}
+                                    />
                                 </div>
                                 {actionPanel}
                             </div>

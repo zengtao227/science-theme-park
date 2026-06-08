@@ -1,5 +1,25 @@
 import { NextResponse } from 'next/server';
 
+function isAllowedBaseUrl(rawUrl: string): boolean {
+    try {
+        const parsed = new URL(rawUrl);
+        if (!['http:', 'https:'].includes(parsed.protocol)) return false;
+        const host = parsed.hostname.toLowerCase();
+        if (['localhost', '127.0.0.1', '::1', '0.0.0.0'].includes(host)) return false;
+        const ipv4 = host.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+        if (ipv4) {
+            const [a, b] = [+ipv4[1], +ipv4[2]];
+            if (a === 10) return false;
+            if (a === 172 && b >= 16 && b <= 31) return false;
+            if (a === 192 && b === 168) return false;
+            if (a === 169 && b === 254) return false;
+        }
+        return true;
+    } catch {
+        return false;
+    }
+}
+
 type ProviderAttempt = {
     apiKey: string;
     baseUrl: string;
@@ -37,6 +57,13 @@ export async function POST(req: Request) {
     try {
         const { prompt, systemPrompt } = await req.json();
 
+        if (typeof prompt !== 'string' || typeof systemPrompt !== 'string') {
+            return NextResponse.json({ error: 'prompt and systemPrompt must be strings' }, { status: 400 });
+        }
+        if (prompt.length > 10000 || systemPrompt.length > 5000) {
+            return NextResponse.json({ error: 'Input too large' }, { status: 400 });
+        }
+
         const mode = req.headers.get('x-ai-mode') || 'DEFAULT_ONLY';
         const customApiKey = req.headers.get('x-custom-api-key');
         const customBaseUrl = req.headers.get('x-custom-base-url');
@@ -44,6 +71,13 @@ export async function POST(req: Request) {
         const fallbackApiKey = req.headers.get('x-fallback-api-key');
         const fallbackBaseUrl = req.headers.get('x-fallback-base-url');
         const fallbackModelName = req.headers.get('x-fallback-model-name');
+
+        if (customBaseUrl && !isAllowedBaseUrl(customBaseUrl)) {
+            return NextResponse.json({ error: 'Invalid custom base URL' }, { status: 400 });
+        }
+        if (fallbackBaseUrl && !isAllowedBaseUrl(fallbackBaseUrl)) {
+            return NextResponse.json({ error: 'Invalid fallback base URL' }, { status: 400 });
+        }
 
         // Default to a current NVIDIA-hosted OpenAI-compatible chat model if no custom config is provided
         const defaultApiKey = process.env.NVIDIA_API_KEY;
