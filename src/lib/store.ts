@@ -106,7 +106,8 @@ function normalizeHistoryEntries(entries: HistoryEntry[] | undefined): HistoryEn
 function sanitizeAiProviderConfig(config: AiProviderConfig | undefined): AiProviderConfig {
   if (!config) return { useDefault: true, provider: 'NVIDIA' };
 
-  const { apiKey: _apiKey, ...safeConfig } = config;
+  const safeConfig = { ...config };
+  delete safeConfig.apiKey;
   return safeConfig;
 }
 
@@ -332,7 +333,7 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'science-park-storage', // name of the item in the storage (must be unique)
-      version: 2,
+      version: 3,
       partialize: (state) => ({
         ...state,
         aiProviderConfig: sanitizeAiProviderConfig(state.aiProviderConfig),
