@@ -1,23 +1,45 @@
 import { NextResponse } from 'next/server';
 
-function isAllowedBaseUrl(rawUrl: string): boolean {
+const DEFAULT_ALLOWED_BASE_URLS = [
+    'https://integrate.api.nvidia.com/v1',
+    'https://api.openai.com/v1',
+    'https://api.deepseek.com/v1',
+    'https://api.minimax.chat/v1',
+];
+
+const AI_PROVIDER_TIMEOUT_MS = 30_000;
+
+function normalizeBaseUrl(rawUrl: string): string | null {
     try {
         const parsed = new URL(rawUrl);
-        if (!['http:', 'https:'].includes(parsed.protocol)) return false;
-        const host = parsed.hostname.toLowerCase();
-        if (['localhost', '127.0.0.1', '::1', '0.0.0.0'].includes(host)) return false;
-        const ipv4 = host.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
-        if (ipv4) {
-            const [a, b] = [+ipv4[1], +ipv4[2]];
-            if (a === 10) return false;
-            if (a === 172 && b >= 16 && b <= 31) return false;
-            if (a === 192 && b === 168) return false;
-            if (a === 169 && b === 254) return false;
-        }
-        return true;
+        if (parsed.protocol !== 'https:') return null;
+        if (parsed.username || parsed.password || parsed.search || parsed.hash) return null;
+
+        const pathname = parsed.pathname.replace(/\/+$/, '');
+        return `${parsed.origin}${pathname}`;
     } catch {
-        return false;
+        return null;
     }
+}
+
+function getAllowedBaseUrls(): Set<string> {
+    const envBaseUrls = (process.env.ALLOWED_AI_BASE_URLS || '')
+        .split(',')
+        .map((url) => normalizeBaseUrl(url.trim()))
+        .filter((url): url is string => Boolean(url));
+
+    return new Set([
+        ...DEFAULT_ALLOWED_BASE_URLS.map((url) => normalizeBaseUrl(url)).filter((url): url is string => Boolean(url)),
+        ...envBaseUrls,
+    ]);
+}
+
+function getValidatedBaseUrl(rawUrl: string): string {
+    const normalized = normalizeBaseUrl(rawUrl);
+    if (!normalized || !getAllowedBaseUrls().has(normalized)) {
+        throw new Error('Invalid AI provider base URL');
+    }
+    return normalized;
 }
 
 type ProviderAttempt = {
@@ -43,14 +65,24 @@ async function callChatCompletions(
         stream: false
     };
 
-    return fetch(`${attempt.baseUrl.replace(/\/$/, '')}/chat/completions`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${attempt.apiKey}`
-        },
-        body: JSON.stringify(payload)
-    });
+    const baseUrl = getValidatedBaseUrl(attempt.baseUrl);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), AI_PROVIDER_TIMEOUT_MS);
+
+    try {
+        return await fetch(`${baseUrl}/chat/completions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${attempt.apiKey}`
+            },
+            body: JSON.stringify(payload),
+            redirect: 'manual',
+            signal: controller.signal,
+        });
+    } finally {
+        clearTimeout(timeout);
+    }
 }
 
 export async function POST(req: Request) {
@@ -72,11 +104,19 @@ export async function POST(req: Request) {
         const fallbackBaseUrl = req.headers.get('x-fallback-base-url');
         const fallbackModelName = req.headers.get('x-fallback-model-name');
 
-        if (customBaseUrl && !isAllowedBaseUrl(customBaseUrl)) {
-            return NextResponse.json({ error: 'Invalid custom base URL' }, { status: 400 });
+        if (customBaseUrl) {
+            try {
+                getValidatedBaseUrl(customBaseUrl);
+            } catch {
+                return NextResponse.json({ error: 'Invalid custom base URL' }, { status: 400 });
+            }
         }
-        if (fallbackBaseUrl && !isAllowedBaseUrl(fallbackBaseUrl)) {
-            return NextResponse.json({ error: 'Invalid fallback base URL' }, { status: 400 });
+        if (fallbackBaseUrl) {
+            try {
+                getValidatedBaseUrl(fallbackBaseUrl);
+            } catch {
+                return NextResponse.json({ error: 'Invalid fallback base URL' }, { status: 400 });
+            }
         }
 
         // Default to a current NVIDIA-hosted OpenAI-compatible chat model if no custom config is provided
@@ -140,7 +180,9 @@ export async function POST(req: Request) {
                 return NextResponse.json({ result: content, provider: attempt.label });
             } catch (error: any) {
                 lastStatus = 502;
-                lastError = error?.message || `Network error while using ${attempt.label}`;
+                lastError = error?.name === 'AbortError'
+                    ? `AI provider timed out while using ${attempt.label}`
+                    : error?.message || `Network error while using ${attempt.label}`;
                 console.error(`Feedback route provider failure [${attempt.label}]:`, error);
             }
         }
