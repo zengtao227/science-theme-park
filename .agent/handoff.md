@@ -4,6 +4,9 @@
 
 - ✅ SSRF 修复：Codex 用白名单方案重写 `isAllowedBaseUrl()`（`normalizeBaseUrl` + `ALLOWED_BASE_URLS` Set + `redirect:'manual'` + 30s timeout），commit `640025b3`
 - ✅ AI 路由限速：在 `src/app/api/ai/feedback/route.ts` 加入内存限速器（20 req/min per IP），commit `08747709`
+- ✅ Step 1 — ChamberLayout 4处 AI 硬编码字符串改为 i18n（en/de/cn），commit `44d83eb5`
+- ✅ Step 3 — completeStage 提取进 useQuestManager.verify()，67个文件移除 useEffect，commit `fc04a523`
+- ✅ Step 6 — useNamespace helper 添加到 i18n/index.ts，26个文件的 useMemo 翻译块替换，commit `8d247620`
 
 ---
 
@@ -71,13 +74,9 @@
 
 ---
 
-### Step 6 — useNamespace i18n 助手（大，~31个文件）
+### ~~Step 6~~ ✅ DONE — useNamespace 已完成
 
-**问题**：每个页面用 `useMemo(() => ({ t("module.key.xxx") }))` 逐 key 展开 i18n  
-**做法**：
-1. 在 `src/lib/i18n.ts` 添加 `useNamespace(prefix: string)` helper
-2. 31个文件改用 `const ns = useNamespace("sm1_01")` 替代整个 useMemo 块  
-**验证**：`npm run build && npm run validate:translations`
+已完成。26个文件替换。5个文件例外：sm1-04（useMemo内有 `.replace()`），gp1-0[1-4]（用 `gp1_0x_prompts` 子命名空间模式）。
 
 ---
 
