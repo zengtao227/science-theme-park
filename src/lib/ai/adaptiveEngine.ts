@@ -1,52 +1,10 @@
 import { HistoryEntry, DifficultyLevel } from '../store';
 import { normalizeModuleCode } from '../moduleCode';
 
-export interface PerformanceMetrics {
-    averageScore: number;
-    averageDurationMs: number;
-    rigorRate: number; // 0-1
-    successCount: number;
-    failureCount: number;
-    moduleVelocity: number; // Correct answers per unit of time
-}
-
 export interface DifficultyAdjustment {
     recommendedDifficulty: DifficultyLevel;
     confidence: number;
     reason: string;
-}
-
-/**
- * Analyzes previous performances for a specific module
- */
-export function analyzePerformance(history: HistoryEntry[], moduleCode: string): PerformanceMetrics {
-    const normalizedCode = normalizeModuleCode(moduleCode);
-    const moduleHistory = (history ?? []).filter(h => normalizeModuleCode(h.moduleCode) === normalizedCode);
-
-    if (moduleHistory.length === 0) {
-        return {
-            averageScore: 0,
-            averageDurationMs: 0,
-            rigorRate: 0,
-            successCount: 0,
-            failureCount: 0,
-            moduleVelocity: 0,
-        };
-    }
-
-    const scores = moduleHistory.map(h => h.score);
-    const durations = moduleHistory.map(h => h.durationMs);
-    const rigorCount = moduleHistory.filter(h => h.rigor).length;
-    const successes = moduleHistory.filter(h => h.score >= 1).length;
-
-    return {
-        averageScore: scores.reduce((a, b) => a + b, 0) / scores.length,
-        averageDurationMs: durations.reduce((a, b) => a + b, 0) / durations.length,
-        rigorRate: rigorCount / moduleHistory.length,
-        successCount: successes,
-        failureCount: moduleHistory.length - successes,
-        moduleVelocity: successes / (durations.reduce((a, b) => a + b, 0) / 1000 / 60 || 1), // successes per minute
-    };
 }
 
 /**
