@@ -814,17 +814,7 @@ export default function SC205Page() {
     next,
     handleStageChange,
     handleDifficultyChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager({
     moduleCode: "sc2-05",
     buildPool,
@@ -844,28 +834,11 @@ export default function SC205Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       moduleCode="SC2.05"
       title={sc2_05_t.title}
-      difficulty={currentDifficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={currentStage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: sc2_05_t.back,
         check: sc2_05_t.check,

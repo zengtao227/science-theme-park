@@ -296,17 +296,7 @@ export default function SM209Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-      feedbackLevel,
-      feedbackContent,
-      feedbackAvailability,
-      showHintLevel,
-      showStepsLevel,
-      showFullSolution,
-      policy,
+        chamberLayoutProps,
     } = useQuestManager<SM209Quest, Stage>({
     moduleCode: "sm2-09",
     buildPool: (diff, stg) => buildStagePool(sm2_09_t, diff, stg),
@@ -418,25 +408,19 @@ export default function SM209Page() {
   if (!currentQuest) {
     return (
       <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
+      {...chamberLayoutProps}
       title={sm2_09_t.title}
         moduleCode="SM2.09"
         defaultLeftWidth={64}
         minLeftWidth={35}
         maxLeftWidth={85}
-        difficulty={difficulty}
         onDifficultyChange={handleDifficultyChangeLocal}
         stages={[
           { id: "INEQUALITY_BASICS", label: sm2_09_t.stages.inequality_basics },
           { id: "SYSTEMS", label: sm2_09_t.stages.systems },
           { id: "ABSOLUTE_VALUE", label: sm2_09_t.stages.absolute_value },
         ]}
-        currentStage={currentStage}
         onStageChange={(s) => handleStageChangeLocal(s as Stage)}
-        checkStatus={lastCheck}
         onVerify={handleVerify}
         onNext={handleNext}
         translations={{
@@ -461,33 +445,20 @@ export default function SM209Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sm2_09_t.title}
       moduleCode="SM2.09"
       defaultLeftWidth={64}
       minLeftWidth={35}
       maxLeftWidth={85}
-      difficulty={difficulty}
       onDifficultyChange={handleDifficultyChangeLocal}
       stages={[
         { id: "INEQUALITY_BASICS", label: sm2_09_t.stages.inequality_basics },
         { id: "SYSTEMS", label: sm2_09_t.stages.systems },
         { id: "ABSOLUTE_VALUE", label: sm2_09_t.stages.absolute_value },
       ]}
-      currentStage={currentStage}
       onStageChange={(s) => handleStageChangeLocal(s as Stage)}
       printSectionsBuilder={printableSections}
-      checkStatus={lastCheck}
       onVerify={handleVerify}
       onNext={handleNext}
       translations={{

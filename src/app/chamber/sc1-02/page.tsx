@@ -100,17 +100,7 @@ export default function C102Page() {
     handleDifficultyChange,
     handleStageChange,
     parseNumberLike,
-    adaptiveRecommendation,
-    aiFeedback,
-    isRequestingAi,
-    requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<SC102QuestType, Stage>({
     moduleCode: "sc1-02",
     buildPool,
@@ -134,28 +124,11 @@ export default function C102Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sc1_02_t.title}
       moduleCode="SC1.02"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: sc1_02_t.back,
         check: sc1_02_t.check,

@@ -360,17 +360,7 @@ export default function SC206Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<SC206Quest, Stage>({
     moduleCode: "sc2-06",
     buildPool: buildStagePool,
@@ -409,28 +399,11 @@ export default function SC206Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("sc2_06.title")}
       moduleCode="SC2.06"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stagesProps}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: t("sc2_06.back"),
         check: t("sc2_06.check"),

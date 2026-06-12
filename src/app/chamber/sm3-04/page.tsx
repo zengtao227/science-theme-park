@@ -40,17 +40,7 @@ export default function S304Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-      feedbackLevel,
-      feedbackContent,
-      feedbackAvailability,
-      showHintLevel,
-      showStepsLevel,
-      showFullSolution,
-      policy,
+        chamberLayoutProps,
     } = useQuestManager<S304Quest, Stage>({
     moduleCode: "sm3-04",
     buildPool: (d, s) => buildStagePool(t, d, s),
@@ -82,27 +72,10 @@ export default function S304Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("sm3_04.title")}
       moduleCode="SM3.04"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       printSectionsBuilder={printSections}
       translations={{
         back: t("sm3_04.back"),

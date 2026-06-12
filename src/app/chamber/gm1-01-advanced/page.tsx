@@ -1137,17 +1137,7 @@ export default function G101AdvancedPage() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<G101AdvQuest, Challenge>({
     moduleCode: "gm1-01-advanced",
     buildPool,
@@ -1178,29 +1168,12 @@ export default function G101AdvancedPage() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={gm1_01_advanced_t.title}
       moduleCode="GM1.01-ADV"
       historyModuleId="gm1-01-advanced"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Challenge)}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: gm1_01_advanced_t.back,
         check: gm1_01_advanced_t.check,

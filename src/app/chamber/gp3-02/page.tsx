@@ -276,17 +276,7 @@ export default function GP302Electromagnetism() {
         next,
         handleDifficultyChange,
         handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<GP302Quest, Stage>({
     moduleCode: "gp3-02",
         buildPool: (d, s) => buildStagePool(gp3_02_t, d, s),
@@ -328,28 +318,11 @@ export default function GP302Electromagnetism() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+      {...chamberLayoutProps}
             title={gp3_02_t.title}
             moduleCode="GP3.02"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: gp3_02_t.back,
                 difficulty: gp3_02_t.difficulty,

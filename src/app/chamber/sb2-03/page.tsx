@@ -185,17 +185,7 @@ export default function SB203Page() {
         handleStageChange,
         getHint,
         currentStageStats,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<SB203Quest, Stage>({
     moduleCode: "sb2-03",
         buildPool,
@@ -234,28 +224,11 @@ export default function SB203Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       moduleCode="SB2.03"
             title={t("sb2_03.title")}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: t("sb2_03.back"),
                 check: t("sb2_03.check"),

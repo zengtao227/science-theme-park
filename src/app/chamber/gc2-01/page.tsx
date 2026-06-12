@@ -99,17 +99,7 @@ export default function GC201Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<OrganicQuest, Stage>({
     moduleCode: "gc2-01",
         buildPool,
@@ -151,28 +141,11 @@ export default function GC201Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("gc2_01.title")}
             moduleCode="GC2.01"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: t("gc2_01.back"),
                 check: t("gc2_01.check"),

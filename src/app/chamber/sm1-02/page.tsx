@@ -271,17 +271,7 @@ export default function SM102Page() {
         difficulty, stage, inputs, lastCheck, currentQuest,
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<S102Quest, Stage>({
         moduleCode: "SM1.02",
         buildPool,
@@ -321,28 +311,10 @@ export default function SM102Page() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={sm1_02_t.title}
             moduleCode="SM1.02" // ensure uniform capital case
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            successRate={successRate}
-            checkStatus={lastCheck}
             printSectionsBuilder={printSections}
             translations={{
                 back: sm1_02_t.back, check: sm1_02_t.check, next: sm1_02_t.next, correct: sm1_02_t.correct, incorrect: sm1_02_t.incorrect,

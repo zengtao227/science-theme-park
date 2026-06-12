@@ -57,13 +57,7 @@ export default function OlympiadChallenge() {
         previous,
         handleDifficultyChange,
         handleStageChange,
-        feedbackLevel,
-        feedbackContent,
-        feedbackAvailability,
-        showHintLevel,
-        showStepsLevel,
-        showFullSolution,
-        policy,
+        chamberLayoutProps,
     } = useQuestManager<OlympiadQuest, "logic">({
         moduleCode: "EM3.01",
         buildPool,
@@ -89,25 +83,13 @@ export default function OlympiadChallenge() {
 
     return (
         <ChamberLayout
+            {...chamberLayoutProps}
             title={t("home.em3_01_title")}
             moduleCode="EM3.01"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
             onStageChange={(s) => handleStageChange(s as "logic")}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={translations}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
         >
             <div className="flex-1 flex flex-col h-full bg-black/40 backdrop-blur-sm overflow-y-auto">
                 <main className="flex-1 max-w-4xl mx-auto w-full p-6 md:p-12 space-y-12 print-content">

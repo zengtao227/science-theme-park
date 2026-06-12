@@ -62,17 +62,7 @@ export default function SP201CircuitBasics() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<SP201Quest, Stage>({
     moduleCode: "sp2-01",
     buildPool,
@@ -112,23 +102,11 @@ export default function SP201CircuitBasics() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sp2_01_t.title}
       moduleCode="SP2.01"
-      difficulty={difficulty}
       onDifficultyChange={(d) => handleDifficultyChange(resolveDifficultyForStage(d, stage))}
       stages={stages}
-      currentStage={stage}
       onStageChange={(s) => {
         const nextStage = s as Stage;
         const nextDifficulty = resolveDifficultyForStage(difficulty, nextStage);
@@ -138,9 +116,6 @@ export default function SP201CircuitBasics() {
         handleStageChange(nextStage);
       }}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: sp2_01_t.back,
         difficulty: sp2_01_t.difficulty,

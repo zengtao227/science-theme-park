@@ -181,17 +181,7 @@ export default function SM211Page() {
     handleStageChange,
     getHint,
     currentStageStats,
-    adaptiveRecommendation,
-    aiFeedback,
-    isRequestingAi,
-    requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<SequenceQuest, Stage>({
     moduleCode: "sm2-11",
     buildPool,
@@ -225,27 +215,10 @@ export default function SM211Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       moduleCode="SM2.11"
       title={t("sm2_11.title")}
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stagesProps}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       printSectionsBuilder={printSections}
       translations={{
         back: t("sm2_11.back"),

@@ -68,17 +68,7 @@ export default function GB202Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<GB202Quest, Stage>({
     moduleCode: "gb2-02",
     buildPool,
@@ -138,24 +128,10 @@ export default function GB202Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={gb2_02_t.title}
       moduleCode="GB2.02"
-      difficulty={difficulty}
-      currentStage={stage}
       stages={stages}
-      onDifficultyChange={handleDifficultyChange}
-      onStageChange={(s) => handleStageChange(s as Stage)}
       printSectionsBuilder={printSections}
       translations={{
         back: gb2_02_t.back,
@@ -170,9 +146,6 @@ export default function GB202Page() {
           ELITE: gb2_02_t.elite
         }
       }}
-      checkStatus={lastCheck}
-      onVerify={verify}
-      onNext={next}
     >
       {/* Scenario Description */}
       <div className="mb-6 bg-gray-800/50 p-4 rounded-lg border border-cyan-500/30">

@@ -210,17 +210,7 @@ export default function SC202Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<TitrationQuest, Stage>({
     moduleCode: "sc2-02",
         buildPool: (d, s) => buildStagePool(sc2_02_t, d, s, t),
@@ -267,28 +257,11 @@ export default function SC202Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sc2_02_t.title}
             moduleCode="SC2.02"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={sc2_02_t as any}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">

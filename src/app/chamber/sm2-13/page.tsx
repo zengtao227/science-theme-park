@@ -128,13 +128,7 @@ export default function SM213Page() {
         previous,
         handleDifficultyChange,
         handleStageChange,
-        feedbackLevel,
-        feedbackContent,
-        feedbackAvailability,
-        showHintLevel,
-        showStepsLevel,
-        showFullSolution,
-        policy,
+        chamberLayoutProps,
     } = useQuestManager<SM213Quest, Stage>({
         moduleCode: "SM2.13",
         buildPool: (diff, s) => buildStagePool(diff, s, t),
@@ -175,25 +169,12 @@ export default function SM213Page() {
 
     return (
         <ChamberLayout
+            {...chamberLayoutProps}
             title={sm2_13_t.title}
             moduleCode={sm2_13_t.moduleCode}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             printSectionsBuilder={printSectionsBuilder}
             translations={sm2_13_t as any}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
             monitorContent={
                 <TransformationMonitor
                     quest={currentQuest}

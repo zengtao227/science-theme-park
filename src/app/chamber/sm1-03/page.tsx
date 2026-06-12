@@ -869,17 +869,7 @@ export default function SM103Page() {
     handleStageChange,
     difficulty,
     handleDifficultyChange,
-    adaptiveRecommendation,
-    aiFeedback,
-    isRequestingAi,
-    requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<IntegerQuest, Stage>({
     moduleCode: "sm1-03",
     buildPool,
@@ -912,27 +902,10 @@ export default function SM103Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("sm1_03.title")}
       moduleCode="SM1.03"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       printSectionsBuilder={printSections}
       translations={{
         back: t("sm1_03.back"),

@@ -192,16 +192,7 @@ export default function SC201Page() {
   }), [buildPool, sc2_01_t.difficulty.advanced, sc2_01_t.difficulty.basic, sc2_01_t.difficulty.core, sc2_01_t.difficulty.elite, sc2_01_t.title, stages]);
 
   const { stage: currentStage, difficulty: currentDifficulty, currentQuest, inputs: userAnswer, lastCheck, setInputs, verify, next, handleStageChange, handleDifficultyChange, adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<KineticsQuest, Stage>({
     moduleCode: "sc2-01",
     buildPool,
@@ -221,28 +212,11 @@ export default function SC201Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       moduleCode="SC2.01"
       title={sc2_01_t.title}
-      difficulty={currentDifficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={currentStage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: sc2_01_t.back,
         check: sc2_01_t.check,

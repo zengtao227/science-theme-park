@@ -69,17 +69,7 @@ export default function GM202Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<GM202Quest, Stage>({
     moduleCode: "gm2-02",
     buildPool,
@@ -162,26 +152,14 @@ export default function GM202Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={gm2_02_t.title}
       moduleCode="GM2.02"
       defaultLeftWidth={40}
       minLeftWidth={30}
       maxLeftWidth={75}
-      difficulty={difficulty}
       onDifficultyChange={(d) => handleDifficultyChange(resolveDifficultyForStage(d, stage))}
       stages={stages}
-      currentStage={stage}
       onStageChange={(s) => {
         const nextStage = s as Stage;
         const nextDifficulty = resolveDifficultyForStage(difficulty, nextStage);
@@ -191,9 +169,6 @@ export default function GM202Page() {
         handleStageChange(nextStage);
       }}
       printSectionsBuilder={printSections}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
       translations={{
         back: gm2_02_t.back,
         check: gm2_02_t.check,

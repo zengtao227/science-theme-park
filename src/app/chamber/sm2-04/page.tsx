@@ -712,17 +712,7 @@ export default function S204Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<S204Quest, Stage>({
         moduleCode: "sm2-04",
         buildPool,
@@ -755,28 +745,10 @@ export default function S204Page() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={t("sm2_04.title")}
             moduleCode="SM2.04"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            successRate={successRate}
-            checkStatus={lastCheck}
             printSectionsBuilder={printSections}
             translations={{
                 back: t("sm2_04.back"),

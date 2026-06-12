@@ -233,17 +233,7 @@ export default function S203Page() {
     difficulty, stage, inputs, lastCheck, currentQuest,
     setInputs, verify, next, handleDifficultyChange, handleStageChange,
     successRate,
-    adaptiveRecommendation,
-    aiFeedback,
-    isRequestingAi,
-    requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<S203Quest, Stage>({
     moduleCode: "sm2-03",
     buildPool,
@@ -276,28 +266,10 @@ export default function S203Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sm2_03_t.title}
       moduleCode="SM2.03"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      checkStatus={lastCheck}
-      successRate={successRate}
       printSectionsBuilder={printSectionsBuilder}
       translations={{
         back: sm2_03_t.back,

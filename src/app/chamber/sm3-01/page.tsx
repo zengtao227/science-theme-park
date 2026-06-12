@@ -248,17 +248,7 @@ export default function S301Page() {
     handleDifficultyChange,
     handleStageChange,
     parseNumberLike,
-    adaptiveRecommendation,
-    aiFeedback,
-    isRequestingAi,
-    requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+      chamberLayoutProps,
   } = useQuestManager<S301Quest, Stage>({
     moduleCode: "sm3-01",
     buildPool,
@@ -295,28 +285,10 @@ export default function S301Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("sm3_01.title")}
       moduleCode="SM3.01"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
-      onStageChange={(s) => handleStageChange(s as Stage)}
-      onVerify={verify}
-      onNext={next}
-      successRate={successRate}
-      checkStatus={lastCheck}
       printSectionsBuilder={printSections}
       translations={{
         back: t("sm3_01.back"),

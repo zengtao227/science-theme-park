@@ -38,17 +38,7 @@ export default function GC102Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<GC102QuestType, Stage>({
         moduleCode: "gc1-02",
         buildPool,
@@ -78,28 +68,11 @@ export default function GC102Page() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={t("gc1_02.title")}
             moduleCode="GC1.02"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: t("gc1_02.back"),
                 check: t("gc1_02.check"),

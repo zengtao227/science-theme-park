@@ -638,17 +638,7 @@ export default function SM305Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-      adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-      feedbackLevel,
-      feedbackContent,
-      feedbackAvailability,
-      showHintLevel,
-      showStepsLevel,
-      showFullSolution,
-      policy,
+        chamberLayoutProps,
     } = useQuestManager<SM305Quest, Stage>({
     moduleCode: "sm3-05",
         buildPool,
@@ -681,17 +671,10 @@ export default function SM305Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
+      {...chamberLayoutProps}
       title={t("sm3_05.title")}
                 moduleCode="SM3.05"
-                difficulty={difficulty}
-                onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
-                currentStage={stage}
-                onStageChange={(s) => handleStageChange(s as Stage)}
                 printSectionsBuilder={printSections}
                 translations={{
                     back: t("sm3_05.back"),
@@ -715,27 +698,10 @@ export default function SM305Page() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("sm3_05.title")}
             moduleCode="SM3.05"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             printSectionsBuilder={printSections}
             translations={{
                 back: t("sm3_05.back"),

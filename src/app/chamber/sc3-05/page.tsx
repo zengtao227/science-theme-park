@@ -133,16 +133,7 @@ export default function SC305MolecularForge() {
         inputs,
         setInputs,
         lastCheck, adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<SC305Quest, Stage>({
     moduleCode: "sc3-05",
         buildPool: buildStagePool,
@@ -171,29 +162,12 @@ export default function SC305MolecularForge() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+      {...chamberLayoutProps}
             title={sc3_05_t.title}
             moduleCode="SC3.05"
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             stages={stages}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             printSectionsBuilder={printSections}
             translations={sc3_05_t}
-            checkStatus={lastCheck}
-            onVerify={verify}
-            onNext={next}
             monitorContent={
                 <div className="flex items-center gap-6">
                     <div className="flex flex-col items-end">

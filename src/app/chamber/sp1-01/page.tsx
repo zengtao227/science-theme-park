@@ -59,17 +59,7 @@ export default function SP101_ForcesBasics() {
     previous,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<SP101AdaptedQuest, Stage>({
     moduleCode: "sp1-01",
     buildPool,
@@ -90,28 +80,13 @@ export default function SP101_ForcesBasics() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={t("sp1_01.title")}
       moduleCode="SP1.01"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
       onStageChange={handleStageChange as (s: string) => void}
       printSectionsBuilder={printSections}
-      onVerify={verify}
       onNext={canNext ? next : undefined}
-      checkStatus={lastCheck}
       translations={{
         back: t("sp1_01.back"),
         difficulty: {

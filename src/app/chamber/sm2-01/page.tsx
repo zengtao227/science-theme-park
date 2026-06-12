@@ -298,17 +298,7 @@ export default function S201Page() {
     handleDifficultyChange,
     handleStageChange,
     verify,
-    adaptiveRecommendation,
-    aiFeedback,
-    isRequestingAi,
-    requestAiFeedback,
-  feedbackLevel,
-  feedbackContent,
-  feedbackAvailability,
-  showHintLevel,
-  showStepsLevel,
-  showFullSolution,
-  policy,
+      chamberLayoutProps,
   } = useQuestManager<S201Quest, QuestMode>({
     moduleCode: "sm2-01",
     buildPool,
@@ -401,28 +391,12 @@ export default function S201Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sm2_01_t.title}
       moduleCode="SM2.01"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
       currentStage={questMode}
       onStageChange={handleModeChange}
-      checkStatus={lastCheck}
-      onVerify={verify}
-      onNext={next}
-      successRate={successRate}
       printSectionsBuilder={printSections}
       translations={{
         back: sm2_01_t.back,

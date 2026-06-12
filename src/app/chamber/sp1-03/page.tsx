@@ -62,13 +62,7 @@ export default function SP103WeatherClimate() {
         handleDifficultyChange,
         handleStageChange,
         lastCheck,
-        feedbackLevel,
-        feedbackContent,
-        feedbackAvailability,
-        showHintLevel,
-        showStepsLevel,
-        showFullSolution,
-        policy,
+        chamberLayoutProps,
     } = useQuestManager<SP103Quest, Stage>({
         moduleCode: "SP1.03",
         initialStage: "ATMOSPHERE",
@@ -86,17 +80,12 @@ export default function SP103WeatherClimate() {
 
     return (
         <ChamberLayout
+            {...chamberLayoutProps}
             title={sp1_03_t.title}
             moduleCode="SP1.03"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
             onVerify={handleVerify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: sp1_03_t.back,
                 difficulty: sp1_03_t.difficulty,
@@ -106,13 +95,6 @@ export default function SP103WeatherClimate() {
                 incorrect: sp1_03_t.incorrect,
                 monitor_title: sp1_03_t.monitor_title
             }}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}

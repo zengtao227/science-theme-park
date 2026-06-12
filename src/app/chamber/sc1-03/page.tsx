@@ -169,17 +169,7 @@ export default function SC1_03_AtomsForge() {
         handleStageChange,
         difficulty,
         handleDifficultyChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<AtomQuest, Stage>({
         moduleCode: "sc1-03",
         buildPool,
@@ -210,28 +200,11 @@ export default function SC1_03_AtomsForge() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={t("sc1_03.title")}
             moduleCode="SC1.03"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: t("sc1_03.back"),
                 difficulty: {

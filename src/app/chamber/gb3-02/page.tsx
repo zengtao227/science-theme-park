@@ -194,16 +194,7 @@ export default function GB302Immunology() {
         inputs,
         setInputs,
         lastCheck, adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<GB302Quest, Stage>({
     moduleCode: "gb3-02",
         buildPool: buildStagePool,
@@ -245,24 +236,10 @@ export default function GB302Immunology() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+      {...chamberLayoutProps}
             title={t("gb3_02.title")}
             moduleCode="GB3.02"
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             stages={stagesProps}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             printSectionsBuilder={printSections}
             translations={{
                 back: t("gb3_02.back"),
@@ -278,9 +255,6 @@ export default function GB302Immunology() {
                     elite: t("gb3_02.difficulty.elite"),
                 },
             }}
-            checkStatus={lastCheck}
-            onVerify={verify}
-            onNext={next}
             monitorContent={[
                 <div key="stats" className="flex items-center gap-6">
                     <div className="flex flex-col items-end">

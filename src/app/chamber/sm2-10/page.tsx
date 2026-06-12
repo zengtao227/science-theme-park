@@ -744,17 +744,7 @@ export default function SM210Page() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-        feedbackLevel,
-        feedbackContent,
-        feedbackAvailability,
-        showHintLevel,
-        showStepsLevel,
-        showFullSolution,
-        policy,
+        chamberLayoutProps,
     } = useQuestManager<SM210Quest, Stage>({
         moduleCode: "sm2-10",
         buildPool,
@@ -790,20 +780,13 @@ export default function SM210Page() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                adaptiveRecommendation={adaptiveRecommendation}
-                aiFeedback={aiFeedback}
-                isRequestingAi={isRequestingAi}
-                onAiDiagnosisRequested={requestAiFeedback}
+                {...chamberLayoutProps}
                 title={t("sm2_10.title")}
                 moduleCode="SM2.10"
                 defaultLeftWidth={56}
                 minLeftWidth={35}
                 maxLeftWidth={85}
-                difficulty={difficulty}
-                onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
-                currentStage={stage}
-                onStageChange={(s) => handleStageChange(s as Stage)}
                 translations={{
                     back: t("sm2_10.back"),
                     check: t("sm2_10.check"),
@@ -822,30 +805,13 @@ export default function SM210Page() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={t("sm2_10.title")}
             moduleCode="SM2.10"
             defaultLeftWidth={56}
             minLeftWidth={35}
             maxLeftWidth={85}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: t("sm2_10.back"),
                 check: t("sm2_10.check"),

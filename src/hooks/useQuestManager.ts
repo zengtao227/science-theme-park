@@ -450,6 +450,28 @@ export function useQuestManager<T extends Quest, S extends string>({
         };
     }, [getCurrentErrorCount, feedbackContent, lastCheck, policy]);
 
+    const chamberLayoutProps = {
+        difficulty,
+        onDifficultyChange: handleDifficultyChange,
+        currentStage: stage as string,
+        onStageChange: (s: string) => handleStageChange(s as S),
+        checkStatus: lastCheck,
+        onVerify: verify,
+        onNext: next,
+        successRate,
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        onAiDiagnosisRequested: requestAiFeedback,
+        feedbackContent,
+        feedbackLevel,
+        feedbackAvailability,
+        feedbackPolicy: policy,
+        onShowHint: showHintLevel,
+        onShowSteps: showStepsLevel,
+        onShowFull: showFullSolution,
+    };
+
     return {
         difficulty,
         stage,
@@ -485,5 +507,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         handleDifficultyChange,
         handleStageChange,
         parseNumberLike,
+        chamberLayoutProps,
     };
 }

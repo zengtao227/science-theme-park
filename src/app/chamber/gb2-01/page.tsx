@@ -200,16 +200,7 @@ export default function GB201Neurobiology() {
         setInputs,
         lastCheck,
         next, adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<GB201Quest, Stage>({
     moduleCode: "gb2-01",
         buildPool: buildStagePool,
@@ -252,28 +243,12 @@ export default function GB201Neurobiology() {
 
     return (
         <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+      {...chamberLayoutProps}
             title={gb2_01.title}
             moduleCode="GB2.01"
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             stages={stagesProps}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             printSectionsBuilder={printSections}
-            onVerify={verify}
             onNext={lastCheck?.ok ? next : undefined}
-            checkStatus={lastCheck}
             translations={{
                 back: gb2_01.back,
                 check: gb2_01.check,

@@ -639,17 +639,7 @@ export default function SB202BodySystemsPage() {
         next,
         handleDifficultyChange,
         handleStageChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<SB202BodySystemsQuest, Stage>({
         moduleCode: "sb2-02-body-systems",
         buildPool,
@@ -680,25 +670,11 @@ export default function SB202BodySystemsPage() {
     if (!currentQuest) {
         return (
             <ChamberLayout
-                adaptiveRecommendation={adaptiveRecommendation}
-                aiFeedback={aiFeedback}
-                isRequestingAi={isRequestingAi}
-                onAiDiagnosisRequested={requestAiFeedback}
-                feedbackContent={feedbackContent}
-                feedbackLevel={feedbackLevel}
-                feedbackAvailability={feedbackAvailability}
-                feedbackPolicy={policy}
-                onShowHint={showHintLevel}
-                onShowSteps={showStepsLevel}
-                onShowFull={showFullSolution}
+                {...chamberLayoutProps}
                 title={t("sb2_02.title")}
                 moduleCode="SB2.02"
                 historyModuleId="sb2-02-body-systems"
-                difficulty={difficulty}
-                onDifficultyChange={handleDifficultyChange}
                 stages={stagesProps}
-                currentStage={stage}
-                onStageChange={(s) => handleStageChange(s as Stage)}
                 printSectionsBuilder={printSections}
                 translations={{
                     back: t("sb2_02.back"),
@@ -723,29 +699,12 @@ export default function SB202BodySystemsPage() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={t("sb2_02.title")}
             moduleCode="SB2.02"
             historyModuleId="sb2-02-body-systems"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stagesProps}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
-            onVerify={verify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: t("sb2_02.back"),
                 check: t("sb2_02.check"),

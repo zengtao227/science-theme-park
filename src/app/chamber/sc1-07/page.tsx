@@ -62,13 +62,7 @@ export default function SC107Sustainability() {
         handleDifficultyChange,
         handleStageChange,
         lastCheck,
-        feedbackLevel,
-        feedbackContent,
-        feedbackAvailability,
-        showHintLevel,
-        showStepsLevel,
-        showFullSolution,
-        policy,
+        chamberLayoutProps,
     } = useQuestManager<SC107Quest, Stage>({
         moduleCode: "SC1.07",
         initialStage: "RECYCLING",
@@ -86,17 +80,12 @@ export default function SC107Sustainability() {
 
     return (
         <ChamberLayout
+            {...chamberLayoutProps}
             title={sc1_07_t.title}
             moduleCode="SC1.07"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
             printSectionsBuilder={printSections}
             onVerify={handleVerify}
-            onNext={next}
-            checkStatus={lastCheck}
             translations={{
                 back: sc1_07_t.back,
                 difficulty: sc1_07_t.difficulty,
@@ -106,13 +95,6 @@ export default function SC107Sustainability() {
                 incorrect: sc1_07_t.incorrect,
                 monitor_title: sc1_07_t.monitor_title
             }}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
         >
             <div className="flex flex-col lg:flex-row h-full">
                 {/* Left Panel: Visualization Placeholder */}

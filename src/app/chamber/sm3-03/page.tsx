@@ -249,17 +249,7 @@ export default function S303Page() {
     next,
     handleDifficultyChange,
     handleStageChange,
-    adaptiveRecommendation,
-      aiFeedback,
-      isRequestingAi,
-      requestAiFeedback,
-      feedbackLevel,
-      feedbackContent,
-      feedbackAvailability,
-      showHintLevel,
-      showStepsLevel,
-      showFullSolution,
-      policy,
+        chamberLayoutProps,
     } = useQuestManager<S303Quest, Stage>({
     moduleCode: "sm3-03",
     buildPool,
@@ -299,28 +289,11 @@ export default function S303Page() {
 
   return (
     <ChamberLayout
-      adaptiveRecommendation={adaptiveRecommendation}
-      aiFeedback={aiFeedback}
-      isRequestingAi={isRequestingAi}
-      onAiDiagnosisRequested={requestAiFeedback}
-      feedbackContent={feedbackContent}
-      feedbackLevel={feedbackLevel}
-      feedbackAvailability={feedbackAvailability}
-      feedbackPolicy={policy}
-      onShowHint={showHintLevel}
-      onShowSteps={showStepsLevel}
-      onShowFull={showFullSolution}
+      {...chamberLayoutProps}
       title={sm3_03_t.title}
       moduleCode="SM3.03"
-      difficulty={difficulty}
-      onDifficultyChange={handleDifficultyChange}
       stages={stages}
-      currentStage={stage}
       onStageChange={handleStageChange as (s: string) => void}
-      successRate={successRate}
-      onNext={next}
-      onVerify={verify}
-      checkStatus={lastCheck}
       printSectionsBuilder={printSections}
       translations={sm3_03_t as any}
       monitorContent={

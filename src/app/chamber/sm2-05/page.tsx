@@ -665,17 +665,7 @@ export default function S205Page() {
         difficulty, stage, inputs, lastCheck, currentQuest,
         successRate,
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
-        adaptiveRecommendation,
-        aiFeedback,
-        isRequestingAi,
-        requestAiFeedback,
-    feedbackLevel,
-    feedbackContent,
-    feedbackAvailability,
-    showHintLevel,
-    showStepsLevel,
-    showFullSolution,
-    policy,
+        chamberLayoutProps,
     } = useQuestManager<S205Quest, Stage>({
         moduleCode: "sm2-05",
         buildPool,
@@ -708,28 +698,10 @@ export default function S205Page() {
 
     return (
         <ChamberLayout
-            adaptiveRecommendation={adaptiveRecommendation}
-            aiFeedback={aiFeedback}
-            isRequestingAi={isRequestingAi}
-            onAiDiagnosisRequested={requestAiFeedback}
-            feedbackContent={feedbackContent}
-            feedbackLevel={feedbackLevel}
-            feedbackAvailability={feedbackAvailability}
-            feedbackPolicy={policy}
-            onShowHint={showHintLevel}
-            onShowSteps={showStepsLevel}
-            onShowFull={showFullSolution}
+            {...chamberLayoutProps}
             title={t("sm2_05.title")}
             moduleCode="SM2.05"
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
             stages={stages}
-            currentStage={stage}
-            onStageChange={(s) => handleStageChange(s as Stage)}
-            onVerify={verify}
-            onNext={next}
-            successRate={successRate}
-            checkStatus={lastCheck}
             printSectionsBuilder={printSections}
             translations={{
                 back: t("sm2_05.back"),
