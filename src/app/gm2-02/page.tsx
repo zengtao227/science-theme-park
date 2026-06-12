@@ -23,7 +23,7 @@ const translations = {
 };
 
 export default function GM202AnalyticalGeometry() {
-  const { currentLanguage } = useAppStore();
+  const currentLanguage = useAppStore((s) => s.currentLanguage);
   const t = translations[currentLanguage];
 
   const [difficulty, setDifficulty] = useState<Difficulty>("BASIC");
