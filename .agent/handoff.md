@@ -8,6 +8,13 @@
 - ✅ Step 3 — completeStage 提取进 useQuestManager.verify()，67个文件移除 useEffect，commit `fc04a523`
 - ✅ Step 6 — useNamespace helper 添加到 i18n/index.ts，26个文件的 useMemo 翻译块替换，commit `8d247620`
 - ✅ Step 4 — chamberLayoutProps bundle 在 useQuestManager 返回，95个页面改为 `{...chamberLayoutProps}` spread，commit `f8258555`
+- ✅ Opus review 修复 — commit `e5e5d3cc`：
+  - 移除 13 个页面的重复 completeStage useEffect（已被 useQuestManager.verify() 内化）
+  - 修复 12 个页面的 moduleCode 格式（uppercase-dot → lowercase-hyphen）
+  - 修复 sc1-06 的 key 错字（'sc1_06' → 'sc1-06'）
+  - 修复 sm2-09 的无条件 completeStage（按题目导航就触发）
+  - chamberLayoutProps 包裹 useMemo + onStageChange 提取为 useCallback
+  - useLanguage/useNamespace 改用 store selector，避免全量订阅
 
 ---
 
