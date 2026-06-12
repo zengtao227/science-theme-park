@@ -59,7 +59,7 @@ export default function OlympiadChallenge() {
         handleStageChange,
         chamberLayoutProps,
     } = useQuestManager<OlympiadQuest, "logic">({
-        moduleCode: "EM3.01",
+        moduleCode: "em3-01",
         buildPool,
         initialStage: "logic",
         feedbackContentProvider,

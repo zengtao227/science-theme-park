@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcidBaseVisualization from "@/components/chamber/sc2-05/AcidBaseVisualization";
@@ -14,7 +13,6 @@ import { createSC205FeedbackProvider } from "@/lib/sc2-05/provider";
 import type { AcidBaseQuest, Stage } from "@/lib/sc2-05/types";
 
 export default function SC205Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const sc2_05_t = t("sc2_05");
   const feedbackContentProvider = useMemo(() => createSC205FeedbackProvider(t), [t]);
@@ -822,13 +820,7 @@ export default function SC205Page() {
     feedbackContentProvider,
   });
 
-  const isCorrect = lastCheck?.ok || null;
 
-  useEffect(() => {
-    if (isCorrect && currentQuest) {
-      completeStage("sc2-05", currentStage);
-    }
-  }, [isCorrect, currentStage, currentQuest, completeStage]);
 
   const quest = currentQuest as AcidBaseQuest | null;
 

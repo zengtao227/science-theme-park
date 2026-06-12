@@ -450,11 +450,16 @@ export function useQuestManager<T extends Quest, S extends string>({
         };
     }, [getCurrentErrorCount, feedbackContent, lastCheck, policy]);
 
-    const chamberLayoutProps = {
+    const handleStageChangeString = useCallback(
+        (s: string) => handleStageChange(s as S),
+        [handleStageChange]
+    );
+
+    const chamberLayoutProps = useMemo(() => ({
         difficulty,
         onDifficultyChange: handleDifficultyChange,
         currentStage: stage as string,
-        onStageChange: (s: string) => handleStageChange(s as S),
+        onStageChange: handleStageChangeString,
         checkStatus: lastCheck,
         onVerify: verify,
         onNext: next,
@@ -470,7 +475,27 @@ export function useQuestManager<T extends Quest, S extends string>({
         onShowHint: showHintLevel,
         onShowSteps: showStepsLevel,
         onShowFull: showFullSolution,
-    };
+    }), [
+        difficulty,
+        handleDifficultyChange,
+        stage,
+        handleStageChangeString,
+        lastCheck,
+        verify,
+        next,
+        successRate,
+        adaptiveRecommendation,
+        aiFeedback,
+        isRequestingAi,
+        requestAiFeedback,
+        feedbackContent,
+        feedbackLevel,
+        feedbackAvailability,
+        policy,
+        showHintLevel,
+        showStepsLevel,
+        showFullSolution,
+    ]);
 
     return {
         difficulty,

@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicMoleculeCanvas from "@/components/chamber/sc3-02/OrganicMoleculeCanvas";
@@ -15,7 +14,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SC302Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC302FeedbackProvider(t), [t]);
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methane");
@@ -195,11 +193,6 @@ export default function SC302Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("SC3.02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "HYDROCARBONS" as Stage, label: t("sc3_02.stages.hydrocarbons") },

@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import NeuralCanvas from "@/components/chamber/gb2-01/NeuralCanvas";
@@ -22,7 +21,6 @@ interface GB201Quest extends Quest {
 }
 
 export default function GB201Neurobiology() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGB201FeedbackProvider(t), [t]);
     const gb2_01 = t('gb2_01');
@@ -208,11 +206,6 @@ export default function GB201Neurobiology() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("GB2.01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
         if (currentQuest?.scenario && gb2_01.scenarios[currentQuest?.scenario as keyof typeof gb2_01.scenarios]) {

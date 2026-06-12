@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage, TranslationKeys } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EvolutionCanvas from "@/components/chamber/gb1-01/EvolutionCanvas";
@@ -160,7 +159,6 @@ function buildStagePool(getT: any, tObj: TranslationKeys['gb1_01'], difficulty: 
 }
 
 export default function GB101Page() {
-    const { completeStage } = useAppStore();
     const { t: getT } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGB101FeedbackProvider(getT), [getT]);
     const t = getT("gb1_01");
@@ -191,11 +189,6 @@ export default function GB101Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("GB1.01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "NATURAL_SELECTION" as Stage, label: t.stages.natural_selection },

@@ -64,7 +64,7 @@ export default function SC107Sustainability() {
         lastCheck,
         chamberLayoutProps,
     } = useQuestManager<SC107Quest, Stage>({
-        moduleCode: "SC1.07",
+        moduleCode: "sc1-07",
         initialStage: "RECYCLING",
     feedbackContentProvider,
         buildPool

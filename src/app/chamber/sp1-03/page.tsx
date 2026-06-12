@@ -64,7 +64,7 @@ export default function SP103WeatherClimate() {
         lastCheck,
         chamberLayoutProps,
     } = useQuestManager<SP103Quest, Stage>({
-        moduleCode: "SP1.03",
+        moduleCode: "sp1-03",
         initialStage: "ATMOSPHERE",
     feedbackContentProvider,
         buildPool

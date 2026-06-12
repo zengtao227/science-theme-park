@@ -1,6 +1,5 @@
 "use client";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage, useNamespace } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -105,7 +104,6 @@ function TransformationMonitor({
 }
 
 export default function SM213Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = React.useMemo(() => createSM213FeedbackProvider(t), [t]);
 
@@ -130,19 +128,12 @@ export default function SM213Page() {
         handleStageChange,
         chamberLayoutProps,
     } = useQuestManager<SM213Quest, Stage>({
-        moduleCode: "SM2.13",
+        moduleCode: "sm2-13",
         buildPool: (diff, s) => buildStagePool(diff, s, t),
         initialStage: "reflection",
         tolerance: 0.1,
         feedbackContentProvider,
     });
-
-    // Mark stage complete when verified
-    React.useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("SM2.13", stage);
-        }
-    }, [lastCheck, stage, completeStage]);
 
     const hint = getHint();
     const stages = React.useMemo<{ id: Stage; label: string }[]>(() => [

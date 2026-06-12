@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InequalityVisualization } from "@/components/chamber/sm2-09/InequalityVisualization";
@@ -180,7 +179,6 @@ function buildAnswerChoices(answer: string, questId: string): string[] {
 }
 
 export default function SM209Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const [selectedChoice, setSelectedChoice] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -396,9 +394,6 @@ export default function SM209Page() {
     });
   }, [buildStagePool, sm2_09_t]);
 
-  useEffect(() => {
-    completeStage("sm2-09", currentStage);
-  }, [completeStage, currentStage]);
 
   useEffect(() => {
     if (!lastCheck) return;

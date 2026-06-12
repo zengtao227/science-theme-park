@@ -64,7 +64,7 @@ export default function SP104AstronomyBasics() {
         lastCheck,
         chamberLayoutProps,
     } = useQuestManager<SP104Quest, Stage>({
-        moduleCode: "SP1.04",
+        moduleCode: "sp1-04",
         initialStage: "SOLAR_SYSTEM",
     feedbackContentProvider,
         buildPool

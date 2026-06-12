@@ -273,7 +273,7 @@ export default function SM102Page() {
         setInputs, verify, next, handleDifficultyChange, handleStageChange,
         chamberLayoutProps,
     } = useQuestManager<S102Quest, Stage>({
-        moduleCode: "SM1.02",
+        moduleCode: "sm1-02",
         buildPool,
         initialStage: "VARIABLES",
         tolerance: 0.1,

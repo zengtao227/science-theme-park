@@ -93,7 +93,8 @@ export const translations: Record<string, any> = {
  * @returns Object with translation function, current language, and language setter
  */
 export function useLanguage() {
-  const { currentLanguage, setLanguage } = useAppStore();
+  const currentLanguage = useAppStore((s) => s.currentLanguage);
+  const setLanguage = useAppStore((s) => s.setLanguage);
   const t = (path: string, params?: Record<string, string | number>): any => {
     const segments = path.split(".");
 
@@ -139,7 +140,7 @@ export function useLanguage() {
  * Replaces the pattern: useMemo(() => ({ title: t("sm1_01.title"), ... }), [t])
  */
 export function useNamespace(namespace: string): Record<string, any> {
-  const { currentLanguage } = useAppStore();
+  const currentLanguage = useAppStore((s) => s.currentLanguage);
   const safeLang = (currentLanguage && currentLanguage in translations) ? currentLanguage : "EN";
   return ((translations[safeLang] as Record<string, any>)[namespace]) ?? {};
 }

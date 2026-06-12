@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MoleculeCanvas from "@/components/chamber/sc3-01/MoleculeCanvas";
@@ -15,7 +14,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 
 export default function SC301Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC301FeedbackProvider(t), [t]);
 
@@ -213,11 +211,6 @@ export default function SC301Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("SC3.01", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
     { id: "ASPIRIN" as Stage, label: t("sc3_01.stages.aspirin") },

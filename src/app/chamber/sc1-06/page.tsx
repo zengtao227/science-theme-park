@@ -78,7 +78,7 @@ export default function SC106Page() {
   // Handle stage completion for persistence
   useEffect(() => {
     if (componentCompleted) {
-      completeStage('sc1_06', stage);
+      completeStage('sc1-06', stage);
     }
   }, [componentCompleted, completeStage, stage]);
 

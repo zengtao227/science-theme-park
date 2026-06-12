@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OrganicReactionCanvas from "@/components/chamber/sc3-03/OrganicReactionCanvas";
@@ -15,7 +14,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SC303Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC303FeedbackProvider(t), [t]);
     const [animationSpeed, setAnimationSpeed] = useState(1);
@@ -194,11 +192,6 @@ export default function SC303Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("SC3.03", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "COMBUSTION" as Stage, label: t("sc3_03.stages.combustion") },

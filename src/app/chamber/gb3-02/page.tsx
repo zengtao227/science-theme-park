@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ImmuneCanvas from "@/components/chamber/gb3-02/ImmuneCanvas";
@@ -22,7 +21,6 @@ interface GB302Quest extends Quest {
 }
 
 export default function GB302Immunology() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGB302FeedbackProvider(t), [t]);
     const [antigenLoad] = useState(100);
@@ -202,11 +200,6 @@ export default function GB302Immunology() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("GB3.02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
         if (currentQuest?.scenario) {

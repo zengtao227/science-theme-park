@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FunctionalGroupCanvas from "@/components/chamber/sc3-04/FunctionalGroupCanvas";
@@ -15,7 +14,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SC304Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC304FeedbackProvider(t), [t]);
     const [selectedMolecule, setSelectedMolecule] = useState<string>("methanol");
@@ -200,11 +198,6 @@ export default function SC304Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("SC3.04", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "ALCOHOLS" as Stage, label: t("sc3_04.stages.alcohols") },

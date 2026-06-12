@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import KineticsCanvas from "@/components/chamber/sc2-01/KineticsCanvas";
@@ -14,7 +13,6 @@ import type { SC201Quest as KineticsQuest, SC201Stage as Stage } from "@/lib/sc2
 
 
 export default function SC201Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const sc2_01_t = t("sc2_01");
   const feedbackContentProvider = useMemo(() => createSC201FeedbackProvider(t), [t]);
@@ -199,14 +197,6 @@ export default function SC201Page() {
     initialStage: "ARRHENIUS" as Stage,
     feedbackContentProvider,
   });
-
-  const isCorrect = lastCheck?.ok || null;
-
-  useEffect(() => {
-    if (isCorrect && currentQuest) {
-      completeStage("sc2-01", currentStage);
-    }
-  }, [isCorrect, currentStage, currentQuest, completeStage]);
 
   const quest = currentQuest as KineticsQuest | null;
 
