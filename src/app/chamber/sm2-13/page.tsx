@@ -162,7 +162,7 @@ export default function SM213Page() {
         <ChamberLayout
             {...chamberLayoutProps}
             title={sm2_13_t.title}
-            moduleCode={sm2_13_t.moduleCode}
+            moduleCode="sm2-13"
             stages={stages}
             printSectionsBuilder={printSectionsBuilder}
             translations={sm2_13_t as any}

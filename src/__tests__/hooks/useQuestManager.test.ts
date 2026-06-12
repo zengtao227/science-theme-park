@@ -22,10 +22,14 @@ describe("useQuestManager", () => {
     ]);
 
     beforeEach(() => {
-        (useAppStore as any).mockReturnValue({
+        const mockState = {
             currentLanguage: "EN",
             history: [],
-        });
+            completeStage: jest.fn(),
+        };
+        (useAppStore as any).mockImplementation((selector: any) =>
+            typeof selector === "function" ? selector(mockState) : mockState
+        );
         mockBuildPool.mockClear();
         localStorage.clear();
     });

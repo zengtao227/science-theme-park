@@ -5,37 +5,37 @@ export interface Prerequisite {
 
 export const MODULE_DEPENDENCIES: Record<string, Prerequisite[]> = {
     // Biology Pathway
-    "SB2.01": [{ moduleCode: "SB1.01" }],
-    "SB2.03": [{ moduleCode: "SB2.01" }],
-    "SB2.04": [{ moduleCode: "SB2.03" }],
-    "SB3.01": [{ moduleCode: "SB2.04" }],
+    "sb2-01": [{ moduleCode: "sb1-01" }],
+    "sb2-03": [{ moduleCode: "sb2-01" }],
+    "sb2-04": [{ moduleCode: "sb2-03" }],
+    "sb3-01": [{ moduleCode: "sb2-04" }],
 
     // Physics Pathway
-    "SP2.01": [{ moduleCode: "SP1.01" }],
-    "SP2.02": [{ moduleCode: "SP2.01" }],
-    "SP2.03": [{ moduleCode: "SP2.01" }],
-    "SP3.03": [{ moduleCode: "SP2.03" }],
+    "sp2-01": [{ moduleCode: "sp1-01" }],
+    "sp2-02": [{ moduleCode: "sp2-01" }],
+    "sp2-03": [{ moduleCode: "sp2-01" }],
+    "sp3-03": [{ moduleCode: "sp2-03" }],
 
     // Chemistry Pathway
-    "SC1.02": [{ moduleCode: "SC1.01" }],
-    "SC1.03": [{ moduleCode: "SC1.02" }],
-    "SC1.04": [{ moduleCode: "SC1.03" }],
-    "SC1.05": [{ moduleCode: "SC1.04" }],
-    "SC2.01": [{ moduleCode: "SC1.05" }],
-    "SC3.01": [{ moduleCode: "SC2.01" }],
+    "sc1-02": [{ moduleCode: "sc1-01" }],
+    "sc1-03": [{ moduleCode: "sc1-02" }],
+    "sc1-04": [{ moduleCode: "sc1-03" }],
+    "sc1-05": [{ moduleCode: "sc1-04" }],
+    "sc2-01": [{ moduleCode: "sc1-05" }],
+    "sc3-01": [{ moduleCode: "sc2-01" }],
 
     // Math Pathway (Foundation for others)
-    "SM2.01": [{ moduleCode: "SM1.01" }],
-    "SM2.02": [{ moduleCode: "SM1.01" }],
-    "SM2.03": [{ moduleCode: "SM1.01" }],
-    "SM2.07": [{ moduleCode: "SM2.02" }],
-    "SM3.01": [{ moduleCode: "SM2.01" }],
-    "SM3.03": [{ moduleCode: "SM3.01" }],
+    "sm2-01": [{ moduleCode: "sm1-01" }],
+    "sm2-02": [{ moduleCode: "sm1-01" }],
+    "sm2-03": [{ moduleCode: "sm1-01" }],
+    "sm2-07": [{ moduleCode: "sm2-02" }],
+    "sm3-01": [{ moduleCode: "sm2-01" }],
+    "sm3-03": [{ moduleCode: "sm3-01" }],
 };
 
 // Cross-disciplinary links (Knowledge bridges)
 export const KNOWLEDGE_BRIDGES: Record<string, string[]> = {
-    "SB3.01": ["SC1.06"], // Ecosystems need Chem (Nutrient cycles)
-    "SP3.03": ["SM2.03"], // Energy needs linear Algebra for power calcs
-    "SC2.07": ["SM2.07"], // Org Chem needs coordinate geometry for bond angles
+    "sb3-01": ["sc1-06"], // Ecosystems need Chem (Nutrient cycles)
+    "sp3-03": ["sm2-03"], // Energy needs linear Algebra for power calcs
+    "sc2-07": ["sm2-07"], // Org Chem needs coordinate geometry for bond angles
 };

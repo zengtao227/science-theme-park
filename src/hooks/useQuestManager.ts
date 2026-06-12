@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
 import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
@@ -92,7 +92,10 @@ export function useQuestManager<T extends Quest, S extends string>({
         () => ({ ...DEFAULT_FEEDBACK_POLICY, ...policyOverrides }),
         [policyOverrides]
     );
-    const { currentLanguage, history, completeStage } = useAppStore();
+    const currentLanguage = useAppStore((s) => s.currentLanguage);
+    const history = useAppStore((s) => s.history);
+    const completeStage = useAppStore((s) => s.completeStage);
+
     const storageKey = `quest_manager_stats_${moduleCode}_v1`;
     const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
     const [stage, setStage] = useState<S>(initialStage);
@@ -121,21 +124,29 @@ export function useQuestManager<T extends Quest, S extends string>({
     });
 
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState<DifficultyAdjustment | null>(null);
+    // Tracks whether the user has manually chosen a difficulty this session
+    const userHasSetDifficultyRef = useRef(false);
 
     // AI Feedback State
     const [aiFeedback, setAiFeedback] = useState<string | null>(null);
     const [isRequestingAi, setIsRequestingAi] = useState(false);
 
     // AI Adaptive Difficulty Engine Integration
+    // `difficulty` is intentionally excluded from deps — the effect should react to
+    // new history data, not to its own auto-apply writes, and should not override
+    // manual difficulty changes made by the user.
     useEffect(() => {
         const recommendation = getAdaptiveDifficulty(history, moduleCode);
         setAdaptiveRecommendation(recommendation);
 
-        // Auto-apply recommendation if confidence is extremely high (>0.9) and not already at that difficulty
-        if (recommendation.confidence > 0.9 && recommendation.recommendedDifficulty !== difficulty) {
+        if (
+            !userHasSetDifficultyRef.current &&
+            recommendation.confidence > 0.9 &&
+            recommendation.recommendedDifficulty !== difficulty
+        ) {
             setDifficulty(recommendation.recommendedDifficulty as Difficulty);
         }
-    }, [history, moduleCode, difficulty]);
+    }, [history, moduleCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Load nonce when stage or difficulty changes
     useEffect(() => {
@@ -341,10 +352,17 @@ export function useQuestManager<T extends Quest, S extends string>({
     }, [currentQuest, inputs, parseNumberLike, stage, tolerance, locale, completeStage, moduleCode]);
 
     const handleDifficultyChange = useCallback((d: Difficulty) => {
+        userHasSetDifficultyRef.current = true;
         setDifficulty(d);
         clearInputs();
         setErrorCounts({});
-    }, [clearInputs]);
+        // Clear the current stage's stats so success rate resets for the new difficulty
+        setStageStats((prev) => {
+            const next = { ...prev };
+            delete next[`${stage}`];
+            return next;
+        });
+    }, [clearInputs, stage]);
 
     const handleStageChange = useCallback((s: S) => {
         setStage(s);
@@ -475,6 +493,7 @@ export function useQuestManager<T extends Quest, S extends string>({
         onShowHint: showHintLevel,
         onShowSteps: showStepsLevel,
         onShowFull: showFullSolution,
+        questNonce: nonce,
     }), [
         difficulty,
         handleDifficultyChange,
@@ -495,6 +514,7 @@ export function useQuestManager<T extends Quest, S extends string>({
         showHintLevel,
         showStepsLevel,
         showFullSolution,
+        nonce,
     ]);
 
     return {

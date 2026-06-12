@@ -1,4 +1,5 @@
 import { HistoryEntry, DifficultyLevel } from '../store';
+import { normalizeModuleCode } from '../moduleCode';
 
 export interface PerformanceMetrics {
     averageScore: number;
@@ -19,7 +20,8 @@ export interface DifficultyAdjustment {
  * Analyzes previous performances for a specific module
  */
 export function analyzePerformance(history: HistoryEntry[], moduleCode: string): PerformanceMetrics {
-    const moduleHistory = (history ?? []).filter(h => h.moduleCode === moduleCode);
+    const normalizedCode = normalizeModuleCode(moduleCode);
+    const moduleHistory = (history ?? []).filter(h => normalizeModuleCode(h.moduleCode) === normalizedCode);
 
     if (moduleHistory.length === 0) {
         return {
@@ -52,7 +54,8 @@ export function analyzePerformance(history: HistoryEntry[], moduleCode: string):
  * (Phase 5.1.1 MVP)
  */
 export function getAdaptiveDifficulty(history: HistoryEntry[], moduleCode: string): DifficultyAdjustment {
-    const moduleHistory = (history ?? []).filter(h => h.moduleCode === moduleCode);
+    const normalizedCode = normalizeModuleCode(moduleCode);
+    const moduleHistory = (history ?? []).filter(h => normalizeModuleCode(h.moduleCode) === normalizedCode);
 
     // Default for new users
     if (moduleHistory.length < 3) {

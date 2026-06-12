@@ -14,6 +14,7 @@ import type { FeedbackLevel, FeedbackContent, FeedbackPolicy } from "@/hooks/use
 import { translations as i18n, useLanguage } from "@/lib/i18n";
 import "katex/dist/katex.min.css";
 import { MODULE_DEPENDENCIES } from "@/lib/curriculum/dependencies";
+import { normalizeModuleCode } from "@/lib/moduleCode";
 import CoopPanel from "@/components/coop/CoopPanel";
 import HUDAlert from "@/components/shared/HUDAlert";
 import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
@@ -66,6 +67,7 @@ interface ChamberLayoutProps {
     onShowHint?: () => void;
     onShowSteps?: () => void;
     onShowFull?: () => void;
+    questNonce?: number;
 }
 
 function StageSelectorButtons({
@@ -160,8 +162,13 @@ export default function ChamberLayout({
     onShowHint,
     onShowSteps,
     onShowFull,
+    questNonce,
 }: ChamberLayoutProps) {
-    const { currentLanguage, setLanguage, history, addHistory } = useAppStore();
+    const currentLanguage = useAppStore((s) => s.currentLanguage);
+    const setLanguage = useAppStore((s) => s.setLanguage);
+    const history = useAppStore((s) => s.history);
+    const addHistory = useAppStore((s) => s.addHistory);
+    const normalizedModuleCode = normalizeModuleCode(moduleCode);
     const { t } = useLanguage();
     const common = i18n[currentLanguage].common;
     const locale = currentLanguage === "CN" ? "zh-CN" : currentLanguage === "DE" ? "de-DE" : "en-US";
@@ -207,8 +214,8 @@ export default function ChamberLayout({
     }, [hasPrintSections, resolvedPrintSections]);
 
     const moduleEntries = useMemo<HistoryEntry[]>(() => {
-        return history.filter((entry) => entry.moduleCode === moduleCode);
-    }, [history, moduleCode]);
+        return history.filter((entry) => entry.moduleCode === normalizedModuleCode);
+    }, [history, normalizedModuleCode]);
 
     const bestEntry = useMemo<HistoryEntry | null>(() => {
         if (!moduleEntries.length) return null;
@@ -226,14 +233,14 @@ export default function ChamberLayout({
 
     const canPrint = !hasPrintSections || selectedPrintSections.length > 0;
 
-    // Check Prerequisites
+    // Check Prerequisites — both keys and dep.moduleCode are lowercase-hyphen (see dependencies.ts)
     const prerequisites = useMemo(() => {
-        const deps = MODULE_DEPENDENCIES[moduleCode] || [];
+        const deps = MODULE_DEPENDENCIES[normalizedModuleCode] || [];
         return deps.map(dep => {
-            const isCompleted = history.some(h => h.moduleCode === dep.moduleCode);
+            const isCompleted = history.some(h => normalizeModuleCode(h.moduleCode) === dep.moduleCode);
             return { ...dep, isCompleted };
         });
-    }, [moduleCode, history]);
+    }, [normalizedModuleCode, history]);
 
     const allPrereqsMet = useMemo(() => prerequisites.every(p => p.isCompleted), [prerequisites]);
     const missingPrereqCodes = useMemo(
@@ -263,7 +270,7 @@ export default function ChamberLayout({
     useEffect(() => {
         stageStartRef.current = Date.now();
         hadFailureRef.current = false;
-    }, [currentStage, difficulty]);
+    }, [currentStage, difficulty, questNonce]);
 
     useEffect(() => {
         if (checkStatus && !checkStatus.ok) {
@@ -275,21 +282,20 @@ export default function ChamberLayout({
         const ok = !!checkStatus?.ok;
         if (ok && !prevOkRef.current) {
             const durationMs = Date.now() - stageStartRef.current;
-            const accuracy = typeof successRate === "number" ? successRate : 1;
             addHistory({
-                id: `${moduleCode}-${currentStage}-${Date.now()}`,
+                id: `${normalizedModuleCode}-${currentStage}-${Date.now()}`,
                 timestamp: Date.now(),
-                moduleCode,
-                moduleId: historyModuleId ?? getDefaultHistoryModuleId(moduleCode),
+                moduleCode: normalizedModuleCode,
+                moduleId: historyModuleId ?? getDefaultHistoryModuleId(normalizedModuleCode),
                 stage: currentStage,
                 difficulty,
-                score: accuracy,
+                score: hadFailureRef.current ? 0 : 1,
                 durationMs,
                 rigor: !hadFailureRef.current,
             });
         }
         prevOkRef.current = ok;
-    }, [addHistory, checkStatus, currentStage, difficulty, historyModuleId, moduleCode, successRate]);
+    }, [addHistory, checkStatus, currentStage, difficulty, historyModuleId, normalizedModuleCode]);
 
     // Scroll AI feedback into view when it first arrives
     useEffect(() => {

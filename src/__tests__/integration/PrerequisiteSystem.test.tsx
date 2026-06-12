@@ -40,12 +40,15 @@ describe("ChamberLayout - Prerequisite System Integration", () => {
 
     it("should show 'PREREQUISITE_REQUIRED' when deps are not met", () => {
         // SB2.01 depends on SB1.01
-        (useAppStore as any).mockReturnValue({
+        const mockState = {
             currentLanguage: "EN",
             history: [], // No history means no completed modules
             setLanguage: jest.fn(),
             addHistory: jest.fn(),
-        });
+        };
+        (useAppStore as any).mockImplementation((selector: any) =>
+            typeof selector === "function" ? selector(mockState) : mockState
+        );
 
         render(<ChamberLayout {...defaultProps} />);
 
@@ -55,12 +58,15 @@ describe("ChamberLayout - Prerequisite System Integration", () => {
     });
 
     it("should show 'LINK_STABLE' when all deps are met", () => {
-        (useAppStore as any).mockReturnValue({
+        const mockState = {
             currentLanguage: "EN",
-            history: [{ moduleCode: "SB1.01", score: 1 }], // Completed dep
+            history: [{ moduleCode: "sb1-01", score: 1 }], // Completed dep (canonical format)
             setLanguage: jest.fn(),
             addHistory: jest.fn(),
-        });
+        };
+        (useAppStore as any).mockImplementation((selector: any) =>
+            typeof selector === "function" ? selector(mockState) : mockState
+        );
 
         render(<ChamberLayout {...defaultProps} />);
 

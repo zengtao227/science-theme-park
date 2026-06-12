@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { track } from '@vercel/analytics';
 import { getDefaultHistoryModuleId } from '@/lib/historyDisplay';
+import { normalizeModuleCode } from '@/lib/moduleCode';
 
 export type StageId = string;
 export type DifficultyLevel = 'BASIC' | 'CORE' | 'ADVANCED' | 'ELITE';
@@ -90,9 +91,19 @@ interface AppState {
   getSectorProgress: (sector: 'math' | 'physics' | 'chemistry') => number;
 }
 
+const DEFAULT_ACHIEVEMENTS: Record<AchievementId, AchievementRecord> = {
+  first_light: { unlocked: false },
+  first_launch: { unlocked: false },
+  mole_master: { unlocked: false },
+  molecular_architect: { unlocked: false },
+  time_traveler: { unlocked: false },
+  calculus_god: { unlocked: false },
+};
+
 function normalizeHistoryEntry(entry: HistoryEntry): HistoryEntry {
   return {
     ...entry,
+    moduleCode: normalizeModuleCode(entry.moduleCode),
     moduleId: entry.moduleId ?? getDefaultHistoryModuleId(entry.moduleCode),
     stageLabel: undefined,
   };
@@ -103,12 +114,24 @@ function normalizeHistoryEntries(entries: HistoryEntry[] | undefined): HistoryEn
   return entries.map(normalizeHistoryEntry);
 }
 
-function sanitizeAiProviderConfig(config: AiProviderConfig | undefined): AiProviderConfig {
-  if (!config) return { useDefault: true, provider: 'NVIDIA' };
-
-  const safeConfig = { ...config };
-  delete safeConfig.apiKey;
-  return safeConfig;
+/** Merge progress maps after normalizing keys — old "SM2.09" → new "sm2-09", combined with any existing "sm2-09" */
+function normalizeProgressKeys(progress: ModuleProgress | undefined): ModuleProgress {
+  if (!progress || typeof progress !== 'object') return {};
+  const result: ModuleProgress = {};
+  for (const [key, value] of Object.entries(progress)) {
+    if (!value) continue;
+    const normalized = normalizeModuleCode(key);
+    const existing = result[normalized];
+    if (existing) {
+      result[normalized] = {
+        stages: { ...existing.stages, ...value.stages },
+        lastPlayed: Math.max(existing.lastPlayed ?? 0, value.lastPlayed ?? 0) || undefined,
+      };
+    } else {
+      result[normalized] = value;
+    }
+  }
+  return result;
 }
 
 export const useAppStore = create<AppState>()(
@@ -118,14 +141,7 @@ export const useAppStore = create<AppState>()(
       currentLanguage: 'DE',
       progress: {},
       history: [],
-      achievements: {
-        first_light: { unlocked: false },
-        first_launch: { unlocked: false },
-        mole_master: { unlocked: false },
-        molecular_architect: { unlocked: false },
-        time_traveler: { unlocked: false },
-        calculus_god: { unlocked: false },
-      },
+      achievements: { ...DEFAULT_ACHIEVEMENTS },
       aiProviderConfig: {
         useDefault: true,
         provider: 'NVIDIA',
@@ -144,42 +160,48 @@ export const useAppStore = create<AppState>()(
       setAiProviderConfig: (config) => set((state) => ({ aiProviderConfig: { ...state.aiProviderConfig, ...config } })),
       addHistory: (entry) =>
         set((state) => {
-          const history = [entry, ...state.history].slice(0, 200);
+          const normalizedEntry: HistoryEntry = {
+            ...entry,
+            moduleCode: normalizeModuleCode(entry.moduleCode),
+            moduleId: entry.moduleId ?? getDefaultHistoryModuleId(entry.moduleCode),
+          };
+          const history = [normalizedEntry, ...state.history].slice(0, 200);
           const achievements = { ...state.achievements };
           const unlocked: AchievementId[] = [];
+          const code = normalizedEntry.moduleCode;
 
           if (!achievements.first_launch.unlocked && history.length >= 1) {
-            achievements.first_launch = { unlocked: true, timestamp: entry.timestamp };
+            achievements.first_launch = { unlocked: true, timestamp: normalizedEntry.timestamp };
             unlocked.push('first_launch');
           }
-          if (!achievements.first_light.unlocked && entry.moduleCode === 'P3.01') {
-            achievements.first_light = { unlocked: true, timestamp: entry.timestamp };
+          if (!achievements.first_light.unlocked && code === 'p3-01') {
+            achievements.first_light = { unlocked: true, timestamp: normalizedEntry.timestamp };
             unlocked.push('first_light');
           }
-          if (!achievements.mole_master.unlocked && entry.moduleCode === 'C1.02' && entry.score >= 1) {
-            achievements.mole_master = { unlocked: true, timestamp: entry.timestamp };
+          if (!achievements.mole_master.unlocked && code === 'c1-02' && normalizedEntry.score >= 1) {
+            achievements.mole_master = { unlocked: true, timestamp: normalizedEntry.timestamp };
             unlocked.push('mole_master');
           }
-          if (!achievements.molecular_architect.unlocked && entry.moduleCode === 'C3.01') {
-            achievements.molecular_architect = { unlocked: true, timestamp: entry.timestamp };
+          if (!achievements.molecular_architect.unlocked && code === 'c3-01') {
+            achievements.molecular_architect = { unlocked: true, timestamp: normalizedEntry.timestamp };
             unlocked.push('molecular_architect');
           }
-          if (!achievements.time_traveler.unlocked && entry.moduleCode === 'P1.04') {
-            achievements.time_traveler = { unlocked: true, timestamp: entry.timestamp };
+          if (!achievements.time_traveler.unlocked && code === 'p1-04') {
+            achievements.time_traveler = { unlocked: true, timestamp: normalizedEntry.timestamp };
             unlocked.push('time_traveler');
           }
-          if (!achievements.calculus_god.unlocked && entry.moduleCode === 'GM1.01' && entry.score >= 1) {
-            achievements.calculus_god = { unlocked: true, timestamp: entry.timestamp };
+          if (!achievements.calculus_god.unlocked && code === 'gm1-01' && normalizedEntry.score >= 1) {
+            achievements.calculus_god = { unlocked: true, timestamp: normalizedEntry.timestamp };
             unlocked.push('calculus_god');
           }
 
           if (typeof window !== 'undefined') {
             track('experiment_saved', {
-              module: entry.moduleCode,
-              stage: entry.stage,
-              score: entry.score,
-              durationMs: entry.durationMs,
-              rigor: entry.rigor,
+              module: normalizedEntry.moduleCode,
+              stage: normalizedEntry.stage,
+              score: normalizedEntry.score,
+              durationMs: normalizedEntry.durationMs,
+              rigor: normalizedEntry.rigor,
             });
           }
 
@@ -205,6 +227,10 @@ export const useAppStore = create<AppState>()(
           const now = Date.now();
           return {
             currentUser: username,
+            // Reset top-level fields so new user starts with a clean slate
+            progress: {},
+            history: [],
+            achievements: { ...DEFAULT_ACHIEVEMENTS },
             users: {
               ...state.users,
               [username]: {
@@ -223,14 +249,7 @@ export const useAppStore = create<AppState>()(
             },
             userAchievements: {
               ...state.userAchievements,
-              [username]: {
-                first_light: { unlocked: false },
-                first_launch: { unlocked: false },
-                mole_master: { unlocked: false },
-                molecular_architect: { unlocked: false },
-                time_traveler: { unlocked: false },
-                calculus_god: { unlocked: false },
-              },
+              [username]: { ...DEFAULT_ACHIEVEMENTS },
             },
           };
         }),
@@ -250,14 +269,7 @@ export const useAppStore = create<AppState>()(
             // Load user-specific data
             progress: state.userProgress[username] || {},
             history: state.userHistory[username] || [],
-            achievements: state.userAchievements[username] || {
-              first_light: { unlocked: false },
-              first_launch: { unlocked: false },
-              mole_master: { unlocked: false },
-              molecular_architect: { unlocked: false },
-              time_traveler: { unlocked: false },
-              calculus_god: { unlocked: false },
-            },
+            achievements: state.userAchievements[username] || { ...DEFAULT_ACHIEVEMENTS },
           };
         }),
 
@@ -269,12 +281,13 @@ export const useAppStore = create<AppState>()(
       completeStage: (moduleId, stageId) =>
         set((state) => {
           const user = state.currentUser;
+          const normalizedId = normalizeModuleCode(moduleId);
           const newProgress = {
             ...state.progress,
-            [moduleId]: {
-              ...state.progress[moduleId],
+            [normalizedId]: {
+              ...state.progress[normalizedId],
               stages: {
-                ...(state.progress[moduleId]?.stages || {}),
+                ...(state.progress[normalizedId]?.stages || {}),
                 [stageId]: true,
               },
               lastPlayed: Date.now(),
@@ -297,7 +310,7 @@ export const useAppStore = create<AppState>()(
 
       getModuleProgress: (moduleId) => {
         const state = get();
-        const normalizedId = moduleId.toLowerCase().replace(/\./g, '-');
+        const normalizedId = normalizeModuleCode(moduleId);
         const moduleData = state.progress[normalizedId];
         if (!moduleData) return 0;
         const stages = Object.values(moduleData.stages);
@@ -308,10 +321,31 @@ export const useAppStore = create<AppState>()(
 
       getSectorProgress: (sector) => {
         const state = get();
-        const modules = {
-          math: ['sm1-01', 'sm1-02', 'sm2-01', 'sm2-02', 'sm2-03', 'sm2-04', 'sm2-05', 'sm2-06', 'sm3-01', 'gm1-01', 'gm2-01'],
-          physics: ['sp1-02', 'sp1-03', 'sp2-02', 'sp3-01'],
-          chemistry: ['sc1-01', 'sc1-02'],
+        const modules: Record<string, string[]> = {
+          math: [
+            'sm1-01', 'sm1-02', 'sm1-03', 'sm1-04', 'sm1-05',
+            'sm2-01', 'sm2-02', 'sm2-03', 'sm2-04', 'sm2-05',
+            'sm2-06', 'sm2-07', 'sm2-08', 'sm2-09', 'sm2-10',
+            'sm2-11', 'sm2-12', 'sm2-13',
+            'sm3-01', 'sm3-02', 'sm3-03', 'sm3-04', 'sm3-05',
+            'gm1-01', 'gm1-01-advanced', 'gm1-02', 'gm1-03',
+            'gm2-01', 'gm2-02', 'gm3-01', 'gm4-01',
+          ],
+          physics: [
+            'sp1-01', 'sp1-02',
+            'sp2-01', 'sp2-02', 'sp2-03',
+            'sp3-01', 'sp3-02', 'sp3-03', 'sp3-04', 'sp3-05',
+            'sp3-06', 'sp3-07', 'sp3-08',
+            'gp1-01', 'gp1-02', 'gp1-03', 'gp1-04',
+            'gp2-01', 'gp2-02', 'gp2-03',
+            'gp3-01', 'gp3-02', 'gp3-03',
+          ],
+          chemistry: [
+            'sc1-01', 'sc1-02', 'sc1-03', 'sc1-04', 'sc1-05', 'sc1-06',
+            'sc2-01', 'sc2-02', 'sc2-03', 'sc2-04', 'sc2-05', 'sc2-06', 'sc2-07',
+            'sc3-01', 'sc3-02', 'sc3-03', 'sc3-04', 'sc3-05',
+            'gc1-01', 'gc1-02', 'gc2-01', 'gc3-01', 'gc3-02',
+          ],
         };
 
         const sectorModules = modules[sector] || [];
@@ -332,21 +366,20 @@ export const useAppStore = create<AppState>()(
       },
     }),
     {
-      name: 'science-park-storage', // name of the item in the storage (must be unique)
-      version: 3,
-      partialize: (state) => ({
-        ...state,
-        aiProviderConfig: sanitizeAiProviderConfig(state.aiProviderConfig),
-      }),
-      migrate: (persistedState) => {
+      name: 'science-park-storage',
+      version: 4,
+      partialize: (state) => state,
+      migrate: (persistedState, fromVersion) => {
         if (!persistedState || typeof persistedState !== 'object') return persistedState;
 
         const state = persistedState as Partial<AppState> & {
           history?: HistoryEntry[];
           userHistory?: Record<string, HistoryEntry[]>;
-          aiProviderConfig?: AiProviderConfig;
+          userProgress?: Record<string, ModuleProgress>;
         };
 
+        // Normalize history entries (moduleCode format + moduleId backfill)
+        const normalizedHistory = normalizeHistoryEntries(state.history);
         const normalizedUserHistory = Object.fromEntries(
           Object.entries(state.userHistory || {}).map(([username, entries]) => [
             username,
@@ -354,11 +387,26 @@ export const useAppStore = create<AppState>()(
           ])
         );
 
+        // v3→v4: normalize progress keys from uppercase-dot to lowercase-hyphen
+        const normalizedProgress = fromVersion < 4
+          ? normalizeProgressKeys(state.progress as ModuleProgress)
+          : (state.progress as ModuleProgress) ?? {};
+
+        const normalizedUserProgress = fromVersion < 4
+          ? Object.fromEntries(
+              Object.entries(state.userProgress || {}).map(([username, prog]) => [
+                username,
+                normalizeProgressKeys(prog),
+              ])
+            )
+          : (state.userProgress ?? {});
+
         return {
           ...state,
-          history: normalizeHistoryEntries(state.history),
+          history: normalizedHistory,
           userHistory: normalizedUserHistory,
-          aiProviderConfig: sanitizeAiProviderConfig(state.aiProviderConfig),
+          progress: normalizedProgress,
+          userProgress: normalizedUserProgress,
         };
       },
     }

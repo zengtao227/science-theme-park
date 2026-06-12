@@ -16,6 +16,7 @@
     "i18n:scan-quality": "node --experimental-strip-types scripts/scan-translation-quality.ts"
   },
   "dependencies": {
+    "@next/swc-darwin-arm64": "^16.2.9",
     "@react-spring/web": "^10.0.3",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
