@@ -214,7 +214,7 @@ export default function ChamberLayout({
     }, [hasPrintSections, resolvedPrintSections]);
 
     const moduleEntries = useMemo<HistoryEntry[]>(() => {
-        return history.filter((entry) => entry.moduleCode === normalizedModuleCode);
+        return history.filter((entry) => normalizeModuleCode(entry.moduleCode) === normalizedModuleCode);
     }, [history, normalizedModuleCode]);
 
     const bestEntry = useMemo<HistoryEntry | null>(() => {
