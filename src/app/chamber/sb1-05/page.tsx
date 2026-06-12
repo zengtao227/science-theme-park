@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AnimalVisualization from "@/components/chamber/sb1-05/AnimalVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -23,31 +23,7 @@ export default function SB105AnimalClassification() {
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB105FeedbackProvider(t), [t]);
 
-    const sb1_05_t = useMemo(() => ({
-        title: t("sb1_05.title"),
-        back: t("sb1_05.back"),
-        difficulty: {
-            basic: t("sb1_05.difficulty.basic"),
-            core: t("sb1_05.difficulty.core"),
-            advanced: t("sb1_05.difficulty.advanced"),
-            elite: t("sb1_05.difficulty.elite")
-        },
-        stages: {
-            animal_classification: t("sb1_05.stages.animal_classification"),
-            adaptations: t("sb1_05.stages.adaptations"),
-            behavior_evolution: t("sb1_05.stages.behavior_evolution")
-        },
-        scenarios: {
-            basel_zoo: t("sb1_05.scenarios.basel_zoo"),
-            rhine_river: t("sb1_05.scenarios.rhine_river"),
-            alpine_animals: t("sb1_05.scenarios.alpine_animals"),
-            wildlife_conservation: t("sb1_05.scenarios.wildlife_conservation")
-        },
-        check: t("sb1_05.check"),
-        next: t("sb1_05.next"),
-        correct: t("sb1_05.correct"),
-        incorrect: t("sb1_05.incorrect")
-    }), [t]);
+    const sb1_05_t = useNamespace("sb1_05");
 
     const buildStagePool = useCallback((
         tObj: typeof sb1_05_t,

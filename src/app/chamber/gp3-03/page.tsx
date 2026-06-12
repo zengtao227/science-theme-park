@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import InductionVisualization from "@/components/chamber/gp3-03/InductionVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -15,30 +15,7 @@ export default function GP303Induction() {
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGP303FeedbackProvider(t), [t]);
 
-    const gp3_03_t = useMemo(() => ({
-        title: t("gp3_03.title"),
-        back: t("gp3_03.back"),
-        difficulty: {
-            basic: t("gp3_03.difficulty.basic"),
-            core: t("gp3_03.difficulty.core"),
-            advanced: t("gp3_03.difficulty.advanced"),
-            elite: t("gp3_03.difficulty.elite")
-        },
-        stages: {
-            faradays_law: t("gp3_03.stages.faradays_law"),
-            lenzs_law: t("gp3_03.stages.lenzs_law"),
-            generators: t("gp3_03.stages.generators")
-        },
-        scenarios: {
-            faradays_law: t("gp3_03.scenarios.faradays_law"),
-            lenzs_law: t("gp3_03.scenarios.lenzs_law"),
-            generators: t("gp3_03.scenarios.generators")
-        },
-        check: t("gp3_03.check"),
-        next: t("gp3_03.next"),
-        correct: t("gp3_03.correct"),
-        incorrect: t("gp3_03.incorrect")
-    }), [t]);
+    const gp3_03_t = useNamespace("gp3_03");
 
     const buildStagePool = useCallback((
         tObj: typeof gp3_03_t,

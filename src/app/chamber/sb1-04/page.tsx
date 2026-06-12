@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PlantVisualization from "@/components/chamber/sb1-04/PlantVisualization";
 import { Difficulty, Quest, useQuestManager } from "@/hooks/useQuestManager";
@@ -30,30 +30,7 @@ export default function SB104PlantStructure() {
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB104FeedbackProvider(t), [t]);
 
-    const sb1_04_t = useMemo(() => ({
-        title: t("sb1_04.title"),
-        back: t("sb1_04.back"),
-        difficulty: {
-            basic: t("sb1_04.difficulty.basic"),
-            core: t("sb1_04.difficulty.core"),
-            advanced: t("sb1_04.difficulty.advanced"),
-            elite: t("sb1_04.difficulty.elite")
-        },
-        stages: {
-            plant_structure: t("sb1_04.stages.plant_structure"),
-            water_transport: t("sb1_04.stages.water_transport"),
-            nutrient_transport: t("sb1_04.stages.nutrient_transport")
-        },
-        scenarios: {
-            plant_structure: t("sb1_04.scenarios.plant_structure"),
-            water_transport: t("sb1_04.scenarios.water_transport"),
-            nutrient_transport: t("sb1_04.scenarios.nutrient_transport")
-        },
-        check: t("sb1_04.check"),
-        next: t("sb1_04.next"),
-        correct: t("sb1_04.correct"),
-        incorrect: t("sb1_04.incorrect")
-    }), [t]);
+    const sb1_04_t = useNamespace("sb1_04");
 
     const buildStagePool = useCallback((
         tObj: typeof sb1_04_t,

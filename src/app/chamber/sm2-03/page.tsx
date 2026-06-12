@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -223,61 +223,7 @@ export default function S203Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM203FeedbackProvider(t), [t]);
 
-  const sm2_03_t = useMemo(() => ({
-    title: t("sm2_03.title"),
-    back: t("sm2_03.back"),
-    check: t("sm2_03.check"),
-    next: t("sm2_03.next"),
-    correct: t("sm2_03.correct"),
-    incorrect: t("sm2_03.incorrect"),
-    monitor_title: t("sm2_03.monitor_title"),
-    target_title: t("sm2_03.target_title"),
-    objective_title: t("sm2_03.objective_title"),
-    difficulty: {
-      basic: t("sm2_03.difficulty.basic"),
-      core: t("sm2_03.difficulty.core"),
-      advanced: t("sm2_03.difficulty.advanced"),
-      elite: t("sm2_03.difficulty.elite"),
-    },
-    stages: {
-      level1: t("sm2_03.stages.level1"),
-      level2: t("sm2_03.stages.level2"),
-      level3: t("sm2_03.stages.level3"),
-    },
-    prompts: {
-      level1: t("sm2_03.prompts.level1"),
-      level2: t("sm2_03.prompts.level2"),
-      level3: t("sm2_03.prompts.level3"),
-    },
-    placeholders: {
-      total_price: t("sm2_03.placeholders.total_price"),
-      distance_km: t("sm2_03.placeholders.distance_km"),
-      threshold_km: t("sm2_03.placeholders.threshold_km"),
-    },
-    labels: {
-      hints: t("sm2_03.labels.hints"),
-    },
-    hints: {
-      level1: t("sm2_03.hints.level1"),
-      level2: t("sm2_03.hints.level2"),
-      level3: t("sm2_03.hints.level3"),
-      drag: t("sm2_03.hints.drag"),
-    },
-    mission: {
-      title: t("sm2_03.mission.title"),
-      description: t("sm2_03.mission.description"),
-    },
-    ui: {
-      current_function: t("sm2_03.ui.current_function"),
-      reflections: t("sm2_03.ui.reflections"),
-      target_position: t("sm2_03.ui.target_position"),
-      hit_badge: t("sm2_03.ui.hit_badge"),
-      chamber: t("sm2_03.ui.chamber"),
-      laser_sim: t("sm2_03.ui.laser_sim"),
-      level: t("sm2_03.ui.level"),
-      hits: t("sm2_03.ui.hits"),
-    },
-  }), [t]);
+  const sm2_03_t = useNamespace("sm2_03");
 
   const [hits, setHits] = useState(0);
 

@@ -1440,7 +1440,20 @@ export const dePhysics = {
                         solve_for_missing_efficiency_quantity: "Stellen Sie die Wirkungsgradgleichung nach der gesuchten Größe um.",
                         compute_power_loss: "Bestimmen Sie die Verlustleistung als Differenz zwischen Eingangs- und Nutzleistung."
                 },
-                solver: {
+                visualization: {
+                        voltage: "Spannung",
+                        current: "Strom",
+                        power: "Leistung",
+                        time: "Zeit",
+                        energy: "Energie",
+                        cost: "Kosten",
+                        input: "Eingang",
+                        output: "Ausgang",
+                        efficiency: "Wirkungsgrad",
+                        loss: "Verlust",
+                        efficiency_visualization: "Wirkungsgrad-Diagramm"
+                },
+                                solver: {
                         cost_label: "Kosten",
                         energy_remains_label: "Die Energie bleibt bei",
                         required_quantity_label: "Gesuchte Größe"

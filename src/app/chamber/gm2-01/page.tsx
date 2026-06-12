@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import VectorVisualization from "@/components/chamber/gm2-01/VectorVisualization";
@@ -33,61 +33,7 @@ export default function G201Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM201FeedbackProvider(t), [t]);
   
-  const gm2_01_t = useMemo(() => ({
-    title: t("gm2_01.title"),
-    back: t("gm2_01.back"),
-    check: t("gm2_01.check"),
-    next: t("gm2_01.next"),
-    correct: t("gm2_01.correct"),
-    incorrect: t("gm2_01.incorrect"),
-    monitor_title: t("gm2_01.monitor_title"),
-    objective_title: t("gm2_01.objective_title"),
-    target_title: t("gm2_01.target_title"),
-    stages: {
-      navigation: t("gm2_01.stages.navigation"),
-      dot: t("gm2_01.stages.dot"),
-      mission: t("gm2_01.stages.mission"),
-      navigation_prompt_latex: t("gm2_01.stages.navigation_prompt_latex"),
-      dot_prompt_latex: t("gm2_01.stages.dot_prompt_latex"),
-      mission_prompt_latex: t("gm2_01.stages.mission_prompt_latex"),
-    },
-    difficulty: {
-      basic: t("gm2_01.difficulty.basic"),
-      core: t("gm2_01.difficulty.core"),
-      advanced: t("gm2_01.difficulty.advanced"),
-      elite: t("gm2_01.difficulty.elite"),
-    },
-    labels: {
-      input: t("gm2_01.labels.input"),
-    },
-    visualization: {
-      point_a: t("gm2_01.visualization.point_a"),
-      point_b: t("gm2_01.visualization.point_b"),
-      vector_v: t("gm2_01.visualization.vector_v"),
-      vector_w: t("gm2_01.visualization.vector_w"),
-      vector_s: t("gm2_01.visualization.vector_s"),
-      coordinates: t("gm2_01.visualization.coordinates"),
-      dot_product: t("gm2_01.visualization.dot_product"),
-    },
-    placeholders: {
-      x: t("gm2_01.placeholders.x"),
-      y: t("gm2_01.placeholders.y"),
-      z: t("gm2_01.placeholders.z"),
-      magnitude: t("gm2_01.placeholders.magnitude"),
-      dot_product: t("gm2_01.placeholders.dot_product"),
-      dot: t("gm2_01.placeholders.dot"),
-    },
-    mission: {
-      title: t("gm2_01.mission.title"),
-      description: t("gm2_01.mission.description"),
-    },
-    scenarios: {
-      navigation: t("gm2_01.scenarios.navigation"),
-      dot: t("gm2_01.scenarios.dot"),
-      mission: t("gm2_01.scenarios.mission"),
-    },
-    input_tip_2dp: t("gm2_01.input_tip_2dp"),
-  }), [t]);
+  const gm2_01_t = useNamespace("gm2_01");
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm2_01_t, d, s), [gm2_01_t]);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
@@ -23,30 +23,7 @@ export default function SC107Sustainability() {
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSC107FeedbackProvider(t), [t]);
 
-    const sc1_07_t = useMemo(() => ({
-        title: t("sc1_07.title"),
-        back: t("sc1_07.back"),
-        difficulty: {
-            basic: t("sc1_07.difficulty.basic"),
-            core: t("sc1_07.difficulty.core"),
-            advanced: t("sc1_07.difficulty.advanced"),
-            elite: t("sc1_07.difficulty.elite")
-        },
-        stages: {
-            recycling: t("sc1_07.stages.recycling"),
-            green_chemistry: t("sc1_07.stages.green_chemistry"),
-            circular_economy: t("sc1_07.stages.circular_economy")
-        },
-        check: t("sc1_07.check"),
-        next: t("sc1_07.next"),
-        correct: t("sc1_07.correct"),
-        incorrect: t("sc1_07.incorrect"),
-        monitor_title: t("sc1_07.monitor_title"),
-        loading: t("sc1_07.loading"),
-        labels: {
-            sensor_feed: t("sc1_07.labels.sensor_feed"),
-        },
-    }), [t]);
+    const sc1_07_t = useNamespace("sc1_07");
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
         if (s === "RECYCLING") return generateRecyclingQuests(t, d);

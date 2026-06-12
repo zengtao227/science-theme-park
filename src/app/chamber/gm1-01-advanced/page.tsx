@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeVisualization from "@/components/chamber/gm1-01/DerivativeVisualization";
@@ -1122,106 +1122,7 @@ export default function G101AdvancedPage() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM101AdvancedFeedbackProvider(t), [t]);
   
-  const gm1_01_advanced_t = useMemo(() => ({
-    title: t("gm1_01_advanced.title"),
-    back: t("gm1_01_advanced.back"),
-    check: t("gm1_01_advanced.check"),
-    next: t("gm1_01_advanced.next"),
-    correct: t("gm1_01_advanced.correct"),
-    incorrect: t("gm1_01_advanced.incorrect"),
-    monitor_title: t("gm1_01_advanced.monitor_title"),
-    function_label: t("gm1_01_advanced.function_label"),
-    question_label: t("gm1_01_advanced.question_label"),
-    hint_label: t("gm1_01_advanced.hint_label"),
-    visualization_title: t("gm1_01_advanced.visualization_title"),
-    input_tip_2dp: t("gm1_01_advanced.input_tip_2dp"),
-    challenges: {
-      COMPOSITE: t("gm1_01_advanced.challenges.COMPOSITE"),
-      MODELING: t("gm1_01_advanced.challenges.MODELING"),
-      OPTIMIZATION: t("gm1_01_advanced.challenges.OPTIMIZATION"),
-      ANALYSIS: t("gm1_01_advanced.challenges.ANALYSIS"),
-      composite: t("gm1_01_advanced.challenges.composite"),
-      modeling: t("gm1_01_advanced.challenges.modeling"),
-      optimization: t("gm1_01_advanced.challenges.optimization"),
-      analysis: t("gm1_01_advanced.challenges.analysis"),
-    },
-    difficulty: {
-      basic: t("gm1_01_advanced.difficulty.basic"),
-      core: t("gm1_01_advanced.difficulty.core"),
-      advanced: t("gm1_01_advanced.difficulty.advanced"),
-      elite: t("gm1_01_advanced.difficulty.elite"),
-    },
-    mission: {
-      title: t("gm1_01_advanced.mission.title"),
-      description: t("gm1_01_advanced.mission.description"),
-    },
-    scenarios: {
-      composite_1: t("gm1_01_advanced.scenarios.composite_1"),
-      composite_2: t("gm1_01_advanced.scenarios.composite_2"),
-      composite_3: t("gm1_01_advanced.scenarios.composite_3"),
-      modeling_1: t("gm1_01_advanced.scenarios.modeling_1"),
-      modeling_2: t("gm1_01_advanced.scenarios.modeling_2"),
-      optimization_1: t("gm1_01_advanced.scenarios.optimization_1"),
-      optimization_2: t("gm1_01_advanced.scenarios.optimization_2"),
-      analysis_1: t("gm1_01_advanced.scenarios.analysis_1"),
-      analysis_2: t("gm1_01_advanced.scenarios.analysis_2"),
-    },
-    questions: {
-      find_derivative: t("gm1_01_advanced.questions.find_derivative"),
-      find_velocity: t("gm1_01_advanced.questions.find_velocity"),
-      find_acceleration: t("gm1_01_advanced.questions.find_acceleration"),
-      find_maximum: t("gm1_01_advanced.questions.find_maximum"),
-      find_critical_point: t("gm1_01_advanced.questions.find_critical_point"),
-      find_critical_points: t("gm1_01_advanced.questions.find_critical_points"),
-    },
-    hints: {
-      use_product_rule: t("gm1_01_advanced.hints.use_product_rule"),
-      use_quotient_rule: t("gm1_01_advanced.hints.use_quotient_rule"),
-      use_chain_rule: t("gm1_01_advanced.hints.use_chain_rule"),
-      take_first_derivative: t("gm1_01_advanced.hints.take_first_derivative"),
-      take_second_derivative: t("gm1_01_advanced.hints.take_second_derivative"),
-      set_derivative_zero: t("gm1_01_advanced.hints.set_derivative_zero"),
-    },
-    prompts: {
-      find_derivative_x2: t("gm1_01_advanced.prompts.find_derivative_x2"),
-      find_derivative_x1: t("gm1_01_advanced.prompts.find_derivative_x1"),
-      find_derivative_x1_5: t("gm1_01_advanced.prompts.find_derivative_x1_5"),
-      find_derivative_x0_5: t("gm1_01_advanced.prompts.find_derivative_x0_5"),
-      find_derivative_x1_2: t("gm1_01_advanced.prompts.find_derivative_x1_2"),
-      find_derivative_x_pi_2: t("gm1_01_advanced.prompts.find_derivative_x_pi_2"),
-      find_derivative_x_pi_4: t("gm1_01_advanced.prompts.find_derivative_x_pi_4"),
-      find_derivative_x_pi_3: t("gm1_01_advanced.prompts.find_derivative_x_pi_3"),
-      find_derivative_x_pi_6: t("gm1_01_advanced.prompts.find_derivative_x_pi_6"),
-      find_velocity_t3: t("gm1_01_advanced.prompts.find_velocity_t3"),
-      find_velocity_t2: t("gm1_01_advanced.prompts.find_velocity_t2"),
-      find_velocity_t1: t("gm1_01_advanced.prompts.find_velocity_t1"),
-      find_velocity_t1_5: t("gm1_01_advanced.prompts.find_velocity_t1_5"),
-      find_acceleration_t3: t("gm1_01_advanced.prompts.find_acceleration_t3"),
-      find_acceleration_t2: t("gm1_01_advanced.prompts.find_acceleration_t2"),
-      find_acceleration_t1_5: t("gm1_01_advanced.prompts.find_acceleration_t1_5"),
-      find_acceleration_t0_5: t("gm1_01_advanced.prompts.find_acceleration_t0_5"),
-      find_acceleration_t2_5: t("gm1_01_advanced.prompts.find_acceleration_t2_5"),
-      find_acceleration_x1: t("gm1_01_advanced.prompts.find_acceleration_x1"),
-      find_acceleration_x2: t("gm1_01_advanced.prompts.find_acceleration_x2"),
-      find_acceleration_x1_5: t("gm1_01_advanced.prompts.find_acceleration_x1_5"),
-      find_acceleration_x0_5: t("gm1_01_advanced.prompts.find_acceleration_x0_5"),
-      find_critical_point: t("gm1_01_advanced.prompts.find_critical_point"),
-      find_maximum: t("gm1_01_advanced.prompts.find_maximum"),
-      find_maximum_area: t("gm1_01_advanced.prompts.find_maximum_area"),
-      find_maximum_profit: t("gm1_01_advanced.prompts.find_maximum_profit"),
-      find_critical_points: t("gm1_01_advanced.prompts.find_critical_points"),
-    },
-    visualization: {
-      title: t("gm1_01_advanced.visualization.title"),
-      x_label: t("gm1_01_advanced.visualization.x_label"),
-      y_label: t("gm1_01_advanced.visualization.y_label"),
-      function_label: t("gm1_01_advanced.visualization.function_label"),
-      point_label: t("gm1_01_advanced.visualization.point_label"),
-    },
-    placeholders: {
-      v_0_dot_00: t("gm1_01_advanced.placeholders.v_0_dot_00"),
-    },
-  }), [t]);
+  const gm1_01_advanced_t = useNamespace("gm1_01_advanced");
 
   const buildPool = useCallback((d: Difficulty, s: Challenge) => buildChallengePool(gm1_01_advanced_t, d, s), [gm1_01_advanced_t]);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import OhmsLawVisualization from "@/components/chamber/sp2-02/OhmsLawVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -29,30 +29,7 @@ export default function SP202OhmsLaw() {
     const [currentVoltage, setCurrentVoltage] = useState(0);
     const [currentCurrent, setCurrentCurrent] = useState(0);
 
-    const sp2_02_t = useMemo(() => ({
-        title: t("sp2_02.title"),
-        back: t("sp2_02.back"),
-        difficulty: {
-            basic: t("sp2_02.difficulty.basic"),
-            core: t("sp2_02.difficulty.core"),
-            advanced: t("sp2_02.difficulty.advanced"),
-            elite: t("sp2_02.difficulty.elite")
-        },
-        stages: {
-            ohms_law: t("sp2_02.stages.ohms_law"),
-            series_circuits: t("sp2_02.stages.series_circuits"),
-            parallel_circuits: t("sp2_02.stages.parallel_circuits")
-        },
-        scenarios: {
-            ohms_law: t("sp2_02.scenarios.ohms_law"),
-            series_circuits: t("sp2_02.scenarios.series_circuits"),
-            parallel_circuits: t("sp2_02.scenarios.parallel_circuits")
-        },
-        check: t("sp2_02.check"),
-        next: t("sp2_02.next"),
-        correct: t("sp2_02.correct"),
-        incorrect: t("sp2_02.incorrect")
-    }), [t]);
+    const sp2_02_t = useNamespace("sp2_02");
 
     const formatResistanceList = useCallback(
         (components: number[]) => components.map((value, index) => `R_${index + 1}=${value}\\Omega`).join(", "),

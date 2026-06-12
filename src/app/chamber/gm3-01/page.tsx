@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useMemo, useCallback } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ProbabilityVisualization from "@/components/chamber/gm3-01/ProbabilityVisualization";
@@ -34,53 +34,7 @@ export default function G301Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM301FeedbackProvider(t), [t]);
 
-  const gm3_01_t = useMemo(() => ({
-    title: t("gm3_01.title"),
-    back: t("gm3_01.back"),
-    check: t("gm3_01.check"),
-    next: t("gm3_01.next"),
-    correct: t("gm3_01.correct"),
-    incorrect: t("gm3_01.incorrect"),
-    monitor_title: t("gm3_01.monitor_title"),
-    objective_title: t("gm3_01.objective_title"),
-    target_title: t("gm3_01.target_title"),
-    stages: {
-      basic_prob: t("gm3_01.stages.basic_prob"),
-      binomial: t("gm3_01.stages.binomial"),
-      conditional: t("gm3_01.stages.conditional"),
-      mission: t("gm3_01.stages.mission"),
-      basic_prob_prompt_latex: t("gm3_01.stages.basic_prob_prompt_latex"),
-      binomial_prompt_latex: t("gm3_01.stages.binomial_prompt_latex"),
-      conditional_prompt_latex: t("gm3_01.stages.conditional_prompt_latex"),
-      mission_prompt_latex: t("gm3_01.stages.mission_prompt_latex"),
-    },
-    difficulty: {
-      basic: t("gm3_01.difficulty.basic"),
-      core: t("gm3_01.difficulty.core"),
-      advanced: t("gm3_01.difficulty.advanced"),
-      elite: t("gm3_01.difficulty.elite"),
-    },
-    labels: {
-      input: t("gm3_01.labels.input"),
-      hints: t("gm3_01.labels.hints"),
-      problem_tag: t("gm3_01.labels.problem_tag"),
-    },
-    placeholders: {
-      probability_4dp: t("gm3_01.placeholders.probability_4dp"),
-    },
-    mission: {
-      title: t("gm3_01.mission.title"),
-      description: t("gm3_01.mission.description"),
-    },
-    scenarios: {
-      basic_prob: t("gm3_01.scenarios.basic_prob"),
-      binomial: t("gm3_01.scenarios.binomial"),
-      conditional: t("gm3_01.scenarios.conditional"),
-      mission: t("gm3_01.scenarios.mission"),
-    },
-    problems: t("gm3_01.problems"),
-    input_tip_4dp: t("gm3_01.input_tip_4dp"),
-  }), [t]);
+  const gm3_01_t = useNamespace("gm3_01");
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm3_01_t, d, s), [gm3_01_t]);
 

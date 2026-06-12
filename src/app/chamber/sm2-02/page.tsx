@@ -5,7 +5,7 @@ import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useState, useCallback, useMemo } from "react";
 
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import S202PythagorasCanvas from "@/components/chamber/sm2-02/PythagorasCanvas";
@@ -82,12 +82,12 @@ function difficultyScale(d: Difficulty) {
 }
 
 // Build quest pool for each stage
-function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S202Quest[] {
+function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage, t: (path: string, params?: Record<string, string | number>) => any): S202Quest[] {
   const tab: "PYTHAGORAS" | "SQRT" =
     ["EXPLORER", "SOLVE_HYP", "SOLVE_LEG", "CHECK_RIGHT", "DISTANCE", "ELITE_SPACE", "MISSION", "MENTAL", "CHAIN"].includes(stage)
       ? "PYTHAGORAS"
       : "SQRT";
-  const tr = sm2_02_t.translate;
+  const tr = t;
 
   if (stage === "EXPLORER") {
     return [{
@@ -553,103 +553,11 @@ export default function S202Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM202FeedbackProvider(t), [t]);
 
-  const sm2_02_t = useMemo(() => ({
-    translate: t,
-    title: t("sm2_02.title"),
-    back: t("sm2_02.back"),
-    check: t("sm2_02.check"),
-    next: t("sm2_02.next"),
-    correct: t("sm2_02.correct"),
-    incorrect: t("sm2_02.incorrect"),
-    yes: t("sm2_02.yes"),
-    no: t("sm2_02.no"),
-    monitor_title: t("sm2_02.monitor_title"),
-    objective_title: t("sm2_02.objective_title"),
-    target_title: t("sm2_02.target_title"),
-    input_k: t("sm2_02.input_k"),
-    input_m: t("sm2_02.input_m"),
-    difficulty: {
-      basic: t("sm2_02.difficulty.basic"),
-      core: t("sm2_02.difficulty.core"),
-      advanced: t("sm2_02.difficulty.advanced"),
-      elite: t("sm2_02.difficulty.elite")
-    },
-    tabs: {
-      pythagoras: t("sm2_02.tabs.pythagoras"),
-      sqrt: t("sm2_02.tabs.sqrt"),
-      explorer: t("sm2_02.tabs.explorer"),
-      quest_mode: t("sm2_02.tabs.quest_mode")
-    },
-    pythagoras: {
-      solve_hyp: t("sm2_02.pythagoras.solve_hyp"),
-      solve_hyp_params: t("sm2_02.pythagoras.solve_hyp_params"),
-      solve_leg: t("sm2_02.pythagoras.solve_leg"),
-      solve_leg_params: t("sm2_02.pythagoras.solve_leg_params"),
-      known_horizontal: t("sm2_02.pythagoras.known_horizontal"),
-      known_given: t("sm2_02.pythagoras.known_given"),
-      check_right: t("sm2_02.pythagoras.check_right"),
-      check_right_question: t("sm2_02.pythagoras.check_right_question"),
-      distance: t("sm2_02.pythagoras.distance"),
-      elite_space: t("sm2_02.pythagoras.elite_space"),
-      explorer_mission: t("sm2_02.pythagoras.explorer_mission")
-    },
-    mission: {
-      title: t("sm2_02.mission.title"),
-      protocol: t("sm2_02.mission.protocol"),
-      cern_title: t("sm2_02.mission.cern_title"),
-      cern_desc: t("sm2_02.mission.cern_desc"),
-      roof_title: t("sm2_02.mission.roof_title"),
-      roof_desc: t("sm2_02.mission.roof_desc"),
-      ladder_title: t("sm2_02.mission.ladder_title"),
-      ladder_desc: t("sm2_02.mission.ladder_desc"),
-      grid_title: t("sm2_02.mission.grid_title"),
-      grid_desc: t("sm2_02.mission.grid_desc"),
-      chain_title: t("sm2_02.mission.chain_title"),
-      chain_desc: t("sm2_02.mission.chain_desc")
-    },
-    mental: {
-      title: t("sm2_02.mental.title"),
-      chain: t("sm2_02.mental.chain")
-    },
-    sqrt: {
-      perfect: t("sm2_02.sqrt.perfect"),
-      simplify: t("sm2_02.sqrt.simplify"),
-      estimate: t("sm2_02.sqrt.estimate")
-    },
-    explorer: {
-      base_config: t("sm2_02.explorer.base_config"),
-      leg_a: t("sm2_02.explorer.leg_a"),
-      leg_b: t("sm2_02.explorer.leg_b"),
-      scaling_title: t("sm2_02.explorer.scaling_title"),
-      multiplier: t("sm2_02.explorer.multiplier"),
-      ratio: t("sm2_02.explorer.ratio"),
-      similarity_title: t("sm2_02.explorer.similarity_title"),
-      similarity_desc: t("sm2_02.explorer.similarity_desc"),
-      engine_title: t("sm2_02.explorer.engine_title"),
-      hyp_label: t("sm2_02.explorer.hyp_label"),
-    },
-    labels: {
-      side_a: t("sm2_02.labels.side_a"),
-      side_b: t("sm2_02.labels.side_b"),
-      hypotenuse: t("sm2_02.labels.hypotenuse"),
-    },
-    placeholders: {
-      question: t("sm2_02.placeholders.question")
-    },
-    ui: {
-      view_2d: t("sm2_02.ui.view_2d"),
-      view_fluid: t("sm2_02.ui.view_fluid"),
-      fluid_proof_title: t("sm2_02.ui.fluid_proof_title"),
-      voxel_proof: t("sm2_02.ui.voxel_proof"),
-      elite_space_diagonal: t("sm2_02.ui.elite_space_diagonal"),
-      distance_formula_3d: t("sm2_02.ui.distance_formula_3d"),
-      no_viz: t("sm2_02.ui.no_viz")
-    }
-  }), [t]);
+  const sm2_02_t = useNamespace("sm2_02");
 
   const [showExperimental, setShowExperimental] = useState(true);
 
-  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm2_02_t, d, s), [sm2_02_t]);
+  const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm2_02_t, d, s, t), [sm2_02_t, t]);
 
   const {
     difficulty,

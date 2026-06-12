@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -17,9 +17,9 @@ const TitrationCanvas = dynamic(() => import("@/components/chamber/sc2-02/Titrat
     ssr: false,
 });
 
-function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): TitrationQuest[] {
+function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage, t: (path: string, params?: Record<string, string | number>) => any): TitrationQuest[] {
     const quests: TitrationQuest[] = [];
-    const tr = tObj.translate;
+    const tr = t;
     
     // Stage 1: CURVES - Titration curve analysis (20 questions: 4 difficulties × 5 questions)
     if (stage === "CURVES") {
@@ -197,118 +197,7 @@ function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): Titrat
 export default function SC202Page() {
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC202FeedbackProvider(t), [t]);
-    const sc2_02_t = useMemo(() => ({
-        translate: t,
-        title: t("sc2_02.title"),
-        monitor_title: t("sc2_02.monitor_title"),
-        back: t("sc2_02.back"),
-        check: t("sc2_02.check"),
-        next: t("sc2_02.next"),
-        correct: t("sc2_02.correct"),
-        incorrect: t("sc2_02.incorrect"),
-        placeholders: {
-            ml: t("sc2_02.placeholders.ml"),
-        },
-        stages: {
-            curves: t("sc2_02.stages.curves"),
-            equivalence: t("sc2_02.stages.equivalence"),
-            indicators: t("sc2_02.stages.indicators"),
-        },
-        prompts: {
-            curves_basic_1: t("sc2_02.prompts.curves_basic_1"),
-            curves_basic_2: t("sc2_02.prompts.curves_basic_2"),
-            curves_basic_3: t("sc2_02.prompts.curves_basic_3"),
-            curves_basic_4: t("sc2_02.prompts.curves_basic_4"),
-            curves_basic_5: t("sc2_02.prompts.curves_basic_5"),
-            curves_core_1: t("sc2_02.prompts.curves_core_1"),
-            curves_core_2: t("sc2_02.prompts.curves_core_2"),
-            curves_core_3: t("sc2_02.prompts.curves_core_3"),
-            curves_core_4: t("sc2_02.prompts.curves_core_4"),
-            curves_core_5: t("sc2_02.prompts.curves_core_5"),
-            curves_advanced_1: t("sc2_02.prompts.curves_advanced_1"),
-            curves_advanced_2: t("sc2_02.prompts.curves_advanced_2"),
-            curves_advanced_3: t("sc2_02.prompts.curves_advanced_3"),
-            curves_advanced_4: t("sc2_02.prompts.curves_advanced_4"),
-            curves_advanced_5: t("sc2_02.prompts.curves_advanced_5"),
-            curves_elite_1: t("sc2_02.prompts.curves_elite_1"),
-            curves_elite_2: t("sc2_02.prompts.curves_elite_2"),
-            curves_elite_3: t("sc2_02.prompts.curves_elite_3"),
-            curves_elite_4: t("sc2_02.prompts.curves_elite_4"),
-            curves_elite_5: t("sc2_02.prompts.curves_elite_5"),
-            equivalence_basic_1: t("sc2_02.prompts.equivalence_basic_1"),
-            equivalence_basic_2: t("sc2_02.prompts.equivalence_basic_2"),
-            equivalence_basic_3: t("sc2_02.prompts.equivalence_basic_3"),
-            equivalence_basic_4: t("sc2_02.prompts.equivalence_basic_4"),
-            equivalence_basic_5: t("sc2_02.prompts.equivalence_basic_5"),
-            equivalence_core_1: t("sc2_02.prompts.equivalence_core_1"),
-            equivalence_core_2: t("sc2_02.prompts.equivalence_core_2"),
-            equivalence_core_3: t("sc2_02.prompts.equivalence_core_3"),
-            equivalence_core_4: t("sc2_02.prompts.equivalence_core_4"),
-            equivalence_core_5: t("sc2_02.prompts.equivalence_core_5"),
-            equivalence_advanced_1: t("sc2_02.prompts.equivalence_advanced_1"),
-            equivalence_advanced_2: t("sc2_02.prompts.equivalence_advanced_2"),
-            equivalence_advanced_3: t("sc2_02.prompts.equivalence_advanced_3"),
-            equivalence_advanced_4: t("sc2_02.prompts.equivalence_advanced_4"),
-            equivalence_advanced_5: t("sc2_02.prompts.equivalence_advanced_5"),
-            equivalence_elite_1: t("sc2_02.prompts.equivalence_elite_1"),
-            equivalence_elite_2: t("sc2_02.prompts.equivalence_elite_2"),
-            equivalence_elite_3: t("sc2_02.prompts.equivalence_elite_3"),
-            equivalence_elite_4: t("sc2_02.prompts.equivalence_elite_4"),
-            equivalence_elite_5: t("sc2_02.prompts.equivalence_elite_5"),
-            indicators_basic_1: t("sc2_02.prompts.indicators_basic_1"),
-            indicators_basic_2: t("sc2_02.prompts.indicators_basic_2"),
-            indicators_basic_3: t("sc2_02.prompts.indicators_basic_3"),
-            indicators_basic_4: t("sc2_02.prompts.indicators_basic_4"),
-            indicators_basic_5: t("sc2_02.prompts.indicators_basic_5"),
-            indicators_core_1: t("sc2_02.prompts.indicators_core_1"),
-            indicators_core_2: t("sc2_02.prompts.indicators_core_2"),
-            indicators_core_3: t("sc2_02.prompts.indicators_core_3"),
-            indicators_core_4: t("sc2_02.prompts.indicators_core_4"),
-            indicators_core_5: t("sc2_02.prompts.indicators_core_5"),
-            indicators_advanced_1: t("sc2_02.prompts.indicators_advanced_1"),
-            indicators_advanced_2: t("sc2_02.prompts.indicators_advanced_2"),
-            indicators_advanced_3: t("sc2_02.prompts.indicators_advanced_3"),
-            indicators_advanced_4: t("sc2_02.prompts.indicators_advanced_4"),
-            indicators_advanced_5: t("sc2_02.prompts.indicators_advanced_5"),
-            indicators_elite_1: t("sc2_02.prompts.indicators_elite_1"),
-            indicators_elite_2: t("sc2_02.prompts.indicators_elite_2"),
-            indicators_elite_3: t("sc2_02.prompts.indicators_elite_3"),
-            indicators_elite_4: t("sc2_02.prompts.indicators_elite_4"),
-            indicators_elite_5: t("sc2_02.prompts.indicators_elite_5"),
-            indicator_with_range: t("sc2_02.prompts.indicator_with_range"),
-        },
-        hints: {
-            curve_hint: t("sc2_02.hints.curve_hint"),
-            volume_hint: t("sc2_02.hints.volume_hint"),
-            ph_hint: t("sc2_02.hints.ph_hint"),
-        },
-        scenarios: {
-            environmental_monitoring: t("sc2_02.scenarios.environmental_monitoring"),
-            water_quality: t("sc2_02.scenarios.water_quality"),
-            biotech_titration: t("sc2_02.scenarios.biotech_titration"),
-        },
-        labels: {
-            eq_point: t("sc2_02.labels.eq_point"),
-            input_answer: t("sc2_02.labels.input_answer"),
-            formula: t("sc2_02.labels.formula"),
-            answer_target: t("sc2_02.labels.answer_target"),
-            answer_slot: t("sc2_02.labels.answer_slot"),
-            result_placeholder: t("sc2_02.labels.result_placeholder"),
-            indicator_target: t("sc2_02.labels.indicator_target"),
-            indicator_slot: t("sc2_02.labels.indicator_slot"),
-            indicator_placeholder: t("sc2_02.labels.indicator_placeholder"),
-            monitor_indicator: t("sc2_02.labels.monitor_indicator"),
-            monitor_acid_type: t("sc2_02.labels.monitor_acid_type"),
-            ph_range: t("sc2_02.labels.ph_range"),
-            case_study_label: t("sc2_02.labels.case_study_label"),
-        },
-        difficulty: {
-            basic: "BASIC",
-            core: "CORE",
-            advanced: "ADVANCED",
-            elite: "ELITE",
-        },
-    }), [t]);
+    const sc2_02_t = useNamespace("sc2_02");
 
     const {
         difficulty,
@@ -334,7 +223,7 @@ export default function SC202Page() {
     policy,
     } = useQuestManager<TitrationQuest, Stage>({
     moduleCode: "sc2-02",
-        buildPool: (d, s) => buildStagePool(sc2_02_t, d, s),
+        buildPool: (d, s) => buildStagePool(sc2_02_t, d, s, t),
         initialStage: "CURVES",
     feedbackContentProvider,
         tolerance: 0.05
@@ -347,7 +236,7 @@ export default function SC202Page() {
         return sc2_02_t.scenarios.biotech_titration;
     }, [stage, sc2_02_t.scenarios.environmental_monitoring, sc2_02_t.scenarios.water_quality, sc2_02_t.scenarios.biotech_titration]);
 
-    const buildPool = useMemo(() => (d: Difficulty, s: Stage) => buildStagePool(sc2_02_t, d, s), [sc2_02_t]);
+    const buildPool = useMemo(() => (d: Difficulty, s: Stage) => buildStagePool(sc2_02_t, d, s, t), [sc2_02_t, t]);
 
     const stages = useMemo(() => [
         { id: "CURVES" as Stage, label: sc2_02_t.stages.curves },
@@ -400,7 +289,7 @@ export default function SC202Page() {
             onVerify={verify}
             onNext={next}
             checkStatus={lastCheck}
-            translations={sc2_02_t}
+            translations={sc2_02_t as any}
             monitorContent={
                 <div className="flex flex-col h-full gap-4">
                     <div className="flex-1 min-h-[300px] bg-black/50 rounded-xl border border-white/10 overflow-hidden relative">

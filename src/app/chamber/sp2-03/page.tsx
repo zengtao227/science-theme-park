@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PowerVisualization from "@/components/chamber/sp2-03/PowerVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -38,43 +38,7 @@ export default function SP203ElectricPower() {
   const feedbackContentProvider = useMemo(() => createSP203FeedbackProvider(t), [t]);
     const [currentPower, setCurrentPower] = useState(0);
 
-    const sp2_03_t = useMemo(() => ({
-        title: t("sp2_03.title"),
-        back: t("sp2_03.back"),
-        difficulty: {
-            basic: t("sp2_03.difficulty.basic"),
-            core: t("sp2_03.difficulty.core"),
-            advanced: t("sp2_03.difficulty.advanced"),
-            elite: t("sp2_03.difficulty.elite")
-        },
-        stages: {
-            power_basics: t("sp2_03.stages.power_basics"),
-            energy_consumption: t("sp2_03.stages.energy_consumption"),
-            efficiency: t("sp2_03.stages.efficiency")
-        },
-        scenarios: {
-            power_basics: t("sp2_03.scenarios.power_basics"),
-            energy_consumption: t("sp2_03.scenarios.energy_consumption"),
-            efficiency: t("sp2_03.scenarios.efficiency")
-        },
-        check: t("sp2_03.check"),
-        next: t("sp2_03.next"),
-        correct: t("sp2_03.correct"),
-        incorrect: t("sp2_03.incorrect"),
-        visualization: {
-            voltage: t("sp2_03.visualization.voltage"),
-            current: t("sp2_03.visualization.current"),
-            power: t("sp2_03.visualization.power"),
-            time: t("sp2_03.visualization.time"),
-            energy: t("sp2_03.visualization.energy"),
-            cost: t("sp2_03.visualization.cost"),
-            input: t("sp2_03.visualization.input"),
-            output: t("sp2_03.visualization.output"),
-            efficiency: t("sp2_03.visualization.efficiency"),
-            loss: t("sp2_03.visualization.loss"),
-            efficiency_visualization: t("sp2_03.visualization.efficiency_visualization"),
-        }
-    }), [t]);
+    const sp2_03_t = useNamespace("sp2_03");
 
     const buildPowerPrompt = useCallback((item: PowerDataItem) => {
         if (typeof item.power === "string") {

@@ -1376,7 +1376,20 @@ export const cnPhysics = {
             solve_for_missing_efficiency_quantity: "整理效率公式，解出题目要求的量。",
             compute_power_loss: "用输入功率减去有效输出功率，求出损耗功率。"
         },
-        solver: {
+        visualization: {
+            voltage: "电压",
+            current: "电流",
+            power: "功率",
+            time: "时间",
+            energy: "能量",
+            cost: "费用",
+            input: "输入",
+            output: "输出",
+            efficiency: "效率",
+            loss: "损耗",
+            efficiency_visualization: "效率图"
+        },
+                solver: {
             cost_label: "费用",
             energy_remains_label: "能量保持为",
             required_quantity_label: "所求量"

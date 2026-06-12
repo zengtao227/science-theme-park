@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useState } from "react";
 import { BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useAppStore } from "@/lib/store";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InequalityVisualization } from "@/components/chamber/sm2-09/InequalityVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -185,58 +185,7 @@ export default function SM209Page() {
   const [selectedChoice, setSelectedChoice] = useState("");
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const sm2_09_t = useMemo(() => ({
-    back: t("sm2_09.back"),
-    title: t("sm2_09.title"),
-    difficulty: {
-      basic: t("sm2_09.difficulty.basic"),
-      core: t("sm2_09.difficulty.core"),
-      advanced: t("sm2_09.difficulty.advanced"),
-      elite: t("sm2_09.difficulty.elite"),
-    },
-    next: t("sm2_09.next"),
-    check: t("sm2_09.check"),
-    show_steps: t("sm2_09.show_steps"),
-    hide_steps: t("sm2_09.hide_steps"),
-    correct: t("sm2_09.correct"),
-    incorrect: t("sm2_09.incorrect"),
-    monitor_title: t("sm2_09.monitor_title"),
-    scenario_title: t("sm2_09.labels.scenario_title"),
-    problem_title: t("sm2_09.labels.problem_title"),
-    solution_title: t("sm2_09.labels.solution_title"),
-    visualization_title: t("sm2_09.labels.visualization_title"),
-    step_solver_title: t("sm2_09.labels.step_solver_title"),
-    stages: {
-      inequality_basics: t("sm2_09.stages.inequality_basics"),
-      systems: t("sm2_09.stages.systems"),
-      absolute_value: t("sm2_09.stages.absolute_value"),
-    },
-    basel_scenarios: {
-      tram_context: t("sm2_09.basel_scenarios.tram_context"),
-      roche_context: t("sm2_09.basel_scenarios.roche_context"),
-      marathon_context: t("sm2_09.basel_scenarios.marathon_context"),
-      university_context: t("sm2_09.basel_scenarios.university_context"),
-    },
-    step: t("sm2_09.labels.step"),
-    justification: t("sm2_09.labels.justification"),
-    final_solution: t("sm2_09.labels.final_solution"),
-    number_line: t("sm2_09.labels.number_line"),
-    graph: t("sm2_09.labels.graph"),
-    solution_set: t("sm2_09.labels.solution_set"),
-    inequality: t("sm2_09.labels.inequality"),
-    system_of_inequalities: t("sm2_09.labels.system_of_inequalities"),
-    absolute_value_expression: t("sm2_09.labels.absolute_value_expression"),
-    inner_expression: t("sm2_09.labels.inner_expression"),
-    solution_label: t("sm2_09.labels.solution"),
-    answer_options: t("sm2_09.labels.answer_options"),
-    correct_notation: t("sm2_09.labels.correct_notation"),
-    and_connector: t("sm2_09.labels.and_connector"),
-    feedback: {
-      correct: t("sm2_09.feedback.correct"),
-      incorrect: t("sm2_09.feedback.incorrect"),
-      empty_choice: t("sm2_09.feedback.empty_choice"),
-    }
-  }), [t]);
+  const sm2_09_t = useNamespace("sm2_09");
 
   const buildStagePool = useCallback(
     (tObj: typeof sm2_09_t, difficulty: Difficulty, stage: Stage): SM209Quest[] => {

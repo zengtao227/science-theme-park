@@ -2529,7 +2529,20 @@ export const enPhysics = {
                         solve_for_missing_efficiency_quantity: "Rearrange the efficiency equation for the requested quantity.",
                         compute_power_loss: "Compute the power loss as input power minus useful output."
                 },
-                solver: {
+                visualization: {
+                        voltage: "Voltage",
+                        current: "Current",
+                        power: "Power",
+                        time: "Time",
+                        energy: "Energy",
+                        cost: "Cost",
+                        input: "Input",
+                        output: "Output",
+                        efficiency: "Efficiency",
+                        loss: "Loss",
+                        efficiency_visualization: "Efficiency Diagram"
+                },
+                                solver: {
                         cost_label: "Cost",
                         energy_remains_label: "Energy remains",
                         required_quantity_label: "Required quantity"

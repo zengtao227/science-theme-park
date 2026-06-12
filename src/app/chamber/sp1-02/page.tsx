@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,30 +29,7 @@ export default function SP102NewtonsLaws() {
     const [friction, setFriction] = useState(0.3);
     const [forceX, setForceX] = useState(1.5);
 
-    const sp1_02_t = useMemo(() => ({
-        title: t("sp1_02.title"),
-        back: t("sp1_02.back"),
-        difficulty: {
-            basic: t("sp1_02.difficulty.basic"),
-            core: t("sp1_02.difficulty.core"),
-            advanced: t("sp1_02.difficulty.advanced"),
-            elite: t("sp1_02.difficulty.elite")
-        },
-        stages: {
-            first_law: t("sp1_02.stages.first_law"),
-            second_law: t("sp1_02.stages.second_law"),
-            third_law: t("sp1_02.stages.third_law")
-        },
-        scenarios: {
-            first_law: t("sp1_02.scenarios.first_law"),
-            second_law: t("sp1_02.scenarios.second_law"),
-            third_law: t("sp1_02.scenarios.third_law")
-        },
-        check: t("sp1_02.check"),
-        next: t("sp1_02.next"),
-        correct: t("sp1_02.correct"),
-        incorrect: t("sp1_02.incorrect")
-    }), [t]);
+    const sp1_02_t = useNamespace("sp1_02");
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
         if (s === "FIRST_LAW") return generateFirstLawQuests(t, d);

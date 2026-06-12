@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ExponentialChart from "@/components/chamber/sm3-03/ExponentialChart";
@@ -232,64 +232,7 @@ export default function S303Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM303FeedbackProvider(t), [t]);
   
-  const sm3_03_t = useMemo(() => ({
-    title: t("sm3_03.title"),
-    back: t("sm3_03.back"),
-    check: t("sm3_03.check"),
-    next: t("sm3_03.next"),
-    correct: t("sm3_03.correct"),
-    incorrect: t("sm3_03.incorrect"),
-    monitor_title: t("sm3_03.monitor_title"),
-    objective_title: t("sm3_03.objective_title"),
-    input_tip: t("sm3_03.input_tip"),
-    difficulty: {
-      basic: t("sm3_03.difficulty.basic"),
-      core: t("sm3_03.difficulty.core"),
-      advanced: t("sm3_03.difficulty.advanced"),
-      elite: t("sm3_03.difficulty.elite")
-    },
-    stages: {
-      exponential: t("sm3_03.stages.exponential"),
-      logarithm: t("sm3_03.stages.logarithm"),
-      applications: t("sm3_03.stages.applications"),
-      exp_basic_prompt: t("sm3_03.stages.exp_basic_prompt"),
-      exp_advanced_prompt: t("sm3_03.stages.exp_advanced_prompt"),
-      exp_elite_prompt: t("sm3_03.stages.exp_elite_prompt"),
-      log_basic_prompt: t("sm3_03.stages.log_basic_prompt"),
-      log_core_prompt: t("sm3_03.stages.log_core_prompt"),
-      log_advanced_prompt: t("sm3_03.stages.log_advanced_prompt"),
-      log_elite_prompt: t("sm3_03.stages.log_elite_prompt"),
-      app_half_prompt: t("sm3_03.stages.app_half_prompt"),
-      app_compound_prompt: t("sm3_03.stages.app_compound_prompt"),
-      app_rate_prompt: t("sm3_03.stages.app_rate_prompt"),
-      app_ph_prompt: t("sm3_03.stages.app_ph_prompt")
-    },
-    scenarios: {
-      exp_bac: t("sm3_03.scenarios.exp_bac"),
-      exp_social: t("sm3_03.scenarios.exp_social"),
-      exp_virus: t("sm3_03.scenarios.exp_virus"),
-      exp_moore: t("sm3_03.scenarios.exp_moore"),
-      log_invest: t("sm3_03.scenarios.log_invest"),
-      log_sound: t("sm3_03.scenarios.log_sound"),
-      log_security: t("sm3_03.scenarios.log_security"),
-      log_ph: t("sm3_03.scenarios.log_ph"),
-      app_med: t("sm3_03.scenarios.app_med"),
-      app_carbon: t("sm3_03.scenarios.app_carbon"),
-      app_bank: t("sm3_03.scenarios.app_bank"),
-      app_pop: t("sm3_03.scenarios.app_pop")
-    },
-    labels: {
-      time: t("sm3_03.labels.time"),
-      population: t("sm3_03.labels.population"),
-      formula_ref: t("sm3_03.labels.formula_ref"),
-      parameters: t("sm3_03.labels.parameters")
-    },
-    formulas: {
-      exponential: t("sm3_03.formulas.exponential"),
-      logarithm: t("sm3_03.formulas.logarithm"),
-      applications: t("sm3_03.formulas.applications")
-    }
-  }), [t]);
+  const sm3_03_t = useNamespace("sm3_03");
 
   // Canvas State
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(sm3_03_t, d, s), [sm3_03_t]);
@@ -379,7 +322,7 @@ export default function S303Page() {
       onVerify={verify}
       checkStatus={lastCheck}
       printSectionsBuilder={printSections}
-      translations={sm3_03_t}
+      translations={sm3_03_t as any}
       monitorContent={
         <div className="space-y-6">
           {/* SVG Chart */}

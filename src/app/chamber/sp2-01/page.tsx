@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo } from "react";
 import { useAppStore } from "@/lib/store";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,37 +13,11 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createSP201FeedbackProvider } from "@/lib/sp2-01/provider";
 
 export default function SP201CircuitBasics() {
-  useAppStore();
   const { t } = useLanguage();
+  useAppStore();
   const feedbackContentProvider = useMemo(() => createSP201FeedbackProvider(t), [t]);
 
-  const sp2_01_t = useMemo(() => ({
-    title: t("sp2_01.title"),
-    back: t("sp2_01.back"),
-    difficulty: {
-      basic: t("sp2_01.difficulty.basic"),
-      core: t("sp2_01.difficulty.core"),
-      advanced: t("sp2_01.difficulty.advanced"),
-      elite: t("sp2_01.difficulty.elite")
-    },
-    stages: {
-      components: t("sp2_01.stages.components"),
-      simple_circuits: t("sp2_01.stages.simple_circuits"),
-      circuit_diagrams: t("sp2_01.stages.circuit_diagrams")
-    },
-    scenarios: {
-      components: t("sp2_01.scenarios.components"),
-      simple_circuits: t("sp2_01.scenarios.simple_circuits"),
-      circuit_diagrams: t("sp2_01.scenarios.circuit_diagrams")
-    },
-    check: t("sp2_01.check"),
-    next: t("sp2_01.next"),
-    correct: t("sp2_01.correct"),
-    incorrect: t("sp2_01.incorrect"),
-    labels: {
-      quest: t("sp2_01.labels.quest")
-    }
-  }), [t]);
+  const sp2_01_t = useNamespace("sp2_01");
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(t, d, s), [t]);
 

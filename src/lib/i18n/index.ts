@@ -135,6 +135,16 @@ export function useLanguage() {
 }
 
 /**
+ * Returns the translation sub-tree for a given namespace (e.g. "sm1_01").
+ * Replaces the pattern: useMemo(() => ({ title: t("sm1_01.title"), ... }), [t])
+ */
+export function useNamespace(namespace: string): Record<string, any> {
+  const { currentLanguage } = useAppStore();
+  const safeLang = (currentLanguage && currentLanguage in translations) ? currentLanguage : "EN";
+  return ((translations[safeLang] as Record<string, any>)[namespace]) ?? {};
+}
+
+/**
  * Get translations for a specific language
  * @param lang - Language code (optional, defaults to current language)
  * @returns Translation object for the specified language

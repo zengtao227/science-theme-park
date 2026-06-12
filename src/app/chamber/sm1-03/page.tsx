@@ -3,7 +3,7 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import IntegerCanvas from "@/components/chamber/sm1-03/IntegerCanvas";
@@ -17,106 +17,7 @@ export default function SM103Page() {
   const feedbackContentProvider = useMemo(() => createSM103FeedbackProvider(t), [t]);
 
   // Pre-extract all translations
-  const sm1_03_t = useMemo(() => ({
-    labels: {
-      pos: t("sm1_03.labels.pos"),
-      colder: t("sm1_03.labels.colder"),
-      smaller: t("sm1_03.labels.smaller"),
-      middle_value: t("sm1_03.labels.middle_value"),
-      water_lvl: t("sm1_03.labels.water_lvl"),
-      final_temp: t("sm1_03.labels.final_temp"),
-      dist: t("sm1_03.labels.dist"),
-      abs: t("sm1_03.labels.abs"),
-      range: t("sm1_03.labels.range"),
-      integer_number_line: t("sm1_03.labels.integer_number_line"),
-      rational_number_line: t("sm1_03.labels.rational_number_line"),
-      coordinate_plane: t("sm1_03.labels.coordinate_plane"),
-      decimal: t("sm1_03.labels.decimal"),
-      which_is_larger: t("sm1_03.labels.which_is_larger"),
-      which_is_smaller: t("sm1_03.labels.which_is_smaller"),
-      smallest_value: t("sm1_03.labels.smallest_value"),
-      sum: t("sm1_03.labels.sum"),
-      difference: t("sm1_03.labels.difference"),
-      product: t("sm1_03.labels.product"),
-      quotient: t("sm1_03.labels.quotient"),
-      plot_point: t("sm1_03.labels.plot_point"),
-      x_coord: t("sm1_03.labels.x_coord"),
-      y_coord: t("sm1_03.labels.y_coord"),
-      result: t("sm1_03.labels.result"),
-      quadrant: t("sm1_03.labels.quadrant"),
-      midpoint: t("sm1_03.labels.midpoint"),
-      order_smallest: t("sm1_03.labels.order_smallest"),
-      unit_celsius: t("sm1_03.labels.unit_celsius")
-    },
-    objective_title: t("sm1_03.objective_title"),
-    scenarios: {
-      number_line: t("sm1_03.scenarios.number_line"),
-      rationals: t("sm1_03.scenarios.rationals"),
-      quadrants: t("sm1_03.scenarios.quadrants"),
-    },
-    problems: {
-      nl_identify_neg3: t("sm1_03.problems.nl_identify_neg3"),
-      nl_identify_5: t("sm1_03.problems.nl_identify_5"),
-      nl_temp_neg2: t("sm1_03.problems.nl_temp_neg2"),
-      nl_depth_neg4: t("sm1_03.problems.nl_depth_neg4"),
-      nl_identify_0: t("sm1_03.problems.nl_identify_0"),
-      nl_compare_neg5_neg2: t("sm1_03.problems.nl_compare_neg5_neg2"),
-      nl_compare_neg3_1: t("sm1_03.problems.nl_compare_neg3_1"),
-      nl_order_three: t("sm1_03.problems.nl_order_three"),
-      nl_rhine_level: t("sm1_03.problems.nl_rhine_level"),
-      nl_temp_drop: t("sm1_03.problems.nl_temp_drop"),
-      nl_distance_abs: t("sm1_03.problems.nl_distance_abs"),
-      nl_abs_value: t("sm1_03.problems.nl_abs_value"),
-      nl_distance_neg_neg: t("sm1_03.problems.nl_distance_neg_neg"),
-      nl_midpoint: t("sm1_03.problems.nl_midpoint"),
-      nl_temp_range: t("sm1_03.problems.nl_temp_range"),
-      nl_operation_add: t("sm1_03.problems.nl_operation_add"),
-      nl_operation_sub: t("sm1_03.problems.nl_operation_sub"),
-      nl_operation_mult: t("sm1_03.problems.nl_operation_mult"),
-      nl_multi_step: t("sm1_03.problems.nl_multi_step"),
-      nl_complex_op: t("sm1_03.problems.nl_complex_op"),
-      r_place_half: t("sm1_03.problems.r_place_half"),
-      r_place_neg_half: t("sm1_03.problems.r_place_neg_half"),
-      r_place_1_5: t("sm1_03.problems.r_place_1_5"),
-      r_place_neg2_5: t("sm1_03.problems.r_place_neg2_5"),
-      r_fraction_third: t("sm1_03.problems.r_fraction_third"),
-      r_compare_fractions: t("sm1_03.problems.r_compare_fractions"),
-      r_compare_decimals: t("sm1_03.problems.r_compare_decimals"),
-      r_order_mixed: t("sm1_03.problems.r_order_mixed"),
-      r_add_decimals: t("sm1_03.problems.r_add_decimals"),
-      r_sub_decimals: t("sm1_03.problems.r_sub_decimals"),
-      r_compare_neg_decimals: t("sm1_03.problems.r_compare_neg_decimals"),
-      r_fraction_to_decimal: t("sm1_03.problems.r_fraction_to_decimal"),
-      r_mult_decimals: t("sm1_03.problems.r_mult_decimals"),
-      r_div_decimals: t("sm1_03.problems.r_div_decimals"),
-      r_mixed_operations: t("sm1_03.problems.r_mixed_operations"),
-      r_order_complex: t("sm1_03.problems.r_order_complex"),
-      r_fraction_operations: t("sm1_03.problems.r_fraction_operations"),
-      r_neg_fraction_ops: t("sm1_03.problems.r_neg_fraction_ops"),
-      r_complex_decimal: t("sm1_03.problems.r_complex_decimal"),
-      r_repeating_decimal: t("sm1_03.problems.r_repeating_decimal"),
-      q_identify_point: t("sm1_03.problems.q_identify_point"),
-      q_identify_y: t("sm1_03.problems.q_identify_y"),
-      q_plot_positive: t("sm1_03.problems.q_plot_positive"),
-      q_origin: t("sm1_03.problems.q_origin"),
-      q_axis_point: t("sm1_03.problems.q_axis_point"),
-      q_quadrant_2: t("sm1_03.problems.q_quadrant_2"),
-      q_quadrant_3: t("sm1_03.problems.q_quadrant_3"),
-      q_quadrant_4: t("sm1_03.problems.q_quadrant_4"),
-      q_basel_landmarks: t("sm1_03.problems.q_basel_landmarks"),
-      q_distance_horizontal: t("sm1_03.problems.q_distance_horizontal"),
-      q_reflect_x_axis: t("sm1_03.problems.q_reflect_x_axis"),
-      q_reflect_y_axis: t("sm1_03.problems.q_reflect_y_axis"),
-      q_reflect_origin: t("sm1_03.problems.q_reflect_origin"),
-      q_translate: t("sm1_03.problems.q_translate"),
-      q_midpoint_2d: t("sm1_03.problems.q_midpoint_2d"),
-      q_distance_vertical: t("sm1_03.problems.q_distance_vertical"),
-      q_perimeter_rectangle: t("sm1_03.problems.q_perimeter_rectangle"),
-      q_area_rectangle: t("sm1_03.problems.q_area_rectangle"),
-      q_diagonal_distance: t("sm1_03.problems.q_diagonal_distance"),
-      q_complex_translation: t("sm1_03.problems.q_complex_translation"),
-    },
-  }), [t]);
+  const sm1_03_t = useNamespace("sm1_03");
 
   const buildStagePool = useCallback((tObj: typeof sm1_03_t, difficulty: Difficulty, stage: Stage): IntegerQuest[] => {
     const pools: Record<Stage, Record<Difficulty, IntegerQuest[]>> = {

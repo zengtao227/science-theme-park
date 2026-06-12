@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
@@ -23,30 +23,7 @@ export default function SP103WeatherClimate() {
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSP103FeedbackProvider(t), [t]);
 
-    const sp1_03_t = useMemo(() => ({
-        title: t("sp1_03.title"),
-        back: t("sp1_03.back"),
-        difficulty: {
-            basic: t("sp1_03.difficulty.basic"),
-            core: t("sp1_03.difficulty.core"),
-            advanced: t("sp1_03.difficulty.advanced"),
-            elite: t("sp1_03.difficulty.elite")
-        },
-        stages: {
-            atmosphere: t("sp1_03.stages.atmosphere"),
-            weather: t("sp1_03.stages.weather"),
-            climate: t("sp1_03.stages.climate")
-        },
-        check: t("sp1_03.check"),
-        next: t("sp1_03.next"),
-        correct: t("sp1_03.correct"),
-        incorrect: t("sp1_03.incorrect"),
-        monitor_title: t("sp1_03.monitor_title"),
-        loading: t("sp1_03.loading"),
-        labels: {
-            sensor_feed: t("sp1_03.labels.sensor_feed")
-        }
-    }), [t]);
+    const sp1_03_t = useNamespace("sp1_03");
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
         if (s === "ATMOSPHERE") return generateAtmosphereQuests(t, d);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { renderMixedText } from "@/lib/latex-utils";
@@ -23,30 +23,7 @@ export default function SP104AstronomyBasics() {
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSP104FeedbackProvider(t), [t]);
 
-    const sp1_04_t = useMemo(() => ({
-        title: t("sp1_04.title"),
-        back: t("sp1_04.back"),
-        difficulty: {
-            basic: t("sp1_04.difficulty.basic"),
-            core: t("sp1_04.difficulty.core"),
-            advanced: t("sp1_04.difficulty.advanced"),
-            elite: t("sp1_04.difficulty.elite")
-        },
-        stages: {
-            solar_system: t("sp1_04.stages.solar_system"),
-            moon_phases: t("sp1_04.stages.moon_phases"),
-            seasons: t("sp1_04.stages.seasons")
-        },
-        check: t("sp1_04.check"),
-        next: t("sp1_04.next"),
-        correct: t("sp1_04.correct"),
-        incorrect: t("sp1_04.incorrect"),
-        monitor_title: t("sp1_04.monitor_title"),
-        loading: t("sp1_04.loading"),
-        labels: {
-            sensor_feed: t("sp1_04.labels.sensor_feed")
-        }
-    }), [t]);
+    const sp1_04_t = useNamespace("sp1_04");
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => {
         if (s === "SOLAR_SYSTEM") return generateSolarSystemQuests(t, d);

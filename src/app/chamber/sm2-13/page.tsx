@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppStore } from "@/lib/store";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Stage, SM213Quest, buildStagePool } from "@/lib/sm2-13-quest-data";
@@ -109,49 +109,7 @@ export default function SM213Page() {
     const { t } = useLanguage();
     const feedbackContentProvider = React.useMemo(() => createSM213FeedbackProvider(t), [t]);
 
-    const sm2_13_t = React.useMemo(() => ({
-        title: t("sm2_13.title"),
-        moduleCode: t("sm2_13.module_code"),
-        stages: {
-            reflection: t("sm2_13.stages.reflection"),
-            translation: t("sm2_13.stages.translation"),
-            rotation: t("sm2_13.stages.rotation"),
-            composition: t("sm2_13.stages.composition")
-        },
-            translations: {
-                back: t("sm2_13.back"),
-                check: t("sm2_13.check"),
-                next: t("sm2_13.next"),
-                correct: t("sm2_13.correct"),
-                incorrect: t("sm2_13.incorrect"),
-                monitor_title: t("sm2_13.monitor_title"),
-                difficulty: {
-                    basic: t("sm2_13.difficulty.basic"),
-                    core: t("sm2_13.difficulty.core"),
-                    advanced: t("sm2_13.difficulty.advanced"),
-                    elite: t("sm2_13.difficulty.elite")
-            }
-        },
-            labels: {
-                context: t("sm2_13.labels.context"),
-                answer_confirmed: t("sm2_13.labels.answer_confirmed"),
-                hint: t("sm2_13.labels.hint"),
-                loading_data: t("sm2_13.labels.loading_data"),
-                transformation_matrix: t("sm2_13.labels.transformation_matrix"),
-                reflection: t("sm2_13.labels.reflection"),
-                translation: t("sm2_13.labels.translation"),
-                rotation_origin: t("sm2_13.labels.rotation_origin"),
-                sequence_progress: t("sm2_13.labels.sequence_progress"),
-                x_axis: t("sm2_13.labels.x_axis"),
-                y_axis: t("sm2_13.labels.y_axis"),
-                degree_90: t("sm2_13.labels.degree_90"),
-                degree_180: t("sm2_13.labels.degree_180"),
-                original_point: t("sm2_13.labels.original_point"),
-                transformed_point: t("sm2_13.labels.transformed_point"),
-                monitor_verify_to_reveal: t("sm2_13.labels.monitor_verify_to_reveal"),
-                monitor_no_point_data: t("sm2_13.labels.monitor_no_point_data"),
-            }
-        }), [t]);
+    const sm2_13_t = useNamespace("sm2_13");
 
     const {
         difficulty,
@@ -200,10 +158,10 @@ export default function SM213Page() {
         { id: "composition", label: sm2_13_t.stages.composition }
     ], [sm2_13_t]);
     const difficultyLabelMap = React.useMemo<Record<Difficulty, string>>(() => ({
-        BASIC: sm2_13_t.translations.difficulty.basic,
-        CORE: sm2_13_t.translations.difficulty.core,
-        ADVANCED: sm2_13_t.translations.difficulty.advanced,
-        ELITE: sm2_13_t.translations.difficulty.elite,
+        BASIC: sm2_13_t.difficulty.basic,
+        CORE: sm2_13_t.difficulty.core,
+        ADVANCED: sm2_13_t.difficulty.advanced,
+        ELITE: sm2_13_t.difficulty.elite,
     }), [sm2_13_t]);
     const printSectionsBuilder = React.useCallback(() => buildQuestPrintSections<SM213Quest, Stage>({
         moduleTitle: sm2_13_t.title,
@@ -228,7 +186,7 @@ export default function SM213Page() {
             onNext={next}
             checkStatus={lastCheck}
             printSectionsBuilder={printSectionsBuilder}
-            translations={sm2_13_t.translations}
+            translations={sm2_13_t as any}
             feedbackContent={feedbackContent}
             feedbackLevel={feedbackLevel}
             feedbackAvailability={feedbackAvailability}

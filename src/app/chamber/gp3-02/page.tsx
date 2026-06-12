@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectromagnetismVisualization from "@/components/chamber/gp3-02/ElectromagnetismVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -23,40 +23,7 @@ export default function GP302Electromagnetism() {
         return Number(value.toFixed(4)).toString();
     }, []);
 
-    const gp3_02_t = useMemo(() => ({
-        title: t("gp3_02.title"),
-        back: t("gp3_02.back"),
-        difficulty: {
-            basic: t("gp3_02.difficulty.basic"),
-            core: t("gp3_02.difficulty.core"),
-            advanced: t("gp3_02.difficulty.advanced"),
-            elite: t("gp3_02.difficulty.elite")
-        },
-        stages: {
-            electric_field: t("gp3_02.stages.electric_field"),
-            magnetic_field: t("gp3_02.stages.magnetic_field"),
-            particle_motion: t("gp3_02.stages.particle_motion")
-        },
-        scenarios: {
-            electric_field: t("gp3_02.scenarios.electric_field"),
-            magnetic_field: t("gp3_02.scenarios.magnetic_field"),
-            particle_motion: t("gp3_02.scenarios.particle_motion")
-        },
-        check: t("gp3_02.check"),
-        next: t("gp3_02.next"),
-        correct: t("gp3_02.correct"),
-        incorrect: t("gp3_02.incorrect"),
-        labels: {
-            loading: t("gp3_02.labels.loading"),
-            question: t("gp3_02.labels.question"),
-            formula: t("gp3_02.labels.formula"),
-            placeholder_value: t("gp3_02.labels.placeholder_value"),
-            answer_field: t("gp3_02.labels.answer_field"),
-            answer_force: t("gp3_02.labels.answer_force"),
-            answer_radius: t("gp3_02.labels.answer_radius"),
-            answer_velocity: t("gp3_02.labels.answer_velocity")
-        }
-    }), [t]);
+    const gp3_02_t = useNamespace("gp3_02");
 
     const buildStagePool = useCallback((
         tObj: typeof gp3_02_t,

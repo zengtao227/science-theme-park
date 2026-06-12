@@ -3,7 +3,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, useNamespace } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import DerivativeCanvas from "@/components/chamber/gm1-01/DerivativeCanvas";
@@ -45,90 +45,7 @@ export default function G101Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM101FeedbackProvider(t), [t]);
   
-  const gm1_01_t = useMemo(() => ({
-    title: t("gm1_01.title"),
-    description: t("gm1_01.description"),
-    back: t("gm1_01.back"),
-    check: t("gm1_01.check"),
-    next: t("gm1_01.next"),
-    correct: t("gm1_01.correct"),
-    incorrect: t("gm1_01.incorrect"),
-    monitor_title: t("gm1_01.monitor_title"),
-    target_title: t("gm1_01.target_title"),
-    objective_title: t("gm1_01.objective_title"),
-    input_tip_2dp: t("gm1_01.input_tip_2dp"),
-    stages: {
-      POWER_RULE: t("gm1_01.stages.POWER_RULE"),
-      FACTOR_RULE: t("gm1_01.stages.FACTOR_RULE"),
-      SUM_RULE: t("gm1_01.stages.SUM_RULE"),
-      PRODUCT_RULE: t("gm1_01.stages.PRODUCT_RULE"),
-      QUOTIENT_RULE: t("gm1_01.stages.QUOTIENT_RULE"),
-      CHAIN_RULE: t("gm1_01.stages.CHAIN_RULE"),
-      power_rule: t("gm1_01.stages.power_rule"),
-      factor_rule: t("gm1_01.stages.factor_rule"),
-      sum_rule: t("gm1_01.stages.sum_rule"),
-      product_rule: t("gm1_01.stages.product_rule"),
-      quotient_rule: t("gm1_01.stages.quotient_rule"),
-      chain_rule: t("gm1_01.stages.chain_rule"),
-      power_rule_prompt_latex: t("gm1_01.stages.power_rule_prompt_latex"),
-      factor_rule_prompt_latex: t("gm1_01.stages.factor_rule_prompt_latex"),
-      sum_rule_prompt_latex: t("gm1_01.stages.sum_rule_prompt_latex"),
-      product_rule_prompt_latex: t("gm1_01.stages.product_rule_prompt_latex"),
-      quotient_rule_prompt_latex: t("gm1_01.stages.quotient_rule_prompt_latex"),
-      chain_rule_prompt_latex: t("gm1_01.stages.chain_rule_prompt_latex"),
-    },
-    difficulty: {
-      basic: t("gm1_01.difficulty.basic"),
-      core: t("gm1_01.difficulty.core"),
-      advanced: t("gm1_01.difficulty.advanced"),
-      elite: t("gm1_01.difficulty.elite"),
-    },
-    labels: {
-      hints: t("gm1_01.labels.hints"),
-    },
-    placeholders: {
-      derivative: t("gm1_01.placeholders.derivative"),
-    },
-    formulas: {
-      power_rule: t("gm1_01.formulas.power_rule"),
-      factor_rule: t("gm1_01.formulas.factor_rule"),
-      sum_rule: t("gm1_01.formulas.sum_rule"),
-      product_rule: t("gm1_01.formulas.product_rule"),
-      quotient_rule: t("gm1_01.formulas.quotient_rule"),
-      chain_rule: t("gm1_01.formulas.chain_rule"),
-    },
-    mission: {
-      title: t("gm1_01.mission.title"),
-      description: t("gm1_01.mission.description"),
-    },
-    scenarios: {
-      power_rule: t("gm1_01.scenarios.power_rule"),
-      factor_rule: t("gm1_01.scenarios.factor_rule"),
-      sum_rule: t("gm1_01.scenarios.sum_rule"),
-      product_rule: t("gm1_01.scenarios.product_rule"),
-      quotient_rule: t("gm1_01.scenarios.quotient_rule"),
-      chain_rule: t("gm1_01.scenarios.chain_rule"),
-    },
-    canvas: {
-      title: t("gm1_01.canvas.title"),
-      subtitle_power: t("gm1_01.canvas.subtitle_power"),
-      subtitle_factor: t("gm1_01.canvas.subtitle_factor"),
-      subtitle_sum: t("gm1_01.canvas.subtitle_sum"),
-      subtitle_product: t("gm1_01.canvas.subtitle_product"),
-      subtitle_quotient: t("gm1_01.canvas.subtitle_quotient"),
-      subtitle_chain: t("gm1_01.canvas.subtitle_chain"),
-      x_label: t("gm1_01.canvas.x_label"),
-      y_label: t("gm1_01.canvas.y_label"),
-      slope_label: t("gm1_01.canvas.slope_label"),
-      your_slope: t("gm1_01.canvas.your_slope"),
-      correct_slope: t("gm1_01.canvas.correct_slope"),
-      correct_angle: t("gm1_01.canvas.correct_angle"),
-      adjust_slope: t("gm1_01.canvas.adjust_slope"),
-      status_chamber: t("gm1_01.canvas.status_chamber"),
-      status_sim: t("gm1_01.canvas.status_sim"),
-      status_mode: t("gm1_01.canvas.status_mode"),
-    },
-  }), [t]);
+  const gm1_01_t = useNamespace("gm1_01");
 
   const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(gm1_01_t, d, s), [gm1_01_t]);
 
