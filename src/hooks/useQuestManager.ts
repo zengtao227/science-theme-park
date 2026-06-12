@@ -222,29 +222,13 @@ export function useQuestManager<T extends Quest, S extends string>({
         if (nonce > 0) {
             clearInputs();
             setNonce((v) => v - 1);
-            if (currentQuest) {
-                const questKey = `${stage}:${currentQuest.id}`;
-                setErrorCounts((prev) => {
-                    const nextMap = { ...prev };
-                    delete nextMap[questKey];
-                    return nextMap;
-                });
-            }
         }
-    }, [clearInputs, currentQuest, stage, nonce]);
+    }, [clearInputs, nonce]);
 
     const next = useCallback(() => {
         clearInputs();
         setNonce((v) => v + 1);
-        if (currentQuest) {
-            const questKey = `${stage}:${currentQuest.id}`;
-            setErrorCounts((prev) => {
-                const nextMap = { ...prev };
-                delete nextMap[questKey];
-                return nextMap;
-            });
-        }
-    }, [clearInputs, currentQuest, stage]);
+    }, [clearInputs]);
 
     const canPrevious = nonce > 0;
     const canNext = pool.length > 0 && nonce < pool.length - 1;
