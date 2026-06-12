@@ -6,8 +6,8 @@ import { useLanguage } from '@/lib/i18n';
 import { clsx } from 'clsx';
 
 export default function EntryProtocol() {
-    const { acceptProtocol, setLanguage } = useAppStore();
-    const { t, currentLanguage } = useLanguage();
+    const acceptProtocol = useAppStore((s) => s.acceptProtocol);
+    const { t, currentLanguage, setLanguage } = useLanguage();
     
     const protocol_t = {
         system_name: t("protocol.system_name"),
