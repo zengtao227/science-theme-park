@@ -6,7 +6,7 @@ import { useAppStore } from '@/lib/store';
 
 export default function UserSetup() {
   const [username, setUsername] = useState('');
-  const { createUser } = useAppStore();
+  const createUser = useAppStore((s) => s.createUser);
   const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
