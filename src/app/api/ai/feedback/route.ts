@@ -10,6 +10,24 @@ const DEFAULT_ALLOWED_BASE_URLS = [
 
 const AI_PROVIDER_TIMEOUT_MS = 30_000;
 
+// In-memory rate limiter: max 20 requests per IP per minute.
+// On serverless, limits blast radius per warm instance; resets on cold start.
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_MAX = 20;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+
+function consumeRateLimit(ip: string): boolean {
+    const now = Date.now();
+    const entry = rateLimitStore.get(ip);
+    if (!entry || now > entry.resetAt) {
+        rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+        return true;
+    }
+    if (entry.count >= RATE_LIMIT_MAX) return false;
+    entry.count++;
+    return true;
+}
+
 function normalizeBaseUrl(rawUrl: string): string | null {
     try {
         const parsed = new URL(rawUrl);
@@ -83,6 +101,14 @@ async function callChatCompletions(
 }
 
 export async function POST(req: Request) {
+    // Rate limit by client IP. XFF is used here only to bound per-user cost, not for auth.
+    // On Vercel/Caddy the edge injects the real IP; unknown/missing → shared 'unknown' bucket.
+    const xff = req.headers.get('x-forwarded-for');
+    const clientIp = (xff ? xff.split(',')[0].trim() : null) ?? 'unknown';
+    if (!consumeRateLimit(clientIp)) {
+        return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+    }
+
     try {
         const { prompt, systemPrompt } = await req.json();
 
@@ -177,20 +203,22 @@ export async function POST(req: Request) {
                 const data = await response.json();
                 const content = data.choices[0]?.message?.content || data.choices[0]?.message?.reasoning_content || "";
                 return NextResponse.json({ result: content, provider: attempt.label });
-            } catch (error: any) {
+            } catch (error: unknown) {
                 lastStatus = 502;
-                lastError = error?.name === 'AbortError'
+                const err = error as { name?: string; message?: string };
+                lastError = err?.name === 'AbortError'
                     ? `AI provider timed out while using ${attempt.label}`
-                    : error?.message || `Network error while using ${attempt.label}`;
+                    : err?.message || `Network error while using ${attempt.label}`;
                 console.error(`Feedback route provider failure [${attempt.label}]:`, error);
             }
         }
 
         return NextResponse.json({ error: lastError }, { status: Math.max(400, lastStatus || 502) });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Feedback route error:", error);
+        const err = error as { message?: string };
         return NextResponse.json(
-            { error: error?.message || 'Internal server error' },
+            { error: err?.message || 'Internal server error' },
             { status: 500 }
         );
     }
