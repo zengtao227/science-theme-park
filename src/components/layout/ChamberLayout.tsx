@@ -406,9 +406,9 @@ export default function ChamberLayout({
                                             className="px-4 py-2 border border-neon-purple/50 bg-neon-purple/10 text-neon-purple text-[10px] font-black tracking-widest uppercase rounded hover:bg-neon-purple/20 transition-colors disabled:opacity-50 flex items-center gap-2"
                                         >
                                             {isRequestingAi ? (
-                                                <span className="animate-pulse">✨ AI Diagnosing...</span>
+                                                <span className="animate-pulse">{common.profile?.ai_provider?.diagnosing ?? "✨ AI Diagnosing..."}</span>
                                             ) : (
-                                                <span>🪄 Ask AI for Explanation</span>
+                                                <span>{common.profile?.ai_provider?.ask_button ?? "🪄 Ask AI for Explanation"}</span>
                                             )}
                                         </button>
                                         <Link
@@ -424,7 +424,7 @@ export default function ChamberLayout({
                                         <div className="px-4 pt-4 pb-2 border-b border-neon-purple/20">
                                             <div className="flex items-center justify-between gap-4">
                                                 <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
-                                                    🪄 Nexus AI Assistant
+                                                    {common.profile?.ai_provider?.assistant_title ?? "🪄 Nexus AI Assistant"}
                                                 </div>
                                                 <button
                                                     onClick={() => setAiFeedbackOpen(true)}
@@ -885,7 +885,7 @@ export default function ChamberLayout({
                         <div className="mx-auto flex h-full w-full max-w-5xl flex-col rounded-2xl border border-neon-purple/30 bg-black shadow-[0_0_30px_rgba(var(--color-neon-purple),0.2)]">
                             <div className="flex items-center justify-between gap-4 border-b border-neon-purple/20 px-5 py-4">
                                 <div className="text-[10px] uppercase font-black text-neon-purple tracking-[0.3em] flex items-center gap-2">
-                                    🪄 Nexus AI Assistant
+                                    {common.profile?.ai_provider?.assistant_title ?? "🪄 Nexus AI Assistant"}
                                 </div>
                                 <button
                                     onClick={() => setAiFeedbackOpen(false)}

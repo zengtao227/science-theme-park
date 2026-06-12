@@ -467,6 +467,9 @@ export const enCommon = {
             save: "Save AI Config",
             saved: "Saved",
             open_settings: "Open Settings & AI",
+            ask_button: "🪄 Ask AI for Explanation",
+            diagnosing: "✨ AI Diagnosing...",
+            assistant_title: "🪄 Nexus AI Assistant",
             labels: {
                 provider: "Provider Preset",
                 base_url: "API Base URL",

@@ -466,6 +466,9 @@ export const cnCommon = {
             save: "保存 AI 配置",
             saved: "已保存",
             open_settings: "打开设置与 AI",
+            ask_button: "🪄 请 AI 解释",
+            diagnosing: "✨ AI 分析中...",
+            assistant_title: "🪄 Nexus AI 助手",
             labels: {
                 provider: "提供方预设",
                 base_url: "API 基础地址",

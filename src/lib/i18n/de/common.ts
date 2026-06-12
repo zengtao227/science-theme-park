@@ -469,6 +469,9 @@ export const deCommon = {
             save: "KI-Konfiguration speichern",
             saved: "Gespeichert",
             open_settings: "Einstellungen & KI öffnen",
+            ask_button: "🪄 KI um Erklärung bitten",
+            diagnosing: "✨ KI diagnostiziert...",
+            assistant_title: "🪄 Nexus KI-Assistent",
             labels: {
                 provider: "Provider-Voreinstellung",
                 base_url: "API-Basis-URL",
