@@ -40,7 +40,8 @@ function inferProvider(baseUrl?: string): ProviderId {
 }
 
 export default function AiProviderSettings() {
-  const { aiProviderConfig, setAiProviderConfig } = useAppStore();
+  const aiProviderConfig = useAppStore((s) => s.aiProviderConfig);
+  const setAiProviderConfig = useAppStore((s) => s.setAiProviderConfig);
   const { t } = useLanguage();
   const [saved, setSaved] = useState(false);
 
