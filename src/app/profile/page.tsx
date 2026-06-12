@@ -12,7 +12,7 @@ import { clsx } from "clsx";
 import { getHistoryModuleTitle, getHistoryStageLabel } from "@/lib/historyDisplay";
 
 export default function ProfilePage() {
-  const { history } = useAppStore();
+  const history = useAppStore((s) => s.history);
   const { t, currentLanguage, setLanguage } = useLanguage();
   const languages = ['DE', 'EN', 'CN'] as const;
   const languageLabel: Record<(typeof languages)[number], string> = {
