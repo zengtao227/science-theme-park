@@ -7,7 +7,9 @@ import { useAppStore } from "@/lib/store";
 import { translations as i18n } from "@/lib/i18n";
 
 export default function NotificationToast() {
-  const { lastAchievement, clearLastAchievement, currentLanguage } = useAppStore();
+  const lastAchievement = useAppStore((s) => s.lastAchievement);
+  const clearLastAchievement = useAppStore((s) => s.clearLastAchievement);
+  const currentLanguage = useAppStore((s) => s.currentLanguage);
   const common = i18n[currentLanguage].common;
   const activeAchievement = lastAchievement ?? null;
 
