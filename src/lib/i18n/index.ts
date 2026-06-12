@@ -129,7 +129,7 @@ export function useLanguage() {
       }
       return val;
     }
-    return node || path;
+    return node ?? path;
   };
 
   return { t, currentLanguage, setLanguage };
