@@ -7,6 +7,7 @@
 - ✅ Step 1 — ChamberLayout 4处 AI 硬编码字符串改为 i18n（en/de/cn），commit `44d83eb5`
 - ✅ Step 3 — completeStage 提取进 useQuestManager.verify()，67个文件移除 useEffect，commit `fc04a523`
 - ✅ Step 6 — useNamespace helper 添加到 i18n/index.ts，26个文件的 useMemo 翻译块替换，commit `8d247620`
+- ✅ Step 4 — chamberLayoutProps bundle 在 useQuestManager 返回，95个页面改为 `{...chamberLayoutProps}` spread，commit `f8258555`
 
 ---
 
@@ -66,11 +67,18 @@
 
 ---
 
-### Step 5 — SlotInputs 组件提取（大，~87个文件）
+### Step 5 — SlotInputs 组件提取（大，~87个文件）⛔ DEFERRED
 
-**问题**：每个页面内联写了相同的 slot 输入 JSX 模板  
-**做法**：提取 `<SlotInputs>` 共享组件，批量替换  
-**验证**：`npm run build && scripts/audit-rendering.sh`
+**结论**：暂缓，slot 渲染模式差异太大，无法安全批量提取。
+
+**分析**：
+- 86个文件有 `slots.map()` 但至少5种不同的容器/样式模式（sp3/gb1 的 neon 样式、sc1/gm1 的 InlineMath label、sb1/sp2 的 plain label 等）
+- 26个文件有 `onKeyDown Enter→verify` 逻辑，其余没有（静默回退）
+- 部分文件有 `disabled={lastCheck?.ok}`，部分没有
+- 提取通用 `<SlotInputs>` 需要大量 variant props，违反"最简方案"原则
+- 验证需要浏览器渲染测试（CLAUDE.md 要求），当前环境无法执行
+
+**待处理**：只在有充分浏览器测试环境时再做，或让 Opus review 给出具体提取方案。
 
 ---
 
@@ -80,27 +88,32 @@
 
 ---
 
-### Step 7 — ChamberLayout 拆分（架构）
+### Step 7 — ChamberLayout 拆分（架构）⛔ DEFERRED
 
-**问题**：ChamberLayout.tsx 有 1039 行，至少包含 5 个独立关注点  
-**拆分方案**：
-- `<ChamberHistoryPanel>` — 历史记录面板（~120行）
-- `<ChamberPrintSection>` — 打印系统（~150行）  
-- `<AiFeedbackPanel>` — AI 反馈渲染（重复出现两次）
-- History-write effect → 移入 useQuestManager  
-**验证**：`npm run build && 打开至少3个模块页面确认渲染`
+**结论**：暂缓，需要浏览器渲染验证（动画、modal、键盘交互），当前环境无法执行。
+
+**分析**：
+- `<AiFeedbackPanel>` 内容在 ChamberLayout 出现两次（inline card + fullscreen modal）
+- 提取需要 threading: `aiFeedbackRef`、`aiFeedbackOpen`/`setAiFeedbackOpen`、`isRequestingAi`、`renderMixedText` 等状态
+- historyPanel const 已是局部 JSX 变量，提取为组件需要传入 9+ props
+- print section 状态最复杂，涉及 lazy loading + print API
+- 验证需要实际打开3+个模块确认渲染正常（CLAUDE.md 要求）
+
+**待处理**：在有浏览器测试环境时执行。建议先提取 `<AiFeedbackModal>` (≈45行) 作为最小安全步骤。
 
 ---
 
-### Step 8 — useQuestManager 拆分（架构）
+### Step 8 — useQuestManager 拆分（架构）⛔ DEFERRED
 
-**问题**：useQuestManager.ts 有 488 行，返回 34 个值，是 God Hook  
-**拆分方案**：
-- `useQuestNavigation` — 题目切换逻辑
-- `useAnswerValidation` — 答案校验
-- `useAdaptiveDifficulty` — 自适应难度
-- `useAiFeedback` — AI 反馈触发  
-**验证**：`npm run test && npm run build`
+**结论**：暂缓，`npm run test` 因 SWC ARM64 binary 缺失无法运行，业务逻辑改动无测试保证。
+
+**根因**：
+- `src/__tests__/hooks/useQuestManager.test.ts` 存在且覆盖核心逻辑
+- 但 Jest transformer（`@next/swc-darwin-arm64`）在当前 ARM64 Mac 上 failed to load bindings
+- 不能盲目拆分 34-value God Hook（涉及 nonce、feedbackLevel、errorCounts、adaptive difficulty、hint gating）
+- 任何子 hook 内部状态耦合的变化都会导致"测试通过但行为异常"的无声回退
+
+**待处理**：先修复 `npm run test`（安装 swc binary 或改用 babel transformer），再执行拆分。
 
 ---
 
