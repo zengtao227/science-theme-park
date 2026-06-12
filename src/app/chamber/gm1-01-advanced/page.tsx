@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -1120,7 +1119,6 @@ function buildChallengePool(gm1_01_advanced_t: any, difficulty: Difficulty, chal
 }
 
 export default function G101AdvancedPage() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM101AdvancedFeedbackProvider(t), [t]);
   
@@ -1256,11 +1254,6 @@ export default function G101AdvancedPage() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gm1-01-advanced", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo(() => [
     { id: "COMPOSITE" as Challenge, label: gm1_01_advanced_t.challenges.composite },

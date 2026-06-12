@@ -4,7 +4,6 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useCallback, useMemo, useState } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -210,7 +209,6 @@ function TrigMonitorPanel({
 // MAIN PAGE COMPONENT
 // ----------------------------------------------------------------------------
 export default function S302Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM302FeedbackProvider(t), [t]);
 
@@ -266,11 +264,6 @@ export default function S302Page() {
         }
     }
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm3-02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "UNIT_CIRCLE", label: t("sm3_02.stages.unit_circle") },

@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -305,7 +304,6 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S207Quest
 }
 
 export default function S207Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM207FeedbackProvider(t), [t]);
 
@@ -341,11 +339,6 @@ export default function S207Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm2-07", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "DISTANCE", label: t("sm2_07.stages.distance") },

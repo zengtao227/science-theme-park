@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useMemo, useCallback } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -15,7 +14,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createGM202FeedbackProvider } from "@/lib/gm2-02-provider";
 
 export default function GM202Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM202FeedbackProvider(t), [t]);
 
@@ -97,11 +95,6 @@ export default function GM202Page() {
     }
   }, [difficulty, handleDifficultyChange, resolveDifficultyForStage, stage]);
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gm2-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   // Determine visualization type based on quest data content (not just stage)
   const visualizationType = useMemo(() => {

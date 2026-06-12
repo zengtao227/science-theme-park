@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo, useState } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -657,7 +656,6 @@ function buildStagePool(t: ReturnType<typeof useLanguage>['t'], difficulty: Diff
 }
 
 export default function S205Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM205FeedbackProvider(t), [t]);
 
@@ -686,11 +684,6 @@ export default function S205Page() {
     });
     const [showExperimental, setShowExperimental] = useState(false);
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm2-05", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "RULES", label: t("sm2_05.stages.rules") },

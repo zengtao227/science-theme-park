@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { InlineMath } from "react-katex";
 import dynamic from "next/dynamic";
@@ -42,7 +41,6 @@ const elements = [
 export default function SC1_03_AtomsForge() {
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC103FeedbackProvider(t), [t]);
-    const { completeStage } = useAppStore();
 
     const [selectedElement, setSelectedElement] = useState(elements[5]);
     const [orbitalType, setOrbitalType] = useState<"s" | "p" | "d">("p");
@@ -190,11 +188,6 @@ export default function SC1_03_AtomsForge() {
         tolerance: 0.02,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sc1-03", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = useMemo(() => [
         { id: "build" as Stage, label: t("sc1_03.stages.build") },

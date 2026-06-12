@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useCallback, useEffect, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -20,7 +19,6 @@ import {
 import { renderMixedText } from "@/lib/latex-utils";
 
 export default function C102Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC102FeedbackProvider(t), [t]);
 
@@ -120,11 +118,6 @@ export default function C102Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sc1-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const activeSlot = currentQuest?.slots?.[0];
   const inputValue = useMemo(() => {

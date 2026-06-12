@@ -6,7 +6,6 @@ import { clsx } from "clsx";
 import { useEffect, useCallback, useMemo } from "react";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -231,7 +230,6 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): S301Quest
 }
 
 export default function S301Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM301FeedbackProvider(t), [t]);
 
@@ -268,11 +266,6 @@ export default function S301Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm3-01", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "TERMS", label: t("sm3_01.stages.terms") },

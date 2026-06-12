@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
@@ -1051,7 +1050,6 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
 }
 
 export default function S206Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM206FeedbackProvider(t), [t]);
 
@@ -1087,11 +1085,6 @@ export default function S206Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm2-06", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "SUBSTITUTION", label: t("sm2_06.stages.substitution") },

@@ -28,7 +28,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createSC207FeedbackProvider } from "@/lib/sc2-07-provider";
 
 export default function SC207Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC207FeedbackProvider(t), [t]);
 
@@ -67,11 +66,6 @@ export default function SC207Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage('sc2-07', stage);
-    }
-  }, [completeStage, lastCheck, stage]);
 
   // Get current scenario
   const getCurrentScenario = () => {

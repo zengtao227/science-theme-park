@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EcosystemVisualization from "@/components/chamber/sb3-01/EcosystemVisualization";
@@ -23,7 +22,6 @@ interface SB301Quest extends Quest {
 }
 
 export default function SB301Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB301FeedbackProvider(t), [t]);
 
@@ -320,11 +318,6 @@ export default function SB301Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb3-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "FOOD_CHAINS" as Stage, label: t("sb3_01.stages.food_chains") },

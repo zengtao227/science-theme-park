@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -261,7 +260,6 @@ function buildStagePool(sm1_02_t: any, difficulty: Difficulty, stage: Stage): S1
 }
 
 export default function SM102Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
 
     const sm1_02_t = useMemo(() => t("sm1_02"), [t]);
@@ -292,11 +290,6 @@ export default function SM102Page() {
         feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("SM1.02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "VARIABLES", label: sm1_02_t.stages.variables },

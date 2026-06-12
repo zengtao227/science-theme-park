@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FlowMonitor from "@/components/shared/FlowMonitor";
@@ -23,7 +22,6 @@ import {
 
 
 export default function SP303Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSP303FeedbackProvider(t), [t]);
 
@@ -65,11 +63,6 @@ export default function SP303Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sp3-03", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
     { id: "POTENTIAL" as Stage, label: t("sp3_03.stages.potential") },

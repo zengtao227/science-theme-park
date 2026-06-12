@@ -2,7 +2,6 @@
 
 import { useMemo, useEffect, useCallback } from "react";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxCanvas from "@/components/chamber/gc1-01/RedoxCanvas";
@@ -17,7 +16,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createGC101FeedbackProvider } from "@/lib/gc1-01/provider";
 
 export default function GC101Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGC101FeedbackProvider(t), [t]);
     const buildPool = useCallback(
@@ -54,11 +52,6 @@ export default function GC101Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("gc1-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
         if (stage === "BUILD") return t("gc1_01.scenarios.battery_storage");

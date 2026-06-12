@@ -6,7 +6,6 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useCallback, useEffect, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import IntegralVisualization from "@/components/chamber/gm1-02/IntegralVisualization";
 import {
   Stage,
@@ -37,7 +36,6 @@ function buildStagePool(
 export default function GM102Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM102FeedbackProvider(t), [t]);
-  const { completeStage } = useAppStore();
 
   const buildPoolCallback = useCallback(
     (d: Difficulty, s: Stage) => buildStagePool(t, d, s),
@@ -73,11 +71,6 @@ export default function GM102Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gm1-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const currentScenario =
     stage === "ANTIDERIVATIVE" ? t("gm1_02.scenarios.antiderivative") :

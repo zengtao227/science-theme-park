@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import WaveVisualization from "@/components/chamber/gp3-01/WaveVisualization";
@@ -14,7 +13,6 @@ import { createGP301FeedbackProvider } from "@/lib/gp3-01/provider";
 import type { GP301Quest, Stage } from "@/lib/gp3-01/types";
 
 export default function GP301Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGP301FeedbackProvider(t), [t]);
 
@@ -709,11 +707,6 @@ export default function GP301Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("gp3-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "WAVE_PROPERTIES" as Stage, label: t("gp3_01.stages.wave_properties") },

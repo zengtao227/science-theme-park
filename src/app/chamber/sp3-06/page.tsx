@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AcousticsVisualization from "@/components/chamber/sp3-06/AcousticsVisualization";
@@ -14,7 +13,6 @@ import type { Stage, SP306Quest } from "@/lib/sp3-06/types";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SP306Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSP306FeedbackProvider(t), [t]);
 
@@ -652,11 +650,6 @@ export default function SP306Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sp3-06", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "SOUND_WAVES" as Stage, label: t("sp3_06.stages.sound_waves") },

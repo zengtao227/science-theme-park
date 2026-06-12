@@ -4,7 +4,6 @@ import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage, TranslationKeys } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThermodynamicsVisualization from "@/components/chamber/gp2-02/ThermodynamicsVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -139,7 +138,6 @@ export default function GP202Page() {
     const { t: getT } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGP202FeedbackProvider(getT), [getT]);
     const t = getT("gp2_02");
-    const { completeStage } = useAppStore();
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(getT, t, d, s), [getT, t]);
 
@@ -172,11 +170,6 @@ export default function GP202Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("gp2-02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "FIRST_LAW" as Stage, label: t.stages.first_law },

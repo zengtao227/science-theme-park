@@ -5,7 +5,6 @@ import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useState, useCallback, useMemo } from "react";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -551,7 +550,6 @@ function buildStagePool(sm2_02_t: any, difficulty: Difficulty, stage: Stage): S2
 
 // Main component
 export default function S202Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM202FeedbackProvider(t), [t]);
 
@@ -687,11 +685,6 @@ export default function S202Page() {
   const [explorerB, setExplorerB] = useState(4);
   const [explorerK, setExplorerK] = useState(1);
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm2-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const difficultyLabelMap = useMemo<Record<Difficulty, string>>(() => ({
     BASIC: sm2_02_t.difficulty.basic,

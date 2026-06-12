@@ -4,7 +4,6 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import TunnellingCanvas from "@/components/chamber/gp1-04/TunnellingCanvas";
@@ -17,7 +16,6 @@ import type { Stage, TunnelQuest } from "@/lib/gp1-04/types";
 export default function P104Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGP104FeedbackProvider(t), [t]);
-  const { completeStage } = useAppStore();
   const gp1_04_prompts = useMemo(() => ({
     cl_transmission_basic: t("gp1_04.prompts.cl_transmission_basic"),
     cl_reflection_core: t("gp1_04.prompts.cl_reflection_core"),
@@ -288,11 +286,6 @@ export default function P104Page() {
     }
   }, [stage]);
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gp1-04", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const transmissionCoefficient = calculateTransmissionCoefficient(particleEnergy, barrierHeight, barrierWidth);
 

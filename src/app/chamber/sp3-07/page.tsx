@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import FerryCanvas from "@/components/chamber/sp3-07/FerryCanvas";
@@ -15,7 +14,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
 export default function SP307Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSP307FeedbackProvider(t), [t]);
 
@@ -551,11 +549,6 @@ export default function SP307Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sp3-07", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "COMPOSITION" as Stage, label: t("sp3_07.stages.composition") },

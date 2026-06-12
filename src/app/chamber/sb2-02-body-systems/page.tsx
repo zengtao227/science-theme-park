@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BodySystemVisualization from "@/components/chamber/sb2-02-body-systems/BodySystemVisualization";
@@ -21,7 +20,6 @@ interface SB202BodySystemsQuest extends Quest {
 }
 
 export default function SB202BodySystemsPage() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB202BodySystemsFeedbackProvider(t), [t]);
 
@@ -659,11 +657,6 @@ export default function SB202BodySystemsPage() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb2-02-body-systems", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "DIGESTIVE" as Stage, label: t("sb2_02.stages.digestive") },

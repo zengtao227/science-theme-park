@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PhysiologyVisualization from "@/components/chamber/sb2-04/PhysiologyVisualization";
@@ -16,7 +15,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createSB204FeedbackProvider } from "@/lib/sb2-04/provider";
 
 export default function SB204Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSB204FeedbackProvider(t), [t]);
 
@@ -55,11 +53,6 @@ export default function SB204Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sb2-04", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(
     () => [

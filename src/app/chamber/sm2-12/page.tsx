@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -124,7 +123,6 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SM212ComboData[]>> = {
 };
 
 export default function SM212Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM212FeedbackProvider(t), [t]);
 
@@ -214,11 +212,6 @@ export default function SM212Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm2-12", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
     { id: "PERMUTATIONS" as Stage, label: t("sm2_12.stages.permutations") },

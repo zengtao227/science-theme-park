@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -24,7 +23,6 @@ interface SM210Quest extends Quest {
 const PRINT_DIFFICULTY_ORDER: Difficulty[] = ["BASIC", "CORE", "ADVANCED", "ELITE"];
 
 export default function SM210Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM210FeedbackProvider(t), [t]);
 
@@ -764,11 +762,6 @@ export default function SM210Page() {
         feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm2-10", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "BOX_PLOTS" as Stage, label: t("sm2_10.stages.box_plots") },

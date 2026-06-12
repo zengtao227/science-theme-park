@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useCallback } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ElectrolysisCanvas from "@/components/chamber/gc1-02/ElectrolysisCanvas";
@@ -19,7 +18,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createGC102FeedbackProvider } from "@/lib/gc1-02/provider";
 
 export default function GC102Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGC102FeedbackProvider(t), [t]);
     const buildPool = useCallback((difficulty: Difficulty, currentStage: Stage) => {
@@ -58,11 +56,6 @@ export default function GC102Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("gc1-02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = useMemo(() => [
         { id: "PRINCIPLES" as Stage, label: t("gc1_02.stages.principles") },

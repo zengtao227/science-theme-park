@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -16,7 +15,6 @@ type Stage = "BASIC_PROB" | "LOTTERY" | "COMBINED" | "DATA_STATS";
 type ProbQuest = Quest & { stage: Stage; context?: string; scenario?: string };
 
 export default function SM208Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM208FeedbackProvider(t), [t]);
 
@@ -1172,11 +1170,6 @@ export default function SM208Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm2-08", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "BASIC_PROB", label: t("sm2_08.stages.basic_prob") },

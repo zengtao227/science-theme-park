@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquationBalance from "@/components/chamber/sm1-04/EquationBalance";
@@ -14,7 +13,6 @@ import { createSM104FeedbackProvider } from "@/lib/sm1-04/provider";
 import type { EquationQuest, SM104Stage as Stage } from "@/lib/sm1-04/types";
 
 export default function SM104Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
 
   // Pre-extract all translations
@@ -1219,11 +1217,6 @@ export default function SM104Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm1-04", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "BALANCE", label: t("sm1_04.stages.balance") },

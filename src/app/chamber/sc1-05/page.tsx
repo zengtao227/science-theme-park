@@ -2,7 +2,6 @@
 
 import { useMemo, useCallback, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { InlineMath } from "react-katex";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -17,7 +16,6 @@ import type { BondQuest, Stage } from "@/lib/sc1-05/types";
 export default function SC105Page() {
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC105FeedbackProvider(t), [t]);
-    const { completeStage } = useAppStore();
 
     const sc1_05_t = {
         title: t("sc1_05.title"),
@@ -114,11 +112,6 @@ export default function SC105Page() {
         tolerance: 0.02,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sc1-05", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "IONIC" as Stage, label: sc1_05_t.stages.ionic },

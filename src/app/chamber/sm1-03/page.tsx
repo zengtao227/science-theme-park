@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { BlockMath, InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
@@ -14,7 +13,6 @@ import { createSM103FeedbackProvider } from "@/lib/sm1-03/provider";
 import type { IntegerQuest, SM103Stage as Stage } from "@/lib/sm1-03/types";
 
 export default function SM103Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM103FeedbackProvider(t), [t]);
 
@@ -989,11 +987,6 @@ export default function SM103Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm1-03", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stages = useMemo<{ id: Stage; label: string }[]>(() => [
     { id: "NUMBER_LINE", label: t("sm1_03.stages.number_line") },

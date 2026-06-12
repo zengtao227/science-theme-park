@@ -2,7 +2,6 @@
 
 import { useEffect, useCallback, useMemo } from "react";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RedoxVisualization from "@/components/chamber/sc2-06/RedoxVisualization";
@@ -16,7 +15,6 @@ import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
 export default function SC206Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC206FeedbackProvider(t), [t]);
 
@@ -380,11 +378,6 @@ export default function SC206Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sc2-06", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const activeScenario = useMemo(() => {
     if (stage === "OXIDATION_STATE") return t("sc2_06.scenarios.oxidation_state");

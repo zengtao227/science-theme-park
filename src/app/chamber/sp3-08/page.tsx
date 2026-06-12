@@ -5,7 +5,6 @@ import "katex/dist/katex.min.css";
 import { useCallback, useEffect, useMemo } from "react";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -25,7 +24,6 @@ import {
 
 
 export default function P301Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSP308FeedbackProvider(t), [t]);
 
@@ -85,11 +83,6 @@ export default function P301Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sp3-08", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   if (!currentQuest) return null;
 

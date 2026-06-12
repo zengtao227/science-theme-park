@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage, TranslationKeys } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ThalesTowerCanvas from "@/components/chamber/em1-01/ThalesTowerCanvas";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -139,7 +138,6 @@ export default function EM101Page() {
   const { t: getT } = useLanguage();
   const feedbackContentProvider = useMemo(() => createEM101FeedbackProvider(getT), [getT]);
   const t = getT("em1_01");
-  const { completeStage } = useAppStore();
 
   const [sunAngle, setSunAngle] = useState(35);
   const [towerShadow, setTowerShadow] = useState(18);
@@ -184,11 +182,6 @@ export default function EM101Page() {
     next();
   };
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("em1-01", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
     { id: "BASICS" as Stage, label: t.stages.basics },

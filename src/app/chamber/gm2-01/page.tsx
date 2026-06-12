@@ -3,7 +3,6 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -31,7 +30,6 @@ function buildStagePool(gm2_01_t: any, difficulty: Difficulty, stage: Stage): G2
 }
 
 export default function G201Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGM201FeedbackProvider(t), [t]);
   
@@ -122,11 +120,6 @@ export default function G201Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gm2-01", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const currentScenario =
     stage === "NAVIGATION" ? gm2_01_t.scenarios.navigation :

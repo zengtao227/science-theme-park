@@ -4,7 +4,6 @@ import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage, TranslationKeys } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasLawsVisualization from "@/components/chamber/gp2-01/GasLawsVisualization";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -383,7 +382,6 @@ export default function GP201Page() {
     const { t: getT } = useLanguage();
     const feedbackContentProvider = useMemo(() => createGP201FeedbackProvider(getT), [getT]);
     const t = getT("gp2_01");
-    const { completeStage } = useAppStore();
 
     const buildPool = useCallback((d: Difficulty, s: Stage) => buildStagePool(getT, t, d, s), [getT, t]);
 
@@ -416,11 +414,6 @@ export default function GP201Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("gp2-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "IDEAL_GAS" as Stage, label: t.stages.ideal_gas },

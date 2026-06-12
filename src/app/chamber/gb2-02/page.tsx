@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useCallback } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -13,7 +12,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createGB202FeedbackProvider } from "@/lib/gb2-02-provider";
 
 export default function GB202Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGB202FeedbackProvider(t), [t]);
   const optionLabelMap: Record<string, string> = {
@@ -88,11 +86,6 @@ export default function GB202Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gb2-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const difficultyLabelMap: Record<string, string> = {
     BASIC: gb2_02_t.basic,

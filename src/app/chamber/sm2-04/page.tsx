@@ -6,7 +6,6 @@ import { clsx } from "clsx";
 import { useEffect, useCallback, useMemo } from "react";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { useQuestManager, Difficulty, Quest } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -696,7 +695,6 @@ function buildStagePool(t: (path: string, params?: Record<string, string | numbe
 }
 
 export default function S204Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM204FeedbackProvider(t), [t]);
 
@@ -732,11 +730,6 @@ export default function S204Page() {
         feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm2-04", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "SCALE_FACTOR", label: t("sm2_04.stages.scale_factor") },

@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -111,7 +110,6 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, SM211SequenceData[]>> = {
 };
 
 export default function SM211Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSM211FeedbackProvider(t), [t]);
 
@@ -201,11 +199,6 @@ export default function SM211Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sm2-11", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const stagesProps = useMemo(() => [
     { id: "ARITHMETIC" as Stage, label: t("sm2_11.stages.arithmetic") },

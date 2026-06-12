@@ -3,7 +3,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GasTankCanvas from "@/components/chamber/sc2-03/GasTankCanvas";
@@ -25,7 +24,6 @@ export default function SC203Page() {
   const { t: getT } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC203FeedbackProvider(getT), [getT]);
   const t = getT("sc2_03");
-  const { completeStage } = useAppStore();
 
   const [volume, setVolume] = useState(5); // L
   const [temperature, setTemperature] = useState(300); // K
@@ -68,11 +66,6 @@ export default function SC203Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sc2-03", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   useEffect(() => {
     if (stage === "boyle") {

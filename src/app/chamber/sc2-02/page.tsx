@@ -2,7 +2,6 @@
 
 import { useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { InlineMath } from "react-katex";
@@ -196,7 +195,6 @@ function buildStagePool(tObj: any, difficulty: Difficulty, stage: Stage): Titrat
 }
 
 export default function SC202Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC202FeedbackProvider(t), [t]);
     const sc2_02_t = useMemo(() => ({
@@ -342,11 +340,6 @@ export default function SC202Page() {
         tolerance: 0.05
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sc2-02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
         if (stage === "CURVES") return sc2_02_t.scenarios.environmental_monitoring;

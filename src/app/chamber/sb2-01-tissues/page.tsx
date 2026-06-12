@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import TissueVisualization from "@/components/chamber/sb2-01-tissues/TissueVisualization";
@@ -141,7 +140,6 @@ const SYSTEM_DATA: Record<Difficulty, SystemData[]> = {
 };
 
 export default function SB201TissuesPage() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB201TissuesFeedbackProvider(t), [t]);
 
@@ -239,11 +237,6 @@ export default function SB201TissuesPage() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb2-01-tissues", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "TISSUES" as Stage, label: t("sb2_01_tissues.stages.tissues") },

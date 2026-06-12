@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeometryVisualization from "@/components/chamber/sm3-05/GeometryVisualization";
@@ -20,7 +19,6 @@ interface SM305Quest extends Quest {
 }
 
 export default function SM305Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM305FeedbackProvider(t), [t]);
 
@@ -658,11 +656,6 @@ export default function SM305Page() {
         feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm3-05", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "BASEL_ARCH" as Stage, label: t("sm3_05.stages.basel_arch") },

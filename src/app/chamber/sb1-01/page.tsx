@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import CellCanvas from "@/components/chamber/sb1-01/CellCanvas";
@@ -22,7 +21,6 @@ interface SB101Quest extends Quest {
 }
 
 export default function SB101Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB101FeedbackProvider(t), [t]);
     const [selectedOrganelle, setSelectedOrganelle] = useState<string | null>(null);
@@ -219,11 +217,6 @@ export default function SB101Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb1-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "IDENTIFICATION" as Stage, label: t("sb1_01.stages.identification") },

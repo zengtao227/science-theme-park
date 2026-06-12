@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import MetabolicCell from "@/components/chamber/sb1-01/MetabolicCell";
@@ -22,7 +21,6 @@ interface MetabolicQuest extends Quest {
 }
 
 export default function SB101MetabolicPage() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB101MetabolicFeedbackProvider(t), [t]);
 
@@ -218,11 +216,6 @@ export default function SB101MetabolicPage() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb1-01-metabolic", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     useEffect(() => {
         if (currentQuest?.statusKey === "hypertonic") setOsmolarity(0.8);

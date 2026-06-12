@@ -4,7 +4,6 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import AtomBuilder from "@/components/chamber/sc1-04/AtomBuilder";
@@ -39,7 +38,6 @@ const elements = [
 export default function SC104Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC104FeedbackProvider(t), [t]);
-  const { completeStage } = useAppStore();
 
   const buildStagePool = useCallback((difficulty: Difficulty, stage: Stage): PeriodicQuest[] => {
     const bank: Record<Stage, Record<Difficulty, PeriodicQuest[]>> = {
@@ -115,11 +113,6 @@ export default function SC104Page() {
     }
   }, [stage]);
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sc1-04", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const currentElement = stage === "build"
     ? { protons: customProtons, neutrons: customNeutrons, electrons: customElectrons }

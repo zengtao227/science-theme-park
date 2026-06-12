@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import RatioCanvas from "@/components/chamber/sm1-05/RatioCanvas";
@@ -11,13 +10,14 @@ import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import { motion } from "framer-motion";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
+import { useAppStore } from "@/lib/store";
 import type { S105Quest, SM105Stage } from "@/lib/sm1-05/types";
 import { createSM105FeedbackProvider } from "@/lib/sm1-05/provider";
 
 type Stage = SM105Stage;
 
 export default function SM105Page() {
-    const { completeStage, currentLanguage } = useAppStore();
+    const { currentLanguage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM105FeedbackProvider(t), [t]);
 
@@ -617,11 +617,6 @@ export default function SM105Page() {
         feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm1-05", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo<{ id: Stage; label: string }[]>(() => [
         { id: "RECIPES", label: sm1_05_t.stages.recipes },

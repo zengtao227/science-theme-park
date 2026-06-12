@@ -3,7 +3,6 @@
 import { useMemo, useEffect, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import EquilibriumCanvas from "@/components/chamber/gc3-01/EquilibriumCanvas";
@@ -19,7 +18,6 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createGC301FeedbackProvider } from "@/lib/gc3-01/provider";
 
 export default function GC301Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGC301FeedbackProvider(t), [t]);
   const buildPool = useCallback(
@@ -56,11 +54,6 @@ export default function GC301Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gc3-01", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const activeScenario = useMemo(() => {
     if (stage === "CONCENTRATION") return t("gc3_01.scenarios.basel_synthesis");

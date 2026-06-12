@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import PhotosynthesisCanvas from "@/components/chamber/sb1-02/PhotosynthesisCanvas";
@@ -22,7 +21,6 @@ interface SB102Quest extends Quest {
 }
 
 export default function SB102Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB102FeedbackProvider(t), [t]);
     const [lightIntensity, setLightIntensity] = useState(50);
@@ -217,11 +215,6 @@ export default function SB102Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb1-02", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "EQUATION" as Stage, label: t("sb1_02.stages.equation") },

@@ -2,7 +2,6 @@
 
 import { useMemo, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import "katex/dist/katex.min.css";
@@ -85,7 +84,6 @@ function buildStagePool(t: any, difficulty: Difficulty, stage: Stage): OrganicQu
 }
 
 export default function GC201Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGC201FeedbackProvider(t), [t]);
     const buildPool = useCallback((difficulty: Difficulty, currentStage: Stage) => buildStagePool(t, difficulty, currentStage), [t]);
@@ -119,11 +117,6 @@ export default function GC201Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("gc2-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const activeScenario = useMemo(() => {
         if (stage === "ALKANES") return t("gc2_01.scenarios.lonza_methane_cracking");

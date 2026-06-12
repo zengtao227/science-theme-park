@@ -4,7 +4,6 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
-import { useAppStore } from "@/lib/store";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import ColliderCanvas from "@/components/chamber/gp1-03/ColliderCanvas";
@@ -16,7 +15,6 @@ import type { ColliderQuest, Stage } from "@/lib/gp1-03/types";
 export default function P103Page() {
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGP103FeedbackProvider(t), [t]);
-  const { completeStage } = useAppStore();
   const gp1_03_prompts = useMemo(() => ({
     acc_gamma_basic: t("gp1_03.prompts.acc_gamma_basic"),
     acc_beam_energy_core: t("gp1_03.prompts.acc_beam_energy_core"),
@@ -280,11 +278,6 @@ export default function P103Page() {
     }
   }, [stage]);
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gp1-03", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const [energy, setEnergy] = useState(7);
   const [magneticField, setMagneticField] = useState(true);

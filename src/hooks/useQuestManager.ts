@@ -92,7 +92,7 @@ export function useQuestManager<T extends Quest, S extends string>({
         () => ({ ...DEFAULT_FEEDBACK_POLICY, ...policyOverrides }),
         [policyOverrides]
     );
-    const { currentLanguage, history } = useAppStore();
+    const { currentLanguage, history, completeStage } = useAppStore();
     const storageKey = `quest_manager_stats_${moduleCode}_v1`;
     const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
     const [stage, setStage] = useState<S>(initialStage);
@@ -337,7 +337,8 @@ export function useQuestManager<T extends Quest, S extends string>({
         });
         setErrorCounts((prev) => ({ ...prev, [questKey]: 0 }));
         setLastCheck({ ok: true, correct: currentQuest.correctLatex });
-    }, [currentQuest, inputs, parseNumberLike, stage, tolerance, locale]);
+        completeStage(moduleCode, stage);
+    }, [currentQuest, inputs, parseNumberLike, stage, tolerance, locale, completeStage, moduleCode]);
 
     const handleDifficultyChange = useCallback((d: Difficulty) => {
         setDifficulty(d);

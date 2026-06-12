@@ -3,7 +3,6 @@
 import { useEffect, useCallback, useMemo, useState } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import GeneticsLab from "@/components/chamber/sb2-03/GeneticsLab";
@@ -117,7 +116,6 @@ const QUEST_DATA: Record<Stage, Record<Difficulty, Array<{ p1: Genotype; p2: Gen
 };
 
 export default function SB203Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSB203FeedbackProvider(t), [t]);
     const [p1, setP1] = useState<Genotype>("Rr");
@@ -205,11 +203,6 @@ export default function SB203Page() {
     feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sb2-03", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stagesProps = useMemo(() => [
         { id: "MONOHYBRID" as Stage, label: t("sb2_03.stages.monohybrid") },

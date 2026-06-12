@@ -3,7 +3,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import BeakerCanvas from "@/components/chamber/sc2-04/BeakerCanvas";
@@ -30,7 +29,6 @@ export default function SC204Page() {
   const { t: getT } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC204FeedbackProvider(getT), [getT]);
   const t = getT("sc2_04");
-  const { completeStage } = useAppStore();
 
   const [temperature, setTemperature] = useState(25); // °C
   const [soluteAmount, setSoluteAmount] = useState(20); // g
@@ -69,11 +67,6 @@ export default function SC204Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sc2-04", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   useEffect(() => {
     if (stage === "dissolve") {

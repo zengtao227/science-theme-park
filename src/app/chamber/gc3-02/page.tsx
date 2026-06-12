@@ -2,7 +2,6 @@
 
 import { useMemo, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import "katex/dist/katex.min.css";
@@ -22,7 +21,6 @@ const CrystalCanvas = dynamic(() => import("@/components/chamber/gc3-02/CrystalC
 });
 
 export default function GC302Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createGC302FeedbackProvider(t), [t]);
   const buildPool = useCallback(
@@ -59,11 +57,6 @@ export default function GC302Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("gc3-02", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const activeScenario = useMemo(() => {
     if (stage === "SC") return t("gc3_02.scenarios.crystallography_center");

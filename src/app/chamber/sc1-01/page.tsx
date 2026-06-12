@@ -5,7 +5,6 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { renderMixedText } from "@/lib/latex-utils";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
@@ -21,7 +20,6 @@ import {
 } from "@/lib/sc1-01/quests";
 
 export default function SC101Page() {
-  const { completeStage } = useAppStore();
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC101FeedbackProvider(t), [t]);
   const [testedReactions, setTestedReactions] = useState<Array<{ substance: Substance; tool: Tool }>>([]);
@@ -81,11 +79,6 @@ export default function SC101Page() {
     feedbackContentProvider,
   });
 
-  useEffect(() => {
-    if (lastCheck?.ok) {
-      completeStage("sc1-01", stage);
-    }
-  }, [lastCheck, completeStage, stage]);
 
   const handleTest = (substance: Substance, tool: Tool) => {
     setTestedReactions((prev) => [...prev, { substance, tool }]);

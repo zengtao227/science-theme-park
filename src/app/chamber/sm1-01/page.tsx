@@ -5,7 +5,6 @@ import "katex/dist/katex.min.css";
 import { clsx } from "clsx";
 import { useEffect, useCallback, useMemo } from "react";
 
-import { useAppStore } from "@/lib/store";
 import { useLanguage } from "@/lib/i18n";
 import { renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
@@ -760,7 +759,6 @@ function PrintableQuestList({ t }: { t: any }) {
 }
 
 export default function S101Page() {
-    const { completeStage } = useAppStore();
     const { t } = useLanguage();
     const sm1_01_t = useMemo(() => ({
         title: t("sm1_01.title"),
@@ -905,11 +903,6 @@ export default function S101Page() {
         feedbackContentProvider,
     });
 
-    useEffect(() => {
-        if (lastCheck?.ok) {
-            completeStage("sm1-01", stage);
-        }
-    }, [lastCheck, completeStage, stage]);
 
     const stages = [
         { id: "AREAS", label: sm1_01_t.stages.areas },
