@@ -7,6 +7,21 @@ export interface DifficultyAdjustment {
     reason: string;
 }
 
+const PROMOTION_WINDOW = 3;
+const DIFFICULTY_ORDER: DifficultyLevel[] = ['BASIC', 'CORE', 'ADVANCED', 'ELITE'];
+
+function nextDifficulty(current: DifficultyLevel): DifficultyLevel {
+    const index = DIFFICULTY_ORDER.indexOf(current);
+    if (index < 0 || index >= DIFFICULTY_ORDER.length - 1) return current;
+    return DIFFICULTY_ORDER[index + 1];
+}
+
+function previousDifficulty(current: DifficultyLevel): DifficultyLevel {
+    const index = DIFFICULTY_ORDER.indexOf(current);
+    if (index <= 0) return current;
+    return DIFFICULTY_ORDER[index - 1];
+}
+
 /**
  * Heuristic-based adaptive difficulty engine
  * (Phase 5.1.1 MVP)
@@ -16,7 +31,7 @@ export function getAdaptiveDifficulty(history: HistoryEntry[], moduleCode: strin
     const moduleHistory = (history ?? []).filter(h => normalizeModuleCode(h.moduleCode) === normalizedCode);
 
     // Default for new users
-    if (moduleHistory.length < 3) {
+    if (moduleHistory.length < PROMOTION_WINDOW) {
         return {
             recommendedDifficulty: 'CORE',
             confidence: 0.5,
@@ -24,33 +39,35 @@ export function getAdaptiveDifficulty(history: HistoryEntry[], moduleCode: strin
         };
     }
 
-    const recentHistory = moduleHistory.slice(0, 5);
+    const recentHistory = moduleHistory.slice(0, PROMOTION_WINDOW);
     const recentSuccesses = recentHistory.filter(h => h.score >= 1).length;
+    const currentDifficulty = recentHistory[0].difficulty;
 
-    // Logic:
-    // 1. If 100% success in last 3 ELITE-ready attempts -> Recommend ELITE
-    // 2. If < 50% success in CORE -> Recommend BASIC
-    // 3. If High Accuracy but High Duration -> Keep current, maybe recommend hints
-    // 4. If High Accuracy and Low Duration -> Up difficulty
-
-    if (recentSuccesses >= 4) {
-        // High performance
-        const currentMax = recentHistory[0].difficulty;
-        if (currentMax === 'CORE') return { recommendedDifficulty: 'ADVANCED', confidence: 0.8, reason: 'HIGH_ACCURACY_DETECTED' };
-        if (currentMax === 'ADVANCED') return { recommendedDifficulty: 'ELITE', confidence: 0.9, reason: 'MASTERY_DETECTED' };
-        return { recommendedDifficulty: currentMax, confidence: 1.0, reason: 'MAINTAINING_MAX_LEVEL' };
+    if (recentSuccesses === PROMOTION_WINDOW) {
+        const promoted = nextDifficulty(currentDifficulty);
+        if (promoted !== currentDifficulty) {
+            return {
+                recommendedDifficulty: promoted,
+                confidence: 0.95,
+                reason: currentDifficulty === 'ADVANCED' ? 'MASTERY_DETECTED' : 'HIGH_ACCURACY_DETECTED',
+            };
+        }
+        return { recommendedDifficulty: currentDifficulty, confidence: 1.0, reason: 'MAINTAINING_MAX_LEVEL' };
     }
 
     if (recentSuccesses <= 1) {
-        // Struggling
-        const currentMin = recentHistory[0].difficulty;
-        if (currentMin === 'ELITE') return { recommendedDifficulty: 'ADVANCED', confidence: 0.7, reason: 'DIFFICULTY_SPIKE_DETECTED' };
-        if (currentMin === 'ADVANCED') return { recommendedDifficulty: 'CORE', confidence: 0.8, reason: 'RECALIBRATING_BASICS' };
-        if (currentMin === 'CORE') return { recommendedDifficulty: 'BASIC', confidence: 0.9, reason: 'REMEDIATION_REQUIRED' };
+        const demoted = previousDifficulty(currentDifficulty);
+        if (demoted !== currentDifficulty) {
+            return {
+                recommendedDifficulty: demoted,
+                confidence: currentDifficulty === 'CORE' ? 0.95 : 0.8,
+                reason: currentDifficulty === 'CORE' ? 'REMEDIATION_REQUIRED' : 'RECALIBRATING_BASICS',
+            };
+        }
     }
 
     return {
-        recommendedDifficulty: recentHistory[0].difficulty,
+        recommendedDifficulty: currentDifficulty,
         confidence: 0.6,
         reason: 'STABLE_PERFORMANCE',
     };
