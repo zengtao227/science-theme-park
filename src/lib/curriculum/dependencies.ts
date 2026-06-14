@@ -5,8 +5,8 @@ export interface Prerequisite {
 
 export const MODULE_DEPENDENCIES: Record<string, Prerequisite[]> = {
     // Biology Pathway
-    "sb2-01": [{ moduleCode: "sb1-01" }],
-    "sb2-03": [{ moduleCode: "sb2-01" }],
+    "sb2-01-tissues": [{ moduleCode: "sb1-01" }],
+    "sb2-03": [{ moduleCode: "sb2-01-tissues" }],
     "sb2-04": [{ moduleCode: "sb2-03" }],
     "sb3-01": [{ moduleCode: "sb2-04" }],
 
