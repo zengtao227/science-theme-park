@@ -66,16 +66,15 @@ describe('buildStagePool', () => {
   });
   
   describe('LaTeX Generation', () => {
-    it('should generate LaTeX strings with four backslashes', () => {
+    it('should generate valid KaTeX LaTeX strings', () => {
       const quests = buildStagePool(mockT, 'BASIC', 'REACTION_TYPES', 5);
       const quest = quests[0];
-      
-      // Check that equationLatex contains four backslashes
-      expect(quest.equationLatex).toContain('\\\\');
-      // Should contain \text{} for element symbols
-      expect(quest.equationLatex).toMatch(/\\\\text\{[A-Z][a-z]?\}/);
+
+      // Should contain \text{} for element symbols (single backslash = valid KaTeX command)
+      expect(quest.equationLatex).toContain('\\text{');
+      expect(quest.equationLatex).toMatch(/\\text\{[A-Z][a-z]?\}/);
       // Should contain \rightarrow for reaction arrow
-      expect(quest.equationLatex).toContain('\\\\rightarrow');
+      expect(quest.equationLatex).toContain('\\rightarrow');
     });
     
     it('should not show coefficient 1 in LaTeX', () => {
@@ -87,7 +86,7 @@ describe('buildStagePool', () => {
         // The LaTeX should not have "1\text{" pattern (coefficient 1 should be omitted)
         // It should just be "\text{" without the "1" prefix
         // Check that we don't have explicit "1\text" patterns
-        expect(questWithOne.equationLatex).not.toMatch(/\s1\\\\text/);
+        expect(questWithOne.equationLatex).not.toMatch(/\s1\\text/);
       }
     });
     
@@ -101,7 +100,7 @@ describe('buildStagePool', () => {
       
       if (questWithCoeff) {
         // Should have a number followed by \text
-        expect(questWithCoeff.equationLatex).toMatch(/[2-9]\\\\text/);
+        expect(questWithCoeff.equationLatex).toMatch(/[2-9]\\text/);
       }
     });
   });
@@ -116,8 +115,8 @@ describe('buildStagePool', () => {
       expect(firstReactant).toHaveProperty('formulaLatex');
       expect(firstReactant).toHaveProperty('elements');
       
-      // formulaLatex should use four backslashes
-      expect(firstReactant.formulaLatex).toContain('\\\\');
+      // formulaLatex should use valid KaTeX \text{} command
+      expect(firstReactant.formulaLatex).toContain('\\text{');
     });
     
     it('should parse elements correctly', () => {

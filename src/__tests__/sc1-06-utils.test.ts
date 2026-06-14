@@ -13,21 +13,21 @@ import {
 
 describe('SC1.06 Utility Functions', () => {
   describe('formulaToLatex', () => {
-    it('should convert simple formulas to LaTeX with four backslashes', () => {
-      expect(formulaToLatex('H2O')).toBe('\\\\text{H}_2\\\\text{O}');
-      expect(formulaToLatex('CO2')).toBe('\\\\text{C}\\\\text{O}_2');
-      expect(formulaToLatex('NaCl')).toBe('\\\\text{Na}\\\\text{Cl}');
+    it('should convert simple formulas to valid KaTeX LaTeX', () => {
+      expect(formulaToLatex('H2O')).toBe('\\text{H}_2\\text{O}');
+      expect(formulaToLatex('CO2')).toBe('\\text{C}\\text{O}_2');
+      expect(formulaToLatex('NaCl')).toBe('\\text{Na}\\text{Cl}');
     });
 
     it('should handle formulas with parentheses', () => {
-      expect(formulaToLatex('Ca(OH)2')).toBe('\\\\text{Ca}(\\\\text{O}\\\\text{H})_2');
-      expect(formulaToLatex('Mg(NO3)2')).toBe('\\\\text{Mg}(\\\\text{N}\\\\text{O}_3)_2');
+      expect(formulaToLatex('Ca(OH)2')).toBe('\\text{Ca}(\\text{O}\\text{H})_2');
+      expect(formulaToLatex('Mg(NO3)2')).toBe('\\text{Mg}(\\text{N}\\text{O}_3)_2');
     });
 
     it('should handle charges (superscripts)', () => {
-      expect(formulaToLatex('Fe3+')).toBe('\\\\text{Fe}^{3+}');
-      expect(formulaToLatex('Cl-')).toBe('\\\\text{Cl}^{-}');
-      expect(formulaToLatex('Ca2+')).toBe('\\\\text{Ca}^{2+}');
+      expect(formulaToLatex('Fe3+')).toBe('\\text{Fe}^{3+}');
+      expect(formulaToLatex('Cl-')).toBe('\\text{Cl}^{-}');
+      expect(formulaToLatex('Ca2+')).toBe('\\text{Ca}^{2+}');
     });
 
     it('should handle empty strings', () => {
@@ -105,7 +105,7 @@ describe('SC1.06 Utility Functions', () => {
       
       expect(water.formula).toBe('H2O');
       expect(water.name).toBe('water');
-      expect(water.formulaLatex).toBe('\\\\text{H}_2\\\\text{O}');
+      expect(water.formulaLatex).toBe('\\text{H}_2\\text{O}');
       expect(water.elements).toContainEqual({ element: 'H', count: 2 });
       expect(water.elements).toContainEqual({ element: 'O', count: 1 });
       expect(water.elements.length).toBe(2);
@@ -116,7 +116,7 @@ describe('SC1.06 Utility Functions', () => {
       
       expect(co2.formula).toBe('CO2');
       expect(co2.name).toBe('');
-      expect(co2.formulaLatex).toBe('\\\\text{C}\\\\text{O}_2');
+      expect(co2.formulaLatex).toBe('\\text{C}\\text{O}_2');
     });
   });
 });

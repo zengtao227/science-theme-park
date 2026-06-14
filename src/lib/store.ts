@@ -49,8 +49,6 @@ function stageCount(moduleId: string, moduleData?: ModuleProgress[string]): numb
   const id = normalizeModuleCode(moduleId);
   return Math.max(Object.keys(MODULE_STAGE_RULES[id] || {}).length, moduleData ? Object.keys(moduleData.stages || {}).length : 0, 1);
 }
-function publicProviderConfig(config: AiProviderConfig): AiProviderConfig { const { apiKey, ...rest } = config; return rest; }
-
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -89,11 +87,11 @@ export const useAppStore = create<AppState>()(
         return Math.min(100, Math.round((completedStages / totalPossibleStages) * 100));
       },
     }),
-    { name: 'science-park-storage', version: 5, partialize: (state) => ({ ...state, aiProviderConfig: publicProviderConfig(state.aiProviderConfig) }), migrate: (persistedState, fromVersion) => {
+    { name: 'science-park-storage', version: 5, migrate: (persistedState, fromVersion) => {
       if (!persistedState || typeof persistedState !== 'object') return persistedState; const state = persistedState as Partial<AppState> & { history?: HistoryEntry[]; userHistory?: Record<string, HistoryEntry[]>; userProgress?: Record<string, ModuleProgress>; aiProviderConfig?: AiProviderConfig };
       const normalizedHistory = normalizeHistoryEntries(state.history); const normalizedUserHistory = Object.fromEntries(Object.entries(state.userHistory || {}).map(([username, entries]) => [username, normalizeHistoryEntries(entries)]));
       const normalizedProgress = fromVersion < 4 ? normalizeProgressKeys(state.progress as ModuleProgress) : (state.progress as ModuleProgress) ?? {}; const normalizedUserProgress = fromVersion < 4 ? Object.fromEntries(Object.entries(state.userProgress || {}).map(([username, prog]) => [username, normalizeProgressKeys(prog)])) : (state.userProgress ?? {});
-      return { ...state, history: normalizedHistory, userHistory: normalizedUserHistory, progress: normalizedProgress, userProgress: normalizedUserProgress, aiProviderConfig: state.aiProviderConfig ? publicProviderConfig(state.aiProviderConfig) : { useDefault: true, provider: 'NVIDIA' } };
+      return { ...state, history: normalizedHistory, userHistory: normalizedUserHistory, progress: normalizedProgress, userProgress: normalizedUserProgress, aiProviderConfig: state.aiProviderConfig ?? { useDefault: true, provider: 'NVIDIA' } };
     } }
   )
 );

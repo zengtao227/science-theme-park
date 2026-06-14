@@ -49,7 +49,7 @@ describe('SC1.06 Integration Tests', () => {
         });
         
         // Should have reaction arrow
-        expect(quest.equationLatex).toContain('\\\\rightarrow');
+        expect(quest.equationLatex).toContain('\\rightarrow');
       });
     });
     
@@ -78,21 +78,21 @@ describe('SC1.06 Integration Tests', () => {
   });
   
   describe('LaTeX Formatting Standards', () => {
-    it('should use four backslashes in all LaTeX strings', () => {
+    it('should use valid KaTeX commands in all LaTeX strings', () => {
       const quests = buildStagePool(mockT, 'CORE', 'EQUATION_BALANCING', 5);
-      
+
       quests.forEach(quest => {
-        // Check equation LaTeX - should contain \\text{ pattern (four backslashes in source)
-        expect(quest.equationLatex).toContain('\\\\text{');
-        expect(quest.equationLatex).toContain('\\\\rightarrow');
-        
+        // Check equation LaTeX - should contain \text{ (single backslash = valid KaTeX command)
+        expect(quest.equationLatex).toContain('\\text{');
+        expect(quest.equationLatex).toContain('\\rightarrow');
+
         // Check compound LaTeX
         quest.equation.reactants.forEach(reactant => {
-          expect(reactant.formulaLatex).toContain('\\\\text{');
+          expect(reactant.formulaLatex).toContain('\\text{');
         });
-        
+
         quest.equation.products.forEach(product => {
-          expect(product.formulaLatex).toContain('\\\\text{');
+          expect(product.formulaLatex).toContain('\\text{');
         });
       });
     });
@@ -160,11 +160,11 @@ describe('SC1.06 Integration Tests', () => {
       
       if (waterQuest) {
         // Should show "2\text{H}_2" for first reactant
-        expect(waterQuest.equationLatex).toContain('2\\\\text{H}_2');
+        expect(waterQuest.equationLatex).toContain('2\\text{H}_2');
         // Should show "\text{O}_2" without coefficient (coefficient is 1)
-        expect(waterQuest.equationLatex).toMatch(/[^0-9]\\\\text\{O\}_2/);
+        expect(waterQuest.equationLatex).toMatch(/[^0-9]\\text\{O\}_2/);
         // Should show "2\text{H}_2\text{O}" for product
-        expect(waterQuest.equationLatex).toContain('2\\\\text{H}_2\\\\text{O}');
+        expect(waterQuest.equationLatex).toContain('2\\text{H}_2\\text{O}');
       }
     });
   });
