@@ -257,7 +257,7 @@ export function formatEquationToLatex(
   products: Compound[],
   coefficients: number[]
 ): string {
-  const reactantIndex = Math.floor(coefficients.length / 2);
+  const productOffset = reactants.length;
   
   const reactantStr = reactants
     .map((r, i) => {
@@ -268,7 +268,7 @@ export function formatEquationToLatex(
   
   const productStr = products
     .map((p, i) => {
-      const coeff = coefficients[reactantIndex + i] === 1 ? '' : coefficients[reactantIndex + i].toString();
+      const coeff = coefficients[productOffset + i] === 1 ? '' : coefficients[productOffset + i].toString();
       return `${coeff}${p.formulaLatex}(${p.state})`;
     })
     .join(' + ');
