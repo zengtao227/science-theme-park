@@ -1,7 +1,5 @@
-"use client";
+import { redirect } from "next/navigation";
 
-import CellDivisionLab from "./CellDivisionLab";
-
-export default function Page() {
-    return <CellDivisionLab />;
+export default function SB103LegacyRedirect() {
+  redirect("/chamber/sb1-03");
 }

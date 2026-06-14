@@ -7,7 +7,6 @@ import { canonicalizeFreeText, localizeFreeText } from "@/lib/i18n/freeTextLocal
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 export type FeedbackLevel = "NONE" | "HINT" | "STEPS" | "FULL";
 
-// Platform-level solution step (module-agnostic)
 export interface PlatformSolutionStep {
     stepNumber: number;
     expressionLatex: string;
@@ -15,21 +14,19 @@ export interface PlatformSolutionStep {
     emphasis?: "warning" | "key" | "transform";
 }
 
-// Derived feedback content — NEVER stored on Quest
 export interface FeedbackContent {
     hint: string | null;
     steps: PlatformSolutionStep[];
     fullSolutionLatex: string | null;
-    hasFullSolution: boolean; // true = real solution, false = correctLatex fallback
+    hasFullSolution: boolean;
 }
 
-// Per-module feedback strategy
 export interface FeedbackPolicy {
-    hintThreshold: number;         // errors needed to unlock hint (default: 1)
-    stepsThreshold: number;        // errors needed to unlock steps (default: 2)
-    fullThreshold: number;         // errors needed to unlock full (default: 3)
-    confirmFullSolution: boolean;  // require confirmation before revealing (default: true)
-    showAfterCorrect: boolean;     // allow review after correct answer (default: true)
+    hintThreshold: number;
+    stepsThreshold: number;
+    fullThreshold: number;
+    confirmFullSolution: boolean;
+    showAfterCorrect: boolean;
 }
 
 export const DEFAULT_FEEDBACK_POLICY: FeedbackPolicy = {
@@ -45,7 +42,7 @@ export interface Slot {
     labelLatex: string;
     placeholder: string;
     expected: number | string;
-    unit?: string; // Optional unit to display next to input
+    unit?: string;
 }
 
 export interface Quest {
@@ -68,7 +65,6 @@ export interface UseQuestManagerOptions<T extends Quest, S extends string> {
     initialDifficulty?: Difficulty;
     tolerance?: number;
     feedbackContentProvider?: (quest: T) => Omit<FeedbackContent, 'hint'>;
-    /** Must be a stable reference (useMemo or module-level constant) — inline object literals cause infinite re-renders */
     feedbackPolicy?: Partial<FeedbackPolicy>;
 }
 
@@ -78,6 +74,8 @@ type StageStats = {
     incorrect: number;
     lastUpdated: number;
 };
+
+const EMPTY_STAGE_STATS: StageStats = { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
 
 export function useQuestManager<T extends Quest, S extends string>({
     moduleCode,
@@ -124,17 +122,10 @@ export function useQuestManager<T extends Quest, S extends string>({
     });
 
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState<DifficultyAdjustment | null>(null);
-    // Tracks whether the user has manually chosen a difficulty this session
     const userHasSetDifficultyRef = useRef(false);
-
-    // AI Feedback State
     const [aiFeedback, setAiFeedback] = useState<string | null>(null);
     const [isRequestingAi, setIsRequestingAi] = useState(false);
 
-    // AI Adaptive Difficulty Engine Integration
-    // `difficulty` is intentionally excluded from deps — the effect should react to
-    // new history data, not to its own auto-apply writes, and should not override
-    // manual difficulty changes made by the user.
     useEffect(() => {
         const recommendation = getAdaptiveDifficulty(history, moduleCode);
         setAdaptiveRecommendation(recommendation);
@@ -148,26 +139,25 @@ export function useQuestManager<T extends Quest, S extends string>({
         }
     }, [history, moduleCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    // Load nonce when stage or difficulty changes
     useEffect(() => {
         if (typeof window === "undefined") return;
         const key = `quest_manager_nonce_${moduleCode}_${stage}_${difficulty}`;
         const saved = window.localStorage.getItem(key);
-        if (saved) {
-            setNonce(parseInt(saved, 10));
-        } else {
-            setNonce(0);
-        }
+        setNonce(saved ? parseInt(saved, 10) : 0);
     }, [moduleCode, stage, difficulty]);
 
-    // Persist nonce when it changes
     useEffect(() => {
         if (typeof window === "undefined") return;
         const key = `quest_manager_nonce_${moduleCode}_${stage}_${difficulty}`;
         window.localStorage.setItem(key, nonce.toString());
     }, [moduleCode, nonce, stage, difficulty]);
-    const [errorCounts, setErrorCounts] = useState<Record<string, number>>({});
 
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        window.localStorage.setItem(storageKey, JSON.stringify(stageStats));
+    }, [storageKey, stageStats]);
+
+    const [errorCounts, setErrorCounts] = useState<Record<string, number>>({});
     const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
 
     const rawPool = useMemo(() => buildPool(difficulty, stage), [buildPool, difficulty, stage]);
@@ -186,11 +176,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         if (sorted.length === 0) return null;
         return sorted[nonce % sorted.length];
     }, [nonce, pool]);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        window.localStorage.setItem(storageKey, JSON.stringify(stageStats));
-    }, [storageKey, stageStats]);
 
     const clearInputs = useCallback(() => {
         setInputs({});
@@ -234,15 +219,12 @@ export function useQuestManager<T extends Quest, S extends string>({
     const canNext = pool.length > 0 && nonce < pool.length - 1;
     const progress = pool.length > 0 ? Math.min((nonce / pool.length) * 100, 100) : 0;
 
-
     const parseNumberLike = useCallback((s: string) => {
         const raw = s.trim();
         if (!raw) return null;
 
-        // Handle German decimal comma
         const normalized = (locale === "DE" ? raw.replace(/,/g, ".") : raw).replace(/\s+/g, "");
 
-        // Handle fractions (e.g., "4/3")
         if (normalized.includes("/")) {
             const parts = normalized.split("/");
             if (parts.length !== 2) return null;
@@ -267,7 +249,7 @@ export function useQuestManager<T extends Quest, S extends string>({
 
         const recordIncorrect = () => {
             setStageStats((prev) => {
-                const existing = prev[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
+                const existing = prev[sKey] ?? EMPTY_STAGE_STATS;
                 return {
                     ...prev,
                     [sKey]: {
@@ -282,7 +264,6 @@ export function useQuestManager<T extends Quest, S extends string>({
             setLastCheck({ ok: false, correct: "" });
         };
 
-        // String comparison with mathematical normalization (e.g., 1x == x, ² == ^2)
         const normalize = (s: string) => {
             const canonical = canonicalizeFreeText(s, locale);
             return canonical.trim()
@@ -292,7 +273,7 @@ export function useQuestManager<T extends Quest, S extends string>({
                 .replace(/³/g, "^3")
                 .replace(/\^1(?![0-9])/g, "")
                 .replace(/^1([a-z^])/, "$1")
-                .replace(/([^0-9.])1([a-z^])/, "$1$2");
+                .replace(/([^0-9.])1([a-z^])/g, "$1$2");
         };
 
         const anyEmpty = currentQuest.slots.some((slot) => !(inputs[slot.id] ?? "").trim());
@@ -310,16 +291,14 @@ export function useQuestManager<T extends Quest, S extends string>({
                     recordIncorrect();
                     return;
                 }
-            } else {
-                if (normalize(raw) !== normalize(slot.expected.toString())) {
-                    recordIncorrect();
-                    return;
-                }
+            } else if (normalize(raw) !== normalize(slot.expected.toString())) {
+                recordIncorrect();
+                return;
             }
         }
 
         setStageStats((prev) => {
-            const existing = prev[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
+            const existing = prev[sKey] ?? EMPTY_STAGE_STATS;
             return {
                 ...prev,
                 [sKey]: {
@@ -340,11 +319,10 @@ export function useQuestManager<T extends Quest, S extends string>({
         setDifficulty(d);
         clearInputs();
         setErrorCounts({});
-        // Clear the current stage's stats so success rate resets for the new difficulty
         setStageStats((prev) => {
-            const next = { ...prev };
-            delete next[`${stage}`];
-            return next;
+            const nextStats = { ...prev };
+            delete nextStats[`${stage}`];
+            return nextStats;
         });
     }, [clearInputs, stage]);
 
@@ -356,7 +334,7 @@ export function useQuestManager<T extends Quest, S extends string>({
 
     const currentStageStats = useMemo(() => {
         const sKey = `${stage}`;
-        return stageStats[sKey] ?? { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
+        return stageStats[sKey] ?? EMPTY_STAGE_STATS;
     }, [stage, stageStats]);
 
     const successRate = useMemo(() => {
@@ -370,16 +348,13 @@ export function useQuestManager<T extends Quest, S extends string>({
         const errors = errorCounts[questKey] ?? 0;
         if (errors <= 0) return null;
 
-        // Progressive hint system: provide increasingly specific hints
         if (currentQuest.hintLatex && currentQuest.hintLatex.length > 0) {
             const idx = Math.min(errors - 1, currentQuest.hintLatex.length - 1);
             return currentQuest.hintLatex[idx];
         }
 
-        // Fallback: 2-level progression (no hintLatex available)
         if (errors === 1) return currentQuest.targetLatex;
         if (errors === 2) return currentQuest.expressionLatex;
-        // errors >= 3: re-display full prompt as final nudge
         return currentQuest.promptLatex || currentQuest.expressionLatex;
     }, [currentQuest, errorCounts, stage]);
 
@@ -389,20 +364,10 @@ export function useQuestManager<T extends Quest, S extends string>({
         return errorCounts[questKey] ?? 0;
     }, [currentQuest, errorCounts, stage]);
 
-    // Layered feedback methods
-    const showHintLevel = useCallback(() => {
-        setFeedbackLevel("HINT");
-    }, []);
+    const showHintLevel = useCallback(() => setFeedbackLevel("HINT"), []);
+    const showStepsLevel = useCallback(() => setFeedbackLevel("STEPS"), []);
+    const showFullSolution = useCallback(() => setFeedbackLevel("FULL"), []);
 
-    const showStepsLevel = useCallback(() => {
-        setFeedbackLevel("STEPS");
-    }, []);
-
-    const showFullSolution = useCallback(() => {
-        setFeedbackLevel("FULL");
-    }, []);
-
-    // Derive feedback content from provider (or graceful fallback)
     const feedbackContent: FeedbackContent = useMemo(() => {
         if (!currentQuest) {
             return { hint: null, steps: [], fullSolutionLatex: null, hasFullSolution: false };
@@ -417,7 +382,6 @@ export function useQuestManager<T extends Quest, S extends string>({
                 hasFullSolution: !!provided.fullSolutionLatex,
             };
         }
-        // Graceful fallback: no provider → hint + correctLatex only
         return {
             hint,
             steps: [],
@@ -426,7 +390,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         };
     }, [currentQuest, getHint, feedbackContentProvider]);
 
-    // Determine which feedback buttons should be available
     const feedbackAvailability = useMemo(() => {
         const errors = getCurrentErrorCount();
         const hasHints = feedbackContent.hint !== null;
@@ -435,7 +398,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         const isWrong = isAnswered && !lastCheck.ok;
         const isCorrect = isAnswered && lastCheck.ok;
 
-        // After correct: allow review if policy permits, but don't auto-expand
         if (isCorrect && policy.showAfterCorrect) {
             return {
                 canShowHint: hasHints,
@@ -444,7 +406,6 @@ export function useQuestManager<T extends Quest, S extends string>({
             };
         }
 
-        // After wrong: progressive unlock based on policy thresholds
         return {
             canShowHint: isWrong && errors >= policy.hintThreshold && hasHints,
             canShowSteps: isWrong && errors >= policy.stepsThreshold && hasSteps,
