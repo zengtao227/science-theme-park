@@ -15,6 +15,7 @@
   - 修复 sm2-09 的无条件 completeStage（按题目导航就触发）
   - chamberLayoutProps 包裹 useMemo + onStageChange 提取为 useCallback
   - useLanguage/useNamespace 改用 store selector，避免全量订阅
+- ✅ Step 2 — gp2-03/ModuleContainer.tsx 加注释说明相对容差例外，commit `4e1af0c4`
 
 ---
 
@@ -50,7 +51,7 @@
 - 修复此问题需要给 `useQuestManager` 增加 per-quest 相对容差支持（影响所有 97 个模块，风险过高）
 
 **已接受例外**：gp2-03 保留自定义 QuestValidator（相对容差），属于物理模块的合理差异。  
-**待处理**：在 ModuleContainer.tsx 中加注释说明此例外原因（low priority）。
+**✅ 已完成**：注释已加入 gp2-03/ModuleContainer.tsx:164，commit `4e1af0c4`。
 
 ---
 
@@ -110,17 +111,16 @@
 
 ---
 
-### Step 8 — useQuestManager 拆分（架构）⛔ DEFERRED
+### Step 8 — useQuestManager 拆分（架构）⚠️ UNBLOCKED，待确认范围
 
-**结论**：暂缓，`npm run test` 因 SWC ARM64 binary 缺失无法运行，业务逻辑改动无测试保证。
+**状态更新（2026-06-27）**：`npm run test` 已全部通过（399 tests pass），原阻断器已消失。
 
-**根因**：
-- `src/__tests__/hooks/useQuestManager.test.ts` 存在且覆盖核心逻辑
-- 但 Jest transformer（`@next/swc-darwin-arm64`）在当前 ARM64 Mac 上 failed to load bindings
-- 不能盲目拆分 34-value God Hook（涉及 nonce、feedbackLevel、errorCounts、adaptive difficulty、hint gating）
-- 任何子 hook 内部状态耦合的变化都会导致"测试通过但行为异常"的无声回退
+**仍需谨慎**：
+- 拆分 34-value God Hook 是架构决策，需要 Opus 审查（per CLAUDE.md 规定）
+- 拆分方案未定义：涉及 nonce/feedbackLevel/errorCounts/adaptive difficulty/hint gating 的内部状态耦合
+- 任何子 hook 状态耦合变化都会导致"测试通过但行为异常"的无声回退
 
-**待处理**：先修复 `npm run test`（安装 swc binary 或改用 babel transformer），再执行拆分。
+**待处理**：用户确认范围后，以 Opus 模型规划拆分方案再执行。
 
 ---
 
