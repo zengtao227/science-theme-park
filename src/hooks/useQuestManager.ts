@@ -1,8 +1,8 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
-import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
 import { localizeFreeText } from "@/lib/i18n/freeTextLocale";
+import { useAiFeedback } from "./useAiFeedback";
 import { parseNumberLike as parseNumberLikePure, normalizeAnswer, type Locale } from "@/lib/quest/answerMatching";
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
@@ -124,8 +124,6 @@ export function useQuestManager<T extends Quest, S extends string>({
 
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState<DifficultyAdjustment | null>(null);
     const userHasSetDifficultyRef = useRef(false);
-    const [aiFeedback, setAiFeedback] = useState<string | null>(null);
-    const [isRequestingAi, setIsRequestingAi] = useState(false);
 
     useEffect(() => {
         const recommendation = getAdaptiveDifficulty(history, moduleCode);
@@ -178,31 +176,18 @@ export function useQuestManager<T extends Quest, S extends string>({
         return sorted[nonce % sorted.length];
     }, [nonce, pool]);
 
+    const { aiFeedback, isRequestingAi, requestAiFeedback, reset: resetAiFeedback } = useAiFeedback(
+        currentQuest,
+        inputs,
+        currentLanguage
+    );
+
     const clearInputs = useCallback(() => {
         setInputs({});
         setLastCheck(null);
         setFeedbackLevel("NONE");
-        setAiFeedback(null);
-        setIsRequestingAi(false);
-    }, []);
-
-    const requestAiFeedback = useCallback(async () => {
-        if (!currentQuest || isRequestingAi) return;
-        setIsRequestingAi(true);
-        setAiFeedback(null);
-        try {
-            const feedback = await requestPersonalizedFeedback({
-                quest: currentQuest as Quest,
-                inputs,
-                language: currentLanguage
-            });
-            setAiFeedback(feedback);
-        } catch (error: any) {
-            setAiFeedback(`AI Diagnosis Error: ${error.message || 'Unknown error'}`);
-        } finally {
-            setIsRequestingAi(false);
-        }
-    }, [currentQuest, inputs, isRequestingAi, currentLanguage]);
+        resetAiFeedback();
+    }, [resetAiFeedback]);
 
     const previous = useCallback(() => {
         if (nonce > 0) {
