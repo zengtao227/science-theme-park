@@ -161,6 +161,8 @@ export default function ModuleContainer({
   );
 
   const currentQuest = stageQuests[currentQuestIndex];
+  // Uses QuestValidator (relative 2% tolerance) instead of useQuestManager.verify() (absolute tolerance).
+  // Gas law answers like 100 kPa require relative tolerance; absolute tolerance of 0.02 would be ±0.02 Pa — far too strict.
   const validator = new QuestValidator(currentLanguage);
   const progressTracker = new QuestProgressTracker(ALL_QUESTS, questProgress);
   void progressTracker;
