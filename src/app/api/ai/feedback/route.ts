@@ -72,6 +72,11 @@ async function consumeSharedRateLimit(ip: string): Promise<boolean | null> {
 async function consumeRateLimit(ip: string): Promise<boolean> {
     const sharedResult = await consumeSharedRateLimit(ip);
     if (sharedResult !== null) return sharedResult;
+    // WHY: in production with a server key but no KV, rate limiting is per-instance only.
+    // Set ALLOW_MEMORY_AI_RATE_LIMIT=1 to suppress this warning (e.g. local dev / preview).
+    if (process.env.NODE_ENV === 'production' && process.env.NVIDIA_API_KEY && process.env.ALLOW_MEMORY_AI_RATE_LIMIT !== '1') {
+        console.warn('[ai/feedback] No KV store configured. Rate limiting falls back to per-instance memory — ineffective across Vercel instances. Set KV_REST_API_URL + KV_REST_API_TOKEN for shared cost cap, or ALLOW_MEMORY_AI_RATE_LIMIT=1 to silence this warning.');
+    }
     return consumeMemoryRateLimit(ip);
 }
 

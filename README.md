@@ -83,7 +83,7 @@ https://generativelanguage.googleapis.com/v1beta/openai
 ALLOWED_AI_BASE_URLS=https://example-ai-provider.com/v1,https://another-provider.example/openai/v1
 ```
 
-注意：用户自定义 API key 不会持久化到浏览器 localStorage。刷新页面后，自定义 provider 的 key 需要重新输入；长期方案应改为服务端 session 或加密 HttpOnly cookie。
+注意：用户自定义 API key **会**持久化到浏览器 localStorage（通过 Zustand persist）。这是刻意的产品决策——避免用户每次刷新都重新输入自己的 provider key。BYOK key 是用户自己的凭证，服务器端 NVIDIA_API_KEY 才是需要保护的共享资源。如需更高安全性（如公共设备场景），可考虑服务端 session 或加密 HttpOnly cookie，但这不是当前版本的优先项。
 
 ---
 

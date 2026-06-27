@@ -45,9 +45,11 @@ function normalizeProgressKeys(progress: ModuleProgress | undefined): ModuleProg
   }
   return result;
 }
-function stageCount(moduleId: string, moduleData?: ModuleProgress[string]): number {
+function stageCount(moduleId: string): number {
   const id = normalizeModuleCode(moduleId);
-  return Math.max(Object.keys(MODULE_STAGE_RULES[id] || {}).length, moduleData ? Object.keys(moduleData.stages || {}).length : 0, 1);
+  // WHY: denominator must not include completed-stage count — that makes completed/total always 1.
+  // Modules absent from MODULE_STAGE_RULES get a conservative fallback of 3.
+  return Math.max(Object.keys(MODULE_STAGE_RULES[id] || {}).length, 3);
 }
 export const useAppStore = create<AppState>()(
   persist(
@@ -75,7 +77,7 @@ export const useAppStore = create<AppState>()(
         const user = state.currentUser; const normalizedId = normalizeModuleCode(moduleId); const newProgress = { ...state.progress, [normalizedId]: { ...state.progress[normalizedId], stages: { ...(state.progress[normalizedId]?.stages || {}), [stageId]: true }, lastPlayed: Date.now() } };
         return user ? { progress: newProgress, userProgress: { ...state.userProgress, [user]: newProgress } } : { progress: newProgress };
       }),
-      getModuleProgress: (moduleId) => { const state = get(); const id = normalizeModuleCode(moduleId); const moduleData = state.progress[id]; if (!moduleData) return 0; const completed = Object.values(moduleData.stages).filter(Boolean).length; return Math.min(100, Math.round((completed / stageCount(id, moduleData)) * 100)); },
+      getModuleProgress: (moduleId) => { const state = get(); const id = normalizeModuleCode(moduleId); const moduleData = state.progress[id]; if (!moduleData) return 0; const completed = Object.values(moduleData.stages).filter(Boolean).length; return Math.min(100, Math.round((completed / stageCount(id)) * 100)); },
       getSectorProgress: (sector) => {
         const state = get(); const modules: Record<string, string[]> = {
           math: ['sm1-01','sm1-02','sm1-03','sm1-04','sm1-05','sm2-01','sm2-02','sm2-03','sm2-04','sm2-05','sm2-06','sm2-07','sm2-08','sm2-09','sm2-10','sm2-11','sm2-12','sm2-13','sm3-01','sm3-02','sm3-03','sm3-04','sm3-05','gm1-01','gm1-01-advanced','gm1-02','gm1-03','gm2-01','gm2-02','gm3-01','gm4-01'],
@@ -83,7 +85,7 @@ export const useAppStore = create<AppState>()(
           chemistry: ['sc1-01','sc1-02','sc1-03','sc1-04','sc1-05','sc1-06','sc2-01','sc2-02','sc2-03','sc2-04','sc2-05','sc2-06','sc2-07','sc3-01','sc3-02','sc3-03','sc3-04','sc3-05','gc1-01','gc1-02','gc2-01','gc3-01','gc3-02'],
         };
         const sectorModules = modules[sector] || []; if (sectorModules.length === 0) return 0; let completedStages = 0; let totalPossibleStages = 0;
-        sectorModules.forEach(id => { const moduleData = state.progress[id]; totalPossibleStages += stageCount(id, moduleData); if (moduleData) completedStages += Object.values(moduleData.stages).filter(Boolean).length; });
+        sectorModules.forEach(id => { const moduleData = state.progress[id]; totalPossibleStages += stageCount(id); if (moduleData) completedStages += Object.values(moduleData.stages).filter(Boolean).length; });
         return Math.min(100, Math.round((completedStages / totalPossibleStages) * 100));
       },
     }),
