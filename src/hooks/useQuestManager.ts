@@ -4,6 +4,7 @@ import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEn
 import { localizeFreeText } from "@/lib/i18n/freeTextLocale";
 import { useAiFeedback } from "./useAiFeedback";
 import { useStageProgress, type StageStats } from "./useStageProgress";
+import { useQuestNonce } from "./useQuestNonce";
 import { parseNumberLike as parseNumberLikePure, normalizeAnswer, type Locale } from "@/lib/quest/answerMatching";
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
@@ -88,6 +89,9 @@ export function useQuestManager<T extends Quest, S extends string>({
     const completeStage = useAppStore((s) => s.completeStage);
 
     const storageKey = `quest_manager_stats_${moduleCode}_v1`;
+    const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
+    const [stage, setStage] = useState<S>(initialStage);
+    const { nonce, setNonce } = useQuestNonce(moduleCode, stage as string, difficulty);
     const {
         stageStats,
         errorCounts,
@@ -98,18 +102,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         getSuccessRate,
         getErrorCount,
     } = useStageProgress(storageKey);
-    const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
-    const [stage, setStage] = useState<S>(initialStage);
-    const [nonce, setNonce] = useState(() => {
-        if (typeof window === "undefined") return 0;
-        try {
-            const key = `quest_manager_nonce_${moduleCode}_${initialStage}_${initialDifficulty}`;
-            const saved = window.localStorage.getItem(key);
-            return saved ? parseInt(saved, 10) : 0;
-        } catch {
-            return 0;
-        }
-    });
 
     const [inputs, setInputs] = useState<Record<string, string>>({});
     const [lastCheck, setLastCheck] = useState<null | { ok: boolean; correct: string }>(null);
@@ -130,19 +122,6 @@ export function useQuestManager<T extends Quest, S extends string>({
             setDifficulty(recommendation.recommendedDifficulty as Difficulty);
         }
     }, [history, moduleCode]); // eslint-disable-line react-hooks/exhaustive-deps
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const key = `quest_manager_nonce_${moduleCode}_${stage}_${difficulty}`;
-        const saved = window.localStorage.getItem(key);
-        setNonce(saved ? parseInt(saved, 10) : 0);
-    }, [moduleCode, stage, difficulty]);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const key = `quest_manager_nonce_${moduleCode}_${stage}_${difficulty}`;
-        window.localStorage.setItem(key, nonce.toString());
-    }, [moduleCode, nonce, stage, difficulty]);
 
     const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
 
