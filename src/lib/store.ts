@@ -47,9 +47,10 @@ function normalizeProgressKeys(progress: ModuleProgress | undefined): ModuleProg
 }
 function stageCount(moduleId: string): number {
   const id = normalizeModuleCode(moduleId);
-  // WHY: denominator must not include completed-stage count — that makes completed/total always 1.
-  // Modules absent from MODULE_STAGE_RULES get a conservative fallback of 3.
-  return Math.max(Object.keys(MODULE_STAGE_RULES[id] || {}).length, 3);
+  const rulesCount = Object.keys(MODULE_STAGE_RULES[id] || {}).length;
+  // WHY: Math.max(rulesCount, 3) wrongly caps single-stage modules at 33%.
+  // Use rules when available; fallback 3 only for unconfigured modules.
+  return rulesCount > 0 ? rulesCount : 3;
 }
 export const useAppStore = create<AppState>()(
   persist(

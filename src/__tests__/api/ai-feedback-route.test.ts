@@ -122,4 +122,48 @@ describe("AI feedback route security boundaries", () => {
 
         expect(response.status).toBe(403);
     });
+
+    it("returns 503 in production when server key is set but no KV and no explicit opt-in", async () => {
+        mockProviderFetch();
+        process.env.NODE_ENV = "production";
+        process.env.AI_ALLOWED_ORIGINS = "https://science.example";
+
+        const response = await POST(makeRequest({
+            "origin": "https://science.example",
+            "x-ai-mode": "DEFAULT_ONLY",
+            "x-forwarded-for": "203.0.113.62",
+        }));
+
+        expect(response.status).toBe(503);
+    });
+
+    it("allows memory rate limit in production when ALLOW_MEMORY_AI_RATE_LIMIT=1 is set", async () => {
+        mockProviderFetch();
+        process.env.NODE_ENV = "production";
+        process.env.ALLOW_MEMORY_AI_RATE_LIMIT = "1";
+        process.env.AI_ALLOWED_ORIGINS = "https://science.example";
+
+        const response = await POST(makeRequest({
+            "origin": "https://science.example",
+            "x-ai-mode": "DEFAULT_ONLY",
+            "x-forwarded-for": "203.0.113.63",
+        }));
+
+        expect(response.status).toBe(200);
+    });
+
+    it("does not apply rate-limit check to CUSTOM_ONLY mode even in production without KV", async () => {
+        mockProviderFetch();
+        process.env.NODE_ENV = "production";
+
+        const response = await POST(makeRequest({
+            "x-ai-mode": "CUSTOM_ONLY",
+            "x-custom-api-key": "user-key",
+            "x-custom-base-url": "https://api.openai.com/v1",
+            "x-custom-model-name": "gpt-4o",
+            "x-forwarded-for": "203.0.113.64",
+        }));
+
+        expect(response.status).toBe(200);
+    });
 });
