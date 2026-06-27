@@ -111,16 +111,18 @@
 
 ---
 
-### Step 8 — useQuestManager 拆分（架构）⚠️ UNBLOCKED，待确认范围
+### Step 8 — useQuestManager 拆分（架构）✅ COMPLETED
 
-**状态更新（2026-06-27）**：`npm run test` 已全部通过（399 tests pass），原阻断器已消失。
+**完成日期**：2026-06-27
 
-**仍需谨慎**：
-- 拆分 34-value God Hook 是架构决策，需要 Opus 审查（per CLAUDE.md 规定）
-- 拆分方案未定义：涉及 nonce/feedbackLevel/errorCounts/adaptive difficulty/hint gating 的内部状态耦合
-- 任何子 hook 状态耦合变化都会导致"测试通过但行为异常"的无声回退
+**完成内容**：
+- Task 0：8个 characterization tests（C1–C8）锁定行为契约，commit `64cae9a8`
+- Task 1：`parseNumberLike` + `normalizeAnswer` 提取至 `lib/quest/answerMatching.ts`，commit `e012e3af`（含 useAiFeedback）
+- Task 2：`useAiFeedback` 子 hook 提取，commit `e012e3af`
+- Task 3：`useStageProgress` 子 hook 提取（`recordAttempt` 原子写），commit `4e48f876`
+- Task 4：`useQuestNonce` 子 hook 提取（C8 通过，nonce 时序契约保留），commit `5c77bc98`
 
-**待处理**：用户确认范围后，以 Opus 模型规划拆分方案再执行。
+**最终状态**：440 tests pass（32 suites），已推送 GitHub。34个返回字段向后兼容，105个消费页面零改动。
 
 ---
 
