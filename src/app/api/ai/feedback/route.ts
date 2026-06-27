@@ -12,14 +12,17 @@ const AI_PROVIDER_TIMEOUT_MS = 30_000;
 const MAX_BODY_BYTES = 32_000;
 const MAX_FIELD_CHARS = 4_000;
 const MAX_INPUT_PARTS_CHARS = 4_000;
+const RATE_LIMIT_KEY_PREFIX = 'ai-feedback';
 
-// In-memory rate limiter: max 20 requests per IP per minute.
-// On serverless, limits blast radius per warm instance; resets on cold start.
+// In-memory fallback for local/dev. Production can use Vercel KV / Upstash REST
+// via KV_REST_API_URL + KV_REST_API_TOKEN for a shared server-side cost cap.
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 20;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 
-function consumeRateLimit(ip: string): boolean {
+type AiMode = 'DEFAULT_ONLY' | 'DEFAULT_WITH_FALLBACK' | 'CUSTOM_ONLY';
+
+function consumeMemoryRateLimit(ip: string): boolean {
     const now = Date.now();
     const entry = rateLimitStore.get(ip);
     if (!entry || now > entry.resetAt) {
@@ -29,6 +32,47 @@ function consumeRateLimit(ip: string): boolean {
     if (entry.count >= RATE_LIMIT_MAX) return false;
     entry.count++;
     return true;
+}
+
+function getKvConfig(): { url: string; token: string } | null {
+    const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+    if (!url || !token) return null;
+    return { url: url.replace(/\/+$/, ''), token };
+}
+
+async function consumeSharedRateLimit(ip: string): Promise<boolean | null> {
+    const config = getKvConfig();
+    if (!config) return null;
+
+    const key = `${RATE_LIMIT_KEY_PREFIX}:${ip}`;
+    const headers = { Authorization: `Bearer ${config.token}` };
+    const incrResponse = await fetch(`${config.url}/incr/${encodeURIComponent(key)}`, { headers });
+    if (!incrResponse.ok) {
+        throw new Error('Rate limiter unavailable');
+    }
+
+    const incrPayload = await incrResponse.json() as { result?: unknown };
+    const count = Number(incrPayload.result);
+    if (!Number.isFinite(count)) {
+        throw new Error('Rate limiter unavailable');
+    }
+
+    if (count === 1) {
+        const expireSeconds = Math.ceil(RATE_LIMIT_WINDOW_MS / 1000);
+        const expireResponse = await fetch(`${config.url}/expire/${encodeURIComponent(key)}/${expireSeconds}`, { headers });
+        if (!expireResponse.ok) {
+            throw new Error('Rate limiter unavailable');
+        }
+    }
+
+    return count <= RATE_LIMIT_MAX;
+}
+
+async function consumeRateLimit(ip: string): Promise<boolean> {
+    const sharedResult = await consumeSharedRateLimit(ip);
+    if (sharedResult !== null) return sharedResult;
+    return consumeMemoryRateLimit(ip);
 }
 
 function normalizeBaseUrl(rawUrl: string): string | null {
@@ -84,33 +128,40 @@ function clipString(value: unknown, maxChars = MAX_FIELD_CHARS): string {
     return value.trim().slice(0, maxChars);
 }
 
+function shouldTrustProxyHeaders(): boolean {
+    return process.env.TRUST_PROXY_HEADERS === '1' || process.env.VERCEL === '1';
+}
+
 function getClientIp(req: Request): string {
-    const trustedHeader =
-        req.headers.get('x-real-ip') ||
-        req.headers.get('x-vercel-forwarded-for') ||
-        req.headers.get('cf-connecting-ip');
+    if (!shouldTrustProxyHeaders()) return 'unknown';
 
-    if (trustedHeader) {
-        return trustedHeader.split(',')[0]?.trim() || 'unknown';
-    }
-
-    const xff = req.headers.get('x-forwarded-for');
+    const xff = req.headers.get('x-vercel-forwarded-for') || req.headers.get('x-forwarded-for');
     if (!xff) return 'unknown';
 
     const parts = xff.split(',').map((part) => part.trim()).filter(Boolean);
     return parts.at(-1) || 'unknown';
 }
 
-function originAllowed(req: Request): boolean {
+function originAllowed(req: Request, mode: AiMode): boolean {
+    if (mode === 'CUSTOM_ONLY') return true;
+
     const allowlist = (process.env.AI_ALLOWED_ORIGINS || '')
         .split(',')
         .map((origin) => origin.trim())
         .filter(Boolean);
 
-    if (allowlist.length === 0) return true;
+    if (allowlist.length === 0) return process.env.NODE_ENV !== 'production';
 
     const origin = req.headers.get('origin');
     return Boolean(origin && allowlist.includes(origin));
+}
+
+function getRequestedMode(req: Request): AiMode | null {
+    const rawMode = req.headers.get('x-ai-mode') || 'DEFAULT_ONLY';
+    if (rawMode === 'DEFAULT_ONLY' || rawMode === 'DEFAULT_WITH_FALLBACK' || rawMode === 'CUSTOM_ONLY') {
+        return rawMode;
+    }
+    return null;
 }
 
 async function readJsonBody(req: Request): Promise<FeedbackBody | null> {
@@ -216,16 +267,21 @@ async function callChatCompletions(
 }
 
 export async function POST(req: Request) {
-    if (!originAllowed(req)) {
-        return NextResponse.json({ error: 'Origin not allowed' }, { status: 403 });
-    }
-
-    const clientIp = getClientIp(req);
-    if (!consumeRateLimit(clientIp)) {
-        return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
-    }
-
     try {
+        const mode = getRequestedMode(req);
+        if (!mode) {
+            return NextResponse.json({ error: 'Invalid AI mode' }, { status: 400 });
+        }
+
+        if (!originAllowed(req, mode)) {
+            return NextResponse.json({ error: 'Origin not allowed' }, { status: 403 });
+        }
+
+        const clientIp = getClientIp(req);
+        if (!await consumeRateLimit(clientIp)) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+        }
+
         const body = await readJsonBody(req);
         if (!body) {
             return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
@@ -236,7 +292,6 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Invalid feedback request' }, { status: 400 });
         }
 
-        const mode = req.headers.get('x-ai-mode') || 'DEFAULT_ONLY';
         const customApiKey = req.headers.get('x-custom-api-key');
         const customBaseUrl = req.headers.get('x-custom-base-url');
         const customModelName = req.headers.get('x-custom-model-name');
