@@ -2,7 +2,8 @@ import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
 import { requestPersonalizedFeedback } from "@/lib/ai/feedbackEngine";
-import { canonicalizeFreeText, localizeFreeText } from "@/lib/i18n/freeTextLocale";
+import { localizeFreeText } from "@/lib/i18n/freeTextLocale";
+import { parseNumberLike as parseNumberLikePure, normalizeAnswer, type Locale } from "@/lib/quest/answerMatching";
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
 export type FeedbackLevel = "NONE" | "HINT" | "STEPS" | "FULL";
@@ -219,27 +220,10 @@ export function useQuestManager<T extends Quest, S extends string>({
     const canNext = pool.length > 0 && nonce < pool.length - 1;
     const progress = pool.length > 0 ? Math.min((nonce / pool.length) * 100, 100) : 0;
 
-    const parseNumberLike = useCallback((s: string) => {
-        const raw = s.trim();
-        if (!raw) return null;
-
-        const normalized = (locale === "DE" ? raw.replace(/,/g, ".") : raw).replace(/\s+/g, "");
-
-        if (normalized.includes("/")) {
-            const parts = normalized.split("/");
-            if (parts.length !== 2) return null;
-            const [numStr, denStr] = parts;
-            const num = Number(numStr);
-            const den = Number(denStr);
-            if (Number.isFinite(num) && Number.isFinite(den) && den !== 0) {
-                return num / den;
-            }
-            return null;
-        }
-
-        const v = Number(normalized);
-        return Number.isFinite(v) ? v : null;
-    }, [locale]);
+    const parseNumberLike = useCallback(
+        (s: string) => parseNumberLikePure(s, locale as Locale),
+        [locale]
+    );
 
     const verify = useCallback(() => {
         if (!currentQuest) return;
@@ -264,18 +248,6 @@ export function useQuestManager<T extends Quest, S extends string>({
             setLastCheck({ ok: false, correct: "" });
         };
 
-        const normalize = (s: string) => {
-            const canonical = canonicalizeFreeText(s, locale);
-            return canonical.trim()
-                .toLowerCase()
-                .replace(/\s/g, "")
-                .replace(/²/g, "^2")
-                .replace(/³/g, "^3")
-                .replace(/\^1(?![0-9])/g, "")
-                .replace(/^1([a-z^])/, "$1")
-                .replace(/([^0-9.])1([a-z^])/g, "$1$2");
-        };
-
         const anyEmpty = currentQuest.slots.some((slot) => !(inputs[slot.id] ?? "").trim());
         if (anyEmpty) {
             recordIncorrect();
@@ -286,12 +258,12 @@ export function useQuestManager<T extends Quest, S extends string>({
             const raw = inputs[slot.id] ?? "";
 
             if (typeof slot.expected === "number") {
-                const v = parseNumberLike(raw);
+                const v = parseNumberLikePure(raw, locale as Locale);
                 if (v === null || Math.abs(v - slot.expected) > tolerance) {
                     recordIncorrect();
                     return;
                 }
-            } else if (normalize(raw) !== normalize(slot.expected.toString())) {
+            } else if (normalizeAnswer(raw, locale as Locale) !== normalizeAnswer(slot.expected.toString(), locale as Locale)) {
                 recordIncorrect();
                 return;
             }
@@ -312,7 +284,7 @@ export function useQuestManager<T extends Quest, S extends string>({
         setErrorCounts((prev) => ({ ...prev, [questKey]: 0 }));
         setLastCheck({ ok: true, correct: currentQuest.correctLatex });
         completeStage(moduleCode, stage);
-    }, [currentQuest, inputs, parseNumberLike, stage, tolerance, locale, completeStage, moduleCode]);
+    }, [currentQuest, inputs, stage, tolerance, locale, completeStage, moduleCode]);
 
     const handleDifficultyChange = useCallback((d: Difficulty) => {
         userHasSetDifficultyRef.current = true;
