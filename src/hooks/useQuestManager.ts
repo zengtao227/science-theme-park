@@ -3,6 +3,7 @@ import { useAppStore } from "@/lib/store";
 import { getAdaptiveDifficulty, DifficultyAdjustment } from "@/lib/ai/adaptiveEngine";
 import { localizeFreeText } from "@/lib/i18n/freeTextLocale";
 import { useAiFeedback } from "./useAiFeedback";
+import { useStageProgress, type StageStats } from "./useStageProgress";
 import { parseNumberLike as parseNumberLikePure, normalizeAnswer, type Locale } from "@/lib/quest/answerMatching";
 
 export type Difficulty = "BASIC" | "CORE" | "ADVANCED" | "ELITE";
@@ -69,15 +70,6 @@ export interface UseQuestManagerOptions<T extends Quest, S extends string> {
     feedbackPolicy?: Partial<FeedbackPolicy>;
 }
 
-type StageStats = {
-    attempts: number;
-    correct: number;
-    incorrect: number;
-    lastUpdated: number;
-};
-
-const EMPTY_STAGE_STATS: StageStats = { attempts: 0, correct: 0, incorrect: 0, lastUpdated: 0 };
-
 export function useQuestManager<T extends Quest, S extends string>({
     moduleCode,
     buildPool,
@@ -96,6 +88,16 @@ export function useQuestManager<T extends Quest, S extends string>({
     const completeStage = useAppStore((s) => s.completeStage);
 
     const storageKey = `quest_manager_stats_${moduleCode}_v1`;
+    const {
+        stageStats,
+        errorCounts,
+        recordAttempt,
+        resetStageStats,
+        clearErrorCounts,
+        getCurrentStageStats,
+        getSuccessRate,
+        getErrorCount,
+    } = useStageProgress(storageKey);
     const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
     const [stage, setStage] = useState<S>(initialStage);
     const [nonce, setNonce] = useState(() => {
@@ -112,15 +114,6 @@ export function useQuestManager<T extends Quest, S extends string>({
     const [inputs, setInputs] = useState<Record<string, string>>({});
     const [lastCheck, setLastCheck] = useState<null | { ok: boolean; correct: string }>(null);
     const [feedbackLevel, setFeedbackLevel] = useState<FeedbackLevel>("NONE");
-    const [stageStats, setStageStats] = useState<Record<string, StageStats>>(() => {
-        if (typeof window === "undefined") return {};
-        try {
-            const raw = window.localStorage.getItem(storageKey);
-            return raw ? (JSON.parse(raw) as Record<string, StageStats>) : {};
-        } catch {
-            return {};
-        }
-    });
 
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState<DifficultyAdjustment | null>(null);
     const userHasSetDifficultyRef = useRef(false);
@@ -151,12 +144,6 @@ export function useQuestManager<T extends Quest, S extends string>({
         window.localStorage.setItem(key, nonce.toString());
     }, [moduleCode, nonce, stage, difficulty]);
 
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        window.localStorage.setItem(storageKey, JSON.stringify(stageStats));
-    }, [storageKey, stageStats]);
-
-    const [errorCounts, setErrorCounts] = useState<Record<string, number>>({});
     const locale = currentLanguage === "DE" ? "DE" : currentLanguage === "CN" ? "CN" : "EN";
 
     const rawPool = useMemo(() => buildPool(difficulty, stage), [buildPool, difficulty, stage]);
@@ -216,26 +203,10 @@ export function useQuestManager<T extends Quest, S extends string>({
         const sKey = `${stage}`;
         const questKey = `${stage}:${currentQuest.id}`;
 
-        const recordIncorrect = () => {
-            setStageStats((prev) => {
-                const existing = prev[sKey] ?? EMPTY_STAGE_STATS;
-                return {
-                    ...prev,
-                    [sKey]: {
-                        attempts: existing.attempts + 1,
-                        correct: existing.correct,
-                        incorrect: existing.incorrect + 1,
-                        lastUpdated: Date.now(),
-                    },
-                };
-            });
-            setErrorCounts((prev) => ({ ...prev, [questKey]: (prev[questKey] ?? 0) + 1 }));
-            setLastCheck({ ok: false, correct: "" });
-        };
-
         const anyEmpty = currentQuest.slots.some((slot) => !(inputs[slot.id] ?? "").trim());
         if (anyEmpty) {
-            recordIncorrect();
+            recordAttempt({ stageKey: sKey, questKey, correct: false });
+            setLastCheck({ ok: false, correct: "" });
             return;
         }
 
@@ -245,64 +216,42 @@ export function useQuestManager<T extends Quest, S extends string>({
             if (typeof slot.expected === "number") {
                 const v = parseNumberLikePure(raw, locale as Locale);
                 if (v === null || Math.abs(v - slot.expected) > tolerance) {
-                    recordIncorrect();
+                    recordAttempt({ stageKey: sKey, questKey, correct: false });
+                    setLastCheck({ ok: false, correct: "" });
                     return;
                 }
             } else if (normalizeAnswer(raw, locale as Locale) !== normalizeAnswer(slot.expected.toString(), locale as Locale)) {
-                recordIncorrect();
+                recordAttempt({ stageKey: sKey, questKey, correct: false });
+                setLastCheck({ ok: false, correct: "" });
                 return;
             }
         }
 
-        setStageStats((prev) => {
-            const existing = prev[sKey] ?? EMPTY_STAGE_STATS;
-            return {
-                ...prev,
-                [sKey]: {
-                    attempts: existing.attempts + 1,
-                    correct: existing.correct + 1,
-                    incorrect: existing.incorrect,
-                    lastUpdated: Date.now(),
-                },
-            };
-        });
-        setErrorCounts((prev) => ({ ...prev, [questKey]: 0 }));
+        recordAttempt({ stageKey: sKey, questKey, correct: true });
         setLastCheck({ ok: true, correct: currentQuest.correctLatex });
         completeStage(moduleCode, stage);
-    }, [currentQuest, inputs, stage, tolerance, locale, completeStage, moduleCode]);
+    }, [currentQuest, inputs, stage, tolerance, locale, completeStage, moduleCode, recordAttempt]);
 
     const handleDifficultyChange = useCallback((d: Difficulty) => {
         userHasSetDifficultyRef.current = true;
         setDifficulty(d);
         clearInputs();
-        setErrorCounts({});
-        setStageStats((prev) => {
-            const nextStats = { ...prev };
-            delete nextStats[`${stage}`];
-            return nextStats;
-        });
-    }, [clearInputs, stage]);
+        clearErrorCounts();
+        resetStageStats(`${stage}`);
+    }, [clearInputs, stage, clearErrorCounts, resetStageStats]);
 
     const handleStageChange = useCallback((s: S) => {
         setStage(s);
         clearInputs();
-        setErrorCounts({});
-    }, [clearInputs]);
+        clearErrorCounts();
+    }, [clearInputs, clearErrorCounts]);
 
-    const currentStageStats = useMemo(() => {
-        const sKey = `${stage}`;
-        return stageStats[sKey] ?? EMPTY_STAGE_STATS;
-    }, [stage, stageStats]);
-
-    const successRate = useMemo(() => {
-        if (!currentStageStats.attempts) return 0;
-        return currentStageStats.correct / currentStageStats.attempts;
-    }, [currentStageStats]);
+    const currentStageStats = getCurrentStageStats(`${stage}`);
+    const successRate = getSuccessRate(`${stage}`);
 
     const getHint = useCallback(() => {
         if (!currentQuest) return null;
-        const questKey = `${stage}:${currentQuest.id}`;
-        const errors = errorCounts[questKey] ?? 0;
+        const errors = getErrorCount(stage, currentQuest.id);
         if (errors <= 0) return null;
 
         if (currentQuest.hintLatex && currentQuest.hintLatex.length > 0) {
@@ -313,13 +262,12 @@ export function useQuestManager<T extends Quest, S extends string>({
         if (errors === 1) return currentQuest.targetLatex;
         if (errors === 2) return currentQuest.expressionLatex;
         return currentQuest.promptLatex || currentQuest.expressionLatex;
-    }, [currentQuest, errorCounts, stage]);
+    }, [currentQuest, getErrorCount, stage]);
 
     const getCurrentErrorCount = useCallback(() => {
         if (!currentQuest) return 0;
-        const questKey = `${stage}:${currentQuest.id}`;
-        return errorCounts[questKey] ?? 0;
-    }, [currentQuest, errorCounts, stage]);
+        return getErrorCount(stage, currentQuest.id);
+    }, [currentQuest, getErrorCount, stage]);
 
     const showHintLevel = useCallback(() => setFeedbackLevel("HINT"), []);
     const showStepsLevel = useCallback(() => setFeedbackLevel("STEPS"), []);
