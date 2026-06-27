@@ -69,7 +69,7 @@ const createTestQuest = (): SC106Quest => {
     products: ['H2O'],
     coefficients: [2, 1, 2],
     promptLatex: 'Balance the equation',
-    equationLatex: '2\\\\text{H}_2 + \\\\text{O}_2 \\\\rightarrow 2\\\\text{H}_2\\\\text{O}',
+    equationLatex: '2\\text{H}_2 + \\text{O}_2 \\rightarrow 2\\text{H}_2\\text{O}',
     expressionLatex: '2H2+O2 -> 2H2O',
     targetLatex: '2, 1, 2',
     correctLatex: '2, 1, 2',

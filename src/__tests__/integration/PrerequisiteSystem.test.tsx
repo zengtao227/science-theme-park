@@ -17,7 +17,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 describe("ChamberLayout - Prerequisite System Integration", () => {
     const defaultProps = {
         title: "Test Module",
-        moduleCode: "SB2.01",
+        moduleCode: "SB2.01-TISSUES",
         difficulty: "CORE" as const,
         onDifficultyChange: jest.fn(),
         stages: [{ id: "S1", label: "Stage 1" }],
@@ -39,7 +39,7 @@ describe("ChamberLayout - Prerequisite System Integration", () => {
     });
 
     it("should show 'PREREQUISITE_REQUIRED' when deps are not met", () => {
-        // SB2.01 depends on SB1.01
+        // SB2.01-TISSUES depends on SB1.01
         const mockState = {
             currentLanguage: "EN",
             history: [], // No history means no completed modules

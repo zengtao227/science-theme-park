@@ -158,6 +158,29 @@ function extractPointCoordinates(expr: string): number[] | null {
   return null;
 }
 
+function compareCoefficientVectors(
+  expected: number[],
+  actual: number[],
+  tolerance: number = 0.01
+): boolean {
+  if (expected.length !== actual.length) return false;
+
+  const expectedNorm = Math.hypot(...expected);
+  const actualNorm = Math.hypot(...actual);
+  if (expectedNorm <= tolerance || actualNorm <= tolerance) return false;
+
+  const pivot = expected.findIndex((value) => Math.abs(value) > tolerance);
+  if (pivot === -1) return false;
+
+  const scale = actual[pivot] / expected[pivot];
+  return expected.every((value, i) => {
+    const scaledExpected = value * scale;
+    const actualValue = actual[i];
+    const allowedError = tolerance * Math.max(1, Math.abs(scaledExpected), Math.abs(actualValue));
+    return Math.abs(actualValue - scaledExpected) <= allowedError;
+  });
+}
+
 /**
  * Compare line coefficients (allowing for scalar multiples)
  */
@@ -166,17 +189,11 @@ function compareLineCoefficients(
   coeffs2: { A: number; B: number; C: number },
   tolerance: number = 0.01
 ): boolean {
-  // Check if coefficients are proportional
-  const ratio1 = coeffs1.A !== 0 ? coeffs2.A / coeffs1.A : 0;
-  const ratio2 = coeffs1.B !== 0 ? coeffs2.B / coeffs1.B : 0;
-  const ratio3 = coeffs1.C !== 0 ? coeffs2.C / coeffs1.C : 0;
-
-  // All non-zero ratios should be equal
-  const ratios = [ratio1, ratio2, ratio3].filter(r => r !== 0);
-  if (ratios.length === 0) return false;
-
-  const firstRatio = ratios[0];
-  return ratios.every(r => Math.abs(r - firstRatio) < tolerance);
+  return compareCoefficientVectors(
+    [coeffs1.A, coeffs1.B, coeffs1.C],
+    [coeffs2.A, coeffs2.B, coeffs2.C],
+    tolerance
+  );
 }
 
 /**
@@ -187,18 +204,11 @@ function comparePlaneCoefficients(
   coeffs2: { A: number; B: number; C: number; D: number },
   tolerance: number = 0.01
 ): boolean {
-  // Check if coefficients are proportional
-  const ratio1 = coeffs1.A !== 0 ? coeffs2.A / coeffs1.A : 0;
-  const ratio2 = coeffs1.B !== 0 ? coeffs2.B / coeffs1.B : 0;
-  const ratio3 = coeffs1.C !== 0 ? coeffs2.C / coeffs1.C : 0;
-  const ratio4 = coeffs1.D !== 0 ? coeffs2.D / coeffs1.D : 0;
-
-  // All non-zero ratios should be equal
-  const ratios = [ratio1, ratio2, ratio3, ratio4].filter(r => r !== 0);
-  if (ratios.length === 0) return false;
-
-  const firstRatio = ratios[0];
-  return ratios.every(r => Math.abs(r - firstRatio) < tolerance);
+  return compareCoefficientVectors(
+    [coeffs1.A, coeffs1.B, coeffs1.C, coeffs1.D],
+    [coeffs2.A, coeffs2.B, coeffs2.C, coeffs2.D],
+    tolerance
+  );
 }
 
 /**

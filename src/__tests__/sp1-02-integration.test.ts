@@ -6,6 +6,8 @@ import { buildQuestPool } from "@/lib/sp1-02-quests";
 import { baselScenarios } from "@/lib/sp1-02-scenarios";
 import { Difficulty, Stage } from "@/lib/sp1-02-types";
 
+jest.mock('@vercel/analytics', () => ({ track: jest.fn() }));
+
 describe("SP1.02 Newton's Laws Module", () => {
   describe("Module Structure", () => {
     test("should have exactly 3 stages", () => {

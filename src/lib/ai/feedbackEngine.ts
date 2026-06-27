@@ -12,26 +12,6 @@ export async function requestPersonalizedFeedback({ quest, inputs, language }: F
     const config = store.aiProviderConfig || { useDefault: true };
     const hasCustomProvider = Boolean(config.apiKey && config.baseUrl && config.modelName);
 
-    const systemPrompt = `You are an AI scientific assistant at the Basel Science Theme Park in Switzerland. 
-Your goal is to help a student understand why their answer was incorrect and guide them towards the correct logic.
-Follow these rules:
-1. Explain in ${language === 'CN' ? 'Chinese' : language === 'DE' ? 'German' : 'English'}.
-2. Be as thorough as needed. Give a complete explanation and always finish every sentence fully — never stop in the middle of a sentence or a math expression.
-3. You may use inline LaTeX for math by wrapping expressions in single dollar signs, e.g. $Q_3 - Q_1$. Make sure every opening $ has a matching closing $ before you end your response.
-4. Do NOT just give the final answer, point out where their logic might have deviated based on their input.
-5. Emphasize first-principles thinking.`;
-
-    const inputParts = Object.entries(inputs).map(([key, val]) => `${key}: ${val}`).join(', ');
-
-    const userPrompt = `
-Task Prompt: ${quest.promptLatex}
-Target Expression: ${quest.expressionLatex}
-Target Value (Solution): ${quest.correctLatex}
-
-User Input: ${inputParts}
-
-The user's input was evaluated as incorrect. Why might they have made this mistake, and what hint can you give them?`;
-
     const headers: Record<string, string> = {
         'Content-Type': 'application/json',
     };
@@ -53,7 +33,7 @@ The user's input was evaluated as incorrect. Why might they have made this mista
     const response = await fetch('/api/ai/feedback', {
         method: 'POST',
         headers,
-        body: JSON.stringify({ systemPrompt, prompt: userPrompt })
+        body: JSON.stringify({ quest, inputs, language })
     });
 
     if (!response.ok) {

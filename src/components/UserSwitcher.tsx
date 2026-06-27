@@ -8,7 +8,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function UserSwitcher() {
-  const { currentUser, getUserList, switchUser, createUser } = useAppStore();
+  const currentUser = useAppStore((s) => s.currentUser);
+  const getUserList = useAppStore((s) => s.getUserList);
+  const selectUser = useAppStore((s) => s.switchUser);
+  const addUser = useAppStore((s) => s.createUser);
   const { t } = useLanguage();
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState(false);
@@ -29,14 +32,18 @@ export default function UserSwitcher() {
     setShowNewUser(false);
   }, [pathname]);
 
+  const closeMenu = () => {
+    setShowMenu(false);
+    setShowNewUser(false);
+  };
+
   const handleCreateUser = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = newUsername.trim();
     if (trimmed) {
-      createUser(trimmed);
+      addUser(trimmed);
       setNewUsername('');
-      setShowNewUser(false);
-      setShowMenu(false);
+      closeMenu();
     }
   };
 
@@ -55,13 +62,7 @@ export default function UserSwitcher() {
 
       {showMenu && (
         <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => {
-              setShowMenu(false);
-              setShowNewUser(false);
-            }}
-          />
+          <div className="fixed inset-0 z-40" onClick={closeMenu} />
           <div className="absolute top-full right-0 mt-2 bg-black border-2 border-white/60 min-w-[220px] z-50 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
             {!showNewUser ? (
               <>
@@ -75,7 +76,7 @@ export default function UserSwitcher() {
                     <button
                       key={user.username}
                       onClick={() => {
-                        switchUser(user.username);
+                        selectUser(user.username);
                         setShowMenu(false);
                       }}
                       className={`w-full px-4 py-3 text-left hover:bg-white/10 transition-colors flex items-center gap-2 ${user.username === currentUser ? 'bg-neon-green/10 text-neon-green' : 'text-white'
@@ -98,10 +99,7 @@ export default function UserSwitcher() {
                 </button>
                 <Link
                   href="/profile#ai-settings"
-                  onClick={() => {
-                    setShowMenu(false);
-                    setShowNewUser(false);
-                  }}
+                  onClick={closeMenu}
                   className="w-full px-4 py-3 text-left border-t border-white/10 text-neon-cyan hover:bg-neon-cyan/10 transition-colors flex items-center gap-2"
                 >
                   <Settings className="w-3 h-3" />

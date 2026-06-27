@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo } from "react";
-import { useAppStore } from "@/lib/store";
 import { useLanguage, useNamespace } from "@/lib/i18n";
 import ChamberLayout from "@/components/layout/ChamberLayout";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
@@ -14,7 +13,6 @@ import { createSP201FeedbackProvider } from "@/lib/sp2-01/provider";
 
 export default function SP201CircuitBasics() {
   const { t } = useLanguage();
-  useAppStore();
   const feedbackContentProvider = useMemo(() => createSP201FeedbackProvider(t), [t]);
 
   const sp2_01_t = useNamespace("sp2_01");
@@ -58,11 +56,9 @@ export default function SP201CircuitBasics() {
     lastCheck,
     currentQuest,
     setInputs,
-    verify,
-    next,
     handleDifficultyChange,
     handleStageChange,
-      chamberLayoutProps,
+    chamberLayoutProps,
   } = useQuestManager<SP201Quest, Stage>({
     moduleCode: "sp2-01",
     buildPool,

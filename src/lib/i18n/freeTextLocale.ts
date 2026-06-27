@@ -83,14 +83,9 @@ export function localizeFreeText(value: string | null | undefined, locale: LangC
         return locale === "CN" ? "输入答案" : "Antwort eingeben";
     }
 
-    // Fallback for plain English placeholder text not covered by translation keys.
-    // Keep symbolic/unit placeholders unchanged (e.g., "x", "m/s", "CO2").
-    const plainEnglishPhrase = /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/;
-    const variableMask = /^[xyzXYZ]{1,5}$/;
-    if (raw.length >= 3 && plainEnglishPhrase.test(raw) && !variableMask.test(raw)) {
-        return locale === "CN" ? "输入答案" : "Antwort eingeben";
-    }
-
+    // Do not translate arbitrary English slot text. Unmapped phrases such as
+    // "Result", "Enter value", or "height in meters" often carry problem-specific
+    // meaning and are safer to display verbatim than as a generic answer prompt.
     return value;
 }
 

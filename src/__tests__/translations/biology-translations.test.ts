@@ -393,7 +393,7 @@ describe('Property 9: Mathematical formulas', () => {
         const allText = JSON.stringify(module);
         
         // Check for LaTeX patterns
-        const latexMatches = allText.match(/\\[a-zA-Z]+\{[^}]*\}/g);
+        const latexMatches = allText.match(/\\[a-zA-Z]+\{(?:[^{}]|\{[^}]*\})*\}/g);
         if (latexMatches) {
           latexMatches.forEach(match => {
             // Should have balanced braces

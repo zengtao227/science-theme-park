@@ -22,7 +22,8 @@ const achievementOrder: AchievementId[] = [
 ];
 
 export default function AchievementVault({ open, onClose }: AchievementVaultProps) {
-  const { achievements, currentLanguage } = useAppStore();
+  const achievements = useAppStore((s) => s.achievements);
+  const currentLanguage = useAppStore((s) => s.currentLanguage);
   const common = i18n[currentLanguage].common;
 
   const unlockedCount = useMemo(

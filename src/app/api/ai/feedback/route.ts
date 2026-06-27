@@ -9,14 +9,20 @@ const DEFAULT_ALLOWED_BASE_URLS = [
 ];
 
 const AI_PROVIDER_TIMEOUT_MS = 30_000;
+const MAX_BODY_BYTES = 32_000;
+const MAX_FIELD_CHARS = 4_000;
+const MAX_INPUT_PARTS_CHARS = 4_000;
+const RATE_LIMIT_KEY_PREFIX = 'ai-feedback';
 
-// In-memory rate limiter: max 20 requests per IP per minute.
-// On serverless, limits blast radius per warm instance; resets on cold start.
+// In-memory fallback for local/dev. Production can use Vercel KV / Upstash REST
+// via KV_REST_API_URL + KV_REST_API_TOKEN for a shared server-side cost cap.
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 20;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 
-function consumeRateLimit(ip: string): boolean {
+type AiMode = 'DEFAULT_ONLY' | 'DEFAULT_WITH_FALLBACK' | 'CUSTOM_ONLY';
+
+function consumeMemoryRateLimit(ip: string): boolean {
     const now = Date.now();
     const entry = rateLimitStore.get(ip);
     if (!entry || now > entry.resetAt) {
@@ -26,6 +32,47 @@ function consumeRateLimit(ip: string): boolean {
     if (entry.count >= RATE_LIMIT_MAX) return false;
     entry.count++;
     return true;
+}
+
+function getKvConfig(): { url: string; token: string } | null {
+    const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+    const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+    if (!url || !token) return null;
+    return { url: url.replace(/\/+$/, ''), token };
+}
+
+async function consumeSharedRateLimit(ip: string): Promise<boolean | null> {
+    const config = getKvConfig();
+    if (!config) return null;
+
+    const key = `${RATE_LIMIT_KEY_PREFIX}:${ip}`;
+    const headers = { Authorization: `Bearer ${config.token}` };
+    const incrResponse = await fetch(`${config.url}/incr/${encodeURIComponent(key)}`, { headers });
+    if (!incrResponse.ok) {
+        throw new Error('Rate limiter unavailable');
+    }
+
+    const incrPayload = await incrResponse.json() as { result?: unknown };
+    const count = Number(incrPayload.result);
+    if (!Number.isFinite(count)) {
+        throw new Error('Rate limiter unavailable');
+    }
+
+    if (count === 1) {
+        const expireSeconds = Math.ceil(RATE_LIMIT_WINDOW_MS / 1000);
+        const expireResponse = await fetch(`${config.url}/expire/${encodeURIComponent(key)}/${expireSeconds}`, { headers });
+        if (!expireResponse.ok) {
+            throw new Error('Rate limiter unavailable');
+        }
+    }
+
+    return count <= RATE_LIMIT_MAX;
+}
+
+async function consumeRateLimit(ip: string): Promise<boolean> {
+    const sharedResult = await consumeSharedRateLimit(ip);
+    if (sharedResult !== null) return sharedResult;
+    return consumeMemoryRateLimit(ip);
 }
 
 function normalizeBaseUrl(rawUrl: string): string | null {
@@ -64,6 +111,125 @@ type ProviderAttempt = {
     label: 'default' | 'custom-fallback' | 'custom';
 };
 
+type FeedbackLanguage = 'EN' | 'CN' | 'DE';
+
+type FeedbackBody = {
+    language?: unknown;
+    quest?: unknown;
+    inputs?: unknown;
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function clipString(value: unknown, maxChars = MAX_FIELD_CHARS): string {
+    if (typeof value !== 'string') return '';
+    return value.trim().slice(0, maxChars);
+}
+
+function shouldTrustProxyHeaders(): boolean {
+    return process.env.TRUST_PROXY_HEADERS === '1' || process.env.VERCEL === '1';
+}
+
+function getClientIp(req: Request): string {
+    if (!shouldTrustProxyHeaders()) return 'unknown';
+
+    const xff = req.headers.get('x-vercel-forwarded-for') || req.headers.get('x-forwarded-for');
+    if (!xff) return 'unknown';
+
+    const parts = xff.split(',').map((part) => part.trim()).filter(Boolean);
+    return parts.at(-1) || 'unknown';
+}
+
+function originAllowed(req: Request, mode: AiMode): boolean {
+    if (mode === 'CUSTOM_ONLY') return true;
+
+    const allowlist = (process.env.AI_ALLOWED_ORIGINS || '')
+        .split(',')
+        .map((origin) => origin.trim())
+        .filter(Boolean);
+
+    if (allowlist.length === 0) return process.env.NODE_ENV !== 'production';
+
+    const origin = req.headers.get('origin');
+    return Boolean(origin && allowlist.includes(origin));
+}
+
+function getRequestedMode(req: Request): AiMode | null {
+    const rawMode = req.headers.get('x-ai-mode') || 'DEFAULT_ONLY';
+    if (rawMode === 'DEFAULT_ONLY' || rawMode === 'DEFAULT_WITH_FALLBACK' || rawMode === 'CUSTOM_ONLY') {
+        return rawMode;
+    }
+    return null;
+}
+
+async function readJsonBody(req: Request): Promise<FeedbackBody | null> {
+    const contentLength = Number(req.headers.get('content-length') || '0');
+    if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+        throw new Error('Request body too large');
+    }
+
+    const rawBody = await req.text();
+    if (new TextEncoder().encode(rawBody).length > MAX_BODY_BYTES) {
+        throw new Error('Request body too large');
+    }
+
+    try {
+        const parsed = JSON.parse(rawBody) as unknown;
+        return isRecord(parsed) ? parsed : null;
+    } catch {
+        return null;
+    }
+}
+
+function buildFeedbackPrompts(body: FeedbackBody): { systemPrompt: string; prompt: string } | null {
+    const quest = isRecord(body.quest) ? body.quest : null;
+    const inputs = isRecord(body.inputs) ? body.inputs : null;
+    if (!quest || !inputs) return null;
+
+    const language: FeedbackLanguage = body.language === 'CN' || body.language === 'DE' ? body.language : 'EN';
+    const languageName = language === 'CN' ? 'Chinese' : language === 'DE' ? 'German' : 'English';
+
+    const promptLatex = clipString(quest.promptLatex);
+    const expressionLatex = clipString(quest.expressionLatex);
+    const correctLatex = clipString(quest.correctLatex);
+    const targetLatex = clipString(quest.targetLatex);
+
+    if (!promptLatex && !expressionLatex && !correctLatex) return null;
+
+    const inputParts = Object.entries(inputs)
+        .map(([key, value]) => `${key.slice(0, 80)}: ${clipString(value, 500)}`)
+        .join(', ')
+        .slice(0, MAX_INPUT_PARTS_CHARS);
+
+    const systemPrompt = `You are an AI scientific assistant at the Basel Science Theme Park in Switzerland.
+Your goal is to help a student understand why their answer was incorrect and guide them towards the correct logic.
+Follow these rules:
+1. Explain in ${languageName}.
+2. Be as thorough as needed. Give a complete explanation and always finish every sentence fully — never stop in the middle of a sentence or a math expression.
+3. You may use inline LaTeX for math by wrapping expressions in single dollar signs, e.g. $Q_3 - Q_1$. Make sure every opening $ has a matching closing $ before you end your response.
+4. Do NOT just give the final answer, point out where their logic might have deviated based on their input.
+5. Emphasize first-principles thinking.`;
+
+    const prompt = `Task Prompt: ${promptLatex}
+Target Expression: ${expressionLatex}
+Target Concept: ${targetLatex}
+Target Value (Solution): ${correctLatex}
+
+User Input: ${inputParts}
+
+The user's input was evaluated as incorrect. Why might they have made this mistake, and what hint can you give them?`;
+
+    return { systemPrompt, prompt };
+}
+
+function sanitizeProviderError(errorText: string): string {
+    return errorText
+        .replace(/Bearer\s+[A-Za-z0-9._~+\/-]+/g, 'Bearer [redacted]')
+        .slice(0, 500);
+}
+
 async function callChatCompletions(
     attempt: ProviderAttempt,
     systemPrompt: string,
@@ -101,25 +267,31 @@ async function callChatCompletions(
 }
 
 export async function POST(req: Request) {
-    // Rate limit by client IP. XFF is used here only to bound per-user cost, not for auth.
-    // On Vercel/Caddy the edge injects the real IP; unknown/missing → shared 'unknown' bucket.
-    const xff = req.headers.get('x-forwarded-for');
-    const clientIp = (xff ? xff.split(',')[0].trim() : null) ?? 'unknown';
-    if (!consumeRateLimit(clientIp)) {
-        return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
-    }
-
     try {
-        const { prompt, systemPrompt } = await req.json();
-
-        if (typeof prompt !== 'string' || typeof systemPrompt !== 'string') {
-            return NextResponse.json({ error: 'prompt and systemPrompt must be strings' }, { status: 400 });
-        }
-        if (prompt.length > 10000 || systemPrompt.length > 5000) {
-            return NextResponse.json({ error: 'Input too large' }, { status: 400 });
+        const mode = getRequestedMode(req);
+        if (!mode) {
+            return NextResponse.json({ error: 'Invalid AI mode' }, { status: 400 });
         }
 
-        const mode = req.headers.get('x-ai-mode') || 'DEFAULT_ONLY';
+        if (!originAllowed(req, mode)) {
+            return NextResponse.json({ error: 'Origin not allowed' }, { status: 403 });
+        }
+
+        const clientIp = getClientIp(req);
+        if (!await consumeRateLimit(clientIp)) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+        }
+
+        const body = await readJsonBody(req);
+        if (!body) {
+            return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+        }
+
+        const prompts = buildFeedbackPrompts(body);
+        if (!prompts) {
+            return NextResponse.json({ error: 'Invalid feedback request' }, { status: 400 });
+        }
+
         const customApiKey = req.headers.get('x-custom-api-key');
         const customBaseUrl = req.headers.get('x-custom-base-url');
         const customModelName = req.headers.get('x-custom-model-name');
@@ -142,7 +314,6 @@ export async function POST(req: Request) {
             }
         }
 
-        // Default to a current NVIDIA-hosted OpenAI-compatible chat model if no custom config is provided
         const defaultApiKey = process.env.NVIDIA_API_KEY;
         const defaultBaseUrl = 'https://integrate.api.nvidia.com/v1';
         const defaultModel = 'meta/llama-3.1-8b-instruct';
@@ -189,19 +360,19 @@ export async function POST(req: Request) {
 
         for (const attempt of attempts) {
             try {
-                const response = await callChatCompletions(attempt, systemPrompt, prompt);
+                const response = await callChatCompletions(attempt, prompts.systemPrompt, prompts.prompt);
                 if (!response.ok) {
                     const errorText = await response.text();
                     lastStatus = Math.max(400, response.status || 502);
                     lastError = response.status >= 300 && response.status < 400
                         ? `API Error (${attempt.label}): provider redirect blocked`
                         : `API Error (${attempt.label}): ${response.statusText || 'Unknown provider error'}`;
-                    console.error(`AI API Error [${attempt.label}]:`, errorText);
+                    console.error(`AI API Error [${attempt.label}] status=${response.status}:`, sanitizeProviderError(errorText));
                     continue;
                 }
 
                 const data = await response.json();
-                const content = data.choices[0]?.message?.content || data.choices[0]?.message?.reasoning_content || "";
+                const content = data.choices?.[0]?.message?.content || data.choices?.[0]?.message?.reasoning_content || '';
                 return NextResponse.json({ result: content, provider: attempt.label });
             } catch (error: unknown) {
                 lastStatus = 502;
@@ -209,17 +380,18 @@ export async function POST(req: Request) {
                 lastError = err?.name === 'AbortError'
                     ? `AI provider timed out while using ${attempt.label}`
                     : err?.message || `Network error while using ${attempt.label}`;
-                console.error(`Feedback route provider failure [${attempt.label}]:`, error);
+                console.error(`Feedback route provider failure [${attempt.label}]:`, err?.message || error);
             }
         }
 
         return NextResponse.json({ error: lastError }, { status: Math.max(400, lastStatus || 502) });
     } catch (error: unknown) {
-        console.error("Feedback route error:", error);
         const err = error as { message?: string };
+        const message = err?.message || 'Internal server error';
+        console.error('Feedback route error:', message);
         return NextResponse.json(
-            { error: err?.message || 'Internal server error' },
-            { status: 500 }
+            { error: message === 'Request body too large' ? message : 'Internal server error' },
+            { status: message === 'Request body too large' ? 413 : 500 }
         );
     }
 }
