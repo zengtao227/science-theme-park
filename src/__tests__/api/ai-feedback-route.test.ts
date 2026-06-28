@@ -166,4 +166,37 @@ describe("AI feedback route security boundaries", () => {
 
         expect(response.status).toBe(200);
     });
+
+    it("returns 401 (not 503) for DEFAULT_ONLY in production when no server key is set", async () => {
+        mockProviderFetch();
+        process.env.NODE_ENV = "production";
+        process.env.AI_ALLOWED_ORIGINS = "https://science.example";
+        delete process.env.NVIDIA_API_KEY;
+
+        const response = await POST(makeRequest({
+            "origin": "https://science.example",
+            "x-ai-mode": "DEFAULT_ONLY",
+            "x-forwarded-for": "203.0.113.65",
+        }));
+
+        expect(response.status).toBe(401);
+    });
+
+    it("does not 503 DEFAULT_WITH_FALLBACK in production without server key when user fallback key is provided", async () => {
+        mockProviderFetch();
+        process.env.NODE_ENV = "production";
+        process.env.AI_ALLOWED_ORIGINS = "https://science.example";
+        delete process.env.NVIDIA_API_KEY;
+
+        const response = await POST(makeRequest({
+            "origin": "https://science.example",
+            "x-ai-mode": "DEFAULT_WITH_FALLBACK",
+            "x-fallback-api-key": "user-fallback-key",
+            "x-fallback-base-url": "https://api.openai.com/v1",
+            "x-fallback-model-name": "gpt-4o",
+            "x-forwarded-for": "203.0.113.66",
+        }));
+
+        expect(response.status).toBe(200);
+    });
 });

@@ -287,7 +287,9 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Origin not allowed' }, { status: 403 });
         }
 
-        if (mode !== 'CUSTOM_ONLY' && !isRateLimitReady()) {
+        // WHY: only guard when a server key is actually set; BYOK-only deployments
+        // (no NVIDIA_API_KEY) don't use shared rate limiting and must not 503.
+        if (mode !== 'CUSTOM_ONLY' && process.env.NVIDIA_API_KEY && !isRateLimitReady()) {
             return NextResponse.json(
                 { error: 'Server-key rate limiting not configured. Set KV_REST_API_URL + KV_REST_API_TOKEN, or set ALLOW_MEMORY_AI_RATE_LIMIT=1 to accept per-instance limiting. See docs/ai-feedback-env.md.' },
                 { status: 503 }
