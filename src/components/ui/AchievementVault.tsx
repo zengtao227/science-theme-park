@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Award, Lock, X } from "lucide-react";
 import { clsx } from "clsx";
 import { useAppStore, type AchievementId } from "@/lib/store";
-import { translations as i18n } from "@/lib/i18n";
+import { useHomeLanguage } from "@/lib/i18n/home-i18n";
 
 type AchievementVaultProps = {
   open: boolean;
@@ -23,8 +23,7 @@ const achievementOrder: AchievementId[] = [
 
 export default function AchievementVault({ open, onClose }: AchievementVaultProps) {
   const achievements = useAppStore((s) => s.achievements);
-  const currentLanguage = useAppStore((s) => s.currentLanguage);
-  const common = i18n[currentLanguage].common;
+  const { t, currentLanguage } = useHomeLanguage();
 
   const unlockedCount = useMemo(
     () => achievementOrder.filter((id) => achievements[id]?.unlocked).length,
@@ -50,7 +49,7 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
               <div>
                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black">
-                  {common.achievements_title}
+                  {t('common.achievements_title')}
                 </div>
                 <div className="text-sm font-black text-white/70 mt-1">
                   {unlockedCount}/{achievementOrder.length}
@@ -85,10 +84,10 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
                     </div>
                     <div className="flex-1">
                       <div className={clsx("text-sm font-black", unlocked ? "text-white" : "text-white/90")}>
-                        {common.achievements[id].title}
+                        {t(`common.achievements.${id}.title`)}
                       </div>
                       <div className={clsx("text-xs font-mono mt-1", unlocked ? "text-white/60" : "text-white/70")}>
-                        {common.achievements[id].description}
+                        {t(`common.achievements.${id}.description`)}
                       </div>
                       {record?.timestamp && (
                         <div className="text-[10px] uppercase tracking-[0.3em] text-white/70 font-black mt-3">

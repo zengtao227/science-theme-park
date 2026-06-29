@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { useAppStore } from '@/lib/store';
-import { useLanguage } from '@/lib/i18n';
+import { useHomeLanguage } from '@/lib/i18n/home-i18n';
 import { clsx } from 'clsx';
 
 export default function EntryProtocol() {
     const acceptProtocol = useAppStore((s) => s.acceptProtocol);
-    const { t, currentLanguage, setLanguage } = useLanguage();
+    const { t, currentLanguage, setLanguage } = useHomeLanguage();
     
     const protocol_t = {
         system_name: t("protocol.system_name"),

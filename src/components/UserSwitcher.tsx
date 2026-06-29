@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/store';
-import { useLanguage } from '@/lib/i18n';
+import { useHomeLanguage } from '@/lib/i18n/home-i18n';
 import { User, ChevronDown, Plus, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -12,7 +12,7 @@ export default function UserSwitcher() {
   const getUserList = useAppStore((s) => s.getUserList);
   const selectUser = useAppStore((s) => s.switchUser);
   const addUser = useAppStore((s) => s.createUser);
-  const { t } = useLanguage();
+  const { t } = useHomeLanguage();
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState(false);
   const [showNewUser, setShowNewUser] = useState(false);
