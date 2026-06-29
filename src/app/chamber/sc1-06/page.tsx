@@ -29,7 +29,7 @@ import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/component
 import { createSC106FeedbackProvider } from "@/lib/sc1-06-provider";
 
 export default function SC106Page() {
-  const { completeStage } = useAppStore();
+  const completeStage = useAppStore((s) => s.completeStage);
   const { t } = useLanguage();
   const feedbackContentProvider = useMemo(() => createSC106FeedbackProvider(t), [t]);
 

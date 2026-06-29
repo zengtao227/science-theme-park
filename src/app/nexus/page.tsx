@@ -23,7 +23,7 @@ function AchievementCard({ def, unlocked, timestamp }: {
     timestamp?: number;
 }) {
     const styles = RARITY_STYLES[def.rarity];
-    const { currentLanguage } = useAppStore();
+    const currentLanguage = useAppStore((s) => s.currentLanguage);
     const { t } = useLanguage();
     const lang = currentLanguage as "EN" | "CN" | "DE";
 

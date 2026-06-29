@@ -17,7 +17,7 @@ import { createSM105FeedbackProvider } from "@/lib/sm1-05/provider";
 type Stage = SM105Stage;
 
 export default function SM105Page() {
-    const { currentLanguage } = useAppStore();
+    const currentLanguage = useAppStore((s) => s.currentLanguage);
     const { t } = useLanguage();
     const feedbackContentProvider = useMemo(() => createSM105FeedbackProvider(t), [t]);
 

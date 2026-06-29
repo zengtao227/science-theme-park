@@ -12,7 +12,6 @@
 'use client';
 
 import { useCallback, useEffect, useMemo } from 'react';
-import { useAppStore } from '@/lib/store';
 import { useLanguage } from '@/lib/i18n';
 import { useQuestManager, Difficulty } from '@/hooks/useQuestManager';
 import ChamberLayout from '@/components/layout/ChamberLayout';

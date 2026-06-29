@@ -291,7 +291,7 @@ function ConditionalViz({ eventA = 0.5, eventB = 0.6, eventAB = 0.3, lang }: { e
 
 export default function ProbabilityVisualization(props: ProbabilityVisualizationProps) {
   const { stage, favorable, total, n, k, p, eventA, eventB, eventAB } = props;
-  const { currentLanguage } = useAppStore();
+  const currentLanguage = useAppStore((s) => s.currentLanguage);
   const lang = currentLanguage;
   
   const stageKeyMap: Record<string, "basic_prob" | "binomial" | "conditional" | "mission"> = {
