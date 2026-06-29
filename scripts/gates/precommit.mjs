@@ -61,6 +61,34 @@ const I18N_BARREL_RE = /from\s+['"]@\/lib\/i18n['"]/;
 const I18N_HOME_RE   = /from\s+['"]@\/lib\/i18n\/home-i18n['"]/;
 const THREE_RE       = /from\s+['"](?:three|@react-three\/)/;
 
+// ── CHECK 0: Untracked source files ──────────────────────────────────────────
+// Prevents the class of bug where a file is created and imported locally
+// but never staged — causing local builds to pass while CI/Vercel fails.
+
+const SOURCE_ROOTS = ['src/', 'scripts/', '.github/', '.husky/', 'docs/'];
+
+let untrackedRaw;
+try {
+  untrackedRaw = execSync('git status --porcelain', { encoding: 'utf8' });
+} catch {
+  untrackedRaw = '';
+}
+
+const untrackedSource = untrackedRaw
+  .split('\n')
+  .filter(line => line.startsWith('??'))
+  .map(line => line.slice(3).trim())
+  .filter(f => SOURCE_ROOTS.some(root => f.startsWith(root)));
+
+if (untrackedSource.length > 0) {
+  console.error('\n❌ PRECOMMIT BLOCKED: Untracked source files detected.');
+  console.error('   These files exist locally but are NOT in git.');
+  console.error('   Local builds pass; CI/Vercel will fail with "module not found".\n');
+  for (const f of untrackedSource) console.error(`   ?? ${f}`);
+  console.error('\n   Fix: git add <file>  OR  echo "<file>" >> .gitignore\n');
+  process.exit(1);
+}
+
 // ── CHECK 1: Locked file modification ─────────────────────────────────────────
 
 if (!process.env.LOCK_OVERRIDE) {

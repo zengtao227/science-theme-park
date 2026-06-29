@@ -57,5 +57,3 @@ scripts/*.py
 # local handoff workspace (never commit)
 temp/
 
-# Lockfile — not committed; cross-platform native binaries (lightningcss, oxide)
-package-lock.json
