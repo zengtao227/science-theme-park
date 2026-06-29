@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# .husky/pre-commit
+# Pre-commit hook — runs both existing auto-fixer and new anti-regression gate.
+#
+# Activate: git config core.hooksPath .husky
+# Bypass locked-file check (with approval): LOCK_OVERRIDE=1 git commit
+
+# Run existing auto-fixer if it exists
+if [ -f "hooks/auto-fixer.py" ]; then
+  python3 hooks/auto-fixer.py --check
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ auto-fixer.py --check failed. Fix the issues above, then re-commit."
+    exit 1
+  fi
+fi
+
+# Run anti-regression gate (staged files only, fast)
+node scripts/gates/precommit.mjs
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
+exit 0

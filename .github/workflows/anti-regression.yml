@@ -1,0 +1,79 @@
+name: Anti-Regression
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+
+jobs:
+  # ── Job 1: Architecture structural check ─────────────────────────────────────
+  architecture:
+    name: Architecture Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check i18n + Three.js architecture rules
+        run: node scripts/architecture-check.mjs
+
+      - name: Check locked files not modified (PRs only)
+        if: github.event_name == 'pull_request'
+        run: |
+          LOCKED_FILES=(
+            "src/components/ui/AchievementVault.tsx"
+            "src/lib/i18n/index.ts"
+            "src/lib/i18n/home-i18n.ts"
+            "src/app/layout.tsx"
+            "src/lib/store.ts"
+            "src/app/page.tsx"
+          )
+          BASE=${{ github.event.pull_request.base.sha }}
+          HEAD=${{ github.event.pull_request.head.sha }}
+          CHANGED=$(git diff --name-only "$BASE" "$HEAD")
+          LOCK_VIOLATION=0
+          for FILE in "${LOCKED_FILES[@]}"; do
+            if echo "$CHANGED" | grep -qF "$FILE"; then
+              echo "❌ LOCKED FILE MODIFIED: $FILE"
+              echo "   This file requires explicit project owner approval."
+              echo "   Rule: docs/ARCHITECTURE_CONTRACT.md §3"
+              LOCK_VIOLATION=1
+            fi
+          done
+          if [ "$LOCK_VIOLATION" -eq 1 ]; then
+            echo ""
+            echo "PR blocked due to locked file modification(s)."
+            echo "To request approval, explain the change in the PR description"
+            echo "and get explicit sign-off from the project owner."
+            exit 1
+          fi
+          echo "✅ No locked files modified."
+
+  # ── Job 2: Bundle size gate ───────────────────────────────────────────────────
+  bundle-size:
+    name: Bundle Size Gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Check bundle size against baseline
+        run: node scripts/bundle-check.mjs
