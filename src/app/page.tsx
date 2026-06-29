@@ -11,10 +11,9 @@ import ModuleFilter from '@/components/ui/ModuleFilter';
 import { clsx } from 'clsx';
 import { Gamepad2, Atom, FlaskConical, Sigma, Medal, Settings } from 'lucide-react';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'framer-motion';
-
 import UserSwitcher from '@/components/UserSwitcher';
 import UserSetup from '@/components/UserSetup';
+import "@/lib/i18n/i18n-guard";
 
 export default function Home() {
   const { hasAcceptedProtocol, currentLanguage, setLanguage, getModuleProgress, getSectorProgress, history, currentUser } = useAppStore();
@@ -34,6 +33,7 @@ export default function Home() {
   const mathProgress = getSectorProgress('math');
   const physicsProgress = getSectorProgress('physics');
   const chemistryProgress = getSectorProgress('chemistry');
+  const [homeLanguageSelected, setHomeLanguageSelected] = useState(false);
   const [vaultOpen, setVaultOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -241,6 +241,44 @@ export default function Home() {
 
   const totalFiltered = filteredMath.length + filteredPhysics.length + filteredChemistry.length + filteredBiology.length + filteredEnrichment.length;
 
+  if (!homeLanguageSelected) {
+    const langOptions = [
+      { lang: 'EN' as const, label: 'English', flag: '🇬🇧' },
+      { lang: 'CN' as const, label: '中文', flag: '🇨🇳' },
+      { lang: 'DE' as const, label: 'Deutsch', flag: '🇩🇪' },
+    ];
+    return (
+      <main className="h-screen bg-black text-white flex items-center justify-center">
+        <div className="fixed inset-0 pointer-events-none z-50 scanline opacity-20" />
+        <div className="flex flex-col items-center gap-10">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-sm border border-neon-green flex items-center justify-center animate-pulse">
+              <Gamepad2 className="w-5 h-5 text-neon-green" />
+            </div>
+            <h1 className="text-2xl font-black tracking-tighter neon-text-green">SCIENCE THEME PARK</h1>
+          </div>
+          <p className="text-[10px] font-mono text-white/40 tracking-[0.3em] uppercase">
+            Select Language / 选择语言 / Sprache wählen
+          </p>
+          <div className="flex gap-4">
+            {langOptions.map(({ lang, label, flag }) => (
+              <button
+                key={lang}
+                onClick={() => {
+                  setLanguage(lang);
+                  setHomeLanguageSelected(true);
+                }}
+                className="px-8 py-4 border border-neon-green/40 text-neon-green bg-neon-green/5 hover:bg-neon-green/20 transition-all font-bold tracking-wider text-sm uppercase"
+              >
+                <span className="mr-2">{flag}</span>{label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   if (!hasAcceptedProtocol) {
     return <EntryProtocol />;
   }
@@ -379,29 +417,20 @@ export default function Home() {
             icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
             tagIcon="📐"
           >
-            <AnimatePresence mode="popLayout">
-              {filteredMath.map((module) => (
-                <motion.div
-                  layout
-                  key={module.code}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <ModuleCard
-                    code={module.code}
-                    title={module.title}
-                    desc={module.desc}
-                    color={module.color}
-                    progress={getProgress(module.code)}
-                    href={module.href}
-                    actionLabel={t("home.initiate_simulation")}
-                    completedLabel={t("home.completed_badge")}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
+            {filteredMath.map((module) => (
+              <div key={module.code} className="animate-fade-in-up">
+                <ModuleCard
+                  code={module.code}
+                  title={module.title}
+                  desc={module.desc}
+                  color={module.color}
+                  progress={getProgress(module.code)}
+                  href={module.href}
+                  actionLabel={t("home.initiate_simulation")}
+                  completedLabel={t("home.completed_badge")}
+                />
+              </div>
+            ))}
           </Sector>
         )}
 
@@ -413,29 +442,20 @@ export default function Home() {
               icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
               tagIcon="⚛️"
             >
-              <AnimatePresence mode="popLayout">
-                {filteredPhysics.map((module) => (
-                  <motion.div
-                    layout
-                    key={module.code}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <ModuleCard
-                      code={module.code}
-                      title={module.title}
-                      desc={module.desc}
-                      color={module.color}
-                      progress={getProgress(module.code)}
-                      href={module.href}
-                      actionLabel={t("home.initiate_simulation")}
-                      completedLabel={t("home.completed_badge")}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {filteredPhysics.map((module) => (
+                <div key={module.code} className="animate-fade-in-up">
+                  <ModuleCard
+                    code={module.code}
+                    title={module.title}
+                    desc={module.desc}
+                    color={module.color}
+                    progress={getProgress(module.code)}
+                    href={module.href}
+                    actionLabel={t("home.initiate_simulation")}
+                    completedLabel={t("home.completed_badge")}
+                  />
+                </div>
+              ))}
             </Sector>
           )}
 
@@ -447,29 +467,20 @@ export default function Home() {
               icon={<FlaskConical className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
               tagIcon="🧪"
             >
-              <AnimatePresence mode="popLayout">
-                {filteredChemistry.map((module) => (
-                  <motion.div
-                    layout
-                    key={module.code}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <ModuleCard
-                      code={module.code}
-                      title={module.title}
-                      desc={module.desc}
-                      color={module.color}
-                      progress={getProgress(module.code)}
-                      href={module.href}
-                      actionLabel={t("home.initiate_simulation")}
-                      completedLabel={t("home.completed_badge")}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {filteredChemistry.map((module) => (
+                <div key={module.code} className="animate-fade-in-up">
+                  <ModuleCard
+                    code={module.code}
+                    title={module.title}
+                    desc={module.desc}
+                    color={module.color}
+                    progress={getProgress(module.code)}
+                    href={module.href}
+                    actionLabel={t("home.initiate_simulation")}
+                    completedLabel={t("home.completed_badge")}
+                  />
+                </div>
+              ))}
             </Sector>
           )}
 
@@ -483,29 +494,20 @@ export default function Home() {
               icon={<Atom className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
               tagIcon="🧬"
             >
-              <AnimatePresence mode="popLayout">
-                {filteredBiology.map((module) => (
-                  <motion.div
-                    layout
-                    key={module.code}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <ModuleCard
-                      code={module.code}
-                      title={module.title}
-                      desc={module.desc}
-                      color={module.color}
-                      progress={getProgress(module.code)}
-                      href={module.href}
-                      actionLabel={t("home.initiate_simulation")}
-                      completedLabel={t("home.completed_badge")}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {filteredBiology.map((module) => (
+                <div key={module.code} className="animate-fade-in-up">
+                  <ModuleCard
+                    code={module.code}
+                    title={module.title}
+                    desc={module.desc}
+                    color={module.color}
+                    progress={getProgress(module.code)}
+                    href={module.href}
+                    actionLabel={t("home.initiate_simulation")}
+                    completedLabel={t("home.completed_badge")}
+                  />
+                </div>
+              ))}
             </Sector>
           )}
 
@@ -517,29 +519,20 @@ export default function Home() {
               icon={<Sigma className="w-5 h-5 shadow-[0_0_10px_currentColor]" />}
               tagIcon="⭐"
             >
-              <AnimatePresence mode="popLayout">
-                {filteredEnrichment.map((module) => (
-                  <motion.div
-                    layout
-                    key={module.code}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                  >
-                    <ModuleCard
-                      code={module.code}
-                      title={module.title}
-                      desc={module.desc}
-                      color={module.color}
-                      progress={getProgress(module.code)}
-                      href={module.href}
-                      actionLabel={t("home.initiate_simulation")}
-                      completedLabel={t("home.completed_badge")}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {filteredEnrichment.map((module) => (
+                <div key={module.code} className="animate-fade-in-up">
+                  <ModuleCard
+                    code={module.code}
+                    title={module.title}
+                    desc={module.desc}
+                    color={module.color}
+                    progress={getProgress(module.code)}
+                    href={module.href}
+                    actionLabel={t("home.initiate_simulation")}
+                    completedLabel={t("home.completed_badge")}
+                  />
+                </div>
+              ))}
             </Sector>
           )}
 

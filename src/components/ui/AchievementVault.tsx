@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Award, Lock, X } from "lucide-react";
 import { clsx } from "clsx";
 import { useAppStore, type AchievementId } from "@/lib/store";
@@ -31,21 +30,10 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
   );
 
   return (
-    <AnimatePresence>
+    <>
       {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl"
-        >
-          <motion.div
-            initial={{ y: 30, opacity: 0, scale: 0.98 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 30, opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="mx-auto mt-24 w-[92%] max-w-4xl border border-neon-cyan/30 bg-black/80 rounded-2xl shadow-[0_0_35px_var(--color-neon-cyan)]"
-          >
+        <div className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl animate-fade-in">
+          <div className="mx-auto mt-24 w-[92%] max-w-4xl border border-neon-cyan/30 bg-black/80 rounded-2xl shadow-[0_0_35px_var(--color-neon-cyan)] animate-slide-up-scale">
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
               <div>
                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black">
@@ -102,9 +90,9 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
                 );
               })}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

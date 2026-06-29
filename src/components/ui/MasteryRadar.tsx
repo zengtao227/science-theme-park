@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion, easeOut } from "framer-motion";
 import { clsx } from "clsx";
 
 type MasteryRadarProps = {
@@ -50,8 +49,6 @@ export default function MasteryRadar({ conceptual, speed, rigor, decay, labels }
     return { ...metric, x, y };
   });
 
-  const transition = { duration: 0.6, ease: easeOut };
-
   return (
     <div
       className="relative overflow-hidden rounded-xl p-5 backdrop-blur-lg border shadow-[0_0_25px_rgba(0,0,0,0.3)]"
@@ -98,13 +95,11 @@ export default function MasteryRadar({ conceptual, speed, rigor, decay, labels }
             );
           })}
 
-          <motion.polygon
+          <polygon
             points={polygon}
             fill="var(--color-mastery-cyan-20)"
             stroke="var(--color-mastery-cyan)"
             strokeWidth="1.6"
-            animate={{ points: polygon }}
-            transition={transition}
           />
           {metrics.map((metric, index) => {
             const angle = -Math.PI / 2 + index * angleStep;
@@ -112,14 +107,13 @@ export default function MasteryRadar({ conceptual, speed, rigor, decay, labels }
             const x = center + Math.cos(angle) * r;
             const y = center + Math.sin(angle) * r;
             return (
-              <motion.circle
+              <circle
                 key={metric.id}
                 cx={x}
                 cy={y}
                 r={3.2}
                 fill={metric.color === "neon-purple" ? "var(--color-mastery-purple)" : "var(--color-mastery-cyan)"}
-                animate={{ cx: x, cy: y }}
-                transition={transition}
+                style={{ transition: "cx 0.6s ease-out, cy 0.6s ease-out" }}
               />
             );
           })}
