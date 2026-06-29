@@ -8,9 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createSP102FeedbackProvider } from "@/lib/sp1-02/provider";
-
-
-import P102LawsCanvas from "@/components/chamber/sp1-02/LawsCanvas";
+import dynamic from "next/dynamic";
 import {
     Stage,
     SP102Quest,
@@ -18,6 +16,11 @@ import {
     generateSecondLawQuests,
     generateThirdLawQuests,
 } from "@/lib/sp1-02/quests";
+
+const P102LawsCanvas = dynamic(() => import("@/components/chamber/sp1-02/LawsCanvas"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-white/[0.02] rounded-xl" />,
+});
 
 
 

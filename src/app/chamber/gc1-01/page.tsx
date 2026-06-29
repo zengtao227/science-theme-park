@@ -3,8 +3,9 @@
 import { useMemo, useEffect, useCallback } from "react";
 import "katex/dist/katex.min.css";
 import { useLanguage } from "@/lib/i18n";
+import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import RedoxCanvas from "@/components/chamber/gc1-01/RedoxCanvas";
+
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
 import {
     Stage,
@@ -14,6 +15,11 @@ import {
 import { renderMixedText } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createGC101FeedbackProvider } from "@/lib/gc1-01/provider";
+
+const RedoxCanvas = dynamic(() => import("@/components/chamber/gc1-01/RedoxCanvas"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-white/[0.02] rounded-xl" />,
+});
 
 export default function GC101Page() {
     const { t } = useLanguage();

@@ -10,7 +10,7 @@ import { InlineMath } from "react-katex";
 import LayeredFeedbackPanel from "@/components/feedback/LayeredFeedbackPanel";
 import type { FeedbackContent, FeedbackLevel, FeedbackPolicy } from "@/hooks/useQuestManager";
 import { escapeLatexText } from "@/lib/feedback/solverSupport";
-import { calculateBindingEnergy, calculateBEperNucleon, isStable, getDecayMode } from "@/components/chamber/gp1-01/NuclearSim";
+import { calculateBindingEnergy, calculateBEperNucleon, isStable, getDecayMode } from "@/lib/gp1-01/nuclearPhysics";
 
 const NuclearSim = dynamic(() => import("@/components/chamber/gp1-01/NuclearSim"), {
     ssr: false,

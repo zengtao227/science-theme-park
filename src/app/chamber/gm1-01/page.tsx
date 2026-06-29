@@ -4,9 +4,10 @@ import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { useEffect, useCallback, useMemo } from "react";
 import { useLanguage, useNamespace } from "@/lib/i18n";
+import dynamic from "next/dynamic";
 import { useQuestManager, Difficulty } from "@/hooks/useQuestManager";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import DerivativeCanvas from "@/components/chamber/gm1-01/DerivativeCanvas";
+
 import {
   Stage,
   G101Quest,
@@ -20,6 +21,11 @@ import {
 import { normalizePlainMathNotation, renderMixedText, KatexTextWrap } from "@/lib/latex-utils";
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createGM101FeedbackProvider } from "@/lib/gm1-01/provider";
+
+const DerivativeCanvas = dynamic(() => import("@/components/chamber/gm1-01/DerivativeCanvas"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-white/[0.02] rounded-xl" />,
+});
 
 function getFunctionTypeFromStage(stage: Stage): "power" | "factor" | "sum" | "product" | "quotient" | "chain" {
   if (stage === "POWER_RULE") return "power";

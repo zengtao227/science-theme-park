@@ -11,75 +11,7 @@ interface NuclearSimProps {
     showStabilityIsland: boolean;
 }
 
-// SEMF coefficients (MeV)
-const SEMF = {
-    av: 15.8,  // Volume term
-    as: 18.3,  // Surface term
-    ac: 0.71,  // Coulomb term
-    aa: 23.2,  // Asymmetry term
-};
-
-// Calculate binding energy using Semi-Empirical Mass Formula
-function calculateBindingEnergy(A: number, Z: number): number {
-    if (A === 0) return 0;
-    
-    const N = A - Z;
-    
-    // Pairing term delta
-    let delta = 0;
-    if (Z % 2 === 0 && N % 2 === 0) delta = 12 / Math.sqrt(A); // even-even
-    else if (Z % 2 === 1 && N % 2 === 1) delta = -12 / Math.sqrt(A); // odd-odd
-    // else delta = 0 for even-odd or odd-even
-    
-    const volumeTerm = SEMF.av * A;
-    const surfaceTerm = SEMF.as * Math.pow(A, 2/3);
-    const coulombTerm = SEMF.ac * Z * (Z - 1) / Math.pow(A, 1/3);
-    const asymmetryTerm = SEMF.aa * Math.pow(A - 2*Z, 2) / A;
-    
-    const B = volumeTerm - surfaceTerm - coulombTerm - asymmetryTerm + delta;
-    
-    return B;
-}
-
-// Calculate binding energy per nucleon
-function calculateBEperNucleon(A: number, Z: number): number {
-    if (A === 0) return 0;
-    return calculateBindingEnergy(A, Z) / A;
-}
-
-// Check if nucleus is stable (simplified model)
-function isStable(Z: number, N: number): boolean {
-    const A = Z + N;
-    if (A === 0) return false;
-    
-    // Stability band approximation
-    const idealN = Z * (1 + 0.015 * Math.pow(Z, 2/3));
-    const deviation = Math.abs(N - idealN);
-    
-    // Allow some deviation based on mass number
-    const tolerance = 2 + A * 0.02;
-    
-    return deviation < tolerance && Z > 0 && N > 0;
-}
-
-// Determine decay mode
-function getDecayMode(Z: number, N: number): "stable" | "alpha" | "beta-" | "beta+" {
-    if (isStable(Z, N)) return "stable";
-    
-    const A = Z + N;
-    
-    // Heavy nuclei (A > 200) tend to alpha decay
-    if (A > 200 && Z > 82) return "alpha";
-    
-    // Neutron-rich: beta- decay
-    const idealN = Z * (1 + 0.015 * Math.pow(Z, 2/3));
-    if (N > idealN + 2) return "beta-";
-    
-    // Proton-rich: beta+ decay
-    if (N < idealN - 2) return "beta+";
-    
-    return "stable";
-}
+import { isStable } from "@/lib/gp1-01/nuclearPhysics";
 
 function StabilityChart({ protons, neutrons, showStabilityIsland }: NuclearSimProps) {
     const maxZ = 100;
@@ -252,4 +184,3 @@ export default function NuclearSim(props: NuclearSimProps) {
     );
 }
 
-export { calculateBindingEnergy, calculateBEperNucleon, isStable, getDecayMode };

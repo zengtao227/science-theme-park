@@ -5,8 +5,9 @@ import "katex/dist/katex.min.css";
 import { useCallback, useEffect, useMemo } from "react";
 import { useLanguage } from "@/lib/i18n";
 import { Difficulty, useQuestManager } from "@/hooks/useQuestManager";
+import dynamic from "next/dynamic";
 import ChamberLayout from "@/components/layout/ChamberLayout";
-import MoleCanvas from "@/components/chamber/sc1-02/MoleCanvas";
+
 import { buildQuestPrintSections, DEFAULT_PRINT_DIFFICULTIES } from "@/components/print/QuestPrintSections";
 import { createSC102FeedbackProvider } from "@/lib/sc1-02/provider";
 import {
@@ -17,6 +18,11 @@ import {
   generateYieldQuests,
 } from "@/lib/sc1-02/quests";
 import { renderMixedText } from "@/lib/latex-utils";
+
+const MoleCanvas = dynamic(() => import("@/components/chamber/sc1-02/MoleCanvas"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full animate-pulse bg-white/[0.02] rounded-xl" />,
+});
 
 export default function C102Page() {
   const { t } = useLanguage();
