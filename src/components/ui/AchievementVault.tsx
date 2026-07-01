@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { Award, Lock, X } from "lucide-react";
 import { clsx } from "clsx";
 import { useAppStore, type AchievementId } from "@/lib/store";
@@ -29,11 +29,26 @@ export default function AchievementVault({ open, onClose }: AchievementVaultProp
     [achievements]
   );
 
+  // Delayed unmount: keep DOM alive during 350ms exit animation
+  const [mounted, setMounted] = useState(open);
+  const [exiting, setExiting] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      setMounted(true);
+      setExiting(false);
+    } else {
+      setExiting(true);
+      const t = setTimeout(() => { setMounted(false); setExiting(false); }, 350);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+
   return (
     <>
-      {open && (
-        <div className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl animate-fade-in">
-          <div className="mx-auto mt-24 w-[92%] max-w-4xl border border-neon-cyan/30 bg-black/80 rounded-2xl shadow-[0_0_35px_var(--color-neon-cyan)] animate-slide-up-scale">
+      {mounted && (
+        <div className={clsx("fixed inset-0 z-[70] bg-black/80 backdrop-blur-xl", exiting ? "animate-fade-out" : "animate-fade-in")}>
+          <div className={clsx("mx-auto mt-24 w-[92%] max-w-4xl border border-neon-cyan/30 bg-black/80 rounded-2xl shadow-[0_0_35px_var(--color-neon-cyan)]", exiting ? "animate-slide-down-scale" : "animate-slide-up-scale")}>
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
               <div>
                 <div className="text-[10px] uppercase tracking-[0.4em] text-neon-cyan font-black">

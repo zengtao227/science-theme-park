@@ -86,6 +86,24 @@ body {
   animation: bg-sweep 2.6s linear infinite;
 }
 
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes slide-down-scale {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(30px) scale(0.98); }
+}
+
+.animate-fade-out {
+  animation: fade-out 0.25s ease-in both;
+}
+
+.animate-slide-down-scale {
+  animation: slide-down-scale 0.35s ease-in both;
+}
+
 @keyframes scanline {
   0% {
     transform: translateY(-100%);

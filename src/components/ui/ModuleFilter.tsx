@@ -50,8 +50,8 @@ export default function ModuleFilter({
         >
           <div className="absolute inset-0 rounded-lg border border-white/10" />
           <div
-            className={clsx("absolute inset-0 rounded-lg opacity-70", expanded && "animate-bg-sweep")}
-            style={sweepStyle}
+            className="absolute inset-0 rounded-lg animate-bg-sweep transition-opacity duration-350"
+            style={{ ...sweepStyle, opacity: expanded ? 0.7 : 0 }}
           />
           <input
             value={query}
